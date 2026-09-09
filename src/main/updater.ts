@@ -3,6 +3,16 @@ import { autoUpdater } from 'electron-updater'
 import type { UpdateState, UpdateInfo } from '../shared/types'
 import { isNewerVersion } from '../shared/version'
 
+// ── Fork build: updates disabled ────────────────────────────────────────────
+// This tree is a fork built from source. The stock updater polls the *upstream*
+// release feed (REPO below) and would offer binaries this fork never produced —
+// which is exactly the control that building from a fork is meant to keep.
+// Every network path in this module is gated on this constant.
+//
+// To re-enable: repoint REPO at the fork that publishes the releases, then flip
+// this to false. Do not flip it while REPO still names another owner.
+export const UPDATES_DISABLED = true
+
 const REPO = 'MyAppDesk/gitcito'
 const releaseUrl = (version: string): string =>
   `https://github.com/${REPO}/releases/tag/v${version.replace(/^v/, '')}`
@@ -13,7 +23,7 @@ const state: UpdateState = {
   info: null,
   progress: null,
   error: null,
-  supported: app.isPackaged,
+  supported: app.isPackaged && !UPDATES_DISABLED,
   staged: null
 }
 
@@ -170,6 +180,10 @@ export function registerUpdaterHandlers(): void {
   // `silent` keeps the banner as it is instead of flipping to 'checking' — for
   // checks the user did not ask for, like opening the What's-new page.
   ipcMain.handle('update:check', async (_e, silent?: boolean) => {
+    if (UPDATES_DISABLED) {
+      setState({ status: 'not-available', error: null })
+      return
+    }
     if (!app.isPackaged) {
       await checkViaGitHub()
       return
@@ -184,6 +198,7 @@ export function registerUpdaterHandlers(): void {
   })
 
   ipcMain.handle('update:download', async () => {
+    if (UPDATES_DISABLED) return
     // Unsupported (dev): open the release page; the renderer also handles this,
     // but guard here in case it calls through anyway.
     if (!app.isPackaged) {
@@ -206,6 +221,7 @@ export function registerUpdaterHandlers(): void {
 
   // Quit and install the downloaded update. Fire-and-forget (the app exits).
   ipcMain.on('update:install', () => {
+    if (UPDATES_DISABLED) return
     if (state.status !== 'downloaded') return
     setImmediate(() => autoUpdater.quitAndInstall())
   })
@@ -213,6 +229,7 @@ export function registerUpdaterHandlers(): void {
 
 /** Kick a silent check shortly after launch (packaged builds only). */
 export function checkForUpdatesOnLaunch(): void {
+  if (UPDATES_DISABLED) return
   if (!app.isPackaged) return
   wireAutoUpdater()
   scheduleRechecks()
