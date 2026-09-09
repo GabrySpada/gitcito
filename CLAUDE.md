@@ -29,7 +29,11 @@ npm run build         # electron-vite build
 
 **Do not launch the app.** No `npm run dev`, no simulator, no "let me open it
 to check". The user runs the app. Compile-only checks — build, typecheck,
-tests — are yours.
+tests — are yours. If the user explicitly asks you to launch it anyway, use
+`env -u ELECTRON_RUN_AS_NODE npm run dev` — an editor's extension host exports
+that variable, and an Electron that inherits it starts as plain Node and dies
+on `app.isPackaged` instead of opening a window. `npm run screenshots` already
+strips it for you; `dev` does not.
 
 **Report honestly.** If tests fail, say so and quote the output. If you skipped
 part of the scope, say which part and why. A green summary over a red tree is
