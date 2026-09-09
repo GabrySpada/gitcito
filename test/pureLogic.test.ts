@@ -165,6 +165,8 @@ import {
   updateFolder
 } from '../src/renderer/src/lib/repoFolders'
 import type { RepoFolder, RepoRef } from '../src/shared/types'
+import { fileStats, summaryChips } from '../src/renderer/src/lib/fileStats'
+import type { FileChangeKind } from '../src/shared/types'
 import {
   buildDiffEvidence,
   serializeEvidence,
@@ -6409,5 +6411,51 @@ describe('build noise', () => {
   it('ignores a stray file by name, wherever it turns up', () => {
     expect(ignoreLineFor('Demo/nested/.DS_Store')).toBe('.DS_Store')
     expect(ignoreLineFor('Thumbs.db')).toBe('Thumbs.db')
+  })
+})
+
+describe('fileStats', () => {
+  const of = (...statuses: string[]): { path: string; status: FileChangeKind }[] =>
+    statuses.map((status, i) => ({ path: `f${i}.ts`, status: status as FileChangeKind }))
+
+  it('buckets each status the same way the file tree colours it', () => {
+    expect(fileStats(of('A', 'M', 'D', 'R', 'U'))).toEqual({ add: 1, mod: 1, del: 1, ren: 1, conflict: 1 })
+  })
+
+  it('folds copies and untracked files into added, as statusClass does', () => {
+    expect(fileStats(of('A', 'C', '?'))).toMatchObject({ add: 3, mod: 0 })
+  })
+
+  it('treats an unknown status as a modification rather than dropping the file', () => {
+    expect(fileStats(of('X'))).toMatchObject({ mod: 1, add: 0 })
+  })
+
+  it('counts nothing for an empty commit', () => {
+    expect(fileStats([])).toEqual({ add: 0, mod: 0, del: 0, ren: 0, conflict: 0 })
+  })
+
+  it('drops empty buckets so a plain edit shows one chip, not five', () => {
+    expect(summaryChips(fileStats(of('M', 'M')))).toEqual([
+      { cls: 'tb-modified', labelKey: 'chg.modified', n: 2 }
+    ])
+  })
+
+  it('picks the singular key for a bucket of one', () => {
+    expect(summaryChips(fileStats(of('M')))[0].labelKey).toBe('chg.modifiedOne')
+  })
+
+  it('orders chips modified, added, deleted, renamed, conflicted', () => {
+    const chips = summaryChips(fileStats(of('U', 'R', 'D', 'A', 'M')))
+    expect(chips.map((c) => c.cls)).toEqual([
+      'tb-modified',
+      'tb-added',
+      'tb-deleted',
+      'tb-renamed',
+      'tb-conflicted'
+    ])
+  })
+
+  it('returns no chips at all when there are no files', () => {
+    expect(summaryChips(fileStats([]))).toEqual([])
   })
 })

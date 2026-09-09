@@ -67,6 +67,27 @@ Een commit selecteren toont zijn gewijzigde bestanden (boom of plat), auteur,
 SHA, co-auteurs en zijn handtekening. `#123`-verwijzingen en `@vermeldingen`
 worden automatisch gelinkt naar je host.
 
+Boven de bestandslijst splitst een **wijzigingsoverzicht** de commit uit naar
+soort in plaats van één totaal te geven — *5 gewijzigd*, *1 toegevoegd*,
+*1 verwijderd*, plus *hernoemd* en *conflicterend* als de commit die bevat. Elk
+krijgt de kleur van het statusteken op de regels eronder en van de tellers op
+ingeklapte mappen, zodat dezelfde kleur overal in het paneel hetzelfde betekent.
+Soorten zonder bestanden vallen helemaal weg, dus een gewone bewerking toont één
+item en niet vijf. Beweeg de muis over het overzicht voor het kale totaal
+"*n* gewijzigde bestanden".
+
+![Wijzigingsoverzicht boven de bestandslijst van een commit: 6 gewijzigd, 2 toegevoegd, 1 verwijderd, 1 hernoemd](../../screenshots/change-summary.webp)
+
+Twee dingen vertelt het bewust niet. Het telt **bestanden, geen regels**: een
+correctie van één teken en een volledige herschrijving lezen allebei als
+*1 gewijzigd*; de diff laat zien hoeveel er echt veranderd is. En het telt elk
+bestand in de commit, niet alleen wat aan een actief filter of een zoekopdracht
+voldoet.
+
+Hetzelfde overzicht staat boven het staging-paneel en de bestandslijst van een
+stash. In het staging-paneel tellen niet-gevolgde bestanden als toevoegingen:
+*toegevoegd* betekent daar "zat niet in de laatste commit", niet "al gestaged".
+
 De bestandenlijst is meervoudig te selecteren met de gebruikelijke gebaren
 (<kbd>⌘</kbd>/<kbd>Ctrl</kbd>-klik, <kbd>⇧</kbd>-klik,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Rechtsklik op de selectie → *{n}

@@ -66,6 +66,25 @@ Selezionando un commit vedi i suoi file modificati (ad albero o piatti),
 l'autore, lo SHA, i coautori e la sua firma. I riferimenti `#123` e le
 `@menzioni` diventano automaticamente link al tuo host.
 
+Sopra l'elenco dei file, un **riepilogo delle modifiche** scompone il commit per
+tipo invece di dare un totale unico — *5 modificati*, *1 aggiunto*, *1 eliminato*,
+più *rinominati* e *in conflitto* quando il commit li contiene. Ogni voce ha il
+colore del glifo di stato nelle righe sottostanti e dei contatori sulle cartelle
+chiuse, così lo stesso colore significa la stessa cosa in tutto il pannello. I
+tipi senza file spariscono del tutto: una modifica ordinaria mostra una voce, non
+cinque. Passa il mouse sul riepilogo per il totale "*n* file cambiati".
+
+![Riepilogo delle modifiche sopra l'elenco file di un commit: 6 modificati, 2 aggiunti, 1 eliminato, 1 rinominato](../../screenshots/change-summary.webp)
+
+Due cose che di proposito non ti dice. Conta **i file, non le righe**: una
+correzione di un carattere e una riscrittura sono entrambe *1 modificato*; è il
+diff a mostrare quanto è cambiato. E conta tutti i file del commit, non il
+sottoinsieme che corrisponde a un filtro o a una ricerca attiva.
+
+Lo stesso riepilogo apre il pannello di staging e l'elenco file di uno stash. Nel
+pannello di staging i file non tracciati contano come aggiunte, quindi *aggiunto*
+significa "non era nell'ultimo commit", non "già in staging".
+
 L'elenco dei file si seleziona in gruppo con i gesti consueti (clic
 <kbd>⌘</kbd>/<kbd>Ctrl</kbd>, clic <kbd>⇧</kbd>,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Clic destro sulla selezione →

@@ -65,6 +65,25 @@ Selecionar um commit mostra os arquivos alterados dele (em árvore ou plano), au
 SHA, coautores e a assinatura. Referências `#123` e `@menções` viram links
 automáticos para o seu host.
 
+Acima da lista de arquivos, um **resumo das mudanças** decompõe o commit por tipo
+em vez de dar um total único — *5 modificados*, *1 adicionado*, *1 excluído*, mais
+*renomeados* e *em conflito* quando o commit os tem. Cada um usa a cor do glifo de
+status das linhas abaixo e dos contadores nas pastas recolhidas, de modo que a
+mesma cor significa a mesma coisa em todo o painel. Tipos sem arquivos somem por
+completo: uma edição comum mostra uma entrada, não cinco. Passe o mouse sobre o
+resumo para ver o total "*n* arquivos alterados".
+
+![Resumo das mudanças acima da lista de arquivos de um commit: 6 modificados, 2 adicionados, 1 excluído, 1 renomeado](../../screenshots/change-summary.webp)
+
+Duas coisas que ele deliberadamente não conta. Ele conta **arquivos, não linhas**:
+uma correção de um caractere e uma reescrita aparecem ambas como *1 modificado*; é
+o diff que mostra o tamanho da mudança. E conta todos os arquivos do commit, não o
+subconjunto que corresponde a um filtro ou busca ativa.
+
+O mesmo resumo encabeça o painel de preparação e a lista de arquivos de um stash.
+No painel de preparação, arquivos não rastreados contam como adições, então
+*adicionado* quer dizer "não estava no último commit", e não "já preparado".
+
 A lista de arquivos se seleciona em grupo com os gestos de sempre (clique com
 <kbd>⌘</kbd>/<kbd>Ctrl</kbd>, clique com <kbd>⇧</kbd>,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Clique com o botão direito na seleção

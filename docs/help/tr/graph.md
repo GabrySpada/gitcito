@@ -66,6 +66,25 @@ Bir commit'i seçmek değişen dosyalarını (ağaç ya da düz), yazarını, SH
 ortak yazarlarını ve imzasını gösterir. `#123` referansları ve `@mentions`
 sunucunuza otomatik bağlanır.
 
+Dosya listesinin üstünde bir **değişiklik özeti**, commit'i tek bir toplam yerine
+türlere ayırır — *5 değiştirildi*, *1 eklendi*, *1 silindi*, ayrıca commit
+içeriyorsa *yeniden adlandırıldı* ve *çakışmalı*. Her biri, alttaki satırlardaki
+durum simgesiyle ve katlanmış klasörlerdeki sayaçlarla aynı rengi taşır; böylece
+aynı renk panelin her yerinde aynı şeyi ifade eder. Dosyası olmayan türler
+tamamen atlanır, bu yüzden sıradan bir düzenleme beş değil tek bir öğe gösterir.
+Sade "*n* değişen dosya" toplamı için özetin üzerine gelin.
+
+![Bir commit'in dosya listesinin üstündeki değişiklik özeti: 6 değiştirildi, 2 eklendi, 1 silindi, 1 yeniden adlandırıldı](../../screenshots/change-summary.webp)
+
+Bilerek söylemediği iki şey var. **Satırları değil dosyaları** sayar: tek
+karakterlik bir düzeltme de baştan yazma da *1 değiştirildi* olarak okunur;
+değişimin boyutunu ancak diff gösterir. Ve etkin bir filtreye ya da aramaya uyan
+alt kümeyi değil, commit'teki her dosyayı sayar.
+
+Aynı özet, hazırlama panelinin ve bir zulanın dosya listesinin başında da yer alır.
+Hazırlama panelinde izlenmeyen dosyalar ekleme sayılır, yani *eklendi* "zaten
+hazırlanmış" değil, "son commit'te yoktu" anlamına gelir.
+
 Dosya listesi alışıldık hareketlerle çoklu seçilir
 (<kbd>⌘</kbd>/<kbd>Ctrl</kbd> ile tıklama, <kbd>⇧</kbd> ile tıklama,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Seçime sağ tıklayın → *{n} dosyayı

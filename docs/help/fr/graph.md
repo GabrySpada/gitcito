@@ -69,6 +69,28 @@ Sélectionner un commit affiche ses fichiers modifiés (en arbre ou à plat),
 l'auteur, le SHA, les co-auteurs et sa signature. Les références `#123` et les
 `@mentions` sont automatiquement liées à votre hébergeur.
 
+Au-dessus de la liste des fichiers, un **résumé des changements** décompose le
+commit par type au lieu de donner un seul total — *5 modifiés*, *1 ajouté*,
+*1 supprimé*, plus *renommés* et *en conflit* quand le commit en contient. Chacun
+reprend la couleur du glyphe d'état des lignes en dessous et des compteurs sur les
+dossiers repliés : la même couleur veut donc dire la même chose partout dans le
+panneau. Les types sans fichier disparaissent complètement, si bien qu'une
+modification ordinaire affiche une entrée et non cinq. Survolez le résumé pour
+obtenir le total « *n* fichiers modifiés ».
+
+![Résumé des changements au-dessus de la liste de fichiers d'un commit : 6 modifiés, 2 ajoutés, 1 supprimé, 1 renommé](../../screenshots/change-summary.webp)
+
+Deux choses qu'il ne vous dit délibérément pas. Il compte **les fichiers, pas les
+lignes** : une correction d'un caractère et une réécriture valent toutes deux
+*1 modifié* ; c'est le diff qui montre l'ampleur du changement. Et il compte tous
+les fichiers du commit, pas seulement ceux que retient un filtre ou une recherche
+active.
+
+Le même résumé coiffe le panneau de préparation et la liste de fichiers d'un
+stash. Dans le panneau de préparation, les fichiers non suivis comptent comme des
+ajouts : *ajouté* signifie donc « absent du dernier commit », et non « déjà
+préparé ».
+
 La liste de fichiers se sélectionne en groupe avec les gestes habituels (clic
 <kbd>⌘</kbd>/<kbd>Ctrl</kbd>, clic <kbd>⇧</kbd>,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Clic droit sur la sélection →

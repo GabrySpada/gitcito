@@ -12723,6 +12723,35 @@ mark.find-hit.active {
 .tree-badge.tb-deleted { color: var(--red); }
 .tree-badge.tb-renamed { color: var(--blue, #4da3ff); }
 .tree-badge.tb-conflicted { color: var(--red); }
+
+/* Change breakdown in a panel header ("5 modified · 1 added · 1 deleted").
+   Borrows the .tb-* palette above so the header and the collapsed-folder
+   badges below it never use two colour codes for the same idea. */
+.change-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  overflow: hidden;
+  vertical-align: middle;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.change-summary .tree-badge {
+  gap: 3px;
+  white-space: nowrap;
+}
+.change-summary .tree-badge svg {
+  flex-shrink: 0;
+}
+/* An empty commit still needs the row to keep its height. */
+.change-summary:empty::after {
+  content: '';
+  display: inline-block;
+  height: 14px;
+}
 .tree-open-with {
   flex-shrink: 0;
   width: 18px;

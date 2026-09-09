@@ -64,6 +64,25 @@ Selecting a commit shows its changed files (tree or flat), author, SHA,
 co-authors, and its signature. `#123` references and `@mentions` are autolinked
 to your host.
 
+Above the file list, a **change summary** breaks the commit down by kind rather
+than giving a single total — *5 modified*, *1 added*, *1 deleted*, plus
+*renamed* and *conflicted* when a commit has them. Each is coloured to match the
+status glyph on the rows below and the count badges on collapsed folders, so the
+same colour means the same thing everywhere in the panel. Kinds with no files
+are left out entirely, so an ordinary edit shows one entry rather than five.
+Hover the summary for the plain "*n* changed files" total.
+
+![Change summary above a commit's file list: 6 modified, 2 added, 1 deleted, 1 renamed](../screenshots/change-summary.webp)
+
+Two things it deliberately does not tell you. It counts **files, not lines** — a
+one-character fix and a rewrite both read as *1 modified*; the diff itself is
+where churn is visible. And it counts every file in the commit, not the subset
+matching an active filter or search.
+
+The same summary heads the staging panel and the stash file list. In the staging
+panel, untracked files are counted as additions, so *added* means "not in the
+last commit" rather than "already staged".
+
 The file list multi-selects with the usual gestures
 (<kbd>⌘</kbd>/<kbd>Ctrl</kbd>-click, <kbd>⇧</kbd>-click,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Right-click the selection → *Restore

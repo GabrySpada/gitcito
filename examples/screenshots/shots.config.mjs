@@ -118,6 +118,26 @@ export const shots = [
     themes: ['light', 'dark']
   },
   {
+    // The change summary above a commit's file list. The scenario's showcase
+    // commit is the only one in the playground touching all four kinds at once,
+    // so this is the shot that shows the whole vocabulary rather than "5 modified".
+    out: 'change-summary',
+    repos: ['change-summary'],
+    themes: ['dark'],
+    drive: async (page, repoPaths) => {
+      const repo = repoPaths['change-summary']
+      // Select by subject, not by SHA: commit timestamps differ per seed run,
+      // so the hash is not stable across machines.
+      await page.evaluate((p) => {
+        const { commits } = window.__shot.repo.getState().repos[p]
+        const c = commits.find((x) => x.subject === 'refactor: split the client')
+        if (!c) throw new Error('showcase commit missing — did the scenario change?')
+        window.__shot.repo.getState().select(p, { type: 'commit', hash: c.hash })
+      }, repo)
+      await page.waitForTimeout(700)
+    }
+  },
+  {
     out: 'reset-to-commit',
     repos: ['octopus-merge'],
     themes: ['dark'],

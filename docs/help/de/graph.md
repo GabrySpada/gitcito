@@ -69,6 +69,27 @@ Wählst du einen Commit aus, siehst du seine geänderten Dateien (als Baum oder
 flach), Autor, SHA, Co-Autoren und seine Signatur. `#123`-Referenzen und
 `@mentions` werden automatisch mit deinem Host verlinkt.
 
+Über der Dateiliste zerlegt eine **Änderungsübersicht** den Commit nach Art,
+statt eine einzelne Gesamtzahl zu nennen — *5 geändert*, *1 hinzugefügt*,
+*1 gelöscht*, dazu *umbenannt* und *in Konflikt*, sofern der Commit sie enthält.
+Jeder Eintrag trägt die Farbe des Status-Glyphs in den Zeilen darunter und der
+Zähler an eingeklappten Ordnern — dieselbe Farbe bedeutet also überall im Panel
+dasselbe. Arten ohne Dateien entfallen ganz, eine gewöhnliche Änderung zeigt
+darum einen Eintrag statt fünf. Beim Überfahren erscheint die schlichte Summe
+„*n* geänderte Dateien".
+
+![Änderungsübersicht über der Dateiliste eines Commits: 6 geändert, 2 hinzugefügt, 1 gelöscht, 1 umbenannt](../../screenshots/change-summary.webp)
+
+Zweierlei sagt sie bewusst nicht. Sie zählt **Dateien, keine Zeilen**: eine
+Korrektur von einem Zeichen und eine komplette Neufassung lesen sich beide als
+*1 geändert*; wie viel sich wirklich bewegt hat, zeigt der Diff. Und sie zählt
+alle Dateien des Commits, nicht nur die, auf die ein aktiver Filter oder eine
+Suche passt.
+
+Dieselbe Übersicht steht über dem Staging-Panel und der Dateiliste eines Stash.
+Im Staging-Panel zählen unversionierte Dateien als Hinzufügungen — *hinzugefügt*
+heißt dort also „nicht im letzten Commit", nicht „bereits gestaged".
+
 Die Dateiliste lässt sich mit den üblichen Gesten mehrfach auswählen
 (<kbd>⌘</kbd>/<kbd>Strg</kbd>-Klick, <kbd>⇧</kbd>-Klick,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Rechtsklick auf die Auswahl → *{n}

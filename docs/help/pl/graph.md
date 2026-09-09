@@ -68,6 +68,25 @@ Zaznaczenie commita pokazuje jego zmienione pliki (jako drzewo albo płasko),
 autora, SHA, współautorów i podpis. Referencje `#123` i `@wzmianki` są
 automatycznie linkowane do twojego hostingu.
 
+Nad listą plików **podsumowanie zmian** rozbija commit na rodzaje, zamiast podawać
+jedną liczbę — *5 zmienionych*, *1 dodany*, *1 usunięty*, a także *zmienionych
+nazw* i *skonfliktowanych*, jeśli commit je zawiera. Każdy wpis ma kolor znacznika
+stanu z wierszy poniżej i liczników na zwiniętych folderach, więc ten sam kolor
+znaczy wszędzie w panelu to samo. Rodzaje bez plików znikają całkowicie, dlatego
+zwykła edycja pokazuje jeden wpis, a nie pięć. Najedź na podsumowanie, aby zobaczyć
+zwykłą sumę „*n* zmienionych plików".
+
+![Podsumowanie zmian nad listą plików commita: 6 zmienionych, 2 dodane, 1 usunięty, 1 ze zmienioną nazwą](../../screenshots/change-summary.webp)
+
+Dwóch rzeczy celowo nie mówi. Liczy **pliki, nie wiersze**: poprawka jednego znaku
+i przepisanie od zera to tak samo *1 zmieniony*; skalę zmiany widać dopiero w
+diffie. I liczy wszystkie pliki commita, a nie tylko te pasujące do aktywnego
+filtra czy wyszukiwania.
+
+To samo podsumowanie otwiera panel przygotowania i listę plików schowka. W panelu
+przygotowania pliki nieśledzone liczą się jako dodane, więc *dodany* znaczy „nie
+było go w ostatnim commicie", a nie „już przygotowany".
+
 Listę plików zaznacza się grupowo zwykłymi gestami (klik z
 <kbd>⌘</kbd>/<kbd>Ctrl</kbd>, klik z <kbd>⇧</kbd>,
 <kbd>⇧</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd>). Prawy klik na zaznaczeniu → *Przywróć

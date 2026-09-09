@@ -5,6 +5,7 @@ import { useSettingsStore } from '../stores/settings'
 import { stepPath, visiblePaths } from '../lib/fileNav'
 import { MatchRows } from './SearchMatches'
 import { t, type TranslationKey } from '../i18n'
+import { fileStats, type FileStats } from '../lib/fileStats'
 
 /** The spoken name of a status glyph — the glyph itself is colour + symbol only. */
 export function statusName(s: string): string {
@@ -113,31 +114,17 @@ function buildTree(files: FileEntry[]): TreeNode[] {
   return sortNodes(root.children.map(compress))
 }
 
-// Aggregate descendant-file counts for a folder, bucketed like statusClass —
-// shown as badges when the folder is collapsed.
-interface FolderCounts {
-  add: number
-  mod: number
-  del: number
-  ren: number
-  conflict: number
-}
-
-function countsOf(node: TreeNode): FolderCounts {
-  const c: FolderCounts = { add: 0, mod: 0, del: 0, ren: 0, conflict: 0 }
+// Aggregate descendant-file counts for a folder — shown as badges when the
+// folder is collapsed. Buckets come from lib/fileStats so these badges and the
+// panel-header summary can never drift apart.
+function countsOf(node: TreeNode): FileStats {
+  const files: FileEntry[] = []
   const walk = (n: TreeNode): void => {
-    if (n.file) {
-      const cls = statusClass(n.file.status)
-      if (cls === 'st-add') c.add++
-      else if (cls === 'st-del') c.del++
-      else if (cls === 'st-ren') c.ren++
-      else if (cls === 'st-conflict') c.conflict++
-      else c.mod++
-    }
+    if (n.file) files.push(n.file)
     for (const child of n.children) walk(child)
   }
   walk(node)
-  return c
+  return fileStats(files)
 }
 
 function FolderBadges({ node }: { node: TreeNode }): React.JSX.Element {
