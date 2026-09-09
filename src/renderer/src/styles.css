@@ -12746,6 +12746,12 @@ mark.find-hit.active {
 .change-summary .tree-badge svg {
   flex-shrink: 0;
 }
+/* The summary's `gap` separates its own chips and stops at its edge, so a
+   sibling after it — the branch name in the composer toolbar — butts straight
+   against the last chip. Matches the inter-chip gap so the row reads evenly. */
+.change-summary + em {
+  margin-left: 10px;
+}
 /* An empty commit still needs the row to keep its height. */
 .change-summary:empty::after {
   content: '';
