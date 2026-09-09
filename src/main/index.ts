@@ -25,7 +25,7 @@ import { registerVaultHandlers } from './vault'
 import { registerKeychainHandlers } from './keychain'
 import { registerSecureShareHandlers } from './secureShare'
 import { registerInfoHandlers } from './info'
-import { registerUpdaterHandlers, checkForUpdatesOnLaunch } from './updater'
+import { registerUpdaterHandlers, checkForUpdatesOnLaunch, UPDATES_DISABLED } from './updater'
 import { fixPath } from './fix-path'
 import { registerCliHandlers, trackWait, releaseAllWaits } from './cli'
 import { registerEditorHandlers } from './editor'
@@ -278,6 +278,9 @@ app.whenReady().then(() => {
   // Public release notes from GitHub. Done in main (not the renderer) because the
   // renderer CSP forbids cross-origin requests; no token needed for public repos.
   ipcMain.handle('app:releases', async (): Promise<AppRelease[]> => {
+    // Same upstream feed as the updater: notes only, no binary, but it still
+    // announces this install to a repo the fork does not control.
+    if (UPDATES_DISABLED) return []
     try {
       const res = await fetch('https://api.github.com/repos/MyAppDesk/gitcito/releases?per_page=20', {
         headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'gitcito' }
