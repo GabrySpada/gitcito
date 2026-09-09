@@ -64,13 +64,33 @@ function hasFfmpeg() {
   return spawnSync('ffmpeg', ['-version'], { stdio: 'ignore' }).status === 0
 }
 
+// Presence is not enough: Homebrew's slim `ffmpeg` formula ships without
+// libwebp, and every shot then dies at the encode step, three retries deep, on
+// an error that reads like a bug in this script. Fail up front instead.
+function hasWebpEncoder() {
+  const out = spawnSync('ffmpeg', ['-hide_banner', '-encoders'], { encoding: 'utf8' })
+  return out.status === 0 && /^\s*V.*\blibwebp\b/m.test(out.stdout ?? '')
+}
+
 async function ensurePrereqs() {
   // Stills are transcoded to WebP, so ffmpeg is required for every run now —
   // not just the ones rendering clips.
   if (!hasFfmpeg()) {
-    console.error('✖ ffmpeg not found — required to encode shots as WebP (brew install ffmpeg)')
+    console.error('✖ ffmpeg not found — required to encode shots as WebP (brew install ffmpeg-full)')
     process.exit(1)
   }
+  if (!hasWebpEncoder()) {
+    console.error('✖ ffmpeg has no libwebp encoder — every shot would fail to encode.')
+    console.error("  Homebrew's plain `ffmpeg` dropped it; install one that has it:")
+    console.error('    brew install ffmpeg-full')
+    console.error('    PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH" npm run screenshots')
+    process.exit(1)
+  }
+  // VS Code's extension host exports ELECTRON_RUN_AS_NODE=1, and `env` is passed
+  // straight to the child below — an Electron that inherits it runs as plain
+  // Node, never opens a window, and Playwright reports only "Process failed to
+  // launch!". Drop it rather than making every caller remember to.
+  delete process.env.ELECTRON_RUN_AS_NODE
   // Always rebuild so screenshots/GIFs reflect the latest source, not a stale
   // out/ from a previous run. Pass --no-build to reuse the existing bundle.
   if (flags.has('--no-build')) {

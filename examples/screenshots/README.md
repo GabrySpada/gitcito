@@ -21,7 +21,27 @@ their serial order, so `prepare` mutations land exactly as they would one by
 one. Clips always record one at a time — their frames are sampled on
 wall-clock time, and CPU contention would stutter the recording.
 
-Needs **ffmpeg** (`brew install ffmpeg`): it encodes every image.
+Needs an **ffmpeg built with libwebp** (`brew install ffmpeg-full`): it encodes
+every image. Homebrew's plain `ffmpeg` formula no longer qualifies — it was
+slimmed down to the libraries other core formulae depend on, and libwebp was cut,
+so it fails every shot with `Unknown encoder 'libwebp'`. `ffmpeg-full` is
+keg-only, so put it on PATH for the run:
+
+```bash
+PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH" npm run screenshots
+```
+
+Check yours with `ffmpeg -encoders | grep webp` — you want both `libwebp` (stills)
+and `libwebp_anim` (clips).
+
+**Running from an editor terminal or an agent?** Unset `ELECTRON_RUN_AS_NODE`
+first. VS Code's extension host exports it, and a child Electron that inherits it
+starts as plain Node, never opens a window, and Playwright reports only
+`Process failed to launch!`:
+
+```bash
+env -u ELECTRON_RUN_AS_NODE npm run screenshots
+```
 
 ## How it works
 
