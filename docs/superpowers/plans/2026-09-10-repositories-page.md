@@ -349,7 +349,7 @@ describe('ownerFromRemoteUrl', () => {
 
 describe('readHeadBranch', () => {
   it('reads the checked-out branch without spawning git', async () => {
-    const dir = cloneFixture('basic')
+    const dir = cloneFixture('file-nav')
     expect(await readHeadBranch(dir)).toBe('main')
   })
 
@@ -360,7 +360,7 @@ describe('readHeadBranch', () => {
 
 describe('gitDirOf', () => {
   it('resolves a .git directory', async () => {
-    const dir = cloneFixture('basic')
+    const dir = cloneFixture('file-nav')
     expect(await gitDirOf(dir)).toBe(join(dir, '.git'))
   })
 
@@ -388,13 +388,20 @@ describe('gitDirOf', () => {
 
 describe('readOriginOwner', () => {
   it('returns null for a repo with no remote', async () => {
-    const dir = cloneFixture('basic')
+    const dir = cloneFixture('file-nav')
     expect(await readOriginOwner(dir)).toBeNull()
+  })
+
+  // host-remotes carries several remotes; only origin decides the owner.
+  // Its origin is https://dev.azure.com/contoso/Payments/_git/host-remotes
+  it('reads the owner of origin from .git/config', async () => {
+    const dir = cloneFixture('host-remotes')
+    expect(await readOriginOwner(dir)).toBe('contoso')
   })
 })
 ```
 
-If the `basic` fixture's default branch is not `main`, or it has an origin, adjust the two assertions to match — run `git -C examples/playground/basic branch --show-current` and `git -C examples/playground/basic remote -v` to check, and load the **`playground-fixture`** skill if a new scenario is needed.
+These fixtures were verified before this plan was written: `examples/playground/file-nav` is on `main` with **no** remotes, and `examples/playground/host-remotes` is on `main` with `origin` pointing at `https://dev.azure.com/contoso/Payments/_git/host-remotes`. Do not substitute other fixtures without re-checking with `git -C examples/playground/<name> branch --show-current` and `git -C … remote -v`. There is no fixture named `basic`.
 
 - [ ] **Step 2: Run the test and watch it fail**
 
@@ -555,7 +562,7 @@ Append to `test/repoRegistry.test.ts`:
 
 ```ts
   it('populates branch from .git when remembering a real repo', async () => {
-    const dir = cloneFixture('basic')
+    const dir = cloneFixture('file-nav')
     await rememberRepo(dir)
     const repos = await listRepos()
     expect(repos[0].branch).toBe('main')
@@ -2036,6 +2043,6 @@ Every one of the five must pass. If any fails, report the failure and its output
 
 ## Notes for the executor
 
-- **Task 2's fixture assumptions are unverified.** The `basic` playground repo's default branch and remote are asserted in tests without having been checked. Run the two `git -C` commands in Task 2 Step 1 and adjust before writing the implementation, or load the **`playground-fixture`** skill if a new scenario is warranted.
+- **Task 2's fixtures were verified after the plan was drafted.** An earlier draft used a fixture named `basic`, which does not exist. Tasks 2 and 3 now use `file-nav` (on `main`, no remotes) and `host-remotes` (on `main`, origin on Azure DevOps, owner `contoso`), both confirmed present. Do not reintroduce `basic`.
 - **The i18n work is real work.** Sixteen files, roughly 35 keys. The guard enforces that keys exist, not that they are translated; pasting English passes the gate and fails the user.
 - **Never launch the app.** Compile-only verification. If a change seems to need visual confirmation, say so and stop rather than running `npm run dev`.
