@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronDown, ChevronRight, FolderGit2, Search } from 'lucide-react'
 import { useSettingsStore } from '../stores/settings'
 import { useReposStore } from '../stores/repos'
@@ -57,6 +57,12 @@ export function RepositoriesPage(): React.JSX.Element {
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
   const [wip, setWip] = useState(false)
   const [pulses, setPulses] = useState<Record<string, RepoPulse>>({})
+  // Paths already fetched, in flight, or tried and failed. A ref rather than
+  // state because the effect below both reads and writes it: as a dependency it
+  // would retrigger the very effect that filled it, and every batch after the
+  // first would be issued twice. Failures are recorded too — otherwise a path
+  // whose call rejects is never cached and the effect loops for the whole visit.
+  const attempted = useRef<Set<string>>(new Set())
 
   // "Forget" sits next to a repository name, where it reads as "delete". The
   // confirm says what it does and does not do, rather than relying on the verb.
@@ -124,7 +130,8 @@ export function RepositoriesPage(): React.JSX.Element {
   // timer — you open this page to find something, not to watch it.
   useEffect(() => {
     if (!wip) return
-    let cancelled = false
+    let stopped = false
+    const tried = attempted.current
     const wanted = [
       ...new Set(
         sections
@@ -133,14 +140,20 @@ export function RepositoriesPage(): React.JSX.Element {
           .filter((r) => !r.repo.missing)
           .map((r) => r.repo.path)
       )
-    ].filter((p) => !(p in pulses))
+    ].filter((p) => !tried.has(p))
+    if (wanted.length === 0) return
 
     void (async () => {
       for (let i = 0; i < wanted.length; i += 8) {
-        if (cancelled) return
-        const batch = wanted.slice(i, i + 8)
+        if (stopped) return
+        // Claimed one batch at a time, not all at once: a run stopped halfway
+        // must leave the paths it never reached free for the next one.
+        const batch = wanted.slice(i, i + 8).filter((p) => !tried.has(p))
+        if (batch.length === 0) continue
+        for (const p of batch) tried.add(p)
         const results = await Promise.all(batch.map((p) => gitApi.repoPulse(p).catch(() => null)))
-        if (cancelled) return
+        // Recorded even when the run was stopped meanwhile: these paths are
+        // claimed, so dropping the answer would leave them blank all visit.
         setPulses((prev) => {
           const next = { ...prev }
           batch.forEach((p, n) => {
@@ -153,9 +166,20 @@ export function RepositoriesPage(): React.JSX.Element {
     })()
 
     return () => {
-      cancelled = true
+      stopped = true
     }
-  }, [wip, sections, collapsed, pulses])
+  }, [wip, sections, collapsed])
+
+  // The handbook offers turning the summary off and on as the way to see
+  // current state — which only works if switching it off forgets what was
+  // fetched. Handled here rather than in the effect: it is an event, not a
+  // consequence of rendering.
+  const toggleWip = (on: boolean): void => {
+    setWip(on)
+    if (on) return
+    attempted.current = new Set()
+    setPulses({})
+  }
 
   const toggle = (key: string): void => {
     setCollapsed((prev) => {
@@ -208,7 +232,7 @@ export function RepositoriesPage(): React.JSX.Element {
           {t('repos.collapseAll')}
         </button>
         <label className="repos-wip-toggle" title={t('repos.wipTitle')}>
-          <input type="checkbox" checked={wip} onChange={(e) => setWip(e.target.checked)} />
+          <input type="checkbox" checked={wip} onChange={(e) => toggleWip(e.target.checked)} />
           {t('repos.wip')}
         </label>
       </div>
