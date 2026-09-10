@@ -85,8 +85,12 @@ export function RepositoriesPage(): React.JSX.Element {
     if (!chosen) return
     const roots = [...settings.repoScanRoots, { path: chosen, depth: 3 }]
     updateSettings((s) => ({ ...s, repoScanRoots: roots }))
+    // scan() replaces `entries` with the whole merged registry, not a delta —
+    // the toast is "found N this scan", so diff the count around the await.
+    const before = useReposStore.getState().entries.length
     await scan(roots)
-    toast('success', interp(t('repos.scanFound'), { n: useReposStore.getState().entries.length }))
+    const found = useReposStore.getState().entries.length - before
+    toast('success', interp(t('repos.scanFound'), { n: Math.max(0, found) }))
   }
 
   useEffect(() => {

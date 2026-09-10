@@ -9,10 +9,15 @@ import { gitDirOf } from './repoMeta'
 
 const SKIP = new Set(['node_modules', 'vendor', 'Pods', 'target', 'dist', 'build', 'out'])
 
+// The renderer's depth input clamps to this range too, but a renderer is not
+// a trustworthy source of limits — an unbounded depth here is an unbounded
+// recursive filesystem walk, so the ceiling is enforced again at the source.
+const MAX_SCAN_DEPTH = 10
+
 /** Absolute paths of every repository under `root`, to `depth` levels. */
 export async function scanForRepos(root: string, depth: number): Promise<string[]> {
   const found: string[] = []
-  await walk(root, Math.max(0, depth), found)
+  await walk(root, Math.min(MAX_SCAN_DEPTH, Math.max(0, depth)), found)
   return found
 }
 
