@@ -1,4 +1,4 @@
-import { app } from 'electron'
+import { app, ipcMain } from 'electron'
 import { join, basename, isAbsolute } from 'path'
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
@@ -32,6 +32,22 @@ function isPlausibleRepoPath(path: unknown): path is string {
 
 export const registryFilePath = (): string => join(app.getPath('userData'), 'gitcito-repos.json')
 
+// Every mutation below is load-mutate-save, so two overlapping calls would be
+// last-writer-wins — and `remember` is fired without awaiting on every tab
+// open, so overlap with a long scan is normal, not exotic. Chaining every
+// mutation through one promise serializes their load-mutate-save cycles.
+let writeQueue: Promise<unknown> = Promise.resolve()
+
+function serialize<T>(work: () => Promise<T>): Promise<T> {
+  const next = writeQueue.then(work, work)
+  // Keep the chain alive after a rejection, and never leak the value.
+  writeQueue = next.then(
+    () => undefined,
+    () => undefined
+  )
+  return next
+}
+
 async function load(): Promise<RegistryRepo[]> {
   try {
     const raw = await readFile(registryFilePath(), 'utf-8')
@@ -51,100 +67,142 @@ async function save(repos: RegistryRepo[]): Promise<void> {
 /** The registry, with `missing` refreshed. Stat-ing every path is why this is
  *  called on page open and not per render. */
 export async function listRepos(): Promise<RegistryRepo[]> {
-  const repos = await load()
-  let changed = false
-  for (const repo of repos) {
-    const missing = !existsSync(repo.path)
-    if (missing !== repo.missing) {
-      repo.missing = missing
-      changed = true
+  return serialize(async () => {
+    const repos = await load()
+    let changed = false
+    for (const repo of repos) {
+      const missing = !existsSync(repo.path)
+      if (missing !== repo.missing) {
+        repo.missing = missing
+        changed = true
+      }
     }
-  }
-  if (changed) await save(repos)
-  return repos
+    if (changed) await save(repos)
+    return repos
+  })
 }
 
 /** Record a repository as opened. Upserts: the same folder is one entry. */
 export async function rememberRepo(repoPath: string): Promise<RegistryRepo[]> {
   if (!isPlausibleRepoPath(repoPath)) return load()
-  const repos = await load()
-  const now = Math.floor(Date.now() / 1000)
-  const [branch, owner] = await Promise.all([readHeadBranch(repoPath), readOriginOwner(repoPath)])
-  const existing = repos.find((r) => r.path === repoPath)
-  if (existing) {
-    existing.lastOpenedAt = now
-    existing.missing = !existsSync(repoPath)
-    existing.source = 'opened'
-    existing.branch = branch
-    existing.owner = owner
-  } else {
-    repos.push({
-      path: repoPath,
-      name: basename(repoPath),
-      owner,
-      branch,
-      source: 'opened',
-      lastOpenedAt: now,
-      missing: !existsSync(repoPath)
-    })
-  }
-  await save(repos)
-  return repos
+  return serialize(async () => {
+    const repos = await load()
+    const now = Math.floor(Date.now() / 1000)
+    const [branch, owner] = await Promise.all([readHeadBranch(repoPath), readOriginOwner(repoPath)])
+    const existing = repos.find((r) => r.path === repoPath)
+    if (existing) {
+      existing.lastOpenedAt = now
+      existing.missing = !existsSync(repoPath)
+      existing.source = 'opened'
+      existing.branch = branch
+      existing.owner = owner
+    } else {
+      repos.push({
+        path: repoPath,
+        name: basename(repoPath),
+        owner,
+        branch,
+        source: 'opened',
+        lastOpenedAt: now,
+        missing: !existsSync(repoPath)
+      })
+    }
+    await save(repos)
+    return repos
+  })
 }
 
 /** Drop an entry from the index. Never touches the folder on disk. */
 export async function forgetRepo(repoPath: string): Promise<RegistryRepo[]> {
-  const repos = (await load()).filter((r) => r.path !== repoPath)
-  await save(repos)
-  return repos
+  return serialize(async () => {
+    const repos = (await load()).filter((r) => r.path !== repoPath)
+    await save(repos)
+    return repos
+  })
 }
 
 /** Re-read branch for the given paths. Cheap enough to call whenever the page
  *  opens: one file read each, no process spawned. */
 export async function refreshRepos(paths: string[]): Promise<RegistryRepo[]> {
-  const repos = await load()
-  const wanted = new Set(paths)
-  await Promise.all(
-    repos
-      .filter((r) => wanted.has(r.path) && !r.missing)
-      .map(async (r) => {
-        r.branch = await readHeadBranch(r.path)
-      })
-  )
-  await save(repos)
-  return repos
+  return serialize(async () => {
+    const repos = await load()
+    const wanted = new Set(paths)
+    await Promise.all(
+      repos
+        .filter((r) => wanted.has(r.path) && !r.missing)
+        .map(async (r) => {
+          r.branch = await readHeadBranch(r.path)
+        })
+    )
+    await save(repos)
+    return repos
+  })
 }
 
 /** Index every repository under the configured roots. A repo already in the
  *  registry keeps its `source` and `lastOpenedAt` — a scan adds knowledge, it
  *  never demotes a repo the user has actually opened. */
 export async function scanRoots(rootList: RepoScanRoot[]): Promise<RegistryRepo[]> {
-  const repos = await load()
-  const byPath = new Map(repos.map((r) => [r.path, r]))
+  return serialize(async () => {
+    const repos = await load()
+    const byPath = new Map(repos.map((r) => [r.path, r]))
 
-  for (const root of rootList) {
-    if (!isPlausibleRepoPath(root.path)) continue
-    for (const found of await scanForRepos(root.path, root.depth)) {
-      const existing = byPath.get(found)
-      if (existing) {
-        existing.missing = false
-        continue
+    for (const root of rootList) {
+      if (!isPlausibleRepoPath(root.path)) continue
+      for (const found of await scanForRepos(root.path, root.depth)) {
+        const existing = byPath.get(found)
+        if (existing) {
+          existing.missing = false
+          continue
+        }
+        const [branch, owner] = await Promise.all([readHeadBranch(found), readOriginOwner(found)])
+        const entry: RegistryRepo = {
+          path: found,
+          name: basename(found),
+          owner,
+          branch,
+          source: 'scanned',
+          lastOpenedAt: 0,
+          missing: false
+        }
+        repos.push(entry)
+        byPath.set(found, entry)
       }
-      const [branch, owner] = await Promise.all([readHeadBranch(found), readOriginOwner(found)])
-      const entry: RegistryRepo = {
-        path: found,
-        name: basename(found),
-        owner,
-        branch,
-        source: 'scanned',
-        lastOpenedAt: 0,
-        missing: false
-      }
-      repos.push(entry)
-      byPath.set(found, entry)
     }
-  }
 
-  await save(repos)
-  return repos
+    await save(repos)
+    return repos
+  })
+}
+
+/** Re-point a missing entry at the folder it moved to. Favourites and aliases
+ *  are path-keyed and live in settings, so the renderer migrates those; this
+ *  moves the index entry and refreshes what it caches. */
+export async function locateRepo(oldPath: string, newPath: string): Promise<RegistryRepo[]> {
+  if (!isPlausibleRepoPath(newPath)) return load()
+  // Re-pointing a repository at a folder that is not one would leave an entry
+  // that can never be opened. Refuse rather than record it.
+  if (!(await gitDirOf(newPath))) return load()
+  return serialize(async () => {
+    const repos = await load()
+    const entry = repos.find((r) => r.path === oldPath)
+    if (!entry) return repos
+    const [branch, owner] = await Promise.all([readHeadBranch(newPath), readOriginOwner(newPath)])
+    entry.path = newPath
+    entry.name = basename(newPath)
+    entry.branch = branch
+    entry.owner = owner
+    entry.missing = !existsSync(newPath)
+    await save(repos)
+    return repos
+  })
+}
+
+export function registerRepoRegistryHandlers(): void {
+  ipcMain.handle('repos:list', () => listRepos())
+  ipcMain.handle('repos:remember', (_e, repoPath: string) => rememberRepo(repoPath))
+  ipcMain.handle('repos:forget', (_e, repoPath: string) => forgetRepo(repoPath))
+  ipcMain.handle('repos:scan', (_e, rootList: RepoScanRoot[]) => scanRoots(rootList))
+  ipcMain.handle('repos:locate', (_e, oldPath: string, newPath: string) => locateRepo(oldPath, newPath))
+  ipcMain.handle('repos:refresh', (_e, paths: string[]) => refreshRepos(paths))
 }

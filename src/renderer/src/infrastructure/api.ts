@@ -154,7 +154,9 @@ import type {
   PreparedRepoChatFileAction,
   RepoFileBatchResult,
   RepoWiki,
-  WikiProgress
+  WikiProgress,
+  RegistryRepo,
+  RepoScanRoot
 } from '../../../shared/types'
 import type {
   LocalCiStatus,
@@ -733,6 +735,16 @@ export const vaultApi = {
     window.api.vault.remove(scope, repoPath, id) as Promise<VaultListResult>,
   exportAll: () => window.api.vault.exportAll() as Promise<VaultExport>,
   importAll: (data: VaultExport) => window.api.vault.importAll(data) as Promise<void>
+}
+
+export const reposApi = {
+  list: () => window.api.repos.list() as Promise<RegistryRepo[]>,
+  remember: (repoPath: string) => window.api.repos.remember(repoPath) as Promise<RegistryRepo[]>,
+  forget: (repoPath: string) => window.api.repos.forget(repoPath) as Promise<RegistryRepo[]>,
+  scan: (roots: RepoScanRoot[]) => window.api.repos.scan(roots) as Promise<RegistryRepo[]>,
+  locate: (oldPath: string, newPath: string) =>
+    window.api.repos.locate(oldPath, newPath) as Promise<RegistryRepo[]>,
+  refresh: (paths: string[]) => window.api.repos.refresh(paths) as Promise<RegistryRepo[]>
 }
 
 export const secureShareApi = {

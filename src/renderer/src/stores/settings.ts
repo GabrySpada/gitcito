@@ -29,7 +29,7 @@ import {
   pruneFolders,
   updateFolder
 } from '../lib/repoFolders'
-import { settingsApi } from '../infrastructure/api'
+import { settingsApi, reposApi } from '../infrastructure/api'
 import { useUIStore } from './ui'
 import { applyRepoAlias, canonicalRepoPath, migrateRepoAliases, repoDisplayName } from '../lib/repoAlias'
 import { sortBookmarks } from '../lib/bookmarks'
@@ -524,7 +524,7 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
 
   openRepoTab: (repo) => {
     leaveMission()
-    return get().update((s) => {
+    get().update((s) => {
       const existing = s.tabs.find((t) => t.kind === 'repo' && t.activeRepoPath === repo.path)
       if (existing) return { ...s, activeTabId: existing.id }
       const name = repoDisplayName(repo.path, s.repoAliases, repo.name)
@@ -533,11 +533,13 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
       const recentRepos = [named, ...s.recentRepos.filter((r) => r.path !== repo.path)].slice(0, 8)
       return { ...s, tabs: [...s.tabs, tab], activeTabId: tab.id, recentRepos }
     })
+    // Indexing must never delay opening a tab.
+    void reposApi.remember(repo.path)
   },
 
   openFromCli: (payload) => {
     leaveMission()
-    return get().update((s) => {
+    get().update((s) => {
       const path = payload.path
       const displayName =
         payload.name?.trim() || repoDisplayName(path, s.repoAliases) || path.split('/').pop() || path
@@ -584,6 +586,8 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
       const tab: TabState = { id: uid(), kind: 'repo', name: displayName, repos: [repo], activeRepoPath: path }
       return { ...s, tabs: [tab, ...s.tabs], activeTabId: tab.id, recentRepos }
     })
+    // Indexing must never delay opening a tab.
+    void reposApi.remember(payload.path)
   },
 
   setRepoPage: (tabId, index) =>
