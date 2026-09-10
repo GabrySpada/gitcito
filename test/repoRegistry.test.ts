@@ -3,6 +3,7 @@ import { rmSync, mkdtempSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { registryFilePath, listRepos, rememberRepo, forgetRepo } from '../src/main/repoRegistry'
+import { cloneFixture, cleanupFixtures } from './fixtures'
 
 // The electron stub's app.getPath() returns tmpdir(), so the registry lands at
 // a predictable path we can clear between tests.
@@ -18,6 +19,7 @@ function tempRepo(): string {
 }
 
 afterAll(() => {
+  cleanupFixtures()
   for (const d of dirs) rmSync(d, { recursive: true, force: true })
 })
 
@@ -67,5 +69,12 @@ describe('repoRegistry', () => {
   it('rejects a path that is not safe', async () => {
     await rememberRepo('')
     expect(await listRepos()).toEqual([])
+  })
+
+  it('populates branch from .git when remembering a real repo', async () => {
+    const dir = cloneFixture('file-nav')
+    await rememberRepo(dir)
+    const repos = await listRepos()
+    expect(repos[0].branch).toBe('main')
   })
 })

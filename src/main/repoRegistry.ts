@@ -3,6 +3,7 @@ import { join, basename, isAbsolute } from 'path'
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
 import type { RegistryRepo } from '../shared/types'
+import { gitDirOf, readHeadBranch, readOriginOwner } from './repoMeta'
 
 // Every repository Gitcito knows about, whether or not it is open. Kept in its
 // own file rather than in settings: it is a cache of what is on *this* disk,
@@ -67,17 +68,20 @@ export async function rememberRepo(repoPath: string): Promise<RegistryRepo[]> {
   if (!isPlausibleRepoPath(repoPath)) return load()
   const repos = await load()
   const now = Math.floor(Date.now() / 1000)
+  const [branch, owner] = await Promise.all([readHeadBranch(repoPath), readOriginOwner(repoPath)])
   const existing = repos.find((r) => r.path === repoPath)
   if (existing) {
     existing.lastOpenedAt = now
     existing.missing = !existsSync(repoPath)
     existing.source = 'opened'
+    existing.branch = branch
+    existing.owner = owner
   } else {
     repos.push({
       path: repoPath,
       name: basename(repoPath),
-      owner: null,
-      branch: null,
+      owner,
+      branch,
       source: 'opened',
       lastOpenedAt: now,
       missing: !existsSync(repoPath)
@@ -90,6 +94,22 @@ export async function rememberRepo(repoPath: string): Promise<RegistryRepo[]> {
 /** Drop an entry from the index. Never touches the folder on disk. */
 export async function forgetRepo(repoPath: string): Promise<RegistryRepo[]> {
   const repos = (await load()).filter((r) => r.path !== repoPath)
+  await save(repos)
+  return repos
+}
+
+/** Re-read branch for the given paths. Cheap enough to call whenever the page
+ *  opens: one file read each, no process spawned. */
+export async function refreshRepos(paths: string[]): Promise<RegistryRepo[]> {
+  const repos = await load()
+  const wanted = new Set(paths)
+  await Promise.all(
+    repos
+      .filter((r) => wanted.has(r.path) && !r.missing)
+      .map(async (r) => {
+        r.branch = await readHeadBranch(r.path)
+      })
+  )
   await save(repos)
   return repos
 }
