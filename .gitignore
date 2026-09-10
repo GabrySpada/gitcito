@@ -20,3 +20,6 @@ dist-site/
 
 # Generated perf-testing repo (npm run playground:monster) — minutes to build, never wiped automatically
 examples/monster/
+
+# Untracked visual references (competitor UI, mockups) — never published
+reference/
