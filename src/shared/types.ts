@@ -2695,6 +2695,7 @@ export type PageContent =
   | { type: 'insights'; repoPath: string }
   | { type: 'wiki'; repoPath: string }
   | { type: 'vault' }
+  | { type: 'repositories' }
   | { type: 'help'; page?: string }
   | { type: 'licenses' }
   // Flutter DevTools, embedded. `url` is the address at the time the tab was

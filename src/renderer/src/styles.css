@@ -10738,6 +10738,109 @@ input[type='range']:focus-visible {
 .mc-actions { display: flex; gap: 4px; flex: 0 0 auto; opacity: 0; }
 .mc-row:hover .mc-actions { opacity: 1; }
 
+/* ── Repositories (every repo Gitcito knows about, open or not) ── */
+.repos-page { display: flex; flex-direction: column; height: 100%; overflow: auto; background: var(--bg-1); }
+.repos-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.repos-title { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; margin: 0; color: var(--text-0); }
+.repos-title svg { color: var(--accent); }
+.repos-search {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  max-width: 220px;
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  color: var(--text-3);
+}
+.repos-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-0);
+  font-family: inherit;
+  font-size: 12.5px;
+}
+.repos-btn {
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.repos-btn:hover { background: var(--bg-4); color: var(--text-0); }
+.repos-empty { padding: 40px; text-align: center; color: var(--text-3); font-size: 12.5px; }
+.repos-sections { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 10px 14px; display: flex; flex-direction: column; gap: 2px; }
+.repos-section-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: start;
+  cursor: pointer;
+}
+.repos-section-head:hover { background: var(--bg-3); }
+.repos-section-head svg { flex: 0 0 auto; color: var(--text-3); }
+.repos-section-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.repos-section-count { margin-left: auto; opacity: 0.6; font-size: 11px; font-weight: 600; color: var(--text-3); }
+.repos-rows { display: flex; flex-direction: column; gap: 1px; padding-left: 19px; }
+.repos-none { padding: 8px 8px 10px; font-size: 12px; color: var(--text-3); }
+.repos-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: 12.5px;
+  text-align: start;
+  cursor: pointer;
+}
+.repos-row:hover { background: var(--bg-4); }
+.repos-row-open { display: flex; align-items: center; gap: 12px; flex: 1; text-align: left; min-width: 0; }
+.repos-row-name {
+  flex: 0 0 auto;
+  max-width: 40%;
+  font-weight: 600;
+  color: var(--text-0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.repos-row-owner { opacity: 0.65; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.repos-row-branch, .repos-row-wip { display: flex; align-items: center; gap: 4px; margin-left: auto; opacity: 0.8; flex: 0 0 auto; }
+.repos-row-missing { opacity: 0.55; }
+.repos-star { opacity: 0.5; background: transparent; border: none; color: var(--text-2); cursor: pointer; }
+.repos-star:hover { opacity: 0.8; }
+.repos-star[aria-pressed='true'] { opacity: 1; color: var(--accent); }
+
 /* ── Timelapse (animated history) ── */
 .tl-root { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
 .tl-header { display: flex; align-items: center; gap: 8px; }
