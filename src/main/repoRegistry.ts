@@ -1,0 +1,95 @@
+import { app } from 'electron'
+import { join, basename, isAbsolute } from 'path'
+import { readFile, writeFile, mkdir } from 'fs/promises'
+import { existsSync } from 'fs'
+import type { RegistryRepo } from '../shared/types'
+
+// Every repository Gitcito knows about, whether or not it is open. Kept in its
+// own file rather than in settings: it is a cache of what is on *this* disk,
+// while settings are preferences you would carry to another machine. Losing
+// this file costs a rescan; losing settings costs information.
+
+interface RegistryData {
+  repos: RegistryRepo[]
+}
+
+/**
+ * A sanity check on a path before it reaches the filesystem.
+ *
+ * Deliberately not `isSafeRepoPath` from aiSchemas: that one guards paths an
+ * LLM produced, which are joined onto a repo root, so it rejects anything
+ * absolute. Registry paths are absolute by definition and come from the user's
+ * own folder picker or from scanning folders they configured — a different
+ * threat model, and a different check.
+ */
+function isPlausibleRepoPath(path: unknown): path is string {
+  if (typeof path !== 'string') return false
+  const p = path.trim()
+  return p.length > 0 && p.length <= 4096 && isAbsolute(p) && !p.includes('\0')
+}
+
+export const registryFilePath = (): string => join(app.getPath('userData'), 'gitcito-repos.json')
+
+async function load(): Promise<RegistryRepo[]> {
+  try {
+    const raw = await readFile(registryFilePath(), 'utf-8')
+    const data = JSON.parse(raw) as RegistryData
+    return Array.isArray(data.repos) ? data.repos : []
+  } catch {
+    return [] // missing or corrupt → start fresh; a rescan rebuilds it
+  }
+}
+
+async function save(repos: RegistryRepo[]): Promise<void> {
+  await mkdir(app.getPath('userData'), { recursive: true })
+  const data: RegistryData = { repos }
+  await writeFile(registryFilePath(), JSON.stringify(data, null, 2), 'utf-8')
+}
+
+/** The registry, with `missing` refreshed. Stat-ing every path is why this is
+ *  called on page open and not per render. */
+export async function listRepos(): Promise<RegistryRepo[]> {
+  const repos = await load()
+  let changed = false
+  for (const repo of repos) {
+    const missing = !existsSync(repo.path)
+    if (missing !== repo.missing) {
+      repo.missing = missing
+      changed = true
+    }
+  }
+  if (changed) await save(repos)
+  return repos
+}
+
+/** Record a repository as opened. Upserts: the same folder is one entry. */
+export async function rememberRepo(repoPath: string): Promise<RegistryRepo[]> {
+  if (!isPlausibleRepoPath(repoPath)) return load()
+  const repos = await load()
+  const now = Math.floor(Date.now() / 1000)
+  const existing = repos.find((r) => r.path === repoPath)
+  if (existing) {
+    existing.lastOpenedAt = now
+    existing.missing = !existsSync(repoPath)
+    existing.source = 'opened'
+  } else {
+    repos.push({
+      path: repoPath,
+      name: basename(repoPath),
+      owner: null,
+      branch: null,
+      source: 'opened',
+      lastOpenedAt: now,
+      missing: !existsSync(repoPath)
+    })
+  }
+  await save(repos)
+  return repos
+}
+
+/** Drop an entry from the index. Never touches the folder on disk. */
+export async function forgetRepo(repoPath: string): Promise<RegistryRepo[]> {
+  const repos = (await load()).filter((r) => r.path !== repoPath)
+  await save(repos)
+  return repos
+}

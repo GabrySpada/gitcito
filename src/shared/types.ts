@@ -2592,6 +2592,35 @@ export interface RepoRef {
   name: string
 }
 
+/** One repository Gitcito knows about. Everything here except `path` is a
+ *  cache: lose the registry file and a rescan rebuilds it. */
+export interface RegistryRepo {
+  /** Canonical absolute path — the identity, and the key used everywhere else. */
+  path: string
+  /** Folder name at index time. `repoAliases` still wins for display. */
+  name: string
+  /** First path segment of the remote's namespace: 'top-solution' for a GitLab
+   *  group, the org for GitHub. Null with no remote or an unparseable URL. */
+  owner: string | null
+  /** Branch as of the last index, read from .git/HEAD. Null when detached. */
+  branch: string | null
+  /** How it got here — a scanned repo the user has never opened still lists. */
+  source: 'opened' | 'scanned'
+  /** Unix seconds. Drives the Recent section, which is therefore not capped. */
+  lastOpenedAt: number
+  /** Folder absent at the last existence check. Stored rather than computed:
+   *  stat-ing 200 paths belongs on page load, never in a render. */
+  missing: boolean
+}
+
+/** A folder Gitcito scans for repositories. A preference, not an index. */
+export interface RepoScanRoot {
+  path: string
+  /** How deep to descend. 3 covers ~/Code/<client>/<repo>; deeper gets slow
+   *  fast, and a repo nested further is almost always vendored. */
+  depth: number
+}
+
 /** Fields shared by every tab regardless of kind. */
 interface TabBase {
   id: string
@@ -2785,6 +2814,11 @@ export interface AppSettings {
   workspaces: Workspace[]
   activeWorkspaceId: string
   recentRepos: RepoRef[]
+  /** Folders scanned for repositories by the Repositories page. */
+  repoScanRoots: RepoScanRoot[]
+  /** Starred repositories, by canonical path. Path-keyed for the same reason
+   *  `repoAliases` is: the same folder in two tabs must not diverge. */
+  favouriteRepos: string[]
   appThemeId: string
   codeThemeId: string
   themeMode: ThemeMode
@@ -3221,6 +3255,8 @@ export function defaultSettings(): AppSettings {
     workspaces: [{ id: 'default', name: 'Default', tabs: [], activeTabId: null }],
     activeWorkspaceId: 'default',
     recentRepos: [],
+    repoScanRoots: [],
+    favouriteRepos: [],
     appThemeId: 'gitcito',
     codeThemeId: 'gitcito',
     themeMode: 'auto',
