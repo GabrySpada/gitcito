@@ -34,6 +34,19 @@ describe('ownerFromRemoteUrl', () => {
     expect(ownerFromRemoteUrl('not a url')).toBeNull()
     expect(ownerFromRemoteUrl('')).toBeNull()
   })
+
+  // The scp-style regex is unanchored against a scheme, so it used to also
+  // match `scheme://user@host:port/owner/repo` and report the port as owner.
+  it('does not mistake a port for the owner on a scheme URL', () => {
+    expect(ownerFromRemoteUrl('ssh://git@host.example.com:2222/group/repo.git')).toBe('group')
+    expect(ownerFromRemoteUrl('https://user@git.example.com:8443/top-solution/widget.git')).toBe(
+      'top-solution'
+    )
+  })
+
+  it('still parses a plain scp-style URL with no scheme', () => {
+    expect(ownerFromRemoteUrl('git@git.example.com:top-solution/widget.git')).toBe('top-solution')
+  })
 })
 
 describe('readHeadBranch', () => {

@@ -54,8 +54,10 @@ export function ownerFromRemoteUrl(url: string): string | null {
   const known = parseRemoteUrl(url)
   if (known) return known.owner.split('/')[0] || null
 
-  // scp-style: git@host:namespace/repo.git
-  let m = /^[^@\s]+@[^:\s]+:(.+)$/.exec(url.trim())
+  // scp-style: git@host:namespace/repo.git — but not when a scheme is present,
+  // or `user@host:port/namespace/repo` greedily matches this first and the
+  // port number gets reported as the owner.
+  let m = url.includes('://') ? null : /^[^@\s]+@[^:\s]+:(.+)$/.exec(url.trim())
   if (!m) {
     // URL form: scheme://[user@]host/namespace/repo.git
     m = /^[a-z][a-z0-9+.-]*:\/\/(?:[^@/]+@)?[^/]+\/(.+)$/i.exec(url.trim())
