@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterAll } from 'vitest'
-import { rmSync, mkdtempSync, existsSync } from 'node:fs'
+import { rmSync, mkdtempSync, mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { registryFilePath, listRepos, rememberRepo, forgetRepo } from '../src/main/repoRegistry'
+import { registryFilePath, listRepos, rememberRepo, forgetRepo, scanRoots } from '../src/main/repoRegistry'
 import { cloneFixture, cleanupFixtures } from './fixtures'
 
 // The electron stub's app.getPath() returns tmpdir(), so the registry lands at
@@ -76,5 +76,21 @@ describe('repoRegistry', () => {
     await rememberRepo(dir)
     const repos = await listRepos()
     expect(repos[0].branch).toBe('main')
+  })
+
+  it('keeps an opened repo opened when a scan finds it again', async () => {
+    // A dedicated parent, never $TMPDIR itself: scanning the system temp
+    // directory would walk every other test's scratch files.
+    const parent = mkdtempSync(join(tmpdir(), 'gitcito-scanroot-'))
+    dirs.push(parent)
+    const dir = join(parent, 'alpha')
+    mkdirSync(join(dir, '.git'), { recursive: true })
+    writeFileSync(join(dir, '.git', 'HEAD'), 'ref: refs/heads/main\n')
+
+    await rememberRepo(dir)
+    await scanRoots([{ path: parent, depth: 2 }])
+    const entry = (await listRepos()).find((r) => r.path === dir)
+    expect(entry?.source).toBe('opened')
+    expect(entry?.lastOpenedAt).toBeGreaterThan(0)
   })
 })

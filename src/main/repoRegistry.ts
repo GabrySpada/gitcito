@@ -2,8 +2,9 @@ import { app } from 'electron'
 import { join, basename, isAbsolute } from 'path'
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
-import type { RegistryRepo } from '../shared/types'
+import type { RegistryRepo, RepoScanRoot } from '../shared/types'
 import { gitDirOf, readHeadBranch, readOriginOwner } from './repoMeta'
+import { scanForRepos } from './repoScan'
 
 // Every repository Gitcito knows about, whether or not it is open. Kept in its
 // own file rather than in settings: it is a cache of what is on *this* disk,
@@ -110,6 +111,40 @@ export async function refreshRepos(paths: string[]): Promise<RegistryRepo[]> {
         r.branch = await readHeadBranch(r.path)
       })
   )
+  await save(repos)
+  return repos
+}
+
+/** Index every repository under the configured roots. A repo already in the
+ *  registry keeps its `source` and `lastOpenedAt` — a scan adds knowledge, it
+ *  never demotes a repo the user has actually opened. */
+export async function scanRoots(rootList: RepoScanRoot[]): Promise<RegistryRepo[]> {
+  const repos = await load()
+  const byPath = new Map(repos.map((r) => [r.path, r]))
+
+  for (const root of rootList) {
+    if (!isPlausibleRepoPath(root.path)) continue
+    for (const found of await scanForRepos(root.path, root.depth)) {
+      const existing = byPath.get(found)
+      if (existing) {
+        existing.missing = false
+        continue
+      }
+      const [branch, owner] = await Promise.all([readHeadBranch(found), readOriginOwner(found)])
+      const entry: RegistryRepo = {
+        path: found,
+        name: basename(found),
+        owner,
+        branch,
+        source: 'scanned',
+        lastOpenedAt: 0,
+        missing: false
+      }
+      repos.push(entry)
+      byPath.set(found, entry)
+    }
+  }
+
   await save(repos)
   return repos
 }
