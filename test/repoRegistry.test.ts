@@ -93,4 +93,18 @@ describe('repoRegistry', () => {
     expect(entry?.source).toBe('opened')
     expect(entry?.lastOpenedAt).toBeGreaterThan(0)
   })
+
+  it('adds a repo found only by a scan as scanned, unopened', async () => {
+    const parent = mkdtempSync(join(tmpdir(), 'gitcito-scanroot-'))
+    dirs.push(parent)
+    const dir = join(parent, 'beta')
+    mkdirSync(join(dir, '.git'), { recursive: true })
+    writeFileSync(join(dir, '.git', 'HEAD'), 'ref: refs/heads/develop\n')
+
+    await scanRoots([{ path: parent, depth: 2 }])
+    const entry = (await listRepos()).find((r) => r.path === dir)
+    expect(entry?.source).toBe('scanned')
+    expect(entry?.lastOpenedAt).toBe(0)
+    expect(entry?.branch).toBe('develop')
+  })
 })

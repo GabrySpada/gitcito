@@ -1,6 +1,5 @@
 import { join } from 'path'
 import { readdir } from 'fs/promises'
-import type { RepoScanRoot, RegistryRepo } from '../shared/types'
 import { gitDirOf } from './repoMeta'
 
 // Walking a developer's home directory naively means a million files. Three
