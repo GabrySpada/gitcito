@@ -13,7 +13,7 @@
 
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { writeFile, mkdir, rm, chmod } from 'node:fs/promises'
+import { writeFile, mkdir, rm, chmod, symlink } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 
 const ASSETS = join(dirname(fileURLToPath(import.meta.url)), 'assets')
@@ -27,6 +27,10 @@ const DEMO_SSH = join(tmpdir(), 'gitcito-demo-ssh')
 const DEMO_HOME = join(tmpdir(), 'gitcito-demo-home')
 // Stand-in SDK CLIs for the run-target shot — see the launch-device entry.
 const DEMO_SDK = join(tmpdir(), 'gitcito-demo-sdk')
+// A folder to scan for the repositories shot — a couple of playground repos
+// symlinked into their own directory, never the real demo root (which holds
+// every scenario repo and would make "All repositories" unreadably long).
+const DEMO_SCAN_ROOT = join(tmpdir(), 'gitcito-demo-scan')
 
 /**
  * Expand sidebar sections by their title (as rendered: 'WORKTREES').
@@ -1263,6 +1267,42 @@ export const shots = [
         await window.api.vault.upsert('repo', r, { key: 'STRIPE_SECRET', value: 'sk_test_demo', note: '' })
         window.__shot.settings.getState().openPageTab({ type: 'vault', repoPath: r })
       }, repo)
+      await page.waitForTimeout(900)
+    }
+  },
+  {
+    // Repositories — every known repo, open or not. Two repos open in a group
+    // (so "Open repositories" has rows of its own), one starred, plus a couple
+    // more found by scanning a throwaway folder — never the real demo root,
+    // which holds every scenario repo and would make "All repositories"
+    // unreadably long.
+    out: 'repositories',
+    kind: 'group',
+    repos: ['file-nav', 'host-remotes'],
+    recents: ['octopus-merge', 'collaborators'],
+    themes: ['light'],
+    prepare: async ({ repoPaths }) => {
+      await rm(DEMO_SCAN_ROOT, { recursive: true, force: true })
+      await mkdir(DEMO_SCAN_ROOT, { recursive: true })
+      for (const name of ['octopus-merge', 'collaborators']) {
+        await symlink(repoPaths[name], join(DEMO_SCAN_ROOT, name)).catch(() => {})
+      }
+    },
+    drive: async (page, repoPaths) => {
+      const fileNav = repoPaths['file-nav']
+      const hostRemotes = repoPaths['host-remotes']
+      // Pre-seeded tabs never went through openRepoTab, so the registry (the
+      // "Recent" and "All repositories" sections) would otherwise be empty.
+      await page.evaluate(async (paths) => {
+        for (const p of paths) await window.api.repos.remember(p)
+        await window.api.repos.scan([{ path: paths[2], depth: 1 }])
+      }, [fileNav, hostRemotes, DEMO_SCAN_ROOT])
+      await page.evaluate((p) => window.__shot.settings.getState().toggleFavouriteRepo(p), hostRemotes)
+      await page.evaluate(() => window.__shot.settings.getState().openPageTab({ type: 'repositories' }))
+      await page.waitForSelector('.repos-row', { timeout: 15000 }).catch(() => {})
+      // WIP summary is opt-in — turn it on so the shot shows the status
+      // columns rather than the bare rows.
+      await page.click('.repos-wip-toggle input').catch(() => {})
       await page.waitForTimeout(900)
     }
   },

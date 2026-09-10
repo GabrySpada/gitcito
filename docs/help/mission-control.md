@@ -57,4 +57,4 @@ Reading it is **purely local**: one `git status` per repository, no network, no
 tokens. Opening the dashboard never authenticates anywhere. Fetching is always
 something you asked for.
 
-**See also:** [Workspaces & tabs](workspaces.md) · [Workspaces, tabs & groups](workspaces.md)
+**See also:** [Workspaces, tabs & groups](workspaces.md) · [Repositories](repositories.md)

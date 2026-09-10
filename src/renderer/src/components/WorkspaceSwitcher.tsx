@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronDown, Plus, Pencil, Trash2, GripVertical, Gauge } from 'lucide-react'
+import { ChevronDown, Plus, Pencil, Trash2, GripVertical, Gauge, FolderGit2 } from 'lucide-react'
 import gitcitoMark from '../assets/gitcito-mark.png'
 import { useSettingsStore } from '../stores/settings'
 import { useUIStore } from '../stores/ui'
@@ -167,6 +167,14 @@ export function WorkspaceSwitcher(): React.JSX.Element {
           onClick={toggleMission}
         >
           <Gauge size={14} />
+        </button>
+        <button
+          className="workspace-mission"
+          title={t('repos.open')}
+          aria-label={t('repos.open')}
+          onClick={() => useSettingsStore.getState().openPageTab({ type: 'repositories' })}
+        >
+          <FolderGit2 size={14} />
         </button>
       </div>
       {open &&

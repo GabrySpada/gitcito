@@ -148,6 +148,9 @@ export function runAppCommand(id: string): boolean {
     case 'vault':
       st.openPageTab({ type: 'vault' })
       return true
+    case 'repositories':
+      st.openPageTab({ type: 'repositories' })
+      return true
 
     // ── Repository ──
     case 'fetch': {

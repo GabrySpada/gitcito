@@ -34,6 +34,12 @@ export const SHORTCUTS: ShortcutDef[] = [
     defaultCombo: 'mod+shift+v'
   },
   {
+    id: 'repositories',
+    labelKey: 'sc.openRepositories',
+    categoryKey: 'sc.cat.navigation',
+    defaultCombo: 'mod+shift+r'
+  },
+  {
     id: 'open-repository',
     labelKey: 'sc.openRepository',
     categoryKey: 'sc.cat.navigation',
