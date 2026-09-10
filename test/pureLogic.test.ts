@@ -31,7 +31,8 @@ import { isBuildNoise, ignoreLineFor } from '../src/renderer/src/lib/buildNoise'
 import { resolveUpdateOffer } from '../src/renderer/src/lib/updateOffer'
 import { worktreeForBranch, worktreeTabName } from '../src/renderer/src/lib/worktrees'
 import { focusedHashes, focusedStashes, defaultBranchName } from '../src/renderer/src/lib/graphFocus'
-import type { WorktreeInfo, GraphCommit, GraphFocus, StackInfo, PullRequest } from '../src/shared/types'
+import { buildSections, filterSections } from '../src/renderer/src/lib/repoSections'
+import type { WorktreeInfo, GraphCommit, GraphFocus, StackInfo, PullRequest, RegistryRepo } from '../src/shared/types'
 import { comboFromEvent, formatCombo, effectiveBindings, isReservedCombo, matchShortcut, tabActionFromEvent, tabIndexFromEvent } from '../src/renderer/src/lib/shortcuts'
 import { terminalCloseTarget, terminalShortcutFromEvent } from '../src/renderer/src/lib/terminalShortcuts'
 import { panelDisplayName, groupDisplayName } from '../src/renderer/src/lib/terminalTitles'
@@ -6556,5 +6557,94 @@ describe('fileStats', () => {
 
   it('returns no chips at all when there are no files', () => {
     expect(summaryChips(fileStats([]))).toEqual([])
+  })
+})
+
+describe('repoSections', () => {
+  const repo = (path: string, extra: Partial<RegistryRepo> = {}): RegistryRepo => ({
+    path,
+    name: path.split('/').pop() ?? path,
+    owner: 'top-solution',
+    branch: 'main',
+    source: 'opened',
+    lastOpenedAt: 100,
+    missing: false,
+    ...extra
+  })
+
+  const base = {
+    registry: [repo('/r/alpha'), repo('/r/beta'), repo('/r/gamma', { lastOpenedAt: 300 })],
+    openPaths: ['/r/alpha'],
+    favourites: ['/r/beta'],
+    workspaces: [{ id: 'w1', name: 'Collins', tabs: [], activeTabId: null }],
+    workspaceRepoPaths: { w1: ['/r/alpha', '/r/gamma'] },
+    aliases: {} as Record<string, string>
+  }
+
+  it('builds open, favourites, recent, one per workspace, and all', () => {
+    const kinds = buildSections(base).map((s) => s.kind)
+    expect(kinds).toEqual(['open', 'favourites', 'recent', 'workspace', 'all'])
+  })
+
+  // The GitKraken behaviour, chosen deliberately: each section is a complete
+  // answer to its own question. "What is open?" must not omit an open repo
+  // because that repo also happens to be starred.
+  it('lists a repo in every section it qualifies for', () => {
+    const sections = buildSections(base)
+    const paths = (kind: string): string[] =>
+      sections.filter((s) => s.kind === kind).flatMap((s) => s.rows.map((r) => r.repo.path))
+    expect(paths('open')).toContain('/r/alpha')
+    expect(paths('workspace')).toContain('/r/alpha')
+    expect(paths('all')).toContain('/r/alpha')
+  })
+
+  it('orders recent by lastOpenedAt, newest first', () => {
+    const recent = buildSections(base).find((s) => s.kind === 'recent')
+    expect(recent?.rows[0].repo.path).toBe('/r/gamma')
+  })
+
+  it('never shows a repo with lastOpenedAt 0 in recent', () => {
+    const sections = buildSections({
+      ...base,
+      registry: [...base.registry, repo('/r/delta', { source: 'scanned', lastOpenedAt: 0 })]
+    })
+    const recent = sections.find((s) => s.kind === 'recent')
+    expect(recent?.rows.map((r) => r.repo.path)).not.toContain('/r/delta')
+    const all = sections.find((s) => s.kind === 'all')
+    expect(all?.rows.map((r) => r.repo.path)).toContain('/r/delta')
+  })
+
+  it('marks favourite rows so the star renders filled', () => {
+    const all = buildSections(base).find((s) => s.kind === 'all')
+    expect(all?.rows.find((r) => r.repo.path === '/r/beta')?.favourite).toBe(true)
+    expect(all?.rows.find((r) => r.repo.path === '/r/alpha')?.favourite).toBe(false)
+  })
+
+  it('uses the alias as the display name when one is set', () => {
+    const sections = buildSections({ ...base, aliases: { '/r/alpha': 'The Alpha' } })
+    const all = sections.find((s) => s.kind === 'all')
+    expect(all?.rows.find((r) => r.repo.path === '/r/alpha')?.label).toBe('The Alpha')
+  })
+
+  it('filters within each section and keeps empty sections so they can say so', () => {
+    const filtered = filterSections(buildSections(base), 'beta')
+    const open = filtered.find((s) => s.kind === 'open')
+    const favourites = filtered.find((s) => s.kind === 'favourites')
+    expect(open?.rows).toHaveLength(0)
+    expect(favourites?.rows.map((r) => r.repo.path)).toEqual(['/r/beta'])
+  })
+
+  it('matches the filter against alias, name, owner and path', () => {
+    const sections = buildSections({ ...base, aliases: { '/r/alpha': 'The Alpha' } })
+    expect(filterSections(sections, 'the alpha').find((s) => s.kind === 'all')?.rows).toHaveLength(1)
+    expect(filterSections(sections, 'top-solution').find((s) => s.kind === 'all')?.rows).toHaveLength(3)
+    expect(filterSections(sections, '/r/gamma').find((s) => s.kind === 'all')?.rows).toHaveLength(1)
+  })
+
+  it('returns an empty section rather than omitting a workspace with no repos', () => {
+    const sections = buildSections({ ...base, workspaceRepoPaths: { w1: [] } })
+    const ws = sections.find((s) => s.kind === 'workspace')
+    expect(ws).toBeDefined()
+    expect(ws?.rows).toHaveLength(0)
   })
 })
