@@ -6647,4 +6647,10 @@ describe('repoSections', () => {
     expect(ws).toBeDefined()
     expect(ws?.rows).toHaveLength(0)
   })
+
+  it('does not duplicate a repo starred twice', () => {
+    const sections = buildSections({ ...base, favourites: ['/r/beta', '/r/beta'] })
+    const favourites = sections.find((s) => s.kind === 'favourites')
+    expect(favourites?.rows).toHaveLength(1)
+  })
 })

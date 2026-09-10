@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ChevronDown, ChevronRight, FolderGit2, GitBranch, Search } from 'lucide-react'
+import { ChevronDown, ChevronRight, FolderGit2, Search } from 'lucide-react'
 import { useSettingsStore } from '../stores/settings'
 import { useReposStore } from '../stores/repos'
-import { buildSections, filterSections, type RepoSection, type SectionKind } from '../lib/repoSections'
+import { useUIStore } from '../stores/ui'
+import { buildSections, filterSections, type RepoRow, type RepoSection, type SectionKind } from '../lib/repoSections'
+import { RepositoryRow } from './RepositoryRow'
+import { shellApi } from '../infrastructure/api'
 import { tabRepos } from '../../../shared/types'
-import { useT, type TranslationKey } from '../i18n'
+import { useT, interp, type TranslationKey } from '../i18n'
 
 /** Section headings live here as keys, not strings: a module-level constant
  *  holding translated text freezes at whatever language was active on import. */
@@ -34,9 +37,36 @@ export function RepositoriesPage(): React.JSX.Element {
   const load = useReposStore((s) => s.load)
   const settings = useSettingsStore((s) => s.settings)
   const openRepoTab = useSettingsStore((s) => s.openRepoTab)
+  const forget = useReposStore((s) => s.forget)
+  const locate = useReposStore((s) => s.locate)
+  const toggleFavouriteRepo = useSettingsStore((s) => s.toggleFavouriteRepo)
+  const repathRepo = useSettingsStore((s) => s.repathRepo)
+  const openModal = useUIStore((s) => s.openModal)
 
   const [query, setQuery] = useState('')
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
+
+  // "Forget" sits next to a repository name, where it reads as "delete". The
+  // confirm says what it does and does not do, rather than relying on the verb.
+  const confirmForget = (path: string, label: string): void => {
+    openModal({
+      kind: 'confirm',
+      title: t('repos.forget'),
+      message: interp(t('repos.forgetConfirm'), { name: label }),
+      danger: true,
+      confirmLabel: t('repos.forgetAction'),
+      onConfirm: () => void forget(path)
+    })
+  }
+
+  const runLocate = async (path: string, label: string): Promise<void> => {
+    const chosen = await shellApi.selectDirectory(interp(t('repos.locateTitle'), { name: label }))
+    if (!chosen) return
+    await locate(path, chosen)
+    // The registry moved; the star, alias and profile binding are keyed by
+    // path in settings and have to move with it.
+    repathRepo(path, chosen)
+  }
 
   useEffect(() => {
     void load()
@@ -119,18 +149,14 @@ export function RepositoriesPage(): React.JSX.Element {
                       <p className="repos-none">{query ? t('repos.noMatches') : t('repos.emptySection')}</p>
                     ) : (
                       section.rows.map((row) => (
-                        <button
-                          className="repos-row"
+                        <RepositoryRow
                           key={row.repo.path}
-                          title={row.repo.path}
-                          onClick={() => openRepoTab({ path: row.repo.path, name: row.repo.name })}
-                        >
-                          <span className="repos-row-name">{row.label}</span>
-                          <span className="repos-row-owner">{row.repo.owner ?? t('repos.noOwner')}</span>
-                          <span className="repos-row-branch">
-                            <GitBranch size={11} /> {row.repo.branch ?? ''}
-                          </span>
-                        </button>
+                          row={row}
+                          onOpen={(r: RepoRow) => openRepoTab({ path: r.repo.path, name: r.repo.name })}
+                          onToggleFavourite={toggleFavouriteRepo}
+                          onForget={confirmForget}
+                          onLocate={(path, label) => void runLocate(path, label)}
+                        />
                       ))
                     )}
                   </div>

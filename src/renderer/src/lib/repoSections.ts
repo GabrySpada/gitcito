@@ -36,8 +36,11 @@ export interface SectionInput {
 function rowsFor(paths: string[], input: SectionInput): RepoRow[] {
   const byPath = new Map(input.registry.map((r) => [r.path, r]))
   const favourites = new Set(input.favourites)
+  const seen = new Set<string>()
   const rows: RepoRow[] = []
   for (const path of paths) {
+    if (seen.has(path)) continue // the same folder twice is still one repository
+    seen.add(path)
     const repo = byPath.get(path)
     if (!repo) continue // open but never indexed: the next `remember` fixes it
     rows.push({ repo, label: input.aliases[path] || repo.name, favourite: favourites.has(path) })

@@ -805,6 +805,8 @@ export const shellApi = {
   openPath: (fullPath: string) => window.api.shell.openPath(fullPath),
   openWithPicker: (fullPath: string) => window.api.shell.openWithPicker(fullPath),
   pickApplication: () => window.api.shell.pickApplication(),
+  /** Native folder picker, with an optional dialog title. Resolves null on cancel. */
+  selectDirectory: (title?: string) => window.api.selectDirectory(title),
   /** Launches a specific app (e.g. VS Code) with the given file/folder path —
    *  the equivalent of running `code <path>` from a terminal. */
   openWithApp: (targetPath: string, appPath: string) => window.api.shell.openWithApp(targetPath, appPath),

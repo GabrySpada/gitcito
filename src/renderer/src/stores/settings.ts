@@ -244,6 +244,10 @@ interface SettingsState {
   renameRepoInGroup(tabId: string, path: string, newName: string): void
   /** Set or clear a path-keyed display alias. Empty / canonical name removes it. */
   setRepoAlias(path: string, alias: string | null): void
+  toggleFavouriteRepo(path: string): void
+  /** A repo that moved keeps its alias, profile binding and star: all three are
+   *  keyed by path, so re-pointing the registry has to re-key them too. */
+  repathRepo(oldPath: string, newPath: string): void
   reorderReposInGroup(tabId: string, fromPath: string, toPath: string | null): void
   setGroupActiveRepo(tabId: string, path: string | null): void
   closeTab(tabId: string): void
@@ -712,6 +716,29 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
     get().update((s) => applyRepoAlias(s, path, newName)),
 
   setRepoAlias: (path, alias) => get().update((s) => applyRepoAlias(s, path, alias)),
+
+  toggleFavouriteRepo: (path) =>
+    get().update((s) => {
+      const current = s.favouriteRepos ?? []
+      const next = current.includes(path) ? current.filter((p) => p !== path) : [...current, path]
+      return { ...s, favouriteRepos: next }
+    }),
+
+  repathRepo: (oldPath, newPath) =>
+    get().update((s) => {
+      const repoAliases = { ...s.repoAliases }
+      if (repoAliases[oldPath]) {
+        repoAliases[newPath] = repoAliases[oldPath]
+        delete repoAliases[oldPath]
+      }
+      const repoProfiles = { ...s.repoProfiles }
+      if (repoProfiles[oldPath]) {
+        repoProfiles[newPath] = repoProfiles[oldPath]
+        delete repoProfiles[oldPath]
+      }
+      const favouriteRepos = (s.favouriteRepos ?? []).map((p) => (p === oldPath ? newPath : p))
+      return { ...s, repoAliases, repoProfiles, favouriteRepos }
+    }),
 
   reorderReposInGroup: (tabId, fromPath, toPath) =>
     get().update((s) => ({
