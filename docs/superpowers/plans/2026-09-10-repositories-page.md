@@ -16,7 +16,7 @@
 - **Comments explain why, not what.** Match the surrounding file's comment density.
 - **Every user-facing string is translated** and must be added to **all 16 locale dictionaries** in `src/renderer/src/i18n/`: `en, ar, de, es, fr, he, it, ja, ko, nl, pl, pt-BR, ru, tr, uk, zh-CN`. `Dict` is derived from `en.ts`, so a missing key is a compile error. Never clear that error by pasting English — translate it. Load the **`translations`** skill before Task 9.
 - **Git runs in the main process only.** The renderer never touches the filesystem.
-- **Registry paths are validated** with `isSafeRepoPath` from `src/main/aiSchemas.ts` before reaching the filesystem.
+- **Registry paths are validated** with the local `isPlausibleRepoPath` defined in Task 1 — **not** with `isSafeRepoPath` from `aiSchemas.ts`, which validates repo-*relative* model output and rejects every absolute path (`aiSchemas.ts:59`). No model or CLI input reaches the registry; its paths come from the user's own folder picker and from scanning folders the user configured.
 - **The gate:** `npm run typecheck`, `npm run lint:i18n`, `npm run lint:docs`, `npm test`, `npm run build`. `/verify` runs all of them.
 - **Do not launch the app.** Compile-only checks.
 - **Commit subjects are lowercase** after the Conventional Commits type (`docs: design for…`). Commitlint rejects sentence-case, despite CLAUDE.md's examples.
@@ -180,11 +180,10 @@ Create `src/main/repoRegistry.ts`:
 
 ```ts
 import { app } from 'electron'
-import { join, basename } from 'path'
+import { join, basename, isAbsolute } from 'path'
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
 import type { RegistryRepo } from '../shared/types'
-import { isSafeRepoPath } from './aiSchemas'
 
 // Every repository Gitcito knows about, whether or not it is open. Kept in its
 // own file rather than in settings: it is a cache of what is on *this* disk,
@@ -193,6 +192,21 @@ import { isSafeRepoPath } from './aiSchemas'
 
 interface RegistryData {
   repos: RegistryRepo[]
+}
+
+/**
+ * A sanity check on a path before it reaches the filesystem.
+ *
+ * Deliberately not `isSafeRepoPath` from aiSchemas: that one guards paths an
+ * LLM produced, which are joined onto a repo root, so it rejects anything
+ * absolute. Registry paths are absolute by definition and come from the user's
+ * own folder picker or from scanning folders they configured — a different
+ * threat model, and a different check.
+ */
+function isPlausibleRepoPath(path: unknown): path is string {
+  if (typeof path !== 'string') return false
+  const p = path.trim()
+  return p.length > 0 && p.length <= 4096 && isAbsolute(p) && !p.includes('\0')
 }
 
 export const registryFilePath = (): string => join(app.getPath('userData'), 'gitcito-repos.json')
@@ -231,7 +245,7 @@ export async function listRepos(): Promise<RegistryRepo[]> {
 
 /** Record a repository as opened. Upserts: the same folder is one entry. */
 export async function rememberRepo(repoPath: string): Promise<RegistryRepo[]> {
-  if (!isSafeRepoPath(repoPath)) return load()
+  if (!isPlausibleRepoPath(repoPath)) return load()
   const repos = await load()
   const now = Math.floor(Date.now() / 1000)
   const existing = repos.find((r) => r.path === repoPath)
@@ -488,7 +502,7 @@ In `src/main/repoRegistry.ts`, add the import and populate the fields.
 Add to imports:
 
 ```ts
-import { readHeadBranch, readOriginOwner } from './repoMeta'
+import { gitDirOf, readHeadBranch, readOriginOwner } from './repoMeta'
 ```
 
 In `rememberRepo`, replace the `if (existing) { … } else { … }` block with:
@@ -569,7 +583,7 @@ git commit -m "feat: read repository branch and owner from .git files"
 - Test: `test/repoScan.test.ts`
 
 **Interfaces:**
-- Consumes: `gitDirOf` from `src/main/repoMeta.ts`, `isSafeRepoPath` from `src/main/aiSchemas.ts`
+- Consumes: `gitDirOf` from `src/main/repoMeta.ts`, `isPlausibleRepoPath` from `src/main/repoRegistry.ts` (Task 1)
 - Produces: `scanForRepos(root: string, depth: number): Promise<string[]>`; `scanRoots(roots: RepoScanRoot[]): Promise<RegistryRepo[]>`
 
 - [ ] **Step 1: Write the failing test**
@@ -720,7 +734,7 @@ export async function scanRoots(rootList: RepoScanRoot[]): Promise<RegistryRepo[
   const byPath = new Map(repos.map((r) => [r.path, r]))
 
   for (const root of rootList) {
-    if (!isSafeRepoPath(root.path)) continue
+    if (!isPlausibleRepoPath(root.path)) continue
     for (const found of await scanForRepos(root.path, root.depth)) {
       const existing = byPath.get(found)
       if (existing) {
@@ -753,16 +767,23 @@ Append to `test/repoRegistry.test.ts`:
 
 ```ts
   it('keeps an opened repo opened when a scan finds it again', async () => {
-    const dir = cloneFixture('basic')
+    // A dedicated parent, never $TMPDIR itself: scanning the system temp
+    // directory would walk every other test's scratch files.
+    const parent = mkdtempSync(join(tmpdir(), 'gitcito-scanroot-'))
+    dirs.push(parent)
+    const dir = join(parent, 'alpha')
+    mkdirSync(join(dir, '.git'), { recursive: true })
+    writeFileSync(join(dir, '.git', 'HEAD'), 'ref: refs/heads/main\n')
+
     await rememberRepo(dir)
-    await scanRoots([{ path: dirname(dir), depth: 2 }])
+    await scanRoots([{ path: parent, depth: 2 }])
     const entry = (await listRepos()).find((r) => r.path === dir)
     expect(entry?.source).toBe('opened')
     expect(entry?.lastOpenedAt).toBeGreaterThan(0)
   })
 ```
 
-Add `scanRoots` to the import from `../src/main/repoRegistry` and `import { dirname } from 'node:path'`.
+Add `scanRoots` to the import from `../src/main/repoRegistry`, and `mkdirSync`/`writeFileSync` to the `node:fs` import.
 
 ```bash
 npx vitest run test/repoScan.test.ts test/repoRegistry.test.ts
@@ -822,7 +843,10 @@ Append to `src/main/repoRegistry.ts`:
  *  are path-keyed and live in settings, so the renderer migrates those; this
  *  moves the index entry and refreshes what it caches. */
 export async function locateRepo(oldPath: string, newPath: string): Promise<RegistryRepo[]> {
-  if (!isSafeRepoPath(newPath)) return load()
+  if (!isPlausibleRepoPath(newPath)) return load()
+  // Re-pointing a repository at a folder that is not one would leave an entry
+  // that can never be opened. Refuse rather than record it.
+  if (!(await gitDirOf(newPath))) return load()
   const repos = await load()
   const entry = repos.find((r) => r.path === oldPath)
   if (!entry) return repos
@@ -1244,12 +1268,12 @@ In `src/shared/types.ts`, in the `PageContent` union (line ~2662), beside `{ typ
   | { type: 'repositories' }
 ```
 
-`npm run typecheck` will now fail in three switch statements. That is the point — the compiler lists exactly what has to be wired.
+**Do not rely on the compiler to find the call sites.** Only `tabLabel.ts` errors: `PageView` in `App.tsx` ends in `default: return <Welcome />` (line ~278) and `pageTabIcon` in `TitleBar.tsx` takes `type: string`, so both accept a new member silently. Miss the `App.tsx` case and the page renders the Welcome screen with no error anywhere. All three edits in Step 4 are mandatory.
 
-- [ ] **Step 2: Run typecheck to see the wiring list**
+- [ ] **Step 2: Run typecheck and note what it does — and does not — catch**
 
 Run: `npm run typecheck`
-Expected: FAIL, naming `tabLabel.ts` and `App.tsx`.
+Expected: FAIL in `src/renderer/src/lib/tabLabel.ts` only ("Function lacks ending return statement"). `App.tsx` and `TitleBar.tsx` will NOT be named; edit them anyway.
 
 - [ ] **Step 3: Add the i18n keys for the page shell**
 
@@ -1590,6 +1614,11 @@ import { AlertTriangle, Star } from 'lucide-react'
 import { useUIStore } from '../stores/ui'
 import { repositoryMenuItems } from '../lib/repositoryMenuItems'
 import { shellApi } from '../infrastructure/api'
+```
+
+and **extend** the i18n import Task 6 already added rather than adding a second one — a duplicate declaration is a compile error:
+
+```tsx
 import { useT, interp, type TranslationKey } from '../i18n'
 ```
 

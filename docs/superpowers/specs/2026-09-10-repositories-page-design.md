@@ -130,9 +130,16 @@ dot-directories outright. Without this, one `~/Code` scan walks a million files.
 
 ### Security
 
-Paths from the registry cross back into git operations, so `repos:scan` and
-`repos:locate` validate through `isSafeRepoPath` (`main/aiSchemas.ts`) before any
-path reaches the filesystem, per CLAUDE.md §5. `repos:forget` removes an index
+Paths from the registry cross back into git operations, so `repos:remember`,
+`repos:scan` and `repos:locate` sanity-check them before any path reaches the
+filesystem: absolute, non-empty, no NUL, length-capped, and — for `locate` — the
+target must actually contain a `.git`.
+
+Deliberately **not** `isSafeRepoPath` (`main/aiSchemas.ts`), despite CLAUDE.md §5:
+that helper guards *repo-relative paths produced by a model*, which are joined
+onto a repo root, and it rejects every absolute path. Registry paths are absolute
+by definition and originate from the user's own folder picker or from scanning
+folders they configured — no model or CLI output reaches this surface. `repos:forget` removes an index
 entry and nothing else; the wording in the UI must make that unambiguous, since
 "remove" next to a repository name invites the other reading.
 
