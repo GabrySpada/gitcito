@@ -62,7 +62,7 @@ function toggleRightPanel(): void {
   }
 }
 
-function openRepositoryDialog(): void {
+export function openRepositoryDialog(): void {
   void window.api.selectDirectory().then((path) => {
     if (!path) return
     const name = path.split(/[\\/]/).filter(Boolean).pop() ?? path

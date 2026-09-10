@@ -12,6 +12,9 @@ export interface RepositoryRowProps {
   onForget: (path: string, label: string) => void
   /** Only reachable when the row is missing: picks a new folder and re-keys it. */
   onLocate: (path: string, label: string) => void
+  /** The WIP summary pill (ahead/behind/dirty), rendered by the caller so this
+   *  row stays ignorant of `RepoPulse` and the opt-in fetch behind it. */
+  wipPill?: React.ReactNode
 }
 
 /**
@@ -25,7 +28,8 @@ export function RepositoryRow({
   onOpen,
   onToggleFavourite,
   onForget,
-  onLocate
+  onLocate,
+  wipPill
 }: RepositoryRowProps): React.JSX.Element {
   const t = useT()
   const openContextMenu = useUIStore((s) => s.openContextMenu)
@@ -76,9 +80,12 @@ export function RepositoryRow({
             <AlertTriangle size={11} /> {t('repos.missing')}
           </span>
         ) : (
-          <span className="repos-row-branch">
-            <GitBranch size={11} /> {row.repo.branch ?? ''}
-          </span>
+          <>
+            <span className="repos-row-branch">
+              <GitBranch size={11} /> {row.repo.branch ?? ''}
+            </span>
+            {wipPill}
+          </>
         )}
       </button>
       {row.repo.missing && (
