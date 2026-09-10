@@ -38,6 +38,9 @@ export const useReposStore = create<ReposState>((set, get) => ({
     // runs when tabs are restored at startup. Without this backfill an upgrading
     // user opens the page and is told they have no repositories, with five of
     // them open behind it. Once per session, and after the first paint.
+    //
+    // It runs every launch, so the caller must seed paths it can justify
+    // re-indexing indefinitely — anything else undoes Forget on the next start.
     if (!seed || get().seeded) return
     set({ seeded: true })
     const known = new Set(get().entries.map((e) => e.path))

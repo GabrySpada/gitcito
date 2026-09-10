@@ -96,13 +96,15 @@ export function RepositoriesPage(): React.JSX.Element {
   }
 
   useEffect(() => {
-    // Read straight from the store: the seed is a one-off snapshot taken on the
-    // first load, not something that should re-run when a tab opens or closes.
-    const current = useSettingsStore.getState().settings
-    const seed = [
-      ...current.tabs.flatMap((tab) => tabRepos(tab).map((r) => r.path)),
-      ...(current.recentRepos ?? []).map((r) => r.path)
-    ]
+    // Open tabs only, never `recentRepos`: the seed stands in for the `remember`
+    // that startup tab restoration skips, and a repository you have open is
+    // self-evidently known. A recent-only path has no such claim — re-indexing
+    // one every launch would quietly resurrect a repository the user forgot.
+    // Read straight from the store: a one-off snapshot taken on the first load,
+    // not something that should re-run when a tab opens or closes.
+    const seed = useSettingsStore
+      .getState()
+      .settings.tabs.flatMap((tab) => tabRepos(tab).map((r) => r.path))
     void load(seed)
   }, [load])
 

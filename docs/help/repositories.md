@@ -37,9 +37,11 @@ A row exists here once Gitcito has **opened it** at some point, or found it
 under a **scan folder**. Nothing is indexed just because it exists on disk
 somewhere you never told Gitcito about.
 
-The first time you open the page it back-fills what it can already see — every
-repository open in a tab, and everything in the recent list — so arriving here
-on the version that introduces the page does not start you from nothing.
+Opening this page also indexes whatever you currently have **open in a tab**,
+which is how repositories restored at startup get a row without your having to
+reopen them. It covers open tabs only, and it happens on the first visit of
+each session rather than once ever — so a repository you **Forget** stays
+forgotten unless you open it again.
 
 Scan folders are configured in Settings:
 
