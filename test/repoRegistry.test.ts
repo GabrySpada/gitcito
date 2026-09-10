@@ -115,6 +115,34 @@ describe('repoRegistry', () => {
     expect(entry?.branch).toBe('develop')
   })
 
+  // The Settings panel reports "found N" from this number. Reconstructing it in
+  // the renderer reported the whole registry whenever the page had not loaded.
+  it('counts only what a scan added, not the registry it returns', async () => {
+    const parent = mkdtempSync(join(tmpdir(), 'gitcito-scanroot-'))
+    dirs.push(parent)
+    for (const name of ['one', 'two']) {
+      mkdirSync(join(parent, name, '.git'), { recursive: true })
+      writeFileSync(join(parent, name, '.git', 'HEAD'), 'ref: refs/heads/main\n')
+    }
+    await rememberRepo(tempRepo()) // already in the registry, found by no scan
+
+    const first = await scanRoots([{ path: parent, depth: 2 }])
+    expect(first.added).toBe(2)
+    expect(first.repos).toHaveLength(3)
+
+    const again = await scanRoots([{ path: parent, depth: 2 }])
+    expect(again.added).toBe(0)
+  })
+
+  it('files a padded path under its trimmed spelling', async () => {
+    const dir = tempRepo()
+    await rememberRepo(`  ${dir}  `)
+    await rememberRepo(dir)
+    const repos = await listRepos()
+    expect(repos).toHaveLength(1)
+    expect(repos[0].path).toBe(dir)
+  })
+
   it('locates a moved repo, keeping its identity', async () => {
     const dir = tempRepo()
     await rememberRepo(dir)

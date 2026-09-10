@@ -3329,12 +3329,8 @@ function ScanRootsSection(): React.JSX.Element {
   }
 
   const runScan = async (): Promise<void> => {
-    // scan() replaces `entries` with the whole merged registry, not a delta —
-    // the toast is "found N this scan", so diff the count around the await.
-    const before = useReposStore.getState().entries.length
-    await scan(useSettingsStore.getState().settings.repoScanRoots)
-    const found = useReposStore.getState().entries.length - before
-    toast('success', interp(t('repos.scanFound'), { n: Math.max(0, found) }))
+    const found = await scan(useSettingsStore.getState().settings.repoScanRoots)
+    toast('success', interp(t('repos.scanFound'), { n: found }))
   }
 
   return (

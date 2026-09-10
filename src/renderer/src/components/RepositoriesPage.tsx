@@ -85,16 +85,19 @@ export function RepositoriesPage(): React.JSX.Element {
     if (!chosen) return
     const roots = [...settings.repoScanRoots, { path: chosen, depth: 3 }]
     updateSettings((s) => ({ ...s, repoScanRoots: roots }))
-    // scan() replaces `entries` with the whole merged registry, not a delta —
-    // the toast is "found N this scan", so diff the count around the await.
-    const before = useReposStore.getState().entries.length
-    await scan(roots)
-    const found = useReposStore.getState().entries.length - before
-    toast('success', interp(t('repos.scanFound'), { n: Math.max(0, found) }))
+    const found = await scan(roots)
+    toast('success', interp(t('repos.scanFound'), { n: found }))
   }
 
   useEffect(() => {
-    void load()
+    // Read straight from the store: the seed is a one-off snapshot taken on the
+    // first load, not something that should re-run when a tab opens or closes.
+    const current = useSettingsStore.getState().settings
+    const seed = [
+      ...current.tabs.flatMap((tab) => tabRepos(tab).map((r) => r.path)),
+      ...(current.recentRepos ?? []).map((r) => r.path)
+    ]
+    void load(seed)
   }, [load])
 
   const sections = useMemo(() => {

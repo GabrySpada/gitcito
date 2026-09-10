@@ -37,6 +37,10 @@ A row exists here once Gitcito has **opened it** at some point, or found it
 under a **scan folder**. Nothing is indexed just because it exists on disk
 somewhere you never told Gitcito about.
 
+The first time you open the page it back-fills what it can already see — every
+repository open in a tab, and everything in the recent list — so arriving here
+on the version that introduces the page does not start you from nothing.
+
 Scan folders are configured in Settings:
 
 - **Depth** is how many directory levels the scan descends below the root

@@ -6654,6 +6654,35 @@ describe('repoSections', () => {
     const favourites = sections.find((s) => s.kind === 'favourites')
     expect(favourites?.rows).toHaveLength(1)
   })
+
+  // Load-bearing, not incidental: a path only reaches a row through the
+  // registry, which is why the page seeds the registry from tabs and recents
+  // before it draws. Skipping rather than throwing is what keeps a stale tab
+  // list from taking the whole page down.
+  it('skips a path the registry has never heard of', () => {
+    const sections = buildSections({
+      ...base,
+      openPaths: ['/r/alpha', '/r/unknown'],
+      favourites: ['/r/unknown']
+    })
+    const rows = (kind: string): string[] =>
+      sections.filter((s) => s.kind === kind).flatMap((s) => s.rows.map((r) => r.repo.path))
+    expect(rows('open')).toEqual(['/r/alpha'])
+    expect(rows('favourites')).toEqual([])
+  })
+
+  it('shows that path once the registry knows it', () => {
+    const sections = buildSections({
+      ...base,
+      registry: [...base.registry, repo('/r/unknown')],
+      openPaths: ['/r/alpha', '/r/unknown'],
+      favourites: ['/r/unknown']
+    })
+    const rows = (kind: string): string[] =>
+      sections.filter((s) => s.kind === kind).flatMap((s) => s.rows.map((r) => r.repo.path))
+    expect(rows('open')).toContain('/r/unknown')
+    expect(rows('favourites')).toEqual(['/r/unknown'])
+  })
 })
 
 describe('repathRepoSettings', () => {

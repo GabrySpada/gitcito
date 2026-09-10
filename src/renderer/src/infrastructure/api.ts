@@ -156,6 +156,7 @@ import type {
   RepoWiki,
   WikiProgress,
   RegistryRepo,
+  RepoScanResult,
   RepoScanRoot
 } from '../../../shared/types'
 import type {
@@ -741,7 +742,7 @@ export const reposApi = {
   list: () => window.api.repos.list() as Promise<RegistryRepo[]>,
   remember: (repoPath: string) => window.api.repos.remember(repoPath) as Promise<RegistryRepo[]>,
   forget: (repoPath: string) => window.api.repos.forget(repoPath) as Promise<RegistryRepo[]>,
-  scan: (roots: RepoScanRoot[]) => window.api.repos.scan(roots) as Promise<RegistryRepo[]>,
+  scan: (roots: RepoScanRoot[]) => window.api.repos.scan(roots) as Promise<RepoScanResult>,
   locate: (oldPath: string, newPath: string) =>
     window.api.repos.locate(oldPath, newPath) as Promise<RegistryRepo[]>,
   refresh: (paths: string[]) => window.api.repos.refresh(paths) as Promise<RegistryRepo[]>

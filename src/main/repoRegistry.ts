@@ -2,7 +2,7 @@ import { app, ipcMain } from 'electron'
 import { join, basename, isAbsolute } from 'path'
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
-import type { RegistryRepo, RepoScanRoot } from '../shared/types'
+import type { RegistryRepo, RepoScanResult, RepoScanRoot } from '../shared/types'
 import { gitDirOf, readHeadBranch, readOriginOwner } from './repoMeta'
 import { scanForRepos } from './repoScan'
 
@@ -84,27 +84,30 @@ export async function listRepos(): Promise<RegistryRepo[]> {
 
 /** Record a repository as opened. Upserts: the same folder is one entry. */
 export async function rememberRepo(repoPath: string): Promise<RegistryRepo[]> {
-  if (!isPlausibleRepoPath(repoPath)) return load()
+  if (!isPlausibleRepoPath(repoPath)) return serialize(load)
+  // The path is the registry key, and the validation above accepted it trimmed:
+  // storing it untrimmed would file two spellings of one folder as two rows.
+  const path = repoPath.trim()
   return serialize(async () => {
     const repos = await load()
     const now = Math.floor(Date.now() / 1000)
-    const [branch, owner] = await Promise.all([readHeadBranch(repoPath), readOriginOwner(repoPath)])
-    const existing = repos.find((r) => r.path === repoPath)
+    const [branch, owner] = await Promise.all([readHeadBranch(path), readOriginOwner(path)])
+    const existing = repos.find((r) => r.path === path)
     if (existing) {
       existing.lastOpenedAt = now
-      existing.missing = !existsSync(repoPath)
+      existing.missing = !existsSync(path)
       existing.source = 'opened'
       existing.branch = branch
       existing.owner = owner
     } else {
       repos.push({
-        path: repoPath,
-        name: basename(repoPath),
+        path,
+        name: basename(path),
         owner,
         branch,
         source: 'opened',
         lastOpenedAt: now,
-        missing: !existsSync(repoPath)
+        missing: !existsSync(path)
       })
     }
     await save(repos)
@@ -142,10 +145,13 @@ export async function refreshRepos(paths: string[]): Promise<RegistryRepo[]> {
 /** Index every repository under the configured roots. A repo already in the
  *  registry keeps its `source` and `lastOpenedAt` — a scan adds knowledge, it
  *  never demotes a repo the user has actually opened. */
-export async function scanRoots(rootList: RepoScanRoot[]): Promise<RegistryRepo[]> {
+export async function scanRoots(rootList: RepoScanRoot[]): Promise<RepoScanResult> {
   return serialize(async () => {
     const repos = await load()
     const byPath = new Map(repos.map((r) => [r.path, r]))
+    // Counted here rather than by the caller: only this function sees both the
+    // registry before the merge and the registry after it.
+    let added = 0
 
     for (const root of rootList) {
       if (!isPlausibleRepoPath(root.path)) continue
@@ -167,11 +173,12 @@ export async function scanRoots(rootList: RepoScanRoot[]): Promise<RegistryRepo[
         }
         repos.push(entry)
         byPath.set(found, entry)
+        added += 1
       }
     }
 
     await save(repos)
-    return repos
+    return { repos, added }
   })
 }
 
@@ -179,10 +186,10 @@ export async function scanRoots(rootList: RepoScanRoot[]): Promise<RegistryRepo[
  *  are path-keyed and live in settings, so the renderer migrates those; this
  *  moves the index entry and refreshes what it caches. */
 export async function locateRepo(oldPath: string, newPath: string): Promise<RegistryRepo[]> {
-  if (!isPlausibleRepoPath(newPath)) return load()
+  if (!isPlausibleRepoPath(newPath)) return serialize(load)
   // Re-pointing a repository at a folder that is not one would leave an entry
   // that can never be opened. Refuse rather than record it.
-  if (!(await gitDirOf(newPath))) return load()
+  if (!(await gitDirOf(newPath))) return serialize(load)
   return serialize(async () => {
     const repos = await load()
     const entry = repos.find((r) => r.path === oldPath)

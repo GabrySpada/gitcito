@@ -2621,6 +2621,14 @@ export interface RepoScanRoot {
   depth: number
 }
 
+/** What a scan produced. `added` is counted where the merge happens, because a
+ *  caller cannot reconstruct it: the registry it is handed replaces one it may
+ *  never have loaded, so diffing lengths around the call reports everything. */
+export interface RepoScanResult {
+  repos: RegistryRepo[]
+  added: number
+}
+
 /** Fields shared by every tab regardless of kind. */
 interface TabBase {
   id: string
