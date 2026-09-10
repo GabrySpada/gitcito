@@ -32,6 +32,7 @@ import {
 import { settingsApi, reposApi } from '../infrastructure/api'
 import { useUIStore } from './ui'
 import { applyRepoAlias, canonicalRepoPath, migrateRepoAliases, repoDisplayName } from '../lib/repoAlias'
+import { repathRepoSettings } from '../lib/repoRepath'
 import { sortBookmarks } from '../lib/bookmarks'
 import { planAttach, planClose } from '../lib/tabPages'
 import {
@@ -725,20 +726,14 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
     }),
 
   repathRepo: (oldPath, newPath) =>
-    get().update((s) => {
-      const repoAliases = { ...s.repoAliases }
-      if (repoAliases[oldPath]) {
-        repoAliases[newPath] = repoAliases[oldPath]
-        delete repoAliases[oldPath]
-      }
-      const repoProfiles = { ...s.repoProfiles }
-      if (repoProfiles[oldPath]) {
-        repoProfiles[newPath] = repoProfiles[oldPath]
-        delete repoProfiles[oldPath]
-      }
-      const favouriteRepos = (s.favouriteRepos ?? []).map((p) => (p === oldPath ? newPath : p))
-      return { ...s, repoAliases, repoProfiles, favouriteRepos }
-    }),
+    get().update((s) => ({
+      ...s,
+      ...repathRepoSettings(
+        { repoAliases: s.repoAliases, repoProfiles: s.repoProfiles, favouriteRepos: s.favouriteRepos ?? [] },
+        oldPath,
+        newPath
+      )
+    })),
 
   reorderReposInGroup: (tabId, fromPath, toPath) =>
     get().update((s) => ({

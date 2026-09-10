@@ -32,6 +32,7 @@ import { resolveUpdateOffer } from '../src/renderer/src/lib/updateOffer'
 import { worktreeForBranch, worktreeTabName } from '../src/renderer/src/lib/worktrees'
 import { focusedHashes, focusedStashes, defaultBranchName } from '../src/renderer/src/lib/graphFocus'
 import { buildSections, filterSections } from '../src/renderer/src/lib/repoSections'
+import { repathRepoSettings } from '../src/renderer/src/lib/repoRepath'
 import type { WorktreeInfo, GraphCommit, GraphFocus, StackInfo, PullRequest, RegistryRepo } from '../src/shared/types'
 import { comboFromEvent, formatCombo, effectiveBindings, isReservedCombo, matchShortcut, tabActionFromEvent, tabIndexFromEvent } from '../src/renderer/src/lib/shortcuts'
 import { terminalCloseTarget, terminalShortcutFromEvent } from '../src/renderer/src/lib/terminalShortcuts'
@@ -6652,5 +6653,68 @@ describe('repoSections', () => {
     const sections = buildSections({ ...base, favourites: ['/r/beta', '/r/beta'] })
     const favourites = sections.find((s) => s.kind === 'favourites')
     expect(favourites?.rows).toHaveLength(1)
+  })
+})
+
+describe('repathRepoSettings', () => {
+  it('moves alias, profile and star from oldPath to newPath', () => {
+    const result = repathRepoSettings(
+      {
+        repoAliases: { '/r/old': 'Old Alias' },
+        repoProfiles: { '/r/old': 'profile-1' },
+        favouriteRepos: ['/r/old']
+      },
+      '/r/old',
+      '/r/new'
+    )
+    expect(result.repoAliases).toEqual({ '/r/new': 'Old Alias' })
+    expect(result.repoProfiles).toEqual({ '/r/new': 'profile-1' })
+    expect(result.favouriteRepos).toEqual(['/r/new'])
+  })
+
+  it('keeps the destination alias rather than overwriting it with the moved one', () => {
+    const result = repathRepoSettings(
+      {
+        repoAliases: { '/r/old': 'Old Alias', '/r/new': 'Destination Alias' },
+        repoProfiles: {},
+        favouriteRepos: []
+      },
+      '/r/old',
+      '/r/new'
+    )
+    expect(result.repoAliases).toEqual({ '/r/new': 'Destination Alias' })
+  })
+
+  it('keeps the destination profile rather than overwriting it with the moved one', () => {
+    const result = repathRepoSettings(
+      {
+        repoAliases: {},
+        repoProfiles: { '/r/old': 'profile-1', '/r/new': 'profile-2' },
+        favouriteRepos: []
+      },
+      '/r/old',
+      '/r/new'
+    )
+    expect(result.repoProfiles).toEqual({ '/r/new': 'profile-2' })
+  })
+
+  it('does not duplicate the destination when both paths were starred', () => {
+    const result = repathRepoSettings(
+      { repoAliases: {}, repoProfiles: {}, favouriteRepos: ['/r/old', '/r/new'] },
+      '/r/old',
+      '/r/new'
+    )
+    expect(result.favouriteRepos).toEqual(['/r/new'])
+  })
+
+  it('moves a repo with no alias, profile or star without inventing entries', () => {
+    const result = repathRepoSettings(
+      { repoAliases: {}, repoProfiles: {}, favouriteRepos: [] },
+      '/r/old',
+      '/r/new'
+    )
+    expect(result.repoAliases).toEqual({})
+    expect(result.repoProfiles).toEqual({})
+    expect(result.favouriteRepos).toEqual([])
   })
 })
