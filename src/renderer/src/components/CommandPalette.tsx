@@ -214,6 +214,13 @@ export function CommandPalette(): React.JSX.Element {
       }
     }
 
+    // Above the early return on purpose: finding a repository that is *not*
+    // open is the whole point of this page, so it has to be reachable when
+    // nothing is open. Nothing in the entry depends on the active repo.
+    list.push(
+      { id: 'repositories', title: t('cmd.repositories'), group: 'Actions', keywords: 'repositories repos all known registry favourites recent browse find open workspace', icon: <FolderGit2 size={15} />, run: act(() => useSettingsStore.getState().openPageTab({ type: 'repositories' })) }
+    )
+
     if (!repo) return list
     const path = repo.path
 
@@ -284,7 +291,6 @@ export function CommandPalette(): React.JSX.Element {
       { id: 'wiki', title: t('cmd.wiki'), group: 'Actions', keywords: 'wiki docs documentation deepwiki overview architecture ai generated', icon: <BookOpen size={15} />, run: act(() => useSettingsStore.getState().openPageTab({ type: 'wiki', repoPath: path })) },
       { id: 'changelog-gen', title: t('cmd.changelogGen'), group: 'Actions', keywords: 'conventional commits release notes changelog', icon: <FileText size={15} />, run: act(() => ui.openModal({ kind: 'changelog-gen', repoPath: path })) },
       { id: 'vault', title: t('cmd.vault'), group: 'Actions', keywords: 'secrets vault credentials keychain env password store', icon: <KeyRound size={15} />, run: act(() => useSettingsStore.getState().openPageTab({ type: 'vault' })) },
-      { id: 'repositories', title: t('cmd.repositories'), group: 'Actions', keywords: 'repositories repos all known registry favourites recent browse find open workspace', icon: <FolderGit2 size={15} />, run: act(() => useSettingsStore.getState().openPageTab({ type: 'repositories' })) },
       { id: 'secure-export', title: t('cmd.secureExport'), group: 'Actions', keywords: 'share export env secrets encrypted bundle gitcito file send', icon: <Lock size={15} />, run: act(() => ui.openModal({ kind: 'secure-share', repoPath: path, initialMode: 'export' })) },
       { id: 'secure-import', title: t('cmd.secureImport'), group: 'Actions', keywords: 'share import env secrets encrypted bundle gitcito file receive', icon: <Lock size={15} />, run: act(() => ui.openModal({ kind: 'secure-share', repoPath: path, initialMode: 'import' })) },
       { id: 'ws-secure-export', title: t('cmd.wsSecureExport'), group: 'Actions', keywords: 'workspace share export multi repo vault secrets encrypted bundle gitcito global', icon: <Lock size={15} />, run: act(() => ui.openModal({ kind: 'secure-workspace', initialMode: 'export' })) },

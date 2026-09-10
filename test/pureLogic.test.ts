@@ -6746,4 +6746,21 @@ describe('repathRepoSettings', () => {
     expect(result.repoProfiles).toEqual({})
     expect(result.favouriteRepos).toEqual([])
   })
+
+  // Same key on both sides: keeping the destination and then dropping the
+  // source would delete the very entry that was kept.
+  it('leaves everything alone when the path does not actually move', () => {
+    const result = repathRepoSettings(
+      {
+        repoAliases: { '/r/same': 'Alias' },
+        repoProfiles: { '/r/same': 'profile-1' },
+        favouriteRepos: ['/r/same']
+      },
+      '/r/same',
+      '/r/same'
+    )
+    expect(result.repoAliases).toEqual({ '/r/same': 'Alias' })
+    expect(result.repoProfiles).toEqual({ '/r/same': 'profile-1' })
+    expect(result.favouriteRepos).toEqual(['/r/same'])
+  })
 })

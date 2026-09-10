@@ -13,7 +13,7 @@
 
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { writeFile, mkdir, rm, chmod, symlink } from 'node:fs/promises'
+import { writeFile, mkdir, rm, chmod, cp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 
 const ASSETS = join(dirname(fileURLToPath(import.meta.url)), 'assets')
@@ -28,8 +28,8 @@ const DEMO_HOME = join(tmpdir(), 'gitcito-demo-home')
 // Stand-in SDK CLIs for the run-target shot — see the launch-device entry.
 const DEMO_SDK = join(tmpdir(), 'gitcito-demo-sdk')
 // A folder to scan for the repositories shot — a couple of playground repos
-// symlinked into their own directory, never the real demo root (which holds
-// every scenario repo and would make "All repositories" unreadably long).
+// copied into their own directory, never the real demo root (which holds every
+// scenario repo and would make "All repositories" unreadably long).
 const DEMO_SCAN_ROOT = join(tmpdir(), 'gitcito-demo-scan')
 
 /**
@@ -1284,8 +1284,11 @@ export const shots = [
     prepare: async ({ repoPaths }) => {
       await rm(DEMO_SCAN_ROOT, { recursive: true, force: true })
       await mkdir(DEMO_SCAN_ROOT, { recursive: true })
+      // Copied, not symlinked: the scanner lists directories with
+      // `dirent.isDirectory()`, which is false for a link to one, so a
+      // symlinked repo is invisible to the very scan this shot is about.
       for (const name of ['octopus-merge', 'collaborators']) {
-        await symlink(repoPaths[name], join(DEMO_SCAN_ROOT, name)).catch(() => {})
+        await cp(repoPaths[name], join(DEMO_SCAN_ROOT, name), { recursive: true }).catch(() => {})
       }
     },
     drive: async (page, repoPaths) => {

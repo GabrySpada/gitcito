@@ -15,12 +15,17 @@ export interface RepathSettings {
  * guarantees otherwise — so the destination's own alias/profile always wins;
  * a value only carries across when the destination has none. The old path
  * never refers to anything afterwards, so its entries are dropped either way.
+ *
+ * Moving a repository onto itself is the one case where "drop the old entries"
+ * would drop the destination's: same key, so the delete undoes the keep.
  */
 export function repathRepoSettings(
   settings: RepathSettings,
   oldPath: string,
   newPath: string
 ): RepathSettings {
+  if (oldPath === newPath) return settings
+
   const repoAliases = { ...settings.repoAliases }
   if (repoAliases[oldPath] && !repoAliases[newPath]) repoAliases[newPath] = repoAliases[oldPath]
   delete repoAliases[oldPath]
