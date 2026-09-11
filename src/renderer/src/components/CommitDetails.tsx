@@ -254,30 +254,7 @@ export function CommitDetails({ repo, hash }: { repo: RepoData; hash: string }):
   const visibleRefs = refItems.slice(0, REFS_VISIBLE)
   const hiddenRefs = refItems.slice(REFS_VISIBLE)
 
-  const COAUTHORS_VISIBLE = 4
   const coAuthors = commit.coAuthors ?? []
-  const visibleCoAuthors = coAuthors.slice(0, COAUTHORS_VISIBLE)
-  const hiddenCoAuthors = coAuthors.slice(COAUTHORS_VISIBLE)
-
-  const renderCoauthorRow = (a: (typeof coAuthors)[number]): React.JSX.Element => {
-    const url = profileUrl(a.name, a.email, repo.remotes)
-    return (
-      <div key={a.email} className="commit-coauthor-row">
-        <Avatar email={a.email} name={a.name} size={16} />
-        <span>{a.name}</span>
-        {url && (
-          <a
-            className="commit-profile-link"
-            href="#"
-            title={interp(t('commitPanel.openProfileTitle'), { author: a.name })}
-            onClick={(e) => { e.preventDefault(); void shellApi.openExternal(url) }}
-          >
-            <ExternalLink size={10} />
-          </a>
-        )}
-      </div>
-    )
-  }
 
   return (
     <div className="details">
@@ -337,19 +314,12 @@ export function CommitDetails({ repo, hash }: { repo: RepoData; hash: string }):
         {coAuthors.length > 0 && (
           <div className="commit-section commit-coauthors-section">
             <span className="commit-section-label">{t('commitPanel.coauthorsLabel')}</span>
-            <div className="commit-coauthor-avatars">
-              {visibleCoAuthors.map((a) => (
-                <span key={a.email} className="coauthor-avatar-wrap">
-                  <Avatar email={a.email} name={a.name} size={20} />
-                  <div className="commit-coauthor-pop">{renderCoauthorRow(a)}</div>
+            <div className="commit-coauthor-list">
+              {coAuthors.map((a) => (
+                <span key={a.email} className="commit-coauthor-entry">
+                  {a.name} <span className="commit-coauthor-email">{`<${a.email}>`}</span>
                 </span>
               ))}
-              {hiddenCoAuthors.length > 0 && (
-                <span className="coauthor-collapsed">
-                  <span className="ref-more-chip coauthor-more-chip">+{hiddenCoAuthors.length}</span>
-                  <div className="commit-coauthor-pop">{hiddenCoAuthors.map(renderCoauthorRow)}</div>
-                </span>
-              )}
             </div>
           </div>
         )}

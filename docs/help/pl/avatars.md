@@ -11,7 +11,7 @@ keywords: awatar awatary gravatar blobatar autor zdjęcie obrazek identicon twar
 Lista commitów to ściana nazwisk, a nazwiska czyta się wolno. Obrazek obok każdego
 zamienia „kto to napisał” w coś, na co odpowiadasz jednym spojrzeniem. Gitcito daje
 go każdemu pokazywanemu autorowi: w kolumnie autora w grafie, w szczegółach commita
-obok autora i każdego współautora, w wyborze współautorów przy pisaniu, w
+obok autora, w wyborze współautorów przy pisaniu, w
 przełączniku profili i obok każdego profilu w Ustawieniach.
 
 ## Skąd bierze się obrazek

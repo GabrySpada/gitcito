@@ -1405,9 +1405,6 @@ export const it: Dict = {
   'branch.descriptionPlaceholder': 'Incolla una issue Jira, descrivi la funzionalità o il bug…',
   'branch.generateWithAI': 'Genera il nome con l’AI',
   'branch.createCheckout': 'Crea e fai il checkout',
-  'settings.coAuthor': 'Aggiungi MyAppDesk come co-autore',
-  'settings.coAuthorHint':
-    'Aggiunge un trailer Co-authored-by (team@myappdesk.dev) ai commit fatti da gitcito.',
   'settings.hoverExplain': 'Spiega il codice al passaggio del mouse',
   'settings.hoverExplainHint':
     'Tieni premuto un tasto e punta un identificatore — nel file, nel diff o nel blame — per ottenere una spiegazione di una riga, ricavata solo dalle righe intorno. Le risposte vengono messe in cache; disattivalo per evitare le richieste in più.',

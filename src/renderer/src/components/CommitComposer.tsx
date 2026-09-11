@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles, Loader2, Trash2, AlignLeft, FolderTree, GitMerge, ChevronDown, CheckCheck, Users, Plus, Minus } from 'lucide-react'
-import { MYAPPDESK_COAUTHOR, type CodeSearchHit, type FileEntry, type CommitStyle } from '../../../shared/types'
+import type { CodeSearchHit, FileEntry, CommitStyle } from '../../../shared/types'
 import { gitApi, aiApi, shellApi, diffToolApi } from '../infrastructure/api'
 import { repoActions, useRepoStore, type RepoData } from '../stores/repo'
 import { useUIStore, type MenuItem } from '../stores/ui'
@@ -759,10 +759,6 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
   const doCommit = async (): Promise<void> => {
     let message = description.trim() ? `${summary.trim()}\n\n${description.trim()}` : summary.trim()
     if (!message) return
-    const trailer = `Co-authored-by: ${MYAPPDESK_COAUTHOR}`
-    if (activeProfile().ai.coAuthor !== false && !message.includes(trailer)) {
-      message = `${message}\n\n${trailer}`
-    }
     // Trailers the repository asks every commit to carry (`Refs: {ticket}`…).
     // Dropped rather than half-written when their placeholder has nothing to
     // fill it — see configTrailers.

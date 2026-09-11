@@ -1424,9 +1424,6 @@ export const ar: Dict = {
   'branch.descriptionPlaceholder': 'الصق مشكلة من Jira، أو صف الميزة أو الخلل…',
   'branch.generateWithAI': 'توليد الاسم بالذكاء الاصطناعي',
   'branch.createCheckout': 'إنشاء وسحب',
-  'settings.coAuthor': 'إضافة MyAppDesk كمؤلف مشارك',
-  'settings.coAuthorHint':
-    'أضف ذيل Co-authored-by (team@myappdesk.dev) إلى الالتزامات المنفَّذة من gitcito.',
   'settings.hoverExplain': 'شرح الشيفرة عند التمرير',
   'settings.hoverExplainHint':
     'اضغط مفتاحًا وأشر إلى معرّف — في الملف أو الفروق أو عرض المسؤولية — لتحصل على شرح من سطر واحد مستمد من الأسطر المحيطة وحدها. وتُخزَّن الإجابات مؤقتًا؛ أطفئ هذا لتجنّب الطلبات الإضافية.',

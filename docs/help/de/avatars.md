@@ -11,9 +11,8 @@ keywords: avatar avatare gravatar blobatar autor foto bild identicon gesicht off
 Eine Commit-Liste ist eine Wand aus Namen, und Namen liest man langsam. Ein Bild
 neben jedem macht aus „wer hat das geschrieben“ eine Frage, die man mit einem Blick
 beantwortet. Gitcito gibt jedem angezeigten Autor eines: in der Autorenspalte des
-Graphen, in den Commit-Details neben Autor und jedem Co-Autor, in der Co-Autoren-
-Auswahl beim Schreiben, im Profilwechsler und neben jedem Profil in den
-Einstellungen.
+Graphen, in den Commit-Details neben dem Autor, in der Co-Autoren-Auswahl beim
+Schreiben, im Profilwechsler und neben jedem Profil in den Einstellungen.
 
 ## Woher das Bild kommt
 

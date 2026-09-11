@@ -1166,7 +1166,6 @@ export interface AIConfig {
   branchNamingStyle: BranchNamingStyle
   customInstructions: string
   generateDescription: boolean
-  coAuthor: boolean
   /** Explain the token under the cursor in the file viewer. Defaults to on. */
   hoverExplain?: boolean
   /** Key held while pointing to trigger it. Defaults to Shift. */
@@ -1255,9 +1254,6 @@ export interface RepoChatReply {
    *  policy. Absent when the chat-actions setting is off. */
   actions?: RepoChatAction[]
 }
-
-/** Co-author trailer appended when AIConfig.coAuthor is enabled (default on). */
-export const MYAPPDESK_COAUTHOR = 'MyAppDesk <team@myappdesk.dev>'
 
 /** Error-message marker thrown by `fileContent`/`fileDataUrl` when a file
  *  exceeds the in-memory size cap. The byte count follows the colon; the
@@ -3241,7 +3237,6 @@ export function defaultAIConfig(): AIConfig {
     branchNamingStyle: 'prefix/description',
     customInstructions: '',
     generateDescription: true,
-    coAuthor: true,
     hoverExplain: true,
     hoverExplainKey: 'shift',
     repoChat: true,

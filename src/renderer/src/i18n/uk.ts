@@ -1424,9 +1424,6 @@ export const uk: Dict = {
   'branch.descriptionPlaceholder': 'Вставте задачу з Jira, опишіть функцію або ваду…',
   'branch.generateWithAI': 'Згенерувати назву через ШІ',
   'branch.createCheckout': 'Створити й перейти',
-  'settings.coAuthor': 'Додавати MyAppDesk як співавтора',
-  'settings.coAuthorHint':
-    'Додавати трейлер Co-authored-by (team@myappdesk.dev) до комітів, зроблених із gitcito.',
   'settings.hoverExplain': 'Пояснювати код під курсором',
   'settings.hoverExplainHint':
     'Утримуйте клавішу й наведіть курсор на ідентифікатор — у файлі, diff або blame — щоб отримати однорядкове пояснення, побудоване лише з навколишніх рядків. Відповіді кешуються; вимкніть це, щоб уникнути зайвих запитів.',

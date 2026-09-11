@@ -11,7 +11,7 @@ keywords: avatar avatarlar gravatar blobatar yazar fotoğraf resim identicon yü
 Commit listesi bir isim duvarıdır ve isimler yavaş okunur. Her birinin yanındaki resim,
 "bunu kim yazdı" sorusunu bir bakışta cevaplanan bir şeye dönüştürür. Gitcito
 gösterdiği her yazara bir tane koyar: graftaki yazar sütununda, commit ayrıntılarında
-yazarın ve her ortak yazarın yanında, yazarken açılan ortak yazar seçicisinde, profil
+yazarın yanında, yazarken açılan ortak yazar seçicisinde, profil
 değiştiricide ve Ayarlar'daki her profilin yanında.
 
 ## Resim nereden gelir

@@ -1425,9 +1425,6 @@ export const ptBR: Dict = {
   'branch.descriptionPlaceholder': 'Cole uma issue do Jira, descreva a feature ou o bug…',
   'branch.generateWithAI': 'Gerar o nome com IA',
   'branch.createCheckout': 'Criar e fazer checkout',
-  'settings.coAuthor': 'Adicionar a MyAppDesk como coautora',
-  'settings.coAuthorHint':
-    'Acrescenta um trailer Co-authored-by (team@myappdesk.dev) aos commits feitos pelo gitcito.',
   'settings.hoverExplain': 'Explicar o código ao passar o mouse',
   'settings.hoverExplainHint':
     'Segure uma tecla e aponte para um identificador — no arquivo, no diff ou no blame — para receber uma explicação de uma linha, tirada só das linhas ao redor. As respostas ficam em cache; desligue isto para evitar as requisições extras.',
