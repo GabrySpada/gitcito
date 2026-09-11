@@ -1287,8 +1287,16 @@ export const shots = [
       // Copied, not symlinked: the scanner lists directories with
       // `dirent.isDirectory()`, which is false for a link to one, so a
       // symlinked repo is invisible to the very scan this shot is about.
+      //
+      // `dereference` is what makes that true. Every path in `repoPaths` is
+      // itself a symlink into the playground (see DEMO_ROOT in capture.mjs),
+      // and `cp` without it copies a link as a link — which is exactly the
+      // case this copy exists to avoid.
       for (const name of ['octopus-merge', 'collaborators']) {
-        await cp(repoPaths[name], join(DEMO_SCAN_ROOT, name), { recursive: true }).catch(() => {})
+        await cp(repoPaths[name], join(DEMO_SCAN_ROOT, name), {
+          recursive: true,
+          dereference: true
+        }).catch(() => {})
       }
     },
     drive: async (page, repoPaths) => {
@@ -1296,10 +1304,13 @@ export const shots = [
       const hostRemotes = repoPaths['host-remotes']
       // Pre-seeded tabs never went through openRepoTab, so the registry (the
       // "Recent" and "All repositories" sections) would otherwise be empty.
-      await page.evaluate(async (paths) => {
-        for (const p of paths) await window.api.repos.remember(p)
-        await window.api.repos.scan([{ path: paths[2], depth: 1 }])
-      }, [fileNav, hostRemotes, DEMO_SCAN_ROOT])
+      // Only the open repos are remembered. The scan root is a plain folder,
+      // not a repository — remembering it indexed the temp directory itself as
+      // a row, branchless and named after tmpdir.
+      await page.evaluate(async ({ open, scanRoot }) => {
+        for (const p of open) await window.api.repos.remember(p)
+        await window.api.repos.scan([{ path: scanRoot, depth: 1 }])
+      }, { open: [fileNav, hostRemotes], scanRoot: DEMO_SCAN_ROOT })
       await page.evaluate((p) => window.__shot.settings.getState().toggleFavouriteRepo(p), hostRemotes)
       await page.evaluate(() => window.__shot.settings.getState().openPageTab({ type: 'repositories' }))
       await page.waitForSelector('.repos-row', { timeout: 15000 }).catch(() => {})

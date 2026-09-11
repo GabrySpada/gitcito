@@ -14,6 +14,10 @@ answers a different question: **where is that repo, and is it even open
 anywhere?** It covers everything Gitcito has ever seen — every workspace, every
 tab, plus whatever it finds by scanning folders you point it at.
 
+![The Repositories page: coloured sections for open, favourite, recent and
+workspace repositories, each row showing name, owner, branch and working
+state](../screenshots/repositories.webp)
+
 ## The sections
 
 A repository can appear in **more than one section** — deliberately, so each
