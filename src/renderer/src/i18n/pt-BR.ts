@@ -1509,7 +1509,7 @@ export const ptBR: Dict = {
   'repos.sectionFavourites': 'Favoritos',
   'repos.sectionRecent': 'Repositórios recentes',
   'repos.sectionAll': 'Todos os repositórios',
-  'repos.noMatches': 'Nenhum resultado',
+  'repos.noMatchesFor': 'Nenhum repositório corresponde a “{query}”.',
   'repos.emptySection': 'Ainda não há nada aqui.',
   'repos.empty': 'Ainda não há repositórios. Abra ou clone um para começar.',
   'repos.openInTab': 'Abrir em uma aba',

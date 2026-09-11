@@ -1488,7 +1488,7 @@ export const ja: Dict = {
   'repos.sectionFavourites': 'お気に入り',
   'repos.sectionRecent': '最近のリポジトリ',
   'repos.sectionAll': 'すべてのリポジトリ',
-  'repos.noMatches': '一致するものはありません',
+  'repos.noMatchesFor': '「{query}」に一致するリポジトリはありません。',
   'repos.emptySection': 'まだここには何もありません。',
   'repos.empty': 'リポジトリはまだありません。開くかクローンして始めましょう。',
   'repos.openInTab': 'タブで開く',

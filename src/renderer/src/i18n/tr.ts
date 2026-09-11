@@ -1488,7 +1488,7 @@ export const tr: Dict = {
   'repos.sectionFavourites': 'Sık kullanılanlar',
   'repos.sectionRecent': 'Son kullanılan depolar',
   'repos.sectionAll': 'Tüm depolar',
-  'repos.noMatches': 'Eşleşme yok',
+  'repos.noMatchesFor': '“{query}” ile eşleşen depo yok.',
   'repos.emptySection': 'Burada henüz bir şey yok.',
   'repos.empty': 'Henüz depo yok. Başlamak için bir tane açın ya da klonlayın.',
   'repos.openInTab': 'Bir sekmede aç',

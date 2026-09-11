@@ -165,28 +165,30 @@ export function RepositoriesPage(): React.JSX.Element {
     void load(seed)
   }, [load])
 
-  const sections = useMemo(() => {
+  // Kept separate from the filtered list below: a search drops sections, and
+  // anything derived from the surviving ones would change as the user types.
+  const allSections = useMemo(() => {
     const workspaceRepoPaths: Record<string, string[]> = {}
     for (const ws of settings.workspaces ?? []) {
       workspaceRepoPaths[ws.id] = ws.tabs.flatMap((tab) => tabRepos(tab).map((r) => r.path))
     }
-    return filterSections(
-      buildSections({
-        registry: entries,
-        openPaths: settings.tabs.flatMap((tab) => tabRepos(tab).map((r) => r.path)),
-        favourites: settings.favouriteRepos ?? [],
-        workspaces: settings.workspaces ?? [],
-        workspaceRepoPaths,
-        aliases: settings.repoAliases ?? {}
-      }),
-      query
-    )
-  }, [entries, settings, query])
+    return buildSections({
+      registry: entries,
+      openPaths: settings.tabs.flatMap((tab) => tabRepos(tab).map((r) => r.path)),
+      favourites: settings.favouriteRepos ?? [],
+      workspaces: settings.workspaces ?? [],
+      workspaceRepoPaths,
+      aliases: settings.repoAliases ?? {}
+    })
+  }, [entries, settings])
+
+  const sections = useMemo(() => filterSections(allSections, query), [allSections, query])
 
   // Every section starts coloured; `repoSectionColors` only holds the ones the
   // user has since overridden. Keeping the defaults derived rather than written
   // into settings means a new workspace is coloured the moment it appears.
-  const defaultColors = useMemo(() => defaultSectionColors(sections, GROUP_COLORS), [sections])
+  // Assigned from the unfiltered list so a section keeps its colour mid-search.
+  const defaultColors = useMemo(() => defaultSectionColors(allSections, GROUP_COLORS), [allSections])
 
   // Status is opt-in because it is expensive: repoPulse spawns roughly five git
   // processes per repository, and this page can list every repo on the machine.
@@ -360,7 +362,7 @@ export function RepositoriesPage(): React.JSX.Element {
         <button
           className="repos-toolbar-btn"
           title={t('repos.collapseAllTitle')}
-          onClick={() => setCollapsed(new Set(sections.map(sectionKey)))}
+          onClick={() => setCollapsed(new Set(allSections.map(sectionKey)))}
         >
           <ChevronsDownUp size={13} />
           {t('repos.collapseAll')}
@@ -393,6 +395,8 @@ export function RepositoriesPage(): React.JSX.Element {
 
       {!loading && entries.length === 0 ? (
         <p className="repos-empty">{t('repos.empty')}</p>
+      ) : query && sections.length === 0 ? (
+        <p className="repos-empty">{interp(t('repos.noMatchesFor'), { query })}</p>
       ) : (
         <div className="repos-sections">
           {sections.map((section) => {
@@ -486,7 +490,7 @@ export function RepositoriesPage(): React.JSX.Element {
                 {!isCollapsed && (
                   <div className="repos-rows">
                     {section.rows.length === 0 ? (
-                      <p className="repos-none">{query ? t('repos.noMatches') : t('repos.emptySection')}</p>
+                      <p className="repos-none">{t('repos.emptySection')}</p>
                     ) : (
                       section.rows.map((row) => {
                         const pulse = pulses[row.repo.path]

@@ -1504,7 +1504,7 @@ export const en = {
   'repos.sectionFavourites': 'Favourites',
   'repos.sectionRecent': 'Recent repositories',
   'repos.sectionAll': 'All repositories',
-  'repos.noMatches': 'No matches',
+  'repos.noMatchesFor': 'No repositories match “{query}”.',
   'repos.emptySection': 'Nothing here yet.',
   'repos.empty': 'No repositories yet. Open or clone one to get started.',
   'repos.openInTab': 'Open in a tab',

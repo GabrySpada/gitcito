@@ -30,9 +30,16 @@ of a single list.
 
 The toolbar above the list is one strip: **Collapse all** and **Expand all**,
 then a search field that takes the rest of the width, then the WIP summary
-toggle. Search filters rows across every section at once and leaves the
-headings in place, so a section that matches nothing says so rather than
-vanishing.
+toggle.
+
+Search filters rows across every section at once, and **hides the sections that
+match nothing** so the results are not buried under a column of empty headings.
+Match a repository's name, its alias, its owner or any part of its path. When
+nothing matches anywhere, the page says so instead of going blank.
+
+With the box empty, every section is shown even when it holds nothing:
+"Favourites 0" is telling you the section exists and is empty, which is worth
+knowing. That is only noise once you are searching.
 
 ### Section colours
 

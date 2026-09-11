@@ -1489,7 +1489,7 @@ export const it: Dict = {
   'repos.sectionFavourites': 'Preferiti',
   'repos.sectionRecent': 'Repository recenti',
   'repos.sectionAll': 'Tutti i repository',
-  'repos.noMatches': 'Nessun risultato',
+  'repos.noMatchesFor': 'Nessun repository corrisponde a «{query}».',
   'repos.emptySection': 'Ancora niente qui.',
   'repos.empty': 'Ancora nessun repository. Aprine o clonane uno per iniziare.',
   'repos.openInTab': 'Apri in una scheda',

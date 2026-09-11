@@ -1508,7 +1508,7 @@ export const ar: Dict = {
   'repos.sectionFavourites': 'المفضلة',
   'repos.sectionRecent': 'المستودعات الأخيرة',
   'repos.sectionAll': 'جميع المستودعات',
-  'repos.noMatches': 'لا توجد نتائج مطابقة',
+  'repos.noMatchesFor': 'لا توجد مستودعات تطابق «{query}».',
   'repos.emptySection': 'لا يوجد شيء هنا بعد.',
   'repos.empty': 'لا توجد مستودعات بعد. افتح أو استنسخ واحدًا للبدء.',
   'repos.openInTab': 'فتح في تبويب',

@@ -1509,7 +1509,7 @@ export const nl: Dict = {
   'repos.sectionFavourites': 'Favorieten',
   'repos.sectionRecent': 'Recente repository’s',
   'repos.sectionAll': 'Alle repository’s',
-  'repos.noMatches': 'Geen treffers',
+  'repos.noMatchesFor': 'Geen repositories komen overeen met “{query}”.',
   'repos.emptySection': 'Hier staat nog niets.',
   'repos.empty': 'Nog geen repository’s. Open of kloon er een om te beginnen.',
   'repos.openInTab': 'Openen in een tabblad',

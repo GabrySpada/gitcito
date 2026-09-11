@@ -6759,8 +6759,17 @@ describe('repoSections', () => {
   // render would strobe, so the assignment has to be a function of the keys.
   it('assigns the same colours to the same sections every time', () => {
     const once = defaultSectionColors(buildSections(base), palette)
-    const twice = defaultSectionColors(filterSections(buildSections(base), 'beta'), palette)
+    const twice = defaultSectionColors(buildSections(base), palette)
     expect(twice).toEqual(once)
+  })
+
+  // Why the page must pass the *unfiltered* sections: a search drops sections,
+  // which shifts every later section's palette index. Derive colours from what
+  // survives a query and the whole page recolours as you type.
+  it('assigns different colours once a search has dropped sections', () => {
+    const all = defaultSectionColors(buildSections(base), palette)
+    const filtered = defaultSectionColors(filterSections(buildSections(base), 'beta'), palette)
+    expect(filtered['favourites']).not.toBe(all['favourites'])
   })
 
   it('gives adjacent sections different colours', () => {
@@ -6823,12 +6832,29 @@ describe('repoSections', () => {
     expect(isSectionBusy(null, 'open')).toBe(false)
   })
 
-  it('filters within each section and keeps empty sections so they can say so', () => {
+  // A search that leaves twenty "No matches" headings behind has buried its own
+  // answer. Sections that match nothing are dropped while a query is active.
+  it('drops sections that match nothing while searching', () => {
     const filtered = filterSections(buildSections(base), 'beta')
-    const open = filtered.find((s) => s.kind === 'open')
+    expect(filtered.find((s) => s.kind === 'open')).toBeUndefined()
     const favourites = filtered.find((s) => s.kind === 'favourites')
-    expect(open?.rows).toHaveLength(0)
     expect(favourites?.rows.map((r) => r.repo.path)).toEqual(['/r/beta'])
+  })
+
+  it('returns nothing at all when the query matches no repository', () => {
+    expect(filterSections(buildSections(base), 'nothing-matches-this')).toEqual([])
+  })
+
+  // Without a query an empty section is structure, not noise: "Favourites 0"
+  // tells you favourites exist and you have none.
+  it('keeps empty sections when there is no query', () => {
+    const all = filterSections(buildSections({ ...base, favourites: [] }), '')
+    expect(all.find((s) => s.kind === 'favourites')?.rows).toHaveLength(0)
+  })
+
+  it('ignores a query that is only whitespace', () => {
+    const all = filterSections(buildSections({ ...base, favourites: [] }), '   ')
+    expect(all.find((s) => s.kind === 'favourites')).toBeDefined()
   })
 
   it('matches the filter against alias, name, owner and path', () => {

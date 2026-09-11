@@ -1508,7 +1508,7 @@ export const de: Dict = {
   'repos.sectionFavourites': 'Favoriten',
   'repos.sectionRecent': 'Zuletzt verwendete Repositorys',
   'repos.sectionAll': 'Alle Repositorys',
-  'repos.noMatches': 'Keine Treffer',
+  'repos.noMatchesFor': 'Keine Repositories passen zu „{query}“.',
   'repos.emptySection': 'Hier ist noch nichts.',
   'repos.empty': 'Noch keine Repositorys. Öffne oder klone eins, um loszulegen.',
   'repos.openInTab': 'In einem Tab öffnen',

@@ -1508,7 +1508,7 @@ export const pl: Dict = {
   'repos.sectionFavourites': 'Ulubione',
   'repos.sectionRecent': 'Ostatnie repozytoria',
   'repos.sectionAll': 'Wszystkie repozytoria',
-  'repos.noMatches': 'Brak dopasowań',
+  'repos.noMatchesFor': 'Żadne repozytorium nie pasuje do „{query}”.',
   'repos.emptySection': 'Nic tu jeszcze nie ma.',
   'repos.empty': 'Nie masz jeszcze repozytoriów. Otwórz lub sklonuj jedno, aby zacząć.',
   'repos.openInTab': 'Otwórz w karcie',

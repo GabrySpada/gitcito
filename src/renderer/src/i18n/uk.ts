@@ -1508,7 +1508,7 @@ export const uk: Dict = {
   'repos.sectionFavourites': 'Обране',
   'repos.sectionRecent': 'Нещодавні репозиторії',
   'repos.sectionAll': 'Усі репозиторії',
-  'repos.noMatches': 'Збігів немає',
+  'repos.noMatchesFor': 'Немає репозиторіїв, що відповідають «{query}».',
   'repos.emptySection': 'Тут поки що нічого немає.',
   'repos.empty': 'Репозиторіїв поки немає. Відкрийте або клонуйте один, щоб почати.',
   'repos.openInTab': 'Відкрити у вкладці',

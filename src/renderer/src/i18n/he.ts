@@ -1508,7 +1508,7 @@ export const he: Dict = {
   'repos.sectionFavourites': 'מועדפים',
   'repos.sectionRecent': 'מאגרים אחרונים',
   'repos.sectionAll': 'כל המאגרים',
-  'repos.noMatches': 'אין תוצאות',
+  'repos.noMatchesFor': 'אין מאגרים התואמים ל“{query}”.',
   'repos.emptySection': 'אין כאן כלום עדיין.',
   'repos.empty': 'אין עדיין מאגרים. פתח או שכפל אחד כדי להתחיל.',
   'repos.openInTab': 'פתיחה בלשונית',

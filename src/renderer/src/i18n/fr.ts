@@ -1488,7 +1488,7 @@ export const fr: Dict = {
   'repos.sectionFavourites': 'Favoris',
   'repos.sectionRecent': 'Dépôts récents',
   'repos.sectionAll': 'Tous les dépôts',
-  'repos.noMatches': 'Aucun résultat',
+  'repos.noMatchesFor': 'Aucun dépôt ne correspond à « {query} ».',
   'repos.emptySection': 'Rien ici pour l’instant.',
   'repos.empty': 'Aucun dépôt pour le moment. Ouvrez-en un ou clonez-en un pour commencer.',
   'repos.openInTab': 'Ouvrir dans un onglet',

@@ -134,8 +134,17 @@ export function defaultSectionColors(sections: RepoSection[], palette: string[])
   return colors
 }
 
-/** Apply the search box. Sections that match nothing are kept, empty, so the
- *  page can say "no matches" there rather than silently losing a heading. */
+/**
+ * Apply the search box.
+ *
+ * A section that matches nothing is **dropped** while a query is active. It
+ * used to be kept so its heading could say "no matches", which read well with
+ * five sections and became unusable once a scan could produce twenty — the
+ * answer ends up buried under a wall of empty headings.
+ *
+ * With no query the sections are returned untouched, empty ones included:
+ * "Favourites 0" is structure, not noise. It tells you the section exists.
+ */
 export function filterSections(sections: RepoSection[], query: string): RepoSection[] {
   const q = query.trim().toLowerCase()
   if (!q) return sections
@@ -144,5 +153,7 @@ export function filterSections(sections: RepoSection[], query: string): RepoSect
     row.repo.name.toLowerCase().includes(q) ||
     (row.repo.owner?.toLowerCase().includes(q) ?? false) ||
     row.repo.path.toLowerCase().includes(q)
-  return sections.map((s) => ({ ...s, rows: s.rows.filter(matches) }))
+  return sections
+    .map((s) => ({ ...s, rows: s.rows.filter(matches) }))
+    .filter((s) => s.rows.length > 0)
 }

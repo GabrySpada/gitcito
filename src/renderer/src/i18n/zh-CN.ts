@@ -1508,7 +1508,7 @@ export const zhCN: Dict = {
   'repos.sectionFavourites': '收藏',
   'repos.sectionRecent': '最近使用的仓库',
   'repos.sectionAll': '所有仓库',
-  'repos.noMatches': '没有匹配项',
+  'repos.noMatchesFor': '没有与“{query}”匹配的仓库。',
   'repos.emptySection': '这里还没有内容。',
   'repos.empty': '还没有仓库。打开或克隆一个开始使用。',
   'repos.openInTab': '在标签页中打开',

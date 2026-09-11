@@ -1508,7 +1508,7 @@ export const ru: Dict = {
   'repos.sectionFavourites': 'Избранное',
   'repos.sectionRecent': 'Недавние репозитории',
   'repos.sectionAll': 'Все репозитории',
-  'repos.noMatches': 'Совпадений нет',
+  'repos.noMatchesFor': 'Нет репозиториев, соответствующих «{query}».',
   'repos.emptySection': 'Здесь пока ничего нет.',
   'repos.empty': 'Репозиториев пока нет. Откройте или клонируйте один, чтобы начать.',
   'repos.openInTab': 'Открыть во вкладке',

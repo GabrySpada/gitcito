@@ -1508,7 +1508,7 @@ export const ko: Dict = {
   'repos.sectionFavourites': '즐겨찾기',
   'repos.sectionRecent': '최근 저장소',
   'repos.sectionAll': '모든 저장소',
-  'repos.noMatches': '일치하는 항목 없음',
+  'repos.noMatchesFor': '“{query}”과(와) 일치하는 저장소가 없습니다.',
   'repos.emptySection': '아직 여기에 아무것도 없습니다.',
   'repos.empty': '아직 저장소가 없습니다. 하나를 열거나 복제해서 시작하세요.',
   'repos.openInTab': '탭에서 열기',
