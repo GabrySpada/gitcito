@@ -74,4 +74,4 @@ The workspace name sits top-left, next to the Gitcito mark. Click it to switch,
 create, rename, reorder or delete. Next to it is the gauge that opens
 [Mission control](mission-control.md) for the workspace you are in.
 
-**See also:** [Mission control](mission-control.md) · [The command line](cli.md)
+**See also:** [Mission control](mission-control.md) · [Repositories](repositories.md) · [The command line](cli.md)

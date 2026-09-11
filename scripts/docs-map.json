@@ -21,6 +21,7 @@
       "cheatsheet": "keyboard",
       "clean": "clean",
       "clone": "cloning",
+      "scan-workspaces": "repositories",
       "export": "export",
       "gitflow": "gitflow",
       "history-purge": "history-purge",
@@ -84,7 +85,8 @@
       "release": "hosting",
       "notifications": "hosting",
       "logs": "repo-settings",
-      "licenses": "licenses"
+      "licenses": "licenses",
+      "repositories": "repositories"
     },
     "exempt": {
       "help": "This handbook itself.",
@@ -166,7 +168,8 @@
       "ws-secure-import": "secure-share",
       "licenses": "licenses",
       "teammate-radar": "teammate-radar",
-      "local-ci": "local-ci"
+      "local-ci": "local-ci",
+      "repositories": "repositories"
     },
     "exempt": {
       "help": "Opens this handbook."

@@ -196,7 +196,7 @@ const toast = (kind: 'success' | 'error' | 'info', msg: string, opts?: { repoPat
   useUIStore.getState().toast(kind, msg, opts)
 
 /** How a pull reconciles: git's default, refuse-unless-ff, or rebase. */
-type PullMode = 'default' | 'ff-only' | 'rebase'
+export type PullMode = 'default' | 'ff-only' | 'rebase'
 
 function isConflictErrorMessage(msg: string): boolean {
   return /\bCONFLICT(S)?\b|Automatic merge failed|after resolving the conflicts|CHERRY_PICK_HEAD/i.test(msg)
@@ -1660,8 +1660,13 @@ export const repoActions = {
   // ─── Multi-repo batch (group tabs) ───
   // Run fetch/pull across several repos with a single summary toast instead of
   // one per repo. Returns nothing; refreshes each affected repo afterwards.
-  batch: async (paths: string[], op: 'fetch' | 'pull', mode: PullMode = 'default') => {
+  // `mode` is omitted by every caller that has not asked the user which kind of
+  // pull they want; it then falls back to the global preference rather than to
+  // git's default, so setting it on one surface applies to all of them. Passing
+  // a mode explicitly still wins — Toolbar's three-item menu means what it says.
+  batch: async (paths: string[], op: 'fetch' | 'pull', mode?: PullMode) => {
     if (paths.length === 0) return
+    const pullMode = mode ?? useSettingsStore.getState().settings.pullMode ?? 'default'
     const ui = useUIStore.getState()
     const verb = op === 'fetch' ? 'Fetching' : 'Pulling'
     let done = 0
@@ -1675,7 +1680,7 @@ export const repoActions = {
       )
       try {
         if (op === 'fetch') await gitApi.fetchAll(path)
-        else await gitApi.pull(path, mode)
+        else await gitApi.pull(path, pullMode)
         synced = true
         done++
       } catch {

@@ -38,6 +38,7 @@ import { confirmRemoveRecentRepo, confirmRemoveRepoFromGroup } from './lib/repos
 import { OnboardingWizard } from './components/OnboardingWizard'
 import { ChangelogPage } from './components/ChangelogPage'
 import { LicensesPage } from './components/LicensesPage'
+import { RepositoriesPage } from './components/RepositoriesPage'
 import { MissionControlPage } from './components/MissionControlPage'
 import { HelpPage } from './components/HelpPage'
 import { LogsPage } from './components/LogsPage'
@@ -256,6 +257,8 @@ function PageView({ tab }: { tab: PageTab }): React.JSX.Element {
       return <WikiPageView repoPath={tab.page.repoPath} />
     case 'vault':
       return <VaultPage />
+    case 'repositories':
+      return <RepositoriesPage />
     case 'help':
       return <HelpPage initialPage={tab.page.page} />
     case 'licenses':

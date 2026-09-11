@@ -10738,6 +10738,310 @@ input[type='range']:focus-visible {
 .mc-actions { display: flex; gap: 4px; flex: 0 0 auto; opacity: 0; }
 .mc-row:hover .mc-actions { opacity: 1; }
 
+/* ── Repositories (every repo Gitcito knows about, open or not) ── */
+.repos-page { display: flex; flex-direction: column; height: 100%; overflow: auto; background: var(--bg-1); }
+.repos-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.repos-title { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; margin: 0; color: var(--text-0); }
+.repos-title svg { color: var(--accent); }
+.repos-actions { display: flex; align-items: center; gap: 8px; margin-inline-start: auto; }
+.repos-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.repos-wip-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-inline-start: auto;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  user-select: none;
+}
+.repos-wip-toggle input { cursor: pointer; }
+/* No box and no cap: the field is the toolbar's ground rather than a control
+   sitting on it, so it takes whatever the buttons and the toggle leave. */
+.repos-search {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  padding-inline: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-3);
+}
+.repos-search:focus-within { color: var(--text-2); }
+/* Borderless: the toolbar reads as one strip of controls, not a row of pills.
+   The label is kept ("Collapse all", not "Collapse") — it is the more accurate
+   copy, and all sixteen locales already carry it. */
+.repos-toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  padding: 4px 7px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.repos-toolbar-btn:hover:not(:disabled) { background: var(--bg-3); color: var(--text-0); }
+.repos-toolbar-btn:disabled { cursor: default; opacity: 0.35; }
+.repos-toolbar-btn svg { flex: 0 0 auto; opacity: 0.75; }
+.repos-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-0);
+  font-family: inherit;
+  font-size: 12.5px;
+}
+.repos-search svg { flex: 0 0 auto; }
+.repos-btn {
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.repos-btn:hover { background: var(--bg-4); color: var(--text-0); }
+.repos-empty { padding: 40px; text-align: center; color: var(--text-3); font-size: 12.5px; }
+.repos-sections {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  /* Declared once for the page, not per section, so names, owners and branches
+     line up down the whole list. Sections are siblings of equal width, so the
+     percentage tracks resolve identically in each — which is the difference
+     between a table and a stack of independently tidy rows. The first track is
+     the row indent: as a column it stays part of the shared geometry, where a
+     padding on .repos-rows would shift the tracks out of alignment. */
+  --repos-cols: 19px 20px minmax(130px, 22%) minmax(80px, 15%) minmax(110px, 1fr) auto auto;
+}
+/* Every section is tinted: the colour arrives as --repos-section-color and is
+   mixed down here rather than applied raw, so a saturated pick stays a
+   background in both themes. Same formula as the group folder tints above. The
+   fallback is only reached if a section somehow renders without a colour. */
+.repos-section-bar {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--repos-section-color, var(--text-0)) 14%, var(--bg-2));
+  border: 1px solid color-mix(in srgb, var(--repos-section-color, var(--text-0)) 34%, var(--border-soft));
+}
+.repos-section-bar .repos-section-head svg { color: color-mix(in srgb, var(--repos-section-color, var(--text-0)) 70%, var(--text-1)); }
+.repos-section-bar .repos-section-title { color: var(--text-0); }
+.repos-section-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  padding: 7px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: start;
+  cursor: pointer;
+}
+.repos-section-head:hover { background: color-mix(in srgb, var(--text-0) 6%, transparent); }
+.repos-section-head svg { flex: 0 0 auto; color: var(--text-3); }
+.repos-section-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.repos-section-count {
+  flex: 0 0 auto;
+  min-width: 18px;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--text-0) 8%, transparent);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-align: center;
+}
+.repos-section-bar .repos-icon-btn { margin-inline-end: 5px; }
+/* Sits inside a tinted bar, so it borrows the bar's ground rather than the
+   toolbar's — a --bg-3 hover would read as a grey patch on a coloured band. */
+.repos-section-close { margin-inline-end: 2px; font-size: 11px; }
+.repos-section-close:hover:not(:disabled) { background: color-mix(in srgb, var(--text-0) 10%, transparent); }
+.repos-rows { display: flex; flex-direction: column; }
+.repos-none { padding: 8px 8px 10px; padding-inline-start: 27px; font-size: 12px; color: var(--text-3); }
+.repos-row {
+  display: grid;
+  grid-template-columns: var(--repos-cols);
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 28px;
+  padding-inline-end: 5px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: 12.5px;
+  text-align: start;
+}
+.repos-row::before { content: ''; }  /* the indent track */
+.repos-row:hover { background: var(--bg-3); }
+.repos-row-open {
+  /* Spans the name/owner/branch tracks and inherits them, so the button keeps
+     its own box and focus ring while its children still sit on the page grid.
+     `display: contents` would align them too, but at the cost of the button. */
+  grid-column: 3 / 6;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: center;
+  gap: inherit;
+  min-width: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  text-align: start;
+  cursor: pointer;
+}
+.repos-row-open:disabled { cursor: not-allowed; }
+.repos-row-name {
+  font-weight: 600;
+  color: var(--text-0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.repos-row-owner { opacity: 0.6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.repos-row-branch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-self: start;
+  max-width: 100%;
+  padding-block: 1px;
+  padding-inline: 5px 7px;
+  border-radius: 5px;
+  background: var(--bg-3);
+  font-size: 11.5px;
+  color: var(--text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.repos-row:hover .repos-row-branch { background: var(--bg-4); }
+.repos-row-branch svg { flex: 0 0 auto; opacity: 0.7; }
+.repos-row-wip-cell { display: flex; justify-content: flex-end; }
+.repos-row-wip { display: flex; align-items: center; gap: 5px; font-size: 11px; opacity: 0.85; }
+.repos-row-actions { display: flex; align-items: center; gap: 4px; justify-self: end; }
+.repos-row-missing { opacity: 0.6; }
+.repos-row-missing-tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-self: start;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--warn, #d97706);
+}
+.repos-star { justify-self: center; opacity: 0.4; background: transparent; border: none; color: var(--text-2); cursor: pointer; }
+.repos-star:hover { opacity: 0.85; }
+.repos-star[aria-pressed='true'] { opacity: 1; color: var(--accent); }
+/* Shown at rest rather than revealed on hover: an action nobody can see is an
+   action nobody uses, and hover reveals are invisible to keyboard and touch. */
+.repos-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.12s, background 0.12s;
+}
+.repos-icon-btn:hover, .repos-icon-btn:focus-visible { opacity: 1; background: var(--bg-4); color: var(--text-0); }
+.repos-icon-btn:disabled { cursor: default; opacity: 0.3; background: transparent; }
+/* The action and its caret read as one control: they share a rounded outline,
+   and only the seam between them is squared off. Logical radii so the caret
+   stays on the trailing side under RTL. */
+.repos-split { display: flex; align-items: center; }
+.repos-split > .repos-icon-btn:first-child { border-start-end-radius: 0; border-end-end-radius: 0; }
+.repos-split-caret {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  padding-inline: 0 2px;
+  margin-inline-start: -2px;
+}
+/* Reserved on the inactive entries so the mode labels line up with the ticked
+   one — MenuItem has no checked state, so the tick rides the icon slot. */
+.repos-menu-tick { display: inline-block; width: 13px; height: 13px; }
+
+/* ── The scan → workspaces picker ── */
+.ws-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 6px 0 2px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 4px;
+}
+.ws-plan-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1.4fr);
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.ws-plan-row:hover { background: var(--bg-3); }
+/* Shown rather than hidden: silence about a folder the user knows exists reads
+   as a bug. Dimmed and inert says "nothing to do here" out loud. */
+.ws-plan-done { opacity: 0.5; cursor: default; }
+.ws-plan-done:hover { background: transparent; }
+.ws-plan-name { font-weight: 600; color: var(--text-0); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ws-plan-count { font-size: 11.5px; color: var(--text-2); white-space: nowrap; }
+.ws-plan-note { font-size: 11px; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 /* ── Timelapse (animated history) ── */
 .tl-root { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
 .tl-header { display: flex; align-items: center; gap: 8px; }

@@ -154,7 +154,10 @@ import type {
   PreparedRepoChatFileAction,
   RepoFileBatchResult,
   RepoWiki,
-  WikiProgress
+  WikiProgress,
+  RegistryRepo,
+  RepoScanResult,
+  RepoScanRoot
 } from '../../../shared/types'
 import type {
   LocalCiStatus,
@@ -735,6 +738,16 @@ export const vaultApi = {
   importAll: (data: VaultExport) => window.api.vault.importAll(data) as Promise<void>
 }
 
+export const reposApi = {
+  list: () => window.api.repos.list() as Promise<RegistryRepo[]>,
+  remember: (repoPath: string) => window.api.repos.remember(repoPath) as Promise<RegistryRepo[]>,
+  forget: (repoPath: string) => window.api.repos.forget(repoPath) as Promise<RegistryRepo[]>,
+  scan: (roots: RepoScanRoot[]) => window.api.repos.scan(roots) as Promise<RepoScanResult>,
+  locate: (oldPath: string, newPath: string) =>
+    window.api.repos.locate(oldPath, newPath) as Promise<RegistryRepo[]>,
+  refresh: (paths: string[]) => window.api.repos.refresh(paths) as Promise<RegistryRepo[]>
+}
+
 export const secureShareApi = {
   candidates: (repoPath: string) =>
     window.api.secureShare.candidates(repoPath) as Promise<SecureShareCandidate[]>,
@@ -793,6 +806,8 @@ export const shellApi = {
   openPath: (fullPath: string) => window.api.shell.openPath(fullPath),
   openWithPicker: (fullPath: string) => window.api.shell.openWithPicker(fullPath),
   pickApplication: () => window.api.shell.pickApplication(),
+  /** Native folder picker, with an optional dialog title. Resolves null on cancel. */
+  selectDirectory: (title?: string) => window.api.selectDirectory(title),
   /** Launches a specific app (e.g. VS Code) with the given file/folder path —
    *  the equivalent of running `code <path>` from a terminal. */
   openWithApp: (targetPath: string, appPath: string) => window.api.shell.openWithApp(targetPath, appPath),

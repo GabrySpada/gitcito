@@ -2592,6 +2592,43 @@ export interface RepoRef {
   name: string
 }
 
+/** One repository Gitcito knows about. Everything here except `path` is a
+ *  cache: lose the registry file and a rescan rebuilds it. */
+export interface RegistryRepo {
+  /** Canonical absolute path — the identity, and the key used everywhere else. */
+  path: string
+  /** Folder name at index time. `repoAliases` still wins for display. */
+  name: string
+  /** First path segment of the remote's namespace: 'top-solution' for a GitLab
+   *  group, the org for GitHub. Null with no remote or an unparseable URL. */
+  owner: string | null
+  /** Branch as of the last index, read from .git/HEAD. Null when detached. */
+  branch: string | null
+  /** How it got here — a scanned repo the user has never opened still lists. */
+  source: 'opened' | 'scanned'
+  /** Unix seconds. Drives the Recent section, which is therefore not capped. */
+  lastOpenedAt: number
+  /** Folder absent at the last existence check. Stored rather than computed:
+   *  stat-ing 200 paths belongs on page load, never in a render. */
+  missing: boolean
+}
+
+/** A folder Gitcito scans for repositories. A preference, not an index. */
+export interface RepoScanRoot {
+  path: string
+  /** How deep to descend. 3 covers ~/Code/<client>/<repo>; deeper gets slow
+   *  fast, and a repo nested further is almost always vendored. */
+  depth: number
+}
+
+/** What a scan produced. `added` is counted where the merge happens, because a
+ *  caller cannot reconstruct it: the registry it is handed replaces one it may
+ *  never have loaded, so diffing lengths around the call reports everything. */
+export interface RepoScanResult {
+  repos: RegistryRepo[]
+  added: number
+}
+
 /** Fields shared by every tab regardless of kind. */
 interface TabBase {
   id: string
@@ -2666,6 +2703,7 @@ export type PageContent =
   | { type: 'insights'; repoPath: string }
   | { type: 'wiki'; repoPath: string }
   | { type: 'vault' }
+  | { type: 'repositories' }
   | { type: 'help'; page?: string }
   | { type: 'licenses' }
   // Flutter DevTools, embedded. `url` is the address at the time the tab was
@@ -2762,6 +2800,10 @@ export interface Workspace {
   name: string
   tabs: TabState[]
   activeTabId: string | null
+  /** The folder this workspace was generated from, when it was generated from
+   *  one. Lets a rescan find it again after a rename, which matching on the
+   *  name alone cannot — that would silently create a duplicate instead. */
+  sourcePath?: string
 }
 
 export interface AppSettings {
@@ -2785,6 +2827,22 @@ export interface AppSettings {
   workspaces: Workspace[]
   activeWorkspaceId: string
   recentRepos: RepoRef[]
+  /** Folders scanned for repositories by the Repositories page. */
+  repoScanRoots: RepoScanRoot[]
+  /** Starred repositories, by canonical path. Path-keyed for the same reason
+   *  `repoAliases` is: the same folder in two tabs must not diverge. */
+  favouriteRepos: string[]
+  /** Section tints on the Repositories page, keyed by that page's section key
+   *  (`open`, `favourites`, `recent`, `all`, `workspace:<id>`). Page-local: a
+   *  colour here says nothing about the workspace it may name. An entry for a
+   *  deleted workspace is left alone — pruning would drop the colour on the
+   *  rebuild that a rename performs. */
+  repoSectionColors: Record<string, string>
+  /** How a pull reconciles when the user has not said otherwise. One global
+   *  preference rather than one per surface: it describes how this person
+   *  pulls, not which repositories they are pulling. Mirrors `PullMode` in
+   *  `stores/repo.ts`, restated here because settings cross the IPC boundary. */
+  pullMode: 'default' | 'ff-only' | 'rebase'
   appThemeId: string
   codeThemeId: string
   themeMode: ThemeMode
@@ -3221,6 +3279,10 @@ export function defaultSettings(): AppSettings {
     workspaces: [{ id: 'default', name: 'Default', tabs: [], activeTabId: null }],
     activeWorkspaceId: 'default',
     recentRepos: [],
+    repoScanRoots: [],
+    favouriteRepos: [],
+    repoSectionColors: {},
+    pullMode: 'default',
     appThemeId: 'gitcito',
     codeThemeId: 'gitcito',
     themeMode: 'auto',

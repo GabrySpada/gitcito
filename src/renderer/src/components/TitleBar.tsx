@@ -52,6 +52,8 @@ function pageTabIcon(type: string): React.JSX.Element {
       return <BookOpen size={13} />
     case 'vault':
       return <KeyRound size={13} />
+    case 'repositories':
+      return <FolderGit2 size={13} />
     case 'logs':
       return <ScrollText size={13} />
     case 'issue':
@@ -624,7 +626,6 @@ export function TitleBar(): React.JSX.Element {
         onClick: () =>
           openModal({
             kind: 'group-color',
-            tabId: tab.id,
             current: tab.color,
             onSelect: (color) => setTabColor(tab.id, color)
           })
@@ -750,7 +751,6 @@ export function TitleBar(): React.JSX.Element {
       onClick: () =>
         openModal({
           kind: 'group-color',
-          tabId: tab.id,
           current: folder.color ?? tab.color,
           onSelect: (color) => setFolderColor(tab.id, folder.id, color)
         })
