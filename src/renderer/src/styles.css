@@ -10803,7 +10803,8 @@ input[type='range']:focus-visible {
   cursor: pointer;
   transition: background 0.12s, color 0.12s;
 }
-.repos-toolbar-btn:hover { background: var(--bg-3); color: var(--text-0); }
+.repos-toolbar-btn:hover:not(:disabled) { background: var(--bg-3); color: var(--text-0); }
+.repos-toolbar-btn:disabled { cursor: default; opacity: 0.35; }
 .repos-toolbar-btn svg { flex: 0 0 auto; opacity: 0.75; }
 .repos-search input {
   flex: 1;
@@ -10891,6 +10892,10 @@ input[type='range']:focus-visible {
   text-align: center;
 }
 .repos-section-bar .repos-icon-btn { margin-inline-end: 5px; }
+/* Sits inside a tinted bar, so it borrows the bar's ground rather than the
+   toolbar's — a --bg-3 hover would read as a grey patch on a coloured band. */
+.repos-section-close { margin-inline-end: 2px; font-size: 11px; }
+.repos-section-close:hover:not(:disabled) { background: color-mix(in srgb, var(--text-0) 10%, transparent); }
 .repos-rows { display: flex; flex-direction: column; }
 .repos-none { padding: 8px 8px 10px; padding-inline-start: 27px; font-size: 12px; color: var(--text-3); }
 .repos-row {

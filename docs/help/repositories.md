@@ -112,6 +112,22 @@ A repository whose folder no longer exists shows as **missing**, with inline
 The star is a favourite toggle, not a bulk-selection checkbox. Batch work here
 is per section rather than per selection — see below.
 
+## Closing everything that is open
+
+The **Open repositories** header carries a close button — **Close repository**
+when one is open, **Close all tabs** when several are. It is disabled when
+nothing is open.
+
+It closes the tabs that hold repositories and **leaves page tabs alone**, so the
+Repositories page you are standing on does not close itself. Nothing on disk is
+touched, and nothing is committed, stashed or discarded — a tab is just a view.
+
+Closing several asks first, and says how many. Closing a single one does not:
+that is a cheap mistake, undone with the usual reopen-closed-tab shortcut. The
+closed tabs go on the same ten-deep stack a single close uses, and reopen in the
+order they sat in the strip — so more than ten at once cannot all be brought
+back.
+
 ## Fetching and pulling a whole section
 
 Each section header carries a **fetch** button and a **pull** split-button. They
@@ -167,6 +183,9 @@ standing cost.
   status at all, checked or not.
 - **A repository is only known once you have opened it, or scanned a folder
   that contains it.** There is no way to search the filesystem from here.
+- **Close all reopens one tab at a time, up to ten.** Closing more than ten
+  repositories at once means the oldest of them cannot be reopened from the
+  stack — though they are all still in **Recent**.
 - **Pull is not filtered by what is behind.** It pulls every repository in the
   section, because knowing which ones are behind would mean fetching first.
   Pulling an up-to-date repository is a no-op, so this costs time, not safety.

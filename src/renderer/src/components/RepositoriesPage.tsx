@@ -10,7 +10,8 @@ import {
   FolderGit2,
   Loader2,
   MoreVertical,
-  Search
+  Search,
+  X
 } from 'lucide-react'
 import { GROUP_COLORS, useSettingsStore } from '../stores/settings'
 import { useReposStore } from '../stores/repos'
@@ -68,6 +69,7 @@ export function RepositoriesPage(): React.JSX.Element {
   const load = useReposStore((s) => s.load)
   const settings = useSettingsStore((s) => s.settings)
   const openRepoTab = useSettingsStore((s) => s.openRepoTab)
+  const closeAllRepoTabs = useSettingsStore((s) => s.closeAllRepoTabs)
   const forget = useReposStore((s) => s.forget)
   const locate = useReposStore((s) => s.locate)
   const toggleFavouriteRepo = useSettingsStore((s) => s.toggleFavouriteRepo)
@@ -273,6 +275,25 @@ export function RepositoriesPage(): React.JSX.Element {
     )
   }
 
+  // Only repo-bearing tabs close; page tabs (this one included) stay. One tab
+  // is a cheap mistake to undo with ⌘⇧T, so the confirm is reserved for the
+  // case where several would go at once.
+  const confirmCloseAll = (): void => {
+    const count = settings.tabs.filter((tab) => tab.kind !== 'page').length
+    if (count === 0) return
+    if (count === 1) {
+      closeAllRepoTabs()
+      return
+    }
+    openModal({
+      kind: 'confirm',
+      title: t('repos.closeAll'),
+      message: interp(t('repos.closeAllConfirm'), { n: count }),
+      confirmLabel: t('repos.closeAllAction'),
+      onConfirm: closeAllRepoTabs
+    })
+  }
+
   const toggle = (key: string): void => {
     setCollapsed((prev) => {
       const next = new Set(prev)
@@ -378,6 +399,17 @@ export function RepositoriesPage(): React.JSX.Element {
                     <span className="repos-section-title">{title}</span>
                     <span className="repos-section-count">{section.rows.length}</span>
                   </button>
+                  {section.kind === 'open' && (
+                    <button
+                      className="repos-toolbar-btn repos-section-close"
+                      disabled={section.rows.length === 0}
+                      title={t('repos.closeAllTitle')}
+                      onClick={confirmCloseAll}
+                    >
+                      <X size={13} />
+                      {section.rows.length === 1 ? t('repos.closeOne') : t('repos.closeAll')}
+                    </button>
+                  )}
                   <button
                     className="repos-icon-btn"
                     disabled={busy}

@@ -256,6 +256,10 @@ interface SettingsState {
   reorderReposInGroup(tabId: string, fromPath: string, toPath: string | null): void
   setGroupActiveRepo(tabId: string, path: string | null): void
   closeTab(tabId: string): void
+  /** Close every tab holding repositories. Page tabs are left alone — the
+   *  Repositories page is one, and closing the surface the button sits on
+   *  would be a surprise. */
+  closeAllRepoTabs(): void
   reopenClosedTab(): void
   setActiveTab(tabId: string): void
   renameTab(tabId: string, name: string): void
@@ -782,6 +786,21 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
       const activeTabId =
         s.activeTabId === tabId ? (tabs[Math.min(idx, tabs.length - 1)]?.id ?? null) : s.activeTabId
       return { ...s, tabs, activeTabId }
+    }),
+
+  closeAllRepoTabs: () =>
+    get().update((s) => {
+      const keep = s.tabs.filter((tab) => tab.kind === 'page')
+      if (keep.length === s.tabs.length) return s
+      // Pushed right to left so popping with ⌘⇧T brings them back in the order
+      // they sat in the strip. Same ten-deep stack a single close uses.
+      for (let i = s.tabs.length - 1; i >= 0; i--) {
+        const tab = s.tabs[i]
+        if (tab.kind !== 'page') closedTabStack.push({ tab, idx: i })
+      }
+      while (closedTabStack.length > 10) closedTabStack.shift()
+      const stillOpen = keep.some((tab) => tab.id === s.activeTabId)
+      return { ...s, tabs: keep, activeTabId: stillOpen ? s.activeTabId : (keep[0]?.id ?? null) }
     }),
 
   reopenClosedTab: () => {
