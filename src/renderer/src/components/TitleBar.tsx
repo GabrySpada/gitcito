@@ -626,7 +626,6 @@ export function TitleBar(): React.JSX.Element {
         onClick: () =>
           openModal({
             kind: 'group-color',
-            tabId: tab.id,
             current: tab.color,
             onSelect: (color) => setTabColor(tab.id, color)
           })
@@ -752,7 +751,6 @@ export function TitleBar(): React.JSX.Element {
       onClick: () =>
         openModal({
           kind: 'group-color',
-          tabId: tab.id,
           current: folder.color ?? tab.color,
           onSelect: (color) => setFolderColor(tab.id, folder.id, color)
         })

@@ -136,7 +136,9 @@ export type ModalSpec =
   | { kind: 'time-machine'; repoPath: string }
   | { kind: 'timelapse'; repoPath: string }
   | { kind: 'ai-pr-review'; repoPath: string; prTitle: string; sourceBranch: string; targetBranch: string }
-  | { kind: 'group-color'; tabId: string; current?: string; onSelect: (color: string) => void }
+  /** The colour picker. Deliberately knows nothing about what it is colouring:
+   *  it is used by group tabs, folders and Repositories-page sections alike. */
+  | { kind: 'group-color'; current?: string; onSelect: (color: string) => void }
   | { kind: 'reflog'; repoPath: string }
   | { kind: 'code-search'; repoPath: string; query?: string }
   | { kind: 'stack'; repoPath: string }

@@ -31,7 +31,12 @@ import { isBuildNoise, ignoreLineFor } from '../src/renderer/src/lib/buildNoise'
 import { resolveUpdateOffer } from '../src/renderer/src/lib/updateOffer'
 import { worktreeForBranch, worktreeTabName } from '../src/renderer/src/lib/worktrees'
 import { focusedHashes, focusedStashes, defaultBranchName } from '../src/renderer/src/lib/graphFocus'
-import { buildSections, filterSections } from '../src/renderer/src/lib/repoSections'
+import {
+  buildSections,
+  defaultSectionColors,
+  filterSections,
+  sectionKey
+} from '../src/renderer/src/lib/repoSections'
 import { repathRepoSettings } from '../src/renderer/src/lib/repoRepath'
 import type { WorktreeInfo, GraphCommit, GraphFocus, StackInfo, PullRequest, RegistryRepo } from '../src/shared/types'
 import { comboFromEvent, formatCombo, effectiveBindings, isReservedCombo, matchShortcut, tabActionFromEvent, tabIndexFromEvent } from '../src/renderer/src/lib/shortcuts'
@@ -6625,6 +6630,60 @@ describe('repoSections', () => {
     const sections = buildSections({ ...base, aliases: { '/r/alpha': 'The Alpha' } })
     const all = sections.find((s) => s.kind === 'all')
     expect(all?.rows.find((r) => r.repo.path === '/r/alpha')?.label).toBe('The Alpha')
+  })
+
+  const palette = ['#a', '#b', '#c', '#d', '#e']
+
+  it('gives every section a colour so the page is not a wall of grey', () => {
+    const sections = buildSections(base)
+    const colors = defaultSectionColors(sections, palette)
+    expect(Object.keys(colors).sort()).toEqual(
+      ['all', 'favourites', 'open', 'recent', 'workspace:w1'].sort()
+    )
+  })
+
+  // The search box rebuilds the sections on every keystroke. A colour drawn per
+  // render would strobe, so the assignment has to be a function of the keys.
+  it('assigns the same colours to the same sections every time', () => {
+    const once = defaultSectionColors(buildSections(base), palette)
+    const twice = defaultSectionColors(filterSections(buildSections(base), 'beta'), palette)
+    expect(twice).toEqual(once)
+  })
+
+  it('gives adjacent sections different colours', () => {
+    const colors = defaultSectionColors(buildSections(base), palette)
+    const used = Object.values(colors)
+    expect(new Set(used).size).toBe(used.length)
+  })
+
+  // `buildSections` emits `all` last, after the workspaces. Assigning in list
+  // order would recolour "All repositories" every time a workspace was added.
+  it('keeps built-in section colours stable when a workspace is added', () => {
+    const before = defaultSectionColors(buildSections(base), palette)
+    const after = defaultSectionColors(
+      buildSections({
+        ...base,
+        workspaces: [
+          ...base.workspaces,
+          { id: 'w2', name: 'Arduino', tabs: [], activeTabId: null }
+        ],
+        workspaceRepoPaths: { ...base.workspaceRepoPaths, w2: [] }
+      }),
+      palette
+    )
+    for (const key of ['open', 'favourites', 'recent', 'all']) {
+      expect(after[key]).toBe(before[key])
+    }
+  })
+
+  it('wraps around a palette shorter than the section list', () => {
+    const colors = defaultSectionColors(buildSections(base), ['#only', '#two'])
+    expect(new Set(Object.values(colors))).toEqual(new Set(['#only', '#two']))
+  })
+
+  it('keys a workspace section by its id, not its name', () => {
+    const workspace = buildSections(base).find((s) => s.kind === 'workspace')
+    expect(workspace && sectionKey(workspace)).toBe('workspace:w1')
   })
 
   it('filters within each section and keeps empty sections so they can say so', () => {

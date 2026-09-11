@@ -87,6 +87,36 @@ export function buildSections(input: SectionInput): RepoSection[] {
   return sections
 }
 
+/** The page's key for a section — also the key its colour is stored under. */
+export function sectionKey(section: RepoSection): string {
+  return section.kind === 'workspace' ? `workspace:${section.workspaceId}` : section.kind
+}
+
+/**
+ * A colour for every section, so the page arrives looking like a set of
+ * labelled shelves rather than a wall of grey. The user recolours any of them;
+ * this is only where they start.
+ *
+ * Deterministic, never `Math.random()`: `filterSections` rebuilds the sections
+ * on every keystroke in the search box, and a colour drawn per render would
+ * strobe. The same sections always get the same colours, across renders and
+ * across launches, with nothing persisted.
+ *
+ * Built-in sections claim their colours before workspaces do. `buildSections`
+ * emits `all` last, after the workspaces, so assigning in list order would
+ * recolour "All repositories" every time a workspace was added.
+ */
+export function defaultSectionColors(sections: RepoSection[], palette: string[]): Record<string, string> {
+  if (palette.length === 0) return {}
+  const builtIn = sections.filter((s) => s.kind !== 'workspace')
+  const workspaces = sections.filter((s) => s.kind === 'workspace')
+  const colors: Record<string, string> = {}
+  ;[...builtIn, ...workspaces].forEach((section, i) => {
+    colors[sectionKey(section)] = palette[i % palette.length]
+  })
+  return colors
+}
+
 /** Apply the search box. Sections that match nothing are kept, empty, so the
  *  page can say "no matches" there rather than silently losing a heading. */
 export function filterSections(sections: RepoSection[], query: string): RepoSection[] {

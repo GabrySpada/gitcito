@@ -1,9 +1,30 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { ChevronDown, ChevronRight, FolderGit2, Search } from 'lucide-react'
-import { useSettingsStore } from '../stores/settings'
+import {
+  ArrowDownToLine,
+  Check,
+  ChevronDown,
+  ChevronRight,
+  ChevronsDownUp,
+  ChevronsUpDown,
+  Download,
+  FolderGit2,
+  Loader2,
+  MoreVertical,
+  Search
+} from 'lucide-react'
+import { GROUP_COLORS, useSettingsStore } from '../stores/settings'
 import { useReposStore } from '../stores/repos'
+import { repoActions, type PullMode } from '../stores/repo'
 import { useUIStore } from '../stores/ui'
-import { buildSections, filterSections, type RepoRow, type RepoSection, type SectionKind } from '../lib/repoSections'
+import {
+  buildSections,
+  defaultSectionColors,
+  filterSections,
+  sectionKey,
+  type RepoRow,
+  type RepoSection,
+  type SectionKind
+} from '../lib/repoSections'
 import { RepositoryRow } from './RepositoryRow'
 import { gitApi, shellApi } from '../infrastructure/api'
 import { tabRepos, type RepoPulse } from '../../../shared/types'
@@ -19,9 +40,13 @@ const SECTION_TITLE: Record<Exclude<SectionKind, 'workspace'>, TranslationKey> =
   all: 'repos.sectionAll'
 }
 
-function sectionKey(section: RepoSection): string {
-  return section.kind === 'workspace' ? `workspace:${section.workspaceId}` : section.kind
-}
+/** The pull modes, in the order the chooser lists them. Keys, not strings — a
+ *  module-level constant holding copy freezes at the language active on import. */
+const PULL_MODES: { mode: PullMode; labelKey: TranslationKey }[] = [
+  { mode: 'default', labelKey: 'repos.pullModeDefault' },
+  { mode: 'ff-only', labelKey: 'repos.pullModeFfOnly' },
+  { mode: 'rebase', labelKey: 'repos.pullModeRebase' }
+]
 
 /** Uncommitted work of any kind — staged, unstaged or untracked. */
 function dirtyCount(pulse: RepoPulse): number {
@@ -52,11 +77,16 @@ export function RepositoriesPage(): React.JSX.Element {
   const scanning = useReposStore((s) => s.scanning)
   const scan = useReposStore((s) => s.scan)
   const toast = useUIStore((s) => s.toast)
+  const openContextMenu = useUIStore((s) => s.openContextMenu)
+  const setRepoSectionColor = useSettingsStore((s) => s.setRepoSectionColor)
+  const chosenColors = settings.repoSectionColors ?? {}
 
   const [query, setQuery] = useState('')
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
   const [wip, setWip] = useState(false)
   const [pulses, setPulses] = useState<Record<string, RepoPulse>>({})
+  // The section key currently running a batch, so only its buttons spin.
+  const [syncing, setSyncing] = useState<string | null>(null)
   // Paths already fetched, in flight, or tried and failed. A ref rather than
   // state because the effect below both reads and writes it: as a dependency it
   // would retrigger the very effect that filled it, and every batch after the
@@ -126,6 +156,11 @@ export function RepositoriesPage(): React.JSX.Element {
     )
   }, [entries, settings, query])
 
+  // Every section starts coloured; `repoSectionColors` only holds the ones the
+  // user has since overridden. Keeping the defaults derived rather than written
+  // into settings means a new workspace is coloured the moment it appears.
+  const defaultColors = useMemo(() => defaultSectionColors(sections, GROUP_COLORS), [sections])
+
   // Status is opt-in because it is expensive: repoPulse spawns roughly five git
   // processes per repository, and this page can list every repo on the machine.
   // Only expanded sections are fetched, only once per visit, and never on a
@@ -183,6 +218,61 @@ export function RepositoriesPage(): React.JSX.Element {
     setPulses({})
   }
 
+  // The colour picker is the same modal group tabs and folders use — it takes
+  // a current value and a setter and knows nothing about what it colours.
+  const openSectionMenu = (e: React.MouseEvent, key: string, current: string): void => {
+    e.stopPropagation()
+    const rect = e.currentTarget.getBoundingClientRect()
+    openContextMenu(rect.left, rect.bottom, [
+      {
+        label: t('repos.sectionColor'),
+        onClick: () =>
+          openModal({
+            kind: 'group-color',
+            current,
+            onSelect: (color) => setRepoSectionColor(key, color)
+          })
+      },
+      // Only offered once a section has been overridden: with no stored colour
+      // there is nothing to reset, since the default is what is already showing.
+      ...(key in chosenColors
+        ? [{ label: t('repos.sectionColorReset'), onClick: () => setRepoSectionColor(key, null) }]
+        : [])
+    ])
+  }
+
+  // Reuses the batch runner group tabs use: it walks the paths sequentially,
+  // shows `(3/12)` progress, refreshes each repo it touches and ends with one
+  // summary toast rather than a toast per repository. Missing folders are
+  // dropped — there is nothing to fetch from a path that is not there.
+  const runSection = async (key: string, section: RepoSection, op: 'fetch' | 'pull'): Promise<void> => {
+    const paths = [...new Set(section.rows.filter((r) => !r.repo.missing).map((r) => r.repo.path))]
+    if (paths.length === 0) return
+    setSyncing(key)
+    try {
+      await repoActions.batch(paths, op)
+    } finally {
+      setSyncing(null)
+    }
+  }
+
+  const openPullModeMenu = (e: React.MouseEvent): void => {
+    e.stopPropagation()
+    const rect = e.currentTarget.getBoundingClientRect()
+    const active = settings.pullMode ?? 'default'
+    openContextMenu(
+      rect.left,
+      rect.bottom,
+      PULL_MODES.map(({ mode, labelKey }) => ({
+        label: t(labelKey),
+        // MenuItem has no checked state, so the tick is the icon slot. The
+        // inactive entries still reserve it, or the labels would not line up.
+        icon: mode === active ? <Check size={13} /> : <span className="repos-menu-tick" />,
+        onClick: () => updateSettings((cur) => ({ ...cur, pullMode: mode }))
+      }))
+    )
+  }
+
   const toggle = (key: string): void => {
     setCollapsed((prev) => {
       const next = new Set(prev)
@@ -199,22 +289,47 @@ export function RepositoriesPage(): React.JSX.Element {
           <FolderGit2 size={16} /> {t('repos.title')}
         </h1>
         <div className="repos-actions">
-          <button className="repos-btn" onClick={openRepositoryDialog}>
+          <button className="repos-btn" title={t('repos.openFolderTitle')} onClick={openRepositoryDialog}>
             {t('repos.openFolder')}
           </button>
           <button
             className="repos-btn"
+            title={t('repos.cloneTitle')}
             onClick={() => openModal({ kind: 'clone', onClone: (repo) => openRepoTab(repo) })}
           >
             {t('repos.clone')}
           </button>
-          <button className="repos-btn" onClick={() => void runAddScanRoot()} disabled={scanning}>
+          <button
+            className="repos-btn"
+            title={t('repos.addScanRootTitle')}
+            onClick={() => void runAddScanRoot()}
+            disabled={scanning}
+          >
             {scanning ? t('repos.scanning') : t('repos.addScanRoot')}
           </button>
         </div>
       </header>
 
       <div className="repos-toolbar">
+        <button
+          className="repos-toolbar-btn"
+          title={t('repos.collapseAllTitle')}
+          onClick={() => setCollapsed(new Set(sections.map(sectionKey)))}
+        >
+          <ChevronsDownUp size={13} />
+          {t('repos.collapseAll')}
+        </button>
+        <button
+          className="repos-toolbar-btn"
+          title={t('repos.expandAllTitle')}
+          onClick={() => setCollapsed(new Set())}
+        >
+          <ChevronsUpDown size={13} />
+          {t('repos.expandAll')}
+        </button>
+        {/* Unboxed and full-width: the search is the toolbar's primary field,
+            not one control among several, so it takes the room the others
+            leave rather than sitting in a box of its own. */}
         <div className="repos-search">
           <Search size={13} />
           <input
@@ -224,15 +339,6 @@ export function RepositoriesPage(): React.JSX.Element {
             aria-label={t('repos.search')}
           />
         </div>
-        <button className="repos-btn" onClick={() => setCollapsed(new Set())}>
-          {t('repos.expandAll')}
-        </button>
-        <button
-          className="repos-btn"
-          onClick={() => setCollapsed(new Set(sections.map(sectionKey)))}
-        >
-          {t('repos.collapseAll')}
-        </button>
         <label className="repos-wip-toggle" title={t('repos.wipTitle')}>
           <input type="checkbox" checked={wip} onChange={(e) => toggleWip(e.target.checked)} />
           {t('repos.wip')}
@@ -246,17 +352,72 @@ export function RepositoriesPage(): React.JSX.Element {
           {sections.map((section) => {
             const key = sectionKey(section)
             const isCollapsed = collapsed.has(key)
+            const color = chosenColors[key] ?? defaultColors[key]
+            const busy = syncing === key
             const title =
               section.kind === 'workspace'
                 ? (section.workspaceName ?? '')
                 : t(SECTION_TITLE[section.kind])
             return (
               <section className="repos-section" key={key}>
-                <button className="repos-section-head" onClick={() => toggle(key)} aria-expanded={!isCollapsed}>
-                  {isCollapsed ? <ChevronRight size={13} /> : <ChevronDown size={13} />}
-                  <span className="repos-section-title">{title}</span>
-                  <span className="repos-section-count">{section.rows.length}</span>
-                </button>
+                {/* The bar is a div, not the toggle button: it carries a second
+                    button, and the tint rides it so the whole band is coloured.
+                    The hex enters as a variable and the stylesheet mixes it
+                    down, which is what keeps it readable in both themes. */}
+                <div
+                  className="repos-section-bar"
+                  style={{ '--repos-section-color': color } as React.CSSProperties}
+                >
+                  <button
+                    className="repos-section-head"
+                    title={t('repos.toggleSection')}
+                    onClick={() => toggle(key)}
+                    aria-expanded={!isCollapsed}
+                  >
+                    {isCollapsed ? <ChevronRight size={13} /> : <ChevronDown size={13} />}
+                    <span className="repos-section-title">{title}</span>
+                    <span className="repos-section-count">{section.rows.length}</span>
+                  </button>
+                  <button
+                    className="repos-icon-btn"
+                    disabled={busy}
+                    title={t('repos.fetchSection')}
+                    aria-label={t('repos.fetchSection')}
+                    onClick={() => void runSection(key, section, 'fetch')}
+                  >
+                    {busy ? <Loader2 size={13} className="spin" /> : <Download size={13} />}
+                  </button>
+                  {/* A split button: the action and the choice of what the
+                      action means, so picking a mode never pulls by accident. */}
+                  <span className="repos-split">
+                    <button
+                      className="repos-icon-btn"
+                      disabled={busy}
+                      title={t('repos.pullSection')}
+                      aria-label={t('repos.pullSection')}
+                      onClick={() => void runSection(key, section, 'pull')}
+                    >
+                      <ArrowDownToLine size={13} />
+                    </button>
+                    <button
+                      className="repos-icon-btn repos-split-caret"
+                      disabled={busy}
+                      title={t('repos.pullModeTitle')}
+                      aria-label={t('repos.pullModeTitle')}
+                      onClick={openPullModeMenu}
+                    >
+                      <ChevronDown size={11} />
+                    </button>
+                  </span>
+                  <button
+                    className="repos-icon-btn"
+                    title={t('repos.sectionMenu')}
+                    aria-label={t('repos.sectionMenu')}
+                    onClick={(e) => openSectionMenu(e, key, color)}
+                  >
+                    <MoreVertical size={13} />
+                  </button>
+                </div>
                 {!isCollapsed && (
                   <div className="repos-rows">
                     {section.rows.length === 0 ? (

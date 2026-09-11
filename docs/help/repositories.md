@@ -3,7 +3,7 @@ title: Repositories
 category: Sync & many repos
 order: 52
 summary: Every repository Gitcito knows about, open or not, in one searchable list.
-keywords: repositories registry all repos favourites starred recent scan folder browse find open manage repository management
+keywords: repositories registry all repos favourites starred recent scan folder browse find open manage repository management colour color section tint highlight
 ---
 
 # Repositories
@@ -28,8 +28,40 @@ of a single list.
 | One per saved workspace | That workspace's tabs, so you can jump into a different workspace without switching to it first |
 | All repositories | Every repository the registry knows about, open or not |
 
-Search filters rows across every section at once; collapse a section you don't
-care about right now, or **Expand all** / **Collapse all**.
+The toolbar above the list is one strip: **Collapse all** and **Expand all**,
+then a search field that takes the rest of the width, then the WIP summary
+toggle. Search filters rows across every section at once and leaves the
+headings in place, so a section that matches nothing says so rather than
+vanishing.
+
+### Section colours
+
+Sections arrive **already coloured** — each header gets its own tint from the
+standard palette, including a new workspace the moment it appears. The point is
+orientation, not decoration: with a workspace section per project and five
+built-in sections above them, a scrolled list stops telling you where you are,
+and a tint makes a header recognisable before you have read it.
+
+To change one, use the **⋮** on its header: **Change colour…** opens the same
+[colour picker](workspaces.md) used for group tabs and folders — ten preset
+swatches plus a free hex value. **Reset colour** appears once you have
+overridden a section, and puts it back to its assigned default.
+
+Three things worth knowing:
+
+- The assignment is **stable, not random**. The same sections get the same
+  colours on every launch, and adding a workspace never recolours the sections
+  above it. Only the colours you change are stored.
+- The colour is **page-local**. Tinting a workspace's section here says nothing
+  about that workspace anywhere else in Gitcito — its tab colour is a separate
+  setting.
+- The colour is **mixed down** to a low percentage of the surface rather than
+  applied at full strength, so a saturated pick stays a readable background in
+  both light and dark themes. A very pale colour will therefore look almost
+  neutral.
+
+With more than ten sections the palette repeats, so two headers can share a
+tint.
 
 ## What makes a repository known
 
@@ -57,10 +89,16 @@ Scan folders are configured in Settings:
 
 ## Rows
 
-Each row shows a star toggle, the repository's name (alias-aware, if you have
-renamed it), its owner (parsed from the origin remote's URL), and a branch
-chip. Right-click for the same [repository context menu](repo-menu.md) as
-everywhere else, extended with two entries specific to this page:
+Rows are laid out as columns — star, name (alias-aware, if you have renamed
+it), owner (parsed from the origin remote's URL), branch chip, WIP summary, and
+actions. The columns are **shared by the whole page**, not sized per section, so
+a name in the last section lines up under a name in the first one and the list
+reads as a table rather than a stack.
+
+The trailing actions are shown at rest rather than revealed on hover: **open in
+a tab**, and a **⋮** that opens the same [repository context
+menu](repo-menu.md) as a right-click. That menu is the one used everywhere else
+in Gitcito, extended with two entries specific to this page:
 
 | Action | What it does |
 |---|---|
@@ -69,7 +107,40 @@ everywhere else, extended with two entries specific to this page:
 | Forget | Removes the entry from this list. **Never touches the folder on disk** |
 
 A repository whose folder no longer exists shows as **missing**, with inline
-**Locate…** and **Forget** instead of the usual row actions.
+**Locate…** and **Forget** in place of the usual row actions.
+
+The star is a favourite toggle, not a bulk-selection checkbox. Batch work here
+is per section rather than per selection — see below.
+
+## Fetching and pulling a whole section
+
+Each section header carries a **fetch** button and a **pull** split-button. They
+act on every repository in that section, skipping any whose folder is
+**missing**. The repositories do not need to be open — a section of repos you
+have never opened this session works the same.
+
+Both run **sequentially**, not in parallel, so a section of forty repositories
+does not spawn forty git processes at once. The status bar shows which
+repository is being worked on and how far through the run you are, and the whole
+batch ends with **one** toast rather than one per repository. If some fail, the
+toast says how many succeeded and how many did not; the run does not stop at the
+first failure.
+
+The caret beside **pull** chooses what pulling means:
+
+| Mode | What it does |
+|---|---|
+| Pull (fast-forward if possible) | Git's default — fast-forwards when it can, merges when it cannot |
+| Pull (fast-forward only) | Refuses rather than creating a merge commit |
+| Pull (rebase) | Replays your local commits on top of the upstream |
+
+That choice is a **single global preference**, not a per-section one: it
+describes how you pull, and setting it from one section's caret changes it
+everywhere. Every **multi-repository** pull honours it — the section buttons
+here, the fetch/pull on a [group tab](workspaces.md), and
+[mission control](mission-control.md)'s bulk pull. Pulling a **single**
+repository from the toolbar is unaffected, because that menu already asks you
+which kind of pull you want.
 
 ## The action bar
 
@@ -96,6 +167,15 @@ standing cost.
   status at all, checked or not.
 - **A repository is only known once you have opened it, or scanned a folder
   that contains it.** There is no way to search the filesystem from here.
+- **Pull is not filtered by what is behind.** It pulls every repository in the
+  section, because knowing which ones are behind would mean fetching first.
+  Pulling an up-to-date repository is a no-op, so this costs time, not safety.
+- **A section fetch or pull cannot be undone from the undo stack.** Fetching
+  changes nothing you had; a pull that merges or rebases is reversed per
+  repository from that repository's own history, not from here.
+- **Section colours are cosmetic.** They do not filter, sort, group or sync
+  anywhere, and a colour set on a workspace's section is not that workspace's
+  colour.
 - **Forget removes the entry from the list — never from disk.** If the folder
   is still there, scanning the same root (or opening it again) brings it right
   back.

@@ -246,6 +246,10 @@ interface SettingsState {
   /** Set or clear a path-keyed display alias. Empty / canonical name removes it. */
   setRepoAlias(path: string, alias: string | null): void
   toggleFavouriteRepo(path: string): void
+  /** Tint one Repositories-page section, or clear it with `null`. Cleared
+   *  colours are deleted rather than stored as empty, so `in` is enough to ask
+   *  whether a section has one. */
+  setRepoSectionColor(key: string, color: string | null): void
   /** A repo that moved keeps its alias, profile binding and star: all three are
    *  keyed by path, so re-pointing the registry has to re-key them too. */
   repathRepo(oldPath: string, newPath: string): void
@@ -723,6 +727,14 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
       const current = s.favouriteRepos ?? []
       const next = current.includes(path) ? current.filter((p) => p !== path) : [...current, path]
       return { ...s, favouriteRepos: next }
+    }),
+
+  setRepoSectionColor: (key, color) =>
+    get().update((s) => {
+      const next = { ...(s.repoSectionColors ?? {}) }
+      if (color) next[key] = color
+      else delete next[key]
+      return { ...s, repoSectionColors: next }
     }),
 
   repathRepo: (oldPath, newPath) =>

@@ -2828,6 +2828,17 @@ export interface AppSettings {
   /** Starred repositories, by canonical path. Path-keyed for the same reason
    *  `repoAliases` is: the same folder in two tabs must not diverge. */
   favouriteRepos: string[]
+  /** Section tints on the Repositories page, keyed by that page's section key
+   *  (`open`, `favourites`, `recent`, `all`, `workspace:<id>`). Page-local: a
+   *  colour here says nothing about the workspace it may name. An entry for a
+   *  deleted workspace is left alone — pruning would drop the colour on the
+   *  rebuild that a rename performs. */
+  repoSectionColors: Record<string, string>
+  /** How a pull reconciles when the user has not said otherwise. One global
+   *  preference rather than one per surface: it describes how this person
+   *  pulls, not which repositories they are pulling. Mirrors `PullMode` in
+   *  `stores/repo.ts`, restated here because settings cross the IPC boundary. */
+  pullMode: 'default' | 'ff-only' | 'rebase'
   appThemeId: string
   codeThemeId: string
   themeMode: ThemeMode
@@ -3266,6 +3277,8 @@ export function defaultSettings(): AppSettings {
     recentRepos: [],
     repoScanRoots: [],
     favouriteRepos: [],
+    repoSectionColors: {},
+    pullMode: 'default',
     appThemeId: 'gitcito',
     codeThemeId: 'gitcito',
     themeMode: 'auto',
