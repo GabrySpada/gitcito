@@ -35,6 +35,8 @@ import {
   buildSections,
   defaultSectionColors,
   filterSections,
+  isSectionBusy,
+  isSyncing,
   sectionKey
 } from '../src/renderer/src/lib/repoSections'
 import { planWorkspaces } from '../src/renderer/src/lib/workspacePlan'
@@ -6795,6 +6797,30 @@ describe('repoSections', () => {
   it('keys a workspace section by its id, not its name', () => {
     const workspace = buildSections(base).find((s) => s.kind === 'workspace')
     expect(workspace && sectionKey(workspace)).toBe('workspace:w1')
+  })
+
+  // The bug this pins: a per-section boolean cannot tell fetch from pull, so
+  // the spinner landed on whichever button happened to render it — always
+  // fetch, even when pull started the run.
+  it('reports a spinner only for the operation that is actually running', () => {
+    const sync = { key: 'open', op: 'pull' as const }
+    expect(isSyncing(sync, 'open', 'pull')).toBe(true)
+    expect(isSyncing(sync, 'open', 'fetch')).toBe(false)
+  })
+
+  it('reports no spinner for a section that is not running', () => {
+    const sync = { key: 'open', op: 'fetch' as const }
+    expect(isSyncing(sync, 'favourites', 'fetch')).toBe(false)
+    expect(isSyncing(null, 'open', 'fetch')).toBe(false)
+  })
+
+  // Disabling is the other question: while either operation runs, both buttons
+  // are unavailable, so this one deliberately ignores the operation.
+  it('treats a section as busy while either operation runs', () => {
+    expect(isSectionBusy({ key: 'open', op: 'pull' }, 'open')).toBe(true)
+    expect(isSectionBusy({ key: 'open', op: 'fetch' }, 'open')).toBe(true)
+    expect(isSectionBusy({ key: 'open', op: 'fetch' }, 'recent')).toBe(false)
+    expect(isSectionBusy(null, 'open')).toBe(false)
   })
 
   it('filters within each section and keeps empty sections so they can say so', () => {

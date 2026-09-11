@@ -92,6 +92,23 @@ export function sectionKey(section: RepoSection): string {
   return section.kind === 'workspace' ? `workspace:${section.workspaceId}` : section.kind
 }
 
+/** What a section header is currently running, if anything. The operation is
+ *  part of the state on purpose: a bare section key cannot tell fetch from
+ *  pull, so a shared boolean puts the spinner on whichever button renders it
+ *  rather than on the one that was clicked. */
+export type SectionSync = { key: string; op: 'fetch' | 'pull' } | null
+
+/** True when this section is running exactly this operation — the spinner. */
+export function isSyncing(sync: SectionSync, key: string, op: 'fetch' | 'pull'): boolean {
+  return sync !== null && sync.key === key && sync.op === op
+}
+
+/** True while this section runs either operation — the disabled state, which
+ *  deliberately does not care which one it is. */
+export function isSectionBusy(sync: SectionSync, key: string): boolean {
+  return sync !== null && sync.key === key
+}
+
 /**
  * A colour for every section, so the page arrives looking like a set of
  * labelled shelves rather than a wall of grey. The user recolours any of them;

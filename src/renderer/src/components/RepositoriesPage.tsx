@@ -21,10 +21,13 @@ import {
   buildSections,
   defaultSectionColors,
   filterSections,
+  isSectionBusy,
+  isSyncing,
   sectionKey,
   type RepoRow,
   type RepoSection,
-  type SectionKind
+  type SectionKind,
+  type SectionSync
 } from '../lib/repoSections'
 import { RepositoryRow } from './RepositoryRow'
 import { gitApi, shellApi } from '../infrastructure/api'
@@ -89,8 +92,9 @@ export function RepositoriesPage(): React.JSX.Element {
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
   const [wip, setWip] = useState(false)
   const [pulses, setPulses] = useState<Record<string, RepoPulse>>({})
-  // The section key currently running a batch, so only its buttons spin.
-  const [syncing, setSyncing] = useState<string | null>(null)
+  // Which section is running which operation. The operation is part of it so
+  // the spinner can land on the button that was actually clicked.
+  const [syncing, setSyncing] = useState<SectionSync>(null)
   // Paths already fetched, in flight, or tried and failed. A ref rather than
   // state because the effect below both reads and writes it: as a dependency it
   // would retrigger the very effect that filled it, and every batch after the
@@ -271,7 +275,7 @@ export function RepositoriesPage(): React.JSX.Element {
   const runSection = async (key: string, section: RepoSection, op: 'fetch' | 'pull'): Promise<void> => {
     const paths = [...new Set(section.rows.filter((r) => !r.repo.missing).map((r) => r.repo.path))]
     if (paths.length === 0) return
-    setSyncing(key)
+    setSyncing({ key, op })
     try {
       await repoActions.batch(paths, op)
     } finally {
@@ -395,7 +399,7 @@ export function RepositoriesPage(): React.JSX.Element {
             const key = sectionKey(section)
             const isCollapsed = collapsed.has(key)
             const color = chosenColors[key] ?? defaultColors[key]
-            const busy = syncing === key
+            const busy = isSectionBusy(syncing, key)
             const title =
               section.kind === 'workspace'
                 ? (section.workspaceName ?? '')
@@ -438,7 +442,11 @@ export function RepositoriesPage(): React.JSX.Element {
                     aria-label={t('repos.fetchSection')}
                     onClick={() => void runSection(key, section, 'fetch')}
                   >
-                    {busy ? <Loader2 size={13} className="spin" /> : <Download size={13} />}
+                    {isSyncing(syncing, key, 'fetch') ? (
+                      <Loader2 size={13} className="spin" />
+                    ) : (
+                      <Download size={13} />
+                    )}
                   </button>
                   {/* A split button: the action and the choice of what the
                       action means, so picking a mode never pulls by accident. */}
@@ -450,7 +458,11 @@ export function RepositoriesPage(): React.JSX.Element {
                       aria-label={t('repos.pullSection')}
                       onClick={() => void runSection(key, section, 'pull')}
                     >
-                      <ArrowDownToLine size={13} />
+                      {isSyncing(syncing, key, 'pull') ? (
+                        <Loader2 size={13} className="spin" />
+                      ) : (
+                        <ArrowDownToLine size={13} />
+                      )}
                     </button>
                     <button
                       className="repos-icon-btn repos-split-caret"
