@@ -11,8 +11,8 @@ keywords: avatar gravatar blobatar autore foto immagine identicon faccia offline
 Un elenco di commit è un muro di nomi, e i nomi si leggono lentamente.
 Un’immagine accanto a ciascuno trasforma «chi ha scritto questo» in qualcosa a cui
 rispondi con un’occhiata. Gitcito ne mette una su ogni autore che mostra: nella
-colonna autore del grafo, nei dettagli del commit accanto all’autore e a ogni
-coautore, nel selettore di coautori mentre scrivi, nel commutatore di profili e
+colonna autore del grafo, nei dettagli del commit accanto all’autore, nel
+selettore di coautori mentre scrivi, nel commutatore di profili e
 accanto a ogni profilo nelle Impostazioni.
 
 ## Da dove viene l’immagine

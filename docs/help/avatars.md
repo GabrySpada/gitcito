@@ -11,9 +11,8 @@ keywords: avatar avatars gravatar blobatar author photo picture identicon face o
 A commit list is a wall of names, and names are slow to scan. A picture next to
 each one turns "who wrote this" into something you answer by glance rather than
 by reading. Gitcito puts one on every author it shows: in the graph's author
-column, in commit details next to the author and each co-author, in the
-co-author picker while you compose, in the profile switcher, and beside each
-profile in Settings.
+column, in commit details next to the author, in the co-author picker while you
+compose, in the profile switcher, and beside each profile in Settings.
 
 ## Where the picture comes from
 

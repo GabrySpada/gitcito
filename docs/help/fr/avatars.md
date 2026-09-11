@@ -11,8 +11,8 @@ keywords: avatar avatars gravatar blobatar auteur photo image identicon visage h
 Une liste de commits est un mur de noms, et les noms se lisent lentement. Une
 image à côté de chacun transforme « qui a écrit ça » en une question à laquelle on
 répond d’un coup d’œil. Gitcito en met une sur chaque auteur qu’il affiche : dans
-la colonne auteur du graphe, dans les détails du commit à côté de l’auteur et de
-chaque co-auteur, dans le sélecteur de co-auteurs pendant la rédaction, dans le
+la colonne auteur du graphe, dans les détails du commit à côté de l’auteur,
+dans le sélecteur de co-auteurs pendant la rédaction, dans le
 sélecteur de profils, et à côté de chaque profil dans les Réglages.
 
 ## D’où vient l’image

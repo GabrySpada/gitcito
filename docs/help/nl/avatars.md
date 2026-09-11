@@ -11,7 +11,7 @@ keywords: avatar avatars gravatar blobatar auteur foto afbeelding identicon gezi
 Een commitlijst is een muur van namen, en namen lees je langzaam. Een plaatje
 ernaast maakt van "wie heeft dit geschreven" iets wat je met één blik antwoordt.
 Gitcito geeft elke auteur die het toont er een: in de auteurskolom van de graaf, in
-de commitdetails naast de auteur en elke co-auteur, in de co-auteurkiezer terwijl je
+de commitdetails naast de auteur, in de co-auteurkiezer terwijl je
 schrijft, in de profielwisselaar en naast elk profiel in Instellingen.
 
 ## Waar het plaatje vandaan komt

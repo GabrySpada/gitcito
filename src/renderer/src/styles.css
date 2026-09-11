@@ -3338,8 +3338,7 @@ body.col-resizing .node-ava {
   transition: opacity 0.15s;
 }
 
-.commit-header:hover .commit-profile-link,
-.commit-coauthor-row:hover .commit-profile-link {
+.commit-header:hover .commit-profile-link {
   opacity: 1;
 }
 
@@ -3461,81 +3460,25 @@ body.col-resizing .node-ava {
   letter-spacing: 0.04em;
 }
 
-.commit-coauthor-avatars {
+.commit-coauthor-list {
   display: flex;
-  align-items: center;
-  gap: 4px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
   min-width: 0;
+  font-size: 11px;
+  color: var(--text-2);
 }
 
-.coauthor-avatar-wrap {
-  position: relative;
-  display: inline-flex;
-  border-radius: 50%;
-  border: 1.5px solid var(--bg-1);
-}
-
-.coauthor-collapsed {
-  position: relative;
-  display: inline-flex;
-  margin-inline-start: 2px;
-}
-
-.coauthor-more-chip {
-  border-radius: 999px;
-}
-
-.commit-coauthor-pop {
-  display: none;
-}
-
-.coauthor-avatar-wrap:hover .commit-coauthor-pop,
-.coauthor-collapsed:hover .commit-coauthor-pop {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  position: absolute;
-  top: calc(100% + 4px);
-  padding: 6px 8px;
-  background: var(--bg-3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  z-index: 30;
-  min-width: 160px;
+/* The git trailer form, kept whole: a name and its address never split
+   across a wrap, so `<…>` always closes on the line it opened. */
+.commit-coauthor-entry {
   white-space: nowrap;
 }
 
-/* Individual avatars sit near the left edge of the row, so their popover
-   grows rightward from the avatar's left edge to avoid clipping. */
-.coauthor-avatar-wrap:hover .commit-coauthor-pop {
-  inset-inline-start: 0;
-}
-
-/* The "+N" overflow chip sits at the end of the row (near the right edge),
-   so its popover grows leftward instead. */
-.coauthor-collapsed:hover .commit-coauthor-pop {
-  inset-inline-end: 0;
-}
-
-.coauthor-avatar-wrap:hover .commit-coauthor-pop::before,
-.coauthor-collapsed:hover .commit-coauthor-pop::before {
-  content: '';
-  position: absolute;
-  inset-inline-start: 0;
-  inset-inline-end: 0;
-  top: -4px;
-  height: 4px;
-}
-
-.commit-coauthor-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: var(--text-2);
-  opacity: 0.85;
+.commit-coauthor-email {
+  color: var(--text-3, var(--text-2));
+  opacity: 0.8;
 }
 
 .commit-refs-pop {
