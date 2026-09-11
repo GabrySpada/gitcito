@@ -2800,6 +2800,10 @@ export interface Workspace {
   name: string
   tabs: TabState[]
   activeTabId: string | null
+  /** The folder this workspace was generated from, when it was generated from
+   *  one. Lets a rescan find it again after a rename, which matching on the
+   *  name alone cannot — that would silently create a duplicate instead. */
+  sourcePath?: string
 }
 
 export interface AppSettings {

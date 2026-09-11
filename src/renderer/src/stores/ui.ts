@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import type { ReactNode } from 'react'
 import type { CiState, DivergedStrategy, KeychainReason, ResetStrategy } from '../../../shared/types'
+import type { WorkspaceCandidate } from '../lib/workspacePlan'
 
 export type CiFilter = 'all' | CiState
 
@@ -139,6 +140,15 @@ export type ModalSpec =
   /** The colour picker. Deliberately knows nothing about what it is colouring:
    *  it is used by group tabs, folders and Repositories-page sections alike. */
   | { kind: 'group-color'; current?: string; onSelect: (color: string) => void }
+  /** Pick which scanned folders become workspaces. The plan is computed before
+   *  the modal opens, so this only chooses from it — nothing is created until
+   *  the confirm, and cancelling leaves the scan's indexing in place. */
+  | {
+      kind: 'scan-workspaces'
+      root: string
+      candidates: WorkspaceCandidate[]
+      onConfirm: (chosen: WorkspaceCandidate[]) => void
+    }
   | { kind: 'reflog'; repoPath: string }
   | { kind: 'code-search'; repoPath: string; query?: string }
   | { kind: 'stack'; repoPath: string }

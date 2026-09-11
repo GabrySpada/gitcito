@@ -21,6 +21,7 @@
       "cheatsheet": "keyboard",
       "clean": "clean",
       "clone": "cloning",
+      "scan-workspaces": "repositories",
       "export": "export",
       "gitflow": "gitflow",
       "history-purge": "history-purge",

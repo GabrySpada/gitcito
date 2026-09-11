@@ -34,6 +34,7 @@ import { useUIStore } from './ui'
 import { applyRepoAlias, canonicalRepoPath, migrateRepoAliases, repoDisplayName } from '../lib/repoAlias'
 import { repathRepoSettings } from '../lib/repoRepath'
 import { sortBookmarks } from '../lib/bookmarks'
+import type { WorkspaceCandidate } from '../lib/workspacePlan'
 import { planAttach, planClose } from '../lib/tabPages'
 import {
   clearDoneTodos,
@@ -287,6 +288,10 @@ interface SettingsState {
 
   /** Create a fresh, empty workspace and switch to it. */
   createWorkspace(name: string): void
+  /** Create or extend workspaces from a scan plan. Appends without switching:
+   *  the active workspace and its live tab strip are left exactly as they are,
+   *  which `createWorkspace` cannot do — it switches and clears. */
+  applyWorkspacePlan(candidates: WorkspaceCandidate[]): { created: number; merged: number; repos: number }
   renameWorkspace(id: string, name: string): void
   /** Reorder the workspace list (drag & drop in the switcher menu). */
   reorderWorkspaces(fromId: string, toId: string, before: boolean): void
@@ -954,6 +959,47 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
       const ws: Workspace = { id: uid(), name, tabs: [], activeTabId: null }
       return { ...s, workspaces: [...s.workspaces, ws], activeWorkspaceId: ws.id, tabs: [], activeTabId: null }
     }),
+
+  applyWorkspacePlan: (candidates) => {
+    let created = 0
+    let merged = 0
+    let repos = 0
+    // One update for the whole plan, not one per workspace: a plan of a dozen
+    // folders would otherwise write the settings file a dozen times.
+    get().update((s) => {
+      const workspaces = [...s.workspaces]
+      for (const candidate of candidates) {
+        // Generated tabs are ordinary repo tabs — nothing about a workspace
+        // built this way is special once it exists.
+        const tabs: TabState[] = candidate.newRepoPaths.map((path) => {
+          const name = repoDisplayName(path, s.repoAliases)
+          return { id: uid(), kind: 'repo', name, repos: [{ path, name }], activeRepoPath: path }
+        })
+        if (tabs.length === 0) continue
+        repos += tabs.length
+        const idx = workspaces.findIndex((w) => w.id === candidate.existingWorkspaceId)
+        if (idx >= 0) {
+          const existing = workspaces[idx]
+          // Order, name, colour and the active tab are the user's; only append.
+          workspaces[idx] = { ...existing, tabs: [...existing.tabs, ...tabs] }
+          merged += 1
+        } else {
+          workspaces.push({
+            id: uid(),
+            name: candidate.name,
+            tabs,
+            activeTabId: tabs[0].id,
+            sourcePath: candidate.path
+          })
+          created += 1
+        }
+      }
+      // `activeWorkspaceId`, `tabs` and `activeTabId` are deliberately absent:
+      // building workspaces in the background must not move the user.
+      return { ...s, workspaces }
+    })
+    return { created, merged, repos }
+  },
 
   renameWorkspace: (id, name) =>
     get().update((s) => ({

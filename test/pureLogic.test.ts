@@ -37,6 +37,7 @@ import {
   filterSections,
   sectionKey
 } from '../src/renderer/src/lib/repoSections'
+import { planWorkspaces } from '../src/renderer/src/lib/workspacePlan'
 import { repathRepoSettings } from '../src/renderer/src/lib/repoRepath'
 import type { WorktreeInfo, GraphCommit, GraphFocus, StackInfo, PullRequest, RegistryRepo } from '../src/shared/types'
 import { comboFromEvent, formatCombo, effectiveBindings, isReservedCombo, matchShortcut, tabActionFromEvent, tabIndexFromEvent } from '../src/renderer/src/lib/shortcuts'
@@ -64,7 +65,7 @@ import { resolveInputTokens } from '../src/main/launch'
 import { closeTabPrompt, repoCloseStatus, tabCloseStatus } from '../src/renderer/src/lib/tabClose'
 import { formatBytes, parseTooLargeError } from '../src/renderer/src/lib/fileSize'
 import { FILE_TOO_LARGE_PREFIX } from '../src/shared/types'
-import type { TabState } from '../src/shared/types'
+import type { TabState, Workspace } from '../src/shared/types'
 import { autolink, remoteWebUrl, filePermalink } from '../src/renderer/src/lib/autolink'
 import { githubCommitUrl, parseGitHubRemote, githubRemote } from '../src/renderer/src/lib/hosting'
 import {
@@ -6563,6 +6564,116 @@ describe('fileStats', () => {
 
   it('returns no chips at all when there are no files', () => {
     expect(summaryChips(fileStats([]))).toEqual([])
+  })
+})
+
+describe('workspacePlan', () => {
+  const ws = (over: Partial<Workspace> = {}): Workspace => ({
+    id: 'w1',
+    name: 'Collins',
+    tabs: [],
+    activeTabId: null,
+    ...over
+  })
+
+  const repoTab = (path: string): TabState =>
+    ({
+      id: `t-${path}`,
+      name: path.split('/').pop() ?? path,
+      kind: 'repo',
+      repos: [{ path, name: path.split('/').pop() ?? path }],
+      activeRepoPath: path
+    }) as TabState
+
+  const root = '/Users/gs/Code'
+  const paths = [
+    '/Users/gs/Code/Arduino/blink',
+    '/Users/gs/Code/Arduino/sensors',
+    '/Users/gs/Code/Collins/microtecnica/ilcm',
+    '/Users/gs/Code/Collins/frontend-libraries',
+    '/Users/gs/Code/loose-repo'
+  ]
+
+  it('groups repositories by their first segment below the root', () => {
+    const plan = planWorkspaces({ root, repoPaths: paths, workspaces: [] })
+    expect(plan.filter((c) => !c.loose).map((c) => c.name)).toEqual(['Arduino', 'Collins'])
+  })
+
+  // The attribution rule: the user picked a top-level folder, so that is where
+  // everything under it belongs however deep it actually sits.
+  it('attributes a deeply nested repository to the top-level folder', () => {
+    const plan = planWorkspaces({ root, repoPaths: paths, workspaces: [] })
+    const collins = plan.find((c) => c.name === 'Collins')
+    expect(collins?.repoPaths).toContain('/Users/gs/Code/Collins/microtecnica/ilcm')
+    expect(plan.some((c) => c.name === 'microtecnica')).toBe(false)
+  })
+
+  it('puts a repository directly under the root in a loose row named after the root', () => {
+    const plan = planWorkspaces({ root, repoPaths: paths, workspaces: [] })
+    const loose = plan.find((c) => c.loose)
+    expect(loose?.name).toBe('Code')
+    expect(loose?.repoPaths).toEqual(['/Users/gs/Code/loose-repo'])
+  })
+
+  it('offers nothing for a folder that contains no repositories', () => {
+    const plan = planWorkspaces({ root, repoPaths: ['/Users/gs/Code/Arduino/blink'], workspaces: [] })
+    expect(plan.map((c) => c.name)).toEqual(['Arduino'])
+  })
+
+  it('returns nothing at all for a root with no repositories', () => {
+    expect(planWorkspaces({ root, repoPaths: [], workspaces: [] })).toEqual([])
+  })
+
+  it('counts only repositories the existing workspace does not already hold', () => {
+    const existing = ws({
+      sourcePath: '/Users/gs/Code/Collins',
+      tabs: [repoTab('/Users/gs/Code/Collins/frontend-libraries')]
+    })
+    const collins = planWorkspaces({ root, repoPaths: paths, workspaces: [existing] }).find(
+      (c) => c.name === 'Collins'
+    )
+    expect(collins?.existingWorkspaceId).toBe('w1')
+    expect(collins?.repoPaths).toHaveLength(2)
+    expect(collins?.newRepoPaths).toEqual(['/Users/gs/Code/Collins/microtecnica/ilcm'])
+  })
+
+  // Matching on name alone would find nothing here and create a duplicate.
+  it('still matches a generated workspace that has since been renamed', () => {
+    const renamed = ws({ name: 'Work stuff', sourcePath: '/Users/gs/Code/Collins' })
+    const collins = planWorkspaces({ root, repoPaths: paths, workspaces: [renamed] }).find(
+      (c) => c.name === 'Collins'
+    )
+    expect(collins?.existingWorkspaceId).toBe('w1')
+  })
+
+  it('falls back to a name match for a hand-made workspace with no sourcePath', () => {
+    const byHand = ws({ name: 'Collins' })
+    const collins = planWorkspaces({ root, repoPaths: paths, workspaces: [byHand] }).find(
+      (c) => c.name === 'Collins'
+    )
+    expect(collins?.existingWorkspaceId).toBe('w1')
+  })
+
+  it('does not match a workspace generated from a different folder of the same name', () => {
+    const other = ws({ name: 'Collins', sourcePath: '/Users/gs/Other/Collins' })
+    const collins = planWorkspaces({ root, repoPaths: paths, workspaces: [other] }).find(
+      (c) => c.name === 'Collins'
+    )
+    expect(collins?.existingWorkspaceId).toBeUndefined()
+  })
+
+  it('tolerates a root given with a trailing slash', () => {
+    const plan = planWorkspaces({ root: '/Users/gs/Code/', repoPaths: paths, workspaces: [] })
+    expect(plan.find((c) => c.name === 'Arduino')?.path).toBe('/Users/gs/Code/Arduino')
+  })
+
+  it('ignores paths that are not under the root', () => {
+    const plan = planWorkspaces({
+      root,
+      repoPaths: [...paths, '/Users/gs/Elsewhere/thing'],
+      workspaces: []
+    })
+    expect(plan.flatMap((c) => c.repoPaths)).not.toContain('/Users/gs/Elsewhere/thing')
   })
 })
 

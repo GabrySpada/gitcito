@@ -3,7 +3,7 @@ title: Repositories
 category: Sync & many repos
 order: 52
 summary: Every repository Gitcito knows about, open or not, in one searchable list.
-keywords: repositories registry all repos favourites starred recent scan folder browse find open manage repository management colour color section tint highlight
+keywords: repositories registry all repos favourites starred recent scan folder browse find open manage repository management colour color section tint highlight workspaces from folders tree generate bulk import
 ---
 
 # Repositories
@@ -112,6 +112,45 @@ A repository whose folder no longer exists shows as **missing**, with inline
 The star is a favourite toggle, not a bulk-selection checkbox. Batch work here
 is per section rather than per selection — see below.
 
+## Turning a folder tree into workspaces
+
+Your code folder already encodes the grouping you want. If `~/Code` holds
+`Arduino`, `Collins` and `personal`, those are contexts you switch between —
+and a [workspace](workspaces.md) is exactly that, with its own tab strip.
+
+**Add scan folder…** offers to build them. After the scan has indexed what it
+found, a dialog lists the folders **directly inside** the one you picked, with
+how many repositories each holds. Tick the ones you want; each becomes a
+workspace containing **one tab per repository**.
+
+| Row | Meaning |
+|---|---|
+| A folder name and a count | Ticked by default — it becomes a workspace |
+| "{n} new — merges into …" | A workspace for this folder already exists; only the new repositories are added |
+| "Already in a workspace" | Nothing to do, shown greyed out rather than hidden |
+| The root's own name | Repositories sitting loose in the folder you picked, not in a subfolder. Unticked by default |
+
+A repository is filed under the **first folder below the root**, however deep it
+sits: `~/Code/Collins/microtecnica/ilcm` goes into `Collins`. Folders holding no
+repositories are not offered.
+
+**Nothing is created until you confirm**, and cancelling still leaves the scan's
+indexing in place — the repositories are known either way, which is what this
+button did before.
+
+### Scanning again later
+
+Safe to repeat. A second scan **adds and never removes**:
+
+- New repositories are appended to the matching workspace.
+- Repositories you moved, renamed or removed by hand stay as you left them.
+- A workspace you **renamed** is still recognised — Gitcito remembers the folder
+  it came from, so it merges instead of creating a duplicate.
+- A repository deleted from disk keeps its tab, showing as missing.
+
+Generated workspaces are ordinary ones. Rename, reorder, recolour or delete them
+like any other; nothing about them stays special.
+
 ## Closing everything that is open
 
 The **Open repositories** header carries a close button — **Close repository**
@@ -183,6 +222,14 @@ standing cost.
   status at all, checked or not.
 - **A repository is only known once you have opened it, or scanned a folder
   that contains it.** There is no way to search the filesystem from here.
+- **Building workspaces cannot be undone in one step.** Cancelling the dialog
+  creates nothing, but a plan you confirmed and then regret is unwound by
+  deleting the workspaces by hand.
+- **Only one level deep.** Folders below the first level are flattened into the
+  workspace's tab strip — `Collins/microtecnica/ilcm` becomes a tab in
+  `Collins`, not a folder inside it.
+- **Settings' "Scan now" does not offer this.** It rescans every configured root
+  at once, where a per-folder dialog makes no sense, and only indexes.
 - **Close all reopens one tab at a time, up to ten.** Closing more than ten
   repositories at once means the oldest of them cannot be reopened from the
   stack — though they are all still in **Recent**.

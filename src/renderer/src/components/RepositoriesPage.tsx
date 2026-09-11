@@ -31,6 +31,7 @@ import { gitApi, shellApi } from '../infrastructure/api'
 import { tabRepos, type RepoPulse } from '../../../shared/types'
 import { useT, interp, type TranslationKey } from '../i18n'
 import { openRepositoryDialog } from '../appCommands'
+import { planWorkspaces } from '../lib/workspacePlan'
 
 /** Section headings live here as keys, not strings: a module-level constant
  *  holding translated text freezes at whatever language was active on import. */
@@ -70,6 +71,7 @@ export function RepositoriesPage(): React.JSX.Element {
   const settings = useSettingsStore((s) => s.settings)
   const openRepoTab = useSettingsStore((s) => s.openRepoTab)
   const closeAllRepoTabs = useSettingsStore((s) => s.closeAllRepoTabs)
+  const applyWorkspacePlan = useSettingsStore((s) => s.applyWorkspacePlan)
   const forget = useReposStore((s) => s.forget)
   const locate = useReposStore((s) => s.locate)
   const toggleFavouriteRepo = useSettingsStore((s) => s.toggleFavouriteRepo)
@@ -125,6 +127,25 @@ export function RepositoriesPage(): React.JSX.Element {
     updateSettings((s) => ({ ...s, repoScanRoots: roots }))
     const found = await scan(roots)
     toast('success', interp(t('repos.scanFound'), { n: found }))
+
+    // Offer the folder tree as workspaces. Read from the store rather than the
+    // `entries` in scope: `scan` has just replaced the registry, and this
+    // closure still holds the render's stale copy.
+    const candidates = planWorkspaces({
+      root: chosen,
+      repoPaths: useReposStore.getState().entries.map((r) => r.path),
+      workspaces: useSettingsStore.getState().settings.workspaces ?? []
+    })
+    if (candidates.length === 0) return
+    openModal({
+      kind: 'scan-workspaces',
+      root: chosen,
+      candidates,
+      onConfirm: (picked) => {
+        const { created, repos } = applyWorkspacePlan(picked)
+        if (repos > 0) toast('success', interp(t('repos.wsDone'), { created, repos }))
+      }
+    })
   }
 
   useEffect(() => {
