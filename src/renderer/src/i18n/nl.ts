@@ -1425,9 +1425,6 @@ export const nl: Dict = {
   'branch.descriptionPlaceholder': 'Plak een Jira-issue, beschrijf de feature of de bug…',
   'branch.generateWithAI': 'Naam met AI genereren',
   'branch.createCheckout': 'Aanmaken & uitchecken',
-  'settings.coAuthor': 'MyAppDesk als co-auteur toevoegen',
-  'settings.coAuthorHint':
-    'Voegt een Co-authored-by-trailer (team@myappdesk.dev) toe aan commits die vanuit gitcito gemaakt worden.',
   'settings.hoverExplain': 'Code uitleggen bij hoveren',
   'settings.hoverExplainHint':
     'Houd een toets ingedrukt en wijs een identifier aan — in het bestand, de diff of de blame-weergave — voor een uitleg van één regel, alleen gebaseerd op de omliggende regels. Antwoorden worden gecachet; zet dit uit om de extra verzoeken te vermijden.',

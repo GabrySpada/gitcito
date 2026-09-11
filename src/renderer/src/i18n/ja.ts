@@ -1404,9 +1404,6 @@ export const ja: Dict = {
   'branch.descriptionPlaceholder': 'Jira のイシューを貼るか、機能や不具合を説明してください…',
   'branch.generateWithAI': 'AI で名前を生成',
   'branch.createCheckout': '作成してチェックアウト',
-  'settings.coAuthor': 'MyAppDesk を共著者として追加',
-  'settings.coAuthorHint':
-    'gitcito から作ったコミットに、Co-authored-by のトレーラー（team@myappdesk.dev）を付け足します。',
   'settings.hoverExplain': 'ホバーでコードを解説',
   'settings.hoverExplainHint':
     'キーを押しながら識別子を指すと — ファイル、差分、blame のどのビューでも — 周りの行だけをもとにした 1 行の説明が出ます。答えはキャッシュされます。余計なリクエストを避けたいときはオフにしてください。',

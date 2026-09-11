@@ -1404,9 +1404,6 @@ export const tr: Dict = {
   'branch.descriptionPlaceholder': 'Bir Jira kaydı yapıştırın, özelliği ya da hatayı anlatın…',
   'branch.generateWithAI': 'Yapay zekâ ile ad üret',
   'branch.createCheckout': 'Oluştur ve geç',
-  'settings.coAuthor': 'MyAppDesk’i ortak yazar olarak ekle',
-  'settings.coAuthorHint':
-    'gitcito üzerinden yapılan commit’lere bir Co-authored-by satırı (team@myappdesk.dev) ekler.',
   'settings.hoverExplain': 'İmleç üzerindeyken kodu açıkla',
   'settings.hoverExplainHint':
     'Bir tuşu basılı tutup bir tanımlayıcının üzerine gelin — dosyada, farkta ya da blame görünümünde — yalnızca çevresindeki satırlardan çıkarılmış tek satırlık bir açıklama alın. Yanıtlar önbelleğe alınır; fazladan istek istemiyorsanız bunu kapatın.',

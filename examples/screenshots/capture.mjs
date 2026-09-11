@@ -173,8 +173,7 @@ function seedSettings(shot, theme) {
           conflictStyle: 'clean',
           branchNamingStyle: 'prefix/description',
           customInstructions: '',
-          generateDescription: true,
-          coAuthor: true
+          generateDescription: true
         }
       }
     ],

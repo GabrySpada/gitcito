@@ -1424,9 +1424,6 @@ export const he: Dict = {
   'branch.descriptionPlaceholder': 'הדביקו כרטיס Jira, תארו את הפיצ׳ר או את הבאג…',
   'branch.generateWithAI': 'יצירת שם בעזרת AI',
   'branch.createCheckout': 'יצירה וצ׳קאאוט',
-  'settings.coAuthor': 'הוספת MyAppDesk כשותף לכתיבה',
-  'settings.coAuthorHint':
-    'הוספת שורת Co-authored-by (team@myappdesk.dev) לקומיטים שנעשים מתוך gitcito.',
   'settings.hoverExplain': 'הסבר על קוד במעבר עכבר',
   'settings.hoverExplainHint':
     'החזיקו מקש והצביעו על מזהה — בקובץ, בדיף או בתצוגת blame — כדי לקבל הסבר בשורה אחת, שנשען רק על השורות שמסביב. התשובות נשמרות במטמון; כבו את זה כדי להימנע מהבקשות הנוספות.',

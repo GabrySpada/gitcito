@@ -1424,9 +1424,6 @@ export const zhCN: Dict = {
   'branch.descriptionPlaceholder': '粘贴一个 Jira 议题，或描述这个功能或缺陷…',
   'branch.generateWithAI': '用 AI 生成名称',
   'branch.createCheckout': '创建并检出',
-  'settings.coAuthor': '把 MyAppDesk 添加为共同作者',
-  'settings.coAuthorHint':
-    '在 gitcito 发出的提交里追加一行 Co-authored-by（team@myappdesk.dev）。',
   'settings.hoverExplain': '悬停时解释代码',
   'settings.hoverExplainHint':
     '按住一个键并把鼠标指向某个标识符——在文件、差异或 blame 视图中都可以——就能得到一行解释，解释只依据周围那几行代码。答案会被缓存；不想要这些额外请求就关掉它。',

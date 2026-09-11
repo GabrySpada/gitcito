@@ -1424,9 +1424,6 @@ export const ko: Dict = {
   'branch.descriptionPlaceholder': 'Jira 이슈를 붙여 넣거나 기능 또는 버그를 설명하세요…',
   'branch.generateWithAI': 'AI로 이름 생성',
   'branch.createCheckout': '만들고 체크아웃',
-  'settings.coAuthor': 'MyAppDesk를 공동 작성자로 추가',
-  'settings.coAuthorHint':
-    'gitcito에서 만든 커밋에 Co-authored-by 트레일러(team@myappdesk.dev)를 덧붙입니다.',
   'settings.hoverExplain': '마우스를 올리면 코드 설명',
   'settings.hoverExplainHint':
     '지정한 키를 누른 채 식별자를 가리키면 — 파일, diff, blame 어디서든 — 주변 줄만 보고 한 줄짜리 설명을 보여 줍니다. 답변은 캐시되며, 추가 요청을 원치 않으면 끄세요.',

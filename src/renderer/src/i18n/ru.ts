@@ -1424,9 +1424,6 @@ export const ru: Dict = {
   'branch.descriptionPlaceholder': 'Вставьте задачу из Jira, опишите фичу или баг…',
   'branch.generateWithAI': 'Сгенерировать имя с помощью ИИ',
   'branch.createCheckout': 'Создать и переключиться',
-  'settings.coAuthor': 'Добавлять MyAppDesk как соавтора',
-  'settings.coAuthorHint':
-    'Добавлять трейлер Co-authored-by (team@myappdesk.dev) в коммиты, сделанные из gitcito.',
   'settings.hoverExplain': 'Объяснять код при наведении',
   'settings.hoverExplainHint':
     'Удерживайте клавишу и наведите курсор на идентификатор — в файле, диффе или blame — чтобы получить объяснение в одну строку, построенное только по соседним строкам. Ответы кешируются; выключите, чтобы не делать лишних запросов.',

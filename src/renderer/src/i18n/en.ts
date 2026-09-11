@@ -1420,9 +1420,6 @@ export const en = {
   'branch.descriptionPlaceholder': 'Paste a Jira issue, describe the feature or bug…',
   'branch.generateWithAI': 'Generate name with AI',
   'branch.createCheckout': 'Create & checkout',
-  'settings.coAuthor': 'Add MyAppDesk as co-author',
-  'settings.coAuthorHint':
-    'Append a Co-authored-by trailer (team@myappdesk.dev) to commits made from gitcito.',
   'settings.hoverExplain': 'Explain code on hover',
   'settings.hoverExplainHint':
     'Hold a key and point at an identifier — in the file, diff or blame view — to get a one-line explanation, drawn only from the surrounding lines. Answers are cached; turn this off to avoid the extra requests.',

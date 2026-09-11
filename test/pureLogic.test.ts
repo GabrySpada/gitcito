@@ -4192,8 +4192,7 @@ describe('AI accounts — migration and resolution', () => {
     conflictStyle: 'clean' as const,
     branchNamingStyle: 'prefix/description' as const,
     customInstructions: '',
-    generateDescription: true,
-    coAuthor: true
+    generateDescription: true
   }
 
   it('folds a single provider into one account without losing anything', () => {
