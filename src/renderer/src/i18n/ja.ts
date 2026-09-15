@@ -778,7 +778,7 @@ export const ja: Dict = {
   'settings.avatarMotion': 'プロフィールアバターをアニメーションさせる',
   'settings.avatarMotionHint': 'タイトルバーのアバターが呼吸してまばたきします。オフにしても表情はリポジトリの状態に合わせて変わります。',
   'settings.groupBranches': '接頭辞で ref をまとめる',
-  'settings.groupBranchesHint': 'ブランチ、リモートブランチ、タグを「/」の接頭辞（feature/*、release/*）ごとに、折りたためるフォルダーへまとめます。ref が 1 つしかない接頭辞はそのまま並びます。',
+  'settings.groupBranchesHint': 'ブランチ、リモートブランチ、タグを「/」の接頭辞（feature/*、release/*）ごとに、折りたためるフォルダーへまとめます。接頭辞は ref が 1 つでも必ずフォルダーになり、子が 1 つだけのフォルダーが続く場合はひとつの見出しにまとまります。',
   'settings.todosHideDone': '完了したタスクを隠す',
   'settings.todosHideDoneHint': 'チェックしたタスクはサイドバーのセクションとタスク一覧から消えます。削除はされず、件数には引き続き含まれます。',
   'settings.behaviour': '動作',

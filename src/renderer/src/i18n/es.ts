@@ -787,7 +787,7 @@ export const es: Dict = {
   'settings.avatarMotion': 'Animar el avatar del perfil',
   'settings.avatarMotionHint': 'El avatar de la barra de título respira y parpadea. Su expresión sigue reflejando el repositorio aunque lo desactives.',
   'settings.groupBranches': 'Agrupar refs por prefijo',
-  'settings.groupBranchesHint': 'Agrupa ramas, ramas remotas y tags en carpetas plegables por su prefijo “/” (feature/*, release/*). Un prefijo con una sola ref se queda plano.',
+  'settings.groupBranchesHint': 'Agrupa ramas, ramas remotas y tags en carpetas plegables por su prefijo “/” (feature/*, release/*). Un prefijo siempre se convierte en carpeta, aunque solo tenga una ref; una cadena de carpetas con un único hijo comparte un mismo encabezado.',
   'settings.todosHideDone': 'Ocultar tareas completadas',
   'settings.todosHideDoneHint': 'Las tareas marcadas desaparecen de la sección de la barra lateral y de la lista. No se borra nada: los recuentos siguen incluyéndolas.',
   'settings.behaviour': 'Comportamiento',

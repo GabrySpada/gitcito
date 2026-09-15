@@ -793,7 +793,7 @@ export const pl: Dict = {
   'settings.avatarMotion': 'Animuj awatar profilu',
   'settings.avatarMotionHint': 'Awatar na pasku tytułu oddycha i mruga. Jego wyraz twarzy nadal odzwierciedla repozytorium, gdy to jest wyłączone.',
   'settings.groupBranches': 'Grupuj refy po prefiksie',
-  'settings.groupBranchesHint': 'Zwija branche, branche zdalne i tagi w składane foldery według prefiksu z „/” (feature/*, release/*). Prefiks z jednym tylko refem zostaje płaski.',
+  'settings.groupBranchesHint': 'Zwija branche, branche zdalne i tagi w składane foldery według prefiksu z „/” (feature/*, release/*). Prefiks zawsze staje się folderem, nawet z jednym refem; łańcuch folderów z jednym dzieckiem dzieli jeden nagłówek.',
   'settings.todosHideDone': 'Ukryj ukończone zadania',
   'settings.todosHideDoneHint': 'Odhaczone zadania znikają z sekcji na pasku bocznym i z listy. Nic nie jest usuwane — liczniki nadal je uwzględniają.',
   'settings.behaviour': 'Zachowanie',

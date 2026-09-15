@@ -62,6 +62,7 @@ import { stepRange, claimRangeKeys, ownsRangeKeys, rangeKeysBlocked, domOrder } 
 import { openBranchDropMenu } from '../lib/branchDropMenu'
 import { worktreeForBranch, worktreeTabName } from '../lib/worktrees'
 import { HUGE_SECTION, openUnlessHuge } from '../lib/sidebarSections'
+import { buildPrefixTree, collectLeaves, foldNode, leafCount, type TreeNode } from '../lib/branchTree'
 import { TODO_STATUSES, sortTodos, subtaskProgress, todoStatus, todoSummary, topLevelTodos } from '../lib/todos'
 import { TodoPriorityIcon } from './TodoPriorityIcon'
 import { TodoStatusIcon, TODO_STATUS_LABEL } from './TodoStatusIcon'
@@ -111,47 +112,6 @@ interface SectionProps {
    *  expand/collapse choice instead of keeping it in component state. */
   open?: boolean
   onToggle?: (open: boolean) => void
-}
-
-/** A node in a branch folder tree (local or per-remote). `item` is set when
- *  this node is itself a branch (a leaf, or a folder name that's also a ref). */
-interface TreeNode<T> {
-  seg: string
-  item?: T
-  children: Map<string, TreeNode<T>>
-}
-
-/** Fold a flat list of refs into a folder tree keyed by their "/" prefix. */
-function buildPrefixTree<T>(items: T[], nameOf: (t: T) => string): TreeNode<T> {
-  const root: TreeNode<T> = { seg: '', children: new Map() }
-  for (const it of items) {
-    let node = root
-    const parts = nameOf(it).split('/')
-    parts.forEach((seg, i) => {
-      let child = node.children.get(seg)
-      if (!child) {
-        child = { seg, children: new Map() }
-        node.children.set(seg, child)
-      }
-      node = child
-      if (i === parts.length - 1) node.item = it
-    })
-  }
-  return root
-}
-
-/** Number of actual branches under a node, used for the folder's count badge. */
-function leafCount<T>(node: TreeNode<T>): number {
-  let n = node.item ? 1 : 0
-  for (const c of node.children.values()) n += leafCount(c)
-  return n
-}
-
-/** Every branch under a node, in tree order — the scope of a folder-wide action. */
-function collectLeaves<T>(node: TreeNode<T>, out: T[] = []): T[] {
-  if (node.item) out.push(node.item)
-  for (const c of node.children.values()) collectLeaves(c, out)
-  return out
 }
 
 function Section({
@@ -1466,45 +1426,35 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
     </div>
   )
 
-  // Recursively render a branch folder node: flatten single-child folders into
-  // one "a/b" row, leaves become items, folders with ≥2 entries become a
-  // collapsible nested Section. `prefix` carries the flattened path so far.
-  const renderBranchNode = (
-    node: TreeNode<BranchInfo>,
-    prefix: string,
-    depth: number,
-    ancestor = ''
-  ): React.JSX.Element => {
-    const display = prefix ? `${prefix}/${node.seg}` : node.seg
-    // Single-child folder folds into one row — same visual depth, no extra level.
-    if (!node.item && node.children.size === 1) {
-      return renderBranchNode([...node.children.values()][0], display, depth, ancestor)
-    }
-    if (node.children.size === 0 && node.item) {
-      return branchItem(node.item, display)
-    }
-    // Full "/"-path from the section root: unlike `display` it cannot collide
+  // Recursively render a branch folder node. `foldNode` decides row vs folder
+  // and merges runs of single-child folders into one header; everything below
+  // is presentation.
+  const renderBranchNode = (node: TreeNode<BranchInfo>, depth: number, ancestor = ''): React.JSX.Element => {
+    const folded = foldNode(node)
+    if (folded.kind === 'leaf') return branchItem(folded.item, folded.label)
+    const { node: folder, title } = folded
+    // Full "/"-path from the section root: unlike `title` it cannot collide
     // across nesting levels, so it can key persisted state and name the folder.
-    const fullPath = ancestor ? `${ancestor}/${display}` : display
-    const leaves = leafCount(node)
+    const fullPath = ancestor ? `${ancestor}/${title}` : title
+    const leaves = leafCount(folder)
     return (
       <Section
         key={`grp:${fullPath}`}
         nested
         depth={depth}
-        title={display}
+        title={title}
         icon={<GitBranch size={13} />}
         count={leaves}
         {...persistOpen(`grp:${fullPath}`, openUnlessHuge(leaves))}
         onHeaderContextMenu={(e) => {
           e.preventDefault()
-          openContextMenu(e.clientX, e.clientY, localFolderMenu(fullPath, node))
+          openContextMenu(e.clientX, e.clientY, localFolderMenu(fullPath, folder))
         }}
       >
         {() => (
           <>
-            {node.item && branchItem(node.item, node.seg)}
-            {[...node.children.values()].map((c) => renderBranchNode(c, '', depth + 1, fullPath))}
+            {folder.item && branchItem(folder.item, folder.seg)}
+            {[...folder.children.values()].map((c) => renderBranchNode(c, depth + 1, fullPath))}
           </>
         )}
       </Section>
@@ -1551,38 +1501,33 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
 
   const renderRemoteNode = (
     node: TreeNode<RemoteBranchInfo>,
-    prefix: string,
     depth: number,
     remoteName: string,
     ancestor = ''
   ): React.JSX.Element => {
-    const display = prefix ? `${prefix}/${node.seg}` : node.seg
-    if (!node.item && node.children.size === 1) {
-      return renderRemoteNode([...node.children.values()][0], display, depth, remoteName, ancestor)
-    }
-    if (node.children.size === 0 && node.item) {
-      return remoteItem(node.item, display)
-    }
-    const fullPath = ancestor ? `${ancestor}/${display}` : display
-    const leaves = leafCount(node)
+    const folded = foldNode(node)
+    if (folded.kind === 'leaf') return remoteItem(folded.item, folded.label)
+    const { node: folder, title } = folded
+    const fullPath = ancestor ? `${ancestor}/${title}` : title
+    const leaves = leafCount(folder)
     return (
       <Section
         key={`rgrp:${remoteName}/${fullPath}`}
         nested
         depth={depth}
-        title={display}
+        title={title}
         icon={<GitBranch size={13} />}
         count={leaves}
         {...persistOpen(`rgrp:${remoteName}/${fullPath}`, openUnlessHuge(leaves))}
         onHeaderContextMenu={(e) => {
           e.preventDefault()
-          openContextMenu(e.clientX, e.clientY, remoteFolderMenu(`${remoteName}/${fullPath}`, node))
+          openContextMenu(e.clientX, e.clientY, remoteFolderMenu(`${remoteName}/${fullPath}`, folder))
         }}
       >
         {() => (
           <>
-            {node.item && remoteItem(node.item, node.seg)}
-            {[...node.children.values()].map((c) => renderRemoteNode(c, '', depth + 1, remoteName, fullPath))}
+            {folder.item && remoteItem(folder.item, folder.seg)}
+            {[...folder.children.values()].map((c) => renderRemoteNode(c, depth + 1, remoteName, fullPath))}
           </>
         )}
       </Section>
@@ -1645,35 +1590,26 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
     )
   }
 
-  const renderTagNode = (
-    node: TreeNode<TagInfo>,
-    prefix: string,
-    depth: number,
-    ancestor = ''
-  ): React.JSX.Element => {
-    const display = prefix ? `${prefix}/${node.seg}` : node.seg
-    if (!node.item && node.children.size === 1) {
-      return renderTagNode([...node.children.values()][0], display, depth, ancestor)
-    }
-    if (node.children.size === 0 && node.item) {
-      return tagItem(node.item, display)
-    }
-    const fullPath = ancestor ? `${ancestor}/${display}` : display
-    const leaves = leafCount(node)
+  const renderTagNode = (node: TreeNode<TagInfo>, depth: number, ancestor = ''): React.JSX.Element => {
+    const folded = foldNode(node)
+    if (folded.kind === 'leaf') return tagItem(folded.item, folded.label)
+    const { node: folder, title } = folded
+    const fullPath = ancestor ? `${ancestor}/${title}` : title
+    const leaves = leafCount(folder)
     return (
       <Section
         key={`tgrp:${fullPath}`}
         nested
         depth={depth}
-        title={display}
+        title={title}
         icon={<Tag size={13} />}
         count={leaves}
         {...persistOpen(`tgrp:${fullPath}`, openUnlessHuge(leaves))}
       >
         {() => (
           <>
-            {node.item && tagItem(node.item, node.seg)}
-            {[...node.children.values()].map((c) => renderTagNode(c, '', depth + 1, fullPath))}
+            {folder.item && tagItem(folder.item, folder.seg)}
+            {[...folder.children.values()].map((c) => renderTagNode(c, depth + 1, fullPath))}
           </>
         )}
       </Section>
@@ -1957,7 +1893,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
               </Section>
             )}
             {groupBranches
-              ? [...branchTree.children.values()].map((c) => renderBranchNode(c, '', 1))
+              ? [...branchTree.children.values()].map((c) => renderBranchNode(c, 1))
               : locals.map((b) => branchItem(b, b.name))}
           </>
         )}
@@ -2027,7 +1963,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
                   {branches.length === 0 && <div className="sb-empty">{t('sidebar.noBranches')}</div>}
                   {groupBranches
                     ? [...(remoteTrees.get(remote.name)?.children.values() ?? [])].map((c) =>
-                        renderRemoteNode(c, '', 2, remote.name)
+                        renderRemoteNode(c, 2, remote.name)
                       )
                     : branches.map((b) => remoteItem(b, b.name))}
                 </>
@@ -2313,7 +2249,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
           <>
             {tags.length === 0 && <div className="sb-empty">{t('sidebar.noTags')}</div>}
             {groupBranches
-              ? [...tagTree.children.values()].map((c) => renderTagNode(c, '', 1))
+              ? [...tagTree.children.values()].map((c) => renderTagNode(c, 1))
               : tags.map((tag) => tagItem(tag, tag.name))}
           </>
         )}

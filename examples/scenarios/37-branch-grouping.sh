@@ -6,7 +6,8 @@
 #
 #     main                         (flat — no prefix)
 #     develop                      (flat — no prefix)
-#     release/1.2.3                (flat — "release" has a single branch)
+#     release/  ▸ (folder, 1 — a lone branch still gets its folder)
+#         1.2.3
 #     feature/  ▸  (folder, 4)
 #         login
 #         signup
@@ -20,7 +21,7 @@
 #
 # Verify:
 #   • feature/ and bugfix/ render as dropdowns; feature/payments/ nests inside.
-#   • release/1.2.3 stays a FLAT row (prefix with only one branch ⇒ no folder).
+#   • release/ is a folder holding one branch — a prefix never stays flat.
 #   • Toggle "Group branches by prefix" off in Settings ⇒ flat list returns.
 R="$ROOT/branch-grouping"
 new_repo "$R"
@@ -28,7 +29,7 @@ new_repo "$R"
 echo "export const app = () => 'v1'" > "$R/app.js"
 git -C "$R" add -A && git -C "$R" commit -qm "main: initial app"
 
-# Flat branches (no prefix, or a lone prefix that should NOT fold).
+# Flat branches (no prefix) plus a prefix holding a single branch.
 git -C "$R" branch develop
 git -C "$R" branch release/1.2.3
 
@@ -48,7 +49,7 @@ git -C "$R" tag release/1.0            # release/ has 2 ⇒ folder
 git -C "$R" tag release/2.0
 git -C "$R" tag nightly/2026-06-01     # nightly/ has 2 ⇒ folder
 git -C "$R" tag nightly/2026-06-02
-git -C "$R" tag stable/1.0             # stable/ has 1 ⇒ stays flat as "stable/1.0"
+git -C "$R" tag stable/1.0             # stable/ has 1 ⇒ still a folder holding "1.0"
 
 # Push branches + tags to a bare origin so Remotes/Tags fold the same way.
 ORIGIN_BARE="$ROOT/branch-grouping-origin.git"

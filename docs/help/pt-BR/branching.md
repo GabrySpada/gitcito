@@ -31,6 +31,13 @@ mostram:
 - um **marcador ⟳** quando o remote [reescreveu o histórico](range-diff.md).
 
 Branches com `/` no nome se dobram automaticamente em pastas colapsáveis.
+Um prefixo é sempre uma pasta, mesmo quando só uma branch mora nele:
+`refactor/v2` é uma pasta `refactor` contendo `v2`, então a lista não se
+reorganiza no dia em que aparece uma segunda `refactor/*`. Uma cadeia de pastas
+com um único filho vira um cabeçalho só, de modo que
+`dependabot/npm_and_yarn/axios-1.7.9` custa um nível em vez de três. Desmarque
+**Agrupar refs por prefixo** nas Configurações para uma lista plana.
+
 Clique com o botão direito no cabeçalho de uma pasta para agir sobre o grupo
 inteiro: *Excluir todas as branches em `feature` (4 branches)* remove tudo o
 que há dentro após uma única confirmação que lista exatamente quais branches se

@@ -35,7 +35,14 @@ branche affichent :
 - un **marqueur ⟳** quand le distant a [réécrit l'histoire](range-diff.md).
 
 Les branches dont le nom contient un `/` se replient automatiquement en dossiers
+
 pliables.
+Un préfixe est toujours un dossier, même quand une seule branche s'y trouve :
+`refactor/v2` est un dossier `refactor` contenant `v2`, si bien que la liste ne
+se réorganise pas le jour où une deuxième `refactor/*` apparaît. Une chaîne de
+dossiers à enfant unique se réduit à un seul en-tête, donc
+`dependabot/npm_and_yarn/axios-1.7.9` coûte un niveau et non trois. Décochez
+**Grouper les réfs par préfixe** dans les Réglages pour une liste à plat.
 Un clic droit sur l'en-tête d'un dossier agit sur tout le groupe : *Supprimer
 toutes les branches sous `feature` (4 branches)* supprime tout son contenu
 après une seule confirmation qui liste exactement les branches concernées — la

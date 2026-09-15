@@ -32,6 +32,13 @@ rama muestran:
 - un **marcador ⟳** cuando el remoto [reescribió el historial](range-diff.md).
 
 Las ramas con `/` en el nombre se pliegan en carpetas plegables automáticamente.
+Un prefijo siempre es una carpeta, aunque debajo viva una sola rama:
+`refactor/v2` es una carpeta `refactor` que contiene `v2`, así la lista no se
+reordena el día que aparece una segunda `refactor/*`. Una cadena de carpetas con
+un único hijo se reduce a una sola cabecera, de modo que
+`dependabot/npm_and_yarn/axios-1.7.9` cuesta un nivel en vez de tres. Desmarca
+**Agrupar refs por prefijo** en Ajustes para una lista plana.
+
 Haz clic derecho en la cabecera de una carpeta para actuar sobre el grupo
 entero: *Eliminar todas las ramas bajo `feature` (4 ramas)* borra todo lo que
 contiene tras una única confirmación que lista exactamente qué ramas se van —

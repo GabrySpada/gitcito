@@ -32,6 +32,13 @@ Dal satırları şunları gösterir:
 - uzak depo [geçmişi yeniden yazdığında](range-diff.md) bir **⟳ işareti**.
 
 Adında `/` bulunan dallar otomatik olarak katlanabilir klasörlere toplanır.
+Bir önek her zaman klasördür, altında tek bir dal olsa bile: `refactor/v2`,
+içinde `v2` bulunan bir `refactor` klasörüdür; böylece ikinci bir `refactor/*`
+çıktığı gün liste yeniden dizilmez. Her biri tek çocuklu klasörlerden oluşan bir
+zincir tek bir başlığa iner, yani `dependabot/npm_and_yarn/axios-1.7.9` üç değil
+bir seviyeye mal olur. Düz liste için Ayarlar'da **Ref'leri öneke göre grupla**
+seçeneğinin işaretini kaldırın.
+
 Bir klasör başlığına sağ tıklamak tüm grup üzerinde çalışır: *`feature`
 altındaki tüm dalları sil (4 dal)*, tam olarak hangi dalların gideceğini
 listeleyen tek bir onaydan sonra içindeki her şeyi kaldırır — üzerinde

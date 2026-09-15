@@ -793,7 +793,7 @@ export const de: Dict = {
   'settings.avatarMotion': 'Profil-Avatar animieren',
   'settings.avatarMotionHint': 'Der Avatar in der Titelleiste atmet und blinkt. Sein Ausdruck folgt dem Repository auch dann, wenn dies aus ist.',
   'settings.groupBranches': 'Refs nach Präfix gruppieren',
-  'settings.groupBranchesHint': 'Faltet Branches, Remote-Branches und Tags anhand ihres „/“-Präfixes in zusammenklappbare Ordner (feature/*, release/*). Ein Präfix mit nur einer Ref bleibt flach.',
+  'settings.groupBranchesHint': 'Faltet Branches, Remote-Branches und Tags anhand ihres „/“-Präfixes in zusammenklappbare Ordner (feature/*, release/*). Ein Präfix wird immer zum Ordner, auch mit nur einer Ref; eine Kette von Ordnern mit je einem Kind teilt sich eine Überschrift.',
   'settings.todosHideDone': 'Erledigte Aufgaben ausblenden',
   'settings.todosHideDoneHint': 'Abgehakte Aufgaben verschwinden aus dem Seitenleisten-Abschnitt und aus der Liste. Gelöscht wird nichts – die Zähler berücksichtigen sie weiterhin.',
   'settings.behaviour': 'Verhalten',

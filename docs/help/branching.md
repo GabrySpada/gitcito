@@ -31,6 +31,13 @@ Create, check out, rename and delete — local and remote. Branch rows show:
 - a **⟳ marker** when the remote [rewrote history](range-diff.md).
 
 Branches with `/` in their names fold into collapsible folders automatically.
+A prefix is always a folder, even when a single branch lives under it —
+`refactor/v2` is a `refactor` folder holding `v2`, so the list does not reshuffle
+the day a second `refactor/*` branch appears. A run of folders with one child
+each collapses into a single header, so `dependabot/npm_and_yarn/axios-1.7.9`
+costs one level rather than three. Untick **Group refs by prefix** in Settings
+for a flat list.
+
 Right-click a folder header to act on the whole group: *Delete all branches
 under `feature` (4 branches)* removes everything inside after one confirmation
 that lists exactly which branches go — the branch you are on is excluded. The
