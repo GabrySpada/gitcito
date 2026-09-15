@@ -2856,7 +2856,8 @@ export interface AppSettings {
   avatarMotion: boolean
   fileListView: 'path' | 'tree'
   /** Group local branches into collapsible folders by their `/`-separated
-   *  prefix (feature/*, release/*, …). A prefix with a single branch stays flat. */
+   *  prefix (feature/*, release/*, …). Every prefix becomes a folder, even one
+   *  holding a single branch; a run of single-child folders shares one header. */
   groupBranches: boolean
   graphColumns: GraphColumns
   graphColumnOrder: GraphFlowColumnId[]

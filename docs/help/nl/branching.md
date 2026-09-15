@@ -32,6 +32,13 @@ tonen:
 - een **⟳-markering** wanneer de remote [de geschiedenis herschreef](range-diff.md).
 
 Branches met een `/` in hun naam vouwen zich automatisch in inklapbare mappen.
+Een prefix is altijd een map, ook als er maar één branch onder hangt:
+`refactor/v2` is een map `refactor` met `v2` erin, zodat de lijst niet
+herschikt zodra een tweede `refactor/*` verschijnt. Een reeks mappen met elk één
+kind wordt één kop, dus `dependabot/npm_and_yarn/axios-1.7.9` kost één niveau in
+plaats van drie. Vink **Refs groeperen op prefix** uit in Instellingen voor een
+platte lijst.
+
 Rechtsklik op een mapkop om op de hele groep te werken: *Alle branches onder
 `feature` verwijderen (4 branches)* verwijdert alles erin na één bevestiging
 die precies opsomt welke branches verdwijnen — de branch waarop je staat blijft

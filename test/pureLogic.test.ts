@@ -28,6 +28,7 @@ import { pbxprojOutline } from '../src/renderer/src/lib/pbxprojOutline'
 import { previewKind, isBinaryKind } from '../src/renderer/src/preview/registry'
 import { lockfileFor } from '../src/renderer/src/lib/lockfiles'
 import { isBuildNoise, ignoreLineFor } from '../src/renderer/src/lib/buildNoise'
+import { buildPrefixTree, collectLeaves, foldNode, leafCount, type TreeNode } from '../src/renderer/src/lib/branchTree'
 import { resolveUpdateOffer } from '../src/renderer/src/lib/updateOffer'
 import { worktreeForBranch, worktreeTabName } from '../src/renderer/src/lib/worktrees'
 import { focusedHashes, focusedStashes, defaultBranchName } from '../src/renderer/src/lib/graphFocus'
@@ -6983,5 +6984,61 @@ describe('repathRepoSettings', () => {
     expect(result.repoAliases).toEqual({ '/r/same': 'Alias' })
     expect(result.repoProfiles).toEqual({ '/r/same': 'profile-1' })
     expect(result.favouriteRepos).toEqual(['/r/same'])
+  })
+})
+
+describe('branchTree — folding refs into sidebar folders', () => {
+  const tree = (...names: string[]): TreeNode<string> => buildPrefixTree(names, (n) => n)
+  const child = (node: TreeNode<string>, seg: string): TreeNode<string> => {
+    const c = node.children.get(seg)
+    if (!c) throw new Error(`no child ${seg}`)
+    return c
+  }
+
+  it('renders a branch with no prefix as a row', () => {
+    const folded = foldNode(child(tree('main'), 'main'))
+    expect(folded).toEqual({ kind: 'leaf', item: 'main', label: 'main' })
+  })
+
+  // The GitKraken rule, and the reason this module exists: a prefix holding a
+  // single branch is still a folder, so nothing reshuffles when a second lands.
+  it('makes a folder of a prefix that holds one branch', () => {
+    const folded = foldNode(child(tree('refactor/v2'), 'refactor'))
+    expect(folded.kind).toBe('folder')
+    if (folded.kind !== 'folder') return
+    expect(folded.title).toBe('refactor')
+    expect(collectLeaves(folded.node)).toEqual(['refactor/v2'])
+  })
+
+  it('merges a run of single-child folders into one header', () => {
+    const folded = foldNode(child(tree('dependabot/npm_and_yarn/axios-1.7.9'), 'dependabot'))
+    expect(folded.kind).toBe('folder')
+    if (folded.kind !== 'folder') return
+    expect(folded.title).toBe('dependabot/npm_and_yarn')
+    expect([...folded.node.children.keys()]).toEqual(['axios-1.7.9'])
+  })
+
+  it('stops merging where the tree branches', () => {
+    const folded = foldNode(child(tree('feature/login', 'feature/payments/stripe'), 'feature'))
+    expect(folded.kind).toBe('folder')
+    if (folded.kind !== 'folder') return
+    expect(folded.title).toBe('feature')
+    expect([...folded.node.children.keys()]).toEqual(['login', 'payments'])
+  })
+
+  // `release` is both a branch and the prefix of others: it must stay a folder
+  // holding its own row, never collapse into the child below it.
+  it('keeps a prefix that is also a branch as a folder', () => {
+    const folded = foldNode(child(tree('release', 'release/1.2.3'), 'release'))
+    expect(folded.kind).toBe('folder')
+    if (folded.kind !== 'folder') return
+    expect(folded.title).toBe('release')
+    expect(folded.node.item).toBe('release')
+    expect(collectLeaves(folded.node)).toEqual(['release', 'release/1.2.3'])
+  })
+
+  it('counts every branch under a folder, however deep', () => {
+    const root = tree('feature/login', 'feature/payments/stripe', 'feature/payments/paypal')
+    expect(leafCount(child(root, 'feature'))).toBe(3)
   })
 })

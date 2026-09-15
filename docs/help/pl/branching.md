@@ -34,6 +34,13 @@ pokazują:
   [przepisało historię](range-diff.md).
 
 Gałęzie z `/` w nazwie same zwijają się w składane katalogi.
+Prefiks zawsze jest katalogiem, nawet gdy mieszka pod nim jedna gałąź:
+`refactor/v2` to katalog `refactor` z `v2` w środku, więc lista nie przestawia
+się w dniu, w którym pojawia się druga `refactor/*`. Łańcuch katalogów z jednym
+dzieckiem zwija się do jednego nagłówka, więc
+`dependabot/npm_and_yarn/axios-1.7.9` kosztuje jeden poziom, a nie trzy. Odznacz
+**Grupuj refy po prefiksie** w Ustawieniach, by wrócić do płaskiej listy.
+
 Kliknij prawym przyciskiem nagłówek katalogu, by zadziałać na całą grupę: *Usuń
 wszystkie branche pod `feature` (4 branchy)* usuwa wszystko w środku po jednym
 potwierdzeniu, które wypisuje dokładnie, które gałęzie znikną — gałąź, na

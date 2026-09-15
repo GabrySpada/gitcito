@@ -34,6 +34,13 @@ zeigen:
   [die Historie umgeschrieben hat](range-diff.md).
 
 Branches mit `/` im Namen werden automatisch in aufklappbare Ordner gefaltet.
+Ein Präfix ist immer ein Ordner, auch wenn nur ein Branch darunter liegt:
+`refactor/v2` ist ein Ordner `refactor` mit `v2` darin, damit sich die Liste
+nicht umsortiert, sobald ein zweiter `refactor/*` dazukommt. Eine Kette von
+Ordnern mit je einem Kind wird zu einer einzigen Überschrift, sodass
+`dependabot/npm_and_yarn/axios-1.7.9` eine Ebene kostet statt drei. Für eine
+flache Liste **Refs nach Präfix gruppieren** in den Einstellungen abwählen.
+
 Ein Rechtsklick auf einen Ordnerkopf wirkt auf die ganze Gruppe: *Alle Branches
 unter `feature` löschen (4 Branches)* entfernt alles darin nach einer einzigen
 Bestätigung, die genau auflistet, welche Branches gehen — der Branch, auf dem

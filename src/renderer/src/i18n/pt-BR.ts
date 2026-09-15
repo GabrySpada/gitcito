@@ -794,7 +794,7 @@ export const ptBR: Dict = {
   'settings.avatarMotion': 'Animar o avatar do perfil',
   'settings.avatarMotionHint': 'O avatar na barra de título respira e pisca. A expressão dele continua seguindo o repositório mesmo desativado.',
   'settings.groupBranches': 'Agrupar refs por prefixo',
-  'settings.groupBranchesHint': 'Dobra branches, branches remotas e tags em pastas recolhíveis pelo prefixo antes da “/” (feature/*, release/*). Um prefixo com uma ref só continua solto.',
+  'settings.groupBranchesHint': 'Dobra branches, branches remotas e tags em pastas recolhíveis pelo prefixo antes da “/” (feature/*, release/*). Um prefixo vira sempre uma pasta, mesmo com uma ref só; uma cadeia de pastas com um único filho divide o mesmo cabeçalho.',
   'settings.todosHideDone': 'Ocultar tarefas concluídas',
   'settings.todosHideDoneHint': 'As tarefas marcadas saem da seção da barra lateral e da lista. Nada é apagado — as contagens continuam incluindo elas.',
   'settings.behaviour': 'Comportamento',
