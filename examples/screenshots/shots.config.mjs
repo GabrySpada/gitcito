@@ -35,11 +35,10 @@ const DEMO_SCAN_ROOT = join(tmpdir(), 'gitcito-demo-scan')
 /**
  * Expand sidebar sections by their title (as rendered: 'WORKTREES').
  *
- * Every section renders the same `.sb-section` / `.sb-header` markup and keeps
- * `open` in local component state, so there is nothing to set through the store
- * and no per-section selector to aim at — the visible title is the only thing
+ * Every section renders the same `.sb-section` / `.sb-header` markup and there
+ * is no per-section selector to aim at — the visible title is the only thing
  * that tells them apart. A single click is right because each shot launches
- * with a fresh userData dir, so these sections are always at their collapsed
+ * with a fresh userData dir, so every section but Local is at its collapsed
  * default.
  */
 async function openSections(page, titles) {
@@ -1390,6 +1389,7 @@ export const shots = [
       }, repo)
       // Open one of them, so the shot carries the gutter mark as well as the list.
       await page.waitForTimeout(700)
+      await openSections(page, ['BOOKMARKS'])
       await page.evaluate((p) => {
         window.__shot.ui.getState().setFileView({
           repoPath: p,
@@ -1953,6 +1953,22 @@ export const shots = [
       const repo = repoPaths['pinned-branches']
       await page.evaluate((p) => window.__shot.repo.getState().select(p, { type: 'wip' }), repo)
       await page.waitForTimeout(700)
+    }
+  },
+  {
+    // Sidebar panes — three sections open at once, each scrolling on its own,
+    // the collapsed ones pushed below. branch-grouping has enough folded
+    // branches, remote refs and namespaced tags that the Local pane overflows.
+    out: 'sidebar-panes',
+    repos: ['branch-grouping'],
+    themes: ['dark'],
+    appTheme: 'midnight',
+    drive: async (page, repoPaths) => {
+      const repo = repoPaths['branch-grouping']
+      await page.evaluate((p) => window.__shot.repo.getState().select(p, { type: 'wip' }), repo)
+      await page.waitForTimeout(500)
+      await openSections(page, ['REMOTES', 'TAGS'])
+      await page.waitForTimeout(500)
     }
   },
   {
