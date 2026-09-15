@@ -13,6 +13,7 @@ import {
   Search,
   RefreshCw,
   Check,
+  Folder,
   FolderGit2,
   Boxes,
   AlertTriangle,
@@ -1422,6 +1423,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
       title={`${b.name}${b.upstream ? ` → ${b.upstream}` : ''}`}
     >
       {b.isCurrent && <Check size={12} className="sb-current-mark" />}
+      <GitBranch size={11} className="sb-branch-icon" />
       <span className="sb-name">{label}</span>
       {b.ahead > 0 && <span className="badge ahead">↑{b.ahead}</span>}
       {b.behind > 0 && <span className="badge behind">↓{b.behind}</span>}
@@ -1457,7 +1459,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         nested
         depth={depth}
         title={title}
-        icon={<GitBranch size={13} />}
+        icon={<Folder size={13} className="sb-folder-icon" />}
         count={leaves}
         {...persistOpen(`grp:${fullPath}`, openUnlessHuge(leaves))}
         onHeaderContextMenu={(e) => {
@@ -1491,6 +1493,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
       onContextMenu={(e) => ctxMenu(e, 'remote', b.fullName, () => remoteMenu(b), remoteBulkMenu)}
       title={b.fullName}
     >
+      <GitBranch size={11} className="sb-branch-icon" />
       <span className="sb-name">{label}</span>
       {repo.forcedUpdates[b.fullName] && (
         <span
@@ -1530,7 +1533,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         nested
         depth={depth}
         title={title}
-        icon={<GitBranch size={13} />}
+        icon={<Folder size={13} className="sb-folder-icon" />}
         count={leaves}
         {...persistOpen(`rgrp:${remoteName}/${fullPath}`, openUnlessHuge(leaves))}
         onHeaderContextMenu={(e) => {
@@ -1616,7 +1619,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         nested
         depth={depth}
         title={title}
-        icon={<Tag size={13} />}
+        icon={<Folder size={13} className="sb-folder-icon" />}
         count={leaves}
         {...persistOpen(`tgrp:${fullPath}`, openUnlessHuge(leaves))}
       >

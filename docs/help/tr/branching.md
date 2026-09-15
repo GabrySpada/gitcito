@@ -31,6 +31,10 @@ Dal satırları şunları gösterir:
 - bir [çakışma radarı](conflict-radar.md) taramasından sonra bir **risk noktası**,
 - uzak depo [geçmişi yeniden yazdığında](range-diff.md) bir **⟳ işareti**.
 
+Her satır ne olduğunu gösteren bir simgeyle başlar: dalda dal simgesi,
+etikette etiket simgesi, ad alanı başlığında klasör — böylece `feature` asla
+`feature` adlı bir dal gibi okunmaz.
+
 Adında `/` bulunan dallar otomatik olarak katlanabilir klasörlere toplanır.
 Bir önek her zaman klasördür, altında tek bir dal olsa bile: `refactor/v2`,
 içinde `v2` bulunan bir `refactor` klasörüdür; böylece ikinci bir `refactor/*`

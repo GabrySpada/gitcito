@@ -26,6 +26,9 @@ keywords: branch 分支 branches create 创建 checkout 检出 rename 重命名 
 - 一次[冲突雷达](conflict-radar.md)扫描之后的**风险圆点**，
 - 当远程[重写过历史](range-diff.md)时的 **⟳ 标记**。
 
+每一行都以表明其身份的图标开头：分支用分支图标，标签用标签图标，命名空间标题用
+文件夹图标——这样 `feature` 就不会被误读成一个名为 `feature` 的分支。
+
 名字里带 `/` 的分支会自动折叠成可收起的文件夹。
 前缀始终是文件夹，哪怕底下只有一个分支：`refactor/v2` 是装着 `v2` 的 `refactor`
 文件夹，于是第二个 `refactor/*` 出现那天，列表不会重新排布。只有一个子项的连续文件夹

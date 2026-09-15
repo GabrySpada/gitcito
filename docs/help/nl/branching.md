@@ -31,6 +31,10 @@ tonen:
 - een **risicostip** na een scan van de [conflictradar](conflict-radar.md),
 - een **⟳-markering** wanneer de remote [de geschiedenis herschreef](range-diff.md).
 
+Elke rij begint met een pictogram van wat het is: een branch-pictogram bij een
+branch, een tag-pictogram bij een tag, een map bij een namespace-kop — zo leest
+`feature` nooit als een branch met de naam `feature`.
+
 Branches met een `/` in hun naam vouwen zich automatisch in inklapbare mappen.
 Een prefix is altijd een map, ook als er maar één branch onder hangt:
 `refactor/v2` is een map `refactor` met `v2` erin, zodat de lijst niet

@@ -31,16 +31,19 @@ mostrano:
 - un **punto di rischio** dopo una scansione del [radar dei conflitti](conflict-radar.md),
 - un **marcatore ⟳** quando il remote ha [riscritto la storia](range-diff.md).
 
-I branch con `/` nel nome si raggruppano automaticamente in cartelle
-Un prefisso è sempre una cartella, anche quando sotto c'è un solo branch:
-`refactor/v2` è una cartella `refactor` che contiene `v2`, così l'elenco non si
-riorganizza il giorno in cui compare un secondo `refactor/*`. Una catena di
-cartelle con un unico figlio si riduce a una sola intestazione, quindi
-`dependabot/npm_and_yarn/axios-1.7.9` costa un livello invece di tre. Togli la
-spunta a **Raggruppa le ref per prefisso** nelle Impostazioni per un elenco
-piatto.
+Ogni riga inizia con l'icona di ciò che rappresenta: un'icona di branch su un
+branch, un'icona di tag su un tag, una cartella sull'intestazione di un
+namespace — così `feature` non si legge mai come un branch chiamato `feature`.
 
-richiudibili.
+I branch con `/` nel nome si raggruppano automaticamente in cartelle
+richiudibili. Un prefisso è sempre una cartella, anche quando sotto c'è un solo
+branch: `refactor/v2` è una cartella `refactor` che contiene `v2`, così
+l'elenco non si riorganizza il giorno in cui compare un secondo `refactor/*`.
+Una catena di cartelle con un unico figlio si riduce a una sola intestazione,
+quindi `dependabot/npm_and_yarn/axios-1.7.9` costa un livello invece di tre.
+Togli la spunta a **Raggruppa le ref per prefisso** nelle Impostazioni per un
+elenco piatto.
+
 Un clic destro sull'intestazione di una cartella agisce sull'intero gruppo:
 *Elimina tutti i branch sotto `feature` (4 branch)* rimuove tutto il contenuto
 dopo un'unica conferma che elenca esattamente quali branch se ne vanno — il

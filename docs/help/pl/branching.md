@@ -33,6 +33,10 @@ pokazują:
 - **znacznik ⟳**, gdy zdalne repozytorium
   [przepisało historię](range-diff.md).
 
+Każdy wiersz zaczyna się od ikony tego, czym jest: ikona gałęzi przy gałęzi,
+ikona tagu przy tagu, folder przy nagłówku przestrzeni nazw — dzięki temu
+`feature` nigdy nie wygląda jak gałąź o nazwie `feature`.
+
 Gałęzie z `/` w nazwie same zwijają się w składane katalogi.
 Prefiks zawsze jest katalogiem, nawet gdy mieszka pod nim jedna gałąź:
 `refactor/v2` to katalog `refactor` z `v2` w środku, więc lista nie przestawia
