@@ -1663,8 +1663,8 @@ export const he: Dict = {
   'toolbar.settings': 'הגדרות',
   'toolbar.more': 'עוד',
   'toolbar.moreTitle': 'פעולות נוספות',
-  'toolbar.switchRepo': 'החלפת מאגר',
-  'toolbar.switchBranch': 'החלפת ענף',
+  'toolbar.switchRepoNamed': 'החלפת מאגר — {name}',
+  'toolbar.switchBranchNamed': 'החלפת ענף — {branch}',
   'toolbar.undoTitle': 'ביטול הפעולה האחרונה',
   'toolbar.branchTitle': 'יצירת ענף ב־HEAD',
   'toolbar.popTitle': 'שליפת הסטאש האחרון',
@@ -1676,6 +1676,7 @@ export const he: Dict = {
   'toolbar.terminalTitle': 'הצגה או הסתרה של הטרמינל',
   'toolbar.sidebarTitle': 'הצגה או הסתרה של סרגל הצד',
   'toolbar.searchPlaceholder': 'חיפוש קומיטים, מחברים, SHA…',
+  'toolbar.searchTitle': 'חיפוש קומיטים',
 
   // Pull / push menus
   'pull.default': 'משיכה (ברירת מחדל)',

@@ -40,4 +40,6 @@ Pole wyszukiwania nad grafem filtruje commity po wiadomości, autorze, SHA albo
 statusie wdrożenia. Po „tylko commity, które dotknęły tego pliku" sięgnij po
 filtr ścieżki — zobacz [graf commitów](graph.md).
 
+W wąskim oknie pole zwija się do lupy; kliknięcie otwiera je ponownie, a zostaje otwarte tak długo, jak długo działa filtr.
+
 **Zobacz też:** [Graf commitów](graph.md) · [Klawiatura i skróty](keyboard.md)

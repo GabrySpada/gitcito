@@ -45,7 +45,11 @@ Dos caminos, y llevan a los mismos sitios:
 
 ![El menú Herramientas: primero las herramientas frecuentes, el resto agrupado](../../screenshots/tools-menu.webp)
 
-Cuando la ventana se estrecha, la barra de acciones deja de competir por el espacio: los botones que ya no caben se pliegan en un menú **Más** al final, en el mismo orden y conservando sus submenús. Ensancha la ventana y vuelven a salir.
+La barra de acciones mantiene sus botones en el centro de la **ventana**, no en el hueco entre el nombre del repositorio y la caja de búsqueda: así siguen en el mismo sitio aunque pases entre repositorios con nombres de longitudes muy distintas. Los nombres de repositorio y de rama se muestran completos; el que sea tan largo que amenace el resto de la barra se recorta con puntos suspensivos, con el nombre entero en el tooltip del botón.
+
+El espacio se mide desde ese centro hacia fuera, y eso es lo que cuesta mantenerlo: cuando la ventana se estrecha, o el nombre del repositorio es muy largo, la barra cede espacio en vez de desplazarse. Lo primero que cede es el campo de búsqueda, que cambia su caja por una lupa: púlsala para buscar, y se queda abierta mientras haya un filtro activo. Después, los botones que ya no caben se pliegan en un menú **Más** al final de la barra, en el mismo orden y conservando sus submenús. Ensancha la ventana y vuelven a salir.
+
+![La barra de acciones en una ventana estrecha: la búsqueda plegada en una lupa, la cola de la barra en «Más» y los botones todavía centrados](../../screenshots/toolbar-narrow.webp)
 
 Todo lo que se alcanza por un camino se alcanza por el otro, así que no hay
 nada que solo encuentren los usuarios avanzados.

@@ -1659,8 +1659,8 @@ export const en = {
   'toolbar.settings': 'Settings',
   'toolbar.more': 'More',
   'toolbar.moreTitle': 'More actions',
-  'toolbar.switchRepo': 'Switch repository',
-  'toolbar.switchBranch': 'Switch branch',
+  'toolbar.switchRepoNamed': 'Switch repository — {name}',
+  'toolbar.switchBranchNamed': 'Switch branch — {branch}',
   'toolbar.undoTitle': 'Undo last operation',
   'toolbar.branchTitle': 'Create branch at HEAD',
   'toolbar.popTitle': 'Pop latest stash',
@@ -1672,6 +1672,7 @@ export const en = {
   'toolbar.terminalTitle': 'Toggle terminal',
   'toolbar.sidebarTitle': 'Toggle sidebar',
   'toolbar.searchPlaceholder': 'Search commits, authors, SHAs…',
+  'toolbar.searchTitle': 'Search commits',
 
   // Pull / push menus
   'pull.default': 'Pull (default)',

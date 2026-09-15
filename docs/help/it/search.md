@@ -41,4 +41,6 @@ La casella di ricerca sopra il grafo filtra i commit per messaggio, autore, SHA 
 stato di deploy. Per "solo i commit che hanno toccato questo file", usa il filtro
 per percorso — vedi [il grafo dei commit](graph.md).
 
+In una finestra stretta la casella si ripiega in una lente; un clic la riapre, e resta aperta finché c’è un filtro attivo.
+
 **Vedi anche:** [Il grafo dei commit](graph.md) · [Tastiera e scorciatoie](keyboard.md)

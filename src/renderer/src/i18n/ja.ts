@@ -1639,8 +1639,8 @@ export const ja: Dict = {
   'toolbar.settings': '設定',
   'toolbar.more': 'その他',
   'toolbar.moreTitle': 'その他の操作',
-  'toolbar.switchRepo': 'リポジトリを切り替え',
-  'toolbar.switchBranch': 'ブランチを切り替え',
+  'toolbar.switchRepoNamed': 'リポジトリを切り替え：{name}',
+  'toolbar.switchBranchNamed': 'ブランチを切り替え：{branch}',
   'toolbar.undoTitle': '直前の操作を取り消す',
   'toolbar.branchTitle': 'HEAD にブランチを作る',
   'toolbar.popTitle': '最新のスタッシュをポップする',
@@ -1652,6 +1652,7 @@ export const ja: Dict = {
   'toolbar.terminalTitle': 'ターミナルの表示を切り替え',
   'toolbar.sidebarTitle': 'サイドバーの表示を切り替え',
   'toolbar.searchPlaceholder': 'コミット、作者、SHA を検索…',
+  'toolbar.searchTitle': 'コミットを検索',
 
   'pull.default': 'プル（既定）',
   'pull.ffOnly': 'プル — fast-forward のみ',

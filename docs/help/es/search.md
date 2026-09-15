@@ -40,4 +40,6 @@ La caja de búsqueda sobre el grafo filtra commits por mensaje, autoría, SHA o
 estado de despliegue. Para «solo los commits que tocaron este archivo», usa el
 filtro por ruta — mira [el grafo de commits](graph.md).
 
+En una ventana estrecha la caja se pliega en una lupa; un clic la vuelve a abrir, y se queda abierta mientras haya un filtro activo.
+
 **Ver también:** [El grafo de commits](graph.md) · [Teclado y atajos](keyboard.md)

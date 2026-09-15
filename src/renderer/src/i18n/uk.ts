@@ -1663,8 +1663,8 @@ export const uk: Dict = {
   'toolbar.settings': 'Налаштування',
   'toolbar.more': 'Ще',
   'toolbar.moreTitle': 'Інші дії',
-  'toolbar.switchRepo': 'Перемкнути репозиторій',
-  'toolbar.switchBranch': 'Перемкнути гілку',
+  'toolbar.switchRepoNamed': 'Перемкнути репозиторій — {name}',
+  'toolbar.switchBranchNamed': 'Перемкнути гілку — {branch}',
   'toolbar.undoTitle': 'Скасувати останню операцію',
   'toolbar.branchTitle': 'Створити гілку на HEAD',
   'toolbar.popTitle': 'Витягти останній стеш',
@@ -1676,6 +1676,7 @@ export const uk: Dict = {
   'toolbar.terminalTitle': 'Показати/сховати термінал',
   'toolbar.sidebarTitle': 'Показати/сховати бічну панель',
   'toolbar.searchPlaceholder': 'Шукати коміти, авторів, SHA…',
+  'toolbar.searchTitle': 'Пошук комітів',
 
   // Меню pull / push
   'pull.default': 'Пул (типово)',

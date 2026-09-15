@@ -44,7 +44,11 @@ Dwie drogi, prowadzące w te same miejsca:
 
 ![Menu Narzędzia: najpierw te używane najczęściej, reszta pogrupowana](../../screenshots/tools-menu.webp)
 
-Gdy okno się zwęża, pasek akcji przestaje walczyć o miejsce: przyciski, które już się nie mieszczą, zwijają się do menu **Więcej** na jego końcu — w kolejności paska i z własnymi podmenu. Poszerz okno, a wrócą na swoje miejsce.
+Pasek akcji trzyma przyciski na środku **okna**, a nie w przestrzeni między nazwą repozytorium a polem wyszukiwania — zostają więc w tym samym miejscu, gdy przechodzisz między repozytoriami o zupełnie różnej długości nazw. Nazwy repozytorium i brancha widać w całości; ta, która jest na tyle długa, że zagraża reszcie paska, kończy się wielokropkiem, a w podpowiedzi przycisku zostaje cała.
+
+Miejsce mierzy się od tego środka na zewnątrz i to jest cena jego utrzymania: gdy okno się zwęża albo nazwa repozytorium jest bardzo długa, pasek oddaje miejsce, zamiast się przesuwać. Pierwsze ustępuje pole wyszukiwania, wymieniając swoje okienko na lupę — kliknij ją, by szukać; zostaje otwarte tak długo, jak długo działa filtr. Potem przyciski, które już się nie mieszczą, zwijają się do menu **Więcej** na końcu paska — w kolejności paska i z własnymi podmenu. Poszerz okno, a wrócą na swoje miejsce.
+
+![Pasek akcji w wąskim oknie: wyszukiwanie zwinięte do lupy, koniec paska w menu „Więcej“, a przyciski nadal wyśrodkowane](../../screenshots/toolbar-narrow.webp)
 
 Wszystko, co da się osiągnąć jedną drogą, da się osiągnąć i drugą — nie ma więc
 niczego, co znajdą wyłącznie użytkownicy zaawansowani.

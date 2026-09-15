@@ -997,9 +997,14 @@ textarea:focus {
 /* ─── Toolbar ───────────────────────────────────────────────────────────── */
 
 .toolbar {
-  display: flex;
+  /* All three groups share one grid cell. That is what lets the action block sit
+     on the bar's own midpoint instead of in the gap between the two rails, so it
+     stops sliding as the repository name changes length. A grid overlay rather
+     than an absolutely positioned centre, because the row still has to take its
+     height from the tallest group — and the action buttons are the tallest. */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: 6px;
   padding: 7px 12px;
   background: var(--bg-2);
   border-bottom: 1px solid var(--border-soft);
@@ -1017,9 +1022,13 @@ textarea:focus {
 }
 
 .toolbar-group.right {
+  grid-area: 1 / 1;
+  justify-self: end;
   gap: 4px;
-  flex: 0 1 auto;
   min-width: 0;
+  /* A ceiling so the rail can never swallow the bar; past it the search field
+     gives ground, and below the collapse breakpoint it becomes an icon. */
+  max-width: 52%;
 }
 
 .toolbar-sep {
@@ -1141,15 +1150,16 @@ textarea:focus {
 }
 
 .toolbar-center {
-  flex: 1 1 auto;
+  grid-area: 1 / 1;
+  justify-self: center;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 2px;
-  min-width: 0;
   /* The bar folds its tail into a "More" dropdown rather than wrapping, so
-     anything still mid-measurement is clipped instead of running under the
-     search box. Children never shrink — a squeezed button would measure wrong. */
+     anything still mid-measurement is clipped instead of running over the rails
+     it now shares a cell with. The clip width is set inline, from the room the
+     two rails leave either side of the midpoint. Children never shrink — a
+     squeezed button would measure wrong. */
   overflow: hidden;
 }
 .toolbar-center > * {
@@ -1161,12 +1171,16 @@ textarea:focus {
 
 /* Repository ▸ branch switcher on the left. */
 .toolbar-left {
+  grid-area: 1 / 1;
+  justify-self: start;
   display: flex;
   align-items: center;
   gap: 4px;
-  flex: 0 1 auto;
   min-width: 0;
-  max-width: 320px;
+  /* Names render in full at any ordinary length. The share of the bar is a
+     backstop for the pathological ones, which ellipsise with the whole name in
+     the tooltip rather than eating the row. */
+  max-width: 40%;
   overflow: hidden;
 }
 .repo-pill {
@@ -1204,7 +1218,6 @@ textarea:focus {
   gap: 4px;
   font-size: 13px;
   font-weight: 600;
-  max-width: 130px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1348,10 +1361,25 @@ textarea:focus {
 .graph-search input {
   border: none;
   background: transparent;
-  width: 190px;
+  flex: 1 1 190px;
   min-width: 0;
   padding: 0;
   box-shadow: none !important;
+}
+
+/* Opened from the collapsed icon on a narrow bar. It floats over the rail rather
+   than widening it, so reaching for the field cannot reflow the bar underneath
+   the cursor. */
+.graph-search.floating {
+  position: absolute;
+  inset-inline-end: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 240px;
+  max-width: calc(100% - 24px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.32);
 }
 
 /* ─── Sidebar ───────────────────────────────────────────────────────────── */

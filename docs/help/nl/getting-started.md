@@ -44,7 +44,11 @@ Twee routes, en ze leiden naar dezelfde plekken:
 
 ![Het Tools-menu: de veelgebruikte tools eerst, de rest gegroepeerd](../../screenshots/tools-menu.webp)
 
-Wordt het venster smal, dan vecht de actiebalk niet langer om ruimte: knoppen die niet meer passen vouwen samen in een menu **Meer** aan het eind, in de volgorde van de balk en met hun submenu’s. Maak het venster breder en ze komen terug.
+De actiebalk houdt zijn knoppen in het midden van het **venster**, niet in de ruimte tussen de repositorynaam en het zoekvak — ze blijven dus op dezelfde plek terwijl je wisselt tussen repositories met namen van heel verschillende lengte. Repository- en branchnamen staan er volledig; een naam die zo lang wordt dat hij de rest van de balk bedreigt, eindigt in puntjes, met de hele naam in de tooltip van de knop.
+
+De ruimte wordt vanaf dat midden naar buiten gemeten, en dat is wat het kost om het vast te houden: wordt het venster smal, of de repositorynaam heel lang, dan geeft de balk ruimte af in plaats van te verschuiven. Het zoekveld geeft als eerste toe en ruilt zijn vak voor een loep — klik erop om te zoeken; hij blijft open zolang er een filter actief is. Daarna vouwen de knoppen die niet meer passen samen in een menu **Meer** aan het eind van de balk, in de volgorde van de balk en met hun submenu’s. Maak het venster breder en ze komen terug.
+
+![De actiebalk in een smal venster: de zoekfunctie ingeklapt tot een loep, het eind van de balk in ‘Meer’, en de knoppen nog steeds gecentreerd](../../screenshots/toolbar-narrow.webp)
 
 Alles wat via de een bereikbaar is, is via de ander bereikbaar, dus er is niets
 dat alleen ingewijden kunnen vinden.

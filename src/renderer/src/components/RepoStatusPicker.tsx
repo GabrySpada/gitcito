@@ -6,7 +6,7 @@ import { useSettingsStore } from '../stores/settings'
 import { useUIStore } from '../stores/ui'
 import { openRepoSwitcherEntries, type RepoSwitcherEntry } from '../lib/repositoryMenu'
 import { repoDisplayName } from '../lib/repoAlias'
-import { useT } from '../i18n'
+import { interp, useT } from '../i18n'
 import { confirmRemoveRepoFromGroup, repositoryMenuItems, requestCloseTab } from '../lib/repositoryMenuItems'
 
 interface PickerPosition {
@@ -95,7 +95,7 @@ export function RepoStatusPicker({ repo }: { repo: RepoData }): React.JSX.Elemen
       <button
         ref={triggerRef}
         className="repo-pill"
-        title={t('toolbar.switchRepo')}
+        title={interp(t('toolbar.switchRepoNamed'), { name: display })}
         aria-haspopup="listbox"
         aria-expanded={position !== null}
         onClick={toggle}

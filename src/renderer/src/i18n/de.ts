@@ -1663,8 +1663,8 @@ export const de: Dict = {
   'toolbar.settings': 'Einstellungen',
   'toolbar.more': 'Mehr',
   'toolbar.moreTitle': 'Weitere Aktionen',
-  'toolbar.switchRepo': 'Repository wechseln',
-  'toolbar.switchBranch': 'Branch wechseln',
+  'toolbar.switchRepoNamed': 'Repository wechseln — {name}',
+  'toolbar.switchBranchNamed': 'Branch wechseln — {branch}',
   'toolbar.undoTitle': 'Letzte Operation rückgängig machen',
   'toolbar.branchTitle': 'Branch bei HEAD erstellen',
   'toolbar.popTitle': 'Neuesten Stash poppen',
@@ -1676,6 +1676,7 @@ export const de: Dict = {
   'toolbar.terminalTitle': 'Terminal umschalten',
   'toolbar.sidebarTitle': 'Seitenleiste umschalten',
   'toolbar.searchPlaceholder': 'Commits, Autor:innen, SHAs suchen…',
+  'toolbar.searchTitle': 'Commits suchen',
 
   // Pull / push menus
   'pull.default': 'Pull (Standard)',

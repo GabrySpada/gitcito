@@ -31,6 +31,7 @@ import { isBuildNoise, ignoreLineFor } from '../src/renderer/src/lib/buildNoise'
 import { buildPrefixTree, collectLeaves, foldNode, leafCount, type TreeNode } from '../src/renderer/src/lib/branchTree'
 import { resolveUpdateOffer } from '../src/renderer/src/lib/updateOffer'
 import { worktreeForBranch, worktreeTabName } from '../src/renderer/src/lib/worktrees'
+import { centeredRoom, searchCollapsed, visibleCount, SEARCH_COLLAPSE_AT } from '../src/renderer/src/lib/toolbarFit'
 import { focusedHashes, focusedStashes, defaultBranchName } from '../src/renderer/src/lib/graphFocus'
 import {
   buildSections,
@@ -7040,5 +7041,73 @@ describe('branchTree — folding refs into sidebar folders', () => {
   it('counts every branch under a folder, however deep', () => {
     const root = tree('feature/login', 'feature/payments/stripe', 'feature/payments/paypal')
     expect(leafCount(child(root, 'feature'))).toBe(3)
+  })
+})
+
+// ── Action bar layout ───────────────────────────────────────────────────────
+// The bar centres its buttons on the window's midpoint, not between its rails,
+// so the block must not move when the repository name's length does.
+describe('toolbarFit', () => {
+  const bar = { left: 0, right: 1000 }
+
+  it('measures room symmetrically, from the tighter side', () => {
+    // Left rail 300 wide, right rail 100: the block may only use 2×(500−300).
+    expect(centeredRoom(bar, { left: 0, right: 300 }, { left: 900, right: 1000 }, 0)).toBe(400)
+  })
+
+  it('does not move the block when one rail grows', () => {
+    const narrow = centeredRoom(bar, { left: 0, right: 200 }, { left: 800, right: 1000 }, 0)
+    const wide = centeredRoom(bar, { left: 0, right: 320 }, { left: 800, right: 1000 }, 0)
+    // Both stay centred on 500; only the room shrinks.
+    expect(narrow).toBe(600)
+    expect(wide).toBe(360)
+  })
+
+  it('takes the gutter off each side', () => {
+    expect(centeredRoom(bar, { left: 0, right: 300 }, { left: 700, right: 1000 }, 10)).toBe(380)
+  })
+
+  it('never reports negative room when a rail crosses the midpoint', () => {
+    expect(centeredRoom(bar, { left: 0, right: 700 }, { left: 800, right: 1000 }, 0)).toBe(0)
+  })
+
+  it('keeps every item when they all fit', () => {
+    const items = [{ width: 50 }, { width: 50 }, { width: 50 }]
+    expect(visibleCount(items, 300, 2, 64)).toBe(3)
+  })
+
+  it('folds the tail once the row overflows, paying for More first', () => {
+    const items = [{ width: 50 }, { width: 50 }, { width: 50 }, { width: 50 }]
+    // room 180, More costs 64 → 116 left, two items at 52 each fit, a third does not.
+    expect(visibleCount(items, 180, 2, 64)).toBe(2)
+  })
+
+  it('does not leave a separator dangling at the fold', () => {
+    const items = [{ width: 50 }, { width: 1, sep: true }, { width: 50 }, { width: 50 }]
+    // Two slots' worth of room would end on the separator; it folds too.
+    expect(visibleCount(items, 121, 2, 64)).toBe(1)
+  })
+
+  it('folds everything when there is no room at all', () => {
+    expect(visibleCount([{ width: 50 }], 0, 2, 64)).toBe(0)
+  })
+
+  it('collapses the search only on a narrow bar', () => {
+    expect(searchCollapsed(SEARCH_COLLAPSE_AT - 1, '', false)).toBe(true)
+    expect(searchCollapsed(SEARCH_COLLAPSE_AT, '', false)).toBe(false)
+  })
+
+  it('keeps the field open while a filter is in effect', () => {
+    expect(searchCollapsed(400, 'fix:', false)).toBe(false)
+    // Whitespace is not a filter.
+    expect(searchCollapsed(400, '  ', false)).toBe(true)
+  })
+
+  it('keeps the field open once the user has opened it', () => {
+    expect(searchCollapsed(400, '', true)).toBe(false)
+  })
+
+  it('does not collapse before the bar has been measured', () => {
+    expect(searchCollapsed(0, '', false)).toBe(false)
   })
 })

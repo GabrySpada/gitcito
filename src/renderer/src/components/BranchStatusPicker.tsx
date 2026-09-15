@@ -206,7 +206,9 @@ export function BranchStatusPicker({ repo }: { repo: RepoData }): React.JSX.Elem
       <button
         ref={triggerRef}
         className="repo-pill"
-        title={t('toolbar.switchBranch')}
+        title={interp(t('toolbar.switchBranchNamed'), {
+          branch: repo.branches.current || t('toolbar.noBranch')
+        })}
         aria-haspopup="menu"
         aria-expanded={position !== null}
         onClick={toggle}

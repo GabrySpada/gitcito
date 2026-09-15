@@ -224,14 +224,27 @@ async function launch(shot, theme) {
   const page = await app.firstWindow()
 
   // Deterministic content size + wait for the bridge and the active repo to load.
+  // `shot.size` is for the few shots whose subject IS the narrow window — the
+  // action bar folding itself down, say, which 1440px never shows.
   await app.evaluate(
     ({ BrowserWindow }, { w, h }) => {
       const win = BrowserWindow.getAllWindows()[0]
       win.setContentSize(w, h)
     },
-    { w: WIDTH, h: HEIGHT }
+    { w: shot.size?.w ?? WIDTH, h: shot.size?.h ?? HEIGHT }
   )
   await page.waitForFunction(() => window.__shot?.ready === true, { timeout: 20000 })
+  // Again, and unmaximized first: the app maximizes itself when it reveals the
+  // first frame (showMainWindow), which lands after the call above and would
+  // otherwise leave every shot at whatever size this display happens to be.
+  await app.evaluate(
+    ({ BrowserWindow }, { w, h }) => {
+      const win = BrowserWindow.getAllWindows()[0]
+      if (win.isMaximized()) win.unmaximize()
+      win.setContentSize(w, h)
+    },
+    { w: shot.size?.w ?? WIDTH, h: shot.size?.h ?? HEIGHT }
+  )
   const activePath = shot.groupLanding ? null : repoPaths[shot.repos[0]]
   if (activePath) {
     await page.evaluate((p) => window.__shot.waitForRepo(p), activePath).catch(() => {})

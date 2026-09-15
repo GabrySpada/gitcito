@@ -97,6 +97,8 @@ async function seedTodos(page, repoPath) {
  *   dialog, which Playwright cannot dismiss. Everything else runs declined.
  * @property {Record<string,string>} [env]  Extra env for the launched app. For
  *   redirecting something machine-specific (e.g. GITCITO_SSH_DIR) at a fake.
+ * @property {{w: number, h: number}} [size]  Content size, default 1440×900. Only
+ *   for a shot whose subject is the narrow window itself — a bar folding down.
  * @property {string} [clipTo]  CSS selector to crop the shot to. For a detail too
  *   small to read in a 1440px window (a title-bar control, a single badge).
  * @property {number} [clipPad]  Padding around `clipTo`, in px (default 12).
@@ -119,6 +121,22 @@ export const shots = [
     out: 'graph',
     repos: ['octopus-merge'],
     themes: ['light', 'dark']
+  },
+  {
+    // The action bar under pressure. A long repository name is the point of the
+    // shot: it is what used to drag the buttons off centre, and here the block is
+    // still on the window's midpoint while the search has folded to a magnifier
+    // and the tail of the bar into "More". Cropped to the bar because a 820px
+    // window is nine parts graph and one part subject.
+    out: 'toolbar-narrow',
+    repos: ['deep-history-monorepo'],
+    themes: ['dark'],
+    // 1120 rather than something narrower: the window itself refuses to go below
+    // 1100 (minWidth in main/index.ts), and Electron ignores a smaller request
+    // outright rather than clamping it — the shot would come out maximized.
+    size: { w: 1120, h: 700 },
+    clipTo: '.toolbar',
+    clipPad: 0
   },
   {
     // The change summary above a commit's file list. The scenario's showcase

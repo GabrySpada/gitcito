@@ -1664,8 +1664,8 @@ export const nl: Dict = {
   'toolbar.settings': 'Instellingen',
   'toolbar.more': 'Meer',
   'toolbar.moreTitle': 'Meer acties',
-  'toolbar.switchRepo': 'Van repository wisselen',
-  'toolbar.switchBranch': 'Van branch wisselen',
+  'toolbar.switchRepoNamed': 'Van repository wisselen — {name}',
+  'toolbar.switchBranchNamed': 'Van branch wisselen — {branch}',
   'toolbar.undoTitle': 'Laatste bewerking ongedaan maken',
   'toolbar.branchTitle': 'Branch aanmaken bij HEAD',
   'toolbar.popTitle': 'Nieuwste stash poppen',
@@ -1677,6 +1677,7 @@ export const nl: Dict = {
   'toolbar.terminalTitle': 'Terminal in-/uitschakelen',
   'toolbar.sidebarTitle': 'Zijbalk in-/uitschakelen',
   'toolbar.searchPlaceholder': 'Zoek commits, auteurs, SHA’s…',
+  'toolbar.searchTitle': 'Commits zoeken',
 
   // Pull- / push-menu’s
   'pull.default': 'Pullen (standaard)',

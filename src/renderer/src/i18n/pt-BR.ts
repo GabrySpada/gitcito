@@ -1664,8 +1664,8 @@ export const ptBR: Dict = {
   'toolbar.settings': 'Configurações',
   'toolbar.more': 'Mais',
   'toolbar.moreTitle': 'Mais ações',
-  'toolbar.switchRepo': 'Trocar de repositório',
-  'toolbar.switchBranch': 'Trocar de branch',
+  'toolbar.switchRepoNamed': 'Trocar de repositório — {name}',
+  'toolbar.switchBranchNamed': 'Trocar de branch — {branch}',
   'toolbar.undoTitle': 'Desfazer a última operação',
   'toolbar.branchTitle': 'Criar uma branch no HEAD',
   'toolbar.popTitle': 'Dar pop no último stash',
@@ -1677,6 +1677,7 @@ export const ptBR: Dict = {
   'toolbar.terminalTitle': 'Alternar o terminal',
   'toolbar.sidebarTitle': 'Alternar a barra lateral',
   'toolbar.searchPlaceholder': 'Buscar commits, autores, SHAs…',
+  'toolbar.searchTitle': 'Buscar commits',
 
   // Menus de pull / push
   'pull.default': 'Pull (padrão)',
