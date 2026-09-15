@@ -43,7 +43,21 @@ Two routes, and they lead to the same places:
 
 ![The Tools menu: the frequent tools first, the rest grouped](../screenshots/tools-menu.webp)
 
-When the window gets narrow the action bar stops competing for space: the buttons that no longer fit fold into a **More** dropdown at its end, in bar order and with their own submenus intact. Widen the window and they come back out.
+The action bar keeps its buttons on the middle of the **window**, not in the gap
+between the repository name and the search box — so they stay under the same
+pixel as you move between repositories whose names are nothing like the same
+length. Repository and branch names show in full; one long enough to threaten
+the rest of the bar ellipsises, with the whole of it in the button's tooltip.
+
+Room is measured outwards from that midpoint, and that is what holding it costs:
+when the window gets narrow, or the repository name is very long, the bar gives
+ground rather than drifting. The search field trades its box for a magnifier
+first — click it to search, and it stays open for as long as a filter is in
+effect. Then the buttons that no longer fit fold into a **More** dropdown at the
+bar's end, in bar order and with their own submenus intact. Widen the window and
+they come back out.
+
+![The action bar on a narrow window: the search collapsed to a magnifier, the tail of the bar folded into More, and the buttons still centred](../screenshots/toolbar-narrow.webp)
 
 Anything reachable by one is reachable by the other, so there is nothing that
 only power users can find.

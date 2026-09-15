@@ -45,7 +45,11 @@ Deux chemins, et ils mènent aux mêmes endroits :
 
 ![Le menu Outils : les outils fréquents d'abord, le reste groupé](../../screenshots/tools-menu.webp)
 
-Quand la fenêtre se resserre, la barre d’actions cesse de se disputer la place : les boutons qui ne tiennent plus se replient dans un menu **Plus** à son extrémité, dans l’ordre de la barre et avec leurs sous-menus. Élargissez la fenêtre et ils ressortent.
+La barre d’actions garde ses boutons au milieu de la **fenêtre**, et non dans l’espace laissé entre le nom du dépôt et le champ de recherche : ils restent donc au même endroit quand vous passez d’un dépôt à l’autre, quelle que soit la longueur des noms. Les noms de dépôt et de branche s’affichent en entier ; celui qui devient long au point de menacer le reste de la barre est tronqué, le nom complet passant dans l’infobulle du bouton.
+
+La place est mesurée depuis ce milieu vers les bords, et c’est le prix à payer pour le tenir : quand la fenêtre se resserre, ou que le nom du dépôt est très long, la barre cède du terrain plutôt que de glisser. Le champ de recherche cède le premier et échange sa boîte contre une loupe — cliquez dessus pour chercher, elle reste ouverte tant qu’un filtre est actif. Ensuite, les boutons qui ne tiennent plus se replient dans un menu **Plus** à l’extrémité de la barre, dans l’ordre de la barre et avec leurs sous-menus. Élargissez la fenêtre et ils ressortent.
+
+![La barre d’actions dans une fenêtre étroite : la recherche repliée en une loupe, la fin de la barre dans « Plus » et les boutons toujours centrés](../../screenshots/toolbar-narrow.webp)
 
 Tout ce qui est atteignable par l'un l'est par l'autre : il n'y a donc rien que
 seuls les utilisateurs avancés puissent trouver.

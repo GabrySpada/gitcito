@@ -44,7 +44,11 @@ hiçbir şey yazılmaz.
 
 ![Araçlar menüsü: önce sık kullanılan araçlar, gerisi gruplanmış](../../screenshots/tools-menu.webp)
 
-Pencere daraldığında eylem çubuğu yer için yarışmayı bırakır: artık sığmayan düğmeler, çubuktaki sırayla ve kendi alt menüleriyle birlikte sonundaki **Daha** menüsüne katlanır. Pencereyi genişletin, geri çıkarlar.
+Eylem çubuğu düğmelerini **pencerenin** ortasında tutar; depo adıyla arama kutusu arasında kalan boşluğun ortasında değil. Böylece adları hiç de aynı uzunlukta olmayan depolar arasında gezinirken düğmeler aynı yerde kalır. Depo ve dal adları tam olarak görünür; çubuğun geri kalanını tehdit edecek kadar uzayan ad üç noktayla kısaltılır, tamamı da düğmenin ipucunda durur.
+
+Yer, o orta noktadan dışa doğru ölçülür; orayı korumanın bedeli de bu: pencere daraldığında ya da depo adı çok uzun olduğunda çubuk kaymak yerine yer verir. İlk yeri arama alanı verir ve kutusunu bir büyütece bırakır — aramak için tıklayın; bir filtre etkin olduğu sürece açık kalır. Ardından artık sığmayan düğmeler, çubuktaki sırayla ve kendi alt menüleriyle birlikte çubuğun sonundaki **Daha** menüsüne katlanır. Pencereyi genişletin, geri çıkarlar.
+
+![Dar bir pencerede eylem çubuğu: arama bir büyütece katlanmış, çubuğun sonu “Daha” menüsünde ve düğmeler hâlâ ortada](../../screenshots/toolbar-narrow.webp)
 
 Birinden ulaşılabilen her şeye diğerinden de ulaşılır; yani yalnızca uzman
 kullanıcıların bulabildiği hiçbir şey yok.

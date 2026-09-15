@@ -1657,8 +1657,8 @@ export const es: Dict = {
   'toolbar.settings': 'Ajustes',
   'toolbar.more': 'Más',
   'toolbar.moreTitle': 'Más acciones',
-  'toolbar.switchRepo': 'Cambiar repositorio',
-  'toolbar.switchBranch': 'Cambiar rama',
+  'toolbar.switchRepoNamed': 'Cambiar repositorio — {name}',
+  'toolbar.switchBranchNamed': 'Cambiar rama — {branch}',
   'toolbar.undoTitle': 'Deshacer última operación',
   'toolbar.branchTitle': 'Crear rama en HEAD',
   'toolbar.popTitle': 'Sacar el último stash',
@@ -1670,6 +1670,7 @@ export const es: Dict = {
   'toolbar.terminalTitle': 'Alternar terminal',
   'toolbar.sidebarTitle': 'Alternar barra lateral',
   'toolbar.searchPlaceholder': 'Buscar commits, autores, SHAs…',
+  'toolbar.searchTitle': 'Buscar commits',
 
   // Pull / push menus
   'pull.default': 'Pull (por defecto)',

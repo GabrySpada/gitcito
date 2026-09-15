@@ -40,4 +40,6 @@ The search box above the graph filters commits by message, author, SHA or
 deployment status. For "only commits that touched this file", use the path
 filter — see [the commit graph](graph.md).
 
+On a narrow window the box folds into a magnifier; a click opens it again, and it stays open for as long as a filter is in effect.
+
 **See also:** [The commit graph](graph.md) · [Keyboard & shortcuts](keyboard.md)

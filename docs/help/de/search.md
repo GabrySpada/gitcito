@@ -41,4 +41,6 @@ Das Suchfeld über dem Graph filtert Commits nach Nachricht, Autor, SHA oder
 Deployment-Status. Für „nur Commits, die diese Datei angefasst haben" nimmst du
 den Pfadfilter — siehe [Der Commit-Graph](graph.md).
 
+In einem schmalen Fenster klappt der Kasten zu einer Lupe ein; ein Klick öffnet ihn wieder, und er bleibt offen, solange ein Filter aktiv ist.
+
 **Siehe auch:** [Der Commit-Graph](graph.md) · [Tastatur & Shortcuts](keyboard.md)

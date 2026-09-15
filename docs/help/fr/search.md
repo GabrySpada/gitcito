@@ -42,4 +42,6 @@ SHA ou statut de déploiement. Pour « seulement les commits qui ont touché ce
 fichier », utilisez le filtre de chemin — voir [le graphe des
 commits](graph.md).
 
+Dans une fenêtre étroite, la boîte se replie en une loupe ; un clic la rouvre, et elle reste ouverte tant qu’un filtre est actif.
+
 **Voir aussi :** [Le graphe des commits](graph.md) · [Clavier et raccourcis](keyboard.md)

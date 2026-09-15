@@ -60,6 +60,7 @@ import { useRepoStore, repoActions, type RepoData } from '../stores/repo'
 import { useUIStore } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
 import { repoChatAvailable } from '../lib/repoChatUI'
+import { centeredRoom, searchCollapsed, visibleCount, SEARCH_COLLAPSE_AT } from '../lib/toolbarFit'
 import { useT, interp } from '../i18n'
 import { timeAgo, isStale } from '../lib/timeAgo'
 import { BranchStatusPicker } from './BranchStatusPicker'
@@ -93,6 +94,8 @@ type BarItem =
 /** Gap between bar items, and the width the "More" button needs for itself. */
 const ITEM_GAP = 2
 const MORE_WIDTH = 64
+/** Breathing room the centred block keeps between itself and each rail. */
+const CENTER_GUTTER = 10
 
 export function Toolbar({ repo }: { repo: RepoData }): React.JSX.Element {
   const t = useT()
@@ -442,23 +445,38 @@ export function Toolbar({ repo }: { repo: RepoData }): React.JSX.Element {
   // the tail of it folds into a "More" dropdown instead: every item's natural
   // width is measured while it is on the bar and cached, so a later resize can
   // decide how many still fit without rendering them first.
+  const barRef = useRef<HTMLDivElement>(null)
+  const leftRef = useRef<HTMLDivElement>(null)
+  const rightRef = useRef<HTMLDivElement>(null)
   const centerRef = useRef<HTMLDivElement>(null)
   const nodes = useRef(new Map<string, HTMLElement>())
   const widths = useRef(new Map<string, number>())
   const [shown, setShown] = useState(items.length)
-  const [avail, setAvail] = useState(0)
+  // Bumped only by a real size change. The layout pass reads the rects itself, so
+  // it must never write the value it depends on.
+  const [, setLayoutTick] = useState(0)
+  const [barWidth, setBarWidth] = useState(0)
 
   const measureRef = (id: string) => (node: HTMLElement | null): void => {
     if (node) nodes.current.set(id, node)
     else nodes.current.delete(id)
   }
 
+  // The centred block shares one grid cell with the two rails, so it has no box
+  // of its own to measure: its room is what the rails leave either side of the
+  // midpoint. Both rails move on their own — the left with the repository name,
+  // the right when the search collapses — so all three are observed.
   useEffect(() => {
-    const el = centerRef.current
-    if (!el) return
-    const ro = new ResizeObserver(() => setAvail(el.clientWidth))
-    ro.observe(el)
-    setAvail(el.clientWidth)
+    const bar = barRef.current
+    if (!bar) return
+    const ro = new ResizeObserver(() => {
+      setBarWidth(bar.clientWidth)
+      setLayoutTick((n) => n + 1)
+    })
+    ro.observe(bar)
+    if (leftRef.current) ro.observe(leftRef.current)
+    if (rightRef.current) ro.observe(rightRef.current)
+    setBarWidth(bar.clientWidth)
     return () => ro.disconnect()
   }, [])
 
@@ -472,24 +490,49 @@ export function Toolbar({ repo }: { repo: RepoData }): React.JSX.Element {
 
   useLayoutEffect(() => {
     nodes.current.forEach((node, id) => widths.current.set(id, node.offsetWidth))
-    const room = centerRef.current?.clientWidth ?? avail
-    if (!room) return
-    const width = (it: BarItem): number => (widths.current.get(it.id) ?? 0) + ITEM_GAP
-    const total = items.reduce((sum, it) => sum + width(it), 0)
-    let next = items.length
-    if (total > room) {
-      let used = MORE_WIDTH
-      next = 0
-      for (const it of items) {
-        if (used + width(it) > room) break
-        used += width(it)
-        next++
-      }
-      // A separator with nothing behind it is a stray line, not a divider.
-      while (next > 0 && items[next - 1].sep) next--
-    }
+    const bar = barRef.current
+    const left = leftRef.current
+    const right = rightRef.current
+    const centre = centerRef.current
+    if (!bar || !left || !right || !centre) return
+    const room = centeredRoom(
+      bar.getBoundingClientRect(),
+      left.getBoundingClientRect(),
+      right.getBoundingClientRect(),
+      CENTER_GUTTER
+    )
+    // A guard for the frame where every item is still on the bar being measured:
+    // without it the block would paint over the rails it shares a cell with. The
+    // floor keeps "More" itself visible when the rails leave nothing at all.
+    centre.style.maxWidth = `${Math.max(room, MORE_WIDTH)}px`
+    const next = visibleCount(
+      items.map((it) => ({ width: widths.current.get(it.id) ?? 0, sep: it.sep })),
+      room,
+      ITEM_GAP,
+      MORE_WIDTH
+    )
     if (next !== shown) setShown(next)
   })
+
+  // ── Search ──────────────────────────────────────────────────────────────
+  // On a narrow bar the 190px field is the single biggest thing standing between
+  // the action block and the room it needs, so it trades itself for an icon.
+  const searchRef = useRef<HTMLInputElement>(null)
+  const [searchExpanded, setSearchExpanded] = useState(false)
+  const searchAsIcon = searchCollapsed(barWidth, graphFilter, searchExpanded)
+  // Only a field the user opened from the icon floats; one kept open by an active
+  // filter sits in the rail, where it belongs.
+  const searchFloating = searchExpanded && barWidth > 0 && barWidth < SEARCH_COLLAPSE_AT
+
+  useEffect(() => {
+    if (searchExpanded) searchRef.current?.focus()
+  }, [searchExpanded])
+
+  // A field opened on a narrow bar has nothing left to hold open once the bar is
+  // wide enough to show it outright.
+  useEffect(() => {
+    if (barWidth >= SEARCH_COLLAPSE_AT) setSearchExpanded(false)
+  }, [barWidth])
 
   const hidden = items.slice(shown).filter((it): it is Extract<BarItem, { sep?: false }> => !it.sep)
 
@@ -585,8 +628,8 @@ export function Toolbar({ repo }: { repo: RepoData }): React.JSX.Element {
   )
 
   return (
-    <div className="toolbar">
-      <div className="toolbar-left">
+    <div className="toolbar" ref={barRef}>
+      <div className="toolbar-left" ref={leftRef}>
         {sidebarSide === 'left' && sidebarToggle}
         <RepoStatusPicker repo={repo} />
         <ChevronRight size={14} className="repo-pill-arrow" />
@@ -606,7 +649,7 @@ export function Toolbar({ repo }: { repo: RepoData }): React.JSX.Element {
         )}
       </div>
 
-      <div className="toolbar-group right">
+      <div className="toolbar-group right" ref={rightRef}>
         {busy && !busyOp && (
           <span
             className="busy-indicator"
@@ -617,14 +660,30 @@ export function Toolbar({ repo }: { repo: RepoData }): React.JSX.Element {
             <Loader2 size={13} className="spin" /> {busy}
           </span>
         )}
-        <div className="graph-search">
-          <Search size={13} />
-          <input
-            placeholder={t('toolbar.searchPlaceholder')}
-            value={graphFilter}
-            onChange={(e) => setGraphFilter(e.target.value)}
-          />
-        </div>
+        {searchAsIcon ? (
+          <button
+            className="tool-btn icon-only"
+            title={t('toolbar.searchTitle')}
+            aria-label={t('toolbar.searchTitle')}
+            onClick={() => setSearchExpanded(true)}
+          >
+            <Search size={16} />
+          </button>
+        ) : (
+          <div className={`graph-search${searchFloating ? ' floating' : ''}`}>
+            <Search size={13} />
+            <input
+              ref={searchRef}
+              placeholder={t('toolbar.searchPlaceholder')}
+              value={graphFilter}
+              onChange={(e) => setGraphFilter(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') setSearchExpanded(false)
+              }}
+              onBlur={() => setSearchExpanded(false)}
+            />
+          </div>
+        )}
         <button
           className="tool-btn icon-only"
           title={interp(t('toolbar.refreshTitle'), { time: since(repo.lastRefreshAt) })}

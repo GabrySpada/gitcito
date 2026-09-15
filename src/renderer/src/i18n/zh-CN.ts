@@ -1663,8 +1663,8 @@ export const zhCN: Dict = {
   'toolbar.settings': '设置',
   'toolbar.more': '更多',
   'toolbar.moreTitle': '更多操作',
-  'toolbar.switchRepo': '切换仓库',
-  'toolbar.switchBranch': '切换分支',
+  'toolbar.switchRepoNamed': '切换仓库：{name}',
+  'toolbar.switchBranchNamed': '切换分支：{branch}',
   'toolbar.undoTitle': '撤销上一次操作',
   'toolbar.branchTitle': '在 HEAD 处创建分支',
   'toolbar.popTitle': '弹出最近的贮藏',
@@ -1676,6 +1676,7 @@ export const zhCN: Dict = {
   'toolbar.terminalTitle': '切换终端',
   'toolbar.sidebarTitle': '切换侧边栏',
   'toolbar.searchPlaceholder': '搜索提交、作者、SHA…',
+  'toolbar.searchTitle': '搜索提交',
 
   // Pull / push menus
   'pull.default': '拉取（默认）',

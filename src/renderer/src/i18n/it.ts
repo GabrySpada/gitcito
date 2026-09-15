@@ -1640,8 +1640,8 @@ export const it: Dict = {
   'toolbar.settings': 'Impostazioni',
   'toolbar.more': 'Altro',
   'toolbar.moreTitle': 'Altre azioni',
-  'toolbar.switchRepo': 'Cambia repository',
-  'toolbar.switchBranch': 'Cambia branch',
+  'toolbar.switchRepoNamed': 'Cambia repository — {name}',
+  'toolbar.switchBranchNamed': 'Cambia branch — {branch}',
   'toolbar.undoTitle': 'Annulla l’ultima operazione',
   'toolbar.branchTitle': 'Crea un branch su HEAD',
   'toolbar.popTitle': 'Fai il pop dell’ultimo stash',
@@ -1653,6 +1653,7 @@ export const it: Dict = {
   'toolbar.terminalTitle': 'Mostra o nascondi il terminale',
   'toolbar.sidebarTitle': 'Mostra o nascondi la barra laterale',
   'toolbar.searchPlaceholder': 'Cerca commit, autori, SHA…',
+  'toolbar.searchTitle': 'Cerca commit',
 
   'pull.default': 'Pull (predefinito)',
   'pull.ffOnly': 'Pull — solo fast-forward',

@@ -41,4 +41,6 @@ Grafiğin üstündeki arama kutusu commit'leri mesaja, yazara, SHA'ya veya dağ�
 durumuna göre filtreler. "Yalnızca bu dosyaya dokunan commit'ler" için yol
 filtresini kullanın — bkz. [commit grafiği](graph.md).
 
+Dar bir pencerede kutu bir büyütece katlanır; bir tıklama onu yeniden açar ve bir filtre etkin olduğu sürece açık kalır.
+
 **Ayrıca bakınız:** [Commit grafiği](graph.md) · [Klavye ve kısayollar](keyboard.md)

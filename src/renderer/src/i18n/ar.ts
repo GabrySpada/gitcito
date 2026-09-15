@@ -1663,8 +1663,8 @@ export const ar: Dict = {
   'toolbar.settings': 'الإعدادات',
   'toolbar.more': 'المزيد',
   'toolbar.moreTitle': 'إجراءات أخرى',
-  'toolbar.switchRepo': 'تبديل المستودع',
-  'toolbar.switchBranch': 'تبديل الفرع',
+  'toolbar.switchRepoNamed': 'تبديل المستودع — {name}',
+  'toolbar.switchBranchNamed': 'تبديل الفرع — {branch}',
   'toolbar.undoTitle': 'التراجع عن آخر عملية',
   'toolbar.branchTitle': 'إنشاء فرع عند HEAD',
   'toolbar.popTitle': 'استرجاع أحدث مخبأ',
@@ -1676,6 +1676,7 @@ export const ar: Dict = {
   'toolbar.terminalTitle': 'إظهار أو إخفاء الطرفية',
   'toolbar.sidebarTitle': 'إظهار أو إخفاء الشريط الجانبي',
   'toolbar.searchPlaceholder': 'ابحث في الالتزامات والمؤلفين والمعرّفات…',
+  'toolbar.searchTitle': 'البحث في الالتزامات',
 
   // Pull / push menus
   'pull.default': 'سحب (افتراضي)',

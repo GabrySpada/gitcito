@@ -41,4 +41,6 @@ A caixa de busca acima do grafo filtra commits por mensagem, autor, SHA ou statu
 de deploy. Para "só os commits que tocaram neste arquivo", use o filtro por caminho
 — veja [o grafo de commits](graph.md).
 
+Em uma janela estreita a caixa se recolhe em uma lupa; um clique a reabre, e ela fica aberta enquanto houver um filtro ativo.
+
 **Veja também:** [O grafo de commits](graph.md) · [Teclado e atalhos](keyboard.md)

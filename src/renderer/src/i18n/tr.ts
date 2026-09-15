@@ -1639,8 +1639,8 @@ export const tr: Dict = {
   'toolbar.settings': 'Ayarlar',
   'toolbar.more': 'Daha',
   'toolbar.moreTitle': 'Daha fazla eylem',
-  'toolbar.switchRepo': 'Depo değiştir',
-  'toolbar.switchBranch': 'Dal değiştir',
+  'toolbar.switchRepoNamed': 'Depo değiştir — {name}',
+  'toolbar.switchBranchNamed': 'Dal değiştir — {branch}',
   'toolbar.undoTitle': 'Son işlemi geri al',
   'toolbar.branchTitle': 'HEAD üzerinde dal oluştur',
   'toolbar.popTitle': 'En son stash’i pop’la',
@@ -1652,6 +1652,7 @@ export const tr: Dict = {
   'toolbar.terminalTitle': 'Terminali aç/kapat',
   'toolbar.sidebarTitle': 'Kenar çubuğunu aç/kapat',
   'toolbar.searchPlaceholder': 'Commit, yazar, SHA ara…',
+  'toolbar.searchTitle': 'Commit ara',
 
   'pull.default': 'Pull (varsayılan)',
   'pull.ffOnly': 'Pull — yalnızca fast-forward',

@@ -45,7 +45,11 @@ Due strade, e portano negli stessi posti:
 
 ![Il menu Strumenti: prima gli strumenti frequenti, il resto raggruppato](../../screenshots/tools-menu.webp)
 
-Quando la finestra si restringe, la barra delle azioni smette di contendersi lo spazio: i pulsanti che non entrano più si ripiegano in un menu **Altro** in fondo, nell’ordine della barra e con i loro sottomenu. Allarga la finestra e tornano fuori.
+La barra delle azioni tiene i pulsanti al centro della **finestra**, non nello spazio fra il nome del repository e la casella di ricerca: così restano dove sono anche passando fra repository con nomi di lunghezze molto diverse. I nomi di repository e branch si leggono per intero; quello abbastanza lungo da minacciare il resto della barra viene troncato, con il nome completo nel tooltip del pulsante.
+
+Lo spazio si misura da quel centro verso l’esterno, ed è il prezzo di tenerlo: quando la finestra si restringe, o il nome del repository è molto lungo, la barra cede spazio invece di spostarsi. Il primo a cedere è il campo di ricerca, che scambia la sua casella per una lente — cliccala per cercare, e resta aperta finché c’è un filtro attivo. Poi i pulsanti che non entrano più si ripiegano in un menu **Altro** in fondo alla barra, nell’ordine della barra e con i loro sottomenu. Allarga la finestra e tornano fuori.
+
+![La barra delle azioni in una finestra stretta: la ricerca ripiegata in una lente, la coda della barra dentro «Altro» e i pulsanti ancora centrati](../../screenshots/toolbar-narrow.webp)
 
 Tutto ciò che è raggiungibile da una via lo è anche dall'altra, quindi non c'è
 niente che solo gli utenti esperti riescono a trovare.

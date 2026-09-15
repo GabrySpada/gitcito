@@ -41,4 +41,6 @@ Het zoekveld boven de grafiek filtert commits op boodschap, auteur, SHA of
 deploymentstatus. Voor "alleen commits die dit bestand aanraakten" gebruik je het
 padfilter — zie [de commitgrafiek](graph.md).
 
+In een smal venster klapt het vak in tot een loep; een klik opent het weer, en het blijft open zolang er een filter actief is.
+
 **Zie ook:** [De commitgrafiek](graph.md) · [Toetsenbord & sneltoetsen](keyboard.md)

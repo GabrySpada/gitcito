@@ -1663,8 +1663,8 @@ export const ru: Dict = {
   'toolbar.settings': 'Настройки',
   'toolbar.more': 'Ещё',
   'toolbar.moreTitle': 'Другие действия',
-  'toolbar.switchRepo': 'Сменить репозиторий',
-  'toolbar.switchBranch': 'Сменить ветку',
+  'toolbar.switchRepoNamed': 'Сменить репозиторий — {name}',
+  'toolbar.switchBranchNamed': 'Сменить ветку — {branch}',
   'toolbar.undoTitle': 'Отменить последнюю операцию',
   'toolbar.branchTitle': 'Создать ветку на HEAD',
   'toolbar.popTitle': 'Извлечь последний стеш',
@@ -1676,6 +1676,7 @@ export const ru: Dict = {
   'toolbar.terminalTitle': 'Показать или скрыть терминал',
   'toolbar.sidebarTitle': 'Показать или скрыть боковую панель',
   'toolbar.searchPlaceholder': 'Поиск коммитов, авторов, SHA…',
+  'toolbar.searchTitle': 'Поиск коммитов',
 
   // Меню пула и пуша
   'pull.default': 'Пул (по умолчанию)',

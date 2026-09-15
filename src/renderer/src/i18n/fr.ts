@@ -1639,8 +1639,8 @@ export const fr: Dict = {
   'toolbar.settings': 'Paramètres',
   'toolbar.more': 'Plus',
   'toolbar.moreTitle': 'Plus d’actions',
-  'toolbar.switchRepo': 'Changer de dépôt',
-  'toolbar.switchBranch': 'Changer de branche',
+  'toolbar.switchRepoNamed': 'Changer de dépôt — {name}',
+  'toolbar.switchBranchNamed': 'Changer de branche — {branch}',
   'toolbar.undoTitle': 'Annuler la dernière opération',
   'toolbar.branchTitle': 'Créer une branche à HEAD',
   'toolbar.popTitle': 'Dépiler le dernier remisage',
@@ -1652,6 +1652,7 @@ export const fr: Dict = {
   'toolbar.terminalTitle': 'Afficher ou masquer le terminal',
   'toolbar.sidebarTitle': 'Afficher ou masquer la barre latérale',
   'toolbar.searchPlaceholder': 'Rechercher commits, auteurs, SHAs…',
+  'toolbar.searchTitle': 'Rechercher des commits',
 
   'pull.default': 'Tirer (par défaut)',
   'pull.ffOnly': 'Tirer — avance rapide uniquement',

@@ -1663,8 +1663,8 @@ export const ko: Dict = {
   'toolbar.settings': '설정',
   'toolbar.more': '더 보기',
   'toolbar.moreTitle': '추가 작업',
-  'toolbar.switchRepo': '저장소 전환',
-  'toolbar.switchBranch': '브랜치 전환',
+  'toolbar.switchRepoNamed': '저장소 전환: {name}',
+  'toolbar.switchBranchNamed': '브랜치 전환: {branch}',
   'toolbar.undoTitle': '마지막 작업 실행 취소',
   'toolbar.branchTitle': 'HEAD에서 브랜치 만들기',
   'toolbar.popTitle': '최근 스태시 팝',
@@ -1676,6 +1676,7 @@ export const ko: Dict = {
   'toolbar.terminalTitle': '터미널 토글',
   'toolbar.sidebarTitle': '사이드바 토글',
   'toolbar.searchPlaceholder': '커밋, 작성자, SHA 검색…',
+  'toolbar.searchTitle': '커밋 검색',
 
   // 풀 / 푸시 메뉴
   'pull.default': '풀 (기본)',

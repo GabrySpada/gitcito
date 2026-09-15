@@ -45,7 +45,11 @@ Zwei Wege, und sie führen an dieselben Stellen:
 
 ![Das Werkzeuge-Menü: die häufigen Werkzeuge zuerst, der Rest gruppiert](../../screenshots/tools-menu.webp)
 
-Wird das Fenster schmal, kämpft die Aktionsleiste nicht mehr um Platz: Schaltflächen, die nicht mehr passen, wandern in ein Menü **Mehr** am Ende — in der Reihenfolge der Leiste und mit ihren Untermenüs. Wird das Fenster breiter, kommen sie zurück.
+Die Aktionsleiste hält ihre Schaltflächen in der Mitte des **Fensters**, nicht in der Lücke zwischen Repository-Namen und Suchfeld — sie bleiben also an derselben Stelle, wenn du zwischen Repositories mit völlig unterschiedlich langen Namen wechselst. Repository- und Branch-Namen stehen vollständig da; wird einer so lang, dass er den Rest der Leiste bedrängt, endet er in Auslassungspunkten, und vollständig steht er im Tooltip der Schaltfläche.
+
+Der Platz wird von dieser Mitte aus nach außen gemessen, und genau das kostet es, sie zu halten: Wird das Fenster schmal oder der Repository-Name sehr lang, gibt die Leiste Platz ab, statt zu verrutschen. Zuerst tauscht das Suchfeld seinen Kasten gegen eine Lupe — klick sie an, um zu suchen; sie bleibt offen, solange ein Filter aktiv ist. Danach wandern die Schaltflächen, die nicht mehr passen, in ein Menü **Mehr** am Ende der Leiste — in der Reihenfolge der Leiste und mit ihren Untermenüs. Wird das Fenster breiter, kommen sie zurück.
+
+![Die Aktionsleiste in einem schmalen Fenster: die Suche zur Lupe eingeklappt, das Ende der Leiste in „Mehr“, die Schaltflächen weiter zentriert](../../screenshots/toolbar-narrow.webp)
 
 Alles, was über den einen Weg erreichbar ist, ist auch über den anderen
 erreichbar — es gibt also nichts, das nur Power-User finden.
