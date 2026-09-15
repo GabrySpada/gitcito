@@ -141,7 +141,7 @@ function Section({
   const draggable = !!sectionId
   return (
     <div
-      className={`sb-section ${nested ? 'nested' : ''} ${dragging ? 'dragging' : ''} ${dragOver ? 'drag-over' : ''}`}
+      className={`sb-section ${nested ? 'nested' : ''} ${open ? 'is-open' : ''} ${dragging ? 'dragging' : ''} ${dragOver ? 'drag-over' : ''}`}
       style={depth > 0 ? ({ '--sb-indent': depth } as React.CSSProperties) : undefined}
       onDragOver={draggable ? onReorderOver : undefined}
       onDrop={
@@ -178,19 +178,30 @@ function Section({
         {actions && <span className="sb-actions">{actions}</span>}
         <span className="sb-count">{count}</span>
       </div>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.18 }}
-            className={`sb-body${count > HUGE_SECTION ? ' is-huge' : ''}`}
-          >
+      {nested ? (
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className={`sb-body${count > HUGE_SECTION ? ' is-huge' : ''}`}
+            >
+              {typeof children === 'function' ? children() : children}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      ) : (
+        // A top-level body is a flex pane sharing the sidebar's height with its
+        // open siblings, so it cannot animate to a content height: the pane is
+        // sized by the container, not by what is in it. It fades in via CSS.
+        open && (
+          <div className={`sb-body${count > HUGE_SECTION ? ' is-huge' : ''}`}>
             {typeof children === 'function' ? children() : children}
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        )
+      )}
     </div>
   )
 }
@@ -634,6 +645,9 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
 
   // Expand/collapse choices are per-repo and survive restarts: an explicit
   // toggle is recorded in RepoLayout and wins over the section's default.
+  // Top-level sections default closed except Local: open panes share the
+  // sidebar's height, so a fresh repo showing every section would be a stack
+  // of slivers. Nested folders keep opening by default — they only cost rows.
   const sidebarExpanded = repoLayout?.sidebarExpanded
   const persistOpen = (key: string, defaultOpen = true): Pick<SectionProps, 'open' | 'onToggle'> => ({
     open: sidebarExpanded?.[key] ?? defaultOpen,
@@ -1905,7 +1919,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         icon={<Cloud size={13} />}
         count={repo.remotes.length}
         {...dragProps('remotes')}
-        {...persistOpen('remotes')}
+        {...persistOpen('remotes', false)}
         actions={
           <span
             className="icon-btn"
@@ -2348,7 +2362,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         icon={<CheckSquare size={13} />}
         count={todoCounts.open}
         {...dragProps('todos')}
-        {...persistOpen('todos')}
+        {...persistOpen('todos', false)}
         actions={
           <span
             className="icon-btn"
@@ -2380,7 +2394,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         icon={<BookmarkIcon size={13} />}
         count={bookmarks.length}
         {...dragProps('bookmarks')}
-        {...persistOpen('bookmarks')}
+        {...persistOpen('bookmarks', false)}
       >
         {bookmarks.length === 0 && <div className="sb-empty">{t('sidebar.noBookmarks')}</div>}
         {bookmarks.map((b) => (
@@ -2408,7 +2422,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
       </Section>
     ),
     stashes: (
-      <Section title={t('sidebar.stashes')} icon={<Archive size={13} />} count={repo.stashes.length} {...dragProps('stashes')} {...persistOpen('stashes')}>
+      <Section title={t('sidebar.stashes')} icon={<Archive size={13} />} count={repo.stashes.length} {...dragProps('stashes')} {...persistOpen('stashes', false)}>
         {repo.stashes.length === 0 && <div className="sb-empty">{t('sidebar.noStashes')}</div>}
         {repo.stashes.map((s) => (
           <div
@@ -2672,7 +2686,9 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
             </span>
           </div>
 
-          <div className="sb-scroll">
+          {/* Open sections split the remaining height equally and scroll inside
+              their own pane; collapsed ones are pushed below as header rows. */}
+          <div className="sb-panes">
             {visibleOrder.map((id) => (
               <Fragment key={id}>{sections[id]}</Fragment>
             ))}

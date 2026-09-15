@@ -130,7 +130,9 @@ you already pay for instead of an API key.
 [screen-reader and keyboard accessibility](docs/help/accessibility.md) ·
 [rebindable shortcuts](docs/help/keyboard.md) ·
 [a native macOS menu bar](docs/help/menu-bar.md) that shows the keys you actually
-bound · [profiles](docs/help/profiles.md)
+bound · [a sidebar of panes](docs/help/branching.md) — open sections share its
+height and scroll on their own, collapsed ones wait below as header rows ·
+[profiles](docs/help/profiles.md)
 for separate identities ·
 [author avatars](docs/help/avatars.md) — Gravatar where it exists, a generated
 blob drawn offline where it does not, and a title-bar face that reacts to
