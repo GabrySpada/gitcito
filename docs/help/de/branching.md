@@ -33,6 +33,11 @@ zeigen:
 - eine **⟳-Markierung**, wenn der Remote
   [die Historie umgeschrieben hat](range-diff.md).
 
+Jede Zeile beginnt mit einem Symbol für das, was sie ist: ein Branch-Symbol bei
+einem Branch, ein Tag-Symbol bei einem Tag, ein Ordner bei einer
+Namensraum-Überschrift — damit `feature` nie wie ein Branch namens `feature`
+aussieht.
+
 Branches mit `/` im Namen werden automatisch in aufklappbare Ordner gefaltet.
 Ein Präfix ist immer ein Ordner, auch wenn nur ein Branch darunter liegt:
 `refactor/v2` ist ein Ordner `refactor` mit `v2` darin, damit sich die Liste

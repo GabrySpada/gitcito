@@ -41,6 +41,10 @@ Create, check out, rename and delete — local and remote. Branch rows show:
 - a **risk dot** after a [conflict radar](conflict-radar.md) scan,
 - a **⟳ marker** when the remote [rewrote history](range-diff.md).
 
+Each row leads with an icon for what it is: a branch icon on a branch, a tag
+icon on a tag, a folder on a namespace header — so `feature` never reads like a
+branch called `feature`.
+
 Branches with `/` in their names fold into collapsible folders automatically.
 A prefix is always a folder, even when a single branch lives under it —
 `refactor/v2` is a `refactor` folder holding `v2`, so the list does not reshuffle

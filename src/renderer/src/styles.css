@@ -1711,6 +1711,21 @@ textarea:focus {
   color: var(--text-2);
   flex-shrink: 0;
 }
+/* A ref row carries the icon for its kind and a namespace header carries a
+ * folder, so "feat/" reads as a container and "feat/login" as a branch —
+ * the same split every other Git client uses. Both are muted: they classify
+ * the row, they are not what the eye should land on. */
+.sb-branch-icon {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+.sb-item.current .sb-branch-icon {
+  color: var(--green);
+}
+.sb-folder-icon {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
 
 .sb-tag-cloud {
   flex-shrink: 0;

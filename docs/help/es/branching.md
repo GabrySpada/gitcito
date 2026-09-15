@@ -31,6 +31,10 @@ rama muestran:
 - un **punto de riesgo** tras un escaneo del [radar de conflictos](conflict-radar.md),
 - un **marcador ⟳** cuando el remoto [reescribió el historial](range-diff.md).
 
+Cada fila empieza con un icono de lo que es: un icono de rama en una rama, un
+icono de etiqueta en una etiqueta, una carpeta en la cabecera de un espacio de
+nombres — así `feature` nunca se lee como una rama llamada `feature`.
+
 Las ramas con `/` en el nombre se pliegan en carpetas plegables automáticamente.
 Un prefijo siempre es una carpeta, aunque debajo viva una sola rama:
 `refactor/v2` es una carpeta `refactor` que contiene `v2`, así la lista no se

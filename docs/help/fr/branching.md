@@ -34,6 +34,11 @@ branche affichent :
   conflits](conflict-radar.md),
 - un **marqueur ⟳** quand le distant a [réécrit l'histoire](range-diff.md).
 
+Chaque ligne commence par une icône indiquant sa nature : une icône de branche
+pour une branche, une icône d'étiquette pour un tag, un dossier pour un en-tête
+d'espace de noms — ainsi `feature` ne se lit jamais comme une branche nommée
+`feature`.
+
 Les branches dont le nom contient un `/` se replient automatiquement en dossiers
 
 pliables.

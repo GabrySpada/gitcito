@@ -30,6 +30,10 @@ mostram:
 - um **ponto de risco** depois de uma varredura do [radar de conflitos](conflict-radar.md),
 - um **marcador ⟳** quando o remote [reescreveu o histórico](range-diff.md).
 
+Cada linha começa com um ícone do que ela é: um ícone de branch num branch, um
+ícone de tag numa tag, uma pasta no cabeçalho de um namespace — assim `feature`
+nunca é lido como um branch chamado `feature`.
+
 Branches com `/` no nome se dobram automaticamente em pastas colapsáveis.
 Um prefixo é sempre uma pasta, mesmo quando só uma branch mora nele:
 `refactor/v2` é uma pasta `refactor` contendo `v2`, então a lista não se
