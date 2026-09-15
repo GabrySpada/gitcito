@@ -246,10 +246,14 @@ Match the file you are editing. The house style, briefly:
 commitlint on commit and by CI on the PR title:
 
 ```
-feat: Add range-diff comparison
-fix: Resolve crash on empty repo
-docs: Update README with mission control
+feat: add range-diff comparison
+fix: resolve crash on empty repo
+docs: update README with mission control
 ```
+
+The subject is lowercase. `@commitlint/config-conventional` rejects a
+capitalised one (`subject-case`), so a sentence-case subject fails the hook
+and costs you a round trip.
 
 One concern per PR. Commit only when asked; if you are on `main`, branch first.
 
