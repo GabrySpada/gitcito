@@ -58,6 +58,33 @@ desplaza igual que uno con cien.
 
 ![Ajustes de estilo del grafo con vista previa en vivo](../../screenshots/settings-graph.webp)
 
+## Divisores de fecha
+
+Al recorrer una historia larga, la pregunta casi nunca es la hora exacta de un
+commit — de eso ya se encarga la columna de fecha. Es «más o menos dónde estoy».
+Los divisores de fecha responden a eso: una línea fina que cruza el grafo con una
+etiqueta relativa a la derecha, marcando dónde termina un tramo de historia y
+empieza otro más antiguo.
+
+Los tramos se ensanchan con la distancia — hoy, ayer, unos días, una semana,
+semanas, meses, años. Ahí está la gracia: una línea en cada cambio de día
+aparecería bajo casi todos los commits de un repositorio activo y en ninguno de
+uno tranquilo.
+
+![Divisores de fecha marcando tramos de historia en el grafo](../../screenshots/graph-date-dividers.webp)
+
+Un divisor se sitúa al **final** de la última fila de su tramo y lleva el nombre
+del tramo que cierra, así que describe las filas de encima. La última fila en
+pantalla no lleva ninguno: su tramo puede continuar entre los commits que aún no
+se han cargado.
+
+Los límites. Los commits se listan en `--date-order`, que coloca una fusión por
+encima de los commits que fusiona: una fila más reciente que el tramo en el que
+cae se une a ese tramo en lugar de abrir uno nuevo, de modo que los divisores
+siempre van de lo reciente a lo antiguo. La fila de cambios sin confirmar y los
+stashes se omiten, porque su fecha no es su lugar en la historia. Y no hay ningún
+ajuste: los divisores están siempre activos.
+
 ## Detalles del commit
 
 Al seleccionar un commit se ven sus archivos modificados (en árbol o en plano),

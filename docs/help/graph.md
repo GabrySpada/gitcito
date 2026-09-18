@@ -3,7 +3,7 @@ title: The commit graph
 category: Repository & history
 order: 10
 summary: Reading history: lanes, refs, columns, filters and multi-select.
-keywords: graph history commits lanes branches merges columns filter linear first-parent amend undo reset github stash stashes order ordering placement spur
+keywords: graph history commits lanes branches merges columns filter linear first-parent amend undo reset github stash stashes order ordering placement spur date dividers divider separator relative dates today yesterday week month year timeline
 ---
 
 # The commit graph
@@ -57,6 +57,45 @@ with a hundred.
   mini-graph preview.
 
 ![Graph style settings with live preview](../screenshots/settings-graph.webp)
+
+## Date dividers
+
+Scrolling a long history, the question is rarely "what is this commit's exact
+timestamp" — the date column already answers that. It is "roughly where am I".
+Date dividers answer it: a hairline across the graph with a relative label on
+the right, marking where one span of history ends and an older one begins.
+
+The spans coarsen as you go back — today, yesterday, a few days, a week, a
+couple of weeks, months, years. That coarsening is the whole point. A rule at
+every calendar-day change would put one under almost every row in an active
+repository and under nothing at all in a quiet one; widening the spans with
+distance keeps a divider meaning "you have travelled a noticeable distance"
+wherever you are in the log.
+
+![Date dividers marking spans of history in the graph](../screenshots/graph-date-dividers.webp)
+
+A divider sits at the **bottom** of the last row of a span and is labelled with
+the span it closes, so it describes the rows above it. The newest span carries
+no rule above it, and the oldest row on screen carries none below it — its span
+may well continue into commits that have not been loaded yet, and a rule there
+would jump as soon as *Load more* brought them in.
+
+What they will not do:
+
+- **They follow the graph's order, not the calendar.** Commits are listed in
+  `--date-order`, which shows a merge above the commits it merges. A branch
+  merged long after it was written therefore puts older commits above newer
+  ones. Rather than ladder back and forth, a row dated newer than the span it
+  lands in simply joins that span — dividers only ever run newer-to-older down
+  the graph.
+- **They ignore rows whose date is not their place in history**: the
+  uncommitted-changes row, and stashes, which sit beside the commit they were
+  taken from rather than in date order (see below). Neither carries a divider
+  nor breaks the span it sits in.
+- **They are relative to now, not to a fixed point.** Leave the app open across
+  midnight and a span labelled "today" is not relabelled until the next refresh
+  of the reference clock, which happens every five minutes.
+- **There is no setting.** Dividers are always on.
 
 ## Where stashes sit
 

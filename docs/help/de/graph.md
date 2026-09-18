@@ -63,6 +63,33 @@ Commits wie eines mit hundert.
 
 ![Graph-Stileinstellungen mit Live-Vorschau](../../screenshots/settings-graph.webp)
 
+## Datumstrenner
+
+Beim Blättern durch eine lange Historie ist die Frage fast nie der exakte
+Zeitstempel eines Commits — den nennt die Datumsspalte. Sie lautet: „Wo ungefähr
+bin ich?“ Datumstrenner beantworten sie: eine Haarlinie quer durch den Graphen mit
+einer relativen Beschriftung rechts, die markiert, wo ein Abschnitt der Historie
+endet und ein älterer beginnt.
+
+Die Abschnitte werden mit dem Abstand gröber — heute, gestern, ein paar Tage, eine
+Woche, Wochen, Monate, Jahre. Genau darum geht es: Eine Linie bei jedem
+Tageswechsel stünde in einem aktiven Repository unter fast jedem Commit und in
+einem ruhigen unter gar keinem.
+
+![Datumstrenner markieren Abschnitte der Historie im Graphen](../../screenshots/graph-date-dividers.webp)
+
+Ein Trenner sitzt **unten** an der letzten Zeile seines Abschnitts und trägt den
+Namen des Abschnitts, den er abschließt — er beschreibt also die Zeilen darüber.
+Die unterste sichtbare Zeile bekommt keinen: Ihr Abschnitt kann sich in noch nicht
+geladenen Commits fortsetzen.
+
+Die Grenzen. Commits werden in `--date-order` aufgelistet, wodurch ein Merge über
+den Commits steht, die er zusammenführt: Eine Zeile, die neuer ist als der
+Abschnitt, in den sie fällt, schließt sich diesem an, statt einen neuen zu öffnen —
+Trenner laufen also immer von neu nach alt. Die Zeile der nicht committeten
+Änderungen und Stashes werden übersprungen, denn ihr Datum ist nicht ihr Platz in
+der Historie. Und es gibt keine Einstellung: Trenner sind immer an.
+
 ## Commit-Details
 
 Wählst du einen Commit aus, siehst du seine geänderten Dateien (als Baum oder

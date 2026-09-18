@@ -60,6 +60,31 @@ depo gibi kayar.
 
 ![Canlı önizlemeli grafik biçemi ayarları](../../screenshots/settings-graph.webp)
 
+## Tarih ayırıcıları
+
+Uzun bir geçmişte gezinirken soru neredeyse hiçbir zaman bir işlemenin tam saati
+değildir — onu tarih sütunu zaten söyler. Soru şudur: “kabaca neredeyim?”. Tarih
+ayırıcıları buna yanıt verir: grafiği boydan boya geçen ince bir çizgi ve sağında
+göreli bir etiket; geçmişin bir diliminin nerede bitip daha eskisinin nerede
+başladığını işaretler.
+
+Dilimler geriye gittikçe genişler — bugün, dün, birkaç gün, bir hafta, haftalar,
+aylar, yıllar. Bütün mesele de bu: her gün değişiminde bir çizgi, hareketli bir
+depoda neredeyse her işlemenin altında, sakin bir depoda ise hiçbir yerde çıkardı.
+
+![Grafikte geçmişin dilimlerini işaretleyen tarih ayırıcıları](../../screenshots/graph-date-dividers.webp)
+
+Bir ayırıcı, dilimin son satırının **altında** durur ve kapattığı dilimin adını
+taşır; yani üstündeki satırları anlatır. Ekrandaki en alt satır ayırıcı almaz:
+dilimi, henüz yüklenmemiş işlemelerde sürüyor olabilir.
+
+Sınırları. İşlemeler `--date-order` ile listelenir; bu da bir birleştirmeyi
+birleştirdiği işlemelerin üstüne koyar. Düştüğü dilimden daha yeni tarihli bir
+satır, yeni bir dilim açmak yerine o dilime katılır — böylece ayırıcılar hep
+yeniden eskiye doğru ilerler. İşlenmemiş değişiklikler satırı ile zulalar atlanır,
+çünkü tarihleri geçmişteki yerleri değildir. Ve bir ayar yoktur: ayırıcılar hep
+açıktır.
+
 ## Commit ayrıntıları
 
 Bir commit'i seçmek değişen dosyalarını (ağaç ya da düz), yazarını, SHA'sını,

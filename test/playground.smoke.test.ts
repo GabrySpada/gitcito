@@ -73,7 +73,8 @@ const EXPECTED = [
   'analyzer-problems',
   'xcode-project',
   'change-summary',
-  'readme-showcase'
+  'readme-showcase',
+  'dated-history'
 ]
 
 describe('playground fixtures', () => {

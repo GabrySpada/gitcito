@@ -62,6 +62,32 @@ commitów przewija się tak jak to ze stoma.
 
 ![Ustawienia stylu grafu z podglądem na żywo](../../screenshots/settings-graph.webp)
 
+## Separatory dat
+
+Przewijając długą historię, rzadko pytasz o dokładny czas commita — od tego jest
+kolumna daty. Pytasz: „mniej więcej gdzie jestem?”. Separatory dat odpowiadają na
+to pytanie: cienka linia w poprzek grafu z względną etykietą po prawej, znacząca
+miejsce, w którym kończy się jeden odcinek historii, a zaczyna starszy.
+
+Odcinki poszerzają się wraz z odległością — dziś, wczoraj, kilka dni, tydzień,
+tygodnie, miesiące, lata. O to właśnie chodzi: linia przy każdej zmianie dnia
+pojawiłaby się pod niemal każdym commitem w aktywnym repozytorium i nigdzie w
+spokojnym.
+
+![Separatory dat znaczące odcinki historii w grafie](../../screenshots/graph-date-dividers.webp)
+
+Separator znajduje się na **dole** ostatniego wiersza swojego odcinka i nosi nazwę
+odcinka, który zamyka — opisuje więc wiersze nad sobą. Ostatni wiersz na ekranie
+go nie dostaje: jego odcinek może ciągnąć się dalej w commitach, których jeszcze
+nie wczytano.
+
+Ograniczenia. Commity są wypisywane w `--date-order`, co stawia merge nad
+commitami, które scala: wiersz nowszy niż odcinek, w którym się znalazł, dołącza
+do tego odcinka, zamiast otwierać nowy — separatory zawsze biegną od nowszych do
+starszych. Wiersz niezatwierdzonych zmian oraz schowki są pomijane, bo ich data
+nie jest ich miejscem w historii. I nie ma tu ustawienia: separatory są zawsze
+włączone.
+
 ## Szczegóły commita
 
 Zaznaczenie commita pokazuje jego zmienione pliki (jako drzewo albo płasko),

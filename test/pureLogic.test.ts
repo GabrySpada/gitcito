@@ -6,6 +6,7 @@ import { parseRemoteUrl } from '../src/main/hosting'
 
 import { treeStatusOf } from '../src/renderer/src/lib/treeStatus'
 import { timeAgo, isStale, STALE_AFTER_MS } from '../src/renderer/src/lib/timeAgo'
+import { dateBucket, dateDividers } from '../src/renderer/src/lib/dateBuckets'
 import { isLockErrorMessage, lockRepairPlan } from '../src/renderer/src/lib/gitLocks'
 import { stackOrder, moveLevel, adoptableBranches, targetFor } from '../src/renderer/src/lib/stackOrder'
 import { planStackSubmit, summariseStackPlan } from '../src/shared/stackPr'
@@ -7157,5 +7158,111 @@ describe('pickReadme', () => {
   it('returns null when there is none', () => {
     expect(pickReadme([file('index.ts')])).toBeNull()
     expect(pickReadme([])).toBeNull()
+  })
+})
+
+describe('dateBucket', () => {
+  // Local-time constructors throughout: the ladder counts calendar days, so a
+  // test written in UTC offsets would drift with the runner's timezone.
+  const at = (y: number, m: number, d: number, h = 12): number =>
+    Math.floor(new Date(y, m - 1, d, h).getTime() / 1000)
+  const NOW = at(2026, 9, 18, 10)
+
+  it('counts calendar days, not elapsed hours', () => {
+    // Four hours apart, but either side of midnight — that is "yesterday".
+    const now = at(2026, 9, 18, 2)
+    expect(dateBucket(at(2026, 9, 17, 22), now).id).toBe('yesterday')
+    // Twenty hours apart on the same calendar day is still "today".
+    expect(dateBucket(at(2026, 9, 18, 1), at(2026, 9, 18, 21)).id).toBe('today')
+  })
+
+  it('coarsens as it goes back', () => {
+    expect(dateBucket(at(2026, 9, 18, 9), NOW).key).toBe('graph.bucket.today')
+    expect(dateBucket(at(2026, 9, 17), NOW).key).toBe('graph.bucket.yesterday')
+    expect(dateBucket(at(2026, 9, 16), NOW)).toMatchObject({ key: 'graph.bucket.daysAgo', n: 2 })
+    expect(dateBucket(at(2026, 9, 13), NOW)).toMatchObject({ key: 'graph.bucket.daysAgo', n: 5 })
+    expect(dateBucket(at(2026, 9, 11), NOW).key).toBe('graph.bucket.weekAgo')
+    expect(dateBucket(at(2026, 9, 1), NOW)).toMatchObject({ key: 'graph.bucket.weeksAgo', n: 2 })
+    expect(dateBucket(at(2026, 8, 10), NOW).key).toBe('graph.bucket.monthAgo')
+    expect(dateBucket(at(2026, 5, 10), NOW)).toMatchObject({ key: 'graph.bucket.monthsAgo', n: 4 })
+    expect(dateBucket(at(2025, 6, 10), NOW).key).toBe('graph.bucket.yearAgo')
+    expect(dateBucket(at(2023, 6, 10), NOW)).toMatchObject({ key: 'graph.bucket.yearsAgo', n: 3 })
+  })
+
+  it('never lets a month-long gap fall through to weeks or years', () => {
+    // 30 days that land inside one calendar month — the month diff is 0, which
+    // must not read as "0 months ago" or tumble into the year branch.
+    expect(dateBucket(at(2026, 1, 1), at(2026, 1, 31))).toMatchObject({ key: 'graph.bucket.monthAgo' })
+  })
+
+  it('reads a commit dated in the future as today rather than a negative age', () => {
+    expect(dateBucket(at(2026, 12, 1), NOW).id).toBe('today')
+  })
+
+  it('gives commits in the same bucket the same id and different buckets different ids', () => {
+    expect(dateBucket(at(2026, 9, 16, 1), NOW).id).toBe(dateBucket(at(2026, 9, 16, 23), NOW).id)
+    expect(dateBucket(at(2026, 9, 16), NOW).id).not.toBe(dateBucket(at(2026, 9, 15), NOW).id)
+  })
+})
+
+describe('dateDividers', () => {
+  const at = (y: number, m: number, d: number, h = 12): number =>
+    Math.floor(new Date(y, m - 1, d, h).getTime() / 1000)
+  const NOW = at(2026, 9, 18, 10)
+
+  it('closes each bucket on its last row, labelled with the bucket that ends', () => {
+    const rows = [
+      { date: at(2026, 9, 18) }, // today
+      { date: at(2026, 9, 16) }, // 2 days
+      { date: at(2026, 9, 16) }, // 2 days
+      { date: at(2026, 9, 11) }, // a week
+      { date: at(2026, 9, 10) } // a week
+    ]
+    const d = dateDividers(rows, NOW)
+    expect([...d.keys()].sort((a, b) => a - b)).toEqual([0, 2])
+    expect(d.get(0)?.key).toBe('graph.bucket.today')
+    expect(d.get(2)?.key).toBe('graph.bucket.daysAgo')
+  })
+
+  it('leaves the last row open — its bucket may continue into commits not loaded yet', () => {
+    const rows = [{ date: at(2026, 9, 18) }, { date: at(2026, 9, 10) }]
+    expect(dateDividers(rows, NOW).has(1)).toBe(false)
+  })
+
+  it('skips rows whose date is not their place in history', () => {
+    // A stash row is re-anchored beside its origin commit, so its own date runs
+    // out of order. It must neither carry a divider nor split the run it sits in.
+    const rows = [
+      { date: at(2026, 9, 16) },
+      { date: at(2026, 9, 18), skip: true }, // stash taken today, shown here
+      { date: at(2026, 9, 16) },
+      { date: at(2026, 9, 10) }
+    ]
+    const d = dateDividers(rows, NOW)
+    expect([...d.keys()]).toEqual([2])
+    expect(d.get(2)?.key).toBe('graph.bucket.daysAgo')
+  })
+
+  it('absorbs a row dated newer than the run it sits in rather than reopening a bucket', () => {
+    // --date-order shows a merge before its parents, so a merge dated earlier
+    // than the branch tip it merges puts a newer commit below an older one.
+    // Dividers must still march newer-to-older down the graph.
+    const rows = [
+      { date: at(2026, 9, 15) }, // merge, 3 days
+      { date: at(2026, 9, 12) }, // parent, 6 days
+      { date: at(2026, 9, 18) }, // parent, today — an inversion
+      { date: at(2026, 8, 1) } // a month
+    ]
+    const d = dateDividers(rows, NOW)
+    expect([...d.keys()].sort((a, b) => a - b)).toEqual([0, 2])
+    expect(d.get(0)?.key).toBe('graph.bucket.daysAgo')
+    // Row 2 closes the "6 days" run: the inversion joined it, it did not end it.
+    expect(d.get(2)?.key).toBe('graph.bucket.daysAgo')
+    expect(d.get(2)?.n).toBe(6)
+  })
+
+  it('has nothing to divide in an empty or single-bucket graph', () => {
+    expect(dateDividers([], NOW).size).toBe(0)
+    expect(dateDividers([{ date: at(2026, 9, 18) }, { date: at(2026, 9, 18, 8) }], NOW).size).toBe(0)
   })
 })

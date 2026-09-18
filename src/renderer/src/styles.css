@@ -2442,6 +2442,66 @@ body.col-resizing .node-ava {
   margin-inline-end: 0;
 }
 
+/* Date divider: a hairline closing the span of history above it, carrying that
+   span's label. Absolutely positioned like every other thing on the canvas, so
+   the fixed row height virtualization depends on is untouched.
+
+   Floats above the rows (z-index 6, over even a hovered row's 5) because the
+   label is an opaque chip: it has to sit on top of whatever it crosses rather
+   than be painted over by it. Pointer events stay off, so nothing here can
+   intercept a click meant for the commit underneath. The rule fades out to the
+   left because it has nothing to say about the lanes — only the chip carries
+   meaning, and by the time the rule reaches the commit nodes it is transparent.
+
+   The canvas is forced to `direction: ltr` even in RTL (see the bidi block near
+   the end of this file), so physical right/left here match the rows. */
+.graph-date-divider {
+  position: absolute;
+  inset-inline-end: 0;
+  height: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Matches .graph-row so the label stops at the same edge as the date column. */
+  padding-inline-end: 26px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* Mixed from the label's own colour rather than --border: at 1px on a light
+   theme the border token is too faint to read as structure, and a rule nobody
+   notices is a rule that is not doing its job. */
+.graph-date-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--text-2) 55%, transparent) 12%,
+    color-mix(in srgb, var(--text-2) 55%, transparent)
+  );
+}
+
+/* A filled chip rather than bare text: centred on a row boundary, a label with
+   no ground of its own has to compete with the commit text on either side of the
+   line, and loses at compact density.
+
+   Case comes from the dictionary and is never forced here. `text-transform`
+   applies one language's rules to all of them — lowercasing would take German's
+   "Vor einer Woche" to "vor einer woche", and uppercasing mangles scripts that
+   have no case at all. */
+.graph-date-divider-label {
+  color: var(--text-1);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--bg-3);
+}
+
 .row-date {
   color: var(--text-2);
   font-size: 11px;
