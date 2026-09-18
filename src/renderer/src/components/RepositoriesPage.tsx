@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import {
   ArrowDownToLine,
   Check,
@@ -30,6 +31,7 @@ import {
   type SectionSync
 } from '../lib/repoSections'
 import { RepositoryRow } from './RepositoryRow'
+import { RepoDetailsDrawer } from './RepoDetailsDrawer'
 import { gitApi, shellApi } from '../infrastructure/api'
 import { tabRepos, type RepoPulse } from '../../../shared/types'
 import { useT, interp, type TranslationKey } from '../i18n'
@@ -92,6 +94,9 @@ export function RepositoriesPage(): React.JSX.Element {
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
   const [wip, setWip] = useState(false)
   const [pulses, setPulses] = useState<Record<string, RepoPulse>>({})
+  // The row whose details drawer is open. Local, not a `useUIStore` modal: it
+  // belongs to this page and closes with it.
+  const [details, setDetails] = useState<RepoRow | null>(null)
   // Which section is running which operation. The operation is part of it so
   // the spinner can land on the button that was actually clicked.
   const [syncing, setSyncing] = useState<SectionSync>(null)
@@ -499,6 +504,7 @@ export function RepositoriesPage(): React.JSX.Element {
                             key={row.repo.path}
                             row={row}
                             onOpen={(r: RepoRow) => openRepoTab({ path: r.repo.path, name: r.repo.name })}
+                            onShowDetails={setDetails}
                             onToggleFavourite={toggleFavouriteRepo}
                             onForget={confirmForget}
                             onLocate={(path, label) => void runLocate(path, label)}
@@ -526,6 +532,20 @@ export function RepositoriesPage(): React.JSX.Element {
           })}
         </div>
       )}
+
+      <AnimatePresence>
+        {details && (
+          <RepoDetailsDrawer
+            key={details.repo.path}
+            row={details}
+            onClose={() => setDetails(null)}
+            onOpen={(r) => {
+              setDetails(null)
+              openRepoTab({ path: r.repo.path, name: r.repo.name })
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
