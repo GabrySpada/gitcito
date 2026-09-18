@@ -1205,6 +1205,22 @@ export const shots = [
     }
   },
   {
+    // Date dividers across the whole ladder — today through a year ago. The
+    // dated-history repo exists for this shot: every other playground repo
+    // commits at "now" and lands in one bucket with nothing to divide. Cropped
+    // to the graph because the rules and their labels are the subject, and a
+    // full window makes them a few hairlines in a sea of chrome.
+    out: 'graph-date-dividers',
+    repos: ['dated-history'],
+    themes: ['light'],
+    // Sized so the fourteen commits fill the scroller: at the default window the
+    // graph is a band across the top of a mostly empty crop, and a 1px rule does
+    // not survive being shrunk to fit a handbook page.
+    size: { w: 1280, h: 620 },
+    clipTo: '.graph-scroll',
+    clipPad: 0
+  },
+  {
     // Graph filtered by a path — non-matching commits dimmed.
     out: 'graph-path-filter',
     repos: ['insights'],

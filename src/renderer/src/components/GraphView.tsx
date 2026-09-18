@@ -26,6 +26,7 @@ import { branchDropActions, encodeDropRef, BRANCH_DND_TYPE, type DropRef } from 
 import { togglePin } from '../lib/pinnedBranches'
 import { focusedHashes, focusedStashes, GRAPH_FOCUS_MODES, type FocusInput } from '../lib/graphFocus'
 import { withStashRows } from '../lib/stashRows'
+import { dateDividers } from '../lib/dateBuckets'
 import { StashGlyph } from './StashGlyph'
 import { fetchedOnlyHashes } from '../lib/graphCommitState'
 import { openBranchDropMenu } from '../lib/branchDropMenu'
@@ -773,6 +774,25 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
 
   const graphAuto = LEFT_PAD + Math.min(layout.laneCount, 24) * LANE_W + 18
   const totalHeight = displayCommits.length * ROW_H
+
+  // Date dividers close each span of history on its last row. The reference
+  // "now" only moves every five minutes: buckets are coarse, so a finer tick
+  // would re-walk every commit to produce the same map.
+  const [bucketNow, setBucketNow] = useState(() => Math.floor(Date.now() / 1000))
+  useEffect(() => {
+    const id = window.setInterval(() => setBucketNow(Math.floor(Date.now() / 1000)), 5 * 60_000)
+    return () => window.clearInterval(id)
+  }, [])
+  const dividers = useMemo(
+    () =>
+      dateDividers(
+        // The WIP row is synthesized at "now" and a stash sits beside the commit
+        // it was taken from, so neither row's date is its place in history.
+        displayCommits.map((c) => ({ date: c.date, skip: c.hash === WIP_HASH || stashBySha.has(c.hash) })),
+        bucketNow
+      ),
+    [displayCommits, stashBySha, bucketNow]
+  )
 
   // Visible row window [firstRow, lastRow] with overscan. Before the viewport is
   // measured, fall back to a generous height so the first paint isn't blank.
@@ -2188,6 +2208,25 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
                     )
                   }
                 })}
+            </div>
+          )
+        })}
+        {/* Date dividers, closing each span of history on its last row.
+            Absolutely positioned like everything else on the canvas, so row
+            height and scroll-to-commit are untouched, and painted *under* the
+            rows (see the z-index in styles.css) so a commit's own text always
+            wins. */}
+        {visibleRows.map((row) => {
+          const b = dividers.get(row)
+          if (!b) return null
+          return (
+            <div
+              key={`div-${row}`}
+              className="graph-date-divider"
+              style={{ top: (row + 1) * ROW_H, insetInlineStart: branchCol }}
+              aria-hidden="true"
+            >
+              <span className="graph-date-divider-label">{interp(t(b.key), { n: b.n })}</span>
             </div>
           )
         })}

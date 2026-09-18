@@ -63,6 +63,33 @@ dépôt d'une centaine.
 
 ![Les réglages de style du graphe avec aperçu en direct](../../screenshots/settings-graph.webp)
 
+## Séparateurs de date
+
+En parcourant un long historique, la question n'est presque jamais l'horodatage
+exact d'un commit — la colonne de date y répond déjà. C'est « où en suis-je, à peu
+près ». Les séparateurs de date y répondent : un filet à travers le graphe avec
+une étiquette relative à droite, marquant la fin d'une tranche d'historique et le
+début d'une plus ancienne.
+
+Les tranches s'élargissent avec la distance — aujourd'hui, hier, quelques jours,
+une semaine, des semaines, des mois, des années. C'est tout l'intérêt : un trait à
+chaque changement de jour apparaîtrait sous presque chaque commit d'un dépôt actif
+et nulle part dans un dépôt calme.
+
+![Séparateurs de date marquant les tranches d'historique dans le graphe](../../screenshots/graph-date-dividers.webp)
+
+Un séparateur se place **en bas** de la dernière ligne de sa tranche et porte le
+nom de la tranche qu'il referme : il décrit donc les lignes au-dessus de lui. La
+dernière ligne affichée n'en porte pas — sa tranche peut se prolonger dans des
+commits pas encore chargés.
+
+Les limites. Les commits sont listés en `--date-order`, qui place une fusion
+au-dessus des commits qu'elle fusionne : une ligne plus récente que la tranche où
+elle tombe rejoint cette tranche au lieu d'en ouvrir une nouvelle, si bien que les
+séparateurs vont toujours du récent vers l'ancien. La ligne des modifications non
+validées et les remises sont ignorées, car leur date n'est pas leur place dans
+l'historique. Et il n'y a pas de réglage : les séparateurs sont toujours actifs.
+
 ## Détails d'un commit
 
 Sélectionner un commit affiche ses fichiers modifiés (en arbre ou à plat),

@@ -61,6 +61,33 @@ een met honderd.
 
 ![Grafiekstijlinstellingen met live voorbeeld](../../screenshots/settings-graph.webp)
 
+## Datumscheidingen
+
+Bij het scrollen door een lange geschiedenis is de vraag zelden het exacte
+tijdstip van een commit — daar gaat de datumkolom over. De vraag is: „waar zit ik
+ongeveer?“ Datumscheidingen beantwoorden die: een haarlijn dwars door de graaf met
+een relatief label rechts, die markeert waar het ene stuk geschiedenis eindigt en
+een ouder stuk begint.
+
+De stukken worden grover naarmate je teruggaat — vandaag, gisteren, een paar
+dagen, een week, weken, maanden, jaren. Dat is precies de bedoeling: een lijn bij
+elke dagwissel zou in een druk repository onder bijna elke commit staan en in een
+rustig repository nergens.
+
+![Datumscheidingen die stukken geschiedenis in de graaf markeren](../../screenshots/graph-date-dividers.webp)
+
+Een scheiding staat **onderaan** de laatste rij van haar stuk en draagt de naam
+van het stuk dat ze afsluit — ze beschrijft dus de rijen erboven. De onderste rij
+op het scherm krijgt er geen: haar stuk kan doorlopen in commits die nog niet
+geladen zijn.
+
+De grenzen. Commits staan in `--date-order`, waardoor een merge boven de commits
+staat die hij samenvoegt: een rij die nieuwer is dan het stuk waarin hij belandt
+sluit zich bij dat stuk aan in plaats van een nieuw te openen, zodat scheidingen
+altijd van nieuw naar oud lopen. De rij met niet-vastgelegde wijzigingen en
+stashes worden overgeslagen, omdat hun datum niet hun plaats in de geschiedenis
+is. En er is geen instelling: scheidingen staan altijd aan.
+
 ## Commitdetails
 
 Een commit selecteren toont zijn gewijzigde bestanden (boom of plat), auteur,

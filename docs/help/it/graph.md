@@ -60,6 +60,32 @@ che ne ha cento.
 
 ![Le impostazioni di stile del grafo con anteprima dal vivo](../../screenshots/settings-graph.webp)
 
+## Divisori di data
+
+Scorrendo una storia lunga la domanda non è quasi mai l'ora esatta di un commit —
+a quella risponde la colonna della data. È «più o meno a che punto sono». I
+divisori di data rispondono a questa: un filo sottile attraverso il grafo con
+un'etichetta relativa a destra, che segna dove un tratto di storia finisce e ne
+comincia uno più vecchio.
+
+I tratti si allargano man mano che si va indietro — oggi, ieri, qualche giorno,
+una settimana, settimane, mesi, anni. È proprio questo il punto: una riga a ogni
+cambio di giorno comparirebbe sotto quasi ogni commit in un repository attivo e
+da nessuna parte in uno tranquillo.
+
+![Divisori di data che segnano i tratti di storia nel grafo](../../screenshots/graph-date-dividers.webp)
+
+Un divisore sta in **fondo** all'ultima riga del suo tratto e porta il nome del
+tratto che chiude, quindi descrive le righe sopra di sé. L'ultima riga a schermo
+non ne ha: il suo tratto potrebbe continuare fra i commit non ancora caricati.
+
+I limiti. I commit sono elencati in `--date-order`, che mette un merge sopra i
+commit che unisce: una riga più recente del tratto in cui capita entra in quel
+tratto invece di aprirne uno nuovo, così i divisori vanno sempre dal recente al
+vecchio. La riga delle modifiche non salvate e gli stash vengono saltati, perché
+la loro data non è la loro posizione nella storia. E non c'è un'impostazione: i
+divisori ci sono sempre.
+
 ## Dettagli di un commit
 
 Selezionando un commit vedi i suoi file modificati (ad albero o piatti),
