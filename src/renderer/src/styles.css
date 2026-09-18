@@ -11048,6 +11048,72 @@ input[type='range']:focus-visible {
    one — MenuItem has no checked state, so the tick rides the icon slot. */
 .repos-menu-tick { display: inline-block; width: 13px; height: 13px; }
 
+/* ── Repository details drawer ──────────────────────────────────────────── */
+
+/* Anchored to the inline end, so RTL puts it on the left without a second
+   rule; the slide-in direction is chosen in the component to match. */
+.repo-details-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(5, 6, 10, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: flex-end;
+}
+.repo-details {
+  display: flex;
+  flex-direction: column;
+  width: clamp(420px, 55vw, 860px);
+  max-width: 100vw;
+  background: var(--bg-2);
+  border-inline-start: 1px solid var(--border);
+  box-shadow: -24px 0 70px rgba(0, 0, 0, 0.45);
+}
+.repo-details-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.repo-details-titles { flex: 1; min-width: 0; }
+.repo-details-head h3 { font-size: 15px; font-weight: 600; }
+/* A filesystem path is an LTR island whatever the UI language (see the RTL
+   section); it also truncates at the front, where the interesting part is. */
+.repo-details-path {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-3);
+  direction: ltr;
+  unicode-bidi: isolate;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.repo-details-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+}
+.repo-details-actions .repos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.repo-details-actions .repos-btn:disabled { cursor: default; opacity: 0.4; }
+.repo-details-body { flex: 1; overflow-y: auto; padding: 4px 18px 24px; }
+.repo-details-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 24px 0;
+  color: var(--text-3);
+  font-size: 12.5px;
+}
+
 /* ── The scan → workspaces picker ── */
 .ws-plan {
   display: flex;
@@ -15928,7 +15994,8 @@ mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
 :root[dir='rtl'] .file-path,
 :root[dir='rtl'] .recent-item span,
 :root[dir='rtl'] .insights-row-name.mono,
-:root[dir='rtl'] .prd-thread-loc {
+:root[dir='rtl'] .prd-thread-loc,
+:root[dir='rtl'] .repo-details-path {
   text-align: right;
 }
 

@@ -2,10 +2,15 @@ import type { ReactNode } from 'react'
 import type { RepoConfigLink } from '../../../shared/types'
 import { ticketSegments } from './repoConfig'
 
-/** Convert a git remote URL (ssh or https) to its web base, or undefined. */
+/** Convert a git remote URL (ssh or https) to its web base, or undefined.
+ *  Covers the scp shorthand (`git@host:o/r`) and the explicit schemes, which is
+ *  not pedantry: `url.ssh://git@github.com/.insteadOf` is a common global
+ *  config, and it is the rewritten form that `git remote -v` reports. */
 export function remoteWebUrl(url?: string): string | undefined {
   if (!url) return undefined
-  const m = /^(?:git@|https?:\/\/(?:[^@/]+@)?)([^:/]+)[:/](.+?)(?:\.git)?\/?$/.exec(url.trim())
+  const m = /^(?:(?:ssh|git|https?):\/\/(?:[^@/]+@)?|git@)([^:/]+)(?::\d+)?[:/](.+?)(?:\.git)?\/?$/.exec(
+    url.trim()
+  )
   if (m) return `https://${m[1]}/${m[2]}`
   return url.startsWith('http') ? url.replace(/\.git$/, '') : undefined
 }

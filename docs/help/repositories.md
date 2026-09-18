@@ -3,7 +3,7 @@ title: Repositories
 category: Sync & many repos
 order: 52
 summary: Every repository Gitcito knows about, open or not, in one searchable list.
-keywords: repositories registry all repos favourites starred recent scan folder browse find open manage repository management colour color section tint highlight workspaces from folders tree generate bulk import
+keywords: repositories registry all repos favourites starred recent scan folder browse find open manage repository management colour color section tint highlight workspaces from folders tree generate bulk import readme preview details drawer what is this repo
 ---
 
 # Repositories
@@ -107,8 +107,8 @@ a name in the last section lines up under a name in the first one and the list
 reads as a table rather than a stack.
 
 The trailing actions are shown at rest rather than revealed on hover: **open in
-a tab**, and a **⋮** that opens the same [repository context
-menu](repo-menu.md) as a right-click. That menu is the one used everywhere else
+a tab**, **open repository details** (below), and a **⋮** that opens the same
+[repository context menu](repo-menu.md) as a right-click. That menu is the one used everywhere else
 in Gitcito, extended with two entries specific to this page:
 
 | Action | What it does |
@@ -122,6 +122,46 @@ A repository whose folder no longer exists shows as **missing**, with inline
 
 The star is a favourite toggle, not a bulk-selection checkbox. Batch work here
 is per section rather than per selection — see below.
+
+## Repository details
+
+Three rows named `api`, `api-v2` and `api-old` tell you nothing about which one
+you want. The book icon on a row opens a drawer over the right of the page
+holding the repository's **README**, rendered — which is where a project
+actually says what it is.
+
+![The repository details drawer: the repository's name and path, buttons to open
+it or visit its remote, and its README rendered
+below](../screenshots/repo-details.webp)
+
+The point is that this costs you nothing. It opens no tab, starts no watcher and
+takes no lock on the repository — it reads the root directory, one file and the
+remote list, then forgets all of it when you close the drawer. Esc, a click on
+the dimmed page, or the **×** closes it.
+
+The header shows the owner and name, the full path underneath, and two actions:
+
+| Action | What it does |
+|---|---|
+| Open repository | Opens it in a tab, exactly as the row does, and closes the drawer |
+| Open on *host* | Opens the origin remote's web page in your browser. Absent when there is no remote, or when its URL is not a recognisable web host |
+
+The README is found in the repository's **root**, matched case-insensitively:
+`README.md` wins, then `.markdown`, `.mdown`, `.txt`, then a plain extensionless
+`README`. A repository with none says so; nothing is created for you.
+
+### What the preview will not do
+
+- **Local images do not load.** A README is untrusted content from a folder you
+  may have only just cloned, so it is rendered without permission to read files
+  off your disk. Badges and other remote images appear; a
+  `![shot](docs/shot.webp)` does not.
+- **GitHub's alert blocks render as plain quotes.** `> [!WARNING]` and its
+  siblings are a GitHub extension, not Markdown — the marker is shown literally.
+- **It reads your working tree, not a commit.** A README with uncommitted edits
+  shows them; one that only exists on another branch does not appear.
+- **`docs/README.md` is not the README.** Root only, and the stem has to be
+  exactly `readme` — `README_OLD.md` is somebody's leftover, not a front page.
 
 ## Turning a folder tree into workspaces
 
@@ -253,6 +293,8 @@ standing cost.
 - **Section colours are cosmetic.** They do not filter, sort, group or sync
   anywhere, and a colour set on a workspace's section is not that workspace's
   colour.
+- **Repository details previews one repository at a time.** Opening a second
+  row's drawer replaces the first; there is no side-by-side comparison.
 - **Forget removes the entry from the list — never from disk.** If the folder
   is still there, scanning the same root (or opening it again) brings it right
   back.

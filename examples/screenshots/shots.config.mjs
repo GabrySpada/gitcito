@@ -1338,6 +1338,34 @@ export const shots = [
     }
   },
   {
+    // The repository details drawer, over the Repositories page. readme-showcase
+    // is the one playground repo whose README is written to be read rather than
+    // to change, which is the whole subject of the shot; its origin is a github
+    // URL, so the "Open on github.com" button is there beside it.
+    out: 'repo-details',
+    kind: 'group',
+    repos: ['readme-showcase', 'octopus-merge'],
+    recents: ['collaborators', 'host-remotes'],
+    themes: ['dark'],
+    drive: async (page, repoPaths) => {
+      const open = [repoPaths['readme-showcase'], repoPaths['octopus-merge']]
+      // Pre-seeded tabs never went through openRepoTab, so without this the
+      // registry — and therefore every row on the page — is empty.
+      await page.evaluate(async (paths) => {
+        for (const p of paths) await window.api.repos.remember(p)
+      }, open)
+      await page.evaluate(() => window.__shot.settings.getState().openPageTab({ type: 'repositories' }))
+      await page.waitForSelector('.repos-row', { timeout: 15000 })
+      // The drawer is the page's own state, not a store modal, so it is opened
+      // the way a reader opens it: the second action on the row. `.first()`
+      // because a repository appears in every section it qualifies for.
+      const row = page.locator('.repos-row', { hasText: 'readme-showcase' }).first()
+      await row.locator('.repos-row-actions button').nth(1).click()
+      await page.waitForSelector('.repo-details .md-preview', { timeout: 15000 })
+      await page.waitForTimeout(600)
+    }
+  },
+  {
     // Repository insights — churn, hotspots, contributors.
     out: 'insights',
     repos: ['insights'],

@@ -72,7 +72,8 @@ const EXPECTED = [
   'local-ci',
   'analyzer-problems',
   'xcode-project',
-  'change-summary'
+  'change-summary',
+  'readme-showcase'
 ]
 
 describe('playground fixtures', () => {

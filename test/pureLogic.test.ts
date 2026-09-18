@@ -32,6 +32,8 @@ import { buildPrefixTree, collectLeaves, foldNode, leafCount, type TreeNode } fr
 import { resolveUpdateOffer } from '../src/renderer/src/lib/updateOffer'
 import { worktreeForBranch, worktreeTabName } from '../src/renderer/src/lib/worktrees'
 import { centeredRoom, searchCollapsed, visibleCount, SEARCH_COLLAPSE_AT } from '../src/renderer/src/lib/toolbarFit'
+import { pickReadme } from '../src/renderer/src/lib/readme'
+import type { TreeEntry } from '../src/shared/types'
 import { focusedHashes, focusedStashes, defaultBranchName } from '../src/renderer/src/lib/graphFocus'
 import {
   buildSections,
@@ -862,6 +864,15 @@ describe('autolink', () => {
     expect(remoteWebUrl('git@github.com:o/r.git')).toBe('https://github.com/o/r')
     expect(remoteWebUrl('https://gitlab.com/g/s/r.git')).toBe('https://gitlab.com/g/s/r')
     expect(remoteWebUrl(undefined)).toBeUndefined()
+  })
+
+  it('handles the url:// forms git rewrites remotes into', () => {
+    // `url.ssh://git@github.com/.insteadOf https://github.com/` is a common
+    // global config, and it is what `git remote -v` then reports.
+    expect(remoteWebUrl('ssh://git@github.com/o/r.git')).toBe('https://github.com/o/r')
+    expect(remoteWebUrl('git://github.com/o/r.git')).toBe('https://github.com/o/r')
+    // A port is addressing, not part of the path.
+    expect(remoteWebUrl('ssh://git@git.example.com:2222/o/r.git')).toBe('https://git.example.com/o/r')
   })
 
   it('returns plain text when no repo URL, and nodes when refs present', () => {
@@ -7109,5 +7120,42 @@ describe('toolbarFit', () => {
 
   it('does not collapse before the bar has been measured', () => {
     expect(searchCollapsed(0, '', false)).toBe(false)
+  })
+})
+
+describe('pickReadme', () => {
+  const file = (path: string): TreeEntry => ({ name: path.split('/').pop() ?? path, path, dir: false })
+
+  it('finds the README whatever its case', () => {
+    expect(pickReadme([file('src'), file('readme.md')])).toBe('readme.md')
+    expect(pickReadme([file('ReadMe.MD')])).toBe('ReadMe.MD')
+  })
+
+  it('prefers markdown over plain text and no extension', () => {
+    expect(pickReadme([file('README'), file('README.txt'), file('README.md')])).toBe('README.md')
+    expect(pickReadme([file('README'), file('README.txt')])).toBe('README.txt')
+    expect(pickReadme([file('README.markdown'), file('README.txt')])).toBe('README.markdown')
+  })
+
+  it('is stable when a repository holds two spellings of the same rank', () => {
+    // Case-only duplicates happen on case-sensitive filesystems; listing order wins.
+    expect(pickReadme([file('readme.md'), file('README.md')])).toBe('readme.md')
+  })
+
+  it('ignores a directory called README', () => {
+    expect(pickReadme([{ name: 'README', path: 'README', dir: true }])).toBeNull()
+  })
+
+  it('ignores files that merely start with readme', () => {
+    expect(pickReadme([file('README_OLD.md'), file('readme-fr.md')])).toBeNull()
+  })
+
+  it('ignores a README nested in a folder', () => {
+    expect(pickReadme([file('docs/README.md')])).toBeNull()
+  })
+
+  it('returns null when there is none', () => {
+    expect(pickReadme([file('index.ts')])).toBeNull()
+    expect(pickReadme([])).toBeNull()
   })
 })

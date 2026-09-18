@@ -1,4 +1,4 @@
-import { AlertTriangle, ExternalLink, GitBranch, MoreVertical, Star } from 'lucide-react'
+import { AlertTriangle, BookOpen, ExternalLink, GitBranch, MoreVertical, Star } from 'lucide-react'
 import { useUIStore } from '../stores/ui'
 import { repositoryMenuItems } from '../lib/repositoryMenuItems'
 import type { RepoRow } from '../lib/repoSections'
@@ -7,6 +7,9 @@ import { useT } from '../i18n'
 export interface RepositoryRowProps {
   row: RepoRow
   onOpen: (row: RepoRow) => void
+  /** Opens the details drawer: the README and where the folder lives, without
+   *  spending a tab on it. */
+  onShowDetails: (row: RepoRow) => void
   onToggleFavourite: (path: string) => void
   /** Opens the "remove from list" confirm — the folder on disk is untouched. */
   onForget: (path: string, label: string) => void
@@ -31,6 +34,7 @@ export interface RepositoryRowProps {
 export function RepositoryRow({
   row,
   onOpen,
+  onShowDetails,
   onToggleFavourite,
   onForget,
   onLocate,
@@ -109,14 +113,24 @@ export function RepositoryRow({
             </button>
           </>
         ) : (
-          <button
-            className="repos-icon-btn"
-            title={t('repos.openInTab')}
-            aria-label={t('repos.openInTab')}
-            onClick={() => onOpen(row)}
-          >
-            <ExternalLink size={13} />
-          </button>
+          <>
+            <button
+              className="repos-icon-btn"
+              title={t('repos.openInTab')}
+              aria-label={t('repos.openInTab')}
+              onClick={() => onOpen(row)}
+            >
+              <ExternalLink size={13} />
+            </button>
+            <button
+              className="repos-icon-btn"
+              title={t('repos.detailsTitle')}
+              aria-label={t('repos.detailsTitle')}
+              onClick={() => onShowDetails(row)}
+            >
+              <BookOpen size={13} />
+            </button>
+          </>
         )}
         <button
           className="repos-icon-btn"
