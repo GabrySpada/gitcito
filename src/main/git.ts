@@ -20,6 +20,7 @@ import {
 } from './repoConfig'
 import type {
   BlameLine,
+  CommitAuthor,
   DoctorCheck,
   DoctorFix,
   RepoConfig,
@@ -5283,13 +5284,25 @@ export const gitService = {
     }
   },
 
-  async commit(repoPath: string, message: string, amend = false): Promise<void> {
+  /** `resetAuthor` only means something with `amend`: an amend otherwise keeps
+   *  the amended commit's author and author date, so new work folded into a
+   *  colleague's commit would be credited to them. */
+  async commit(repoPath: string, message: string, amend = false, resetAuthor = false): Promise<void> {
     const git = gitFor(repoPath)
-    await git.commit(message, amend ? ['--amend'] : [])
+    await git.commit(message, amend ? ['--amend', ...(resetAuthor ? ['--reset-author'] : [])] : [])
   },
 
   async getCommitMessage(repoPath: string, hash: string): Promise<string> {
     return gitFor(repoPath).raw(['log', '-1', '--format=%B', hash])
+  },
+
+  /** Author of one commit — null when `rev` names nothing (an unborn branch). */
+  async commitAuthor(repoPath: string, rev: string): Promise<CommitAuthor | null> {
+    const raw = await gitFor(repoPath)
+      .raw(['log', '-1', '--format=%an%x00%ae', rev])
+      .catch(() => '')
+    const [name, email] = raw.trim().split('\x00')
+    return name || email ? { name: name ?? '', email: email ?? '' } : null
   },
 
   /** Full SHA for any revision expression — `HEAD~2`, a tag, a short hash.
@@ -7409,6 +7422,7 @@ const READ_METHODS = new Set<string>([
   'fileSizes',
   'treeStatus',
   'getCommitMessage',
+  'commitAuthor',
   'resolveRev',
   'commitTemplate',
   'reflog',

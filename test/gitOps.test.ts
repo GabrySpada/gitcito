@@ -239,6 +239,46 @@ describe('branch + stage + commit', () => {
   })
 })
 
+describe('amending a colleague\'s commit', () => {
+  it('keeps their authorship unless asked, and undo restores the amended commit', async () => {
+    const R = cloneFixture('bisect-bug')
+    await gitService.setUser(R, 'Me', 'me@test')
+    writeFileSync(join(R, 'theirs.txt'), 'their work\n')
+    await raw(R, ['add', 'theirs.txt'])
+    await raw(R, ['-c', 'user.name=Colleague', '-c', 'user.email=colleague@test', 'commit', '-m', 'feat: theirs'])
+    const theirs = await shaOf(R, 'HEAD')
+    const parent = await shaOf(R, 'HEAD~1')
+    expect(await gitService.commitAuthor(R, 'HEAD')).toEqual({ name: 'Colleague', email: 'colleague@test' })
+
+    // A plain amend is what credited Elisa's policy fix to gabry.
+    writeFileSync(join(R, 'mine.txt'), 'my work\n')
+    await gitService.stage(R, ['mine.txt'])
+    await gitService.commit(R, 'feat: mine', true)
+    expect((await gitService.commitAuthor(R, 'HEAD'))?.email).toBe('colleague@test')
+    expect(await shaOf(R, 'HEAD~1')).toBe(parent) // replaced, not stacked
+
+    // Undo resets to the amended commit, not HEAD~1: their commit is back and
+    // only the amend's own change is left staged.
+    await gitService.reset(R, theirs, 'soft')
+    expect(await shaOf(R, 'HEAD')).toBe(theirs)
+    expect((await gitService.status(R)).staged.map((f) => f.path)).toEqual(['mine.txt'])
+
+    // Redo with --reset-author takes the authorship.
+    await gitService.commit(R, 'feat: mine', true, true)
+    expect(await gitService.commitAuthor(R, 'HEAD')).toEqual({ name: 'Me', email: 'me@test' })
+    expect(await shaOf(R, 'HEAD~1')).toBe(parent)
+  })
+
+  it('has no author on an unborn branch', async () => {
+    expect(await gitService.commitAuthor(cloneFixture('empty-repo'), 'HEAD')).toBeNull()
+  })
+
+  it('reads authorship under the shared lock', () => {
+    expect(gitMethodIsRead('commitAuthor')).toBe(true)
+    expect(gitMethodIsRead('commit')).toBe(false)
+  })
+})
+
 describe('rename branch', () => {
   it('renames the checked-out branch and stays on it', async () => {
     const R = cloneFixture('bisect-bug')

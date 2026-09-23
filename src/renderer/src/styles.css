@@ -4056,6 +4056,37 @@ body.col-resizing .node-ava {
   accent-color: var(--accent);
 }
 
+/* Amending someone else's commit: say whose name it keeps, and offer to take it. */
+.amend-author {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-1);
+  background: color-mix(in srgb, #e0a020 10%, var(--bg-2));
+  border: 1px solid color-mix(in srgb, #e0a020 35%, var(--border-soft));
+}
+.amend-author-text {
+  flex: 1;
+  min-width: 0;
+}
+.amend-author-reset {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--text-2);
+}
+.amend-author-reset input {
+  accent-color: var(--accent);
+}
+
 .commit-btn {
   flex: 1;
 }

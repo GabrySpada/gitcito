@@ -50,6 +50,18 @@ messaggio completo, mette il compositore in modalità amend e gli dà il focus. 
 HEAD già inviato si può comunque correggere, ma Gitcito avvisa che aggiornare il
 remote richiederà un force push.
 
+### Correggere il commit di qualcun altro
+
+Un amend mantiene **l’autore e la data d’autore** del commit originale — è una regola di git, non di Gitcito. Va bene quando correggi un refuso nel commit di un collega; è sbagliato quando ci infili lavoro nuovo tuo: il risultato viene attribuito a lui, e il grafo mostra il suo nome su codice che non ha mai scritto.
+
+Per questo, quando l’email dell’autore di HEAD è diversa dal tuo `user.email`, il compositore dice di chi è il commit che stai correggendo e offre **Rendimi l’autore**. Spuntandolo, l’amend usa `--reset-author`: diventi tu l’autore, con la data di adesso. Lascialo spento per mantenere il suo nome.
+
+![Modalità amend su un commit scritto da qualcun altro](../../screenshots/amend-author.webp)
+
+Confronta le email, quindi chi committa come `Elisa` e come `elisa` conta come lo stesso autore. Ricade sul nome solo quando manca un’email, e non dice nulla se il repository non ha alcuna identità configurata. Controlla solo il commit che stai correggendo: un cherry-pick o un rebase che in seguito sposta quel commit mantiene l’autore che ha in quel momento.
+
+⌘Z dopo un amend rimette al suo posto il commit corretto, con le tue nuove modifiche ancora in stage, come prima dell’amend — non torna al genitore di quel commit.
+
 **Annulla commit…** è il gemello per un HEAD non ancora inviato: reset mixed al
 genitore, modifiche dell'albero di lavoro conservate, messaggio riportato nel
 compositore. Il commit iniziale ha un percorso dedicato che lascia un branch non

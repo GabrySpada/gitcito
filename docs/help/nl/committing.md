@@ -51,6 +51,18 @@ volledige boodschap, zet de opsteller in de amend-stand en geeft hem focus. Een
 HEAD die al gepusht is kan nog steeds worden aangepast, maar Gitcito waarschuwt
 dat het bijwerken van de remote een force push zal kosten.
 
+### De commit van iemand anders aanpassen
+
+Een amend behoudt **de auteur en de auteursdatum** van de oorspronkelijke commit — een regel van git, niet van Gitcito. Dat klopt als je een typfout in de commit van een collega herstelt, en is fout als je er eigen nieuw werk in vouwt: het resultaat wordt aan hen toegeschreven, en de graaf toont hun naam bij code die ze nooit schreven.
+
+Daarom zegt de composer, als het auteurs-e-mailadres van HEAD afwijkt van je `user.email`, van wie de commit is die je aanpast, en biedt **Maak mij de auteur** aan. Aangevinkt past hij aan met `--reset-author`: jij wordt de auteur, gedateerd op nu. Laat het uit om hun naam te houden.
+
+![Amend-modus op een commit van iemand anders](../../screenshots/amend-author.webp)
+
+Er worden e-mailadressen vergeleken, dus iemand die commit als `Elisa` en als `elisa` telt als dezelfde auteur. Alleen als een e-mailadres ontbreekt valt het terug op de naam, en het zwijgt als de repository helemaal geen identiteit heeft ingesteld. Alleen de aangepaste commit wordt gecontroleerd: een latere cherry-pick of rebase die hem elders neerzet, houdt de auteur die hij dan heeft.
+
+⌘Z na een amend zet de aangepaste commit terug, met je nieuwe wijzigingen nog gestaged zoals vóór de amend — het gaat niet terug naar de ouder van die commit.
+
 **Commit ongedaan maken…** is de tegenhanger voor een niet-gepushte HEAD: een
 mixed reset naar de ouder, de wijzigingen in de werkboom blijven behouden, en de
 boodschap komt terug in de opsteller. De eerste commit heeft een eigen pad dat
