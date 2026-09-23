@@ -7,6 +7,7 @@ import { parseRemoteUrl } from '../src/main/hosting'
 import { treeStatusOf } from '../src/renderer/src/lib/treeStatus'
 import { timeAgo, isStale, STALE_AFTER_MS } from '../src/renderer/src/lib/timeAgo'
 import { dateBucket, dateDividers } from '../src/renderer/src/lib/dateBuckets'
+import { isForeignAuthor } from '../src/renderer/src/lib/commitAuthorship'
 import { isLockErrorMessage, lockRepairPlan } from '../src/renderer/src/lib/gitLocks'
 import { stackOrder, moveLevel, adoptableBranches, targetFor } from '../src/renderer/src/lib/stackOrder'
 import { planStackSubmit, summariseStackPlan } from '../src/shared/stackPr'
@@ -7264,5 +7265,34 @@ describe('dateDividers', () => {
   it('has nothing to divide in an empty or single-bucket graph', () => {
     expect(dateDividers([], NOW).size).toBe(0)
     expect(dateDividers([{ date: at(2026, 9, 18) }, { date: at(2026, 9, 18, 8) }], NOW).size).toBe(0)
+  })
+})
+
+describe('isForeignAuthor', () => {
+  const gabry = { name: 'gabry', email: 'g.spada@topsolution.it' }
+  const elisa = { name: 'Elisa Solinas', email: 'e.solinas@topsolution.it' }
+
+  it('flags amending a colleague\'s commit', () => {
+    expect(isForeignAuthor(gabry, elisa)).toBe(true)
+  })
+
+  it('is quiet on your own commit, whatever the case or spacing of the email', () => {
+    expect(isForeignAuthor(elisa, elisa)).toBe(false)
+    expect(isForeignAuthor({ name: 'Elisa', email: ' E.Solinas@TopSolution.it' }, elisa)).toBe(false)
+  })
+
+  it('trusts the email over the name — one person, two spellings', () => {
+    expect(isForeignAuthor({ name: 'elisa', email: elisa.email }, elisa)).toBe(false)
+  })
+
+  it('falls back to the name only when an email is missing', () => {
+    expect(isForeignAuthor({ name: 'gabry', email: '' }, { name: 'Elisa Solinas', email: '' })).toBe(true)
+    expect(isForeignAuthor({ name: 'gabry', email: 'g@x' }, { name: 'gabry', email: '' })).toBe(false)
+  })
+
+  it('does not guess with nothing to compare', () => {
+    expect(isForeignAuthor(null, elisa)).toBe(false)
+    expect(isForeignAuthor(gabry, null)).toBe(false)
+    expect(isForeignAuthor(gabry, { name: '', email: '' })).toBe(false)
   })
 })

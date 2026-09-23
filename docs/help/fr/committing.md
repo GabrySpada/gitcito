@@ -52,6 +52,18 @@ il charge le message complet, fait passer le compositeur en mode amend et lui
 donne le focus. Un HEAD déjà poussé peut toujours être amendé, mais Gitcito
 prévient que mettre à jour le distant exigera un push forcé.
 
+### Amender le commit de quelqu’un d’autre
+
+Un amend conserve **l’auteur et la date d’auteur** du commit d’origine — c’est une règle de git, pas de Gitcito. C’est juste quand vous corrigez une coquille dans le commit d’un collègue, et faux quand vous y glissez votre propre travail : le résultat lui est attribué, et le graphe affiche son nom sur du code qu’il n’a jamais écrit.
+
+Aussi, quand l’e-mail de l’auteur de HEAD diffère de votre `user.email`, le compositeur indique à qui appartient le commit que vous amendez et propose **M’en attribuer la paternité**. Cochée, l’option amende avec `--reset-author` : vous devenez l’auteur, daté de maintenant. Laissez-la décochée pour garder son nom.
+
+![Mode amend sur un commit écrit par quelqu’un d’autre](../../screenshots/amend-author.webp)
+
+La comparaison porte sur les e-mails : une personne qui commite en tant que `Elisa` et `elisa` compte comme un seul auteur. Le nom ne sert qu’en l’absence d’e-mail, et rien n’est signalé si le dépôt n’a aucune identité configurée. Seul le commit amendé est vérifié : un cherry-pick ou un rebase qui le déplace ensuite garde l’auteur qu’il a alors.
+
+⌘Z après un amend remet le commit amendé en place, vos nouvelles modifications restant indexées comme avant l’amend — il ne revient pas au parent de ce commit.
+
 **Annuler le commit…** est son pendant pour un HEAD non poussé : reset mixed
 vers le parent, changements de l'arbre de travail conservés, message restauré
 dans le compositeur. Le commit initial a un chemin dédié qui laisse une branche

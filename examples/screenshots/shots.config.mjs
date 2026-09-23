@@ -839,6 +839,28 @@ export const shots = [
     }
   },
   {
+    // Amend mode on a HEAD written by someone else (Alice, while the playground
+    // commits as playground@example.com): the composer names whose authorship
+    // the amend keeps and offers --reset-author.
+    out: 'amend-author',
+    repos: ['collaborators'],
+    themes: ['light'],
+    drive: async (page, repoPaths) => {
+      const repo = repoPaths['collaborators']
+      await page.evaluate((p) => window.__shot.repo.getState().select(p, { type: 'wip' }), repo)
+      await page.waitForTimeout(300)
+      await page.evaluate(
+        (p) =>
+          window.__shot.ui
+            .getState()
+            .requestComposerIntent({ path: p, summary: 'docs: explain the release process', description: '', amend: true }),
+        repo
+      )
+      await page.waitForSelector('.amend-author', { timeout: 5000 })
+      await page.waitForTimeout(300)
+    }
+  },
+  {
     // Integrated terminal — a real PTY (xterm + node-pty) docked under the repo.
     out: 'terminal',
     repos: ['deep-history-monorepo'],

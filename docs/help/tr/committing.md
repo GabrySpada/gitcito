@@ -51,6 +51,18 @@ tamamını yükler, besteci panelini amend kipine alır ve ona odaklanır. Zaten
 push edilmiş bir HEAD yine de düzeltilebilir; ama Gitcito, uzak depoyu
 güncellemenin bir force push gerektireceği konusunda uyarır.
 
+### Başkasının commit’ini düzeltmek
+
+Amend, özgün commit’in **yazarını ve yazar tarihini** korur — bu Gitcito’nun değil, git’in kuralıdır. Bir iş arkadaşınızın commit’indeki yazım hatasını düzeltirken doğrudur; kendi yeni çalışmanızı içine kattığınızda ise yanlıştır: sonuç ona atfedilir ve grafik, hiç yazmadığı kodda onun adını gösterir.
+
+Bu yüzden HEAD’in yazar e-postası sizin `user.email` değerinizden farklıysa, oluşturucu kimin commit’ini düzelttiğinizi söyler ve **Yazar ben olayım** seçeneğini sunar. İşaretlenirse amend `--reset-author` ile yapılır: şu anki tarihle yazar siz olursunuz. Onun adını korumak için işaretsiz bırakın.
+
+![Başkası tarafından yazılmış bir commit üzerinde amend modu](../../screenshots/amend-author.webp)
+
+E-postalar karşılaştırılır; `Elisa` ve `elisa` olarak commit yapan biri aynı yazar sayılır. Ada yalnızca e-posta eksikse başvurur ve depoda hiç kimlik yapılandırılmamışsa bir şey söylemez. Yalnızca düzeltilen commit denetlenir: onu sonradan başka bir yere taşıyan cherry-pick veya rebase, commit’in o anki yazarını korur.
+
+Amend’den sonra ⌘Z, düzeltilen commit’i geri getirir; yeni değişiklikleriniz amend öncesindeki gibi hazırlanmış kalır — o commit’in üst commit’ine geri dönmez.
+
 **Commit’i geri al…** ise push edilmemiş bir HEAD için olan kardeşidir: üst
 commit'e mixed reset, çalışma ağacındaki değişiklikler korunur, mesaj besteci
 paneline geri gelir. İlk commit'in, dosyaları yok etmek yerine geride doğmamış

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles, Loader2, Trash2, AlignLeft, FolderTree, GitMerge, ChevronDown, CheckCheck, Users, Plus, Minus } from 'lucide-react'
-import type { CodeSearchHit, FileEntry, CommitStyle } from '../../../shared/types'
+import type { CodeSearchHit, CommitAuthor, FileEntry, CommitStyle } from '../../../shared/types'
 import { gitApi, aiApi, shellApi, diffToolApi } from '../infrastructure/api'
 import { repoActions, useRepoStore, type RepoData } from '../stores/repo'
 import { useUIStore, type MenuItem } from '../stores/ui'
@@ -12,6 +12,7 @@ import { Avatar } from './Avatar'
 import { lintCommit, subjectCounterLevel, SUBJECT_IDEAL_LEN, CC_TYPES, parseCcPrefix, applyCcType, applyCcScope, currentCcScope, GITMOJIS, parseGitmojiPrefix, applyGitmoji, parseTicketPrefix, ticketFromBranch } from '../lib/commitLint'
 import { appendTrailers, configTrailers } from '../lib/repoConfig'
 import { isSecretFile } from '../lib/secrets'
+import { isForeignAuthor } from '../lib/commitAuthorship'
 import { isBuildNoise, ignoreLineFor } from '../lib/buildNoise'
 import {
   FileSearchBar,
@@ -178,6 +179,10 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
   }, [wantsBranchTicket, branchTicket])
 
   const [amend, setAmend] = useState(false)
+  // Whose commit an amend would rewrite, when it is not ours — git keeps the
+  // original author, so new work folded in would be credited to them.
+  const [amendAuthor, setAmendAuthor] = useState<CommitAuthor | null>(null)
+  const [resetAuthor, setResetAuthor] = useState(false)
   const summaryRef = useRef<HTMLInputElement>(null)
   // Collapsed by default — the commit-style row is "advanced" and toggled by the
   // chevron on the summary row.
@@ -236,6 +241,25 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
     useUIStore.getState().consumeComposerIntent()
     requestAnimationFrame(() => summaryRef.current?.focus())
   }, [composerIntent, path, setSummary])
+  // Re-read while amending whenever HEAD can have moved. A checkout refreshes
+  // only `branches` — the graph already holds every branch, so `commits` keeps
+  // its identity — hence both slices.
+  useEffect(() => {
+    if (!amend) {
+      setAmendAuthor(null)
+      setResetAuthor(false)
+      return
+    }
+    let live = true
+    void Promise.all([gitApi.commitAuthor(path, 'HEAD'), gitApi.getUser(path)])
+      .then(([author, me]) => {
+        if (live) setAmendAuthor(isForeignAuthor(author, me) ? author : null)
+      })
+      .catch(() => live && setAmendAuthor(null))
+    return () => {
+      live = false
+    }
+  }, [amend, path, repo.commits, repo.branches])
   // git's configured diff tool, for the per-file "Diff in <tool>" entry. Read
   // once per repo: a context menu is built synchronously on click.
   const [diffTool, setDiffTool] = useState('')
@@ -747,7 +771,7 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
   }
 
   const runCommit = async (message: string): Promise<void> => {
-    const ok = await repoActions.commit(path, message, amend)
+    const ok = await repoActions.commit(path, message, amend, amend && amendAuthor !== null && resetAuthor)
     if (ok) {
       setSummary('')
       setDescription('')
@@ -1235,6 +1259,18 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
             ))}
           </ul>
         )}
+        {amend && amendAuthor && (
+          <div className="amend-author">
+            <Avatar email={amendAuthor.email} name={amendAuthor.name} size={18} />
+            <span className="amend-author-text">
+              {interp(t('composer.amendForeignAuthor'), { name: amendAuthor.name || amendAuthor.email })}
+            </span>
+            <label className="amend-author-reset" title={t('composer.amendResetAuthorTitle')}>
+              <input type="checkbox" checked={resetAuthor} onChange={(e) => setResetAuthor(e.target.checked)} />
+              {t('composer.amendResetAuthor')}
+            </label>
+          </div>
+        )}
         <div className="commit-actions">
           <label className="amend-check">
             <input
@@ -1255,7 +1291,7 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
                 }
               }}
             />
-            Amend
+            {t('composer.amend')}
           </label>
           <motion.button
             className="btn primary commit-btn"

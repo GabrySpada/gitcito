@@ -2230,15 +2230,23 @@ export const repoActions = {
   renameStash: (path: string, index: number, message: string) =>
     useRepoStore.getState().run(path, t('act.renamedStash'), () => gitApi.renameStash(path, index, message), undefined, null, undefined, ['stashes']),
 
-  commit: (path: string, message: string, amend = false) =>
-    useRepoStore.getState().run(
+  commit: (path: string, message: string, amend = false, resetAuthor = false) => {
+    // An amend replaces HEAD rather than stacking on it, so `HEAD~1` afterwards
+    // is the *parent* of the amended commit: undoing to it would drop that
+    // commit from the branch. Remember the commit being amended and go back to
+    // it — the amend's own changes stay staged, exactly as before it ran.
+    let amended = ''
+    return useRepoStore.getState().run(
       path,
-      amend ? 'Amended commit' : 'Committed',
-      () => gitApi.commit(path, message, amend),
+      amend ? t('act.amendedCommit') : t('act.committed'),
+      async () => {
+        if (amend) amended = (await gitApi.resolveRev(path, 'HEAD')) ?? ''
+        await gitApi.commit(path, message, amend, resetAuthor)
+      },
       {
-        label: t('undoLabel.commit'),
-        undo: () => gitApi.reset(path, 'HEAD~1', 'soft'),
-        redo: () => gitApi.commit(path, message)
+        label: amend ? t('undoLabel.amend') : t('undoLabel.commit'),
+        undo: () => gitApi.reset(path, amend ? amended : 'HEAD~1', 'soft'),
+        redo: () => gitApi.commit(path, message, amend, resetAuthor)
       },
       null,
       (error) => {
@@ -2248,7 +2256,8 @@ export const repoActions = {
         return true
       },
       ['log', 'status', 'branches']
-    ),
+    )
+  },
 
   amendCommitMessage: (path: string, message: string, previousMessage?: string) =>
     useRepoStore

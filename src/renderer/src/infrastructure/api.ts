@@ -34,6 +34,7 @@ import type {
   HistoryPurgePreview,
   HistoryPurgeResult,
   HistoryPurgeBackup,
+  CommitAuthor,
   CommitBranchInfo,
   ConflictContext,
   ConflictOpKind,
@@ -438,7 +439,9 @@ export const gitApi = {
     call<void>('fsMove', path, froms, destDir, mode),
   fsImport: (path: string, srcPaths: string[], destDir: string, mode?: FsDropMode) =>
     call<void>('fsImport', path, srcPaths, destDir, mode),
-  commit: (path: string, message: string, amend?: boolean) => call<void>('commit', path, message, amend),
+  commit: (path: string, message: string, amend?: boolean, resetAuthor?: boolean) =>
+    call<void>('commit', path, message, amend, resetAuthor),
+  commitAuthor: (path: string, rev: string) => call<CommitAuthor | null>('commitAuthor', path, rev),
   getCommitMessage: (path: string, hash: string) => call<string>('getCommitMessage', path, hash),
   resolveRev: (path: string, rev: string) => call<string | null>('resolveRev', path, rev),
   commitTemplate: (path: string) => call<string>('commitTemplate', path),

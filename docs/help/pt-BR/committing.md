@@ -51,6 +51,18 @@ carrega a mensagem completa, coloca o compositor em modo amend e o foca. Um HEAD
 que já foi enviado ainda pode receber amend, mas o Gitcito avisa que atualizar o
 remoto vai exigir um force push.
 
+### Fazer amend no commit de outra pessoa
+
+Um amend mantém **o autor e a data de autoria** do commit original — é uma regra do git, não do Gitcito. Isso está certo quando você corrige um erro de digitação no commit de um colega, e errado quando você junta trabalho novo seu a ele: o resultado é creditado ao colega, e o grafo mostra o nome dele em código que ele nunca escreveu.
+
+Por isso, quando o email do autor do HEAD é diferente do seu `user.email`, o compositor diz de quem é o commit em que você está fazendo amend e oferece **Tornar-me o autor**. Marcado, o amend usa `--reset-author`: você passa a ser o autor, com a data de agora. Deixe desmarcado para manter o nome dele.
+
+![Modo amend num commit escrito por outra pessoa](../../screenshots/amend-author.webp)
+
+A comparação é por email, então quem faz commit como `Elisa` e como `elisa` conta como o mesmo autor. Só recorre ao nome quando falta um email, e não diz nada se o repositório não tiver nenhuma identidade configurada. Só verifica o commit em que você faz amend: um cherry-pick ou rebase que depois o leve para outro lugar mantém o autor que ele tiver então.
+
+⌘Z depois de um amend traz de volta o commit alterado, com suas mudanças novas ainda no stage, como antes do amend — não volta para o pai desse commit.
+
 **Desfazer commit…** é o irmão para um HEAD não enviado: reset mixed para o pai,
 mudanças da árvore de trabalho mantidas, mensagem restaurada no compositor. O
 commit inicial tem um caminho dedicado que deixa uma branch não nascida em vez

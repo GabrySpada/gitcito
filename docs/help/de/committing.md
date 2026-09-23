@@ -52,6 +52,18 @@ die vollständige Nachricht, schaltet den Editor in den Amend-Modus und
 fokussiert ihn. Ein bereits gepushter HEAD lässt sich weiterhin ändern, aber
 Gitcito warnt, dass das Aktualisieren des Remotes einen Force-Push braucht.
 
+### Den Commit einer anderen Person ändern
+
+Ein Amend behält **Autor und Autorendatum** des ursprünglichen Commits — eine Regel von git, nicht von Gitcito. Das passt, wenn du einen Tippfehler im Commit einer Kollegin korrigierst, und ist falsch, wenn du eigene neue Arbeit hineinfaltest: Das Ergebnis wird ihr zugeschrieben, und der Graph zeigt ihren Namen an Code, den sie nie geschrieben hat.
+
+Deshalb sagt der Composer, wenn die Autor-E-Mail von HEAD von deiner `user.email` abweicht, wessen Commit du änderst, und bietet **Mich als Autor eintragen** an. Aktiviert, ändert er mit `--reset-author`: Du wirst Autor, datiert auf jetzt. Lass es aus, um ihren Namen zu behalten.
+
+![Amend-Modus bei einem Commit einer anderen Person](../../screenshots/amend-author.webp)
+
+Verglichen werden E-Mails, also zählt jemand, der als `Elisa` und als `elisa` committet, als dieselbe Person. Auf den Namen fällt es nur zurück, wenn eine E-Mail fehlt, und es schweigt, wenn das Repository gar keine Identität konfiguriert hat. Geprüft wird nur der Commit, den du änderst: Ein späterer Cherry-Pick oder Rebase, der ihn woandershin trägt, behält den Autor, den er dann hat.
+
+⌘Z nach einem Amend stellt den geänderten Commit wieder her, deine neuen Änderungen bleiben gestaged wie vor dem Amend — es springt nicht zum Eltern-Commit zurück.
+
 **Commit rückgängig…** ist das Geschwister für einen ungepushten HEAD: Mixed
 Reset auf den Eltern-Commit, die Änderungen im Arbeitsbaum bleiben erhalten,
 die Nachricht kehrt in den Editor zurück. Der allererste Commit hat einen
