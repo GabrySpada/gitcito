@@ -2577,10 +2577,25 @@ body.col-resizing .node-ava {
 .graph-refs.refs-tinted .node-connector {
   height: 1px;
   border-radius: 0;
-  opacity: 0.6;
+  opacity: 0.3;
+}
+/* 1px CSS is two device pixels on a HiDPI screen — halve it so the line is a
+   true single-pixel hairline there. A 1x screen cannot go below 1px. */
+@media (min-resolution: 2dppx) {
+  .graph-refs.refs-tinted .node-connector:not(.is-head) {
+    height: 0.5px;
+  }
 }
 .graph-refs.refs-tinted .node-connector::before {
   display: none;
+}
+/* Only the checked-out branch gets a solid, heavier line — every other label
+   stays a hairline, so the eye finds HEAD first (GitKraken does the same). */
+.graph-refs .node-connector.is-head {
+  opacity: 1;
+}
+.graph-refs.refs-tinted .node-connector.is-head {
+  height: 2px;
 }
 .ref-badge.ref-head .ref-ic,
 .ref-badge.ref-head .ref-check {
