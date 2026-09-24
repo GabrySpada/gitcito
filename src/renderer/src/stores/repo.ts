@@ -1220,11 +1220,11 @@ function isNoOpConflictError(path: string): (message: string) => boolean {
 }
 
 export const repoActions = {
-  // Refreshes every slice on purpose: moving HEAD rewrites the `HEAD -> …`
-  // decoration the graph reads off each commit, plus the per-directory tree
-  // status and each worktree's HEAD. Refetching only branches/status left the
-  // graph's head badge (and the file-tree markers) on the previous branch until
-  // something else triggered a full refresh — e.g. switching repo tabs.
+  // Moving HEAD rewrites the `HEAD -> …` decoration the graph reads off each
+  // commit, plus the per-directory tree status and each worktree's HEAD — so
+  // the log, tree status and worktrees slices are all part of the refetch.
+  // Without the log the graph kept its ✓ on the previous branch while the
+  // sidebar had already moved on, until something forced a full refresh.
   checkout: (path: string, ref: string) => {
     // A branch checked out in another worktree cannot be checked out here —
     // git says so, in words that answer a question nobody asked. Go where the
@@ -1247,7 +1247,7 @@ export const repoActions = {
       },
       null,
       undefined,
-      ['branches', 'status', 'treeStatus']
+      ['log', 'branches', 'status', 'treeStatus', 'worktrees']
     )
   },
 
@@ -1530,7 +1530,9 @@ export const repoActions = {
       },
       null,
       undefined,
-      ['branches']
+      // The name is also the label the graph reads off each commit, and the
+      // branch a worktree shows — both go stale without their slices.
+      ['log', 'branches', 'worktrees']
     ),
 
   renameBranchRemote: (path: string, oldName: string, newName: string, remote: string) =>
@@ -1543,7 +1545,7 @@ export const repoActions = {
         undefined,
         null,
         undefined,
-        ['branches']
+        ['log', 'branches', 'worktrees']
       ),
 
   /** `options` overrides the settings default; the plain menu entry passes none. */
