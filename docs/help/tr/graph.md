@@ -19,11 +19,19 @@ depo gibi kayar.
 ## Gezinme
 
 - <kbd>↑</kbd> <kbd>↓</kbd> (veya <kbd>j</kbd> <kbd>k</kbd>) seçimi ilerletir.
-- <kbd>⌘</kbd>/<kbd>Ctrl</kbd> ile tıklamak bir commit'i **çoklu seçime** ekler
-  ya da çıkarır; <kbd>⇧</kbd> ile tıklamak bir aralık alır. Birkaçı seçiliyken
-  sağ tıklayarak onları geçerli dala cherry-pick edebilir, bitişik bir diziyi
-  squash edebilir, tek bir birleşik yama dışa aktarabilir veya SHA'larını
-  kopyalayabilirsiniz.
+- <kbd>⌘</kbd>/<kbd>Ctrl</kbd> ile tıklamak, zaten seçili olan commit'ten
+  başlayarak bir commit'i **çoklu seçime** ekler ya da çıkarır; <kbd>⇧</kbd> ile
+  tıklamak bir aralık alır. Birkaçı seçiliyken birine sağ tıklayarak onları
+  geçerli dala cherry-pick edebilir, tek bir birleşik yama dışa aktarabilir veya
+  SHA'larını kopyalayabilirsiniz.
+- **Squash** bu menüde her zaman vardır, ama yalnızca seçim geçerli dalın ucu ve
+  hemen altındaki commit'lerden atlamasız oluşuyorsa çalışır — en eskinin
+  ebeveynine yumuşak reset'tir. Aradaki stash satırları sorun olmaz. Aksi hâlde
+  soluk görünür; nedenini görmek için üzerine gelin. Genellikle sebep, geçiş
+  yapmadığınız bir dalın commit'leridir: önce o dala geçin. Daha aşağıdaki
+  commit'ler için [etkileşimli rebase](rebase.md) kullanın. Rebase'de olduğu
+  gibi commit hook'ları çalışmaz: commit'ler zaten var ve başarısız bir hook
+  artık dalı yarı reset'lenmiş hâlde bırakamaz.
 - **Son fetch ya da pull** işleminizle gelen commit'ler yeni olarak işaretlenir.
   Henüz aktif dala girmemiş olanlar, bir pull onları getirene kadar hafifçe
   saydam kalır.

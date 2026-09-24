@@ -21,10 +21,18 @@ che ne ha cento.
 - <kbd>↑</kbd> <kbd>↓</kbd> (oppure <kbd>j</kbd> <kbd>k</kbd>) spostano la
   selezione.
 - <kbd>⌘</kbd>/<kbd>Ctrl</kbd>+clic aggiunge o toglie un commit da una
-  **selezione multipla**; <kbd>⇧</kbd>+clic prende un intervallo. Con più commit
-  selezionati, il clic destro permette di fare cherry-pick sul branch corrente,
-  fare squash di una sequenza contigua, esportare un'unica patch combinata o
-  copiare i loro SHA.
+  **selezione multipla**, partendo dal commit già selezionato; <kbd>⇧</kbd>+clic
+  prende un intervallo. Con più commit selezionati, il clic destro su uno di essi
+  permette di fare cherry-pick sul branch corrente, esportare un'unica patch
+  combinata o copiare i loro SHA.
+- **Squash** è sempre nel menu, ma funziona solo quando la selezione è la punta
+  del branch corrente più i commit subito sotto, senza salti — è un reset soft
+  al genitore del più vecchio. Le righe di stash in mezzo non contano.
+  Altrimenti è disattivato: passaci sopra per il motivo. Il caso tipico sono
+  commit di un branch su cui non hai fatto checkout: fai prima checkout di quel
+  branch. Per commit più in basso usa il [rebase interattivo](rebase.md). Gli
+  hook di commit non vengono eseguiti, come in un rebase: i commit esistono già,
+  e un hook che fallisce non può più lasciare il branch resettato a metà.
 - I commit arrivati con il tuo **ultimo fetch o pull** sono contrassegnati come
   nuovi. Quelli non ancora entrati nel branch attivo restano leggermente
   traslucidi finché un pull non li integra.

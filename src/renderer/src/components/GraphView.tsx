@@ -32,6 +32,7 @@ import { fetchedOnlyHashes } from '../lib/graphCommitState'
 import { openBranchDropMenu } from '../lib/branchDropMenu'
 import { CHAT_COMMIT_MIME } from '../lib/repoChatContext'
 import { refIntegrationItems } from '../lib/refMenuItems'
+import { toggleMultiSelect, squashableRun } from '../lib/graphMultiSelect'
 
 const LANE_W = 24
 const LEFT_PAD = 16
@@ -970,7 +971,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
       const y = (box?.top ?? 0) + Math.max(0, selectedRow * ROW_H - (scrollRef.current?.scrollTop ?? 0)) + ROW_H
       const stash = stashBySha.get(c.hash)
       if (multi.size > 1 && multi.has(c.hash)) openContextMenu(x, y, multiMenu())
-      if (stash) openContextMenu(x, y, stashMenu(stash))
+      else if (stash) openContextMenu(x, y, stashMenu(stash))
       else if (c.hash !== WIP_HASH) openCommitMenu(x, y, c)
     }
   }
@@ -1013,10 +1014,8 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
         }
         setMulti(range)
       } else {
-        const next = new Set(multi)
-        if (next.has(c.hash)) next.delete(c.hash)
-        else next.add(c.hash)
-        setMulti(next)
+        const current = repo.selected?.type === 'commit' ? repo.selected.hash : null
+        setMulti(toggleMultiSelect(multi, c.hash, current))
         setAnchorRow(row)
       }
       return
@@ -1044,44 +1043,47 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
 
   const multiMenu = (): MenuItem[] => {
     const sel = orderedSelection() // newest-first
-    // Squash only when the selection is a contiguous run reaching the branch tip
-    // (HEAD), since it's done by a soft reset to the oldest commit's parent.
-    const rows = displayCommits.map((c, i) => (multi.has(c.hash) ? i : -1)).filter((i) => i >= 0)
-    const contiguous = rows.length >= 2 && rows[rows.length - 1] - rows[0] === rows.length - 1
     const headHash = repo.commits.find((c) => c.refs.some((r) => r.startsWith('HEAD')))?.hash
-    // The oldest commit must have a parent (soft-reset to `oldest^`), so a range
-    // reaching the root commit can't be squashed this way.
-    const oldestCommit = sel.length ? displayCommits.find((c) => c.hash === sel[sel.length - 1]) : undefined
-    const canSquash = contiguous && sel[0] === headHash && (oldestCommit?.parents.length ?? 0) > 0
-    const subjectOf = (h: string): string => displayCommits.find((c) => c.hash === h)?.subject ?? ''
+    const squash = squashableRun(multi, headHash, commitByHash)
+    const branch = repo.branches.current.trim() || 'HEAD'
+    const subjectOf = (h: string): string => commitByHash.get(h)?.subject ?? ''
 
     const items: MenuItem[] = [
       {
-        label: interp(t('commit.cherryPickMany'), { n: sel.length, branch: repo.branches.current.trim() || 'HEAD' }),
+        label: interp(t('commit.cherryPickMany'), { n: sel.length, branch }),
         disabled: !repo.branches.current.trim(),
         onClick: () => void repoActions.cherryPickMany(repo.path, sel)
       },
       { label: interp(t('commit.exportMany'), { n: sel.length }), onClick: () => void exportManyPatches(sel) }
     ]
-    if (canSquash) {
-      const oldest = sel[sel.length - 1]
-      const defaultMsg = [...sel].reverse().map(subjectOf).filter(Boolean).join('; ')
+    // Always listed, so a selection that can't be squashed says why instead of
+    // leaving the option to vanish.
+    if (squash.run) {
+      const run = squash.run
+      const oldest = run[run.length - 1]
+      const defaultMsg = [...run].reverse().map(subjectOf).filter(Boolean).join('; ')
       items.push({
-        label: interp(t('commit.squashMany'), { n: sel.length }),
+        label: interp(t('commit.squashMany'), { n: run.length }),
         onClick: () =>
           openModal({
             kind: 'input',
             title: t('commit.squashTitle'),
-            label: interp(t('commit.squashLabel'), { n: sel.length }),
+            label: interp(t('commit.squashLabel'), { n: run.length }),
             placeholder: t('commit.squashPlaceholder'),
             initial: defaultMsg,
             submitLabel: t('commit.squashSubmit'),
             onSubmit: (msg) => {
               const message = msg.trim() || defaultMsg
               setMulti(new Set())
-              void repoActions.squashCommits(repo.path, oldest, message, sel.length)
+              void repoActions.squashCommits(repo.path, oldest, message, run.length)
             }
           })
+      })
+    } else {
+      items.push({
+        label: interp(t('commit.squashMany'), { n: sel.length }),
+        disabled: true,
+        title: interp(t(squash.reason), { branch })
       })
     }
     items.push(

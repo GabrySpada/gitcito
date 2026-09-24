@@ -19,10 +19,18 @@ with a hundred.
 ## Moving around
 
 - <kbd>↑</kbd> <kbd>↓</kbd> (or <kbd>j</kbd> <kbd>k</kbd>) walk the selection.
-- <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-click toggles a commit into a **multi-selection**;
-  <kbd>⇧</kbd>-click takes a range. With several selected, right-click to
-  cherry-pick them onto the current branch, squash a contiguous run, export one
-  combined patch, or copy their SHAs.
+- <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-click toggles a commit into a **multi-selection**,
+  starting from the commit already selected; <kbd>⇧</kbd>-click takes a range.
+  With several selected, right-click one of them to cherry-pick them onto the
+  current branch, export one combined patch, or copy their SHAs.
+- **Squash** is always in that menu, but it runs only when the selection is the
+  tip of the checked-out branch and the commits right below it, none skipped —
+  it works by a soft reset to the oldest one's parent. Stash rows in between do
+  not matter. Otherwise it is greyed out; hover it for the reason. The usual one
+  is commits on a branch you have not checked out: check that branch out first.
+  To squash commits further down, use [interactive rebase](rebase.md). Commit
+  hooks do not run, just as in a rebase: the commits already exist, and a
+  failing hook can no longer leave the branch half-reset.
 - Commits that arrived in your **last fetch or pull** are flagged as new. Ones
   that have not joined the checked-out branch yet stay slightly translucent
   until a pull brings them in.

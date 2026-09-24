@@ -20,9 +20,19 @@ desplaza igual que uno con cien.
 
 - <kbd>↑</kbd> <kbd>↓</kbd> (o <kbd>j</kbd> <kbd>k</kbd>) recorren la selección.
 - <kbd>⌘</kbd>/<kbd>Ctrl</kbd>+clic mete o saca un commit de una **selección
-  múltiple**; <kbd>⇧</kbd>+clic coge un rango. Con varios seleccionados, haz
-  clic derecho para hacerles cherry-pick sobre la rama actual, aplastar un tramo
-  contiguo, exportar un único parche combinado, o copiar sus SHA.
+  múltiple**, partiendo del commit ya seleccionado; <kbd>⇧</kbd>+clic coge un
+  rango. Con varios seleccionados, haz clic derecho sobre uno de ellos para
+  hacerles cherry-pick sobre la rama actual, exportar un único parche combinado,
+  o copiar sus SHA.
+- **Aplastar (squash)** está siempre en ese menú, pero solo funciona cuando la
+  selección es la punta de la rama actual y los commits justo debajo, sin huecos
+  — es un reset suave al padre del más antiguo. Las filas de stash intercaladas
+  no cuentan. Si no, aparece atenuado; pasa el cursor por encima para ver el
+  motivo. Lo habitual es que sean commits de una rama que no tienes activa:
+  cámbiate a ella primero. Para commits más abajo, usa el [rebase
+  interactivo](rebase.md). Los hooks de commit no se ejecutan, igual que en un
+  rebase: los commits ya existen, y un hook que falla ya no puede dejar la rama
+  a medio resetear.
 - Los commits que llegaron en tu **último fetch o pull** se marcan como nuevos.
   Los que aún no están en la rama activa se ven algo translúcidos hasta que un
   pull los incorpora.

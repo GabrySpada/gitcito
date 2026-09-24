@@ -21,10 +21,19 @@ dépôt d'une centaine.
 - <kbd>↑</kbd> <kbd>↓</kbd> (ou <kbd>j</kbd> <kbd>k</kbd>) déplacent la
   sélection.
 - <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-clic fait basculer un commit dans une **sélection
-  multiple** ; <kbd>⇧</kbd>-clic prend une plage. Avec plusieurs commits
-  sélectionnés, un clic droit permet de les cherry-picker sur la branche
-  courante, d'écraser une suite contiguë, d'exporter un patch combiné unique, ou
-  de copier leurs SHA.
+  multiple**, en partant du commit déjà sélectionné ; <kbd>⇧</kbd>-clic prend une
+  plage. Avec plusieurs commits sélectionnés, un clic droit sur l'un d'eux permet
+  de les cherry-picker sur la branche courante, d'exporter un patch combiné
+  unique, ou de copier leurs SHA.
+- **Écraser (squash)** figure toujours dans ce menu, mais ne s'exécute que si la
+  sélection est la pointe de la branche courante et les commits juste en
+  dessous, sans trou — c'est un reset soft vers le parent du plus ancien. Les
+  lignes de stash intercalées ne comptent pas. Sinon l'entrée est grisée ;
+  survolez-la pour en voir la raison. Le cas habituel : des commits d'une
+  branche qui n'est pas extraite — basculez d'abord dessus. Pour des commits
+  plus bas, passez par le [rebase interactif](rebase.md). Les hooks de commit ne
+  s'exécutent pas, comme lors d'un rebase : les commits existent déjà, et un
+  hook en échec ne peut plus laisser la branche à moitié réinitialisée.
 - Les commits arrivés lors de votre **dernier fetch ou pull** sont signalés comme
   nouveaux. Ceux qui ne font pas encore partie de la branche active restent
   légèrement translucides jusqu'à ce qu'un pull les intègre.

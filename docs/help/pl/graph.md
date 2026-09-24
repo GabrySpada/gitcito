@@ -21,10 +21,18 @@ commitów przewija się tak jak to ze stoma.
 - <kbd>↑</kbd> <kbd>↓</kbd> (albo <kbd>j</kbd> <kbd>k</kbd>) przesuwają
   zaznaczenie.
 - <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-kliknięcie dorzuca commit do **zaznaczenia
-  wielokrotnego**; <kbd>⇧</kbd>-kliknięcie bierze zakres. Mając zaznaczonych
-  kilka, kliknij prawym przyciskiem, żeby zrobić na nich cherry-pick na bieżącą
-  gałąź, zesquashować ciągły odcinek, wyeksportować jedną zbiorczą łatkę albo
-  skopiować ich SHA.
+  wielokrotnego** albo go z niego usuwa, zaczynając od już zaznaczonego commitu;
+  <kbd>⇧</kbd>-kliknięcie bierze zakres. Mając zaznaczonych kilka, kliknij
+  prawym przyciskiem na jeden z nich, żeby zrobić cherry-pick na bieżącą gałąź,
+  wyeksportować jedną zbiorczą łatkę albo skopiować ich SHA.
+- **Squash** jest zawsze w tym menu, ale działa tylko wtedy, gdy zaznaczenie to
+  czubek bieżącej gałęzi i commity tuż pod nim, bez przerw — to miękki reset do
+  rodzica najstarszego. Wiersze stasha pomiędzy nie przeszkadzają. W przeciwnym
+  razie pozycja jest wyszarzona; najedź na nią, żeby zobaczyć powód. Zwykle
+  chodzi o commity z gałęzi, na której nie jesteś: najpierw się na nią przełącz.
+  Commity niżej zesquashujesz [interaktywnym rebase'em](rebase.md). Hooki
+  commita się nie uruchamiają, tak jak przy rebasie: commity już istnieją, a
+  nieudany hook nie zostawi już gałęzi w połowie zresetowanej.
 - Commity, które przyszły z twoim **ostatnim fetchem lub pullem**, są oznaczone
   jako nowe. Te, które nie trafiły jeszcze do bieżącej gałęzi, pozostają lekko
   prześwitujące, dopóki pull ich nie wciągnie.
