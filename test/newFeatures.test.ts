@@ -638,7 +638,8 @@ describe('deleteRemoteBranch (stale tracking ref)', () => {
     const work = mkdtempSync(join(tmpdir(), 'gitcito-work-'))
     try {
       execFileSync('git', ['init', '--bare', remote], { stdio: 'ignore' })
-      execFileSync('git', ['init', work], { stdio: 'ignore' })
+      // Pin the branch name: `init.defaultBranch` may be unset (→ master) on this machine.
+      execFileSync('git', ['init', '-b', 'main', work], { stdio: 'ignore' })
       git(work, 'config', 'user.email', 'test@example.com')
       git(work, 'config', 'user.name', 'Test')
       git(work, 'remote', 'add', 'origin', remote)
@@ -1175,12 +1176,41 @@ describe('repoPulse — mission control (playground)', () => {
 
 describe('repoPulse activity + repoDetail (mission control)', () => {
   it('buckets recent commits per day for the sparkline', async () => {
-    const R = cloneFixture('absorb')
-    const p = await gitService.repoPulse(R)
-    expect(p.activity).toHaveLength(14)
-    // The fixture's commits were made just now, so they land in the last bucket.
-    expect(p.activity[13]).toBeGreaterThan(0)
-    expect(p.activity.slice(0, 13).every((n) => n === 0)).toBe(true)
+    // Its own repo with backdated commits: the playground is only regenerated when missing,
+    // so its commits can be any age and would land in a different bucket every day.
+    const R = mkdtempSync(join(tmpdir(), 'gitcito-pulse-'))
+    try {
+      execFileSync('git', ['init', '-b', 'main', R], { stdio: 'ignore' })
+      const now = Math.floor(Date.now() / 1000)
+      const commitAt = (at: number, msg: string): void => {
+        const date = `@${at} +0000`
+        execFileSync('git', ['-C', R, 'commit', '--allow-empty', '-m', msg], {
+          stdio: 'ignore',
+          env: {
+            ...process.env,
+            GIT_AUTHOR_NAME: 'Test',
+            GIT_AUTHOR_EMAIL: 'test@example.com',
+            GIT_COMMITTER_NAME: 'Test',
+            GIT_COMMITTER_EMAIL: 'test@example.com',
+            GIT_AUTHOR_DATE: date,
+            GIT_COMMITTER_DATE: date
+          }
+        })
+      }
+      commitAt(now - 20 * 86400, 'outside the window')
+      commitAt(now - 3 * 86400 - 3600, 'three days ago')
+      commitAt(now - 120, 'just now')
+      commitAt(now - 60, 'just now, again')
+
+      const p = await gitService.repoPulse(R)
+      expect(p.activity).toHaveLength(14)
+      // Oldest bucket first, so today is the last one.
+      expect(p.activity[13]).toBe(2)
+      expect(p.activity[10]).toBe(1)
+      expect(p.activity.reduce((a, b) => a + b, 0)).toBe(3)
+    } finally {
+      rmSync(R, { recursive: true, force: true })
+    }
   })
 
   it('lists what is dirty and what is waiting to be pushed', async () => {

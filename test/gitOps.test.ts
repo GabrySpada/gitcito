@@ -1819,13 +1819,15 @@ describe('credential helpers', () => {
 
   it('lists the https hosts this repository would ask about', async () => {
     const R = cloneFixture('bisect-bug')
-    await raw(R, ['remote', 'add', 'origin', 'https://github.com/example/demo.git'])
-    await raw(R, ['remote', 'add', 'ssh', 'git@gitlab.com:example/demo.git'])
+    // Hosts nobody rewrites: a global `url.*.insteadOf` (https → ssh for github.com is
+    // common) changes what `git remote -v` reports, and would make this depend on the machine.
+    await raw(R, ['remote', 'add', 'origin', 'https://git.example.com/example/demo.git'])
+    await raw(R, ['remote', 'add', 'ssh', 'git@ssh.example.com:example/demo.git'])
 
     const status = await gitService.credentialStatus(R)
-    expect(status.httpsHosts).toEqual(['github.com'])
+    expect(status.httpsHosts).toEqual(['git.example.com'])
     // An ssh remote never reaches a credential helper, so it is not listed.
-    expect(status.httpsHosts).not.toContain('gitlab.com')
+    expect(status.httpsHosts).not.toContain('ssh.example.com')
   })
 
   it('offers exactly one recommended helper for this platform', async () => {
