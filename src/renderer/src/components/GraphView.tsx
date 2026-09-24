@@ -1712,7 +1712,9 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
           openContextMenu(e.clientX, e.clientY, groupMenu(g, c))
         }}
       >
-        {g.isHead && <Check size={10} className="ref-check" />}
+        {/* Heavier stroke than the presence glyphs: at 10px lucide's default
+            stroke is a hairline, and this mark is what says "you are here". */}
+        {g.isHead && <Check size={11} strokeWidth={3.5} className="ref-check" />}
         {/* A tinted branch label reads name first, where it is presence at the
             end — GitKraken's order. A tag keeps its glyph up front: it is what
             tells a tag from a branch. */}
