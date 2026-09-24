@@ -20,10 +20,20 @@ Commits wie eines mit hundert.
 
 - <kbd>↑</kbd> <kbd>↓</kbd> (oder <kbd>j</kbd> <kbd>k</kbd>) bewegen die Auswahl.
 - <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-Klick nimmt einen Commit in eine
-  **Mehrfachauswahl** auf oder wieder heraus; <kbd>⇧</kbd>-Klick nimmt einen
-  Bereich. Mit mehreren ausgewählten Commits kannst du per Rechtsklick ein
-  Cherry-Pick auf den aktuellen Branch machen, eine zusammenhängende Folge
-  squashen, einen kombinierten Patch exportieren oder ihre SHAs kopieren.
+  **Mehrfachauswahl** auf oder wieder heraus, ausgehend vom bereits gewählten
+  Commit; <kbd>⇧</kbd>-Klick nimmt einen Bereich. Mit mehreren ausgewählten
+  Commits kannst du per Rechtsklick auf einen davon ein Cherry-Pick auf den
+  aktuellen Branch machen, einen kombinierten Patch exportieren oder ihre SHAs
+  kopieren.
+- **Squash** steht immer in diesem Menü, läuft aber nur, wenn die Auswahl die
+  Spitze des ausgecheckten Branches und die Commits direkt darunter umfasst,
+  ohne Lücke — es ist ein Soft-Reset auf den Parent des ältesten. Stash-Zeilen
+  dazwischen spielen keine Rolle. Sonst ist es ausgegraut; fahr darüber, um den
+  Grund zu sehen. Meist sind es Commits eines Branches, der nicht ausgecheckt
+  ist: checke ihn zuerst aus. Für Commits weiter unten nimm den [interaktiven
+  Rebase](rebase.md). Commit-Hooks laufen nicht, wie bei einem Rebase: Die
+  Commits gibt es schon, und ein fehlschlagender Hook kann den Branch nicht mehr
+  halb zurückgesetzt zurücklassen.
 - Commits, die mit deinem **letzten Fetch oder Pull** hereinkamen, werden als neu
   markiert. Die, die noch nicht im ausgecheckten Branch stecken, bleiben leicht
   durchscheinend, bis ein Pull sie holt.

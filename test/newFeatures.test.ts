@@ -3,7 +3,7 @@ import { writeFileSync, readFileSync, existsSync, mkdtempSync, rmSync, utimesSyn
 import { execFileSync } from 'node:child_process'
 import { tmpdir } from 'node:os'
 import { join, dirname } from 'node:path'
-import { gitService } from '../src/main/git'
+import { gitService, stripAnsi } from '../src/main/git'
 import { localCiService } from '../src/main/localCi'
 import { repoPath } from './helpers'
 import { cloneFixture, cleanupFixtures } from './fixtures'
@@ -510,6 +510,50 @@ describe('squashCommits (multi-select squash)', () => {
     expect(after.some((c) => c.subject === 'add a')).toBe(true) // untouched
     // Both squashed files survive in the tree.
     expect(existsSync(join(R, 'sq-b.txt')) && existsSync(join(R, 'sq-c.txt'))).toBe(true)
+  })
+
+  // Squashing re-packages commits that already exist, so — like an interactive
+  // rebase — it must not re-run commit hooks. A rejecting pre-commit hook used to
+  // strand the repo between `reset --soft` and the commit that never happened.
+  it('ignores a rejecting pre-commit hook and never strands HEAD', async () => {
+    const R = cloneFixture('changelog')
+    for (const n of ['a', 'b']) {
+      writeFileSync(join(R, `hk-${n}.txt`), `${n}\n`)
+      await gitService.stageAll(R)
+      await gitService.commit(R, `add ${n}`)
+    }
+    const headBefore = execFileSync('git', ['-C', R, 'rev-parse', 'HEAD']).toString().trim()
+    const oldest = execFileSync('git', ['-C', R, 'rev-parse', 'HEAD~1']).toString().trim()
+    const hook = join(R, '.git', 'hooks', 'pre-commit')
+    writeFileSync(hook, '#!/bin/sh\nexit 1\n', { mode: 0o755 })
+
+    const result = await gitService.squashCommits(R, oldest, 'squash a and b')
+
+    expect(result.before).toBe(headBefore)
+    const log = await gitService.log(R)
+    expect(log[0].subject).toBe('squash a and b')
+    expect(log[0].hash).toBe(result.after)
+    expect(log[1].hash).toBe(execFileSync('git', ['-C', R, 'rev-parse', `${oldest}^`]).toString().trim())
+  })
+
+  it('leaves already-staged changes staged instead of folding them in', async () => {
+    const R = cloneFixture('changelog')
+    for (const n of ['a', 'b']) {
+      writeFileSync(join(R, `st-${n}.txt`), `${n}\n`)
+      await gitService.stageAll(R)
+      await gitService.commit(R, `add ${n}`)
+    }
+    const oldest = execFileSync('git', ['-C', R, 'rev-parse', 'HEAD~1']).toString().trim()
+    writeFileSync(join(R, 'st-pending.txt'), 'pending\n')
+    execFileSync('git', ['-C', R, 'add', 'st-pending.txt'])
+
+    await gitService.squashCommits(R, oldest, 'squash a and b')
+
+    const inCommit = execFileSync('git', ['-C', R, 'show', '--name-only', '--format=', 'HEAD']).toString()
+    expect(inCommit).toContain('st-a.txt')
+    expect(inCommit).not.toContain('st-pending.txt')
+    const staged = execFileSync('git', ['-C', R, 'diff', '--cached', '--name-only']).toString().trim()
+    expect(staged).toBe('st-pending.txt')
   })
 })
 
@@ -1472,5 +1516,18 @@ describe('acting on a stack you are not standing on (stacked-branches playground
     const info = await gitService.stackInfo(R, 'feature/ui')
     expect(info.branches.map((b) => b.name)).toEqual(['feature/ui'])
     expect(info.branches[0].parent).toBe('main')
+  })
+})
+
+describe('stripAnsi', () => {
+  it('removes colour, cursor and hyperlink sequences from hook output', () => {
+    const raw = '\x1b[1m\x1b[30m\x1b[46m RUN \x1b[49m\x1b[39m\x1b[22m v4.1.11 \x1b[31m×\x1b[39m failed \x1b]8;;https://x\x07link\x1b]8;;\x07'
+    expect(stripAnsi(raw)).toBe(' RUN  v4.1.11 × failed link')
+  })
+
+  it('leaves plain text alone', () => {
+    expect(stripAnsi('lint-staged could not find any staged files [ok]')).toBe(
+      'lint-staged could not find any staged files [ok]'
+    )
   })
 })

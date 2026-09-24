@@ -20,10 +20,18 @@ een met honderd.
 
 - <kbd>↑</kbd> <kbd>↓</kbd> (of <kbd>j</kbd> <kbd>k</kbd>) verplaatsen de selectie.
 - <kbd>⌘</kbd>/<kbd>Ctrl</kbd>-klik zet een commit aan of uit in een
-  **meervoudige selectie**; <kbd>⇧</kbd>-klik pakt een reeks. Met meerdere
-  geselecteerd rechtsklik je om ze op de huidige branch te cherry-picken, een
-  aaneengesloten reeks te squashen, één gecombineerde patch te exporteren of hun
-  SHA's te kopiëren.
+  **meervoudige selectie**, te beginnen bij de al geselecteerde commit;
+  <kbd>⇧</kbd>-klik pakt een reeks. Met meerdere geselecteerd rechtsklik je op
+  een ervan om ze op de huidige branch te cherry-picken, één gecombineerde patch
+  te exporteren of hun SHA's te kopiëren.
+- **Squash** staat altijd in dat menu, maar werkt alleen als de selectie de top
+  van de uitgecheckte branch is plus de commits direct eronder, zonder gaten —
+  het is een soft reset naar de parent van de oudste. Stash-rijen ertussen
+  tellen niet mee. Anders is het grijs; beweeg erover voor de reden. Meestal
+  gaat het om commits van een branch die niet uitgecheckt is: check die eerst
+  uit. Voor commits verder omlaag gebruik je [interactieve rebase](rebase.md).
+  Commit-hooks draaien niet, net als bij een rebase: de commits bestaan al, en
+  een falende hook kan de branch niet meer half gereset achterlaten.
 - Commits die bij je **laatste fetch of pull** binnenkwamen zijn gemarkeerd als
   nieuw. Die nog niet in de uitgecheckte branch zitten blijven licht
   doorschijnend tot een pull ze binnenhaalt.

@@ -2282,12 +2282,29 @@ export const repoActions = {
         }),
 
   // Squash a contiguous run of the newest commits into one.
-  squashCommits: (path: string, oldestSha: string, message: string, count: number) =>
-    useRepoStore.getState().run(path, interp(t('act.squashed'), { count }), () => gitApi.squashCommits(path, oldestSha, message), {
-      label: t('undoLabel.squash'),
-      undo: () => gitApi.reset(path, 'ORIG_HEAD', 'hard'),
-      redo: () => gitApi.squashCommits(path, oldestSha, message)
-    }),
+  // The squashed commit has the same tree as the old tip, so a soft reset moves
+  // between the two without touching the index or the working tree.
+  squashCommits: (path: string, oldestSha: string, message: string, count: number) => {
+    let before = ''
+    let after = ''
+    return useRepoStore.getState().run(
+      path,
+      interp(t('act.squashed'), { count }),
+      async () => {
+        const res = await gitApi.squashCommits(path, oldestSha, message)
+        before = res.before
+        after = res.after
+      },
+      {
+        label: t('undoLabel.squash'),
+        undo: () => gitApi.reset(path, before, 'soft'),
+        redo: () => gitApi.reset(path, after, 'soft')
+      },
+      null,
+      undefined,
+      ['log', 'status', 'branches', 'treeStatus']
+    )
+  },
 
   // Cherry-pick several commits (passed newest-first; applied oldest-first).
   cherryPickMany: (path: string, hashes: string[]) => {

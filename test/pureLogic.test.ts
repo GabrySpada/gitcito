@@ -920,6 +920,7 @@ import {
 } from '../src/renderer/src/graph/style'
 import { layoutGraph } from '../src/renderer/src/graph/layout'
 import { withStashRows } from '../src/renderer/src/lib/stashRows'
+import { toggleMultiSelect, squashableRun } from '../src/renderer/src/lib/graphMultiSelect'
 import { defaultGraphStyle, type StashInfo } from '../src/shared/types'
 
 describe('graph style', () => {
@@ -7294,5 +7295,54 @@ describe('isForeignAuthor', () => {
     expect(isForeignAuthor(null, elisa)).toBe(false)
     expect(isForeignAuthor(gabry, null)).toBe(false)
     expect(isForeignAuthor(gabry, { name: '', email: '' })).toBe(false)
+  })
+})
+
+describe('graph multi-selection', () => {
+  const node = (hash: string, parents: string[]): GraphCommit => ({
+    hash,
+    parents,
+    author: '',
+    email: '',
+    date: 0,
+    refs: [],
+    subject: hash
+  })
+  // c ← b ← a (HEAD), with side branch s merged nowhere and a root r.
+  const byHash = new Map(
+    [node('a', ['b']), node('b', ['c']), node('c', ['r']), node('r', []), node('s', ['c'])].map((n) => [n.hash, n])
+  )
+
+  it('seeds the first ⌘-click with the commit already selected', () => {
+    expect([...toggleMultiSelect(new Set(), 'b', 'a')].sort()).toEqual(['a', 'b'])
+  })
+
+  it('does not seed once a multi-selection exists', () => {
+    expect([...toggleMultiSelect(new Set(['a', 'b']), 'b', 'a')]).toEqual(['a'])
+  })
+
+  it('⌘-clicking the selected commit itself selects just it', () => {
+    expect([...toggleMultiSelect(new Set(), 'a', 'a')]).toEqual(['a'])
+  })
+
+  it('squashes a first-parent run from HEAD, newest-first', () => {
+    expect(squashableRun(new Set(['b', 'a']), 'a', byHash)).toEqual({ run: ['a', 'b'] })
+    expect(squashableRun(new Set(['a', 'b', 'c']), 'a', byHash)).toEqual({ run: ['a', 'b', 'c'] })
+  })
+
+  // The case that looked like a missing feature: both commits on a branch that
+  // isn't checked out.
+  it('explains a selection that does not reach the checked-out tip', () => {
+    expect(squashableRun(new Set(['b', 'c']), 'a', byHash)).toEqual({ run: null, reason: 'commit.squashBlocked.notTip' })
+    expect(squashableRun(new Set(['a', 'b']), undefined, byHash)).toEqual({ run: null, reason: 'commit.squashBlocked.notTip' })
+  })
+
+  it('explains a run that skips a commit or strays off the chain', () => {
+    expect(squashableRun(new Set(['a', 'c']), 'a', byHash)).toEqual({ run: null, reason: 'commit.squashBlocked.gap' })
+    expect(squashableRun(new Set(['a', 'b', 's']), 'a', byHash)).toEqual({ run: null, reason: 'commit.squashBlocked.gap' })
+  })
+
+  it('explains a run reaching the root commit', () => {
+    expect(squashableRun(new Set(['a', 'b', 'c', 'r']), 'a', byHash)).toEqual({ run: null, reason: 'commit.squashBlocked.root' })
   })
 })

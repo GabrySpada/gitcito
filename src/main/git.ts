@@ -862,6 +862,17 @@ export function redactCredentials(msg: string): string {
 }
 
 /**
+ * Drop terminal escape sequences from a message. Hooks and tools they run
+ * (lint-staged, vitest, …) colour their output even when git captures it, and
+ * the renderer shows that stderr as plain text — every colour code turns into
+ * `[31m` litter in the toast.
+ */
+export function stripAnsi(msg: string): string {
+  // eslint-disable-next-line no-control-regex
+  return msg.replace(/\x1b\[[0-9;?]*[ -/]*[@-~]|\x1b\][^\x07\x1b]*(?:\x07|\x1b\\)|\x1b[@-_]/g, '')
+}
+
+/**
  * Run a git command non-interactively, surfacing stderr as the thrown message.
  *
  * Prefer this over `gitFor(repo).raw(...)` on any read a refresh performs.
@@ -2948,10 +2959,25 @@ export const gitService = {
    * selection reaches the branch tip. `ORIG_HEAD` is left pointing at the old
    * tip, so undo is a hard reset to it.
    */
-  async squashCommits(repoPath: string, oldestSha: string, message: string): Promise<void> {
-    const git = gitFor(repoPath)
-    await git.raw(['reset', '--soft', `${oldestSha}^`])
-    await git.raw(['commit', '-m', message])
+  /**
+   * Fold HEAD back through `oldestSha` into one commit. Built with plumbing and
+   * landed with a single compare-and-swap ref update, so it either happens or
+   * leaves HEAD where it was: `reset --soft` + `commit` stranded the branch
+   * whenever a commit hook refused, and folded in whatever was already staged.
+   * Hooks are skipped on purpose — like an interactive rebase, this re-packages
+   * commits that already exist rather than recording new work. `commit-tree`
+   * still honours `commit.gpgSign`.
+   */
+  async squashCommits(
+    repoPath: string,
+    oldestSha: string,
+    message: string
+  ): Promise<{ before: string; after: string }> {
+    const before = (await runGit(repoPath, ['rev-parse', '--verify', 'HEAD^{commit}'])).trim()
+    const parent = (await runGit(repoPath, ['rev-parse', '--verify', `${oldestSha}^{commit}^`])).trim()
+    const after = (await runGit(repoPath, ['commit-tree', `${before}^{tree}`, '-p', parent, '-m', message])).trim()
+    await runGit(repoPath, ['update-ref', '-m', `squash: ${message.split('\n')[0]}`, 'HEAD', after, before])
+    return { before, after }
   },
 
   // ─── Sync operations ───────────────────────────────────────────────────────
@@ -7559,8 +7585,9 @@ export function registerGitHandlers(): void {
     } catch (err) {
       // Redact at the boundary as well as in `runGit`: simple-git and any other
       // path can surface a URL we transiently injected a token into, and this is
-      // the last point before the message reaches the log and the renderer.
-      const message = redactCredentials(err instanceof Error ? err.message : String(err))
+      // the last point before the message reaches the log and the renderer —
+      // which is also where hook output loses its colour codes.
+      const message = stripAnsi(redactCredentials(err instanceof Error ? err.message : String(err)))
       if (event) void recordLog({ event, repoPath, ok: false, error: message })
       throw err instanceof Error ? Object.assign(err, { message }) : new Error(message)
     } finally {
