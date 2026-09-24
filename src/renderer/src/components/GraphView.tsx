@@ -2049,7 +2049,10 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
                       </span>
                     )}
                     {graphCol > 0 && node && (
-                      <div className="node-connector" style={{ background: laneColor }} />
+                      <div
+                        className={`node-connector ${groups.some((g) => g.isHead) ? 'is-head' : ''}`}
+                        style={{ background: laneColor }}
+                      />
                     )}
                   </div>
                 )
