@@ -12,6 +12,8 @@ keywords: diff différence split côte à côte side-by-side mot word level espa
 
 | Bascule | Ce qu'elle fait |
 |---|---|
+| **↑ / ↓** | Aller à la modification précédente ou suivante |
+| **Fichier entier** (côte à côte seulement) | Tout le fichier, chaque modification à sa place ; désactivé, seulement les blocs modifiés |
 | **Unifié ↔ partagé** | Côte à côte quand vous voulez comparer, empilé quand vous voulez lire |
 | **Au niveau du mot** | Ne surligne que les jetons modifiés à l'intérieur d'une ligne éditée — rouge sur l'ancienne, vert sur la nouvelle |
 | **Ignorer les espaces** | Masque les réindentations pour faire remonter le vrai changement |
@@ -34,10 +36,13 @@ ne l’est pas, un renommage qui a décalé chaque ligne — ou quand vous voule
 comparer deux régions éloignées du même fichier, et posez chaque moitié là où
 est son contenu.
 
+**Fichier entier.** La vue côte à côte montre tout le fichier, l'ancien à gauche et le nouveau à droite, et s'ouvre sur la première modification : des bandes rouges et vertes marquent les lignes modifiées, des hachures remplissent le côté sans ligne, des guides d'indentation marquent chaque niveau, et la règle à droite du diff montre tout le fichier — une voie rouge pour les lignes supprimées, une verte pour les lignes ajoutées et un cadre pour la partie visible ; cliquez ou faites glisser pour y défiler. Il faut la nouvelle version complète : une comparaison de plusieurs fichiers ou un instantané affichent donc des blocs, tout comme un fichier trop gros pour être chargé.
+
 ![Diff partagé avec surlignage au mot près](../../screenshots/split-diff.webp)
 
-Au-dessus de chaque diff se trouve le [résumé sémantique](semantic-diff.md) — ce
-qui a changé, symbole par symbole, plutôt que ligne par ligne.
+Le bouton **{ }** au début de la barre d'outils ouvre le [résumé
+sémantique](semantic-diff.md) — ce qui a changé, symbole par symbole, plutôt que
+ligne par ligne. Son nombre indique combien de déclarations ont changé.
 
 ## Diffs d'images
 

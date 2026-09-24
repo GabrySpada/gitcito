@@ -12,10 +12,12 @@ Un simple renommage apparaît dans un diff de lignes comme un fichier entier
 supprimé et un fichier entier ajouté. C'est techniquement vrai et totalement
 inutile.
 
-Au-dessus de chaque diff de fichier, Gitcito affiche une bande **Ce qui a
-changé** : les deux versions du fichier sont analysées avec **tree-sitter** — de
-vrais arbres syntaxiques, pas des expressions régulières — et leurs déclarations
-sont mises en correspondance.
+La barre d'outils de chaque diff de fichier porte un bouton **{ }** avec un
+nombre : combien de déclarations ont changé. Un clic ouvre **Ce qui a changé**.
+Les deux versions du fichier sont analysées avec **tree-sitter** — de vrais
+arbres syntaxiques, pas des expressions régulières — et leurs déclarations sont
+appariées. Le bouton est absent quand le langage du fichier n'a pas de
+grammaire, ou que rien n'a changé au niveau des symboles.
 
 ![La bande « ce qui a changé » : renommages et changements de signature, symbole par symbole](../../screenshots/semantic-diff.webp)
 

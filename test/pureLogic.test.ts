@@ -7462,3 +7462,40 @@ describe('graph multi-selection', () => {
     expect(squashableRun(new Set(['a', 'b', 'c', 'r']), 'a', byHash)).toEqual({ run: null, reason: 'commit.squashBlocked.root' })
   })
 })
+
+import { sidebarForFileView } from '../src/renderer/src/lib/diffFocus'
+
+describe('diff focus — the sidebar around the diff viewer', () => {
+  const open = { collapsed: false, auto: false }
+  const diff = { mode: 'diff' }
+  const file = { mode: 'file' }
+
+  it('collapses an open sidebar when a diff opens, and gives it back on close', () => {
+    const during = sidebarForFileView(null, diff, open)
+    expect(during).toEqual({ collapsed: true, auto: true })
+    expect(sidebarForFileView(diff, null, during)).toEqual({ collapsed: false, auto: false })
+  })
+
+  it('collapses on switching the viewer to Diff, and stays collapsed across modes and files', () => {
+    const during = sidebarForFileView(file, diff, open)
+    expect(during).toEqual({ collapsed: true, auto: true })
+    expect(sidebarForFileView(diff, file, during)).toEqual(during)
+    expect(sidebarForFileView(diff, diff, during)).toEqual(during)
+  })
+
+  it('leaves the sidebar alone for a file opened in another mode', () => {
+    expect(sidebarForFileView(null, file, open)).toEqual(open)
+  })
+
+  it('never reopens a sidebar the user had closed themselves', () => {
+    const closed = { collapsed: true, auto: false }
+    expect(sidebarForFileView(null, diff, closed)).toEqual(closed)
+    expect(sidebarForFileView(diff, null, closed)).toEqual(closed)
+  })
+
+  it('respects a sidebar the user reopened mid-diff', () => {
+    // The store clears `auto` whenever the user toggles; reopened, it is open.
+    const reopened = { collapsed: false, auto: false }
+    expect(sidebarForFileView(diff, null, reopened)).toEqual(reopened)
+  })
+})

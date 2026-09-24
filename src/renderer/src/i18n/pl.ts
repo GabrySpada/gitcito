@@ -2075,6 +2075,12 @@ export const pl: Dict = {
   'diff.linesSelected': 'zaznaczono {n} linię{s}',
   'diff.clearSelection': 'Wyczyść',
   'diff.stageLines': 'Dodaj do indeksu {n} linię{s}',
+  'diff.unified': 'Ujednolicony',
+  'diff.unifiedTitle': 'Widok ujednolicony — jedna kolumna, usunięte wiersze nad dodanymi',
+  'diff.fullFile': 'Cały plik',
+  'diff.fullFileTitle': 'Pokaż cały plik wokół zmian; wyłączone — tylko zmienione fragmenty',
+  'diff.prevChange': 'Poprzednia zmiana',
+  'diff.nextChange': 'Następna zmiana',
 
   // Panel szczegółów stasha
   'stashPanel.noLongerExists': 'Ten stash już nie istnieje',

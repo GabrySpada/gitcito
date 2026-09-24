@@ -2075,6 +2075,12 @@ export const uk: Dict = {
   'diff.linesSelected': 'вибрано рядків: {n}{s}',
   'diff.clearSelection': 'Очистити',
   'diff.stageLines': 'Проіндексувати рядків: {n}{s}',
+  'diff.unified': 'Єдиний',
+  'diff.unifiedTitle': 'Єдиний вигляд — одна колонка, видалені рядки над доданими',
+  'diff.fullFile': 'Увесь файл',
+  'diff.fullFileTitle': 'Показувати весь файл навколо змін; вимкнено — лише змінені фрагменти',
+  'diff.prevChange': 'Попередня зміна',
+  'diff.nextChange': 'Наступна зміна',
 
   // Панель деталей стешу
   'stashPanel.noLongerExists': 'Стешу більше не існує',

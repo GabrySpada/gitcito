@@ -85,7 +85,10 @@ export function parseDiff(diff: string): DiffLine[] {
   let oldNo = 0
   let newNo = 0
   let hunkIdx = -1
-  for (const line of diff.split('\n')) {
+  // Git ends its output with a newline. Split as-is, that leaves one empty
+  // string behind, which would parse as a phantom context line past the end.
+  const body = diff.endsWith('\n') ? diff.slice(0, -1) : diff
+  for (const line of body.split('\n')) {
     if (line.startsWith('@@')) {
       const m = /@@ -(\d+)(?:,\d+)? \+(\d+)(?:,\d+)? @@/.exec(line)
       if (m) {
@@ -106,6 +109,11 @@ export function parseDiff(diff: string): DiffLine[] {
       out.push({ kind: 'add', text: line.slice(1), oldNo: null, newNo: newNo++, hunkIdx })
     } else if (line.startsWith('-')) {
       out.push({ kind: 'del', text: line.slice(1), oldNo: oldNo++, newNo: null, hunkIdx })
+    } else if (line.startsWith('\\')) {
+      // "\ No newline at end of file" annotates the line before it; it is not a
+      // line of either file, so it must not advance the numbering — mid-hunk it
+      // used to shift every number after it by one.
+      out.push({ kind: 'ctx', text: line, oldNo: null, newNo: null, hunkIdx })
     } else {
       out.push({ kind: 'ctx', text: line.startsWith(' ') ? line.slice(1) : line, oldNo: oldNo++, newNo: newNo++, hunkIdx })
     }
@@ -149,6 +157,9 @@ export interface SplitCell {
 export interface SplitRow {
   hunk?: string
   hunkIdx?: number
+  /** Full-file rows only: this row is the first line of hunk N, which has no
+   *  @@ bar of its own to carry the stage button. */
+  startsHunk?: number
   left?: SplitCell
   right?: SplitCell
 }
@@ -156,9 +167,17 @@ export interface SplitRow {
 /**
  * Build side-by-side rows: context lines mirror both sides; each deletion run is
  * zipped with the following addition run (leftovers become one-sided rows).
+ * With `fullFile`, @@ lines become no row at all — a bar every few lines would
+ * break the file up — and the row after one is tagged with `startsHunk`.
  */
-export function buildSplitRows(lines: DiffLine[]): SplitRow[] {
+export function buildSplitRows(lines: DiffLine[], fullFile = false): SplitRow[] {
   const rows: SplitRow[] = []
+  let pendingHunk: number | undefined
+  const push = (row: SplitRow): void => {
+    if (pendingHunk !== undefined) row.startsHunk = pendingHunk
+    pendingHunk = undefined
+    rows.push(row)
+  }
   let i = 0
   while (i < lines.length) {
     const l = lines[i]
@@ -167,12 +186,13 @@ export function buildSplitRows(lines: DiffLine[]): SplitRow[] {
       continue
     }
     if (l.kind === 'hunk') {
-      rows.push({ hunk: l.text, hunkIdx: l.hunkIdx })
+      if (fullFile) pendingHunk = l.hunkIdx
+      else rows.push({ hunk: l.text, hunkIdx: l.hunkIdx })
       i++
       continue
     }
     if (l.kind === 'ctx') {
-      rows.push({
+      push({
         left: { idx: i, no: l.oldNo, text: l.text, kind: 'ctx' },
         right: { idx: i, no: l.newNo, text: l.text, kind: 'ctx' }
       })
@@ -187,13 +207,161 @@ export function buildSplitRows(lines: DiffLine[]): SplitRow[] {
     for (let k = 0; k < n; k++) {
       const li = dels[k]
       const ri = adds[k]
-      rows.push({
+      push({
         left: li != null ? { idx: li, no: lines[li].oldNo, text: lines[li].text, kind: 'del' } : undefined,
         right: ri != null ? { idx: ri, no: lines[ri].newNo, text: lines[ri].text, kind: 'add' } : undefined
       })
     }
   }
   return rows
+}
+
+const HUNK_RANGE = /^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/
+
+/** Whitespace-blind line comparison: an `-w` diff prints context lines that
+ *  may differ from the file in indentation only, and CRLF files keep a `\r`. */
+const sameLine = (a: string, b: string): boolean => a.replace(/\s+/g, '') === b.replace(/\s+/g, '')
+
+/**
+ * Expand a hunks-only diff to the whole file. Everything outside the hunks is
+ * unchanged by definition, so it is read from the new side's full text and
+ * spliced in as context, numbered on both sides. Hunk lines stay in place so
+ * the caller still knows where each one starts, and every original line keeps
+ * its `hunkIdx`, so staging a hunk works exactly as before.
+ *
+ * Returns null when there is nothing to expand, or when the text disagrees
+ * with the diff's own context lines (a stale read, or a fallback version of a
+ * file the ref no longer has). Showing hunks is better than showing the wrong
+ * file.
+ */
+export function fillContext(lines: DiffLine[], newText: string): DiffLine[] | null {
+  if (!lines.some((l) => l.kind === 'hunk')) return null
+  // A deleted file has no new side; whatever the read fell back to is not it.
+  const deleted = lines.some((l) => l.kind === 'meta' && (l.text === '+++ /dev/null' || l.text.startsWith('deleted file mode')))
+  const file = deleted || newText === '' ? [] : newText.replace(/\r?\n$/, '').split('\n')
+
+  const out: DiffLine[] = []
+  let nextOld = 1
+  let nextNew = 1
+  const gap = (upTo: number): boolean => {
+    for (let n = nextNew; n <= upTo; n++) {
+      const text = file[n - 1]
+      if (text === undefined) return false
+      out.push({ kind: 'ctx', text: text.replace(/\r$/, ''), oldNo: n + nextOld - nextNew, newNo: n, hunkIdx: -1 })
+    }
+    return true
+  }
+
+  for (const l of lines) {
+    if (l.kind === 'hunk') {
+      const m = HUNK_RANGE.exec(l.text)
+      if (!m) return null
+      const [oldStart, oldCount, newStart, newCount] = [+m[1], m[2] === undefined ? 1 : +m[2], +m[3], m[4] === undefined ? 1 : +m[4]]
+      // An empty side's start is the line the change sits after, not on.
+      const firstOld = oldCount === 0 ? oldStart + 1 : oldStart
+      const firstNew = newCount === 0 ? newStart + 1 : newStart
+      if (firstOld - nextOld !== firstNew - nextNew || !gap(firstNew - 1)) return null
+      nextOld = firstOld + oldCount
+      nextNew = firstNew + newCount
+    } else if (l.kind === 'ctx' && l.newNo !== null) {
+      const text = file[l.newNo - 1]
+      if (text === undefined || !sameLine(text, l.text)) return null
+    }
+    out.push(l)
+  }
+  return gap(file.length) ? out : null
+}
+
+/** A run of consecutive changed rows — what ↑/↓ steps through and what the
+ *  overview ruler marks. `end` is exclusive. */
+export interface ChangeBlock {
+  start: number
+  end: number
+  /** Whether the run removes lines (a mark on the left) or adds them (right). */
+  del: boolean
+  add: boolean
+}
+
+export function changeBlocks(rows: SplitRow[]): ChangeBlock[] {
+  const blocks: ChangeBlock[] = []
+  let cur: ChangeBlock | null = null
+  rows.forEach((r, i) => {
+    const del = r.left?.kind === 'del'
+    const add = r.right?.kind === 'add'
+    if (!del && !add) {
+      cur = null
+      return
+    }
+    if (!cur) {
+      cur = { start: i, end: i + 1, del, add }
+      blocks.push(cur)
+    } else {
+      cur.end = i + 1
+      cur.del ||= del
+      cur.add ||= add
+    }
+  })
+  return blocks
+}
+
+/** Leading whitespace of one line, in columns. */
+function leadingColumns(text: string, tabSize: number): number {
+  let col = 0
+  for (const ch of text) {
+    if (ch === ' ') col++
+    else if (ch === '\t') col += tabSize - (col % tabSize)
+    else break
+  }
+  return col
+}
+
+/**
+ * The indent step a file is written in, guessed from how much the indentation
+ * changes between neighbouring lines — the way an editor detects it. A step of
+ * one is ignored: that is the ` * ` of a block comment, not a level.
+ */
+export function detectIndentUnit(texts: string[], tabSize: number): number {
+  const counts = new Map<number, number>()
+  let prev: number | null = null
+  for (const t of texts) {
+    if (!t.trim()) continue
+    if (t.startsWith('\t')) return tabSize
+    const col = leadingColumns(t, tabSize)
+    if (prev !== null) {
+      const d = Math.abs(col - prev)
+      if (d > 1 && d <= 8) counts.set(d, (counts.get(d) ?? 0) + 1)
+    }
+    prev = col
+  }
+  let best = tabSize
+  let bestN = 0
+  for (const [d, n] of counts) if (n > bestN || (n === bestN && d < best)) [best, bestN] = [d, n]
+  return best
+}
+
+/**
+ * Indent of each row in columns, for indent guides. `null` is a row with no
+ * line on this side (a hatched filler) and gets none. A blank line borrows the
+ * smaller indent of its nearest non-blank neighbours, so a guide runs through
+ * an empty line inside a block instead of breaking at it.
+ */
+export function indentColumns(texts: (string | null)[], tabSize: number): number[] {
+  const raw = texts.map((t) => (t === null ? 0 : t.trim() ? leadingColumns(t, tabSize) : -1))
+  // Two sweeps rather than a search per blank line: a run of thousands of
+  // blank lines would otherwise go quadratic.
+  const before: number[] = []
+  let last = 0
+  raw.forEach((c, i) => {
+    if (c === -1) before[i] = last
+    else if (texts[i] !== null) last = c
+  })
+  const out = raw.slice()
+  last = 0
+  for (let i = raw.length - 1; i >= 0; i--) {
+    if (raw[i] === -1) out[i] = Math.min(before[i], last)
+    else if (texts[i] !== null) last = raw[i]
+  }
+  return out
 }
 
 /** One changed region against the new (current) file, for the File view's
@@ -270,4 +438,25 @@ export function gutterMarksByLine(changes: GutterChange[]): Map<number, GutterCh
     for (let ln = c.lineStart; ln <= c.lineEnd; ln++) map.set(ln, c)
   }
   return map
+}
+
+/**
+ * Which rows a windowed column renders: the ones in view plus `overscan` either
+ * side, snapped outward to multiples of `chunk` so the window moves in steps —
+ * a re-render every `chunk` rows scrolled, not every row. `end` is exclusive.
+ */
+export function visibleRange(
+  scrollTop: number,
+  viewHeight: number,
+  rowH: number,
+  total: number,
+  overscan = 40,
+  chunk = 20
+): [number, number] {
+  if (rowH <= 0 || total <= 0) return [0, 0]
+  const first = Math.floor(Math.max(0, scrollTop) / rowH)
+  const last = Math.ceil((Math.max(0, scrollTop) + viewHeight) / rowH)
+  const start = Math.min(total, Math.max(0, Math.floor((first - overscan) / chunk) * chunk))
+  const end = Math.min(total, Math.ceil((last + overscan) / chunk) * chunk)
+  return [start, Math.max(start, end)]
 }

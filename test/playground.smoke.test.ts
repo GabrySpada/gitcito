@@ -74,7 +74,8 @@ const EXPECTED = [
   'xcode-project',
   'change-summary',
   'readme-showcase',
-  'dated-history'
+  'dated-history',
+  'split-diff'
 ]
 
 describe('playground fixtures', () => {

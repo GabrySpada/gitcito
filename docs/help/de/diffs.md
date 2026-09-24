@@ -12,6 +12,8 @@ keywords: diff geteilt split side-by-side nebeneinander wortgenau word level whi
 
 | Schalter | Was er tut |
 |---|---|
+| **↑ / ↓** | Zur vorherigen oder nächsten Änderung springen |
+| **Ganze Datei** (nur geteilt) | Die ganze Datei, jede Änderung an ihrem Platz; aus, nur die geänderten Abschnitte |
 | **Unified ↔ geteilt** | Nebeneinander, wenn du vergleichen willst; übereinander, wenn du lesen willst |
 | **Wortgenau** | Hebt nur die geänderten Tokens innerhalb einer bearbeiteten Zeile hervor — rot auf der alten, grün auf der neuen |
 | **Whitespace ignorieren** | Blendet Neu-Einrückungen aus, damit die eigentliche Änderung sichtbar wird |
@@ -34,10 +36,14 @@ eingerückten, eine Umbenennung, die jede Zeile verschoben hat — oder wenn du
 zwei weit auseinanderliegende Stellen derselben Datei vergleichen willst, und
 stelle jede Hälfte dort ab, wo ihr Inhalt liegt.
 
+**Ganze Datei.** Die geteilte Ansicht zeigt die ganze Datei, alt links und neu rechts, und öffnet bei der ersten Änderung: rote und grüne Bänder markieren geänderte Zeilen, eine Schraffur füllt die Seite ohne Zeile, Einrückungslinien markieren jede Ebene, und das Übersichtslineal rechts vom Diff zeigt die ganze Datei — eine rote Spur für entfernte Zeilen, eine grüne für hinzugefügte und einen Rahmen für den sichtbaren Teil; klicken oder ziehen scrollt dorthin. Dafür braucht es die ganze neue Version; ein Vergleich über mehrere Dateien oder ein Snapshot zeigt daher Abschnitte, ebenso eine Datei, die zu groß zum Laden ist.
+
 ![Geteilter Diff mit wortgenauer Hervorhebung](../../screenshots/split-diff.webp)
 
-Über jedem Diff sitzt die [semantische Zusammenfassung](semantic-diff.md) — was
-sich geändert hat, Symbol für Symbol statt Zeile für Zeile.
+Die **{ }**-Schaltfläche am Anfang der Werkzeugleiste öffnet die [semantische
+Zusammenfassung](semantic-diff.md) — was sich geändert hat, Symbol für Symbol
+statt Zeile für Zeile. Ihre Zahl sagt, wie viele Deklarationen sich geändert
+haben.
 
 ## Bild-Diffs
 

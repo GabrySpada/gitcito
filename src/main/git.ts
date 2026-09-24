@@ -5723,7 +5723,9 @@ export const gitService = {
         const lines = content.split('\n')
         return [
           `diff --git a/${file} b/${file}`,
-          'new file',
+          // Git's own spelling: the renderer recognises it as a header. Bare
+          // "new file" parsed as a context line numbered 0.
+          'new file mode 100644',
           `--- /dev/null`,
           `+++ b/${file}`,
           `@@ -0,0 +1,${lines.length} @@`,

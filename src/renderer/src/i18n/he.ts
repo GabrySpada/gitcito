@@ -2075,6 +2075,12 @@ export const he: Dict = {
   'diff.linesSelected': 'נבחרו {n} שורות{s}',
   'diff.clearSelection': 'ניקוי',
   'diff.stageLines': 'העלאת {n} שורות לסטייג׳{s}',
+  'diff.unified': 'מאוחד',
+  'diff.unifiedTitle': 'תצוגה מאוחדת — עמודה אחת, שורות שהוסרו מעל שורות שנוספו',
+  'diff.fullFile': 'הקובץ כולו',
+  'diff.fullFileTitle': 'הצגת הקובץ כולו סביב השינויים; כבוי — רק המקטעים שהשתנו',
+  'diff.prevChange': 'השינוי הקודם',
+  'diff.nextChange': 'השינוי הבא',
 
   // Stash details panel
   'stashPanel.noLongerExists': 'הסטאש כבר לא קיים',

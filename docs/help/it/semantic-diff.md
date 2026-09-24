@@ -11,9 +11,12 @@ keywords: diff semantico ast tree-sitter rinomina firma spostato simboli cosa è
 Una pura rinomina in un diff a righe appare come un intero file eliminato e un
 intero file aggiunto. Il che è tecnicamente vero e completamente inutile.
 
-Sopra ogni diff di file, Gitcito mostra una striscia **Cos'è cambiato**: entrambe
-le versioni del file vengono analizzate con **tree-sitter** — alberi sintattici
-veri, non espressioni regolari — e le loro dichiarazioni vengono accoppiate.
+La barra degli strumenti di ogni diff di file ha un pulsante **{ }** con un
+numero: quante dichiarazioni sono cambiate. Cliccalo per **Cosa è cambiato**.
+Entrambe le versioni del file vengono analizzate con **tree-sitter** — alberi
+sintattici veri, non espressioni regolari — e le loro dichiarazioni vengono
+accoppiate. Il pulsante manca quando il linguaggio del file non ha una
+grammatica, o quando nulla è cambiato a livello di simboli.
 
 ![La striscia cos'è-cambiato: rinomine e cambi di firma, simbolo per simbolo](../../screenshots/semantic-diff.webp)
 

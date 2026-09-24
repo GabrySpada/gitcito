@@ -2075,6 +2075,12 @@ export const ar: Dict = {
   'diff.linesSelected': '{n} سطر{s} محدد',
   'diff.clearSelection': 'مسح',
   'diff.stageLines': 'تحضير {n} سطر{s}',
+  'diff.unified': 'موحّد',
+  'diff.unifiedTitle': 'عرض موحّد — عمود واحد، الأسطر المحذوفة فوق المضافة',
+  'diff.fullFile': 'الملف كاملًا',
+  'diff.fullFileTitle': 'عرض الملف كاملًا حول التغييرات؛ عند الإيقاف، الأجزاء المتغيّرة فقط',
+  'diff.prevChange': 'التغيير السابق',
+  'diff.nextChange': 'التغيير التالي',
 
   // Stash details panel
   'stashPanel.noLongerExists': 'لم يعد المخبأ موجودًا',

@@ -170,6 +170,7 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
   const [explaining, setExplaining] = useState(false)
 
   const [refreshKey, setRefreshKey] = useState(0)
+  const [diffFindSignal, setDiffFindSignal] = useState(0)
   const [ignoreWs, setIgnoreWs] = useState(false)
 
   // ─── In-app editing (project-tree files only) ───
@@ -463,7 +464,10 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
       }
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'f') {
         e.preventDefault()
-        openFind()
+        // A text diff has its own find, which counts the rows a windowed split
+        // view has not rendered; this bar would only see the ones on screen.
+        if (mode === 'diff' && content !== null && imgDiff === null && !error) setDiffFindSignal((n) => n + 1)
+        else openFind()
         return
       }
       if (e.key === 'Escape' && !useUIStore.getState().modal) {
@@ -474,13 +478,28 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setFileView, findOpen, fileSearch, editable, dirty, draft, content, saving])
+  }, [setFileView, findOpen, fileSearch, editable, dirty, draft, content, saving, mode, imgDiff, error])
 
+  // What the load effect last read, minus the refresh counter — tells a
+  // refresh of the same view apart from a different one.
+  const loadKeyRef = useRef<string | null>(null)
   useEffect(() => {
     let cancelled = false
-    setContent(null)
-    setImageUrl(null)
-    setImgDiff(null)
+    // A refresh (the window regaining focus, e.g. back from another Space)
+    // re-reads what is already on screen. Keep it there until the new copy
+    // lands: blanking to the spinner unmounted the diff, which then rebuilt
+    // itself from scratch and lost its scroll position. An identical result
+    // then changes nothing at all.
+    const sourceId =
+      source.type === 'commit' ? source.hash : source.type === 'stash' ? source.sha : source.type === 'wip' ? String(source.staged) : ''
+    const loadKey = [repoPath, file, mode, forceLoad, blameOverrideRef ?? '', editing, ignoreWs, source.type, sourceId].join('\0')
+    const isRefresh = loadKeyRef.current === loadKey
+    loadKeyRef.current = loadKey
+    if (!isRefresh) {
+      setContent(null)
+      setImageUrl(null)
+      setImgDiff(null)
+    }
     setError(null)
     setTooLarge(null)
     const load = async (): Promise<void> => {
@@ -764,15 +783,6 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
           <ImageDiff before={imgDiff.before} after={imgDiff.after} />
         )}
 
-        {!error && content !== null && imgDiff === null && mode === 'diff' && semanticSides && (
-          <SemanticSummary
-            repoPath={repoPath}
-            file={file}
-            oldSide={semanticSides.oldSide}
-            newSide={semanticSides.newSide}
-          />
-        )}
-
         {!error && content !== null && imgDiff === null && mode === 'diff' && (
           <DiffViewer
             diff={content}
@@ -782,6 +792,21 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
             maskValues={maskOn}
             ignoreWs={ignoreWs}
             onToggleIgnoreWs={() => setIgnoreWs((v) => !v)}
+            // The side the diff arrives at — the version File view shows for
+            // the same source — so split view can lay the change in the whole file.
+            loadNewText={() => gitApi.fileContent(repoPath, file, sourceRef(view))}
+            sourceKey={`${repoPath}\0${file}\0${view.source.type}\0${sourceRef(view) ?? ''}`}
+            findSignal={diffFindSignal}
+            toolbarStart={
+              semanticSides && (
+                <SemanticSummary
+                  repoPath={repoPath}
+                  file={file}
+                  oldSide={semanticSides.oldSide}
+                  newSide={semanticSides.newSide}
+                />
+              )
+            }
             onStageHunk={
               source.type === 'wip' && !source.staged && !source.untracked
                 ? async (patch) => {

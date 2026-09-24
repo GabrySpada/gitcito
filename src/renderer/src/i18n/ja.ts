@@ -2038,6 +2038,12 @@ export const ja: Dict = {
   'diff.linesSelected': '{n} 行を選択中{s}',
   'diff.clearSelection': 'クリア',
   'diff.stageLines': '{n} 行{s}をステージ',
+  'diff.unified': '統合',
+  'diff.unifiedTitle': '統合ビュー — 1列表示、削除行の下に追加行',
+  'diff.fullFile': 'ファイル全体',
+  'diff.fullFileTitle': '変更箇所の周囲をファイル全体で表示。オフでは変更されたハンクのみ',
+  'diff.prevChange': '前の変更',
+  'diff.nextChange': '次の変更',
 
   'stashPanel.noLongerExists': 'このスタッシュはもう存在しません',
   'stashPanel.renameTitle': 'スタッシュの名前を変更',

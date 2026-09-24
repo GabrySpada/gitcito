@@ -11,9 +11,12 @@ keywords: diff semântico semantic diff ast tree-sitter renomear rename assinatu
 Uma renomeação pura aparece num diff de linhas como um arquivo inteiro removido e
 um arquivo inteiro adicionado. Tecnicamente verdadeiro e completamente inútil.
 
-Acima de cada diff de arquivo, o Gitcito mostra uma faixa **O que mudou**: as duas
-versões do arquivo são analisadas com **tree-sitter** — árvores de sintaxe de
-verdade, não expressões regulares — e suas declarações são pareadas.
+A barra de ferramentas de cada diff de arquivo tem um botão **{ }** com um
+número: quantas declarações mudaram. Clique nele para ver **O que mudou**. As
+duas versões do arquivo são analisadas com **tree-sitter** — árvores sintáticas
+de verdade, não expressões regulares — e suas declarações são pareadas. O botão
+não aparece quando a linguagem do arquivo não tem gramática, ou quando nada
+mudou no nível dos símbolos.
 
 ![A faixa "o que mudou": renomeações e mudanças de assinatura, símbolo por símbolo](../../screenshots/semantic-diff.webp)
 

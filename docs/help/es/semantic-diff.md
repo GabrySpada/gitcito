@@ -11,9 +11,12 @@ keywords: diff semantico semántico ast tree-sitter rename renombrado firma sign
 Un renombrado puro aparece en un diff por líneas como un archivo entero borrado
 y un archivo entero añadido. Es técnicamente cierto y completamente inútil.
 
-Encima de cada diff de archivo, Gitcito muestra una tira **Qué ha cambiado**:
-ambas versiones del archivo se analizan con **tree-sitter** — árboles de sintaxis
-de verdad, no expresiones regulares — y se emparejan sus declaraciones.
+La barra de herramientas de cada diff de archivo lleva un botón **{ }** con un
+número: cuántas declaraciones cambiaron. Haz clic para ver **Qué cambió**. Ambas
+versiones del archivo se analizan con **tree-sitter** — árboles sintácticos
+reales, no expresiones regulares — y sus declaraciones se emparejan. El botón no
+aparece cuando el lenguaje del archivo no tiene gramática o cuando nada cambió a
+nivel de símbolos.
 
 ![La tira de qué ha cambiado: renombrados y cambios de firma, símbolo a símbolo](../../screenshots/semantic-diff.webp)
 

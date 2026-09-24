@@ -11,10 +11,12 @@ keywords: semantischer diff semantic diff ast tree-sitter umbenennung rename sig
 Eine reine Umbenennung sieht im Zeilen-Diff aus wie eine komplett gelöschte und
 eine komplett hinzugefügte Datei. Technisch korrekt und vollkommen nutzlos.
 
-Über jedem Datei-Diff zeigt Gitcito einen Streifen **Was sich geändert hat**:
-Beide Fassungen der Datei werden mit **tree-sitter** geparst — echte
-Syntaxbäume, keine regulären Ausdrücke — und ihre Deklarationen einander
-zugeordnet.
+Die Werkzeugleiste jedes Datei-Diffs trägt eine **{ }**-Schaltfläche mit einer
+Zahl: wie viele Deklarationen sich geändert haben. Ein Klick öffnet **Was sich
+geändert hat**. Beide Versionen der Datei werden mit **tree-sitter** geparst —
+echte Syntaxbäume, keine regulären Ausdrücke — und ihre Deklarationen einander
+zugeordnet. Die Schaltfläche fehlt, wenn es für die Sprache der Datei keine
+Grammatik gibt oder sich auf Symbolebene nichts geändert hat.
 
 ![Der Streifen „Was sich geändert hat": Umbenennungen und Signaturänderungen, Symbol für Symbol](../../screenshots/semantic-diff.webp)
 

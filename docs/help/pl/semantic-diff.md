@@ -11,9 +11,11 @@ keywords: diff semantyczny symbole zmiana nazwy sygnatura przeniesienie semantic
 Czysta zmiana nazwy w diffie liniowym wygląda jak usunięcie całego pliku
 i dodanie całego pliku. To technicznie prawda i kompletnie bezużyteczne.
 
-Nad każdym diffem pliku Gitcito pokazuje pasek **Co się zmieniło**: obie wersje
-pliku są parsowane przez **tree-sitter** — prawdziwe drzewa składniowe, nie
-wyrażenia regularne — a ich deklaracje są ze sobą zestawiane.
+Pasek narzędzi każdego diffu pliku ma przycisk **{ }** z liczbą: ile deklaracji
+się zmieniło. Kliknij go, aby zobaczyć **Co się zmieniło**. Obie wersje pliku są
+parsowane przez **tree-sitter** — prawdziwe drzewa składni, nie wyrażenia
+regularne — a ich deklaracje są dopasowywane. Przycisku nie ma, gdy język pliku
+nie ma gramatyki albo nic nie zmieniło się na poziomie symboli.
 
 ![Pasek „co się zmieniło": zmiany nazw i sygnatur, symbol po symbolu](../../screenshots/semantic-diff.webp)
 

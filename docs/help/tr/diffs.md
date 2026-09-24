@@ -12,6 +12,8 @@ keywords: diff bölünmüş yan yana sözcük düzeyi boşluk görsel önizleme 
 
 | Anahtar | Ne yapar |
 |---|---|
+| **↑ / ↓** | Önceki veya sonraki değişikliğe atla |
+| **Tüm dosya** (yalnızca bölünmüş) | Tüm dosya, her değişiklik kendi yerinde; kapalıyken yalnızca değişen bölümler |
 | **Birleşik ↔ bölünmüş** | Karşılaştırmak istediğinizde yan yana, okumak istediğinizde alt alta |
 | **Sözcük düzeyi** | Düzenlenmiş bir satırın içinde yalnızca değişen belirteçleri vurgular — eskisinde kırmızı, yenisinde yeşil |
 | **Boşlukları yok say** | Yeniden girintilemeyi gizler, böylece gerçek değişiklik öne çıkar |
@@ -33,10 +35,13 @@ adlandırma — ya da aynı dosyanın birbirinden uzak iki bölgesini karşıla�
 istediğinizde bağı kaldırın ve her yarıyı kendi içeriğinin olduğu yerde
 bırakın.
 
+**Tüm dosya.** Bölünmüş görünüm tüm dosyayı gösterir — eskisi solda, yenisi sağda — ve ilk değişiklikte açılır: kırmızı ve yeşil bantlar değişen satırları işaretler, taramalı dolgu satırı olmayan tarafı doldurur, girinti kılavuzları her düzeyi gösterir ve diff'in sağındaki genel bakış cetveli tüm dosyayı gösterir — silinen satırlar için kırmızı, eklenenler için yeşil bir şerit ve görünen kısım için bir kutu; oraya kaydırmak için tıklayın ya da sürükleyin. Yeni sürümün tamamı gerektiğinden birden çok dosyalı bir karşılaştırma ya da bir anlık görüntü bölümleri gösterir; yüklenemeyecek kadar büyük bir dosya da öyle.
+
 ![Sözcük düzeyinde vurgulamalı bölünmüş diff](../../screenshots/split-diff.webp)
 
-Her diff'in üstünde [anlamsal özet](semantic-diff.md) yer alır — satır satır
-değil, sembol sembol neyin değiştiği.
+Araç çubuğunun başındaki **{ }** düğmesi [anlamsal özeti](semantic-diff.md) açar
+— satır satır değil, sembol sembol ne değişti. Üzerindeki sayı kaç bildirimin
+değiştiğidir.
 
 ## Görsel diff'leri
 
