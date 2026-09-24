@@ -2076,6 +2076,12 @@ export const nl: Dict = {
   'diff.linesSelected': '{n} regel{s} geselecteerd',
   'diff.clearSelection': 'Wissen',
   'diff.stageLines': '{n} regel{s} stagen',
+  'diff.unified': 'Samengevoegd',
+  'diff.unifiedTitle': 'Samengevoegde weergave — één kolom, verwijderde regels boven toegevoegde',
+  'diff.fullFile': 'Heel bestand',
+  'diff.fullFileTitle': 'Toon het hele bestand rond de wijzigingen; uit, alleen de gewijzigde blokken',
+  'diff.prevChange': 'Vorige wijziging',
+  'diff.nextChange': 'Volgende wijziging',
 
   // Stash-detailpaneel
   'stashPanel.noLongerExists': 'De stash bestaat niet meer',

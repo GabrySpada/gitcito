@@ -2075,6 +2075,12 @@ export const ko: Dict = {
   'diff.linesSelected': '{n}줄{s} 선택됨',
   'diff.clearSelection': '지우기',
   'diff.stageLines': '{n}줄{s} 스테이징',
+  'diff.unified': '통합',
+  'diff.unifiedTitle': '통합 보기 — 한 열, 삭제된 줄 아래에 추가된 줄',
+  'diff.fullFile': '전체 파일',
+  'diff.fullFileTitle': '변경 사항 주변의 파일 전체를 표시합니다. 끄면 변경된 헝크만 표시',
+  'diff.prevChange': '이전 변경',
+  'diff.nextChange': '다음 변경',
 
   // 스태시 상세 패널
   'stashPanel.noLongerExists': '스태시가 더 이상 없습니다',

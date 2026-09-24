@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
   Braces,
-  ChevronDown,
-  ChevronRight,
   Minus,
   MoveVertical,
   PenLine,
@@ -26,8 +24,10 @@ const ICON: Record<SemanticChange['kind'], typeof Plus> = {
 }
 
 /**
- * The structural summary above a file diff: what tree-sitter says actually
+ * The structural summary of a file diff: what tree-sitter says actually
  * happened (renames, signature changes, moves) rather than which lines moved.
+ * A button in the diff toolbar, with the change count on it, that opens the
+ * list as a popover — a strip above the diff cost every diff a row of height.
  * Renders nothing at all when the file's language has no grammar, so the plain
  * line diff stays exactly as it was.
  */
@@ -44,7 +44,25 @@ export function SemanticSummary({
 }): React.JSX.Element | null {
   const [result, setResult] = useState<SemanticDiff | null>(null)
   const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
   const t = useT()
+
+  // A popover closes on a click anywhere else, and on Escape.
+  useEffect(() => {
+    if (!open) return
+    const onDown = (e: MouseEvent): void => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false)
+    }
+    const onKey = (e: KeyboardEvent): void => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
 
   const oldKey = JSON.stringify(oldSide)
   const newKey = JSON.stringify(newSide)
@@ -96,16 +114,26 @@ export function SemanticSummary({
   }
 
   return (
-    <div className="sem-root">
-      <div className="sem-head" onClick={() => setOpen((o) => !o)}>
-        {open ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
-        <Braces size={12} className="sem-head-icon" />
-        <span className="sem-title">{t('sem.title')}</span>
+    <div className="sem-root" ref={rootRef}>
+      <button
+        className={`diff-tool sem-button${open ? ' on' : ''}`}
+        data-tool="semantic"
+        title={t('sem.title')}
+        aria-label={t('sem.title')}
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        <Braces size={14} />
         <span className="sem-count">{result.changes.length}</span>
-        <span className="sem-lang">{result.language}</span>
-      </div>
+      </button>
       {open && (
-        <div className="sem-list">
+        <div className="sem-pop" role="dialog" aria-label={t('sem.title')}>
+          <div className="sem-head">
+            <Braces size={12} className="sem-head-icon" />
+            <span className="sem-title">{t('sem.title')}</span>
+            <span className="sem-lang">{result.language}</span>
+          </div>
+          <div className="sem-list">
           {result.changes.map((c, i) => {
             const Icon = ICON[c.kind]
             const n = note(c)
@@ -114,7 +142,12 @@ export function SemanticSummary({
                 key={`${c.kind}:${c.symbol}:${i}`}
                 className={`sem-row ${c.kind}`}
                 title={c.line ? interp(t('sem.jump'), { n: String(c.line) }) : undefined}
-                onClick={() => c.line && revealLine(c.line)}
+                onClick={() => {
+                  if (!c.line) return
+                  // Out of the way first: the popover would cover the line it reveals.
+                  setOpen(false)
+                  revealLine(c.line)
+                }}
               >
                 <Icon size={12} className={`sem-icon ${c.kind}`} />
                 <span className={`sem-kind ${c.kind}`}>{t(`sem.kind.${c.kind}` as 'sem.kind.added')}</span>
@@ -124,6 +157,7 @@ export function SemanticSummary({
               </div>
             )
           })}
+          </div>
         </div>
       )}
     </div>

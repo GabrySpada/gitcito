@@ -4136,15 +4136,22 @@ body.col-resizing .node-ava {
 
 /* ─── Diff viewer ───────────────────────────────────────────────────────── */
 
+/* A column: the toolbar strip on top, then the diff's own scroller(s), so the
+   toolbar stays put while the lines scroll — sideways too, which a toolbar
+   inside a max-content scroller could not do. Capped at the pane's height; the
+   semantic summary above it scrolls away first. */
 .diff-viewer {
   font-family: var(--mono);
   font-size: var(--code-font-size, 12px);
   line-height: 1.55;
   user-select: text;
-  padding-bottom: 24px;
-  width: max-content;
-  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  min-width: 0;
 }
+.diff-scroll { flex: 1 1 auto; min-height: 0; overflow: auto; }
+.diff-lines { width: max-content; min-width: 100%; padding-bottom: 24px; }
 
 .diff-line {
   display: flex;
@@ -11594,26 +11601,34 @@ input[type='range']:focus-visible {
 .kc-dot.declined { background: var(--danger, #f85149); }
 .kc-dot.unset { background: var(--warn, #d29922); }
 
-/* ── Semantic diff summary ── */
-.sem-root {
+/* ── Semantic diff summary: a diff-toolbar button and its popover ── */
+/* No `position`: the popover anchors to the toolbar strip, so it opens against
+   the pane's right edge wherever the button sits, and never off-screen. */
+.sem-root { display: flex; }
+/* Wider than an icon button: it carries the count. */
+.sem-button.diff-tool { width: auto; gap: 4px; padding: 0 6px; }
+.sem-pop {
+  position: absolute;
+  top: calc(100% + 4px);
+  inset-inline-end: 8px;
+  z-index: 10;
+  width: min(560px, calc(100% - 16px));
+  background: var(--bg-2);
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: var(--bg-2);
-  margin: 0 0 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   overflow: hidden;
-  flex: 0 0 auto;
 }
 .sem-head {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 9px;
+  padding: 7px 10px;
   font-size: 11.5px;
   color: var(--text-2);
-  cursor: pointer;
+  border-bottom: 1px solid var(--border-soft);
   user-select: none;
 }
-.sem-head:hover { background: var(--bg-3); }
 .sem-head-icon { color: var(--accent); }
 .sem-title { font-weight: 600; color: var(--text-1); }
 .sem-count {
@@ -11625,7 +11640,7 @@ input[type='range']:focus-visible {
   color: var(--accent);
 }
 .sem-lang { margin-inline-start: auto; font-size: 10.5px; color: var(--text-3); font-family: var(--mono, monospace); }
-.sem-list { max-height: 190px; overflow-y: auto; padding: 2px 4px 5px; }
+.sem-list { max-height: min(50vh, 420px); overflow-y: auto; padding: 4px; }
 .sem-row {
   display: flex;
   align-items: center;
@@ -15560,8 +15575,47 @@ button.insights-row:hover { background: var(--bg-2); }
 .vault-unavailable svg { color: #e0a020; flex-shrink: 0; margin-top: 1px; }
 
 /* ─── Split (side-by-side) diff ────────────────────────────────────────── */
-.diff-toggles { position: sticky; top: 4px; left: 0; z-index: 3; display: inline-flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; width: fit-content; margin: 2px 0 6px 6px; pointer-events: none; }
-.diff-toggles .diff-word-toggle { position: static; float: none; margin: 0; pointer-events: auto; }
+/* Toolbar strip, GitKraken-style: compact icon buttons on the right, the label
+   in the tooltip. Sticky as well, for a host whose height does not resolve the
+   viewer's max-height and so scrolls the whole thing itself. */
+.diff-toolbar {
+  flex: none;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 3px 8px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border-soft);
+  /* The viewer is monospace; the strip and the popover in it are UI. */
+  font-family: var(--font);
+}
+.diff-tool-group { display: flex; align-items: center; gap: 1px; }
+.diff-tool-group + .diff-tool-group { margin-inline-start: 4px; padding-inline-start: 8px; border-inline-start: 1px solid var(--border-soft); }
+.diff-tool-group:empty { display: none; }
+.diff-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 22px;
+  color: var(--text-2);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.diff-tool:hover:not(:disabled) { color: var(--text-0); background: var(--bg-3); }
+.diff-tool.on { color: var(--accent); background: var(--accent-soft); }
+.diff-tool:disabled { opacity: 0.35; cursor: default; }
+/* Unified | split reads as one control with two positions. */
+.diff-tool-group.segmented { padding: 1px; background: var(--bg-2); border-radius: 5px; }
+.diff-tool-group + .diff-tool-group.segmented { padding-inline-start: 1px; margin-inline-start: 12px; border-inline-start: 0; }
+.diff-tool-group.segmented + .diff-tool-group { border-inline-start: 0; }
 .diff-viewer:focus, .diff-viewer:focus-visible { outline: none; }
 
 /* In-diff find bar */
@@ -15587,10 +15641,49 @@ button.insights-row:hover { background: var(--bg-2); }
 .diff-find-btn:disabled { opacity: 0.35; cursor: default; }
 mark.diff-find-hit { background: rgba(255, 213, 0, 0.32); color: inherit; border-radius: 2px; }
 mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
-/* Unified rows are `white-space: pre` and need `width: max-content` to scroll
-   horizontally; split cells wrap instead, so max-content would blow the pane
-   out and give each 1fr column half of an off-screen width. */
-.diff-viewer.is-split { width: 100%; min-width: 0; }
+/* GitKraken's palette for the split view: flat bands behind whole lines, a
+   stronger tone for the changed characters, a hatched filler where one side
+   has no line, and grey line numbers behind a hairline rule. The canvas stays
+   the code theme's, so the bands are chosen to sit on any dark (or light) one. */
+.diff-viewer.is-split {
+  --dv-lh: 1.4;
+  --dv-row: calc(var(--dv-lh) * 1em);
+  --dv-del-bg: #332728;
+  --dv-add-bg: #3e4d39;
+  --dv-word-del: #62392f;
+  --dv-word-add: #566a4c;
+  --dv-hatch: #404145;
+  --dv-rule: #3a3b3f;
+  --dv-guide: rgba(255, 255, 255, 0.09);
+  --dv-ln: #858585;
+  --dv-ln-changed: #c8c8c8;
+  --dv-ruler-del: #6e352d;
+  --dv-ruler-add: #4f7043;
+  --dv-ruler-view: rgba(121, 121, 121, 0.3);
+  --dv-ruler-view-hover: rgba(121, 121, 121, 0.45);
+  /* The code theme's canvas may be transparent. The margin has to be opaque —
+     code scrolls under it — so it layers the theme over the pane's own base,
+     and the whole view does the same so the two can never differ. */
+  --dv-canvas: linear-gradient(var(--code-bg, transparent), var(--code-bg, transparent)), var(--bg-0);
+  background: var(--dv-canvas);
+  line-height: var(--dv-lh);
+  tab-size: 4;
+}
+:root[data-mode='light'] .diff-viewer.is-split {
+  --dv-del-bg: #fbe4e4;
+  --dv-add-bg: #e4f2d9;
+  --dv-word-del: #f2b8b5;
+  --dv-word-add: #bfdfa7;
+  --dv-hatch: #d9d9de;
+  --dv-rule: #d4d4d9;
+  --dv-guide: rgba(0, 0, 0, 0.09);
+  --dv-ln: #8c8c8c;
+  --dv-ln-changed: #2e2e2e;
+  --dv-ruler-del: #e7a19d;
+  --dv-ruler-add: #9fcf87;
+  --dv-ruler-view: rgba(0, 0, 0, 0.12);
+  --dv-ruler-view-hover: rgba(0, 0, 0, 0.2);
+}
 .diff-split { display: flex; flex-direction: column; clear: both; min-width: 0; }
 .diff-split-hunk {
   display: flex; align-items: center; gap: 8px;
@@ -15602,37 +15695,117 @@ mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
 }
 .diff-split-hunk .diff-text { flex: 1; }
 .diff-split-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-.diff-split-cell {
-  display: flex; align-items: baseline; gap: 8px;
-  padding: 0 8px; min-width: 0; overflow: hidden;
-  border-inline-end: 1px solid var(--border-soft);
+.diff-split-row > .diff-split-cell:first-child { border-inline-end: 1px solid var(--dv-rule); }
+/* `position` anchors the stage button a full-file row carries at a hunk start. */
+.diff-split-cell { position: relative; display: flex; align-items: baseline; min-width: 0; overflow: hidden; }
+/* The margin: line number, −/+ marker, hairline. Opaque, so the band behind
+   the row starts at the rule, and so code scrolling under it disappears. */
+.diff-margin {
+  display: flex;
+  flex: none;
+  align-self: stretch;
+  color: var(--dv-ln);
+  background: var(--dv-canvas);
+  border-inline-end: 1px solid var(--dv-rule);
 }
-.diff-split-cell .diff-text { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; flex: 1; }
-.diff-split-cell.del { background: var(--diff-del-bg, rgba(229, 72, 77, 0.14)); }
-.diff-split-cell.add { background: var(--diff-add-bg, rgba(46, 160, 67, 0.16)); }
-.diff-split-cell.empty { background: var(--bg-1); }
-.diff-split-cell .diff-gutter { flex-shrink: 0; }
+.is-split .diff-gutter {
+  box-sizing: content-box;
+  width: calc(var(--ln-digits, 3) * 1ch);
+  padding-inline: 12px 2px;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  opacity: 1;
+}
+.diff-marker { flex: none; width: 1.6ch; text-align: center; }
+.diff-split-cell.del .diff-margin,
+.diff-split-cell.add .diff-margin { color: var(--dv-ln-changed); }
+/* Indent guides: one hairline per indent step, drawn as a background clipped to
+   the line's own indentation (`--gw`, set per line) and starting one step in —
+   the margin's rule already marks column 0. */
+.diff-split-cell .diff-text {
+  flex: 1;
+  padding-inline: 6px 14px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  background-image: repeating-linear-gradient(to right, var(--dv-guide) 0 1px, transparent 1px var(--iu, 4ch));
+  background-origin: content-box;
+  background-position: var(--iu, 4ch) 0;
+  background-size: var(--gw, 0px) 100%;
+  background-repeat: no-repeat;
+}
+.diff-split-cell.del { background: var(--dv-del-bg); }
+.diff-split-cell.add { background: var(--dv-add-bg); }
+/* The filler, hatched `////` like GitKraken's: a seamless 45° tile. Rows are one
+   line tall with wrap off, and the tile is anchored to the column rather than
+   the row, so the stripes run on unbroken through a stack of fillers. */
+.diff-split-cell.empty {
+  background-image: linear-gradient(
+    -45deg,
+    var(--dv-hatch) 12.5%,
+    transparent 12.5% 50%,
+    var(--dv-hatch) 50% 62.5%,
+    transparent 62.5%
+  );
+  background-size: 6px 6px;
+  background-position: 0 calc(var(--r, 0) * var(--dv-row) * -1);
+}
+.is-split .diff-text mark.word-del { background: var(--dv-word-del); border-radius: 0; }
+.is-split .diff-text mark.word-add { background: var(--dv-word-add); border-radius: 0; }
+/* On a context row the stage button sits over code: an opaque face, or the
+   code behind it reads through the label as garble. Quiet until wanted. */
+.diff-split-cell .diff-stage-hunk { background: var(--bg-2); color: var(--text-2); }
+.diff-split-cell .diff-stage-hunk:hover,
+.diff-split-cell:hover .diff-stage-hunk { color: var(--text-0); }
 
 /* Wrap off: each side is its own scroller (column-major markup), so a long line
    scrolls without dragging the other half along. The columns take the pane's
    height rather than the diff's — a column as tall as the whole diff would put
    its horizontal scrollbar thousands of pixels below the viewport. */
-.diff-viewer.is-split.is-nowrap { display: flex; flex-direction: column; max-height: 100%; padding-bottom: 0; }
-.diff-split.is-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); flex: 1; min-height: 0; }
-.diff-split-col { min-width: 0; overflow: auto; }
+.diff-split.is-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; flex: 1; min-height: 0; }
+.diff-split-pane { position: relative; display: flex; min-width: 0; min-height: 0; }
+.diff-split-pane.left { border-inline-end: 1px solid var(--dv-rule); }
+/* `position` makes the column the rows' offsetParent — change navigation
+   scrolls by their offsetTop. */
+.diff-split-col { position: relative; flex: 1; min-width: 0; overflow: auto; }
+/* Thicker than the app's 9px: these are the diff's main way around, sideways
+   above all, and a 9px target on a long line is a chase. */
+.diff-split-col::-webkit-scrollbar { width: 14px; height: 14px; }
+.diff-split-col::-webkit-scrollbar-thumb { border-width: 3px; }
+/* Wrap on: one scroller for both sides, and the ruler in a column beside it. */
+.diff-wrap-body { display: flex; flex: 1 1 auto; min-height: 0; }
+.diff-wrap-body > .diff-scroll { flex: 1; min-width: 0; }
+/* The overview ruler: a red lane and a green lane over the whole file, and the
+   viewport box on top. Its own grid column, right of the right-hand pane. */
+.diff-overview {
+  position: relative;
+  width: 28px;
+  border-inline-start: 1px solid var(--dv-rule);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+.diff-overview-mark { position: absolute; width: calc(50% - 3px); pointer-events: none; }
+.diff-overview-mark.del { left: 2px; background: var(--dv-ruler-del); }
+.diff-overview-mark.add { right: 2px; background: var(--dv-ruler-add); }
+.diff-overview-view { position: absolute; left: 0; right: 0; min-height: 6px; background: var(--dv-ruler-view); pointer-events: none; }
+.diff-overview:hover .diff-overview-view { background: var(--dv-ruler-view-hover); }
 /* Block layout, not grid: rows are block children of an inner box sized to the
    longest line, so each one fills the full scroll width by definition — their
    background and their trailing border reach the end of the line. */
-.diff-split-inner { width: max-content; min-width: 100%; }
-/* Both columns scroll vertically in lockstep, so only one of them needs to say
-   so — two vertical bars, one of them mid-pane, would just be noise. */
-.diff-split-col:first-child::-webkit-scrollbar:vertical { display: none; }
+.diff-split-inner { box-sizing: border-box; width: max-content; min-width: 100%; }
+/* 1em tall and invisible: the split view measures its font size off this, to
+   size its rows in whole pixels, and a ResizeObserver on it catches a change. */
+.diff-em-probe { position: absolute; width: 0; height: 1em; visibility: hidden; pointer-events: none; }
 .is-nowrap .diff-split-cell { overflow: visible; }
+/* The margin stays at the left edge while the code scrolls sideways under it. */
+.is-nowrap .diff-margin { position: sticky; left: 0; z-index: 1; }
 /* The columns scroll independently, so a row on one side has to be exactly as
    tall as its counterpart on the other or the two sides drift apart over the
    length of the diff. One line, fixed, including the hunk bar. */
 .is-nowrap .diff-split-cell,
-.is-nowrap .diff-split-hunk { height: 1.55em; line-height: 1.55; padding-block: 0; }
+.is-nowrap .diff-split-hunk { height: var(--dv-row); line-height: var(--dv-lh); padding-block: 0; }
 .is-nowrap .diff-split-hunk { border-top: 0; border-bottom: 0; }
 /* The hunk bar now runs the length of the longest line, so an end-anchored
    button would sit off-screen until you scrolled to it. Sticky keeps it against

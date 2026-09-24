@@ -166,6 +166,8 @@ and a [run target](docs/help/launch.md) picker for the phone or simulator ·
 [**Dev tools**](docs/help/devtools.md) embedded on the repository's own tab —
 Flutter DevTools, `dart devtools`, Prisma Studio and friends, from the address
 the session announces ·
+[split diffs](docs/help/diffs.md) that lay each change in the whole file, with hatched gaps,
+word marks and an overview ruler to jump between changes ·
 [previews](docs/help/diffs.md) for Markdown, Word, Excel, PDF, video and images —
 plus `Info.plist` and `.entitlements` as a key/value outline, and a
 `project.pbxproj` as the targets, file tree and build settings it really is ·

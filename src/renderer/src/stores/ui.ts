@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import type { ReactNode } from 'react'
 import type { CiState, DivergedStrategy, KeychainReason, ResetStrategy } from '../../../shared/types'
 import type { WorkspaceCandidate } from '../lib/workspacePlan'
+import { sidebarForFileView } from '../lib/diffFocus'
 
 export type CiFilter = 'all' | CiState
 
@@ -298,6 +299,10 @@ interface UIState {
   /** Left sidebar (branches/files) collapsed. Global workspace preference —
    *  hides the sidebar column so the graph gets the full width. */
   sidebarCollapsed: boolean
+  /** The sidebar is collapsed because a diff opened (see `lib/diffFocus`), so
+   *  closing the viewer gives it back. Never persisted: quitting mid-diff must
+   *  not start the next session with the sidebar gone. */
+  sidebarAutoCollapsed: boolean
   /** Which sidebar tab is showing. Lives here rather than in the component
    *  because the refresh cycle reads it: the file tree's per-path badges cost a
    *  second full `git status` walk, and nothing displays them until this is
@@ -357,6 +362,9 @@ interface UIState {
   setTerminalOpen(repoPath: string, open: boolean): void
   toggleSidebar(): void
   setSidebarCollapsed(collapsed: boolean): void
+  /** The file viewer on screen changed mode, appeared (`prevMode` null) or went
+   *  away (`nextMode` null): collapse or give back the sidebar (lib/diffFocus). */
+  applyDiffFocus(prevMode: FileViewMode | null, nextMode: FileViewMode | null): void
   openChatPanel(): void
   /** Open the chat panel with a prefilled composer draft for one repository. */
   openChatPanelWith(repoPath: string, text: string): void
@@ -404,6 +412,7 @@ export const useUIStore = create<UIState>((set, get) => ({
       return false
     }
   })(),
+  sidebarAutoCollapsed: false,
   chatPanelOpen: false,
   rightPanelTab: 'details',
   chatPrompt: null,
@@ -452,7 +461,8 @@ export const useUIStore = create<UIState>((set, get) => ({
   setSidebarTab: (sidebarTab) => set({ sidebarTab }),
   toggleSidebar: () => get().setSidebarCollapsed(!get().sidebarCollapsed),
   setSidebarCollapsed: (sidebarCollapsed) => {
-    set({ sidebarCollapsed })
+    // A hand on the toggle outranks the diff: closing the viewer leaves it be.
+    set({ sidebarCollapsed, sidebarAutoCollapsed: false })
     try {
       localStorage.setItem(SIDEBAR_KEY, sidebarCollapsed ? '1' : '0')
     } catch {
@@ -480,6 +490,16 @@ export const useUIStore = create<UIState>((set, get) => ({
       // scrolls again instead of being deduped away by identical state.
       fileView: fileView?.line != null ? { ...fileView, revealSeq: ++revealSeq } : fileView
     }),
+  applyDiffFocus: (prevMode, nextMode) => {
+    const s = get()
+    const sidebar = sidebarForFileView(prevMode === null ? null : { mode: prevMode }, nextMode === null ? null : { mode: nextMode }, {
+      collapsed: s.sidebarCollapsed,
+      auto: s.sidebarAutoCollapsed
+    })
+    // Set directly, not through setSidebarCollapsed: that would persist the
+    // collapse and mark it as the user's own.
+    set({ sidebarCollapsed: sidebar.collapsed, sidebarAutoCollapsed: sidebar.auto })
+  },
   setEditorDirty: (editorDirty) => set({ editorDirty }),
   setConflictView: (conflictView) => set({ conflictView }),
   setConflictWhy: (conflictWhy) => set({ conflictWhy }),

@@ -12,10 +12,12 @@ Een zuivere hernoeming ziet er in een regeldiff uit als een heel bestand
 verwijderd en een heel bestand toegevoegd. Dat is technisch waar en volslagen
 nutteloos.
 
-Boven elke bestandsdiff toont Gitcito een strook **Wat er veranderde**: beide
-versies van het bestand worden geparseerd met **tree-sitter** — echte
-syntaxbomen, geen reguliere expressies — en hun declaraties worden aan elkaar
-gekoppeld.
+De werkbalk van elke bestandsdiff heeft een **{ }**-knop met een getal: hoeveel
+declaraties er veranderd zijn. Klik erop voor **Wat er veranderd is**. Beide
+versies van het bestand worden geparsed met **tree-sitter** — echte syntaxbomen,
+geen reguliere expressies — en hun declaraties worden aan elkaar gekoppeld. De
+knop ontbreekt als er voor de taal van het bestand geen grammatica is, of als er
+op symboolniveau niets veranderd is.
 
 ![De wat-er-veranderde-strook: hernoemingen en handtekeningwijzigingen, symbool voor symbool](../../screenshots/semantic-diff.webp)
 

@@ -12,9 +12,11 @@ Yalnızca ad değiştiren bir sembol, satır bazlı diff'te bir dosyanın tamame
 silinmesi ve bir dosyanın tamamen eklenmesi olarak görünür. Teknik olarak
 doğrudur ve tamamen işe yaramazdır.
 
-Gitcito her dosya diff'inin üstünde bir **Ne değişti** şeridi gösterir:
-dosyanın her iki sürümü de **tree-sitter** ile ayrıştırılır — düzenli ifadeler
-değil, gerçek sözdizimi ağaçları — ve bildirimleri birbiriyle eşleştirilir.
+Her dosya diff'inin araç çubuğunda üzerinde sayı olan bir **{ }** düğmesi
+bulunur: kaç bildirimin değiştiği. **Ne değişti** için tıklayın. Dosyanın iki
+sürümü de **tree-sitter** ile ayrıştırılır — düzenli ifadeler değil, gerçek
+sözdizimi ağaçları — ve bildirimleri eşleştirilir. Dosyanın dili için bir
+dilbilgisi yoksa ya da sembol düzeyinde hiçbir şey değişmediyse düğme görünmez.
 
 ![Ne-değişti şeridi: sembol sembol yeniden adlandırmalar ve imza değişiklikleri](../../screenshots/semantic-diff.webp)
 

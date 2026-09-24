@@ -11,11 +11,13 @@ keywords: semantic diff ast tree-sitter rename signature moved symbols what chan
 A pure rename shows up in a line diff as an entire file deleted and an entire
 file added. That is technically true and completely useless.
 
-Above every file diff, Gitcito shows a **What changed** strip: both versions of
+The toolbar of every file diff carries a **{ }** button with a number on it:
+how many declarations changed. Click it for **What changed**. Both versions of
 the file are parsed with **tree-sitter** — real syntax trees, not regular
-expressions — and their declarations are matched up.
+expressions — and their declarations are matched up. The button is absent when
+the file's language has no grammar, or nothing changed at the symbol level.
 
-![The what-changed strip: renames and signature changes, symbol by symbol](../screenshots/semantic-diff.webp)
+![The What changed popover: renames and signature changes, symbol by symbol](../screenshots/semantic-diff.webp)
 
 | Verdict | Example |
 |---|---|
@@ -26,7 +28,7 @@ expressions — and their declarations are matched up.
 | **Changed** | same name and signature, different body |
 
 Renames and signature changes sort first — they are what a reviewer must not
-miss. Click a row to jump to that symbol in the diff.
+miss. Click a row to close the popover and jump to that symbol in the diff.
 
 ## What it can parse
 

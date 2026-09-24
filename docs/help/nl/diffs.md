@@ -12,6 +12,8 @@ keywords: diff split side-by-side gesplitst woordniveau word level witruimte whi
 
 | Schakelaar | Wat het doet |
 |---|---|
+| **↑ / ↓** | Naar de vorige of volgende wijziging springen |
+| **Heel bestand** (alleen gesplitst) | Het hele bestand, elke wijziging op zijn plek; uit, alleen de gewijzigde blokken |
 | **Unified ↔ split** | Naast elkaar als je wilt vergelijken, gestapeld als je wilt lezen |
 | **Woordniveau** | Markeert alleen de gewijzigde tokens binnen een bewerkte regel — rood op de oude, groen op de nieuwe |
 | **Witruimte negeren** | Verbergt herinspringen zodat de echte wijziging bovendrijft |
@@ -34,10 +36,13 @@ elke regel verschoof — of wanneer je twee ver uiteenliggende delen van
 hetzelfde bestand wilt vergelijken, en parkeer elke helft waar haar eigen
 inhoud staat.
 
+**Heel bestand.** De gesplitste weergave toont het hele bestand, oud links en nieuw rechts, en opent bij de eerste wijziging: rode en groene banden markeren gewijzigde regels, arcering vult de kant zonder regel, inspringhulplijnen markeren elk niveau en de overzichtsliniaal rechts van de diff toont het hele bestand — een rode baan voor verwijderde regels, een groene voor toegevoegde en een kader voor het zichtbare deel; klik of sleep om erheen te scrollen. Daarvoor is de volledige nieuwe versie nodig, dus een vergelijking van meerdere bestanden of een snapshot toont blokken, net als een bestand dat te groot is om te laden.
+
 ![Gesplitste diff met markering op woordniveau](../../screenshots/split-diff.webp)
 
-Boven elke diff staat de [semantische samenvatting](semantic-diff.md) — wat er
-veranderde, symbool voor symbool, in plaats van regel voor regel.
+De **{ }**-knop aan het begin van de werkbalk opent de [semantische
+samenvatting](semantic-diff.md) — wat er veranderd is, symbool voor symbool in
+plaats van regel voor regel. Het getal is hoeveel declaraties er veranderd zijn.
 
 ## Beelddiffs
 

@@ -1287,19 +1287,23 @@ export const shots = [
     }
   },
   {
-    // Side-by-side (split) diff with word-level highlighting.
+    // Side-by-side (split) diff, full file: context around every edit, hatched
+    // fillers opposite inserted and removed lines, word marks, indent guides.
     out: 'split-diff',
-    repos: ['word-diff'],
-    themes: ['light'],
+    repos: ['split-diff'],
+    themes: ['dark'],
     drive: async (page, repoPaths) => {
-      const repo = repoPaths['word-diff']
+      const repo = repoPaths['split-diff']
       await page.evaluate((p) => {
-        window.__shot.ui.getState().setFileView({ repoPath: p, file: 'config.ts', source: { type: 'wip', staged: false, untracked: false }, mode: 'diff' })
+        window.__shot.ui.getState().setFileView({ repoPath: p, file: 'queue.ts', source: { type: 'wip', staged: false, untracked: false }, mode: 'diff' })
       }, repo)
       await page.waitForTimeout(500)
-      // By label, not by position: the first toggle is Whitespace, and this shot
-      // spent a while photographing a unified diff because of it.
-      await page.click('.diff-toggles button:has-text("Split")').catch(() => {})
+      // By id, not by position or label: the toolbar is icons now, and this shot
+      // once spent a while photographing a unified diff by clicking the wrong one.
+      await page.click('.diff-toolbar [data-tool="split"]').catch(() => {})
+      // Split adds buttons to a right-aligned strip, which slides a neighbour
+      // under the pointer — and a hovered button photographs as a pressed one.
+      await page.mouse.move(0, 0)
       await page.waitForTimeout(500)
     }
   },
@@ -1749,8 +1753,11 @@ export const shots = [
           mode: 'diff'
         })
       }, repo)
-      // tree-sitter parses both sides before the strip appears.
-      await page.waitForSelector('.sem-row', { timeout: 15000 }).catch(() => {})
+      // tree-sitter parses both sides before the toolbar button appears; the
+      // shot is of its popover, open.
+      await page.waitForSelector('.diff-toolbar [data-tool="semantic"]', { timeout: 15000 }).catch(() => {})
+      await page.click('.diff-toolbar [data-tool="semantic"]').catch(() => {})
+      await page.waitForSelector('.sem-row', { timeout: 5000 }).catch(() => {})
       await page.waitForTimeout(600)
     }
   },

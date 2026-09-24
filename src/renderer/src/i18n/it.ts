@@ -2039,6 +2039,12 @@ export const it: Dict = {
   'diff.linesSelected': '{n} righ{s} selezionate',
   'diff.clearSelection': 'Azzera',
   'diff.stageLines': 'Metti in staging {n} righ{s}',
+  'diff.unified': 'Unificata',
+  'diff.unifiedTitle': 'Vista unificata — una colonna, righe rimosse sopra quelle aggiunte',
+  'diff.fullFile': 'File intero',
+  'diff.fullFileTitle': 'Mostra tutto il file intorno alle modifiche; se disattivo, solo i blocchi modificati',
+  'diff.prevChange': 'Modifica precedente',
+  'diff.nextChange': 'Modifica successiva',
 
   'stashPanel.noLongerExists': 'Lo stash non esiste più',
   'stashPanel.renameTitle': 'Rinomina lo stash',

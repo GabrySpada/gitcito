@@ -5,15 +5,40 @@
 /** How long the target row keeps its highlight after being revealed. */
 const FLASH_MS = 2000
 
+/** Finds — rendering it first if need be — the row for a line in a view that
+ *  only keeps the rows in sight in the DOM. */
+type RowLookup = (line: number) => Element | null
+const lookups = new Set<RowLookup>()
+
+/**
+ * Lets a windowed view (the split diff, which renders only the rows in view)
+ * answer for rows the DOM does not hold. Returns the unregister function.
+ */
+export function registerRowLookup(lookup: RowLookup): () => void {
+  lookups.add(lookup)
+  return () => {
+    lookups.delete(lookup)
+  }
+}
+
 /** The row element for `line` in whichever view is currently mounted, if any. */
 function rowFor(line: number): Element | null {
   const direct = document.querySelector(`.file-content .code-line:nth-child(${line})`)
   if (direct) return direct
   // Diff and blame views carry the real line number in a gutter cell instead.
-  const gutter = [...document.querySelectorAll('.diff-line .diff-gutter, .blame-line .code-no')].find(
-    (g) => g.textContent?.trim() === String(line)
-  )
-  return gutter?.parentElement ?? null
+  // In a split diff that is the right-hand column's: a line number to reveal is
+  // a line of the file as it is now, which is the new side.
+  const gutter = [
+    ...document.querySelectorAll(
+      '.diff-line .diff-gutter, .blame-line .code-no, .diff-split-pane.right .diff-gutter, .diff-split-row > .diff-split-cell:last-child .diff-gutter'
+    )
+  ].find((g) => g.textContent?.trim() === String(line))
+  if (gutter) return gutter.closest('.diff-line, .diff-split-cell, .blame-line') ?? gutter.parentElement
+  for (const lookup of lookups) {
+    const row = lookup(line)
+    if (row) return row
+  }
+  return null
 }
 
 /**

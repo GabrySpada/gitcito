@@ -12,6 +12,8 @@ keywords: diff split affiancato side-by-side parola whitespace spazi immagine an
 
 | Interruttore | Cosa fa |
 |---|---|
+| **↑ / ↓** | Salta alla modifica precedente o successiva |
+| **File intero** (solo vista affiancata) | Tutto il file, con ogni modifica al suo posto; disattivato, solo i blocchi modificati |
 | **Unificato ↔ affiancato** | Affiancato quando vuoi confrontare, impilato quando vuoi leggere |
 | **A livello di parola** | Evidenzia solo i token cambiati dentro una riga modificata — rosso sul vecchio, verde sul nuovo |
 | **Ignora gli spazi** | Nasconde le reindentazioni così emerge la modifica vera |
@@ -34,10 +36,13 @@ indentato, una rinomina che ha spostato ogni riga — o quando vuoi confrontare
 due regioni distanti dello stesso file, e lascia ogni metà dov'è il suo
 contenuto.
 
+**File intero.** La vista affiancata mostra tutto il file, il vecchio a sinistra e il nuovo a destra, e si apre sulla prima modifica: bande rosse e verdi segnano le righe cambiate, un tratteggio riempie il lato che non ha la riga, le guide di indentazione segnano ogni livello e il righello a destra del diff mostra tutto il file — una corsia rossa per le righe rimosse, una verde per quelle aggiunte e un riquadro per la parte visibile; clicca o trascina per scorrere lì. Serve la versione nuova completa, quindi un confronto fra più file o uno snapshot mostrano i blocchi, come un file troppo grande da caricare.
+
 ![Diff affiancato con evidenziazione a livello di parola](../../screenshots/split-diff.webp)
 
-Sopra ogni diff sta il [riepilogo semantico](semantic-diff.md) — cos'è cambiato,
-simbolo per simbolo, invece che riga per riga.
+Il pulsante **{ }** all'inizio della barra degli strumenti apre il [riepilogo
+semantico](semantic-diff.md) — cos'è cambiato, simbolo per simbolo, invece che
+riga per riga. Il numero è quante dichiarazioni sono cambiate.
 
 ## Diff di immagini
 

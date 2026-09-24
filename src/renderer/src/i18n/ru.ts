@@ -2075,6 +2075,12 @@ export const ru: Dict = {
   'diff.linesSelected': 'выбрана {n} строка{s}',
   'diff.clearSelection': 'Очистить',
   'diff.stageLines': 'Проиндексировать {n} строку{s}',
+  'diff.unified': 'Единый',
+  'diff.unifiedTitle': 'Единый вид — одна колонка, удалённые строки над добавленными',
+  'diff.fullFile': 'Весь файл',
+  'diff.fullFileTitle': 'Показывать весь файл вокруг изменений; выключено — только изменённые фрагменты',
+  'diff.prevChange': 'Предыдущее изменение',
+  'diff.nextChange': 'Следующее изменение',
 
   // Панель подробностей стеша
   'stashPanel.noLongerExists': 'Стеша больше нет',

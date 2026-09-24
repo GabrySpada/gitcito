@@ -2076,6 +2076,12 @@ export const ptBR: Dict = {
   'diff.linesSelected': '{n} linha{s} na seleção',
   'diff.clearSelection': 'Limpar',
   'diff.stageLines': 'Mandar {n} linha{s} para o stage',
+  'diff.unified': 'Unificada',
+  'diff.unifiedTitle': 'Visão unificada — uma coluna, linhas removidas acima das adicionadas',
+  'diff.fullFile': 'Arquivo inteiro',
+  'diff.fullFileTitle': 'Mostra o arquivo inteiro ao redor das mudanças; desligado, só os blocos alterados',
+  'diff.prevChange': 'Mudança anterior',
+  'diff.nextChange': 'Próxima mudança',
 
   // Painel de detalhes do stash
   'stashPanel.noLongerExists': 'O stash não existe mais',

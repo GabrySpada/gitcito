@@ -2038,6 +2038,12 @@ export const fr: Dict = {
   'diff.linesSelected': '{n} ligne{s} sélectionnées',
   'diff.clearSelection': 'Effacer',
   'diff.stageLines': 'Indexer {n} ligne{s}',
+  'diff.unified': 'Unifiée',
+  'diff.unifiedTitle': 'Vue unifiée — une colonne, lignes supprimées au-dessus des lignes ajoutées',
+  'diff.fullFile': 'Fichier entier',
+  'diff.fullFileTitle': 'Affiche tout le fichier autour des modifications ; désactivé, seulement les blocs modifiés',
+  'diff.prevChange': 'Modification précédente',
+  'diff.nextChange': 'Modification suivante',
 
   'stashPanel.noLongerExists': 'Ce remisage n’existe plus',
   'stashPanel.renameTitle': 'Renommer le remisage',

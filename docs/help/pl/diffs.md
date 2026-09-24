@@ -12,6 +12,8 @@ keywords: diff widok dzielony obok siebie słowa białe znaki obraz podgląd mar
 
 | Przełącznik | Co robi |
 |---|---|
+| **↑ / ↓** | Skok do poprzedniej lub następnej zmiany |
+| **Cały plik** (tylko podział) | Cały plik, każda zmiana na swoim miejscu; wyłączone — tylko zmienione fragmenty |
 | **Ujednolicony ↔ dzielony** | Obok siebie, gdy chcesz porównywać; jeden pod drugim, gdy chcesz czytać |
 | **Na poziomie słów** | Podświetla tylko zmienione tokeny wewnątrz edytowanej linii — na czerwono w starej, na zielono w nowej |
 | **Ignoruj białe znaki** | Ukrywa zmiany wcięć, żeby na wierzch wypłynęła prawdziwa zmiana |
@@ -33,10 +35,13 @@ wcięciem naprzeciw bloku bez wcięcia, zmiana nazwy, która przesunęła każdy
 wiersz — albo gdy chcesz porównać dwa odległe fragmenty tego samego pliku, i
 zaparkuj każdą połowę tam, gdzie jest jej treść.
 
+**Cały plik.** Widok z podziałem pokazuje cały plik, starą wersję po lewej, nową po prawej, i otwiera się na pierwszej zmianie: czerwone i zielone pasy oznaczają zmienione wiersze, kreskowanie wypełnia stronę bez wiersza, prowadnice wcięć oznaczają każdy poziom, a linijka po prawej stronie diffu pokazuje cały plik — czerwony tor dla usuniętych wierszy, zielony dla dodanych i ramkę dla widocznej części; kliknij lub przeciągnij, aby tam przewinąć. Potrzebna jest pełna nowa wersja, więc porównanie wielu plików lub migawka pokazują fragmenty, podobnie jak plik zbyt duży do wczytania.
+
 ![Diff dzielony z podświetlaniem na poziomie słów](../../screenshots/split-diff.webp)
 
-Nad każdym diffem siedzi [podsumowanie semantyczne](semantic-diff.md) — co się
-zmieniło, symbol po symbolu, zamiast linia po linii.
+Przycisk **{ }** na początku paska narzędzi otwiera [podsumowanie
+semantyczne](semantic-diff.md) — co się zmieniło, symbol po symbolu, a nie
+wiersz po wierszu. Liczba na nim to liczba zmienionych deklaracji.
 
 ## Diffy obrazów
 

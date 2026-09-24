@@ -12,6 +12,8 @@ keywords: diff split dividido lado a lado side-by-side palavra word level espaç
 
 | Alternância | O que faz |
 |---|---|
+| **↑ / ↓** | Vai para a mudança anterior ou seguinte |
+| **Arquivo inteiro** (só lado a lado) | O arquivo inteiro, cada mudança no seu lugar; desligado, só os blocos alterados |
 | **Unificado ↔ dividido** | Lado a lado quando você quer comparar, empilhado quando você quer ler |
 | **Nível de palavra** | Destaca só os tokens alterados dentro de uma linha editada — vermelho no antigo, verde no novo |
 | **Ignorar espaços em branco** | Esconde reindentação para a mudança de verdade aparecer |
@@ -32,10 +34,13 @@ tiverem se afastado — um bloco indentado contra um sem indentação, uma
 renomeação que deslocou cada linha — ou quando quiser comparar duas regiões
 distantes do mesmo arquivo, e deixe cada metade onde está o seu conteúdo.
 
+**Arquivo inteiro.** A visão lado a lado mostra o arquivo inteiro, o antigo à esquerda e o novo à direita, e abre na primeira mudança: faixas vermelhas e verdes marcam as linhas alteradas, uma hachura preenche o lado que não tem a linha, guias de indentação marcam cada nível e a régua à direita do diff mostra o arquivo inteiro — uma faixa vermelha para as linhas removidas, uma verde para as adicionadas e uma caixa para a parte visível; clique ou arraste para rolar até lá. Precisa da versão nova completa, então uma comparação de vários arquivos ou um snapshot mostram blocos, assim como um arquivo grande demais para carregar.
+
 ![Diff dividido com destaque em nível de palavra](../../screenshots/split-diff.webp)
 
-Acima de todo diff fica o [resumo semântico](semantic-diff.md) — o que mudou,
-símbolo por símbolo, em vez de linha por linha.
+O botão **{ }** no início da barra de ferramentas abre o [resumo
+semântico](semantic-diff.md) — o que mudou, símbolo por símbolo, em vez de linha
+por linha. O número é quantas declarações mudaram.
 
 ## Diff de imagens
 

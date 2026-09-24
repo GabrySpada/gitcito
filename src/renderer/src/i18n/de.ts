@@ -2075,6 +2075,12 @@ export const de: Dict = {
   'diff.linesSelected': '{n} Zeile{s} ausgewählt',
   'diff.clearSelection': 'Zurücksetzen',
   'diff.stageLines': '{n} Zeile{s} stagen',
+  'diff.unified': 'Vereinheitlicht',
+  'diff.unifiedTitle': 'Vereinheitlichte Ansicht — eine Spalte, entfernte Zeilen über hinzugefügten',
+  'diff.fullFile': 'Ganze Datei',
+  'diff.fullFileTitle': 'Die ganze Datei rund um die Änderungen zeigen; aus, nur die geänderten Abschnitte',
+  'diff.prevChange': 'Vorherige Änderung',
+  'diff.nextChange': 'Nächste Änderung',
 
   // Stash details panel
   'stashPanel.noLongerExists': 'Der Stash existiert nicht mehr',

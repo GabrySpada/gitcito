@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { GitMerge, FolderOpen, Download, ArrowDownToLine, Bug, LifeBuoy, MessageSquare, X, CheckSquare, Stethoscope, CircleX, TriangleAlert, Info, ListTodo } from 'lucide-react'
 import { takeAccountsNotice, useSettingsStore } from './stores/settings'
 import { useRepoStore, repoActions, type RepoData } from './stores/repo'
-import { useUIStore } from './stores/ui'
+import { useUIStore, type FileViewMode } from './stores/ui'
 import { tabActiveRepoPath, tabRepos, type ConflictOpKind, type GroupTab, type PageTab, type PageContent } from '../../shared/types'
 import { useT, t as tr, interp } from './i18n'
 import { applyDirection } from './i18n/direction'
@@ -721,6 +721,24 @@ export default function App(): React.JSX.Element {
   const setMissionOpen = useUIStore((s) => s.setMissionOpen)
   const activeTab = settings.tabs.find((t) => t.id === settings.activeTabId) ?? null
   const activeRepoPath = activeTab ? tabActiveRepoPath(activeTab) : null
+
+  // Diff focus (lib/diffFocus): a diff on screen takes the sidebar's width and
+  // closing it gives the width back. Keyed on the viewer actually shown, not on
+  // `fileView` alone — a diff left open in another tab, or behind the conflict
+  // resolver or mission control, is not on screen.
+  const shownFileMode =
+    fileView &&
+    fileView.repoPath === activeRepoPath &&
+    !(conflictView && conflictView.repoPath === activeRepoPath) &&
+    !missionOpen
+      ? fileView.mode
+      : null
+  const lastShownMode = useRef<FileViewMode | null>(null)
+  useEffect(() => {
+    const prev = lastShownMode.current
+    lastShownMode.current = shownFileMode
+    if (prev !== shownFileMode) useUIStore.getState().applyDiffFocus(prev, shownFileMode)
+  }, [shownFileMode])
 
   // Clicking any tab (or switching workspace) leaves mission control — the
   // dashboard is a detour, not somewhere the tab strip can point at.

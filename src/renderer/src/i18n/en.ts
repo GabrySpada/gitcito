@@ -2071,6 +2071,12 @@ export const en = {
   'diff.linesSelected': '{n} line{s} selected',
   'diff.clearSelection': 'Clear',
   'diff.stageLines': 'Stage {n} line{s}',
+  'diff.unified': 'Unified',
+  'diff.unifiedTitle': 'Unified view — one column, removed lines above added ones',
+  'diff.fullFile': 'Full file',
+  'diff.fullFileTitle': 'Show the whole file around the changes; off, only the changed hunks',
+  'diff.prevChange': 'Previous change',
+  'diff.nextChange': 'Next change',
 
   // Stash details panel
   'stashPanel.noLongerExists': 'Stash no longer exists',

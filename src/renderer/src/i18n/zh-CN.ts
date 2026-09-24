@@ -2075,6 +2075,12 @@ export const zhCN: Dict = {
   'diff.linesSelected': '已选中 {n} 行{s}',
   'diff.clearSelection': '清除',
   'diff.stageLines': '暂存 {n} 行{s}',
+  'diff.unified': '统一',
+  'diff.unifiedTitle': '统一视图 — 单列，删除的行在新增的行上方',
+  'diff.fullFile': '完整文件',
+  'diff.fullFileTitle': '显示变更周围的整个文件；关闭时只显示变更的区块',
+  'diff.prevChange': '上一处变更',
+  'diff.nextChange': '下一处变更',
 
   // Stash details panel
   'stashPanel.noLongerExists': '该贮藏已不存在',

@@ -2038,6 +2038,12 @@ export const tr: Dict = {
   'diff.linesSelected': '{n} satır{s} seçildi',
   'diff.clearSelection': 'Temizle',
   'diff.stageLines': '{n} satır{s} stage’e al',
+  'diff.unified': 'Birleşik',
+  'diff.unifiedTitle': 'Birleşik görünüm — tek sütun, silinen satırlar eklenenlerin üstünde',
+  'diff.fullFile': 'Tüm dosya',
+  'diff.fullFileTitle': 'Değişikliklerin çevresindeki tüm dosyayı göster; kapalıyken yalnızca değişen bölümler',
+  'diff.prevChange': 'Önceki değişiklik',
+  'diff.nextChange': 'Sonraki değişiklik',
 
   'stashPanel.noLongerExists': 'Stash artık yok',
   'stashPanel.renameTitle': 'Stash’i yeniden adlandır',
