@@ -80,9 +80,15 @@ export function layoutGraph(
     laneColor.push(colorCounter++)
   }
 
+  // Lanes still carrying a rail after their expectation moved on: a merge whose
+  // incoming parent lands further left draws down the merge commit's own lane
+  // (see edgePath), so that lane stays taken until the parent's row even when
+  // its first-parent chain has already rejoined the trunk. hash → held lanes.
+  const holds = new Map<string, number[]>()
+  const held: number[] = []
+
   const firstFree = (): number => {
-    const idx = lanes.indexOf(null)
-    if (idx !== -1) return idx
+    for (let i = 0; i < lanes.length; i++) if (lanes[i] === null && !held[i]) return i
     lanes.push(null)
     laneColor.push(0)
     return lanes.length - 1
@@ -104,44 +110,39 @@ export function layoutGraph(
     for (let j = 0; j < lanes.length; j++) {
       if (j !== lane && lanes[j] === c.hash) lanes[j] = null
     }
+    for (const l of holds.get(c.hash) ?? []) held[l]--
+    holds.delete(c.hash)
 
     nodes.set(c.hash, { hash: c.hash, row, lane, color: laneColor[lane] })
     laneCount = Math.max(laneCount, lane + 1)
 
     const [p0, ...rest] = c.parents
 
-    if (p0) {
-      const existing = lanes.indexOf(p0)
-      if (existing === -1) {
-        lanes[lane] = p0
-      } else if (existing < lane) {
-        // First parent already expected further left → this lane terminates here.
-        lanes[lane] = null
-      } else {
-        // First parent expected on a lane to the right (e.g. a merged branch whose
-        // commits are newer than this side of the trunk). Pull the expectation onto
-        // this more-left lane so the trunk stays straight and the branch bends in.
-        lanes[existing] = null
-        lanes[lane] = p0
-      }
-    } else {
-      lanes[lane] = null
-    }
+    // The first parent keeps this lane even when another lane already expects
+    // it: the parent lands on the leftmost of them, and every other one bends
+    // in at the parent's row — a rail that converges left runs down its own
+    // lane until then, so freeing the lane early lets later commits land on
+    // top of that rail and read as part of its chain.
+    lanes[lane] = p0 ?? null
 
     for (const pk of rest) {
-      if (!lanes.includes(pk)) {
-        const l = firstFree()
-        lanes[l] = pk
-        laneColor[l] = colorCounter++
-        laneCount = Math.max(laneCount, l + 1)
+      let target = lanes.indexOf(pk)
+      if (target === -1) {
+        target = firstFree()
+        lanes[target] = pk
+        laneColor[target] = colorCounter++
+        laneCount = Math.max(laneCount, target + 1)
+      }
+      if (target < lane) {
+        held[lane] = (held[lane] ?? 0) + 1
+        holds.set(pk, [...(holds.get(pk) ?? []), lane])
       }
     }
   }
 
   // Which lanes are visually occupied at which rows, as flat parallel arrays.
-  // Occupancy must come from the drawn segments, not from `lanes`: a branch
-  // converging left frees its lane the moment it is claimed further left, yet
-  // its segment keeps drawing down to the parent's row. A stash sits directly
+  // Occupancy must come from the drawn segments, not from `lanes`: `lanes` only
+  // says what each column waits for next, not which rows its rails cross. A stash sits directly
   // above its parent, so its tether spans a row or two — short enough that any
   // segment merely crossing it would otherwise go unnoticed and be drawn over.
   // Built only when there are spurs that need placing.

@@ -1105,6 +1105,59 @@ describe('graph layout', () => {
     expect(xb?.kind).toBe('branch')
   })
 
+  // A rounded rail runs vertically down one lane: a leftward (branch) edge down
+  // the child's lane, a rightward (merge) edge down the parent's. Any node sitting
+  // strictly inside that run reads as part of a chain it does not belong to.
+  const nodesOnForeignRails = (g: ReturnType<typeof layoutGraph>): string[] => {
+    const hits: string[] = []
+    for (const e of g.edges) {
+      const railLane = e.toLane > e.fromLane ? e.toLane : e.fromLane
+      for (const n of g.nodes.values()) {
+        if (n.lane === railLane && n.row > e.fromRow && n.row < e.toRow) {
+          hits.push(`${n.hash} on ${e.fromHash}->${e.toHash}`)
+        }
+      }
+    }
+    return hits
+  }
+
+  it('keeps a branch lane reserved until its edge reaches a parent further left', () => {
+    // Two topic branches forked from k, merged one after the other (e, then t),
+    // plus an unmerged tip z on the first one. f's parent k is already expected
+    // on lane 0 by e, but f's rail still runs down lane 1 until k's row — z and
+    // h must not be dropped onto that rail, or f → z → h reads as one chain.
+    const graph = layoutGraph(
+      [
+        c('t', ['e', 'f']),
+        c('e', ['k', 'h']),
+        c('f', ['k']),
+        c('z', ['h']),
+        c('h', ['k']),
+        c('k', [])
+      ],
+      new Set(),
+      'full',
+      't'
+    )
+    expect(nodesOnForeignRails(graph)).toEqual([])
+    expect(graph.nodes.get('f')!.lane).toBe(1)
+    expect(graph.nodes.get('h')!.lane).toBe(2)
+    expect(graph.nodes.get('z')!.lane).toBe(3)
+  })
+
+  it('keeps a merge commit lane reserved while its merged-in rail runs down it', () => {
+    // g (lane 2) merges trunk commit a, already expected on lane 0, so the g → a
+    // rail runs down lane 2 until a's row. g's own first parent e lands on
+    // lane 1 first, which ends lane 2's chain — y must still not reuse lane 2.
+    const graph = layoutGraph(
+      [c('m', ['n', 'u']), c('u', ['e', 'g']), c('n', ['a']), c('g', ['e', 'a']), c('e', ['a']), c('y', ['a']), c('a', [])],
+      new Set(),
+      'full',
+      'm'
+    )
+    expect(nodesOnForeignRails(graph)).toEqual([])
+  })
+
   it('routes stashes as spurs with a spur-kind edge to their parent', () => {
     const commits = [c('base', []), c('stash', ['base'])]
     const graph = layoutGraph(commits, new Set(['stash']))
@@ -1120,10 +1173,9 @@ describe('graph layout', () => {
   // pins each onto its parent's own lane.
   const overlappingStashes = () => [
     c('tip', ['root']),
-    c('s1', ['root']), // long connector: row 1 → root (row 5)
+    c('s1', ['root']), // long connector: row 1 → root (row 4)
     c('s2', ['mid']), //  connector: row 2 → mid (row 3), overlaps s1's rows
     c('mid', ['root']),
-    c('base', ['root']),
     c('root', [])
   ]
   const spurs = new Set(['s1', 's2'])
