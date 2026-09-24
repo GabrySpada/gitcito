@@ -123,6 +123,22 @@ export const shots = [
     themes: ['light', 'dark']
   },
   {
+    // The Kraken theme. deep-history-monorepo because it merges branch after
+    // branch back into main: that is what shows colouring by column — every
+    // side branch in lane 1 shares one colour — and a gutter of tinted labels,
+    // with the checked-out branch's band in the sidebar.
+    out: 'theme-kraken',
+    repos: ['deep-history-monorepo'],
+    themes: ['dark'],
+    appTheme: 'kraken',
+    graphStyle: { paletteId: 'kraken', labelStyle: 'tinted', laneColors: 'column' },
+    drive: async (page) => {
+      await page.waitForTimeout(700)
+      await page.locator('.graph-row').nth(1).click()
+      await page.waitForTimeout(600)
+    }
+  },
+  {
     // The action bar under pressure. A long repository name is the point of the
     // shot: it is what used to drag the buttons off centre, and here the block is
     // still on the window's midpoint while the search has folded to a magnifier

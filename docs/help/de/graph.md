@@ -67,7 +67,7 @@ Commits wie eines mit hundert.
 
 - **Spalten**: Branch-, Nachrichten-, Autor-, Datums-, SHA-, Signatur- und
   Deployment-Spalten anzeigen, ausblenden, in der Größe ändern und umsortieren.
-- **Stil**: Einstellungen → Themes → **Graph** — Spurenpalette (8 eingebaute,
+- **Stil**: Einstellungen → Themes → **Graph** — Spurenpalette (9 eingebaute,
   eigene oder KI-generierte), Eckenstil, Zeilendichte und Linienstärke, mit einer
   Live-Vorschau als Mini-Graph.
 

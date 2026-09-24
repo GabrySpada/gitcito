@@ -8,10 +8,20 @@ keywords: thema thema's theme themes donker dark licht light uiterlijk kleuren l
 
 # Thema's & uiterlijk
 
-Ingebouwde thema's — Gitcito, Nord, Dracula, Solarized, GitHub, Monokai,
+Ingebouwde thema's — Gitcito, Nord, Dracula, Solarized, GitHub, Kraken, Monokai,
 Midnight, Contrast en Daltonic — elk met een lichte en een donkere variant.
 
 ![Van licht naar donker wisselen](../../screenshots/clip-themes.webp)
+
+![Het thema Kraken](../../screenshots/theme-kraken.webp)
+
+Wie **Kraken** kiest, zet de grafiek ook op het baanpalet en op **getinte**
+ref-labels — donkere plaatjes in de kleur van elke baan, zoals GitKraken ze
+tekent. Dat gebeurt één keer, bij het kiezen: pas een van beide daarna aan onder
+Instellingen → Thema's → **Grafiek** (*Ref-labels*: Vol of Getint) en het blijft
+zo.
+Het kleurt banen ook **per kolom** (*Baankleuren*): alle branches die in dezelfde
+baan lopen delen één kleur, in plaats van dat elk er een eigen krijgt.
 
 - **Licht, donker, of het besturingssysteem volgen**, live omgeschakeld.
 - **Eigen thema's**, en door **AI gegenereerde** thema's uit een prompt.

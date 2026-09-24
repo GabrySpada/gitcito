@@ -14,7 +14,7 @@ import {
   type Profile,
   type ThemeMode
 } from '../../../shared/types'
-import { APP_THEMES, applyAppTheme, findAppTheme } from '../theme/themes'
+import { APP_THEMES, applyAppTheme, findAppTheme, withAppTheme } from '../theme/themes'
 import { settingsApi, shellApi } from '../infrastructure/api'
 import { AIPage, IntegrationsPage } from './SettingsPanel'
 import gitcitoLaunch from '../assets/gitcito-launch.png'
@@ -425,8 +425,7 @@ export function OnboardingWizard(): React.JSX.Element {
 
   const finish = (): void => {
     update((s) => ({
-      ...s,
-      appThemeId: data.themeId,
+      ...withAppTheme(s, findAppTheme(data.themeId, s.customAppThemes)),
       themeMode: data.themeMode,
       onboardingCompleted: true,
       defaultOpenApp: data.defaultOpenApp,

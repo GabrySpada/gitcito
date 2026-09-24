@@ -8,11 +8,22 @@ keywords: theme themes dunkel hell dark light erscheinungsbild farben schriftgr�
 
 # Themes & Erscheinungsbild
 
-Eingebaute Themes — Gitcito, Nord, Dracula, Solarized, GitHub, Monokai,
+Eingebaute Themes — Gitcito, Nord, Dracula, Solarized, GitHub, Kraken, Monokai,
 Midnight, Contrast und Daltonic — jedes mit einer hellen und einer dunklen
 Variante.
 
 ![Der Wechsel von hell zu dunkel](../../screenshots/clip-themes.webp)
+
+![Das Theme Kraken](../../screenshots/theme-kraken.webp)
+
+Wer **Kraken** wählt, stellt den Graphen zugleich auf dessen Spurenpalette und
+**getönte** Ref-Beschriftungen um — dunkle Plaketten in der Farbe der Spur, so
+wie GitKraken sie zeichnet. Das passiert einmal, bei der Auswahl: Danach lässt
+sich beides unter Einstellungen → Themes → **Graph** ändern (*Ref-Beschriftungen*:
+Vollfarbig oder Getönt), und es bleibt so.
+Außerdem färbt es Spuren **pro Spalte** (*Spurfarben*): Alle Branches, die in
+derselben Spur laufen, teilen sich eine Farbe, statt dass jeder eine eigene
+bekommt.
 
 - **Hell, dunkel oder dem Betriebssystem folgen**, live umgeschaltet.
 - **Eigene Themes** und **KI-generierte** aus einem Prompt.

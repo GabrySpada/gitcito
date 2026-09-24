@@ -60,7 +60,7 @@ with a hundred.
 
 - **Columns**: show, hide, resize and reorder branch, message, author, date,
   SHA, signature and deployment columns.
-- **Style**: Settings → Themes → **Graph** — lane palette (8 built-ins, custom,
+- **Style**: Settings → Themes → **Graph** — lane palette (9 built-ins, custom,
   or AI-generated), corner style, row density and line thickness, with a live
   mini-graph preview.
 

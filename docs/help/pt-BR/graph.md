@@ -61,7 +61,7 @@ com cem.
 
 - **Colunas**: mostre, esconda, redimensione e reordene as colunas de branch,
   mensagem, autor, data, SHA, assinatura e deploy.
-- **Estilo**: Configurações → Temas → **Grafo** — paleta de faixas (8 nativas,
+- **Estilo**: Configurações → Temas → **Grafo** — paleta de faixas (9 nativas,
   personalizada ou gerada por IA), estilo de canto, densidade das linhas e
   espessura dos traços, com uma pré-visualização ao vivo em mini-grafo.
 

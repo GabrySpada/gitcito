@@ -8,10 +8,18 @@ keywords: theme 主题 themes dark 深色 light 浅色 appearance 外观 colors 
 
 # 主题与外观
 
-内置主题——Gitcito、Nord、Dracula、Solarized、GitHub、Monokai、Midnight、
+内置主题——Gitcito、Nord、Dracula、Solarized、GitHub、Kraken、Monokai、Midnight、
 Contrast 和 Daltonic——每一套都有浅色和深色两个变体。
 
 ![从浅色切到深色](../../screenshots/clip-themes.webp)
+
+![Kraken 主题](../../screenshots/theme-kraken.webp)
+
+选择 **Kraken** 时，图也会切换到它的泳道配色和**淡色**引用标签——以各泳道颜色压暗的
+底板，和 GitKraken 的画法一样。这只在选择时发生一次：之后在 设置 → 主题 → **图**
+（*引用标签*：实色或淡色）里改动任一项，改动都会保留。
+它还会**按列**为泳道上色（*泳道颜色*）：走在同一条泳道上的分支共用一种颜色，
+而不是各自一种。
 
 - **浅色、深色，或者跟随系统**，即时切换。
 - **自定义主题**，以及由一段提示词**用 AI 生成**的主题。

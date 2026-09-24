@@ -8,10 +8,20 @@ keywords: motyw motywy ciemny jasny wygląd kolory rozmiar czcionki paleta grafu
 
 # Motywy i wygląd
 
-Wbudowane motywy — Gitcito, Nord, Dracula, Solarized, GitHub,
+Wbudowane motywy — Gitcito, Nord, Dracula, Solarized, GitHub, Kraken,
 Monokai, Midnight, Contrast i Daltonic — każdy w wariancie jasnym i ciemnym.
 
 ![Przełączenie z jasnego na ciemny](../../screenshots/clip-themes.webp)
+
+![Motyw Kraken](../../screenshots/theme-kraken.webp)
+
+Wybranie **Kraken** przełącza też graf na jego paletę torów i **przyciemnione**
+etykiety referencji — ciemne plakietki w kolorze każdego toru, tak jak rysuje je
+GitKraken. Dzieje się to raz, przy wyborze: zmień jedno lub drugie później w
+Ustawienia → Motywy → **Graf** (*Etykiety referencji*: Pełne lub Przyciemnione),
+a zmiana zostanie.
+Koloruje też tory **według kolumny** (*Kolory torów*): wszystkie gałęzie biegnące
+tym samym torem dzielą jeden kolor, zamiast dostawać każda własny.
 
 - **Jasny, ciemny albo za systemem**, przełączane na żywo.
 - **Własne motywy** oraz te **generowane przez AI** z promptu.

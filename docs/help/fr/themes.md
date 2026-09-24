@@ -8,11 +8,22 @@ keywords: thème thèmes theme themes sombre dark clair light apparence appearan
 
 # Thèmes et apparence
 
-Thèmes intégrés — Gitcito, Nord, Dracula, Solarized, GitHub, Monokai,
+Thèmes intégrés — Gitcito, Nord, Dracula, Solarized, GitHub, Kraken, Monokai,
 Midnight, Contrast et Daltonic — chacun avec une variante claire et une variante
 sombre.
 
 ![Passage du clair au sombre](../../screenshots/clip-themes.webp)
+
+![Le thème Kraken](../../screenshots/theme-kraken.webp)
+
+Choisir **Kraken** bascule aussi le graphe sur sa palette de couloirs et sur des
+étiquettes de références **teintées** — des plaques sombres de la couleur de
+chaque couloir, comme les dessine GitKraken. Cela n'arrive qu'une fois, au
+choix : modifiez l'une ou l'autre ensuite dans Réglages → Thèmes → **Graphe**
+(*Étiquettes des références* : Pleines ou Teintées) et le réglage reste.
+Il colore aussi les couloirs **par colonne** (*Couleurs des couloirs*) : toutes
+les branches qui passent dans le même couloir partagent une couleur au lieu d'en
+avoir chacune une.
 
 - **Clair, sombre, ou suivre le système**, changé à chaud.
 - Des **thèmes personnalisés**, et des thèmes **générés par l'IA** à partir d'une

@@ -916,9 +916,12 @@ import {
   edgeCorner,
   spurPath,
   DENSITY_ROW_H,
-  LINE_WIDTH_PX
+  LINE_WIDTH_PX,
+  contrastText,
+  refLabelColors
 } from '../src/renderer/src/graph/style'
-import { layoutGraph } from '../src/renderer/src/graph/layout'
+import { APP_THEMES, findAppTheme, withAppTheme } from '../src/renderer/src/theme/themes'
+import { colorByColumn, layoutGraph } from '../src/renderer/src/graph/layout'
 import { withStashRows } from '../src/renderer/src/lib/stashRows'
 import { toggleMultiSelect, squashableRun } from '../src/renderer/src/lib/graphMultiSelect'
 import { defaultGraphStyle, type StashInfo } from '../src/shared/types'
@@ -950,6 +953,67 @@ describe('graph style', () => {
 
   it('colorForPalette tolerates an empty palette', () => {
     expect(typeof colorForPalette([])(0)).toBe('string')
+  })
+
+  it('a solid ref label is the lane itself under contrasting text', () => {
+    expect(refLabelColors('#5469ed', 'solid')).toEqual({ background: '#5469ed', borderColor: '#5469ed', color: '#fff' })
+    expect(contrastText('#f0f0a0')).toBe('#10121a')
+  })
+
+  it('a tinted ref label mixes the lane into the graph, more of it for HEAD', () => {
+    const plain = refLabelColors('#5469ed', 'tinted')
+    const head = refLabelColors('#5469ed', 'tinted', true)
+    expect(plain.background).toBe('color-mix(in srgb, #5469ed 26%, var(--bg-1))')
+    expect(head.background).toBe('color-mix(in srgb, #5469ed 44%, var(--bg-1))')
+    expect(head.color).toBe('var(--text-0)')
+    // Borderless: the border is the plate itself.
+    expect(plain.borderColor).toBe(plain.background)
+    expect(plain.color).toContain('var(--text-0)')
+  })
+
+  it('colouring by column gives every commit in a lane the same colour', () => {
+    const commit = (hash: string, parents: string[]) =>
+      ({ hash, parents, refs: [], subject: hash, author: 'a', email: 'a@x', date: 0 }) as unknown as GraphCommit
+    // Two side branches merged back one after the other: per branch they get
+    // two colours, per column they share lane 1's.
+    const commits = [
+      commit('m2', ['m1', 'b2']),
+      commit('b2', ['m1']),
+      commit('m1', ['m0', 'b1']),
+      commit('b1', ['m0']),
+      commit('m0', [])
+    ]
+    const byBranch = layoutGraph(commits)
+    const byColumn = colorByColumn(byBranch)
+    const b1 = byColumn.nodes.get('b1')!
+    const b2 = byColumn.nodes.get('b2')!
+    expect(b1.lane).toBe(b2.lane)
+    expect(b1.color).toBe(b1.lane)
+    expect(b2.color).toBe(b1.color)
+    expect(byBranch.nodes.get('b1')!.color).not.toBe(byBranch.nodes.get('b2')!.color)
+    for (const e of byColumn.edges) expect(e.color).toBe(Math.max(e.fromLane, e.toLane))
+    // Geometry is untouched.
+    expect(byColumn.laneCount).toBe(byBranch.laneCount)
+  })
+
+  it('every palette a built-in theme asks for exists', () => {
+    for (const theme of APP_THEMES) {
+      if (theme.graph?.paletteId) expect(findGraphPalette(theme.graph.paletteId, []).id).toBe(theme.graph.paletteId)
+    }
+  })
+
+  it('picking the Kraken theme adopts its palette and tinted labels, and keeps the rest', () => {
+    const base = { ...defaultSettings(), graphStyle: { ...defaultGraphStyle(), density: 'compact' as const } }
+    const next = withAppTheme(base, findAppTheme('kraken', []))
+    expect(next.appThemeId).toBe('kraken')
+    expect(next.graphStyle).toMatchObject({ paletteId: 'kraken', labelStyle: 'tinted', laneColors: 'column', density: 'compact' })
+  })
+
+  it('picking a theme without graph settings leaves the graph style alone', () => {
+    const base = { ...defaultSettings(), graphStyle: { ...defaultGraphStyle(), paletteId: 'neon' } }
+    const next = withAppTheme(base, findAppTheme('nord', []))
+    expect(next.appThemeId).toBe('nord')
+    expect(next.graphStyle).toBe(base.graphStyle)
   })
 
   it('edgePath honours each corner style', () => {

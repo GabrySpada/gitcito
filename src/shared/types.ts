@@ -3041,6 +3041,16 @@ export type GraphTopology = 'full' | 'simple' | 'minimal'
  */
 export type GraphFocus = 'all' | 'linear' | 'hideMerged' | 'solo'
 
+/** How the graph fills its ref labels: `solid` paints the lane colour itself
+ *  under contrasting text; `tinted` lays a dark plate of the lane colour under
+ *  light text — quieter, the way GitKraken draws them. */
+export type GraphLabelStyle = 'solid' | 'tinted'
+
+/** What a lane colour follows: `branch` gives every branch line its own colour
+ *  as it is laid out; `column` gives each column one colour, so every branch
+ *  that runs in the same lane shares it — GitKraken's reading of the graph. */
+export type GraphLaneColors = 'branch' | 'column'
+
 /** A named set of lane colours for the graph rails. */
 export interface GraphPalette {
   id: string
@@ -3062,10 +3072,14 @@ export interface GraphStyle {
   topology: GraphTopology
   /** Which commits the graph keeps. See GraphFocus. */
   focus: GraphFocus
+  /** How ref labels are filled. See GraphLabelStyle. */
+  labelStyle: GraphLabelStyle
+  /** What a lane colour follows. See GraphLaneColors. */
+  laneColors: GraphLaneColors
 }
 
 export function defaultGraphStyle(): GraphStyle {
-  return { paletteId: 'classic', edgeStyle: 'rounded', density: 'comfortable', lineWidth: 'normal', nodeStyle: 'normal', topology: 'full', focus: 'all' }
+  return { paletteId: 'classic', edgeStyle: 'rounded', density: 'comfortable', lineWidth: 'normal', nodeStyle: 'normal', topology: 'full', focus: 'all', labelStyle: 'solid', laneColors: 'branch' }
 }
 
 /**
@@ -3179,6 +3193,9 @@ export interface AppTheme {
   builtin?: boolean
   light: AppThemeColors
   dark: AppThemeColors
+  /** Graph settings the theme is designed around, adopted when the user picks
+   *  it. Only on selection: afterwards the graph style is the user's again. */
+  graph?: Partial<Pick<GraphStyle, 'paletteId' | 'labelStyle' | 'laneColors'>>
 }
 
 export interface CodeThemeColors {

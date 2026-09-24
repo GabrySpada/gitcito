@@ -2,6 +2,7 @@ import type {
   GraphPalette,
   GraphEdgeStyle,
   GraphDensity,
+  GraphLabelStyle,
   GraphLineWidth
 } from '../../../shared/types'
 import { GRAPH_COLORS } from './layout'
@@ -49,6 +50,14 @@ export const GRAPH_PALETTES: GraphPalette[] = [
     colors: ['#22d3ee', '#34d399', '#a78bfa', '#f472b6', '#2dd4bf', '#818cf8', '#4ade80', '#e879f9', '#38bdf8', '#c084fc']
   },
   {
+    id: 'kraken',
+    name: 'Kraken',
+    builtin: true,
+    // GitKraken's lanes: steel blue, periwinkle and violet first — sampled from
+    // the app — then its warmer tail, softened to sit on a charcoal graph.
+    colors: ['#6a9cbb', '#5469ed', '#7a2cba', '#b4329f', '#c9336c', '#c43b3b', '#e0703c', '#d9b44a', '#7cbf4a', '#35b08f']
+  },
+  {
     id: 'mono',
     name: 'Mono',
     builtin: true,
@@ -69,6 +78,43 @@ export function findGraphPalette(id: string, custom: GraphPalette[]): GraphPalet
 export function colorForPalette(colors: string[]): (index: number) => string {
   const safe = colors.length > 0 ? colors : GRAPH_COLORS
   return (index: number) => safe[((index % safe.length) + safe.length) % safe.length]
+}
+
+// ─── Ref labels ──────────────────────────────────────────────────────────────
+
+/** Black or white text, whichever contrasts better with a hex lane color. */
+export function contrastText(hex: string): string {
+  const h = hex.replace('#', '')
+  const r = parseInt(h.slice(0, 2), 16)
+  const g = parseInt(h.slice(2, 4), 16)
+  const b = parseInt(h.slice(4, 6), 16)
+  // Perceived luminance (sRGB weights). Bright lanes → dark text.
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+  return lum > 0.6 ? '#10121a' : '#fff'
+}
+
+export interface RefLabelColors {
+  background: string
+  borderColor: string
+  color: string
+}
+
+/**
+ * Fill, border and text of a ref label on a lane. A tinted label is mixed into
+ * the graph background rather than drawn translucent, so it stays opaque over
+ * the rail it sits on; `strong` (the checked-out branch) takes more of the lane
+ * so it still leads the eye without switching to a different kind of fill.
+ */
+export function refLabelColors(lane: string, style: GraphLabelStyle, strong = false): RefLabelColors {
+  if (style === 'solid') return { background: lane, borderColor: lane, color: contrastText(lane) }
+  // Borderless: the plate is the whole label. The text stays neutral — the
+  // plate already says which lane it is — and HEAD gets the full text colour.
+  const background = `color-mix(in srgb, ${lane} ${strong ? 44 : 26}%, var(--bg-1))`
+  return {
+    background,
+    borderColor: background,
+    color: strong ? 'var(--text-0)' : 'color-mix(in srgb, var(--text-0) 84%, var(--bg-1))'
+  }
 }
 
 // ─── Geometry knobs ──────────────────────────────────────────────────────────

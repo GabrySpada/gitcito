@@ -183,6 +183,10 @@ function seedSettings(shot, theme) {
     recentRepos: (shot.recents ?? []).map(ref),
     appThemeId: shot.appTheme ?? 'gitcito',
     codeThemeId: shot.appTheme ?? 'gitcito',
+    // Picking a theme in the app also adopts its graph settings; a seeded file
+    // skips that step, so a shot that wants them says so. Merged over the
+    // defaults on load.
+    ...(shot.graphStyle ? { graphStyle: shot.graphStyle } : {}),
     themeMode: theme,
     onboardingCompleted: true
   }

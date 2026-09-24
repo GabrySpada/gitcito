@@ -66,7 +66,7 @@ dépôt d'une centaine.
 
 - **Colonnes** : afficher, masquer, redimensionner et réordonner les colonnes
   branche, message, auteur, date, SHA, signature et déploiement.
-- **Style** : Réglages → Thèmes → **Graphe** — palette de couloirs (8 intégrées,
+- **Style** : Réglages → Thèmes → **Graphe** — palette de couloirs (9 intégrées,
   personnalisée, ou générée par l'IA), style des angles, densité des lignes et
   épaisseur des traits, avec un aperçu en direct sous forme de mini-graphe.
 
