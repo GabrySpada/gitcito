@@ -63,7 +63,7 @@ een met honderd.
 
 - **Kolommen**: toon, verberg, herschaal en herschik de kolommen voor branch,
   boodschap, auteur, datum, SHA, handtekening en deployment.
-- **Stijl**: Instellingen → Thema's → **Grafiek** — baanpalet (8 ingebouwde,
+- **Stijl**: Instellingen → Thema's → **Grafiek** — baanpalet (9 ingebouwde,
   eigen, of door AI gegenereerd), hoekstijl, rijdichtheid en lijndikte, met een
   live minigrafiek als voorbeeld.
 

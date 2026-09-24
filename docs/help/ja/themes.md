@@ -8,10 +8,19 @@ keywords: theme themes テーマ dark ダーク light ライト appearance 外�
 
 # テーマと外観
 
-組み込みテーマ — Gitcito、Nord、Dracula、Solarized、GitHub、Monokai、
+組み込みテーマ — Gitcito、Nord、Dracula、Solarized、GitHub、Kraken、Monokai、
 Midnight、Contrast、Daltonic — それぞれにライトとダークの2種類があります。
 
 ![ライトからダークへの切り替え](../../screenshots/clip-themes.webp)
+
+![Kraken テーマ](../../screenshots/theme-kraken.webp)
+
+**Kraken** を選ぶと、グラフもそのレーン配色と **淡色** の参照ラベル——各レーンの色を
+沈めた暗いプレート、GitKraken と同じ描き方——に切り替わります。切り替わるのは選んだ
+ときの一度だけです。あとから 設定 → テーマ → **グラフ**（*参照ラベル*: 塗りつぶし／
+淡色）で変えれば、その設定が保たれます。
+さらにレーンを **列ごと** に色分けします（*レーンの色*）。同じレーンを通るブランチは、
+それぞれ別の色ではなく、ひとつの色を共有します。
 
 - **ライト、ダーク、または OS に追従**。切り替えは即座に反映されます。
 - **カスタムテーマ**、そしてプロンプトから作る **AI 生成** テーマ。

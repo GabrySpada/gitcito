@@ -61,7 +61,9 @@ import {
   SquarePen,
   ToggleLeft,
   Keyboard,
-  Map as MapIcon
+  Map as MapIcon,
+  Columns3,
+  Tag
 } from 'lucide-react'
 import hljs from 'highlight.js'
 import { useSettingsStore } from '../stores/settings'
@@ -76,13 +78,13 @@ import type { DetectedEditor, EditorSetting } from '../../../shared/editors'
 import type { SshKey, SshStatus, SshTest } from '../../../shared/sshKeys'
 import type { DiffToolConfig, DiffToolInfo } from '../../../shared/diffTools'
 import type { RerereStatus } from '../../../shared/types'
-import { AI_PROVIDERS, emptyAnalytics, defaultGraphStyle, type AIProvider, type Analytics, type AIUsageStat, type ActivityEvent, type RepoStats, type AppSettings, type BranchNamingStyle, type CommitStyle, type ConflictStyle, type ExplainStyle, type Profile, type SigningConfig, type SettingsBundle, type GraphStyle, type GraphPalette, type GraphEdgeStyle, type GraphDensity, type GraphLineWidth, type GraphNodeStyle, type GraphTopology, type GraphFocus, type GraphCommit, type ConnectedAccount } from '../../../shared/types'
+import { AI_PROVIDERS, emptyAnalytics, defaultGraphStyle, type AIProvider, type Analytics, type AIUsageStat, type ActivityEvent, type RepoStats, type AppSettings, type BranchNamingStyle, type CommitStyle, type ConflictStyle, type ExplainStyle, type Profile, type SigningConfig, type SettingsBundle, type GraphStyle, type GraphPalette, type GraphEdgeStyle, type GraphDensity, type GraphLineWidth, type GraphNodeStyle, type GraphTopology, type GraphFocus, type GraphLabelStyle, type GraphLaneColors, type GraphCommit, type ConnectedAccount } from '../../../shared/types'
 import { hasSettingsSecrets, stripSettingsSecrets } from '../../../shared/secrets'
 import { tabActiveRepoPath } from '../../../shared/types'
 import type { HoverModifier, KeychainConsent } from '../../../shared/types'
 import { allGraphPalettes, findGraphPalette, colorForPalette, edgePath, spurPath, DENSITY_ROW_H, LINE_WIDTH_PX, GRAPH_PALETTES } from '../graph/style'
 import { GRAPH_FOCUS_MODES, focusedHashes, type FocusInput } from '../lib/graphFocus'
-import { layoutGraph } from '../graph/layout'
+import { colorByColumn, layoutGraph } from '../graph/layout'
 import type {
   AppTheme,
   AppThemeColors,
@@ -98,7 +100,8 @@ import {
   findAppTheme,
   findCodeTheme,
   resolveAppColors,
-  resolveCodeColors
+  resolveCodeColors,
+  withAppTheme
 } from '../theme/themes'
 import { useT, interp, type TranslationKey } from '../i18n'
 import { resolveAI } from '../../../shared/aiAccounts'
@@ -1019,6 +1022,14 @@ const NODE_STYLES: { id: GraphNodeStyle; key: TranslationKey }[] = [
   { id: 'normal', key: 'graphNodeStyle.normal' },
   { id: 'compact', key: 'graphNodeStyle.compact' }
 ]
+const LANE_COLORS: { id: GraphLaneColors; key: TranslationKey }[] = [
+  { id: 'branch', key: 'graphLaneColors.branch' },
+  { id: 'column', key: 'graphLaneColors.column' }
+]
+const LABEL_STYLES: { id: GraphLabelStyle; key: TranslationKey }[] = [
+  { id: 'solid', key: 'graphLabelStyle.solid' },
+  { id: 'tinted', key: 'graphLabelStyle.tinted' }
+]
 const TOPOLOGIES: { id: GraphTopology; key: TranslationKey }[] = [
   { id: 'full', key: 'graphTopology.full' },
   { id: 'simple', key: 'graphTopology.simple' },
@@ -1122,7 +1133,8 @@ function GraphMiniPreview({
   lineW,
   nodeStyle,
   topology,
-  focus
+  focus,
+  laneColors
 }: {
   colors: string[]
   edgeStyle: GraphEdgeStyle
@@ -1131,6 +1143,7 @@ function GraphMiniPreview({
   nodeStyle: GraphNodeStyle
   topology: GraphTopology
   focus: GraphFocus
+  laneColors: GraphLaneColors
 }): React.JSX.Element {
   const laneW = 22
   const leftPad = 16
@@ -1147,7 +1160,10 @@ function GraphMiniPreview({
       PREVIEW_SPURS.has(c.hash) ? keep.has(c.parents[0]) : keep.has(c.hash)
     )
   }, [focus])
-  const layout = useMemo(() => layoutGraph(commits, PREVIEW_SPURS, topology), [commits, topology])
+  const layout = useMemo(() => {
+    const laid = layoutGraph(commits, PREVIEW_SPURS, topology)
+    return laneColors === 'column' ? colorByColumn(laid) : laid
+  }, [commits, topology, laneColors])
   const rowOf = useMemo(() => new Map(commits.map((c, i) => [c.hash, i])), [commits])
   const x = (lane: number): number => leftPad + lane * laneW
   const y = (row: number): number => row * rowH + rowH / 2
@@ -1405,6 +1421,34 @@ function GraphStyleTab(): React.JSX.Element {
             ))}
           </div>
 
+          <h4 style={{ marginTop: 18 }}><Columns3 size={14} /> {t('settings.graphLaneColors')}</h4>
+          <div className="theme-mode-switch">
+            {LANE_COLORS.map((lc) => (
+              <button
+                key={lc.id}
+                type="button"
+                className={`theme-mode-btn ${(style.laneColors ?? 'branch') === lc.id ? 'active' : ''}`}
+                onClick={() => setStyle({ laneColors: lc.id })}
+              >
+                <span>{t(lc.key)}</span>
+              </button>
+            ))}
+          </div>
+
+          <h4 style={{ marginTop: 18 }}><Tag size={14} /> {t('settings.graphLabelStyle')}</h4>
+          <div className="theme-mode-switch">
+            {LABEL_STYLES.map((ls) => (
+              <button
+                key={ls.id}
+                type="button"
+                className={`theme-mode-btn ${(style.labelStyle ?? 'solid') === ls.id ? 'active' : ''}`}
+                onClick={() => setStyle({ labelStyle: ls.id })}
+              >
+                <span>{t(ls.key)}</span>
+              </button>
+            ))}
+          </div>
+
           <h4 style={{ marginTop: 18 }}><Filter size={14} /> {t('settings.graphFocus')}</h4>
           <select
             className="theme-select"
@@ -1452,7 +1496,7 @@ function GraphStyleTab(): React.JSX.Element {
         <div className="graph-style-preview">
           <div className="code-preview-head">{t('settings.graphPreview')}</div>
           <div className="graph-mini-stage">
-            <GraphMiniPreview colors={current.colors} edgeStyle={style.edgeStyle} rowH={rowH} lineW={lineW} nodeStyle={style.nodeStyle} topology={style.topology ?? 'full'} focus={style.focus ?? 'all'} />
+            <GraphMiniPreview colors={current.colors} edgeStyle={style.edgeStyle} rowH={rowH} lineW={lineW} nodeStyle={style.nodeStyle} topology={style.topology ?? 'full'} focus={style.focus ?? 'all'} laneColors={style.laneColors ?? 'branch'} />
           </div>
         </div>
       </div>
@@ -1503,7 +1547,7 @@ function GraphStyleTab(): React.JSX.Element {
               ))}
             </div>
             <div className="graph-mini-stage" style={{ marginTop: 12 }}>
-              <GraphMiniPreview colors={draft} edgeStyle={style.edgeStyle} rowH={rowH} lineW={lineW} nodeStyle={style.nodeStyle} topology={style.topology ?? 'full'} focus={style.focus ?? 'all'} />
+              <GraphMiniPreview colors={draft} edgeStyle={style.edgeStyle} rowH={rowH} lineW={lineW} nodeStyle={style.nodeStyle} topology={style.topology ?? 'full'} focus={style.focus ?? 'all'} laneColors={style.laneColors ?? 'branch'} />
             </div>
             <div className="theme-editor-actions">
               <button className="btn primary small" onClick={savePalette}>
@@ -1591,7 +1635,7 @@ function ThemesPage({ initialTab }: { initialTab?: 'theme' | 'graph' } = {}): Re
   }
 
   const setMode = (m: ThemeMode): void => update((s) => ({ ...s, themeMode: m }))
-  const selectApp = (id: string): void => update((s) => ({ ...s, appThemeId: id }))
+  const selectApp = (id: string): void => update((s) => withAppTheme(s, findAppTheme(id, s.customAppThemes)))
   const selectCode = (id: string): void => update((s) => ({ ...s, codeThemeId: id }))
 
   const MODES: { id: ThemeMode; key: TranslationKey; icon: React.ReactNode }[] = [

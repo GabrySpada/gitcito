@@ -8,10 +8,19 @@ keywords: 테마 어두운 밝은 겉모습 색상 글꼴 크기 그래프 팔�
 
 # 테마와 겉모습
 
-기본 제공 테마 — Gitcito, Nord, Dracula, Solarized, GitHub, Monokai,
+기본 제공 테마 — Gitcito, Nord, Dracula, Solarized, GitHub, Kraken, Monokai,
 Midnight, Contrast, Daltonic — 각각 밝은 변형과 어두운 변형이 있어요.
 
 ![밝은 모드에서 어두운 모드로 전환하기](../../screenshots/clip-themes.webp)
+
+![Kraken 테마](../../screenshots/theme-kraken.webp)
+
+**Kraken**을 고르면 그래프도 그 테마의 레인 팔레트와 **은은한** 참조 라벨 —
+GitKraken처럼 레인 색을 어둡게 깐 판 — 으로 바뀌어요. 바뀌는 건 고를 때 한 번뿐이에요.
+그다음 설정 → 테마 → **그래프**(*참조 라벨*: 단색 또는 은은하게)에서 바꾸면 그대로
+유지돼요.
+또한 레인을 **열별**로 칠해요(*레인 색상*). 같은 레인을 지나는 브랜치는 저마다
+다른 색 대신 한 가지 색을 함께 써요.
 
 - **밝게, 어둡게, 또는 OS를 따라가기**. 실시간으로 전환돼요.
 - **직접 만든 테마**, 그리고 프롬프트로 **AI가 생성한** 테마.

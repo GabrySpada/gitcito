@@ -62,7 +62,7 @@ depo gibi kayar.
 
 - **Sütunlar**: dal, mesaj, yazar, tarih, SHA, imza ve dağıtım sütunlarını
   gösterin, gizleyin, yeniden boyutlandırın ve sıralayın.
-- **Biçem**: Ayarlar → Temalar → **Grafik** — şerit paleti (8 hazır, özel veya
+- **Biçem**: Ayarlar → Temalar → **Grafik** — şerit paleti (9 hazır, özel veya
   yapay zekâ üretimi), köşe biçemi, satır yoğunluğu ve çizgi kalınlığı, canlı
   mini grafik önizlemesiyle.
 

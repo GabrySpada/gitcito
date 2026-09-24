@@ -5,8 +5,8 @@ import { ciIcon, CI_STATE_KEY } from './CiIcon'
 import type { CiState, CiStatus, GraphCommit, StashInfo, GraphColumnId, GraphFlowColumnId, GraphColumns, FileEntry, CommitMenuProbe, GraphFocus } from '../../../shared/types'
 import { defaultGraphColumns, defaultGraphColumnOrder, defaultGraphStyle } from '../../../shared/types'
 import { GraphHeaderFilter, type FilterOption } from './GraphHeaderFilter'
-import { layoutGraph } from '../graph/layout'
-import { edgePath, spurPath, colorForPalette, findGraphPalette, DENSITY_ROW_H, LINE_WIDTH_PX } from '../graph/style'
+import { colorByColumn, layoutGraph } from '../graph/layout'
+import { edgePath, spurPath, colorForPalette, refLabelColors, findGraphPalette, DENSITY_ROW_H, LINE_WIDTH_PX } from '../graph/style'
 import { useRepoStore, repoActions, type RepoData } from '../stores/repo'
 import { useUIStore, type MenuItem } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
@@ -152,17 +152,6 @@ function buildRefGroups(refs: string[], remoteNames: Set<string>): RefGroup[] {
   return [...groups, ...tags]
 }
 
-
-/** Black or white text, whichever contrasts better with a hex lane color. */
-function contrastText(hex: string): string {
-  const h = hex.replace('#', '')
-  const r = parseInt(h.slice(0, 2), 16)
-  const g = parseInt(h.slice(2, 4), 16)
-  const b = parseInt(h.slice(4, 6), 16)
-  // Perceived luminance (sRGB weights). Bright lanes → dark text.
-  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return lum > 0.6 ? '#10121a' : '#fff'
-}
 
 function timeAgo(unixSeconds: number): string {
   const diff = Date.now() / 1000 - unixSeconds
@@ -523,6 +512,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
   // Which slice of history is drawn. Lives in settings so the graph gear menu
   // and Settings → Themes → Graph edit exactly the same value.
   const focus = graphStyle.focus ?? 'all'
+  const labelStyle = graphStyle.labelStyle ?? 'solid'
   const setFocus = (next: GraphFocus): void =>
     updateSettings((s) => ({ ...s, graphStyle: { ...(s.graphStyle ?? defaultGraphStyle()), focus: next } }))
   // The linear toggle used to be a per-machine localStorage flag; carry an
@@ -682,10 +672,11 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
     if (hasWip) return WIP_HASH
     return repo.commits.find((c) => c.refs.some((r) => r.startsWith('HEAD')))?.hash
   }, [repo.commits, hasWip])
-  const layout = useMemo(
-    () => layoutGraph(displayCommits, new Set(stashBySha.keys()), topology, headTipHash),
-    [displayCommits, stashBySha, topology, headTipHash]
-  )
+  const laneColors = graphStyle.laneColors ?? 'branch'
+  const layout = useMemo(() => {
+    const laid = layoutGraph(displayCommits, new Set(stashBySha.keys()), topology, headTipHash)
+    return laneColors === 'column' ? colorByColumn(laid) : laid
+  }, [displayCommits, stashBySha, topology, headTipHash, laneColors])
 
   // Branch preview: hovering a branch/tag label ghosts every commit that isn't
   // an ancestor of that ref's tip, so the branch's own history stands out.
@@ -1657,15 +1648,15 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
     const title = g.isTag
       ? `${g.label}${repo.remoteTagNames.includes(g.label) ? ` · ${t('ref.pushed')}` : ` · ${t('ref.localOnly')}`}`
       : `${g.label}${g.isLocal ? ` · ${t('ref.local')}` : ''}${g.remotes.length ? ` · ${g.remotes.join(', ')}` : ''}${starred ? ` · ${t('ref.favorite')}` : ''}`
-    // Every badge keeps its solid lane-coloured pill; the checked-out one is
-    // set apart in CSS (inner keyline + halo) instead of by a different fill,
-    // so the gutter still reads as one family of labels.
-    const solidStyle: React.CSSProperties | undefined = laneColor
-      ? ({ '--lane-c': laneColor, borderColor: laneColor, background: laneColor, color: contrastText(laneColor) } as React.CSSProperties)
+    // Every badge takes its lane's fill — solid or tinted, per the graph style;
+    // the checked-out one is set apart in CSS (inner keyline + halo) instead of
+    // by a different kind of fill, so the gutter still reads as one family.
+    const fillStyle: React.CSSProperties | undefined = laneColor
+      ? ({ '--lane-c': laneColor, ...refLabelColors(laneColor, labelStyle, g.isHead) } as React.CSSProperties)
       : undefined
-    const laneStyle: React.CSSProperties | undefined = solidStyle
-      ? g.isTag ? { ...solidStyle, opacity: 0.72 } : solidStyle
-      : undefined
+    // A solid tag is dimmed so branches lead; a tinted one is already quiet.
+    const laneStyle: React.CSSProperties | undefined =
+      fillStyle && g.isTag && labelStyle === 'solid' ? { ...fillStyle, opacity: 0.72 } : fillStyle
     // A group is one ref for drag purposes: a local branch by name, otherwise
     // the first remote that carries it, or the tag itself.
     const ref: DropRef = g.isTag
@@ -1677,7 +1668,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
     return (
       <span
         key={g.key}
-        className={`ref-badge ref-${g.kind} ${starred ? 'ref-starred' : ''} ${dropRefKey === g.key ? 'ref-drop-over' : ''}`}
+        className={`ref-badge ref-${g.kind} ${labelStyle === 'tinted' ? 'ref-tinted' : ''} ${starred ? 'ref-starred' : ''} ${dropRefKey === g.key ? 'ref-drop-over' : ''}`}
         style={laneStyle}
         title={title}
         draggable
@@ -1722,8 +1713,12 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
         }}
       >
         {g.isHead && <Check size={10} className="ref-check" />}
-        {groupIcons(g)}
+        {/* A tinted branch label reads name first, where it is presence at the
+            end — GitKraken's order. A tag keeps its glyph up front: it is what
+            tells a tag from a branch. */}
+        {(labelStyle === 'solid' || g.isTag) && groupIcons(g)}
         <span className="ref-text">{g.label}</span>
+        {labelStyle === 'tinted' && !g.isTag && <span className="ref-icons">{groupIcons(g)}</span>}
         {/* Idle, a favourite says so with its offset ring alone; the star is
             folded to zero width and springs in only under the cursor. */}
         {starred && <Star size={9} className="ref-fav-star" fill="currentColor" />}
@@ -2032,7 +2027,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
                 const refsWidth = graphCol > 0 ? Math.max(branchCol, ballX - ballR) : branchCol
                 return (
                   <div
-                    className="graph-refs"
+                    className={`graph-refs ${labelStyle === 'tinted' ? 'refs-tinted' : ''}`}
                     style={{ width: refsWidth, '--branch-cap': `${Math.max(40, branchCol - 16)}px` } as React.CSSProperties}
                   >
                     {groups.length <= 1 ? (
@@ -2044,7 +2039,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
                             chip carries a star so it is worth opening. */}
                         <span
                           className={`ref-more-chip ${groups.slice(1).some(isStarred) ? 'has-fav' : ''}`}
-                          style={laneColor ? { background: laneColor, borderColor: laneColor, color: contrastText(laneColor) } : undefined}
+                          style={laneColor ? refLabelColors(laneColor, labelStyle) : undefined}
                         >+{groups.length - 1}</span>
                         <div className="graph-refs-pop">
                           {groups.slice(1).map((g) => renderGroup(g, c, laneColor))}

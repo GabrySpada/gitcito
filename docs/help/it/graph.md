@@ -62,7 +62,7 @@ che ne ha cento.
 
 - **Colonne**: mostra, nascondi, ridimensiona e riordina le colonne branch,
   messaggio, autore, data, SHA, firma e deploy.
-- **Stile**: Impostazioni → Temi → **Grafo** — palette delle corsie (8 integrate,
+- **Stile**: Impostazioni → Temi → **Grafo** — palette delle corsie (9 integrate,
   personalizzata o generata dall'AI), stile degli angoli, densità delle righe e
   spessore delle linee, con un mini-grafo di anteprima dal vivo.
 

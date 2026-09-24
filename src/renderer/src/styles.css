@@ -1405,20 +1405,23 @@ textarea:focus {
 .sb-filter-row {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin: 10px;
+  gap: 4px;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border-soft);
 }
+/* A flat well rather than a floating pill: the sidebar reads as a stack of
+ * full-width strips (tabs, filter, sections), the way GitKraken lays it out. */
 .sb-filter {
   display: flex;
   align-items: center;
   gap: 6px;
   flex: 1;
   min-width: 0;
-  padding: 0 10px;
-  height: 30px;
+  padding: 0 8px;
+  height: 24px;
   background: var(--bg-0);
-  border: 1px solid var(--border);
-  border-radius: 7px;
+  border: 1px solid transparent;
+  border-radius: 3px;
   color: var(--text-2);
 }
 .sb-filter:focus-within {
@@ -1494,7 +1497,8 @@ textarea:focus {
   align-items: center;
   gap: 5px;
   width: 100%;
-  padding: 7px 10px;
+  min-height: 26px;
+  padding: 4px 8px;
   color: var(--text-2);
   font-size: 10.5px;
   font-weight: 700;
@@ -1527,12 +1531,13 @@ textarea:focus {
   flex: 1;
   text-align: start;
 }
+/* A plain number at the row's end, not a chip — chips are what made every
+ * header look like a floating card. */
 .sb-count {
-  background: var(--bg-4);
-  border-radius: 8px;
-  padding: 1px 7px;
-  font-size: 9.5px;
-  color: var(--text-1);
+  padding: 0 2px;
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
 }
 .sb-actions {
   display: flex;
@@ -1553,6 +1558,8 @@ textarea:focus {
  * guide rail) reads as the parent/child relationship, matching how VS Code's
  * file tree nests folders under folders. */
 .sb-section.nested > .sb-header {
+  min-height: 22px;
+  padding-block: 2px;
   padding-inline-start: calc(12px + var(--sb-indent, 1) * 16px);
   font-size: 12px;
   font-weight: 400;
@@ -1562,28 +1569,6 @@ textarea:focus {
 }
 .sb-section.nested .sb-item {
   padding-inline-start: calc(28px + var(--sb-indent, 1) * 16px);
-}
-/* Vertical rail down a folder's contents, aligned under its chevron, so nested
- * branches read as children of the folder above them. */
-.sb-section.nested > .sb-body {
-  position: relative;
-  /* Own stacking context so the rail's z-index: -1 stays inside the body:
-   * behind row content and backgrounds (hover, current), never behind the
-   * sidebar itself. Keeps the rail from drawing over the current-branch ✓. */
-  isolation: isolate;
-}
-.sb-section.nested > .sb-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  /* Aligned under the parent chevron's center (header padding-left + half the
-   * 13px ChevronRight icon), so the rail visually drops straight down from it. */
-  inset-inline-start: calc(12px + var(--sb-indent, 1) * 16px + 6.5px);
-  width: 1px;
-  background: var(--border-soft, var(--border));
-  pointer-events: none;
-  z-index: -1;
 }
 .sb-section.nested .sb-current-mark {
   margin-inline-start: -16px;
@@ -1596,11 +1581,13 @@ textarea:focus {
   overflow: hidden;
 }
 
+/* Rows are edge to edge and tight — a list of lines, not a column of cards. */
 .sb-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 4.5px 10px 4.5px 26px;
+  min-height: 22px;
+  padding: 2px 8px 2px 26px;
   cursor: pointer;
   color: var(--text-1);
   border-inline-start: 2px solid transparent;
@@ -1609,12 +1596,14 @@ textarea:focus {
 .sb-item:hover {
   background: var(--bg-3);
 }
+/* The checked-out branch is a solid band across the whole row, tinted from the
+ * theme's green so every palette gets its own shade of it. */
 .sb-item.current {
   color: var(--text-0);
-  border-inline-start-color: var(--green);
-  /* Tint layered over the sidebar bg so the row is opaque — it must fully
-   * cover the nested-folder rail, or the line shows through the current ✓. */
-  background: linear-gradient(rgba(63, 208, 164, 0.07), rgba(63, 208, 164, 0.07)), var(--bg-2);
+  background: color-mix(in srgb, var(--green) 24%, var(--bg-2));
+}
+.sb-item.current:hover {
+  background: color-mix(in srgb, var(--green) 30%, var(--bg-2));
 }
 .sb-item.multi-sel {
   background: var(--accent-soft);
@@ -2553,6 +2542,45 @@ body.col-resizing .node-ava {
   box-shadow: inset 0 0 0 1.5px color-mix(in srgb, currentColor 80%, transparent),
     0 0 0 2px color-mix(in srgb, var(--lane-c, var(--accent)) 32%, transparent),
     0 1px 6px color-mix(in srgb, var(--lane-c, var(--accent)) 45%, transparent);
+}
+/* Tinted labels are GitKraken's: a flat plate sized to its name, capped at the
+ * branch column like every badge, name first and presence glyphs after it.
+ * Long names truncate at the cap, which is why a column of them looks
+ * equal-width — a short one like `main` stays short. HEAD is told apart by its
+ * denser fill and bold text alone; a keyline or halo on a plate this quiet
+ * would shout. */
+.graph-refs.refs-tinted {
+  padding-inline-start: 6px;
+}
+.ref-badge.ref-tinted {
+  gap: 5px;
+  padding: 3px 6px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 400;
+}
+.ref-badge.ref-tinted .ref-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.ref-badge.ref-tinted .ref-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.ref-badge.ref-tinted.ref-head {
+  font-weight: 700;
+  box-shadow: none;
+}
+/* The label-to-node line is a hairline with no end cap, like GitKraken's. */
+.graph-refs.refs-tinted .node-connector {
+  height: 1px;
+  border-radius: 0;
+  opacity: 0.6;
+}
+.graph-refs.refs-tinted .node-connector::before {
+  display: none;
 }
 .ref-badge.ref-head .ref-ic,
 .ref-badge.ref-head .ref-check {
@@ -7346,7 +7374,7 @@ body.col-resizing .node-ava {
    the ones scrolled out of view. The fallback height is one `.sb-item`. */
 .sb-body.is-huge .sb-item {
   content-visibility: auto;
-  contain-intrinsic-size: auto 26px;
+  contain-intrinsic-size: auto 22px;
 }
 
 /* ─── Rich file preview (markdown / pdf / media / sheet / word) ─────────── */
@@ -13327,14 +13355,20 @@ mark.find-hit.active {
 
 /* ─── Sidebar Git/Files tabs ───────────────────────────────────────────── */
 .sb-tabs {
-  padding: 8px 8px 4px;
+  padding: 6px 6px 0;
   flex-shrink: 0;
   /* Query the row's own width, not the viewport's: the sidebar is resizable. */
   container-type: inline-size;
 }
+/* One segmented control, flush segments inside a single well — not a row of
+ * separate floating pills. */
 .sb-tabs-row {
   display: flex;
-  gap: 4px;
+  gap: 0;
+  padding: 2px;
+  background: var(--bg-0);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
 }
 .sb-tab {
   flex: 1;
@@ -13344,12 +13378,12 @@ mark.find-hit.active {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  height: 28px;
+  height: 22px;
   border: none;
-  border-radius: 8px;
+  border-radius: 3px;
   background: transparent;
   color: var(--text-2);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.12s, color 0.12s;

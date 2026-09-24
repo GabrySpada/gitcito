@@ -8,11 +8,22 @@ keywords: tema temas theme themes oscuro claro dark light apariencia colores fue
 
 # Temas y apariencia
 
-Temas incluidos — Gitcito, Nord, Dracula, Solarized, GitHub, Monokai,
+Temas incluidos — Gitcito, Nord, Dracula, Solarized, GitHub, Kraken, Monokai,
 Midnight, Contrast y Daltonic — cada uno con su variante clara y su variante
 oscura.
 
 ![Cambiando de claro a oscuro](../../screenshots/clip-themes.webp)
+
+![El tema Kraken](../../screenshots/theme-kraken.webp)
+
+Elegir **Kraken** también cambia el grafo a su paleta de carriles y a etiquetas
+de referencias **tintadas**: placas oscuras del color de cada carril, como las
+dibuja GitKraken. Ocurre una vez, al elegirlo: cambia cualquiera de las dos
+después en Ajustes → Temas → **Grafo** (*Etiquetas de referencias*: Sólidas o
+Tintadas) y se mantiene.
+También colorea los carriles **por columna** (*Colores de carriles*): todas las
+ramas que corren por el mismo carril comparten un color en lugar de tener cada
+una el suyo.
 
 - **Claro, oscuro o seguir al sistema**, con el cambio en vivo.
 - **Temas personalizados**, y otros **generados por IA** a partir de un prompt.

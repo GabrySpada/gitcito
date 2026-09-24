@@ -62,7 +62,7 @@ desplaza igual que uno con cien.
 
 - **Columnas**: muestra, esconde, redimensiona y reordena las columnas de rama,
   mensaje, autoría, fecha, SHA, firma y despliegue.
-- **Estilo**: Ajustes → Temas → **Grafo** — paleta de carriles (8 integradas,
+- **Estilo**: Ajustes → Temas → **Grafo** — paleta de carriles (9 integradas,
   personalizada o generada por IA), estilo de las esquinas, densidad de filas y
   grosor de línea, con una vista previa en miniatura en vivo.
 

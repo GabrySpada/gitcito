@@ -8,10 +8,19 @@ keywords: theme themes dark light appearance colors font size graph palette
 
 # Themes & appearance
 
-Built-in themes — Gitcito, Nord, Dracula, Solarized, GitHub, Monokai,
+Built-in themes — Gitcito, Nord, Dracula, Solarized, GitHub, Kraken, Monokai,
 Midnight, Contrast and Daltonic — each with a light and a dark variant.
 
 ![Switching from light to dark](../screenshots/clip-themes.webp)
+
+![The Kraken theme — charcoal panels around a darker graph](../screenshots/theme-kraken.webp)
+
+Picking **Kraken** also switches the graph to its lane palette and to
+**tinted** ref labels — dark plates in each lane's colour, the way GitKraken
+draws them. That happens once, on the pick: change either afterwards under
+Settings → Themes → **Graph** (*Ref labels*: Solid or Tinted) and it stays.
+It also colours lanes **per column** (*Lane colours*), so every branch that
+runs in the same lane shares one colour instead of each getting its own.
 
 - **Light, dark, or follow the OS**, switched live.
 - **Custom themes**, and **AI-generated** ones from a prompt.

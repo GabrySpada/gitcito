@@ -64,7 +64,7 @@ commitów przewija się tak jak to ze stoma.
 
 - **Kolumny**: pokaż, ukryj, zmień rozmiar i kolejność kolumn gałęzi,
   wiadomości, autora, daty, SHA, podpisu i wdrożenia.
-- **Styl**: Ustawienia → Motywy → **Graf** — paleta torów (8 wbudowanych, własna
+- **Styl**: Ustawienia → Motywy → **Graf** — paleta torów (9 wbudowanych, własna
   albo wygenerowana przez AI), styl narożników, gęstość wierszy i grubość linii,
   z podglądem mini-grafu na żywo.
 

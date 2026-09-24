@@ -1,4 +1,5 @@
-import type { AppTheme, CodeTheme, ThemeMode, AppThemeColors, CodeThemeColors } from '../../../shared/types'
+import { defaultGraphStyle } from '../../../shared/types'
+import type { AppSettings, AppTheme, CodeTheme, ThemeMode, AppThemeColors, CodeThemeColors } from '../../../shared/types'
 
 // ─── Built-in app themes ─────────────────────────────────────────────────────
 // Every built-in theme ships a light and a dark palette. The active palette is
@@ -276,6 +277,50 @@ export const APP_THEMES: AppTheme[] = [
       red: '#f85149',
       yellow: '#d29922',
       purple: '#a371f7'
+    }
+  },
+  {
+    id: 'kraken',
+    name: 'Kraken',
+    builtin: true,
+    // Modelled on GitKraken's default look: charcoal panels framing a darker graph,
+    // a blue-violet selection and an olive-green row for the checked-out branch.
+    // bg0 is lighter than bg1 on purpose — GitKraken's inputs and title bar sit a
+    // step above the graph, not below it.
+    graph: { paletteId: 'kraken', labelStyle: 'tinted', laneColors: 'column' },
+    light: {
+      bg0: '#f4f5f7',
+      bg1: '#ffffff',
+      bg2: '#eceef1',
+      bg3: '#e0e3e8',
+      bg4: '#d2d6dd',
+      border: '#cfd3da',
+      borderSoft: '#e2e5ea',
+      text0: '#24262b',
+      text1: '#4a4e57',
+      text2: '#7a7f8a',
+      accent: '#4f63d8',
+      green: '#3f8f2f',
+      red: '#d33f49',
+      yellow: '#b86e00',
+      purple: '#8a4fc8'
+    },
+    dark: {
+      bg0: '#212226',
+      bg1: '#1d1e23',
+      bg2: '#292a30',
+      bg3: '#33353c',
+      bg4: '#3e4049',
+      border: '#383a42',
+      borderSoft: '#2f3037',
+      text0: '#e3e4e8',
+      text1: '#b3b5bd',
+      text2: '#7d808b',
+      accent: '#6e82f5',
+      green: '#8fcb6c',
+      red: '#e8636b',
+      yellow: '#f0b04c',
+      purple: '#b886e8'
     }
   },
   {
@@ -803,6 +848,14 @@ export function allCodeThemes(custom: CodeTheme[]): CodeTheme[] {
 
 export function findAppTheme(id: string, custom: AppTheme[]): AppTheme {
   return allAppThemes(custom).find((t) => t.id === id) ?? APP_THEMES[0]
+}
+
+/** Settings after picking an app theme: its id, plus the graph settings the theme
+ *  was designed around. Applied on the pick only, so a user who then changes the
+ *  palette keeps that change until they choose a theme again. */
+export function withAppTheme(s: AppSettings, theme: AppTheme): AppSettings {
+  if (!theme.graph) return { ...s, appThemeId: theme.id }
+  return { ...s, appThemeId: theme.id, graphStyle: { ...(s.graphStyle ?? defaultGraphStyle()), ...theme.graph } }
 }
 
 export function findCodeTheme(id: string, custom: CodeTheme[]): CodeTheme {

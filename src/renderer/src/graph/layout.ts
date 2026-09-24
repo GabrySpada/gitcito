@@ -247,6 +247,19 @@ export function layoutGraph(
   return { nodes, edges, laneCount }
 }
 
+/**
+ * The same layout coloured by column instead of by branch: a node takes its
+ * lane's index, and an edge the lane of whichever end sits further from the
+ * trunk — the rule layoutGraph uses for its per-branch colours, so which end
+ * of a crossing wins is the same either way. Geometry is untouched.
+ */
+export function colorByColumn(layout: GraphLayout): GraphLayout {
+  const nodes = new Map<string, GraphNode>()
+  for (const [hash, n] of layout.nodes) nodes.set(hash, { ...n, color: n.lane })
+  const edges = layout.edges.map((e) => ({ ...e, color: Math.max(e.fromLane, e.toLane) }))
+  return { nodes, edges, laneCount: layout.laneCount }
+}
+
 export const GRAPH_COLORS = [
   '#6c5ce7', // main — purple
   '#00d4ff', // feature — cyan
