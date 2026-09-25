@@ -597,7 +597,7 @@ export const gitApi = {
     call<{ hash: string; subject: string }[]>('interactiveRebaseSteps', path, base),
   runInteractiveRebase: (path: string, base: string, steps: RebaseStep[]) =>
     call<void>('runInteractiveRebase', path, base, steps),
-  stagePatch: (path: string, patch: string) => call<void>('stagePatch', path, patch),
+  stagePatch: (path: string, patch: string, reverse = false) => call<void>('stagePatch', path, patch, reverse),
   compareBranches: (path: string, a: string, b: string) =>
     call<BranchCompareResult>('compareBranches', path, a, b),
   mergePreview: (path: string, base: string, refs: string[]) =>

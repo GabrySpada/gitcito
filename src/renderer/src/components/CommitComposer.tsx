@@ -454,6 +454,8 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
   }
 
   const currentFile = fileView && fileView.repoPath === path && fileView.source.type === 'wip' ? fileView.file : null
+  // A partly staged file sits in both lists; mark the row for the side on screen.
+  const currentSide = fileView?.source.type === 'wip' ? (fileView.source.staged ? 'staged' : 'unstaged') : null
 
   const handleClick = (list: ListName) => (file: FileEntry, e: React.MouseEvent) => {
     claimRangeKeys(keyToken)
@@ -1024,7 +1026,7 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
               >
                 <FileListView
                   files={fUnstaged}
-                  current={currentFile}
+                  current={currentSide === 'unstaged' ? currentFile : null}
                   selected={selection.list === 'unstaged' ? selection.paths : undefined}
                   onFileClick={handleClick('unstaged')}
                   onFileContext={handleContext('unstaged', fUnstaged)}
@@ -1096,7 +1098,7 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
               >
                 <FileListView
                   files={fStaged}
-                  current={currentFile}
+                  current={currentSide === 'staged' ? currentFile : null}
                   selected={selection.list === 'staged' ? selection.paths : undefined}
                   onFileClick={handleClick('staged')}
                   onFileContext={handleContext('staged', fStaged)}

@@ -12069,6 +12069,48 @@ input[type='range']:focus-visible {
 .diff-select-bar span {
   margin-inline-end: auto;
 }
+/* The one-line stage button, GitKraken's: a small solid square at the row's
+   start, over the line number, until the row is hovered. Green to stage, red to
+   unstage — the colour of where the line is going next. */
+.diff-line.selectable { position: relative; }
+.diff-stage-line {
+  position: absolute;
+  inset-inline-start: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: var(--green);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+.diff-stage-line.unstage { background: var(--red); }
+.diff-line:hover > .diff-stage-line,
+.diff-split-cell:hover .diff-stage-line,
+.diff-stage-line:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.diff-stage-line:hover { filter: brightness(1.12); }
+.diff-split-cell.selectable { cursor: pointer; }
+/* Selected, split view: the bar goes on the margin, which is opaque and would
+   hide one drawn on the cell. The tint is a layer over the add/del band, and
+   out-ranks the `background` shorthand those bands are set with. */
+.diff-split-cell.selectable.line-selected {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    color-mix(in srgb, var(--accent) 16%, transparent)
+  );
+}
+.diff-split-cell.line-selected .diff-margin { box-shadow: inset 3px 0 0 var(--accent); }
 
 /* ─── Commit panel file search / filter bar ─────────────────────────────── */
 .file-search {
@@ -15701,6 +15743,8 @@ mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
 /* The margin: line number, −/+ marker, hairline. Opaque, so the band behind
    the row starts at the rule, and so code scrolling under it disappears. */
 .diff-margin {
+  /* Anchors the one-line stage button; wrap off, `sticky` does the same. */
+  position: relative;
   display: flex;
   flex: none;
   align-self: stretch;
