@@ -23,6 +23,15 @@ referências*: Sólidos ou Tingidos) e fica assim.
 Também colore as faixas **por coluna** (*Cores das faixas*): todas as branches
 que correm na mesma faixa compartilham uma cor, em vez de cada uma ganhar a sua.
 
+O Kraken muda também a tipografia, não só as cores: Open Sans no lugar de
+Nunito, texto mais encorpado, cabeçalhos de coluna em monoespaçada numa barra
+mais clara, rótulos de refs e títulos da barra lateral maiores e uma barra de
+ferramentas mais clara. Esse estilo pertence ao próprio tema, então um tema
+personalizado copiado do Kraken mantém só as cores.
+A escolha também põe as cores do código em Kraken — o Dark+ do VS Code, que o
+diff do GitKraken usa — e a fonte do código em 12px, uma única vez, como as
+configurações do grafo.
+
 - **Claro, escuro, ou seguir o sistema**, trocado ao vivo.
 - **Temas personalizados**, e temas **gerados por IA** a partir de um prompt.
 - **Tamanho da fonte de código** ajustável.

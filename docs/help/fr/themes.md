@@ -25,6 +25,16 @@ Il colore aussi les couloirs **par colonne** (*Couleurs des couloirs*) : toutes
 les branches qui passent dans le même couloir partagent une couleur au lieu d'en
 avoir chacune une.
 
+Kraken change aussi la typographie, pas seulement les couleurs : Open Sans au
+lieu de Nunito, un texte plus appuyé, des en-têtes de colonnes en chasse fixe
+sur une barre plus claire, des étiquettes de refs et des titres de barre
+latérale plus grands, et une barre d'outils plus claire. Ce style appartient
+au thème lui-même : un thème personnalisé copié de Kraken n'en garde que les
+couleurs.
+Le choix règle aussi les couleurs du code sur Kraken — le Dark+ de VS Code,
+celui du diff de GitKraken — et la police du code à 12px, une seule fois,
+comme les réglages du graphe.
+
 - **Clair, sombre, ou suivre le système**, changé à chaud.
 - Des **thèmes personnalisés**, et des thèmes **générés par l'IA** à partir d'une
   consigne.

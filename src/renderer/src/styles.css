@@ -17042,3 +17042,105 @@ mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
 .action-widget-result:hover:not(:disabled) { background: var(--bg-3); }
 .action-widget-result:disabled { cursor: default; opacity: 0.7; }
 .action-widget-result-num { color: var(--accent); font-weight: 600; flex: none; }
+
+/* ─── Kraken theme — type and panel tones ────────────────────────────────── */
+/* GitKraken's contrast comes less from its colours — sampled, they are close to
+ * this palette — than from its type: a humanist face with a tall x-height,
+ * drawn without the thinning grayscale pass, and flat panels stepped in tone
+ * (a lighter toolbar and column header over a darker graph). A colour theme
+ * alone cannot carry that, so it is scoped here by the theme's id. */
+:root[data-theme='kraken'] {
+  --font: 'Open Sans Variable', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+}
+:root[data-theme='kraken'] body {
+  -webkit-font-smoothing: auto;
+}
+:root[data-theme='kraken'][data-mode='dark'] .toolbar {
+  background: var(--bg-3);
+  border-bottom-color: var(--bg-0);
+}
+:root[data-theme='kraken'][data-mode='dark'] .right-panel {
+  background: var(--bg-0);
+}
+
+/* Column header: a lighter bar in a small monospace, uppercase but unbolded, so
+ * it labels the columns without competing with the rows under it. */
+:root[data-theme='kraken'] .graph-header {
+  background: var(--bg-2);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+:root[data-theme='kraken'] .ghc {
+  border-inline-end-color: var(--border-soft);
+}
+
+/* Rows: the subject stands clear of the lane strip, and a selected row lifts
+ * every column to full-strength text rather than tinting the background alone. */
+:root[data-theme='kraken'] .row-subject {
+  padding-inline-start: 13px;
+}
+:root[data-theme='kraken'] .row-author,
+:root[data-theme='kraken'] .row-date {
+  font-size: 12px;
+}
+:root[data-theme='kraken'] .graph-row.selected,
+:root[data-theme='kraken'] .graph-row.multi-selected {
+  /* Translucent, not mixed into the background: the graph's nodes and rails
+   * are drawn beneath the rows, and an opaque band would hide them. */
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+:root[data-theme='kraken'] .graph-row.selected :is(.row-subject, .row-author, .row-date, .row-sha) {
+  color: #fff;
+}
+:root[data-theme='kraken'][data-mode='light'] .graph-row.selected :is(.row-subject, .row-author, .row-date, .row-sha) {
+  color: var(--text-0);
+}
+
+/* Ref labels read at the subject's size, with glyphs large enough to tell a
+ * laptop from a cloud at a glance. */
+:root[data-theme='kraken'] .ref-badge.ref-tinted {
+  font-size: 12px;
+}
+:root[data-theme='kraken'] .ref-badge.ref-tinted :is(.ref-icons, .ref-ic) :is(svg, img) {
+  width: 13px;
+  height: 13px;
+}
+
+/* Sidebar: section titles are bold words at row size, not letter-spaced
+ * microcopy, and rows get GitKraken's slightly taller line. */
+:root[data-theme='kraken'] .sb-section:not(.nested) > .sb-header {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--text-1) 82%, var(--bg-2));
+}
+:root[data-theme='kraken'] .sb-section:not(.nested) > .sb-header .sb-count {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--accent) 60%, var(--text-0));
+}
+:root[data-theme='kraken'] .sb-item {
+  min-height: 24px;
+}
+:root[data-theme='kraken'] .sb-body.is-huge .sb-item {
+  contain-intrinsic-size: auto 24px;
+}
+
+/* Diff: GitKraken's canvas is the graph's near-black, and its change bands are
+ * deeper — a pale olive band under Dark+ colours is what washed the code out.
+ * Lines sit tighter too, the way its editor sets them. */
+:root[data-theme='kraken'][data-mode='dark'] .diff-viewer.is-split {
+  --dv-canvas: linear-gradient(var(--code-bg, transparent), var(--code-bg, transparent)), var(--bg-1);
+  --dv-add-bg: #323c31;
+  --dv-del-bg: #3a292a;
+  --dv-word-add: #46583d;
+  --dv-word-del: #5a332d;
+}
+:root[data-theme='kraken'] .diff-viewer.is-split {
+  --dv-lh: 1.35;
+}
+/* Dark+ sets comments upright; the green alone marks them. */
+:root[data-code-theme='kraken'] :is(.hljs-comment, .hljs-quote) {
+  font-style: normal;
+}

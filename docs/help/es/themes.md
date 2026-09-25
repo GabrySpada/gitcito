@@ -25,6 +25,15 @@ También colorea los carriles **por columna** (*Colores de carriles*): todas las
 ramas que corren por el mismo carril comparten un color en lugar de tener cada
 una el suyo.
 
+Kraken cambia también la tipografía, no solo los colores: Open Sans en lugar
+de Nunito, texto más marcado, cabeceras de columna en monoespaciada sobre una
+barra más clara, etiquetas de refs y títulos de la barra lateral más grandes y
+una barra de herramientas más clara. Ese estilo pertenece al propio tema, así
+que un tema personalizado copiado de Kraken conserva solo sus colores.
+La elección también pone los colores del código en Kraken — el Dark+ de VS
+Code, el que usa el diff de GitKraken — y la fuente del código en 12px, una
+sola vez, como los ajustes del grafo.
+
 - **Claro, oscuro o seguir al sistema**, con el cambio en vivo.
 - **Temas personalizados**, y otros **generados por IA** a partir de un prompt.
 - **Tamaño de la fuente del código** ajustable.

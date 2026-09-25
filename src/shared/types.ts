@@ -3196,6 +3196,9 @@ export interface AppTheme {
   /** Graph settings the theme is designed around, adopted when the user picks
    *  it. Only on selection: afterwards the graph style is the user's again. */
   graph?: Partial<Pick<GraphStyle, 'paletteId' | 'labelStyle' | 'laneColors'>>
+  /** Code settings the theme is designed around, adopted on the pick the same
+   *  way: a code theme to switch to and a code font size. */
+  code?: { themeId?: string; fontSize?: number }
 }
 
 export interface CodeThemeColors {

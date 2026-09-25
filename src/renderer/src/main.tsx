@@ -5,6 +5,9 @@ import '@fontsource/nunito/400.css'
 import '@fontsource/nunito/600.css'
 import '@fontsource/nunito/700.css'
 import '@fontsource/nunito/800.css'
+// The Kraken theme's face: a humanist sans with a tall x-height, closer to
+// GitKraken's than Nunito. Only downloaded while that theme is active.
+import '@fontsource-variable/open-sans/wght.css'
 import './styles.css'
 // Keyframes for the expressive title-bar avatar; honours prefers-reduced-motion.
 import 'blobatar/motion.css'

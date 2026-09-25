@@ -920,7 +920,7 @@ import {
   contrastText,
   refLabelColors
 } from '../src/renderer/src/graph/style'
-import { APP_THEMES, findAppTheme, withAppTheme } from '../src/renderer/src/theme/themes'
+import { APP_THEMES, findAppTheme, findCodeTheme, withAppTheme } from '../src/renderer/src/theme/themes'
 import { colorByColumn, layoutGraph } from '../src/renderer/src/graph/layout'
 import { withStashRows } from '../src/renderer/src/lib/stashRows'
 import { toggleMultiSelect, squashableRun } from '../src/renderer/src/lib/graphMultiSelect'
@@ -1007,6 +1007,21 @@ describe('graph style', () => {
     const next = withAppTheme(base, findAppTheme('kraken', []))
     expect(next.appThemeId).toBe('kraken')
     expect(next.graphStyle).toMatchObject({ paletteId: 'kraken', labelStyle: 'tinted', laneColors: 'column', density: 'compact' })
+  })
+
+  it('picking the Kraken theme adopts its code theme and font size', () => {
+    const base = { ...defaultSettings(), codeThemeId: 'daltonic', codeFontSize: 16 }
+    const next = withAppTheme(base, findAppTheme('kraken', []))
+    expect(next.codeThemeId).toBe('kraken')
+    expect(next.codeFontSize).toBe(12)
+    expect(findCodeTheme(next.codeThemeId, []).id).toBe('kraken')
+  })
+
+  it('picking a theme without code settings leaves the code theme alone', () => {
+    const base = { ...defaultSettings(), codeThemeId: 'daltonic', codeFontSize: 16 }
+    const next = withAppTheme(base, findAppTheme('nord', []))
+    expect(next.codeThemeId).toBe('daltonic')
+    expect(next.codeFontSize).toBe(16)
   })
 
   it('picking a theme without graph settings leaves the graph style alone', () => {
@@ -7464,6 +7479,7 @@ describe('graph multi-selection', () => {
 })
 
 import { sidebarForFileView } from '../src/renderer/src/lib/diffFocus'
+import { highlightDiffLines, highlightLines, splitHighlighted } from '../src/renderer/src/lib/highlight'
 
 describe('diff focus — the sidebar around the diff viewer', () => {
   const open = { collapsed: false, auto: false }
@@ -7497,5 +7513,46 @@ describe('diff focus — the sidebar around the diff viewer', () => {
     // The store clears `auto` whenever the user toggles; reopened, it is open.
     const reopened = { collapsed: false, auto: false }
     expect(sidebarForFileView(diff, null, reopened)).toEqual(reopened)
+  })
+})
+
+describe('block syntax highlighting', () => {
+  it('splits highlighted HTML into lines, reopening a span across a break', () => {
+    const lines = splitHighlighted('<span class="c">/* a\nb */</span> x')
+    expect(lines).toEqual(['<span class="c">/* a</span>', '<span class="c">b */</span> x'])
+  })
+
+  it('keeps a block comment coloured on every line it spans', () => {
+    const html = highlightLines(['/* one', ' from two', ' */', 'a { color: red; }'], 'css')
+    expect(html[1]).toContain('hljs-comment')
+    expect(html[2]).toContain('hljs-comment')
+    expect(html[3]).not.toContain('hljs-comment')
+  })
+
+  it('leaves an empty line empty so its row keeps its height', () => {
+    expect(highlightLines(['/* a', '', 'b */'], 'css')[1]).toBe('')
+  })
+
+  it('highlights each diff side on its own and restarts at a line-number gap', () => {
+    const lines = [
+      { kind: 'hunk', text: '@@', oldNo: null, newNo: null },
+      { kind: 'ctx', text: '/* start', oldNo: 1, newNo: 1 },
+      { kind: 'del', text: 'old inside', oldNo: 2, newNo: null },
+      { kind: 'add', text: 'new inside', oldNo: null, newNo: 2 },
+      { kind: 'ctx', text: '*/', oldNo: 3, newNo: 3 },
+      { kind: 'hunk', text: '@@', oldNo: null, newNo: null },
+      { kind: 'ctx', text: 'b { color: red; }', oldNo: 40, newNo: 40 }
+    ]
+    const html = highlightDiffLines(lines, 'css')
+    expect(html[0]).toBeNull()
+    expect(html[2]).toContain('hljs-comment')
+    expect(html[3]).toContain('hljs-comment')
+    expect(html[6]).not.toContain('hljs-comment')
+  })
+
+  it('falls back to per-line highlighting past the size cap or for an unknown language', () => {
+    const lines = [{ kind: 'ctx', text: 'x', oldNo: 1, newNo: 1 }]
+    expect(highlightDiffLines(lines, 'css', 0)).toEqual([null])
+    expect(highlightDiffLines(lines, '')).toEqual([null])
   })
 })

@@ -22,6 +22,14 @@ Settings → Themes → **Graph** (*Ref labels*: Solid or Tinted) and it stays.
 It also colours lanes **per column** (*Lane colours*), so every branch that
 runs in the same lane shares one colour instead of each getting its own.
 
+Kraken also changes the type, not only the colours: Open Sans instead of
+Nunito, heavier text, monospace column headers on a lighter bar, larger ref
+labels and sidebar titles, and a lighter toolbar. That styling belongs to the
+theme itself, so a custom theme copied from Kraken keeps only its colours.
+The pick also sets the code colours to Kraken — VS Code's Dark+, which
+GitKraken's diff uses — and the code font to 12px, once, like the graph
+settings above.
+
 - **Light, dark, or follow the OS**, switched live.
 - **Custom themes**, and **AI-generated** ones from a prompt.
 - Adjustable **code font size**.
