@@ -48,6 +48,7 @@ import { commitHookFailureHint } from '../lib/commitLint'
 import { isLockErrorMessage, lockRepairPlan } from '../lib/gitLocks'
 import { parseRouteConflict } from '../lib/stackOrder'
 import { timeAgo } from '../lib/timeAgo'
+import { countPatchLines, type PatchDirection } from '../lib/linePatch'
 import { splitCommitMessage } from '../lib/commitMenuCapabilities'
 import { t, interp } from '../i18n'
 
@@ -2433,6 +2434,26 @@ export const repoActions = {
   unstage: (path: string, files: string[]) =>
     useRepoStore.getState().run(path, interp(t('act.unstaged'), { n: files.length }), () => gitApi.unstage(path, files), undefined, null, undefined, ['status', 'treeStatus']),
   unstageAll: (path: string) => useRepoStore.getState().run(path, t('act.unstagedAll'), () => gitApi.unstageAll(path), undefined, null, undefined, ['status', 'treeStatus']),
+  // Lines or a hunk out of a diff, into the index or back out of it. The same
+  // patch applied the other way round is an exact undo while the index has not
+  // moved on; once it has, git refuses rather than guessing.
+  applyIndexPatch: (path: string, patch: string, direction: PatchDirection) => {
+    const unstage = direction === 'unstage'
+    const n = countPatchLines(patch)
+    return useRepoStore.getState().run(
+      path,
+      interp(t(unstage ? 'act.unstagedLines' : 'act.stagedLines'), { n }),
+      () => gitApi.stagePatch(path, patch, unstage),
+      {
+        label: interp(t(unstage ? 'undoLabel.unstageLines' : 'undoLabel.stageLines'), { n }),
+        undo: () => gitApi.stagePatch(path, patch, !unstage),
+        redo: () => gitApi.stagePatch(path, patch, unstage)
+      },
+      null,
+      undefined,
+      ['status', 'treeStatus']
+    )
+  },
   discard: (path: string, files: string[], untracked: boolean) =>
     useRepoStore.getState().run(path, interp(t('act.discarded'), { n: files.length }), () => gitApi.discard(path, files, untracked), undefined, null, undefined, ['status', 'treeStatus']),
 

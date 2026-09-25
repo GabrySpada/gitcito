@@ -4,8 +4,9 @@ import type { BlameLine, BlobSpec, FileHistoryEntry, NumberedLine } from '../../
 import { gitApi, aiApi, shellApi } from '../infrastructure/api'
 import { useSettingsStore } from '../stores/settings'
 import { useUIStore, type FileViewMode, type FileViewState } from '../stores/ui'
-import { useRepoStore } from '../stores/repo'
+import { useRepoStore, repoActions } from '../stores/repo'
 import { canonicalRepoPath } from '../lib/repoAlias'
+import { wipSideAfter } from '../lib/wipSide'
 import { filePermalink } from '../lib/autolink'
 import { revealLineWhenReady } from '../lib/reveal'
 import { editorLineMenuItems } from '../lib/editorOpen'
@@ -314,6 +315,21 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
   const canExplain = !fileIsImage && (mode === 'file' || mode === 'diff') && !!content
   // Host permalink to this file at the viewed commit (commit source + a remote).
   const repoData = useRepoStore((s) => s.repos[repoPath])
+  // A working-tree diff re-reads whenever the repo's status does: staging a
+  // line from it, undoing that, or an edit elsewhere all move the diff on.
+  const wipDiffStatus = source.type === 'wip' && mode === 'diff' ? repoData?.status : null
+  // Rather than an empty diff once the side on screen empties (see wipSide),
+  // the other side — or, with no changes left anywhere, the file itself. Only
+  // on a status change: which side to open is otherwise the user's choice.
+  const wipStatus = source.type === 'wip' ? repoData?.status : undefined
+  useEffect(() => {
+    if (!wipStatus || source.type !== 'wip') return
+    const move = wipSideAfter(wipStatus, file, source.staged)
+    if (move.kind === 'switch') setFileView({ ...view, source: { type: 'wip', staged: move.staged, untracked: move.untracked } })
+    else if (move.kind === 'gone' && mode === 'diff')
+      setFileView({ ...view, source: { type: 'wip', staged: false, untracked: false }, mode: 'file' })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wipStatus])
   const originUrl = repoData?.remotes.find((r) => r.name === 'origin')?.url ?? repoData?.remotes[0]?.url
   const permalink = source.type === 'commit' ? filePermalink(originUrl, source.hash, file) : undefined
   // Which two blobs the semantic summary should compare (null for the project
@@ -583,6 +599,7 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
     blameOverrideRef,
     editing,
     ignoreWs,
+    wipDiffStatus,
     source.type,
     source.type === 'commit' ? source.hash : source.type === 'stash' ? source.sha : source.type === 'wip' ? source.staged : ''
   ])
@@ -807,15 +824,13 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
                 />
               )
             }
-            onStageHunk={
-              source.type === 'wip' && !source.staged && !source.untracked
-                ? async (patch) => {
-                    try {
-                      await gitApi.stagePatch(repoPath, patch)
-                      setRefreshKey((k) => k + 1)
-                    } catch (err) {
-                      toast('error', err instanceof Error ? err.message : String(err))
-                    }
+            staging={
+              // A diff with whitespace hidden does not say which lines to stage,
+              // and a patch cut from it would not apply.
+              source.type === 'wip' && !source.untracked && !ignoreWs
+                ? {
+                    direction: source.staged ? 'unstage' : 'stage',
+                    apply: (patch) => void repoActions.applyIndexPatch(repoPath, patch, source.staged ? 'unstage' : 'stage')
                   }
                 : undefined
             }

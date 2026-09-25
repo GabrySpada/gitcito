@@ -6629,11 +6629,13 @@ export const gitService = {
     return { created: plan.targets.length, rebased: !!opts.rebase }
   },
 
-  async stagePatch(repoPath: string, patch: string): Promise<void> {
+  /** Apply a patch to the index only. `reverse` takes it back out — how a
+   *  line or hunk of the staged diff is unstaged, and how a stage is undone. */
+  async stagePatch(repoPath: string, patch: string, reverse = false): Promise<void> {
     const tmpPatch = join(tmpdir(), `gitcito-patch-${Date.now()}.patch`)
     await writeFile(tmpPatch, patch, 'utf-8')
     try {
-      await gitFor(repoPath).raw(['apply', '--cached', tmpPatch])
+      await gitFor(repoPath).raw(['apply', '--cached', ...(reverse ? ['--reverse'] : []), tmpPatch])
     } finally {
       await unlink(tmpPatch).catch(() => {})
     }

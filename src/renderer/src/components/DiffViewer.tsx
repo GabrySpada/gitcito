@@ -14,6 +14,8 @@ import {
   WrapText,
   Link2,
   Unlink2,
+  Plus,
+  Minus,
   X
 } from 'lucide-react'
 import { highlightHtml, buildQueryRegExp, type HighlightLayer } from './FileSearchBar'
@@ -24,6 +26,7 @@ import { useT, interp } from '../i18n'
 import { useSettingsStore } from '../stores/settings'
 import { useHoverExplain } from './HoverExplain'
 import type { NumberedLine } from '../../../shared/types'
+import { buildLinePatch, diffHeader, hunkLines, isChangeLine, type PatchDirection } from '../lib/linePatch'
 import {
   parseDiff,
   wordRangesByLine,
@@ -69,87 +72,6 @@ function markRanges(html: string, ranges: Range[], cls: string): string {
     if (open) out += '</mark>'
     return out
   })
-}
-
-function extractHunks(diff: string): { header: string; hunks: string[] } {
-  const rawLines = diff.split('\n')
-  const headerLines: string[] = []
-  const hunks: string[] = []
-  let currentHunk: string[] | null = null
-
-  for (const line of rawLines) {
-    if (line.startsWith('@@')) {
-      if (currentHunk) hunks.push(currentHunk.join('\n'))
-      currentHunk = [line]
-    } else if (currentHunk !== null) {
-      currentHunk.push(line)
-    } else {
-      headerLines.push(line)
-    }
-  }
-  if (currentHunk) hunks.push(currentHunk.join('\n'))
-
-  return { header: headerLines.join('\n'), hunks }
-}
-
-/**
- * Build a partial patch containing only the selected +/- lines (by index into
- * `lines`). Unselected deletions become context (kept), unselected additions are
- * dropped, and each affected hunk's @@ counts are recomputed — the same shape
- * `git add -p` produces, applied to the index via `git apply --cached`.
- */
-function buildLinePatch(lines: DiffLine[], header: string, selected: Set<number>): string {
-  const starts = new Map<number, { o: number; n: number }>()
-  for (const l of lines) {
-    if (l.kind === 'hunk') {
-      const m = /@@ -(\d+)(?:,\d+)? \+(\d+)(?:,\d+)? @@/.exec(l.text)
-      if (m) starts.set(l.hunkIdx, { o: +m[1], n: +m[2] })
-    }
-  }
-  const hunks = new Map<number, number[]>()
-  lines.forEach((l, i) => {
-    if (l.kind === 'add' || l.kind === 'del' || l.kind === 'ctx') {
-      if (!hunks.has(l.hunkIdx)) hunks.set(l.hunkIdx, [])
-      hunks.get(l.hunkIdx)!.push(i)
-    }
-  })
-
-  const parts: string[] = []
-  for (const [hunkIdx, idxs] of hunks) {
-    if (!idxs.some((i) => selected.has(i))) continue
-    const start = starts.get(hunkIdx) ?? { o: 1, n: 1 }
-    const body: string[] = []
-    let oldC = 0
-    let newC = 0
-    for (const i of idxs) {
-      const l = lines[i]
-      if (l.text.startsWith('\\')) {
-        body.push(l.text) // "\ No newline at end of file" — keep verbatim, don't count
-        continue
-      }
-      if (l.kind === 'ctx') {
-        body.push(` ${l.text}`)
-        oldC++
-        newC++
-      } else if (l.kind === 'del') {
-        if (selected.has(i)) {
-          body.push(`-${l.text}`)
-          oldC++
-        } else {
-          body.push(` ${l.text}`) // keep this deletion out of the stage
-          oldC++
-          newC++
-        }
-      } else if (selected.has(i)) {
-        body.push(`+${l.text}`)
-        newC++
-      }
-      // unselected additions are omitted
-    }
-    parts.push(`@@ -${start.o},${oldC} +${start.n},${newC} @@`)
-    parts.push(...body)
-  }
-  return `${header}\n${parts.join('\n')}\n`
 }
 
 /** Above this many parsed lines the viewer gets `is-huge` — the browser skips
@@ -291,7 +213,7 @@ export function DiffViewer({
   maskValues = false,
   ignoreWs = false,
   onToggleIgnoreWs,
-  onStageHunk,
+  staging,
   loadNewText,
   sourceKey,
   toolbarStart,
@@ -308,7 +230,9 @@ export function DiffViewer({
   ignoreWs?: boolean
   /** Re-fetch the diff with/without `-w`. When absent, the toggle is hidden. */
   onToggleIgnoreWs?: () => void
-  onStageHunk?: (patch: string) => void
+  /** Line and hunk staging: `stage` on an unstaged diff, `unstage` on a staged
+   *  one; `apply` takes the partial patch. Absent, the diff is read-only. */
+  staging?: { direction: PatchDirection; apply: (patch: string) => void }
   /** Reads the new side's whole text, for the split view's full-file mode.
    *  Absent (a multi-file diff, a snapshot), split view shows hunks only. */
   loadNewText?: () => Promise<string>
@@ -405,7 +329,18 @@ export function DiffViewer({
       return no ?? null
     }
   })
-  const hunkData = useMemo(() => (onStageHunk ? extractHunks(diff) : null), [diff, onStageHunk])
+  const header = useMemo(() => diffHeader(diff), [diff])
+  const unstaging = staging?.direction === 'unstage'
+  // Split view renders its own line list (the whole file, in full-file mode),
+  // but a patch is built from the diff's. Full-file mode keeps the diff's line
+  // objects as they are, so a row finds its diff line by identity — and a row
+  // left over from the previous diff finds none, and offers nothing to stage.
+  const lineIndex = useMemo(() => new Map(lines.map((l, i) => [l, i])), [lines])
+  const applyLines = (sel: Set<number>): void => {
+    if (!staging) return
+    const patch = buildLinePatch(lines, header, sel, staging.direction)
+    if (patch) staging.apply(patch)
+  }
 
   const [wordDiffOn, setWordDiffOn] = useState(() => localStorage.getItem('gitcito-word-diff') !== 'off')
   useEffect(() => localStorage.setItem('gitcito-word-diff', wordDiffOn ? 'on' : 'off'), [wordDiffOn])
@@ -636,16 +571,22 @@ export function DiffViewer({
     // No guide at column 0: the margin's rule already sits there.
     const guideWidth = guides ? indent - guides.unit : 0
     const stage = side === 'right' && r.startsHunk !== undefined ? stageButton(r.startsHunk) : null
+    const li = staging && c && c.kind !== 'ctx' ? lineIndex.get(viewLines[c.idx]) : undefined
     return (
       <div
         key={key}
-        className={`diff-split-cell ${c ? c.kind : 'empty'}`}
+        className={`diff-split-cell ${c ? c.kind : 'empty'}${li !== undefined ? ' selectable' : ''}${
+          li !== undefined && selected.has(li) ? ' line-selected' : ''
+        }`}
         data-chg={blockAt.get(i)}
         data-row={i}
         // A filler's hatching is offset by its row, so the stripes line up with the fillers above.
         style={c ? undefined : ({ '--r': i } as React.CSSProperties)}
+        onClick={li !== undefined ? (e) => onLineClick(e, li) : undefined}
+        title={li !== undefined ? selectTitle : undefined}
       >
         <span className="diff-margin">
+          {li !== undefined && lineButton(li)}
           <span className="diff-gutter">{c?.no ?? ''}</span>
           <span className="diff-marker">{c?.kind === 'del' ? '−' : c?.kind === 'add' ? '+' : ''}</span>
         </span>
@@ -664,14 +605,31 @@ export function DiffViewer({
   }
 
   const stageButton = (hunkIdx: number): React.JSX.Element | null =>
-    onStageHunk && hunkData ? (
-      <button
-        className="btn ghost tiny diff-stage-hunk"
-        onClick={() => onStageHunk(`${hunkData.header}\n${hunkData.hunks[hunkIdx] ?? ''}\n`)}
-      >
-        {t('diff.stageHunk')}
+    staging ? (
+      <button className="btn ghost tiny diff-stage-hunk" onClick={() => applyLines(hunkLines(lines, hunkIdx))}>
+        {t(unstaging ? 'diff.unstageHunk' : 'diff.stageHunk')}
       </button>
     ) : null
+
+  // GitKraken's per-line control: a square in the margin, shown on hover, that
+  // stages (or unstages) that one line with a single click — no selection.
+  const lineButton = (li: number): React.JSX.Element => {
+    const label = t(unstaging ? 'diff.unstageLine' : 'diff.stageLine')
+    return (
+      <button
+        className={`diff-stage-line${unstaging ? ' unstage' : ''}`}
+        title={label}
+        aria-label={label}
+        onClick={(e) => {
+          // The row itself toggles selection; this is the one-line shortcut.
+          e.stopPropagation()
+          applyLines(new Set([li]))
+        }}
+      >
+        {unstaging ? <Minus size={11} strokeWidth={3} /> : <Plus size={11} strokeWidth={3} />}
+      </button>
+    )
+  }
 
   // The @@ bar. Column-major mode draws it in both columns — the left carries
   // the header text, the right the stage button, and together they read as one
@@ -684,21 +642,35 @@ export function DiffViewer({
   )
 
   // Line-level staging selection (only when staging is enabled). Keyed by index
-  // into `lines`; cleared whenever the diff changes.
+  // into `lines` in either view; cleared whenever the diff changes.
   const [selected, setSelected] = useState<Set<number>>(new Set())
-  useEffect(() => setSelected(new Set()), [diff])
+  const anchorRef = useRef<number | null>(null)
+  useEffect(() => {
+    setSelected(new Set())
+    anchorRef.current = null
+  }, [diff])
 
-  const toggleLine = (i: number): void =>
+  // Click toggles a line; shift-click takes every change line from the last
+  // one clicked. A drag that selected text to copy is not a click on the line.
+  const onLineClick = (e: React.MouseEvent, i: number): void => {
+    if (window.getSelection()?.isCollapsed === false) return
+    const anchor = anchorRef.current
     setSelected((prev) => {
       const next = new Set(prev)
-      if (next.has(i)) next.delete(i)
+      if (e.shiftKey && anchor !== null) {
+        const [from, to] = anchor < i ? [anchor, i] : [i, anchor]
+        for (let k = from; k <= to; k++) if (isChangeLine(lines[k])) next.add(k)
+      } else if (next.has(i)) next.delete(i)
       else next.add(i)
       return next
     })
+    anchorRef.current = i
+  }
+  const selectTitle = t(unstaging ? 'diff.unstageLinesTitle' : 'diff.stageLinesTitle')
 
   const stageSelected = (): void => {
-    if (!onStageHunk || !hunkData || selected.size === 0) return
-    onStageHunk(buildLinePatch(lines, hunkData.header, selected))
+    if (selected.size === 0) return
+    applyLines(selected)
     setSelected(new Set())
   }
 
@@ -963,14 +935,14 @@ export function DiffViewer({
           </button>
         </div>
       )}
-      {!splitView && onStageHunk && selected.size > 0 && (
+      {staging && selected.size > 0 && (
         <div className="diff-select-bar">
-          <span>{interp(t('diff.linesSelected'), { n: selected.size, s: selected.size === 1 ? '' : 's' })}</span>
+          <span>{interp(t('diff.linesSelected'), { n: selected.size })}</span>
           <button className="btn ghost tiny" onClick={() => setSelected(new Set())}>
             {t('diff.clearSelection')}
           </button>
           <button className="btn primary tiny" onClick={stageSelected}>
-            {interp(t('diff.stageLines'), { n: selected.size, s: selected.size === 1 ? '' : 's' })}
+            {interp(t(unstaging ? 'diff.unstageLines' : 'diff.stageLines'), { n: selected.size })}
           </button>
         </div>
       )}
@@ -1056,15 +1028,16 @@ export function DiffViewer({
                   </div>
                 )
               }
-              const selectable = onStageHunk && (l.kind === 'add' || l.kind === 'del')
+              const selectable = !!staging && isChangeLine(l)
               return (
                 <div
                   key={i}
                   className={`diff-line ${l.kind} ${selectable ? 'selectable' : ''} ${selected.has(i) ? 'line-selected' : ''}`}
                   data-chg={blockAt.get(i)}
-                  onClick={selectable ? () => toggleLine(i) : undefined}
-                  title={selectable ? t('diff.stageLinesTitle') : undefined}
+                  onClick={selectable ? (e) => onLineClick(e, i) : undefined}
+                  title={selectable ? selectTitle : undefined}
                 >
+                  {selectable && lineButton(i)}
                   <span className="diff-gutter">{l.oldNo ?? ''}</span>
                   <span className="diff-gutter">{l.newNo ?? ''}</span>
                   <span className="diff-sign">{l.kind === 'add' ? '+' : l.kind === 'del' ? '-' : ' '}</span>

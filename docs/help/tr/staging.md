@@ -20,10 +20,52 @@ hatırlar.
 |---|---|
 | **Dosya** | Satırdaki ✚ işaretine tıklayın ya da birkaç satır seçip hepsini birden hazırlayın |
 | **Hunk** | Diff'i açın ve hunk başlığındaki düğmeyi kullanın |
-| **Satır** | Diff'in içinde satırları seçin ve tam olarak onları hazırlayın |
+| **Satır** | Diff'te değişen bir satırın üzerine gelip **+** simgesine tıklayın ya da birkaç satır seçip onları stage'e alın |
 
 Satır bazlı hazırlama, hata ayıklama amaçlı bir `console.log`'u önce silmek
 zorunda kalmadan commit'in dışında tutmayı pratik hâle getiren şeydir.
+
+## Tek tek satırları stage'e almak
+
+Stage'e alınmamış bir dosyanın diff'ini birleşik ya da bölünmüş görünümde açın.
+Eklenen veya silinen bir satırın üzerine gelin; başında küçük yeşil bir **+**
+belirir: tek tıklama o satırı stage'e alır, başka hiçbir şeyi değil. Bloğun
+geri kalanı stage dışında kalır — tıpkı bloğu `git add -p` içinde elle
+düzenlemişsiniz gibi.
+
+Birden çok satır için satırların kendisine tıklayarak onları seçin —
+<kbd>⇧</kbd>-tıklama son tıkladığınızdan itibaren değişen tüm satırları alır — ve
+diff'in üstündeki çubukta **N satırı stage’e al** düğmesine basın.
+
+Tersi de çalışır. Bir dosyanın **stage'deki** sürümünü açın; denetimler kırmızı
+bir **−**, **Bloğu stage’den çıkar** ve **N satırı stage’den çıkar** olur:
+satırları index'ten geri alır, çalışma ağacına dokunmazlar.
+
+Baktığınız taraftaki son değişikliği kaldırırsanız diff boş kalmak yerine
+dosyayı diğer tarafa takip eder.
+
+Bu şekilde stage'e aldığınız ya da çıkardığınız her satır veya blok, araç
+çubuğundaki **Geri al** ile, her seferinde bir tıklamayla geri alınır.
+
+| Seçtiğiniz | Stage'e almak | Stage'den çıkarmak |
+|---|---|---|
+| Eklenen bir satır | Index o satırı kazanır | Index o satırı kaybeder |
+| Silinen bir satır | Index o satırı kaybeder | Satır index'e geri döner |
+| İkisi de değil, aynı blokta | Olduğu gibi kalır, yalnızca çalışma ağacında | Stage'de kalır |
+
+### Sınırlar
+
+- **Boşluk gizliyken stage yok.** *Boşluk* yok sayılırken diff bazı değişiklikleri
+  atlar ve hangi satırların stage'e alınacağını söyleyemez; denetimler siz
+  kapatana kadar gizlenir.
+- **İzlenmeyen dosyalar** bütün olarak stage'e alınır. Önce dosyayı stage'e alın,
+  sonra istemediğiniz satırları çıkarın.
+- **Sonunda satır sonu olmayan bir dosyanın son satırı**, değişikliğini ondan
+  sonra eklenen satırlardan ayırırsanız reddedilebilir: git bu yarım durumu bir
+  yama olarak tarif edemez. İkisini birlikte stage'e alın.
+- **Geri almak için index'in bıraktığınız gibi olması gerekir.** O zamandan beri
+  aynı satırlardan daha fazlasını stage'e aldıysanız git tahmin yürütmek yerine
+  geri almayı reddeder ve bunu söyler.
 
 ## Değişiklikleri atma
 

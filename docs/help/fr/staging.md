@@ -20,10 +20,53 @@ ouverte.
 |---|---|
 | **Fichier** | Cliquez le ✚ sur la ligne, ou sélectionnez plusieurs lignes et indexez le tout |
 | **Section** | Ouvrez le diff et utilisez le bouton sur l'en-tête de la section |
-| **Ligne** | Sélectionnez des lignes à l'intérieur du diff et indexez exactement celles-là |
+| **Ligne** | Survolez une ligne modifiée dans le diff et cliquez sur son **+**, ou sélectionnez plusieurs lignes et indexez-les |
 
 L'indexation par ligne est ce qui rend praticable de tenir un `console.log` de
 débogage hors d'un commit sans avoir à le supprimer d'abord.
+
+## Indexer une seule ligne
+
+Ouvrez le diff d'un fichier non indexé, en vue unifiée ou côte à côte. Survolez
+une ligne ajoutée ou supprimée : un petit **+** vert apparaît à son début. Un
+clic indexe cette ligne et rien d'autre. Le reste du bloc reste non indexé,
+exactement comme si vous aviez édité le bloc à la main dans `git add -p`.
+
+Pour plusieurs lignes à la fois, cliquez sur les lignes elles-mêmes pour les
+sélectionner — <kbd>⇧</kbd>-clic prend toutes les lignes modifiées depuis la
+dernière cliquée — puis appuyez sur **Indexer N ligne(s)** dans la barre
+au-dessus du diff.
+
+Cela marche aussi dans l'autre sens. Ouvrez la version **indexée** d'un fichier
+et les contrôles deviennent un **−** rouge, **Désindexer le bloc** et
+**Désindexer N ligne(s)** : ils retirent des lignes de l'index sans toucher à la
+copie de travail.
+
+Retirez le dernier changement du côté affiché et le diff suit le fichier de
+l'autre côté, au lieu de rester vide.
+
+Chaque ligne ou bloc indexé ou désindexé ainsi s'annule avec **Annuler** dans
+la barre d'outils, un clic à la fois.
+
+| Vous choisissez | L'indexer | La désindexer |
+|---|---|---|
+| Une ligne ajoutée | L'index gagne cette ligne | L'index perd cette ligne |
+| Une ligne supprimée | L'index perd cette ligne | La ligne revient dans l'index |
+| Aucune des deux, dans le même bloc | Reste telle quelle, dans la copie de travail seulement | Reste indexée |
+
+### Limites
+
+- **Espaces masqués, pas d'indexation.** Tant que les *Espaces* sont ignorés, le
+  diff omet des changements et ne peut pas dire quelles lignes indexer ; les
+  contrôles se cachent jusqu'à ce que vous le désactiviez.
+- **Les fichiers non suivis** s'indexent en entier. Indexez d'abord le fichier,
+  puis désindexez les lignes dont vous ne voulez pas.
+- **La dernière ligne d'un fichier sans saut de ligne final** peut être refusée
+  si vous séparez son changement des lignes ajoutées après elle : git ne sait
+  pas décrire cet état intermédiaire sous forme de patch. Indexez-les ensemble.
+- **Annuler suppose l'index tel que vous l'avez laissé.** Si vous avez indexé
+  d'autres changements sur les mêmes lignes depuis, git refuse l'annulation
+  plutôt que de deviner, et le dit.
 
 ## Abandonner
 

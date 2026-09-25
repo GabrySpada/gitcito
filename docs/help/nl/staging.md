@@ -19,10 +19,52 @@ Het commitpaneel heeft drie lijsten: **Conflicterend**, **Niet gestaged** en
 |---|---|
 | **Bestand** | Klik de ✚ op de rij, of selecteer meerdere rijen en stage de hele boel |
 | **Hunk** | Open de diff en gebruik de knop in de hunkkop |
-| **Regel** | Selecteer regels binnen de diff en stage precies die |
+| **Regel** | Beweeg over een gewijzigde regel in de diff en klik op zijn **+**, of selecteer meerdere regels en stage die |
 
 Regels stagen is wat het praktisch maakt om een `console.log` voor debugwerk
 buiten een commit te houden zonder hem eerst te verwijderen.
+
+## Losse regels stagen
+
+Open de diff van een niet-gestagede file, in de samengevoegde of de gesplitste
+weergave. Beweeg over een toegevoegde of verwijderde regel en aan het begin
+verschijnt een klein groen **+**: één klik staget die regel en verder niets. De
+rest van de hunk blijft ongestaged, precies alsof je de hunk met de hand had
+bewerkt in `git add -p`.
+
+Voor meer regels tegelijk klik je op de regels zelf om ze te selecteren —
+<kbd>⇧</kbd>-klik neemt elke gewijzigde regel vanaf de laatst aangeklikte — en
+druk je op **N regel(s) stagen** in de balk boven de diff.
+
+Het werkt ook andersom. Open de **gestagede** versie van een bestand en de
+knoppen worden een rood **−**, **Hunk unstagen** en **N regel(s) unstagen**: ze
+halen regels weer uit de index en laten de werkmap met rust.
+
+Haal je de laatste wijziging weg van de kant die je bekijkt, dan volgt de diff
+het bestand naar de andere kant in plaats van leeg te blijven.
+
+Elke regel of hunk die je zo staget of unstaget, draai je terug met **Ongedaan
+maken** in de werkbalk, één klik per keer.
+
+| Je kiest | Stagen | Unstagen |
+|---|---|---|
+| Een toegevoegde regel | De index krijgt die regel erbij | De index raakt die regel kwijt |
+| Een verwijderde regel | De index raakt die regel kwijt | De regel komt terug in de index |
+| Geen van beide, in dezelfde hunk | Blijft zoals hij is, alleen in de werkmap | Blijft gestaged |
+
+### Beperkingen
+
+- **Witruimte verborgen, geen staging.** Zolang *Witruimte* wordt genegeerd,
+  laat de diff wijzigingen weg en kan hij niet zeggen welke regels te stagen;
+  de knoppen verdwijnen tot je het uitzet.
+- **Niet-gevolgde bestanden** gaan in hun geheel. Stage eerst het bestand en
+  unstage dan de regels die je niet wilt.
+- **De laatste regel van een bestand zonder afsluitende regeleinde** kan worden
+  geweigerd als je zijn wijziging scheidt van regels die erna zijn toegevoegd —
+  git kan die halve toestand niet als patch beschrijven. Stage ze samen.
+- **Ongedaan maken vraagt de index zoals je hem achterliet.** Heb je sindsdien
+  meer van dezelfde regels gestaged, dan weigert git het terugdraaien in plaats
+  van te gokken, en zegt dat.
 
 ## Verwerpen
 

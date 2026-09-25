@@ -20,10 +20,54 @@ gelassen hast.
 |---|---|
 | **Datei** | Klick auf das ✚ in der Zeile — oder wähle mehrere Zeilen aus und stage sie alle |
 | **Hunk** | Öffne das Diff und nutze den Knopf in der Hunk-Kopfzeile |
-| **Zeile** | Markiere Zeilen im Diff und stage genau diese |
+| **Zeile** | Fahre im Diff über eine geänderte Zeile und klicke ihr **+**, oder markiere mehrere Zeilen und stage diese |
 
 Zeilenweises Staging ist das, was es praktikabel macht, ein
 Debug-`console.log` aus einem Commit herauszuhalten, ohne es vorher zu löschen.
+
+## Einzelne Zeilen stagen
+
+Öffne den Diff einer nicht gestagten Datei, in der vereinheitlichten oder der
+geteilten Ansicht. Fahre über eine hinzugefügte oder entfernte Zeile, und an
+ihrem Anfang erscheint ein kleines grünes **+**: Ein Klick stagt diese Zeile
+und sonst nichts. Der Rest des Hunks bleibt ungestagt, genau so, als hättest du
+den Hunk in `git add -p` von Hand bearbeitet.
+
+Für mehrere Zeilen auf einmal klickst du die Zeilen selbst an, um sie
+auszuwählen — <kbd>⇧</kbd>-Klick nimmt jede geänderte Zeile ab der zuletzt
+geklickten mit — und drückst **N Zeile(n) stagen** in der Leiste über dem Diff.
+
+Es geht auch andersherum. Öffne die **gestagte** Fassung einer Datei, und die
+Bedienelemente werden zu einem roten **−**, **Hunk entstagen** und **N Zeile(n)
+entstagen**: Sie nehmen Zeilen wieder aus dem Index und lassen den
+Arbeitsbaum in Ruhe.
+
+Nimmst du die letzte Änderung von der Seite, die du gerade ansiehst, folgt der
+Diff der Datei auf die andere Seite, statt leer zu bleiben.
+
+Jede Zeile und jeder Hunk, die du so stagst oder entstagst, lässt sich mit
+**Rückgängig** in der Werkzeugleiste zurücknehmen, ein Klick nach dem anderen.
+
+| Du wählst | Stagen | Entstagen |
+|---|---|---|
+| Eine hinzugefügte Zeile | Der Index bekommt diese Zeile | Der Index verliert diese Zeile |
+| Eine entfernte Zeile | Der Index verliert diese Zeile | Die Zeile kommt zurück in den Index |
+| Keine von beiden, im selben Hunk | Bleibt nur im Arbeitsbaum | Bleibt gestagt |
+
+### Grenzen
+
+- **Leerraum ausgeblendet, kein Staging.** Solange *Leerraum* ignoriert wird,
+  lässt der Diff Änderungen weg und kann nicht sagen, welche Zeilen zu stagen
+  sind; die Bedienelemente verschwinden, bis du es ausschaltest.
+- **Nicht versionierte Dateien** werden als Ganzes gestagt. Stage die Datei
+  zuerst und entstage dann die Zeilen, die du nicht willst.
+- **Die letzte Zeile einer Datei ohne abschließenden Zeilenumbruch** kann
+  abgelehnt werden, wenn du ihre Änderung von danach hinzugefügten Zeilen
+  trennst — git kann diesen halben Zustand nicht als Patch beschreiben. Stage
+  beide zusammen.
+- **Rückgängig braucht den Index so, wie du ihn verlassen hast.** Hast du
+  inzwischen mehr von denselben Zeilen gestagt, lehnt git das Rückgängigmachen
+  ab, statt zu raten, und sagt es.
 
 ## Verwerfen
 
