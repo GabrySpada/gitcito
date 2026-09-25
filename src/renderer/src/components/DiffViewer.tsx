@@ -17,7 +17,7 @@ import {
   X
 } from 'lucide-react'
 import { highlightHtml, buildQueryRegExp, type HighlightLayer } from './FileSearchBar'
-import { highlightLine } from '../lib/highlight'
+import { highlightDiffLines, highlightLine } from '../lib/highlight'
 import { maskSecretLine } from '../lib/secrets'
 import { registerRowLookup } from '../lib/reveal'
 import { useT, interp } from '../i18n'
@@ -495,16 +495,24 @@ export function DiffViewer({
   // re-renders every few rows scrolled, and highlighting the same lines again
   // each time would put the cost straight back. A new cache whenever anything
   // that shapes the HTML changes.
+  // Each side is highlighted as a whole run, not line by line, so a block
+  // comment's inner lines are still a comment. Masked text is highlighted per
+  // line: the mask changes what is being parsed.
+  const syntaxHtml = useMemo(
+    () => (maskValues ? [] : highlightDiffLines(viewLines, lang)),
+    [viewLines, lang, maskValues]
+  )
   const htmlCache = useMemo(
     () => new Map<string, string>(),
-    [lang, layers, maskValues, wordDiffOn, wordRanges]
+    [lang, layers, maskValues, wordDiffOn, wordRanges, syntaxHtml]
   )
   const cellHtml = (text: string, idx: number, kind: 'add' | 'del' | 'ctx'): string => {
     const key = `${idx}\0${kind}\0${text}`
     const hit = htmlCache.get(key)
     if (hit !== undefined) return hit
     const t = maskValues ? maskSecretLine(text) : text
-    let html = highlightHtml(highlightLine(t, lang), layers)
+    const block = viewLines[idx]?.text === text ? syntaxHtml[idx] : null
+    let html = highlightHtml(block ?? highlightLine(t, lang), layers)
     const wr = !maskValues && wordDiffOn && kind !== 'ctx' ? wordRanges.get(idx) : undefined
     if (wr) html = markRanges(html, wr, kind === 'add' ? 'word-add' : 'word-del')
     const out = html || '&nbsp;'

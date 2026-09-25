@@ -25,6 +25,15 @@ Außerdem färbt es Spuren **pro Spalte** (*Spurfarben*): Alle Branches, die in
 derselben Spur laufen, teilen sich eine Farbe, statt dass jeder eine eigene
 bekommt.
 
+Kraken ändert auch die Schrift, nicht nur die Farben: Open Sans statt
+Nunito, kräftigerer Text, Spaltenköpfe in Monospace auf einer helleren
+Leiste, größere Ref-Labels und Seitenleisten-Titel sowie eine hellere
+Werkzeugleiste. Dieser Stil gehört zum Theme selbst; ein eigenes Theme, das
+von Kraken kopiert wurde, übernimmt nur die Farben.
+Die Wahl stellt außerdem die Code-Farben auf Kraken — Dark+ aus VS Code, wie
+im Diff von GitKraken — und die Code-Schrift auf 12px, einmalig, wie die
+Graph-Einstellungen.
+
 - **Hell, dunkel oder dem Betriebssystem folgen**, live umgeschaltet.
 - **Eigene Themes** und **KI-generierte** aus einem Prompt.
 - Anpassbare **Code-Schriftgröße**.

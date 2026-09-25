@@ -23,6 +23,15 @@ zo.
 Het kleurt banen ook **per kolom** (*Baankleuren*): alle branches die in dezelfde
 baan lopen delen één kleur, in plaats van dat elk er een eigen krijgt.
 
+Kraken verandert ook de letters, niet alleen de kleuren: Open Sans in plaats
+van Nunito, zwaardere tekst, kolomkoppen in monospace op een lichtere balk,
+grotere ref-labels en zijbalktitels, en een lichtere werkbalk. Die stijl hoort
+bij het thema zelf; een eigen thema dat van Kraken is gekopieerd, neemt alleen
+de kleuren over.
+De keuze zet ook de codekleuren op Kraken — Dark+ van VS Code, dat de diff
+van GitKraken gebruikt — en het codelettertype op 12px, eenmalig, net als de
+grafiekinstellingen.
+
 - **Licht, donker, of het besturingssysteem volgen**, live omgeschakeld.
 - **Eigen thema's**, en door **AI gegenereerde** thema's uit een prompt.
 - Instelbare **lettergrootte voor code**.

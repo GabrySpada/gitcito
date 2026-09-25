@@ -288,6 +288,8 @@ export const APP_THEMES: AppTheme[] = [
     // bg0 is lighter than bg1 on purpose — GitKraken's inputs and title bar sit a
     // step above the graph, not below it.
     graph: { paletteId: 'kraken', labelStyle: 'tinted', laneColors: 'column' },
+    // GitKraken's editor: VS Code's Dark+ / Light+ colours at 12px.
+    code: { themeId: 'kraken', fontSize: 12 },
     light: {
       bg0: '#f4f5f7',
       bg1: '#ffffff',
@@ -314,7 +316,9 @@ export const APP_THEMES: AppTheme[] = [
       border: '#383a42',
       borderSoft: '#2f3037',
       text0: '#e3e4e8',
-      text1: '#b3b5bd',
+      // GitKraken's secondary copy (sidebar rows, detail text) sits close to its
+      // primary; a dimmer text1 is what made sidebars here read washed out.
+      text1: '#c6c8ce',
       text2: '#7d808b',
       accent: '#6e82f5',
       green: '#8fcb6c',
@@ -682,6 +686,46 @@ export const CODE_THEMES: CodeTheme[] = [
     }
   },
   {
+    id: 'kraken',
+    name: 'Kraken',
+    builtin: true,
+    // VS Code's Light+ and Dark+, which GitKraken's diff and editor use.
+    light: {
+      bg: 'transparent',
+      text: '#1f1f1f',
+      comment: '#008000',
+      keyword: '#0000ff',
+      string: '#a31515',
+      number: '#098658',
+      function: '#795e26',
+      title: '#267f99',
+      variable: '#001080',
+      type: '#267f99',
+      builtin: '#267f99',
+      attr: '#001080',
+      tag: '#800000',
+      operator: '#1f1f1f',
+      meta: '#0000ff'
+    },
+    dark: {
+      bg: 'transparent',
+      text: '#d4d4d4',
+      comment: '#6a9955',
+      keyword: '#569cd6',
+      string: '#ce9178',
+      number: '#b5cea8',
+      function: '#dcdcaa',
+      title: '#4ec9b0',
+      variable: '#9cdcfe',
+      type: '#4ec9b0',
+      builtin: '#4ec9b0',
+      attr: '#9cdcfe',
+      tag: '#569cd6',
+      operator: '#d4d4d4',
+      meta: '#569cd6'
+    }
+  },
+  {
     id: 'monokai',
     name: 'Monokai',
     builtin: true,
@@ -790,6 +834,9 @@ export function applyAppTheme(theme: AppTheme, mode: ThemeMode): void {
   const c = theme[resolved]
   r.style.colorScheme = resolved
   r.dataset.mode = resolved
+  // A theme can carry more than colours — Kraken also has its own type and
+  // panel tones — so the stylesheet can scope rules to the active one.
+  r.dataset.theme = theme.id
   r.style.setProperty('--bg-0', c.bg0)
   r.style.setProperty('--bg-1', c.bg1)
   r.style.setProperty('--bg-2', c.bg2)
@@ -811,6 +858,7 @@ export function applyAppTheme(theme: AppTheme, mode: ThemeMode): void {
 export function applyCodeTheme(theme: CodeTheme, mode: ThemeMode, fontSize: number): void {
   const r = document.documentElement
   const c = theme[resolveMode(mode)]
+  r.dataset.codeTheme = theme.id
   r.style.setProperty('--code-bg', c.bg)
   r.style.setProperty('--code-text', c.text)
   r.style.setProperty('--code-comment', c.comment)
@@ -850,12 +898,15 @@ export function findAppTheme(id: string, custom: AppTheme[]): AppTheme {
   return allAppThemes(custom).find((t) => t.id === id) ?? APP_THEMES[0]
 }
 
-/** Settings after picking an app theme: its id, plus the graph settings the theme
- *  was designed around. Applied on the pick only, so a user who then changes the
+/** Settings after picking an app theme: its id, plus the graph and code settings
+ *  the theme was designed around. Applied on the pick only, so a user who then changes the
  *  palette keeps that change until they choose a theme again. */
 export function withAppTheme(s: AppSettings, theme: AppTheme): AppSettings {
-  if (!theme.graph) return { ...s, appThemeId: theme.id }
-  return { ...s, appThemeId: theme.id, graphStyle: { ...(s.graphStyle ?? defaultGraphStyle()), ...theme.graph } }
+  const next: AppSettings = { ...s, appThemeId: theme.id }
+  if (theme.graph) next.graphStyle = { ...(s.graphStyle ?? defaultGraphStyle()), ...theme.graph }
+  if (theme.code?.themeId) next.codeThemeId = theme.code.themeId
+  if (theme.code?.fontSize) next.codeFontSize = theme.code.fontSize
+  return next
 }
 
 export function findCodeTheme(id: string, custom: CodeTheme[]): CodeTheme {

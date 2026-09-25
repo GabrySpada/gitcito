@@ -24,6 +24,15 @@ Colora anche le corsie **per colonna** (*Colori delle corsie*): tutti i branch
 che scorrono nella stessa corsia condividono un colore invece di averne ognuno
 uno proprio.
 
+Kraken cambia anche i caratteri, non solo i colori: Open Sans al posto di
+Nunito, testo più marcato, intestazioni di colonna in monospazio su una barra
+più chiara, etichette dei ref e titoli della barra laterale più grandi e una
+toolbar più chiara. Questo stile appartiene al tema stesso, quindi un tema
+personalizzato copiato da Kraken ne conserva solo i colori.
+La scelta imposta anche i colori del codice su Kraken — il Dark+ di VS Code,
+che usa il diff di GitKraken — e il carattere del codice a 12px, una volta
+sola, come le impostazioni del grafo.
+
 - **Chiaro, scuro o segui il sistema operativo**, con cambio dal vivo.
 - **Temi personalizzati**, e temi **generati dall'AI** a partire da un prompt.
 - **Dimensione del carattere del codice** regolabile.

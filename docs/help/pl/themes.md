@@ -23,6 +23,14 @@ a zmiana zostanie.
 Koloruje też tory **według kolumny** (*Kolory torów*): wszystkie gałęzie biegnące
 tym samym torem dzielą jeden kolor, zamiast dostawać każda własny.
 
+Kraken zmienia też krój pisma, nie tylko kolory: Open Sans zamiast Nunito,
+grubszy tekst, nagłówki kolumn o stałej szerokości na jaśniejszym pasku,
+większe etykiety refów i tytuły paska bocznego oraz jaśniejszy pasek narzędzi.
+Ten styl należy do samego motywu, więc własny motyw skopiowany z Krakena
+przejmuje tylko jego kolory.
+Wybór ustawia też kolory kodu na Kraken — Dark+ z VS Code, którego używa diff
+GitKrakena — i czcionkę kodu na 12px, jednorazowo, jak ustawienia grafu.
+
 - **Jasny, ciemny albo za systemem**, przełączane na żywo.
 - **Własne motywy** oraz te **generowane przez AI** z promptu.
 - Regulowany **rozmiar czcionki kodu**.
