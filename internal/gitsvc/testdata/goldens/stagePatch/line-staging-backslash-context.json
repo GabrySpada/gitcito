@@ -1,0 +1,55 @@
+{
+  "method": "stagePatch",
+  "fixture": "line-staging",
+  "args": [
+    "diff --git a/doc.tex b/doc.tex\nindex 6204f39..cece4fd 100644\n--- a/doc.tex\n+++ b/doc.tex\n@@ -1,3 +1,4 @@\n \\begin{doc}\n body\n+more\n \\end{doc}\n"
+  ],
+  "setup": [
+    {
+      "write": "doc.tex",
+      "content": "\\begin{doc}\nbody\n\\end{doc}\n"
+    },
+    {
+      "git": [
+        "add",
+        "doc.tex"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-qm",
+        "add doc.tex"
+      ]
+    },
+    {
+      "write": "doc.tex",
+      "content": "\\begin{doc}\nbody\nmore\n\\end{doc}\n"
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c513eacc617>",
+      "# branch.head main",
+      "1 .M N... 100644 100644 100644 2a706fca596487315a19fc284908a1898b3b8e75 2a706fca596487315a19fc284908a1898b3b8e75 config.js",
+      "1 M. N... 100644 100644 100644 6204f3934257b69af52cbed02d97fbc5573fadff cece4fd767e71bfff958c42d73768ec5c7168d27 doc.tex"
+    ],
+    "refs": [
+      "<c513eacc617> refs/heads/main"
+    ],
+    "log": [
+      "<c2ab409485d>\u0000\u0000init: config + readme",
+      "<c513eacc617>\u0000<c2ab409485d>\u0000add doc.tex"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md",
+      "100644 2a706fca596487315a19fc284908a1898b3b8e75 0\tconfig.js",
+      "100644 cece4fd767e71bfff958c42d73768ec5c7168d27 0\tdoc.tex"
+    ],
+    "diff": "diff --git a/config.js b/config.js\nindex 2a706fc..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,7 +1,9 @@\n const config = {\n-  host: 'localhost',\n+  host: 'api.example.com',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n+  debug: true,\n+  tls: true,\n }\n module.exports = config\n",
+    "untracked": [],
+    "ops": []
+  }
+}

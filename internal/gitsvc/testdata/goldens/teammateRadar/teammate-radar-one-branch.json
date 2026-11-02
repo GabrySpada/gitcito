@@ -1,0 +1,29 @@
+{
+  "method": "teammateRadar",
+  "fixture": "teammate-radar",
+  "args": [
+    {
+      "maxDays": 100000,
+      "maxBranches": 1
+    }
+  ],
+  "result": {
+    "entries": [
+      {
+        "ref": "origin/feature/api-tokens",
+        "sha": "<c4208c4f6b9:short>",
+        "author": "María García",
+        "time": "<DATE>",
+        "ahead": 1,
+        "filesTouched": 2,
+        "overlap": [
+          "api.ts"
+        ],
+        "risk": "clean",
+        "conflictFiles": []
+      }
+    ],
+    "dirtyCount": 2,
+    "scannedAt": "<DATE>"
+  }
+}

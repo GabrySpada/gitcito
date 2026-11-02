@@ -1,0 +1,67 @@
+{
+  "method": "reflog",
+  "fixture": "reflog-recovery",
+  "args": [],
+  "result": [
+    {
+      "sha": "<c6d186784b3>",
+      "selector": "HEAD@{0}",
+      "action": "reset: moving to HEAD~1",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<cc7cc9dccb0>",
+      "selector": "HEAD@{1}",
+      "action": "commit: WIP: broken refactor",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<c6d186784b3>",
+      "selector": "HEAD@{2}",
+      "action": "commit (amend): add feature flags (newUI + betaSearch)",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<cc4f2e5cf7a>",
+      "selector": "HEAD@{3}",
+      "action": "commit: add feature flag",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<cf528dad2da>",
+      "selector": "HEAD@{4}",
+      "action": "checkout: moving from experiment to main",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<c2824772967>",
+      "selector": "HEAD@{5}",
+      "action": "commit: spike: tokenizer",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<c52662bf253>",
+      "selector": "HEAD@{6}",
+      "action": "commit: spike: parser",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<cf528dad2da>",
+      "selector": "HEAD@{7}",
+      "action": "checkout: moving from main to experiment",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<cf528dad2da>",
+      "selector": "HEAD@{8}",
+      "action": "commit: feat: stable feature",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<c580a44ecd3>",
+      "selector": "HEAD@{9}",
+      "action": "commit (initial): init: app + recovery notes",
+      "date": "<DATE>"
+    }
+  ]
+}

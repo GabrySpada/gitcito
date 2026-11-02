@@ -1,0 +1,51 @@
+{
+  "method": "branches",
+  "fixture": "tags-and-releases",
+  "args": [],
+  "result": {
+    "current": "main",
+    "locals": [
+      {
+        "name": "hotfix/security-patch",
+        "sha": "<cbd24ef6295:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "main",
+        "sha": "<c8f1a6165e4:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": true,
+        "mergedIntoCurrent": true
+      }
+    ],
+    "remotes": [],
+    "tags": [
+      {
+        "name": "v2.0.0",
+        "sha": "<tag:refs/tags/v2.0.0:short>"
+      },
+      {
+        "name": "v1.1.0",
+        "sha": "<tag:refs/tags/v1.1.0:short>"
+      },
+      {
+        "name": "v1.0.2",
+        "sha": "<tag:refs/tags/v1.0.2:short>"
+      },
+      {
+        "name": "v1.0.1",
+        "sha": "<c4af9a65b91:short>"
+      },
+      {
+        "name": "v1.0.0",
+        "sha": "<tag:refs/tags/v1.0.0:short>"
+      }
+    ]
+  }
+}

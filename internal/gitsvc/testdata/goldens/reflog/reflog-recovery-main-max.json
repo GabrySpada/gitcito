@@ -1,0 +1,22 @@
+{
+  "method": "reflog",
+  "fixture": "reflog-recovery",
+  "args": [
+    "main",
+    2
+  ],
+  "result": [
+    {
+      "sha": "<c6d186784b3>",
+      "selector": "main@{0}",
+      "action": "reset: moving to HEAD~1",
+      "date": "<DATE>"
+    },
+    {
+      "sha": "<cc7cc9dccb0>",
+      "selector": "main@{1}",
+      "action": "commit: WIP: broken refactor",
+      "date": "<DATE>"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "method": "open",
+  "fixture": "detached-head",
+  "args": [],
+  "result": {
+    "path": "<REPO>",
+    "name": "detached-head",
+    "current": "HEAD"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "method": "createSnapshot",
+  "fixture": "empty-repo",
+  "args": [
+    "guard"
+  ],
+  "setup": [
+    {
+      "write": "first.txt",
+      "content": "first\n"
+    }
+  ],
+  "result": {
+    "ref": "refs/gitcito/wip/<N>-g",
+    "sha": "<cca01104845>",
+    "time": "<DATE>",
+    "files": 4,
+    "kind": "guard"
+  },
+  "state": {
+    "status": [
+      "# branch.oid (initial)",
+      "# branch.head main",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 2752eb92e5922f0f1d60494d1793a54775e0d830 .gitignore",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 8d92e7b6fecb7c29ce328951cc32fb8e531d73bf README.md",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 19dfa14dabf45a25c64aa835eb891ac7e163178e main.js",
+      "? first.txt"
+    ],
+    "refs": [
+      "<cca01104845> refs/gitcito/wip/<N>-g"
+    ],
+    "log": [
+      "<cca01104845>\u0000\u0000gitcito-wip <ISO> (guard)"
+    ],
+    "stash": [],
+    "index": [
+      "100644 2752eb92e5922f0f1d60494d1793a54775e0d830 0\t.gitignore",
+      "100644 8d92e7b6fecb7c29ce328951cc32fb8e531d73bf 0\tREADME.md",
+      "100644 19dfa14dabf45a25c64aa835eb891ac7e163178e 0\tmain.js"
+    ],
+    "diff": "",
+    "untracked": [
+      "9c59e24b8393179a5d712de4f990178df5734d99 first.txt"
+    ],
+    "ops": []
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "method": "status",
+  "fixture": "untracked-mess",
+  "args": [],
+  "result": {
+    "current": "main",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [],
+    "unstaged": [
+      {
+        "path": "debug-output.txt",
+        "status": "?",
+        "untracked": true
+      },
+      {
+        "path": "experiment/",
+        "status": "?",
+        "untracked": true
+      },
+      {
+        "path": "notes.md",
+        "status": "?",
+        "untracked": true
+      },
+      {
+        "path": "tmp/cache/blob.txt",
+        "status": "?",
+        "untracked": true
+      },
+      {
+        "path": "tmp/scratch.txt",
+        "status": "?",
+        "untracked": true
+      }
+    ],
+    "conflicted": []
+  }
+}

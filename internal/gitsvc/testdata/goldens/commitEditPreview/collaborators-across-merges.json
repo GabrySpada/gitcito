@@ -1,0 +1,75 @@
+{
+  "method": "commitEditPreview",
+  "fixture": "collaborators",
+  "args": [
+    "{rev:main~3}",
+    {},
+    "root, reworded"
+  ],
+  "result": {
+    "newTip": "<c66ff8a6f8c>",
+    "steps": [
+      {
+        "sha": "<cc124f534b5>",
+        "subject": "Merge feat/ui into main (Dave's login UI)",
+        "status": "clean",
+        "files": [],
+        "merge": true
+      },
+      {
+        "sha": "<c81c118d17f>",
+        "subject": "fix: add logout to auth module",
+        "status": "clean",
+        "files": []
+      },
+      {
+        "sha": "<c63f5420efc>",
+        "subject": "docs: credit the whole squad for v1.1",
+        "status": "clean",
+        "files": []
+      }
+    ]
+  },
+  "state": {
+    "status": [
+      "# branch.oid <c63f5420efc>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<c63f5420efc> refs/heads/chore/cleanup",
+      "<c63f5420efc> refs/heads/experiment/perf",
+      "<c3b4e50a9a9> refs/heads/feat/api",
+      "<c63ad1dc9ef> refs/heads/feat/ui",
+      "<c63f5420efc> refs/heads/hotfix/1.1.1",
+      "<c63f5420efc> refs/heads/main",
+      "<c63f5420efc> refs/heads/release/1.1",
+      "<tag:refs/tags/checkpoint-2026> refs/tags/checkpoint-2026",
+      "<tag:refs/tags/v1.0.0> refs/tags/v1.0.0",
+      "<c63f5420efc> refs/tags/v1.1.0",
+      "<c63f5420efc> refs/tags/v1.1.0-rc1"
+    ],
+    "log": [
+      "<c3b4e50a9a9>\u0000<c6c7d3de666>\u0000feat: add list endpoint",
+      "<c42d5687ac6>\u0000<c9245fb02f1>\u0000feat: add basic auth module",
+      "<c63ad1dc9ef>\u0000<c6ab8ed0731>\u0000feat: add dashboard placeholder",
+      "<c63f5420efc>\u0000<c81c118d17f>\u0000docs: credit the whole squad for v1.1",
+      "<c6ab8ed0731>\u0000<c42d5687ac6>\u0000feat: add login UI",
+      "<c6c7d3de666>\u0000<c42d5687ac6>\u0000feat: add API request handler",
+      "<c81c118d17f>\u0000<cc124f534b5>\u0000fix: add logout to auth module",
+      "<c9245fb02f1>\u0000\u0000feat: initial project scaffold",
+      "<c942175d1d8>\u0000<c42d5687ac6> <c3b4e50a9a9>\u0000Merge feat/api into main (Carol's API layer)",
+      "<cc124f534b5>\u0000<c942175d1d8> <c63ad1dc9ef>\u0000Merge feat/ui into main (Dave's login UI)"
+    ],
+    "stash": [],
+    "index": [
+      "100644 36ffd1a36ae86db8d28484808fb671e9c2eaec60 0\tREADME.md",
+      "100644 152b9fbd4d1eda5b24dc347621bbc565bf07398b 0\tapi.js",
+      "100644 db717e4aa6558dde9b11da43159b99424fd485d0 0\tapp.js",
+      "100644 ddd87f34b034fa41f5a92c78f63790ef21afc38f 0\tauth.js",
+      "100644 d7bb0e00132e6ba0f5a11148e4f392ec4d101cf4 0\tui.html"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

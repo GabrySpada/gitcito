@@ -1,0 +1,190 @@
+{
+  "method": "log",
+  "fixture": "dated-history",
+  "args": [],
+  "result": [
+    {
+      "hash": "<c6eed7b5118>",
+      "parents": [
+        "<c30a76c151e>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "HEAD -> main"
+      ],
+      "subject": "feat: expose a ready flag",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c30a76c151e>",
+      "parents": [
+        "<c080d74c8ff>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "chore: add a trace switch",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c080d74c8ff>",
+      "parents": [
+        "<c3b84130276>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "refactor: read the clock once",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c3b84130276>",
+      "parents": [
+        "<c117e29792c>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "fix: pin the timezone",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c117e29792c>",
+      "parents": [
+        "<c11550e9e0f>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "feat: carry a locale",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c11550e9e0f>",
+      "parents": [
+        "<c912677afc3>",
+        "<c30553a4d13>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "Merge branch 'feat/audit-log'",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c30553a4d13>",
+      "parents": [
+        "<c44d52d9d8f>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "feat/audit-log"
+      ],
+      "subject": "feat: send audit lines to stdout",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c44d52d9d8f>",
+      "parents": [
+        "<c912677afc3>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "feat: record an audit line",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c912677afc3>",
+      "parents": [
+        "<c11c37de7b4>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "chore: add a debug switch",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c11c37de7b4>",
+      "parents": [
+        "<c0017b424e8>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "perf: cache resolved entries",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c0017b424e8>",
+      "parents": [
+        "<c3f1aa6bcf5>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "feat: time requests out",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c3f1aa6bcf5>",
+      "parents": [
+        "<cc8a093ef80>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "feat: retry failed requests",
+      "coAuthors": []
+    },
+    {
+      "hash": "<cc8a093ef80>",
+      "parents": [
+        "<c7e39fac5e4>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "feat: pin the API version",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c7e39fac5e4>",
+      "parents": [
+        "<ce101cbca84>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "feat: name the package",
+      "coAuthors": []
+    },
+    {
+      "hash": "<ce101cbca84>",
+      "parents": [],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "chore: initial commit",
+      "coAuthors": []
+    }
+  ]
+}

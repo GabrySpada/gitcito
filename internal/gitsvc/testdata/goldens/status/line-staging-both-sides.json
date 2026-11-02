@@ -1,0 +1,52 @@
+{
+  "method": "status",
+  "fixture": "line-staging",
+  "args": [],
+  "setup": [
+    {
+      "git": [
+        "add",
+        "config.js"
+      ]
+    },
+    {
+      "write": "config.js",
+      "content": "module.exports = {}\n"
+    },
+    {
+      "write": "new file.txt",
+      "content": "spaces in the name\n"
+    },
+    {
+      "rm": "README.md"
+    }
+  ],
+  "result": {
+    "current": "main",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [
+      {
+        "path": "config.js",
+        "status": "M"
+      }
+    ],
+    "unstaged": [
+      {
+        "path": "README.md",
+        "status": "D"
+      },
+      {
+        "path": "config.js",
+        "status": "M"
+      },
+      {
+        "path": "new file.txt",
+        "status": "?",
+        "untracked": true
+      }
+    ],
+    "conflicted": []
+  }
+}

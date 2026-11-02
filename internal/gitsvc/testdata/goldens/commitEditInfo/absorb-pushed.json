@@ -1,0 +1,17 @@
+{
+  "method": "commitEditInfo",
+  "fixture": "absorb",
+  "args": [
+    "{rev:HEAD~3}"
+  ],
+  "result": {
+    "linear": true,
+    "ancestor": true,
+    "merges": 0,
+    "descendants": 3,
+    "pushed": true,
+    "message": "init: readme",
+    "authorName": "Playground",
+    "authorDate": "<DATE>"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "method": "conflictContext",
+  "fixture": "merge-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "kind": "merge",
+    "source": "feature",
+    "target": "main",
+    "ours": {
+      "sha": "<c9a3d2224d4:short>",
+      "subject": "main: shout the greetings",
+      "branch": "main",
+      "author": "Playground",
+      "date": "<DATE>"
+    },
+    "theirs": {
+      "sha": "<cbf6157a10d:short>",
+      "subject": "feature: translate to Spanish",
+      "branch": "feature",
+      "author": "Playground",
+      "date": "<DATE>"
+    }
+  }
+}

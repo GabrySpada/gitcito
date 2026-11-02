@@ -1,0 +1,10 @@
+{
+  "method": "teammateRadar",
+  "fixture": "stash-picking",
+  "args": [],
+  "result": {
+    "entries": [],
+    "dirtyCount": 0,
+    "scannedAt": "<DATE>"
+  }
+}

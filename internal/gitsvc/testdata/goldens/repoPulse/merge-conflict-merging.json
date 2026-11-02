@@ -1,0 +1,30 @@
+{
+  "method": "repoPulse",
+  "fixture": "merge-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "path": "<REPO>",
+    "name": "<REPONAME>",
+    "branch": "main",
+    "upstream": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": 1,
+    "unstaged": 0,
+    "untracked": 0,
+    "conflicted": 5,
+    "stashes": 0,
+    "lastCommitAt": "<DATE>",
+    "operation": "merge",
+    "activity": "<ACTIVITY:14>",
+    "error": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "method": "conflictVersions",
+  "fixture": "merge-conflict",
+  "args": [
+    "greeting.txt"
+  ],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "content": "<<<<<<< HEAD\nHELLO WORLD (from main)\nThis line stays the same.\nGOODBYE WORLD (from main)\n=======\nHola mundo (from feature)\nThis line stays the same.\nAdios mundo (from feature)\n>>>>>>> feature\n",
+    "base": "Hello world\nThis line stays the same.\nGoodbye world\n",
+    "ours": "HELLO WORLD (from main)\nThis line stays the same.\nGOODBYE WORLD (from main)\n",
+    "theirs": "Hola mundo (from feature)\nThis line stays the same.\nAdios mundo (from feature)\n"
+  }
+}

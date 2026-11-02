@@ -1,0 +1,62 @@
+{
+  "method": "commitEditApply",
+  "fixture": "interactive-rebase",
+  "args": [
+    "{rev:HEAD~3}",
+    {},
+    "reworded with local edits"
+  ],
+  "setup": [
+    {
+      "write": "index.ts",
+      "content": "local edit\n"
+    },
+    {
+      "write": "scratch.txt",
+      "content": "untracked\n"
+    }
+  ],
+  "result": {
+    "oldHead": "<c87ca59e551>",
+    "newTip": "<cab1217a1c9>",
+    "rewritten": 3
+  },
+  "state": {
+    "status": [
+      "# branch.oid <cab1217a1c9>",
+      "# branch.head messy-feature",
+      "1 .M N... 100644 100644 100644 5a52d1123d99969e9b0560289646d078f871daeb 5a52d1123d99969e9b0560289646d078f871daeb index.ts",
+      "? scratch.txt"
+    ],
+    "refs": [
+      "<c2c615d3175> refs/gitcito/wip/<N>-g",
+      "<c8eac89fbc6> refs/heads/main",
+      "<cab1217a1c9> refs/heads/messy-feature"
+    ],
+    "log": [
+      "<c2c615d3175>\u0000<c87ca59e551>\u0000gitcito-wip <ISO> (guard)",
+      "<c34939bbaa1>\u0000<c94a8c5f96f>\u0000WIP session module",
+      "<c3b6b583e46>\u0000<c6762edd5be>\u0000WIP session module",
+      "<c6762edd5be>\u0000<caca1d11e4a>\u0000fixup! add logout + fix login path",
+      "<c76a2741076>\u0000<cf8fb4d3acd>\u0000reworded with local edits",
+      "<c87ca59e551>\u0000<c3b6b583e46>\u0000finish session module — getSession + clearToken",
+      "<c8eac89fbc6>\u0000\u0000initial commit",
+      "<c94a8c5f96f>\u0000<c76a2741076>\u0000fixup! add logout + fix login path",
+      "<cab1217a1c9>\u0000<c34939bbaa1>\u0000finish session module — getSession + clearToken",
+      "<caca1d11e4a>\u0000<cf8fb4d3acd>\u0000add logout + fix login path",
+      "<cf37dcfa9d6>\u0000<c8eac89fbc6>\u0000add login function",
+      "<cf8fb4d3acd>\u0000<cf37dcfa9d6>\u0000WIP"
+    ],
+    "stash": [],
+    "index": [
+      "100644 e2f0c2bb3914c602dbff8b30347634bf8c6a0dbe 0\tauth.ts",
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tindex.ts",
+      "100644 6250972daa55c6ed76dd7a04b8f48b1314b13e5b 0\tsession.ts"
+    ],
+    "diff": "diff --git a/index.ts b/index.ts\nindex 5a52d11..9e44b3e 100644\n--- a/index.ts\n+++ b/index.ts\n@@ -1 +1 @@\n-export const VERSION = '1.0.0'\n+local edit\n",
+    "untracked": [
+      "5a72eb2edc5d0da32ff615d210d6fa90c31ed940 scratch.txt"
+    ],
+    "ops": []
+  }
+}

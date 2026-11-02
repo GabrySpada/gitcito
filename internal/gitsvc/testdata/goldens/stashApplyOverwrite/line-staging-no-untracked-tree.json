@@ -1,0 +1,41 @@
+{
+  "method": "stashApplyOverwrite",
+  "fixture": "line-staging",
+  "args": [],
+  "setup": [
+    {
+      "git": [
+        "stash",
+        "push",
+        "-q"
+      ]
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c2ab409485d>",
+      "# branch.head main",
+      "1 .M N... 100644 100644 100644 2a706fca596487315a19fc284908a1898b3b8e75 2a706fca596487315a19fc284908a1898b3b8e75 config.js"
+    ],
+    "refs": [
+      "<c2ab409485d> refs/heads/main",
+      "<c4c6f94381a> refs/stash"
+    ],
+    "log": [
+      "<c2ab409485d>\u0000\u0000init: config + readme",
+      "<c4c6f94381a>\u0000<c2ab409485d> <c4fefa5f23a>\u0000WIP on main: <c2ab409485d:short> init: config + readme",
+      "<c4fefa5f23a>\u0000<c2ab409485d>\u0000index on main: <c2ab409485d:short> init: config + readme"
+    ],
+    "stash": [
+      "<c4c6f94381a> WIP on main: <c2ab409485d:short> init: config + readme"
+    ],
+    "index": [
+      "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md",
+      "100644 2a706fca596487315a19fc284908a1898b3b8e75 0\tconfig.js"
+    ],
+    "diff": "diff --git a/config.js b/config.js\nindex 2a706fc..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,7 +1,9 @@\n const config = {\n-  host: 'localhost',\n+  host: 'api.example.com',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n+  debug: true,\n+  tls: true,\n }\n module.exports = config\n",
+    "untracked": [],
+    "ops": []
+  }
+}

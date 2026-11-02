@@ -1,0 +1,37 @@
+{
+  "method": "stashApplyFiles",
+  "fixture": "stash-picking",
+  "args": [
+    "{rev:stash@{0}}",
+    [],
+    []
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <ce609af1d51>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<ce609af1d51> refs/heads/main",
+      "<cedbe05dd11> refs/stash"
+    ],
+    "log": [
+      "<c0ccf6cc792>\u0000\u0000untracked files on main: <ce609af1d51:short> initial commit",
+      "<cc53112ade5>\u0000<ce609af1d51>\u0000index on main: <ce609af1d51:short> initial commit",
+      "<ce609af1d51>\u0000\u0000initial commit",
+      "<cedbe05dd11>\u0000<ce609af1d51> <cc53112ade5> <c0ccf6cc792>\u0000On main: WIP: alpha+beta+gamma edits and a new untracked file"
+    ],
+    "stash": [
+      "<cedbe05dd11> On main: WIP: alpha+beta+gamma edits and a new untracked file"
+    ],
+    "index": [
+      "100644 d075eae27ad577ffbe2575a096bdffe45022317b 0\talpha.txt",
+      "100644 a77d4b8eacb32787386d8fabd77b7f8095352a85 0\tbeta.txt",
+      "100644 89b7fc4a92a4008d42286dc15666588523b47867 0\tsrc/gamma.txt"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

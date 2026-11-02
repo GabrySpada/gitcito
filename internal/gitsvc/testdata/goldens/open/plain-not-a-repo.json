@@ -1,0 +1,6 @@
+{
+  "method": "open",
+  "fixture": "@plain",
+  "args": [],
+  "error": "Not a git repository: <REPO>"
+}

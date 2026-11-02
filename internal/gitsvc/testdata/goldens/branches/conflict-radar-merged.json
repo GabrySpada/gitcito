@@ -1,0 +1,75 @@
+{
+  "method": "branches",
+  "fixture": "conflict-radar",
+  "args": [],
+  "result": {
+    "current": "main",
+    "locals": [
+      {
+        "name": "chore/merged",
+        "sha": "<cf9e1a9cf65:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": true
+      },
+      {
+        "name": "feature/big-refactor",
+        "sha": "<c6c182b4caa:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "feature/config-bump",
+        "sha": "<cb31e9f37c4:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "feature/docs",
+        "sha": "<cb524eeaf21:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "feature/rename-api",
+        "sha": "<cf07eaa01a3:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "legacy/import",
+        "sha": "<cef233d16b2:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "main",
+        "sha": "<c2fd33fcd02:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": true,
+        "mergedIntoCurrent": true
+      }
+    ],
+    "remotes": [],
+    "tags": []
+  }
+}

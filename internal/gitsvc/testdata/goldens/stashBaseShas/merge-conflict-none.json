@@ -1,0 +1,31 @@
+{
+  "method": "stashBaseShas",
+  "fixture": "merge-conflict",
+  "args": [],
+  "result": [],
+  "state": {
+    "status": [
+      "# branch.oid <c9a3d2224d4>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<cbf6157a10d> refs/heads/feature",
+      "<c9a3d2224d4> refs/heads/main"
+    ],
+    "log": [
+      "<c8340b98d43>\u0000\u0000initial commit",
+      "<c9a3d2224d4>\u0000<c8340b98d43>\u0000main: shout the greetings",
+      "<cbf6157a10d>\u0000<c8340b98d43>\u0000feature: translate to Spanish"
+    ],
+    "stash": [],
+    "index": [
+      "100644 4f758faea993cfaaabb9e48a8aa613abd7e0db1c 0\tapp.js",
+      "100644 0629d62530841527f2395dabc9c7081af6a7d7db 0\tbig-log.txt",
+      "100644 1e94c3742727a15984b7271b98959721a26fbdd5 0\tgreeting.txt",
+      "100644 b5c5c9fc212ddaa64facb687fa52487bce42696a 0\trelease-notes.md"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

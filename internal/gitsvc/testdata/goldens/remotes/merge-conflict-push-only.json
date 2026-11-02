@@ -1,0 +1,30 @@
+{
+  "method": "remotes",
+  "fixture": "merge-conflict",
+  "args": [],
+  "setup": [
+    {
+      "git": [
+        "remote",
+        "add",
+        "mirror",
+        "https://example.com/a.git"
+      ]
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "--push",
+        "mirror",
+        "https://example.com/push.git"
+      ]
+    }
+  ],
+  "result": [
+    {
+      "name": "mirror",
+      "url": "https://example.com/a.git"
+    }
+  ]
+}

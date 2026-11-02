@@ -1,0 +1,47 @@
+{
+  "method": "stashes",
+  "fixture": "line-staging",
+  "args": [],
+  "setup": [
+    {
+      "git": [
+        "stash",
+        "push",
+        "-q"
+      ]
+    },
+    {
+      "write": "README.md",
+      "content": "changed\n"
+    },
+    {
+      "git": [
+        "stash",
+        "push",
+        "-q",
+        "-m",
+        "second, with a message"
+      ]
+    }
+  ],
+  "result": [
+    {
+      "index": 0,
+      "sha": "<cb717c9fa4f>",
+      "parentSha": "<c2ab409485d>",
+      "untrackedSha": null,
+      "date": "<DATE>",
+      "message": "second, with a message",
+      "branch": "main"
+    },
+    {
+      "index": 1,
+      "sha": "<c4c6f94381a>",
+      "parentSha": "<c2ab409485d>",
+      "untrackedSha": null,
+      "date": "<DATE>",
+      "message": "<c2ab409485d:short> init: config + readme",
+      "branch": "main"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "method": "conflictVersions",
+  "fixture": "merge-conflict",
+  "args": [
+    "nope.txt"
+  ],
+  "result": {
+    "content": "",
+    "base": null,
+    "ours": null,
+    "theirs": null
+  }
+}

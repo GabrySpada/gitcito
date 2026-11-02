@@ -1,0 +1,27 @@
+{
+  "method": "status",
+  "fixture": "empty-repo",
+  "args": [],
+  "result": {
+    "current": "main",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [
+      {
+        "path": ".gitignore",
+        "status": "A"
+      },
+      {
+        "path": "README.md",
+        "status": "A"
+      },
+      {
+        "path": "main.js",
+        "status": "A"
+      }
+    ],
+    "unstaged": [],
+    "conflicted": []
+  }
+}

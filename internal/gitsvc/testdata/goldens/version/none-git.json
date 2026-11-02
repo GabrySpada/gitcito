@@ -1,0 +1,6 @@
+{
+  "method": "version",
+  "fixture": "@none",
+  "args": [],
+  "result": "<GITVERSION>"
+}

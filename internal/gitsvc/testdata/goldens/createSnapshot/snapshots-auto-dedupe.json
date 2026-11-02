@@ -1,0 +1,63 @@
+{
+  "method": "createSnapshot",
+  "fixture": "snapshots",
+  "args": [
+    "auto"
+  ],
+  "setup": [
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "stash",
+        "create"
+      ]
+    }
+  ],
+  "result": {
+    "ref": "refs/gitcito/wip/<N>-a",
+    "sha": "<c1356e75355>",
+    "time": "<DATE>",
+    "files": 3,
+    "kind": "auto"
+  },
+  "state": {
+    "status": [
+      "# branch.oid <c21b96a7c48>",
+      "# branch.head main",
+      "1 M. N... 100644 100644 100644 9d3f03589d03ae94d3912f8b967e38ba9e1ce331 d03ab07848a98880780019073add124b8f93aa18 draft.md",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 6cc618238b63754edb0609d66d71fa93db4ff93a notes.md",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 5922e0855c152c20cb061121f24b8f5dc49b8f1f scratch.txt"
+    ],
+    "refs": [
+      "<ca1b99f2a40> refs/gitcito/wip/<N>-m",
+      "<c8ff4f90a5f> refs/gitcito/wip/<N>-a",
+      "<c889587ee75> refs/gitcito/wip/<N>-g",
+      "<c1356e75355> refs/gitcito/wip/<N>-a",
+      "<c21b96a7c48> refs/heads/main"
+    ],
+    "log": [
+      "<c1356e75355>\u0000<c21b96a7c48>\u0000gitcito-wip <ISO> (auto)",
+      "<c21b96a7c48>\u0000\u0000draft: initial content",
+      "<c889587ee75>\u0000<c21b96a7c48> <cc21dce131e>\u0000On main: gitcito-wip (guard)",
+      "<c8ff4f90a5f>\u0000<c21b96a7c48> <cc21dce131e>\u0000On main: gitcito-wip (auto)",
+      "<ca1b99f2a40>\u0000<c21b96a7c48> <ca67440dc68>\u0000On main: gitcito-wip manual",
+      "<ca67440dc68>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d03ab07848a98880780019073add124b8f93aa18 0\tdraft.md",
+      "100644 6cc618238b63754edb0609d66d71fa93db4ff93a 0\tnotes.md",
+      "100644 5922e0855c152c20cb061121f24b8f5dc49b8f1f 0\tscratch.txt"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

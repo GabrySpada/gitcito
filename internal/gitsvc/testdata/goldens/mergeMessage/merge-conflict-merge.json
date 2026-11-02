@@ -1,0 +1,14 @@
+{
+  "method": "mergeMessage",
+  "fixture": "merge-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": "Merge branch 'feature'"
+}

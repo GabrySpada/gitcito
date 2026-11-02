@@ -1,0 +1,31 @@
+{
+  "method": "refTips",
+  "fixture": "reflog-recovery",
+  "args": [
+    "HEAD",
+    3
+  ],
+  "result": [
+    {
+      "sha": "<c6d186784b3>",
+      "selector": "HEAD@{0}",
+      "reason": "reset: moving to HEAD~1",
+      "date": "<DATE>",
+      "subject": "add feature flags (newUI + betaSearch)"
+    },
+    {
+      "sha": "<cc7cc9dccb0>",
+      "selector": "HEAD@{1}",
+      "reason": "commit: WIP: broken refactor",
+      "date": "<DATE>",
+      "subject": "WIP: broken refactor"
+    },
+    {
+      "sha": "<c6d186784b3>",
+      "selector": "HEAD@{2}",
+      "reason": "commit (amend): add feature flags (newUI + betaSearch)",
+      "date": "<DATE>",
+      "subject": "add feature flags (newUI + betaSearch)"
+    }
+  ]
+}

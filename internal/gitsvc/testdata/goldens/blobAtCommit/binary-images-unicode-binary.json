@@ -1,0 +1,9 @@
+{
+  "method": "blobAtCommit",
+  "fixture": "binary-images-unicode",
+  "args": [
+    "{rev:HEAD}",
+    "logo.png"
+  ],
+  "error": "fatal: path 'logo.png' does not exist in '<c4ac5e1f9c2>'"
+}

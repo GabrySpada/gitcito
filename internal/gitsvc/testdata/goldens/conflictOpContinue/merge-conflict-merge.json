@@ -1,0 +1,58 @@
+{
+  "method": "conflictOpContinue",
+  "fixture": "merge-conflict",
+  "args": [
+    "merge"
+  ],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    },
+    {
+      "gitTry": [
+        "checkout",
+        "--ours",
+        "--",
+        "."
+      ]
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c91408048f6>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<cbf6157a10d> refs/heads/feature",
+      "<c91408048f6> refs/heads/main"
+    ],
+    "log": [
+      "<c8340b98d43>\u0000\u0000initial commit",
+      "<c91408048f6>\u0000<c9a3d2224d4> <cbf6157a10d>\u0000Merge branch 'feature'",
+      "<c9a3d2224d4>\u0000<c8340b98d43>\u0000main: shout the greetings",
+      "<cbf6157a10d>\u0000<c8340b98d43>\u0000feature: translate to Spanish"
+    ],
+    "stash": [],
+    "index": [
+      "100644 ebb352539cf60c288f0553914cefea6793ccf8c3 0\tapp.js",
+      "100644 86d0aebf7ea6d7880230467eabfb83ad3cc9fbf2 0\tbig-log.txt",
+      "100644 1effe220d72b766179901f9d49847388420fdada 0\tfeature-notes.md",
+      "100644 68cf1e8250cef5f439a3e20c4a43718dc51e60ff 0\tgreeting.txt",
+      "100644 1c9a758cda5e8801bcbaef19829147204350deaf 0\trelease-notes.md",
+      "100644 d7bf55d434e782ce1f0c6ca60acafda3181ea4ed 0\tunits_service.dart"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

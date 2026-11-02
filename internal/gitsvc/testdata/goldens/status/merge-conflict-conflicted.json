@@ -1,0 +1,48 @@
+{
+  "method": "status",
+  "fixture": "merge-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "current": "main",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [
+      {
+        "path": "feature-notes.md",
+        "status": "A"
+      }
+    ],
+    "unstaged": [],
+    "conflicted": [
+      {
+        "path": "app.js",
+        "status": "U"
+      },
+      {
+        "path": "big-log.txt",
+        "status": "U"
+      },
+      {
+        "path": "greeting.txt",
+        "status": "U"
+      },
+      {
+        "path": "release-notes.md",
+        "status": "U"
+      },
+      {
+        "path": "units_service.dart",
+        "status": "U"
+      }
+    ]
+  }
+}

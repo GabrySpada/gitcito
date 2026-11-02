@@ -1,0 +1,26 @@
+{
+  "method": "unstageAll",
+  "fixture": "empty-repo",
+  "args": [],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid (initial)",
+      "# branch.head main",
+      "? .gitignore",
+      "? README.md",
+      "? main.js"
+    ],
+    "refs": [],
+    "log": [],
+    "stash": [],
+    "index": [],
+    "diff": "",
+    "untracked": [
+      "2752eb92e5922f0f1d60494d1793a54775e0d830 .gitignore",
+      "8d92e7b6fecb7c29ce328951cc32fb8e531d73bf README.md",
+      "19dfa14dabf45a25c64aa835eb891ac7e163178e main.js"
+    ],
+    "ops": []
+  }
+}

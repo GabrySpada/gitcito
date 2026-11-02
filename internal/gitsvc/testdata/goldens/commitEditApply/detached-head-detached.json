@@ -1,0 +1,35 @@
+{
+  "method": "commitEditApply",
+  "fixture": "detached-head",
+  "args": [
+    "{rev:HEAD~1}",
+    {},
+    "x"
+  ],
+  "error": "HEAD is detached — check out a branch first.",
+  "state": {
+    "status": [
+      "# branch.oid <c1166e94504>",
+      "# branch.head (detached)"
+    ],
+    "refs": [
+      "<c51b5d32100> refs/heads/main",
+      "<c1358c242da> refs/heads/stable"
+    ],
+    "log": [
+      "<c0e176bf1b9>\u0000\u0000chore: bump to version 1 (build 100)",
+      "<c1166e94504>\u0000<cb7f3ed7939>\u0000chore: bump to version 3 (build 300)",
+      "<c1358c242da>\u0000<c1166e94504>\u0000chore: bump to version 4 (build 400)",
+      "<c51b5d32100>\u0000<c1358c242da>\u0000chore: bump to version 5 (build 500)",
+      "<cb7f3ed7939>\u0000<c0e176bf1b9>\u0000chore: bump to version 2 (build 200)"
+    ],
+    "stash": [],
+    "index": [
+      "100644 300ba93e6710283ac8909db2fbf09a14ce96eba3 0\thistory.log",
+      "100644 e0772693c64b8ca88ca1e9095e088e077975b352 0\tversion.txt"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

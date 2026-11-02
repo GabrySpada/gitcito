@@ -1,0 +1,55 @@
+{
+  "method": "stagePatch",
+  "fixture": "line-staging",
+  "args": [
+    "diff --git a/eof.txt b/eof.txt\nindex 54d55bf..9691802 100644\n--- a/eof.txt\n+++ b/eof.txt\n@@ -1,3 +1,4 @@\n one\n two\n-three\n\\ No newline at end of file\n+three\n+four\n\\ No newline at end of file\n"
+  ],
+  "setup": [
+    {
+      "write": "eof.txt",
+      "content": "one\ntwo\nthree"
+    },
+    {
+      "git": [
+        "add",
+        "eof.txt"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-qm",
+        "add eof.txt"
+      ]
+    },
+    {
+      "write": "eof.txt",
+      "content": "one\ninserted\ntwo\nthree\nfour"
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c674f6bef70>",
+      "# branch.head main",
+      "1 .M N... 100644 100644 100644 2a706fca596487315a19fc284908a1898b3b8e75 2a706fca596487315a19fc284908a1898b3b8e75 config.js",
+      "1 MM N... 100644 100644 100644 54d55bf0bb50b503792f391b6f0158bd6145073e c40a3bdda3b7b7eb43e79cdbfee4f7da817d3905 eof.txt"
+    ],
+    "refs": [
+      "<c674f6bef70> refs/heads/main"
+    ],
+    "log": [
+      "<c2ab409485d>\u0000\u0000init: config + readme",
+      "<c674f6bef70>\u0000<c2ab409485d>\u0000add eof.txt"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md",
+      "100644 2a706fca596487315a19fc284908a1898b3b8e75 0\tconfig.js",
+      "100644 c40a3bdda3b7b7eb43e79cdbfee4f7da817d3905 0\teof.txt"
+    ],
+    "diff": "diff --git a/config.js b/config.js\nindex 2a706fc..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,7 +1,9 @@\n const config = {\n-  host: 'localhost',\n+  host: 'api.example.com',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n+  debug: true,\n+  tls: true,\n }\n module.exports = config\ndiff --git a/eof.txt b/eof.txt\nindex c40a3bd..9691802 100644\n--- a/eof.txt\n+++ b/eof.txt\n@@ -1,4 +1,5 @@\n one\n+inserted\n two\n three\n four\n\\ No newline at end of file\n",
+    "untracked": [],
+    "ops": []
+  }
+}

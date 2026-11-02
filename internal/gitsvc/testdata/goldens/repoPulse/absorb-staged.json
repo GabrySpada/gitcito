@@ -1,0 +1,30 @@
+{
+  "method": "repoPulse",
+  "fixture": "absorb",
+  "args": [],
+  "setup": [
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "result": {
+    "path": "<REPO>",
+    "name": "<REPONAME>",
+    "branch": "main",
+    "upstream": "origin/main",
+    "ahead": 3,
+    "behind": 0,
+    "staged": 3,
+    "unstaged": 0,
+    "untracked": 0,
+    "conflicted": 0,
+    "stashes": 0,
+    "lastCommitAt": "<DATE>",
+    "operation": null,
+    "activity": "<ACTIVITY:14>",
+    "error": null
+  }
+}

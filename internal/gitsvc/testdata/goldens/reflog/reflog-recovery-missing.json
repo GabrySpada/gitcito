@@ -1,0 +1,8 @@
+{
+  "method": "reflog",
+  "fixture": "reflog-recovery",
+  "args": [
+    "no-such-ref"
+  ],
+  "result": []
+}

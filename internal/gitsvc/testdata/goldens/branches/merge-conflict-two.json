@@ -1,0 +1,30 @@
+{
+  "method": "branches",
+  "fixture": "merge-conflict",
+  "args": [],
+  "result": {
+    "current": "main",
+    "locals": [
+      {
+        "name": "feature",
+        "sha": "<cbf6157a10d:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "main",
+        "sha": "<c9a3d2224d4:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": true,
+        "mergedIntoCurrent": true
+      }
+    ],
+    "remotes": [],
+    "tags": []
+  }
+}

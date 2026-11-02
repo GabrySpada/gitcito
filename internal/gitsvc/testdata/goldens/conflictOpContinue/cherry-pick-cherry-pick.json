@@ -1,0 +1,55 @@
+{
+  "method": "conflictOpContinue",
+  "fixture": "cherry-pick",
+  "args": [
+    "cherry-pick"
+  ],
+  "setup": [
+    {
+      "gitTry": [
+        "cherry-pick",
+        "feature"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "--theirs",
+        "--",
+        "."
+      ]
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c68c2d1fe58>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<c27c85869db> refs/heads/feature",
+      "<c68c2d1fe58> refs/heads/main"
+    ],
+    "log": [
+      "<c27c85869db>\u0000<c66af717c83>\u0000bump version on feature (will CONFLICT when cherry-picked)",
+      "<c4d0f8b612c>\u0000<cda2f90afb1>\u0000main: rename package",
+      "<c66af717c83>\u0000<cda2f90afb1>\u0000add clean-addition.txt (cherry-picks cleanly)",
+      "<c68c2d1fe58>\u0000<c4d0f8b612c>\u0000bump version on feature (will CONFLICT when cherry-picked)",
+      "<cda2f90afb1>\u0000\u0000initial commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 79f50a431757a4c0c9500a455839fb3de8cb13b3 0\tconfig.json",
+      "100644 89b24ecec50c07aef0d6640a2a9f6dc354a33125 0\tlog.txt"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

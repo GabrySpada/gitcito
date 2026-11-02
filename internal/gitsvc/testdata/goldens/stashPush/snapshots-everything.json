@@ -1,0 +1,40 @@
+{
+  "method": "stashPush",
+  "fixture": "snapshots",
+  "args": [],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c21b96a7c48>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<ca1b99f2a40> refs/gitcito/wip/<N>-m",
+      "<c8ff4f90a5f> refs/gitcito/wip/<N>-a",
+      "<c889587ee75> refs/gitcito/wip/<N>-g",
+      "<c21b96a7c48> refs/heads/main",
+      "<ce63c2fccfb> refs/stash"
+    ],
+    "log": [
+      "<c21b96a7c48>\u0000\u0000draft: initial content",
+      "<c889587ee75>\u0000<c21b96a7c48> <cc21dce131e>\u0000On main: gitcito-wip (guard)",
+      "<c8ff4f90a5f>\u0000<c21b96a7c48> <cc21dce131e>\u0000On main: gitcito-wip (auto)",
+      "<ca1b99f2a40>\u0000<c21b96a7c48> <ca67440dc68>\u0000On main: gitcito-wip manual",
+      "<ca67440dc68>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cb9aaff095a>\u0000\u0000untracked files on main: <c21b96a7c48:short> draft: initial content",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<ce63c2fccfb>\u0000<c21b96a7c48> <cc21dce131e> <cb9aaff095a>\u0000WIP on main: <c21b96a7c48:short> draft: initial content"
+    ],
+    "stash": [
+      "<ce63c2fccfb> WIP on main: <c21b96a7c48:short> draft: initial content"
+    ],
+    "index": [
+      "100644 9d3f03589d03ae94d3912f8b967e38ba9e1ce331 0\tdraft.md"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

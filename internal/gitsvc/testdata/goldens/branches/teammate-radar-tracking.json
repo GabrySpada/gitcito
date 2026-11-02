@@ -1,0 +1,43 @@
+{
+  "method": "branches",
+  "fixture": "teammate-radar",
+  "args": [],
+  "result": {
+    "current": "main",
+    "locals": [
+      {
+        "name": "main",
+        "sha": "<c698e4626bc:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": true,
+        "mergedIntoCurrent": true
+      }
+    ],
+    "remotes": [
+      {
+        "remote": "origin",
+        "name": "feature/api-tokens",
+        "fullName": "origin/feature/api-tokens",
+        "sha": "<c4208c4f6b9:short>",
+        "mergedIntoCurrent": false
+      },
+      {
+        "remote": "origin",
+        "name": "feature/ui-polish",
+        "fullName": "origin/feature/ui-polish",
+        "sha": "<c42ea766ecc:short>",
+        "mergedIntoCurrent": false
+      },
+      {
+        "remote": "origin",
+        "name": "main",
+        "fullName": "origin/main",
+        "sha": "<c56e1d18b8d:short>",
+        "mergedIntoCurrent": false
+      }
+    ],
+    "tags": []
+  }
+}

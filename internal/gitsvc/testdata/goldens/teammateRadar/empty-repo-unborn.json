@@ -1,0 +1,10 @@
+{
+  "method": "teammateRadar",
+  "fixture": "empty-repo",
+  "args": [],
+  "result": {
+    "entries": [],
+    "dirtyCount": 0,
+    "scannedAt": "<DATE>"
+  }
+}

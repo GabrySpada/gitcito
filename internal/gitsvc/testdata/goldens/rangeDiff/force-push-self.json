@@ -1,0 +1,9 @@
+{
+  "method": "rangeDiff",
+  "fixture": "force-push",
+  "args": [
+    "main",
+    "main"
+  ],
+  "result": []
+}

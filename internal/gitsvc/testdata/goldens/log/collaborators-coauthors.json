@@ -1,0 +1,87 @@
+{
+  "method": "log",
+  "fixture": "collaborators",
+  "args": [
+    3
+  ],
+  "result": [
+    {
+      "hash": "<c63f5420efc>",
+      "parents": [
+        "<c81c118d17f>"
+      ],
+      "author": "Alice Liddell",
+      "email": "alice-liddell@users.noreply.github.com",
+      "date": "<DATE>",
+      "refs": [
+        "HEAD -> main",
+        "tag: v1.1.0-rc1",
+        "tag: v1.1.0",
+        "tag: checkpoint-2026",
+        "release/1.1",
+        "hotfix/1.1.1",
+        "experiment/perf",
+        "chore/cleanup"
+      ],
+      "subject": "docs: credit the whole squad for v1.1",
+      "coAuthors": [
+        {
+          "name": "Bob Marley",
+          "email": "bob-marley@users.noreply.github.com"
+        },
+        {
+          "name": "Carol Danvers",
+          "email": "carol-danvers@users.noreply.github.com"
+        },
+        {
+          "name": "Dave Grohl",
+          "email": "dave-grohl@users.noreply.github.com"
+        },
+        {
+          "name": "Erin Reyes",
+          "email": "erin-reyes@users.noreply.github.com"
+        },
+        {
+          "name": "Frank Castillo",
+          "email": "frank-castillo@users.noreply.github.com"
+        },
+        {
+          "name": "Grace Okafor",
+          "email": "grace-okafor@users.noreply.github.com"
+        }
+      ]
+    },
+    {
+      "hash": "<c81c118d17f>",
+      "parents": [
+        "<cc124f534b5>"
+      ],
+      "author": "Bob Marley",
+      "email": "bob-marley@users.noreply.github.com",
+      "date": "<DATE>",
+      "refs": [
+        "tag: v1.0.0"
+      ],
+      "subject": "fix: add logout to auth module",
+      "coAuthors": [
+        {
+          "name": "Dave Grohl",
+          "email": "dave-grohl@users.noreply.github.com"
+        }
+      ]
+    },
+    {
+      "hash": "<cc124f534b5>",
+      "parents": [
+        "<c942175d1d8>",
+        "<c63ad1dc9ef>"
+      ],
+      "author": "Alice Liddell",
+      "email": "alice-liddell@users.noreply.github.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "Merge feat/ui into main (Dave's login UI)",
+      "coAuthors": []
+    }
+  ]
+}

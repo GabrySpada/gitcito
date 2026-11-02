@@ -1,0 +1,22 @@
+{
+  "method": "repoPulse",
+  "fixture": "empty-repo",
+  "args": [],
+  "result": {
+    "path": "<REPO>",
+    "name": "empty-repo",
+    "branch": "main",
+    "upstream": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": 3,
+    "unstaged": 0,
+    "untracked": 0,
+    "conflicted": 0,
+    "stashes": 0,
+    "lastCommitAt": 0,
+    "operation": null,
+    "activity": "<ACTIVITY:14>",
+    "error": null
+  }
+}

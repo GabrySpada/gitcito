@@ -1,0 +1,10 @@
+{
+  "method": "open",
+  "fixture": "empty-repo",
+  "args": [],
+  "result": {
+    "path": "<REPO>",
+    "name": "empty-repo",
+    "current": "HEAD"
+  }
+}

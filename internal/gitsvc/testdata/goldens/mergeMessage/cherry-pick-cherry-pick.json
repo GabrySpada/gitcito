@@ -1,0 +1,14 @@
+{
+  "method": "mergeMessage",
+  "fixture": "cherry-pick",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "cherry-pick",
+        "feature"
+      ]
+    }
+  ],
+  "result": "bump version on feature (will CONFLICT when cherry-picked)"
+}

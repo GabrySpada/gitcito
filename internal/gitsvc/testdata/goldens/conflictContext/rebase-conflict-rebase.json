@@ -1,0 +1,32 @@
+{
+  "method": "conflictContext",
+  "fixture": "rebase-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "rebase",
+        "main"
+      ]
+    }
+  ],
+  "result": {
+    "kind": "rebase",
+    "source": "feature",
+    "target": "main",
+    "ours": {
+      "sha": "<c91940a4b89:short>",
+      "subject": "main: upgrade utils — date-fns + Intl",
+      "branch": "main",
+      "author": "Playground",
+      "date": "<DATE>"
+    },
+    "theirs": {
+      "sha": "<c327fe933b1:short>",
+      "subject": "feature: add credentials + createOrder",
+      "branch": "feature",
+      "author": "Playground",
+      "date": "<DATE>"
+    }
+  }
+}

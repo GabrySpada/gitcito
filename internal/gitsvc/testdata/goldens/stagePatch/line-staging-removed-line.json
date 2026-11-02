@@ -1,0 +1,30 @@
+{
+  "method": "stagePatch",
+  "fixture": "line-staging",
+  "args": [
+    "diff --git a/config.js b/config.js\nindex 2a706fc..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,7 +1,6 @@\n const config = {\n-  host: 'localhost',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n }\n module.exports = config\n",
+    false
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c2ab409485d>",
+      "# branch.head main",
+      "1 MM N... 100644 100644 100644 2a706fca596487315a19fc284908a1898b3b8e75 53f0efe8594a67dcffb524be1717d909cea3925f config.js"
+    ],
+    "refs": [
+      "<c2ab409485d> refs/heads/main"
+    ],
+    "log": [
+      "<c2ab409485d>\u0000\u0000init: config + readme"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md",
+      "100644 53f0efe8594a67dcffb524be1717d909cea3925f 0\tconfig.js"
+    ],
+    "diff": "diff --git a/config.js b/config.js\nindex 53f0efe..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,6 +1,9 @@\n const config = {\n+  host: 'api.example.com',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n+  debug: true,\n+  tls: true,\n }\n module.exports = config\n",
+    "untracked": [],
+    "ops": []
+  }
+}

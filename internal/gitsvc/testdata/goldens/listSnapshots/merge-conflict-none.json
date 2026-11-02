@@ -1,0 +1,6 @@
+{
+  "method": "listSnapshots",
+  "fixture": "merge-conflict",
+  "args": [],
+  "result": []
+}

@@ -1,0 +1,17 @@
+{
+  "method": "commitEditInfo",
+  "fixture": "interactive-rebase",
+  "args": [
+    "{rev:HEAD~6}"
+  ],
+  "result": {
+    "linear": true,
+    "ancestor": true,
+    "merges": 0,
+    "descendants": 6,
+    "pushed": false,
+    "message": "initial commit",
+    "authorName": "Playground",
+    "authorDate": "<DATE>"
+  }
+}

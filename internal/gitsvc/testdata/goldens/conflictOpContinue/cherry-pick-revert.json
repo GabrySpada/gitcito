@@ -1,0 +1,81 @@
+{
+  "method": "conflictOpContinue",
+  "fixture": "cherry-pick",
+  "args": [
+    "revert"
+  ],
+  "setup": [
+    {
+      "write": "log.txt",
+      "content": "line 1\nline 2\n"
+    },
+    {
+      "git": [
+        "commit",
+        "-qam",
+        "add line 2"
+      ]
+    },
+    {
+      "write": "log.txt",
+      "content": "line 1\nline 2 changed\n"
+    },
+    {
+      "git": [
+        "commit",
+        "-qam",
+        "change line 2"
+      ]
+    },
+    {
+      "gitTry": [
+        "revert",
+        "--no-edit",
+        "HEAD~1"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "--ours",
+        "--",
+        "."
+      ]
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c5d714904cb>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<c27c85869db> refs/heads/feature",
+      "<c5d714904cb> refs/heads/main"
+    ],
+    "log": [
+      "<c27c85869db>\u0000<c66af717c83>\u0000bump version on feature (will CONFLICT when cherry-picked)",
+      "<c4d0f8b612c>\u0000<cda2f90afb1>\u0000main: rename package",
+      "<c5bdcf9b986>\u0000<c4d0f8b612c>\u0000add line 2",
+      "<c5d714904cb>\u0000<c5bdcf9b986>\u0000change line 2",
+      "<c66af717c83>\u0000<cda2f90afb1>\u0000add clean-addition.txt (cherry-picks cleanly)",
+      "<cda2f90afb1>\u0000\u0000initial commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 705d823e7eed583c1c0c01d0832bcafe1a58c06c 0\tconfig.json",
+      "100644 049ee8df5e75bf741aee0af35971445ff6a8b515 0\tlog.txt"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": [
+      "REVERT_HEAD"
+    ]
+  }
+}

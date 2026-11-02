@@ -1,0 +1,21 @@
+{
+  "method": "conflictVersions",
+  "fixture": "merge-conflict",
+  "args": [
+    "units_service.dart"
+  ],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "content": "String formatUnits(int count) {\n  return 'feature units => $count';\n}\n",
+    "base": "String formatUnits(int count) {\n  return 'units: $count';\n}\n",
+    "ours": null,
+    "theirs": "String formatUnits(int count) {\n  return 'feature units => $count';\n}\n"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "method": "commitEditApply",
+  "fixture": "interactive-rebase",
+  "args": [
+    "{rev:HEAD~3}",
+    {},
+    "chore: reworded from the future"
+  ],
+  "result": {
+    "oldHead": "<c87ca59e551>",
+    "newTip": "<cf6c3da1837>",
+    "rewritten": 3
+  },
+  "state": {
+    "status": [
+      "# branch.oid <cf6c3da1837>",
+      "# branch.head messy-feature"
+    ],
+    "refs": [
+      "<c8eac89fbc6> refs/heads/main",
+      "<cf6c3da1837> refs/heads/messy-feature"
+    ],
+    "log": [
+      "<c614712710b>\u0000<c9eab83bcd2>\u0000fixup! add logout + fix login path",
+      "<c88a212ce5d>\u0000<c614712710b>\u0000WIP session module",
+      "<c8eac89fbc6>\u0000\u0000initial commit",
+      "<c9eab83bcd2>\u0000<cf8fb4d3acd>\u0000chore: reworded from the future",
+      "<cf37dcfa9d6>\u0000<c8eac89fbc6>\u0000add login function",
+      "<cf6c3da1837>\u0000<c88a212ce5d>\u0000finish session module — getSession + clearToken",
+      "<cf8fb4d3acd>\u0000<cf37dcfa9d6>\u0000WIP"
+    ],
+    "stash": [],
+    "index": [
+      "100644 e2f0c2bb3914c602dbff8b30347634bf8c6a0dbe 0\tauth.ts",
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tindex.ts",
+      "100644 6250972daa55c6ed76dd7a04b8f48b1314b13e5b 0\tsession.ts"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

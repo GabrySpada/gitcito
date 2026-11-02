@@ -1,0 +1,15 @@
+{
+  "method": "reflog",
+  "fixture": "stash-picking",
+  "args": [
+    "refs/stash"
+  ],
+  "result": [
+    {
+      "sha": "<cedbe05dd11>",
+      "selector": "refs/stash@{0}",
+      "action": "On main: WIP: alpha+beta+gamma edits and a new untracked file",
+      "date": "<DATE>"
+    }
+  ]
+}

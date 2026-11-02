@@ -1,0 +1,30 @@
+{
+  "method": "branches",
+  "fixture": "detached-head",
+  "args": [],
+  "result": {
+    "current": "HEAD",
+    "locals": [
+      {
+        "name": "main",
+        "sha": "<c51b5d32100:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      },
+      {
+        "name": "stable",
+        "sha": "<c1358c242da:short>",
+        "upstream": null,
+        "ahead": 0,
+        "behind": 0,
+        "isCurrent": false,
+        "mergedIntoCurrent": false
+      }
+    ],
+    "remotes": [],
+    "tags": []
+  }
+}

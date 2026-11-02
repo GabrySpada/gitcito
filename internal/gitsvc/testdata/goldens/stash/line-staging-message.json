@@ -1,0 +1,34 @@
+{
+  "method": "stash",
+  "fixture": "line-staging",
+  "args": [
+    "wip message"
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c2ab409485d>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<c2ab409485d> refs/heads/main",
+      "<c8dac6cfe3e> refs/stash"
+    ],
+    "log": [
+      "<c2ab409485d>\u0000\u0000init: config + readme",
+      "<c3ec62ed011>\u0000\u0000untracked files on main: <c2ab409485d:short> init: config + readme",
+      "<c4fefa5f23a>\u0000<c2ab409485d>\u0000index on main: <c2ab409485d:short> init: config + readme",
+      "<c8dac6cfe3e>\u0000<c2ab409485d> <c4fefa5f23a> <c3ec62ed011>\u0000On main: wip message"
+    ],
+    "stash": [
+      "<c8dac6cfe3e> On main: wip message"
+    ],
+    "index": [
+      "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md",
+      "100644 2a706fca596487315a19fc284908a1898b3b8e75 0\tconfig.js"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

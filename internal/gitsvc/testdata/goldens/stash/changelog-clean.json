@@ -1,0 +1,38 @@
+{
+  "method": "stash",
+  "fixture": "changelog",
+  "args": [
+    "nothing"
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c7fa349dc23>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "<c7fa349dc23> refs/heads/main",
+      "<c14891854a9> refs/tags/v1.0.0"
+    ],
+    "log": [
+      "<c0ce0d64ee7>\u0000<cd5e980937d>\u0000refactor(core): extract scheduler module",
+      "<c12aff1212d>\u0000<cff7f6544f2>\u0000perf(graph): memoize layout computation",
+      "<c14891854a9>\u0000<cf9234855a0>\u0000feat: first feature",
+      "<c278d2fc25a>\u0000<c6d148ed297>\u0000feat(session): new session store",
+      "<c6d148ed297>\u0000<c79f7c02193>\u0000feat(api)!: drop v1 endpoints",
+      "<c79f7c02193>\u0000<c0ce0d64ee7>\u0000chore(deps): bump electron to 32",
+      "<c7fa349dc23>\u0000<c278d2fc25a>\u0000tweak some stuff without a type prefix",
+      "<c8b73fbbb69>\u0000<c14891854a9>\u0000feat(auth): add OAuth login",
+      "<c8c5c816e00>\u0000<c8b73fbbb69>\u0000feat(ui): dark mode toggle",
+      "<cd5e980937d>\u0000<c12aff1212d>\u0000docs: document the plugin API",
+      "<ce0e6ca6764>\u0000<c8c5c816e00>\u0000fix(api): handle null user in profile fetch",
+      "<cf9234855a0>\u0000\u0000chore: initial commit",
+      "<cff7f6544f2>\u0000<ce0e6ca6764>\u0000fix: off-by-one in pagination"
+    ],
+    "stash": [],
+    "index": [],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

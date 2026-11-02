@@ -1,0 +1,15 @@
+{
+  "method": "remotes",
+  "fixture": "multi-remote",
+  "args": [],
+  "result": [
+    {
+      "name": "origin",
+      "url": "<REPO>-origin.git"
+    },
+    {
+      "name": "upstream",
+      "url": "<REPO>-upstream.git"
+    }
+  ]
+}

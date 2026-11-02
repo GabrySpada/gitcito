@@ -1,0 +1,36 @@
+{
+  "method": "branches",
+  "fixture": "multi-remote",
+  "args": [],
+  "result": {
+    "current": "main",
+    "locals": [
+      {
+        "name": "main",
+        "sha": "<c36448e2e22:short>",
+        "upstream": "origin/main",
+        "ahead": 1,
+        "behind": 0,
+        "isCurrent": true,
+        "mergedIntoCurrent": true
+      }
+    ],
+    "remotes": [
+      {
+        "remote": "origin",
+        "name": "main",
+        "fullName": "origin/main",
+        "sha": "<c911ff14e31:short>",
+        "mergedIntoCurrent": true
+      },
+      {
+        "remote": "upstream",
+        "name": "main",
+        "fullName": "upstream/main",
+        "sha": "<c0b255fae8a:short>",
+        "mergedIntoCurrent": false
+      }
+    ],
+    "tags": []
+  }
+}

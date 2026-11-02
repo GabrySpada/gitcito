@@ -1,0 +1,44 @@
+{
+  "method": "stagePatch",
+  "fixture": "line-staging",
+  "args": [
+    "diff --git a/fresh.txt b/fresh.txt\nindex 0000000..c6437c6\n--- a/fresh.txt\n+++ b/fresh.txt\n@@ -0,2 +1,3 @@\n keep 1\n+drop\n keep 2\n",
+    true
+  ],
+  "setup": [
+    {
+      "write": "fresh.txt",
+      "content": "keep 1\ndrop\nkeep 2\n"
+    },
+    {
+      "git": [
+        "add",
+        "fresh.txt"
+      ]
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c2ab409485d>",
+      "# branch.head main",
+      "1 .M N... 100644 100644 100644 2a706fca596487315a19fc284908a1898b3b8e75 2a706fca596487315a19fc284908a1898b3b8e75 config.js",
+      "1 AM N... 000000 100644 100644 0000000000000000000000000000000000000000 00c1a6b45a5304405eb9963dcdb59abadf05cbb1 fresh.txt"
+    ],
+    "refs": [
+      "<c2ab409485d> refs/heads/main"
+    ],
+    "log": [
+      "<c2ab409485d>\u0000\u0000init: config + readme"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md",
+      "100644 2a706fca596487315a19fc284908a1898b3b8e75 0\tconfig.js",
+      "100644 00c1a6b45a5304405eb9963dcdb59abadf05cbb1 0\tfresh.txt"
+    ],
+    "diff": "diff --git a/config.js b/config.js\nindex 2a706fc..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,7 +1,9 @@\n const config = {\n-  host: 'localhost',\n+  host: 'api.example.com',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n+  debug: true,\n+  tls: true,\n }\n module.exports = config\ndiff --git a/fresh.txt b/fresh.txt\nindex 00c1a6b..c6437c6 100644\n--- a/fresh.txt\n+++ b/fresh.txt\n@@ -1,2 +1,3 @@\n keep 1\n+drop\n keep 2\n",
+    "untracked": [],
+    "ops": []
+  }
+}

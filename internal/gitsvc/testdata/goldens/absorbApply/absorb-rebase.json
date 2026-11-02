@@ -1,0 +1,51 @@
+{
+  "method": "absorbApply",
+  "fixture": "absorb",
+  "args": [
+    {
+      "rebase": true
+    }
+  ],
+  "setup": [
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "result": {
+    "created": 2,
+    "rebased": true
+  },
+  "state": {
+    "status": [
+      "# branch.oid <c7f597570ea>",
+      "# branch.head main",
+      "# branch.upstream origin/main",
+      "# branch.ab +3 -0",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 1b040bbec53888463c9fee7666ef049543012446 src/cache.ts"
+    ],
+    "refs": [
+      "<c7f597570ea> refs/heads/main",
+      "<c2a7ff982af> refs/remotes/origin/main"
+    ],
+    "log": [
+      "<c2a7ff982af>\u0000\u0000init: readme",
+      "<c7b46bebe3f>\u0000<cd57d822334>\u0000feat: add parser",
+      "<c7f597570ea>\u0000<c7b46bebe3f>\u0000feat: add logger",
+      "<cd57d822334>\u0000<c2a7ff982af>\u0000feat: add auth"
+    ],
+    "stash": [],
+    "index": [
+      "100644 b3f67a6e229a55c709d2bf9d6e689a2ccb17fde0 0\tREADME.md",
+      "100644 3dc06b04dfdadc0425bf9100ef6da10b6d9ccb58 0\tsrc/auth.ts",
+      "100644 1b040bbec53888463c9fee7666ef049543012446 0\tsrc/cache.ts",
+      "100644 70af24f2ba9d600388f86b35e42595fe3c48f477 0\tsrc/logger.ts",
+      "100644 84ad4f6f784db009c300d5ba85fe366fd3a01982 0\tsrc/parser.ts"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

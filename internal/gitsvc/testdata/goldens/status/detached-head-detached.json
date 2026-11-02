@@ -1,0 +1,14 @@
+{
+  "method": "status",
+  "fixture": "detached-head",
+  "args": [],
+  "result": {
+    "current": "HEAD",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [],
+    "unstaged": [],
+    "conflicted": []
+  }
+}

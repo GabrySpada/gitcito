@@ -1,0 +1,16 @@
+{
+  "method": "stashes",
+  "fixture": "stash-picking",
+  "args": [],
+  "result": [
+    {
+      "index": 0,
+      "sha": "<cedbe05dd11>",
+      "parentSha": "<ce609af1d51>",
+      "untrackedSha": "<c0ccf6cc792>",
+      "date": "<DATE>",
+      "message": "WIP: alpha+beta+gamma edits and a new untracked file",
+      "branch": "main"
+    }
+  ]
+}

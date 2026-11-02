@@ -1,0 +1,14 @@
+{
+  "method": "teammateRadar",
+  "fixture": "teammate-radar",
+  "args": [
+    {
+      "maxDays": 0
+    }
+  ],
+  "result": {
+    "entries": [],
+    "dirtyCount": 0,
+    "scannedAt": "<DATE>"
+  }
+}

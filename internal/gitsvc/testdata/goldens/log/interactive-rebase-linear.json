@@ -1,0 +1,93 @@
+{
+  "method": "log",
+  "fixture": "interactive-rebase",
+  "args": [],
+  "result": [
+    {
+      "hash": "<c87ca59e551>",
+      "parents": [
+        "<c3b6b583e46>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "HEAD -> messy-feature"
+      ],
+      "subject": "finish session module — getSession + clearToken",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c3b6b583e46>",
+      "parents": [
+        "<c6762edd5be>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "WIP session module",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c6762edd5be>",
+      "parents": [
+        "<caca1d11e4a>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "fixup! add logout + fix login path",
+      "coAuthors": []
+    },
+    {
+      "hash": "<caca1d11e4a>",
+      "parents": [
+        "<cf8fb4d3acd>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "add logout + fix login path",
+      "coAuthors": []
+    },
+    {
+      "hash": "<cf8fb4d3acd>",
+      "parents": [
+        "<cf37dcfa9d6>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "WIP",
+      "coAuthors": []
+    },
+    {
+      "hash": "<cf37dcfa9d6>",
+      "parents": [
+        "<c8eac89fbc6>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "add login function",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c8eac89fbc6>",
+      "parents": [],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "main"
+      ],
+      "subject": "initial commit",
+      "coAuthors": []
+    }
+  ]
+}

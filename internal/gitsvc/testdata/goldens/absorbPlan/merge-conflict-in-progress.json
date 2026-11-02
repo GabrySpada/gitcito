@@ -1,0 +1,20 @@
+{
+  "method": "absorbPlan",
+  "fixture": "merge-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "base": "",
+    "rangeLabel": "",
+    "targets": [],
+    "unmatched": [],
+    "reason": "in-progress"
+  }
+}

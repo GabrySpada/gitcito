@@ -1,0 +1,63 @@
+{
+  "method": "stashPush",
+  "fixture": "snapshots",
+  "args": [
+    "only a",
+    [
+      "partial-a.txt"
+    ]
+  ],
+  "setup": [
+    {
+      "write": "partial-a.txt",
+      "content": "a\n"
+    },
+    {
+      "write": "partial-b.txt",
+      "content": "b\n"
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c21b96a7c48>",
+      "# branch.head main",
+      "1 .M N... 100644 100644 100644 9d3f03589d03ae94d3912f8b967e38ba9e1ce331 9d3f03589d03ae94d3912f8b967e38ba9e1ce331 draft.md",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 6cc618238b63754edb0609d66d71fa93db4ff93a notes.md",
+      "? partial-b.txt",
+      "? scratch.txt"
+    ],
+    "refs": [
+      "<ca1b99f2a40> refs/gitcito/wip/<N>-m",
+      "<c8ff4f90a5f> refs/gitcito/wip/<N>-a",
+      "<c889587ee75> refs/gitcito/wip/<N>-g",
+      "<c21b96a7c48> refs/heads/main",
+      "<cae8d37bc18> refs/stash"
+    ],
+    "log": [
+      "<c0586244705>\u0000\u0000untracked files on main: <c21b96a7c48:short> draft: initial content",
+      "<c21b96a7c48>\u0000\u0000draft: initial content",
+      "<c889587ee75>\u0000<c21b96a7c48> <cc21dce131e>\u0000On main: gitcito-wip (guard)",
+      "<c8ff4f90a5f>\u0000<c21b96a7c48> <cc21dce131e>\u0000On main: gitcito-wip (auto)",
+      "<ca1b99f2a40>\u0000<c21b96a7c48> <ca67440dc68>\u0000On main: gitcito-wip manual",
+      "<ca67440dc68>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cae8d37bc18>\u0000<c21b96a7c48> <cc21dce131e> <c0586244705>\u0000On main: only a",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content",
+      "<cc21dce131e>\u0000<c21b96a7c48>\u0000index on main: <c21b96a7c48:short> draft: initial content"
+    ],
+    "stash": [
+      "<cae8d37bc18> On main: only a"
+    ],
+    "index": [
+      "100644 9d3f03589d03ae94d3912f8b967e38ba9e1ce331 0\tdraft.md",
+      "100644 6cc618238b63754edb0609d66d71fa93db4ff93a 0\tnotes.md"
+    ],
+    "diff": "diff --git a/draft.md b/draft.md\nindex 9d3f035..d03ab07 100644\n--- a/draft.md\n+++ b/draft.md\n@@ -1,2 +1,6 @@\n # Draft\n Initial committed content.\n+Work in progress: section one.\n+Work in progress: section two.\n+Work in progress: section three.\n+Even more uncommitted edits.\n",
+    "untracked": [
+      "61780798228d17af2d34fce4cfbdf35556832472 partial-b.txt",
+      "5922e0855c152c20cb061121f24b8f5dc49b8f1f scratch.txt"
+    ],
+    "ops": []
+  }
+}

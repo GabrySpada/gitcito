@@ -1,0 +1,9 @@
+{
+  "method": "rangeDiff",
+  "fixture": "force-push",
+  "args": [
+    "no-such-rev",
+    "main"
+  ],
+  "error": "fatal: ambiguous argument 'no-such-rev': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'"
+}

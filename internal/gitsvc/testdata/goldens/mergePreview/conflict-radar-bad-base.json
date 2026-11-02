@@ -1,0 +1,16 @@
+{
+  "method": "mergePreview",
+  "fixture": "conflict-radar",
+  "args": [
+    "no-such-base",
+    [
+      "chore/merged",
+      "feature/big-refactor",
+      "feature/config-bump",
+      "feature/docs",
+      "feature/rename-api",
+      "legacy/import"
+    ]
+  ],
+  "error": "fatal: ambiguous argument 'no-such-base': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'"
+}

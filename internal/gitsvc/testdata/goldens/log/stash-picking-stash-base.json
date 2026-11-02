@@ -1,0 +1,19 @@
+{
+  "method": "log",
+  "fixture": "stash-picking",
+  "args": [],
+  "result": [
+    {
+      "hash": "<ce609af1d51>",
+      "parents": [],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "HEAD -> main"
+      ],
+      "subject": "initial commit",
+      "coAuthors": []
+    }
+  ]
+}

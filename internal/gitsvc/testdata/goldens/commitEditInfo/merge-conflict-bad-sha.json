@@ -1,0 +1,8 @@
+{
+  "method": "commitEditInfo",
+  "fixture": "merge-conflict",
+  "args": [
+    "deadbeefdeadbeef"
+  ],
+  "error": "fatal: ambiguous argument 'deadbeefdeadbeef': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'"
+}
