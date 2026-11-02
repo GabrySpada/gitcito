@@ -1,0 +1,411 @@
+{
+  "ops": [
+    {
+      "op": "list",
+      "args": [
+        "/r1"
+      ],
+      "now": 1767268800000,
+      "result": []
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "/r1",
+        {
+          "id": "",
+          "label": "Bundle ID",
+          "value": "Bundle ID value",
+          "field": "custom",
+          "updatedAt": 0
+        }
+      ],
+      "now": 1767268801000,
+      "result": [
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID",
+          "value": "Bundle ID value",
+          "field": "custom",
+          "updatedAt": 1767268801000
+        }
+      ]
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "/r1",
+        {
+          "id": "",
+          "label": "Web",
+          "value": "Web value",
+          "field": "custom",
+          "updatedAt": 0
+        }
+      ],
+      "now": 1767268802000,
+      "result": [
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID",
+          "value": "Bundle ID value",
+          "field": "custom",
+          "updatedAt": 1767268801000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "label": "Web",
+          "value": "Web value",
+          "field": "custom",
+          "updatedAt": 1767268802000
+        }
+      ]
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "/r1",
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 5
+        }
+      ],
+      "now": 1767268803000,
+      "result": [
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 1767268803000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "label": "Web",
+          "value": "Web value",
+          "field": "custom",
+          "updatedAt": 1767268802000
+        }
+      ]
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "/r1",
+        {
+          "id": "custom",
+          "label": "Custom id",
+          "value": "Custom id value",
+          "field": "custom",
+          "updatedAt": 0
+        }
+      ],
+      "now": 1767268804000,
+      "result": [
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 1767268803000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "label": "Web",
+          "value": "Web value",
+          "field": "custom",
+          "updatedAt": 1767268802000
+        },
+        {
+          "id": "custom",
+          "label": "Custom id",
+          "value": "Custom id value",
+          "field": "custom",
+          "updatedAt": 1767268804000
+        }
+      ]
+    },
+    {
+      "op": "reorder",
+      "args": [
+        "/r1",
+        [
+          "custom",
+          "missing",
+          "00000000-0000-4000-8000-000000000001",
+          "00000000-0000-4000-8000-000000000001"
+        ]
+      ],
+      "now": 1767268805000,
+      "result": [
+        {
+          "id": "custom",
+          "label": "Custom id",
+          "value": "Custom id value",
+          "field": "custom",
+          "updatedAt": 1767268804000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 1767268803000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 1767268803000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "label": "Web",
+          "value": "Web value",
+          "field": "custom",
+          "updatedAt": 1767268802000
+        }
+      ]
+    },
+    {
+      "op": "remove",
+      "args": [
+        "/r1",
+        "00000000-0000-4000-8000-000000000002"
+      ],
+      "now": 1767268806000,
+      "result": [
+        {
+          "id": "custom",
+          "label": "Custom id",
+          "value": "Custom id value",
+          "field": "custom",
+          "updatedAt": 1767268804000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 1767268803000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 1767268803000
+        }
+      ]
+    },
+    {
+      "op": "remove",
+      "args": [
+        "/nope",
+        "x"
+      ],
+      "now": 1767268807000,
+      "result": []
+    },
+    {
+      "op": "exportAll",
+      "args": [],
+      "result": {
+        "repos": {
+          "/r1": [
+            {
+              "id": "custom",
+              "label": "Custom id",
+              "value": "Custom id value",
+              "field": "custom",
+              "updatedAt": 1767268804000
+            },
+            {
+              "id": "00000000-0000-4000-8000-000000000001",
+              "label": "Bundle ID v2",
+              "value": "Bundle ID v2 value",
+              "field": "custom",
+              "updatedAt": 1767268803000
+            },
+            {
+              "id": "00000000-0000-4000-8000-000000000001",
+              "label": "Bundle ID v2",
+              "value": "Bundle ID v2 value",
+              "field": "custom",
+              "updatedAt": 1767268803000
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "importAll",
+      "args": [
+        {
+          "repos": {
+            "/r1": [
+              {
+                "id": "custom",
+                "label": "Imported custom",
+                "value": "Imported custom value",
+                "field": "custom",
+                "updatedAt": 9
+              },
+              {
+                "id": "",
+                "label": "No id",
+                "value": "No id value",
+                "field": "custom",
+                "updatedAt": 0
+              },
+              {
+                "id": "new1",
+                "label": "New one",
+                "value": "New one value",
+                "field": "custom",
+                "updatedAt": 10
+              }
+            ],
+            "/r2": [
+              {
+                "id": "z",
+                "label": "Z",
+                "value": "Z value",
+                "field": "custom",
+                "updatedAt": 11
+              }
+            ]
+          }
+        }
+      ],
+      "result": null
+    },
+    {
+      "op": "importAll",
+      "args": [
+        null
+      ],
+      "result": null
+    },
+    {
+      "op": "importAll",
+      "args": [
+        {}
+      ],
+      "result": null
+    },
+    {
+      "op": "exportAll",
+      "args": [],
+      "result": {
+        "repos": {
+          "/r1": [
+            {
+              "id": "custom",
+              "label": "Imported custom",
+              "value": "Imported custom value",
+              "field": "custom",
+              "updatedAt": 9
+            },
+            {
+              "id": "00000000-0000-4000-8000-000000000001",
+              "label": "Bundle ID v2",
+              "value": "Bundle ID v2 value",
+              "field": "custom",
+              "updatedAt": 1767268803000
+            },
+            {
+              "id": "new1",
+              "label": "New one",
+              "value": "New one value",
+              "field": "custom",
+              "updatedAt": 10
+            }
+          ],
+          "/r2": [
+            {
+              "id": "z",
+              "label": "Z",
+              "value": "Z value",
+              "field": "custom",
+              "updatedAt": 11
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "list",
+      "args": [
+        "/r2"
+      ],
+      "result": [
+        {
+          "id": "z",
+          "label": "Z",
+          "value": "Z value",
+          "field": "custom",
+          "updatedAt": 11
+        }
+      ]
+    },
+    {
+      "op": "reorder",
+      "args": [
+        "/r3",
+        [
+          "a"
+        ]
+      ],
+      "result": []
+    },
+    {
+      "op": "list",
+      "args": [
+        "/r3"
+      ],
+      "result": []
+    }
+  ],
+  "file": {
+    "repos": {
+      "/r1": [
+        {
+          "id": "custom",
+          "label": "Imported custom",
+          "value": "Imported custom value",
+          "field": "custom",
+          "updatedAt": 9
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "label": "Bundle ID v2",
+          "value": "Bundle ID v2 value",
+          "field": "custom",
+          "updatedAt": 1767268803000
+        },
+        {
+          "id": "new1",
+          "label": "New one",
+          "value": "New one value",
+          "field": "custom",
+          "updatedAt": 10
+        }
+      ],
+      "/r2": [
+        {
+          "id": "z",
+          "label": "Z",
+          "value": "Z value",
+          "field": "custom",
+          "updatedAt": 11
+        }
+      ],
+      "/r3": []
+    }
+  }
+}

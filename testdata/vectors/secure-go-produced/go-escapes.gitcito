@@ -1,0 +1,32 @@
+{
+  "format": "gitcito-secure-bundle",
+  "version": 2,
+  "project": "Proj <x> & \"y\"    \u0007 é 😀 \\ \t",
+  "createdAt": 1798761600002,
+  "fileCount": 2,
+  "sections": [
+    {
+      "kind": "repo",
+      "project": "ñandú <&>",
+      "folder": "dir with spaces",
+      "fileCount": 2
+    },
+    {
+      "kind": "vault",
+      "entryCount": 1
+    }
+  ],
+  "kdf": {
+    "algo": "scrypt",
+    "N": 32768,
+    "r": 8,
+    "p": 1,
+    "salt": "4ufs8fb7AAUKDxQZHiMoLQ=="
+  },
+  "cipher": {
+    "algo": "aes-256-gcm",
+    "iv": "QURHSk1QU1ZZXF9i",
+    "tag": "L1tsDM+e1RZIOFGl+mez6Q=="
+  },
+  "payload": "3xRhWcewY9ngEbKmWtyZBwVm6+QABYOF5zgGW2feEEire8DrdlKNb42JUp8gya5MKnxumqIsclNiuGp1BTQH5Bubsl5rANWpb/9kJKlFH3TjA0NTkWrU7MUPLDSdsDtk3uvEU0PkNbpxAd6x49ujxb0uIXhy/n4zZmTRUmcLPusIdsedyByaHR/8CrEmvGDKZ7whbmEBrz0owYjtBBgZEQj0pQMv8GJV8GrCwVprkZVomuJasUvHNSeiJI0eYqgOEE5Dna13Y7La+HA6SKmp12g1yMAT4CcUsYWd1rsGAuuULPMs/ICqqfGrckNvmkRztWqNtvvN3NI+LgcAVxrCYZAz2WyJFFJqv5HmKUMITGU0NQ=="
+}

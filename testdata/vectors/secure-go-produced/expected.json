@@ -1,0 +1,173 @@
+[
+  {
+    "file": "go-v2-repo-vault.gitcito",
+    "password": "correct horse battery",
+    "header": {
+      "project": "go-project",
+      "createdAt": 1798761600000,
+      "fileCount": 3,
+      "version": 2,
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "api",
+          "folder": "api",
+          "remote": "git@github.com:acme/api.git",
+          "fileCount": 3
+        },
+        {
+          "kind": "vault",
+          "entryCount": 2
+        }
+      ]
+    },
+    "sections": [
+      {
+        "kind": "repo",
+        "project": "api",
+        "folder": "api",
+        "files": [
+          {
+            "path": ".env",
+            "content": "QVBJX0tFWT1zay1nby0xCg=="
+          },
+          {
+            "path": "bin/run.sh",
+            "content": "IyEvYmluL3NoCmVjaG8gZ28K",
+            "executable": true
+          },
+          {
+            "path": "certs/key.pem",
+            "content": "AAEC+vv8/w=="
+          }
+        ],
+        "remote": "git@github.com:acme/api.git"
+      },
+      {
+        "kind": "vault",
+        "entries": [
+          {
+            "key": "STRIPE",
+            "value": "sk_live_go",
+            "note": "prod"
+          },
+          {
+            "key": "SENTRY",
+            "value": "https://dsn"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "go-v3-workspace-notes.gitcito",
+    "password": "pässwörd 🔑",
+    "header": {
+      "project": "Team",
+      "createdAt": 1798761600001,
+      "fileCount": 0,
+      "version": 3,
+      "sections": [
+        {
+          "kind": "workspace",
+          "name": "Team 🧪",
+          "tabCount": 2,
+          "repoCount": 2
+        },
+        {
+          "kind": "notes",
+          "folder": "api",
+          "ref": "refs/notes/commits",
+          "noteCount": 1
+        }
+      ]
+    },
+    "sections": [
+      {
+        "kind": "workspace",
+        "name": "Team 🧪",
+        "tabs": [
+          {
+            "kind": "repo",
+            "repo": {
+              "name": "api",
+              "folder": "api",
+              "remote": "git@x.test:acme/api.git"
+            }
+          },
+          {
+            "kind": "group",
+            "name": "Front",
+            "color": "#f00",
+            "repos": [
+              {
+                "name": "web",
+                "folder": "web"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "notes",
+        "folder": "api",
+        "ref": "refs/notes/commits",
+        "notes": [
+          {
+            "sha": "0123456789abcdef0123456789abcdef01234567",
+            "body": "ship it\n\nfrom go"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "go-escapes.gitcito",
+    "password": "",
+    "header": {
+      "project": "Proj \u003cx\u003e \u0026 \"y\" \u2028\u2029 \u0007 é 😀 \\ \t",
+      "createdAt": 1798761600002,
+      "fileCount": 2,
+      "version": 2,
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "ñandú \u003c\u0026\u003e",
+          "folder": "dir with spaces",
+          "fileCount": 2
+        },
+        {
+          "kind": "vault",
+          "entryCount": 1
+        }
+      ]
+    },
+    "sections": [
+      {
+        "kind": "repo",
+        "project": "ñandú \u003c\u0026\u003e",
+        "folder": "dir with spaces",
+        "files": [
+          {
+            "path": "dir/ñ.env",
+            "content": "S0VZPSJ2w6RsdWUiICMg8J+YgAo="
+          },
+          {
+            "path": "empty",
+            "content": ""
+          }
+        ]
+      },
+      {
+        "kind": "vault",
+        "entries": [
+          {
+            "key": "TAB\tKEY",
+            "value": "line1\nline2\u2028",
+            "note": "n\u003co\u003ete"
+          }
+        ]
+      }
+    ]
+  }
+]

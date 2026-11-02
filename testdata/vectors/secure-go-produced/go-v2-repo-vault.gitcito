@@ -1,0 +1,33 @@
+{
+  "format": "gitcito-secure-bundle",
+  "version": 2,
+  "project": "go-project",
+  "createdAt": 1798761600000,
+  "fileCount": 3,
+  "sections": [
+    {
+      "kind": "repo",
+      "project": "api",
+      "folder": "api",
+      "remote": "git@github.com:acme/api.git",
+      "fileCount": 3
+    },
+    {
+      "kind": "vault",
+      "entryCount": 2
+    }
+  ],
+  "kdf": {
+    "algo": "scrypt",
+    "N": 32768,
+    "r": 8,
+    "p": 1,
+    "salt": "yM3S19zh5uvw9fr/BAkOEw=="
+  },
+  "cipher": {
+    "algo": "aes-256-gcm",
+    "iv": "HyIlKCsuMTQ3Oj1A",
+    "tag": "XXX3FlmVArVGXk219m/wfw=="
+  },
+  "payload": "hrsXzNmz015ml2N0aYYl72bLACoXGIe1r2bJUBRQCj1imuf5nD2knaCu+3G5bWnePx9KAoqkI12Fy8fibvtQk+AbichImWGkOvYa1lJs/9dk1BGo8XGG2XHLlajTpd+qnAmtzcFbYamXeh1HGsqhv61aSUjLKicnGerZJWmaGvdCxP/+LAs5xSJFSVCGs8lplSXG+GGWh7RxCnBCZcedIt2Mt6JfC2J4DlhMHv711YzhOXxDTXXKxXJ5lU6LnJ1mWz/tfgzBOdbzemmXHpo54HtOV04Kq/BM6R0WS7KYlh2YQ+j5oG/AyuNKzZQ2P/c69sBOgaHFn1PYz0GVJREbISg3vWA6bble4w2vbVWYJkvec5Cv0G6QAeMZJroJsj9ZJyQETqWCryohnNCsMh/JDY0kZOoi1GXz+Leo5o+hxfAzMHO6VQj39qtCsxW4RSjjda/Ja0MxI6iGiw5rASrl7aA3PG6gKxD0m5BsKp+lKshSwu1gxo3LaqWne8sTEZOk+vUtN4pbyiu3bshTK1gTrxdSwHc7OO/5ivM="
+}
