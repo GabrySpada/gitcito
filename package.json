@@ -38,7 +38,8 @@
     "repo:stats": "bash examples/repo-stats.sh",
     "port:inventory": "node scripts/port/inventory.mjs",
     "build:server": "npm run build:frontend && go build -tags server -o bin/gitcito-server .",
-    "test:go": "go test ./..."
+    "test:go": "go test ./...",
+    "test:e2e": "vitest run -c e2e/vitest.config.ts"
   },
   "build": {
     "appId": "com.gitcito.desktop",
