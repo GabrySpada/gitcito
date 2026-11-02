@@ -16,6 +16,7 @@ import { Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
+import * as LogService from '../bindings/github.com/GabrySpada/gitcito/internal/logbook/service'
 import * as MenuService from '../bindings/github.com/GabrySpada/gitcito/internal/menu/service'
 import type { BootstrapInfo, PreloadApi } from '../../../shared/bridgeApi'
 
@@ -286,8 +287,8 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     log: {
-      get: notPorted('log:get'),
-      clear: notPorted('log:clear')
+      get: () => invoke(() => LogService.Get()).then((r) => r ?? []),
+      clear: () => invoke(() => LogService.Clear()).then((r) => r ?? [])
     },
 
     hosting: {

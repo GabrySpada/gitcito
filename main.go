@@ -12,6 +12,7 @@ import (
 
 	"github.com/GabrySpada/gitcito/internal/app"
 	"github.com/GabrySpada/gitcito/internal/gitx"
+	"github.com/GabrySpada/gitcito/internal/logbook"
 	"github.com/GabrySpada/gitcito/internal/menu"
 	"github.com/GabrySpada/gitcito/internal/paths"
 	"github.com/wailsapp/wails/v3/pkg/application"
@@ -36,6 +37,12 @@ func main() {
 	gitx.FixPath(context.Background())
 
 	core := app.NewCore(*shot, paths.IsDev())
+
+	dataDir, err := paths.EnsureDataDir()
+	if err != nil {
+		log.Fatalf("data directory: %v", err)
+	}
+	book := logbook.New(dataDir)
 
 	var single *application.SingleInstanceOptions
 	if !app.SingleInstanceAvailable() {
@@ -65,6 +72,7 @@ func main() {
 			application.NewService(&app.ShellService{}),
 			application.NewService(&app.DialogService{}),
 			application.NewService(&menu.Service{}),
+			application.NewService(logbook.NewService(book)),
 		},
 		Assets:         application.AssetOptions{Handler: application.AssetFileServerFS(assets)},
 		SingleInstance: single,
@@ -72,6 +80,11 @@ func main() {
 	})
 
 	a.OnShutdown(core.ReleaseAllWaits)
+	a.OnShutdown(func() {
+		if err := book.Flush(); err != nil {
+			slog.Error("log flush", "err", err)
+		}
+	})
 	app.NewMainWindow(a)
 	core.HandleColdLaunch(os.Args)
 
