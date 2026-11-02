@@ -1,0 +1,813 @@
+{
+  "parseLooseJson": [
+    {
+      "input": "```json\n{\"a\":1}\n```",
+      "out": {
+        "a": 1
+      },
+      "json": "{\"a\":1}"
+    },
+    {
+      "input": "Sure! Here is the answer.",
+      "out": null,
+      "json": null
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Core\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"README.md\"]},{\"{\"text\":\"two\",\"sourcePaths\":[\"README.md\"]}\"]}],\"related\":[]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Core",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              },
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Core\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"README.md\"]},{\"text\":\"two\",\"sourcePaths\":[\"README.md\"]}]}],\"related\":[]}"
+    },
+    {
+      "input": "{\\\"value\\\":\\\"x\\\"}",
+      "out": {
+        "value": "x"
+      },
+      "json": "{\"value\":\"x\"}"
+    },
+    {
+      "input": "{\\\"summary\\\":\\\"x\\\",\\\"sections\\\":[{\\\"heading\\\":\\\"Core\\\",\\\"claims\\\":[{\\\"text\\\":\\\"one\\\",\\\"sourcePaths\\\":[\\\"README.md\\\"]},{\\\"{\\\"text\\\":\\\"two\\\",\\\"sourcePaths\\\":[\\\"README.md\\\"]}\\\"]}],\\\"related\\\":[]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Core",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              },
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Core\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"README.md\"]},{\"text\":\"two\",\"sourcePaths\":[\"README.md\"]}]}],\"related\":[]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CI\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"src/main/localCi.ts\"]}]],\"related\":[]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "CI",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "src/main/localCi.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CI\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"src/main/localCi.ts\"]}]}],\"related\":[]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"i18n\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]},{\"{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]]],\"related\":[]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "i18n",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "a.ts"
+                ]
+              },
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "b.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"i18n\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]},{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]}],\"related\":[]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CLI\",\"claims\":\":[{\"text\":\"one\",\"sourcePaths\":[\"cli.ts\"]}]}],\"related\":[]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "CLI",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "cli.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CLI\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"cli.ts\"]}]}],\"related\":[]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"heading\":\"First\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]}]},{\"heading\":\"Second\",\"claims\":[{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]}],\"related\":[\"overview\"]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "First",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "a.ts"
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "Second",
+            "claims": [
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "b.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": [
+          "overview"
+        ]
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"First\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]}]},{\"heading\":\"Second\",\"claims\":[{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]}],\"related\":[\"overview\"]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Security\",\"claims\":[{\"text\":\"one\",\"\",\"sourcePaths\":[\"keychain.ts\"]}]}],\"related\":[]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Security",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "keychain.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Security\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"keychain.ts\"]}]}],\"related\":[]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Renderer\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"App.tsx\"]}]},{\"related\":[\"overview\",\"cli\"]}",
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Renderer",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "App.tsx"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": [
+          "overview",
+          "cli"
+        ]
+      },
+      "json": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Renderer\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"App.tsx\"]}]}],\"related\":[\"overview\",\"cli\"]}"
+    },
+    {
+      "input": "{\"value\":\"first\"}\nWait, here is the corrected object.\n{\"value\":\"second\"}\n{\"value\":\"truncated\"",
+      "out": {
+        "value": "second"
+      },
+      "json": "{\"value\":\"second\"}"
+    },
+    {
+      "input": "{\"items\":[{\"value\":\"one\"},{\"{\"value\":\"two\"}\"]}\nCorrected:\n{\"items\":[{\"value\":\"three\"}]}",
+      "out": {
+        "items": [
+          {
+            "value": "three"
+          }
+        ]
+      },
+      "json": "{\"items\":[{\"value\":\"three\"}]}"
+    },
+    {
+      "input": "{\"pages\":[{\"\n  \"slug\":\"overview\",\"title\":\"Overview\"}]}",
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview"
+          }
+        ]
+      },
+      "json": "{\"pages\":[{\"slug\":\"overview\",\"title\":\"Overview\"}]}"
+    },
+    {
+      "input": "{\"value\":\"{\\\"nested\\\":true}\"}",
+      "out": {
+        "value": "{\"nested\":true}"
+      },
+      "json": "{\"value\":\"{\\\"nested\\\":true}\"}"
+    },
+    {
+      "input": "<think>We need produce one object.</think>\n```json\n{\"value\":\"x\"}\n```",
+      "out": {
+        "value": "x"
+      },
+      "json": "{\"value\":\"x\"}"
+    },
+    {
+      "input": "<THINK>a</Think>{\"v\":1}",
+      "out": {
+        "v": 1
+      },
+      "json": "{\"v\":1}"
+    },
+    {
+      "input": "<think>unterminated {\"v\":0}",
+      "out": null,
+      "json": null
+    },
+    {
+      "input": "prefix </think> {\"v\":2}",
+      "out": {
+        "v": 2
+      },
+      "json": "{\"v\":2}"
+    },
+    {
+      "input": "<think>a</think><think>b</think>{\"v\":3}<think>tail",
+      "out": {
+        "v": 3
+      },
+      "json": "{\"v\":3}"
+    },
+    {
+      "input": "{\"a\": 1,}",
+      "out": {
+        "a": 1
+      },
+      "json": "{\"a\":1}"
+    },
+    {
+      "input": "{'a': 'single', b: True, c: None, d: undefined}",
+      "out": {
+        "a": "single",
+        "b": true,
+        "c": null,
+        "d": null
+      },
+      "json": "{\"a\":\"single\",\"b\":true,\"c\":null,\"d\":null}"
+    },
+    {
+      "input": "[1, 2, 3, ...]",
+      "out": [
+        1,
+        2,
+        3
+      ],
+      "json": "[1,2,3]"
+    },
+    {
+      "input": "{\"a\": \"hello\" + \" world\"}",
+      "out": {
+        "a": "hello world"
+      },
+      "json": "{\"a\":\"hello world\"}"
+    },
+    {
+      "input": "{\"text\": \"truncated",
+      "out": {
+        "text": "truncated"
+      },
+      "json": "{\"text\":\"truncated\"}"
+    },
+    {
+      "input": "{\"a\": [1, 2",
+      "out": {
+        "a": [
+          1,
+          2
+        ]
+      },
+      "json": "{\"a\":[1,2]}"
+    },
+    {
+      "input": "// comment\n{\"a\": /* inline */ 1}",
+      "out": null,
+      "json": null
+    },
+    {
+      "input": "{\"a\": NumberLong(\"2\"), \"u\": \"\\u00e9 \\ud83d\\ude00\"}",
+      "out": {
+        "a": "2",
+        "u": "é 😀"
+      },
+      "json": "{\"a\":\"2\",\"u\":\"é 😀\"}"
+    },
+    {
+      "input": "{\"a\": 1}\n{\"a\": 2}",
+      "out": {
+        "a": 2
+      },
+      "json": "{\"a\":2}"
+    },
+    {
+      "input": "{\"url\": https://example.com/x?y=1}",
+      "out": {
+        "url": "https://example.com/x?y=1"
+      },
+      "json": "{\"url\":\"https://example.com/x?y=1\"}"
+    },
+    {
+      "input": "{\"q\": “curly”, ‘k’: 1}",
+      "out": {
+        "q": "curly",
+        "k": 1
+      },
+      "json": "{\"q\":\"curly\",\"k\":1}"
+    },
+    {
+      "input": "{\"a\":\"b,c,\"d\":\"e\"}",
+      "out": {
+        "a": "b,c",
+        "d": "e"
+      },
+      "json": "{\"a\":\"b,c\",\"d\":\"e\"}"
+    },
+    {
+      "input": "{\"x\": 00123, \"y\": -.5, \"z\": 2., \"w\": 1e}",
+      "out": {
+        "x": "00123",
+        "y": -0.5,
+        "z": 2,
+        "w": 1
+      },
+      "json": "{\"x\":\"00123\",\"y\":-0.5,\"z\":2,\"w\":1}"
+    },
+    {
+      "input": "{\"s\": \"tab\there\nnew\"}",
+      "out": {
+        "s": "tab\there\nnew"
+      },
+      "json": "{\"s\":\"tab\\there\\nnew\"}"
+    },
+    {
+      "input": "{&quot;a&quot;: &quot;b&quot;}",
+      "out": {
+        "a": "b"
+      },
+      "json": "{\"a\":\"b\"}"
+    },
+    {
+      "input": "null",
+      "out": null,
+      "json": null
+    },
+    {
+      "input": "42",
+      "out": 42,
+      "json": "42"
+    },
+    {
+      "input": "\"just a string\"",
+      "out": "just a string",
+      "json": "\"just a string\""
+    },
+    {
+      "input": "[]",
+      "out": [],
+      "json": "[]"
+    },
+    {
+      "input": "   ",
+      "out": null,
+      "json": null
+    },
+    {
+      "input": "",
+      "out": null,
+      "json": null
+    },
+    {
+      "input": "{\"a\":1} trailing words",
+      "out": {
+        "a": 1
+      },
+      "json": "{\"a\":1}"
+    },
+    {
+      "input": "{\"a\":\"  sep\"}",
+      "out": {
+        "a": "  sep"
+      },
+      "json": "{\"a\":\"  sep\"}"
+    },
+    {
+      "input": "```\n[{\"a\":1},{\"b\":2}]\n```\nThanks!",
+      "out": [
+        {
+          "a": 1
+        },
+        {
+          "b": 2
+        }
+      ],
+      "json": "[{\"a\":1},{\"b\":2}]"
+    },
+    {
+      "input": "{\"emoji\":\"🎉\",\"nested\":{\"arr\":[true,false,null,1.25e3,-0]}}",
+      "out": {
+        "emoji": "🎉",
+        "nested": {
+          "arr": [
+            true,
+            false,
+            null,
+            1250,
+            0
+          ]
+        }
+      },
+      "json": "{\"emoji\":\"🎉\",\"nested\":{\"arr\":[true,false,null,1250,0]}}"
+    },
+    {
+      "input": "{\"dup\":1,\"dup\":2,\"other\":3}",
+      "out": {
+        "dup": 2,
+        "other": 3
+      },
+      "json": "{\"dup\":2,\"other\":3}"
+    },
+    {
+      "input": "{\"__proto__\":{\"x\":1},\"y\":2}",
+      "out": {
+        "__proto__": {
+          "x": 1
+        },
+        "y": 2
+      },
+      "json": "{\"__proto__\":{\"x\":1},\"y\":2}"
+    },
+    {
+      "input": "{\"big\": 12345678901234567890, \"small\": 1e-7, \"neg\": -1.5E+3}",
+      "out": {
+        "big": 12345678901234567000,
+        "small": 1e-7,
+        "neg": -1500
+      },
+      "json": "{\"big\":12345678901234567000,\"small\":1e-7,\"neg\":-1500}"
+    }
+  ],
+  "jsonrepair": [
+    {
+      "input": "```json\n{\"a\":1}\n```",
+      "out": "\n{\"a\":1}\n"
+    },
+    {
+      "input": "Sure! Here is the answer.",
+      "out": "\"Sure! Here is the answer.\""
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Core\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"README.md\"]},{\"{\"text\":\"two\",\"sourcePaths\":[\"README.md\"]}\"]}],\"related\":[]}",
+      "error": "Colon expected at position 146"
+    },
+    {
+      "input": "{\\\"value\\\":\\\"x\\\"}",
+      "out": "{\"value\":\"x\"}"
+    },
+    {
+      "input": "{\\\"summary\\\":\\\"x\\\",\\\"sections\\\":[{\\\"heading\\\":\\\"Core\\\",\\\"claims\\\":[{\\\"text\\\":\\\"one\\\",\\\"sourcePaths\\\":[\\\"README.md\\\"]},{\\\"{\\\"text\\\":\\\"two\\\",\\\"sourcePaths\\\":[\\\"README.md\\\"]}\\\"]}],\\\"related\\\":[]}",
+      "out": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Core\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"README.md\"]},{\"{\\\"text\":\"two\",\"sourcePaths\":[\"README.md\"]},\"]}],\\\"related\",\":\",[]]}]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CI\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"src/main/localCi.ts\"]}]],\"related\":[]}",
+      "out": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CI\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"src/main/localCi.ts\"]}]}],\"related\":[]}"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"i18n\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]},{\"{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]]],\"related\":[]}",
+      "error": "Unexpected character \",\" at position 135"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CLI\",\"claims\":\":[{\"text\":\"one\",\"sourcePaths\":[\"cli.ts\"]}]}],\"related\":[]}",
+      "error": "Unexpected character \",\" at position 98"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"heading\":\"First\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]}]},{\"heading\":\"Second\",\"claims\":[{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]}],\"related\":[\"overview\"]}",
+      "error": "Unexpected character \",\" at position 153"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Security\",\"claims\":[{\"text\":\"one\",\"\",\"sourcePaths\":[\"keychain.ts\"]}]}],\"related\":[]}",
+      "error": "Colon expected at position 75"
+    },
+    {
+      "input": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Renderer\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"App.tsx\"]}]},{\"related\":[\"overview\",\"cli\"]}",
+      "out": "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Renderer\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"App.tsx\"]}]},{\"related\":[\"overview\",\"cli\"]}]}"
+    },
+    {
+      "input": "{\"value\":\"first\"}\nWait, here is the corrected object.\n{\"value\":\"second\"}\n{\"value\":\"truncated\"",
+      "out": "[\n{\"value\":\"first\"},\n\"Wait\", \"here is the corrected object.\",\n{\"value\":\"second\"},\n{\"value\":\"truncated\"}\n]"
+    },
+    {
+      "input": "{\"items\":[{\"value\":\"one\"},{\"{\"value\":\"two\"}\"]}\nCorrected:\n{\"items\":[{\"value\":\"three\"}]}",
+      "error": "Colon expected at position 44"
+    },
+    {
+      "input": "{\"pages\":[{\"\n  \"slug\":\"overview\",\"title\":\"Overview\"}]}",
+      "out": "{\"pages\":[{\"\\n  \\\"slug\":\"overview\",\"title\":\"Overview\"}]}"
+    },
+    {
+      "input": "{\"value\":\"{\\\"nested\\\":true}\"}",
+      "out": "{\"value\":\"{\\\"nested\\\":true}\"}"
+    },
+    {
+      "input": "<think>We need produce one object.</think>\n```json\n{\"value\":\"x\"}\n```",
+      "error": "Unexpected character \"/\" at position 35"
+    },
+    {
+      "input": "<THINK>a</Think>{\"v\":1}",
+      "error": "Unexpected character \"/\" at position 9"
+    },
+    {
+      "input": "<think>unterminated {\"v\":0}",
+      "error": "Unexpected character \"{\" at position 20"
+    },
+    {
+      "input": "prefix </think> {\"v\":2}",
+      "error": "Unexpected character \"/\" at position 8"
+    },
+    {
+      "input": "<think>a</think><think>b</think>{\"v\":3}<think>tail",
+      "error": "Unexpected character \"/\" at position 9"
+    },
+    {
+      "input": "{\"a\": 1,}",
+      "out": "{\"a\": 1}"
+    },
+    {
+      "input": "{'a': 'single', b: True, c: None, d: undefined}",
+      "out": "{\"a\": \"single\", \"b\": true, \"c\": null, \"d\": null}"
+    },
+    {
+      "input": "[1, 2, 3, ...]",
+      "out": "[1, 2, 3 ]"
+    },
+    {
+      "input": "{\"a\": \"hello\" + \" world\"}",
+      "out": "{\"a\": \"hello world\"}"
+    },
+    {
+      "input": "{\"text\": \"truncated",
+      "out": "{\"text\": \"truncated\"}"
+    },
+    {
+      "input": "{\"a\": [1, 2",
+      "out": "{\"a\": [1, 2]}"
+    },
+    {
+      "input": "// comment\n{\"a\": /* inline */ 1}",
+      "out": "\n{\"a\":  1}"
+    },
+    {
+      "input": "{\"a\": NumberLong(\"2\"), \"u\": \"\\u00e9 \\ud83d\\ude00\"}",
+      "out": "{\"a\": \"2\", \"u\": \"\\u00e9 \\ud83d\\ude00\"}"
+    },
+    {
+      "input": "{\"a\": 1}\n{\"a\": 2}",
+      "out": "[\n{\"a\": 1},\n{\"a\": 2}\n]"
+    },
+    {
+      "input": "{\"url\": https://example.com/x?y=1}",
+      "out": "{\"url\": \"https://example.com/x?y=1\"}"
+    },
+    {
+      "input": "{\"q\": “curly”, ‘k’: 1}",
+      "out": "{\"q\": \"curly\", \"k\": 1}"
+    },
+    {
+      "input": "{\"a\":\"b,c,\"d\":\"e\"}",
+      "out": "{\"a\":\"b,c\",\"d\":\"e\"}"
+    },
+    {
+      "input": "{\"x\": 00123, \"y\": -.5, \"z\": 2., \"w\": 1e}",
+      "out": "{\"x\": \"00123\", \"y\": -0.5, \"z\": 2.0, \"w\": 1e0}"
+    },
+    {
+      "input": "{\"s\": \"tab\there\nnew\"}",
+      "out": "{\"s\": \"tab\\there\\nnew\"}"
+    },
+    {
+      "input": "{&quot;a&quot;: &quot;b&quot;}",
+      "out": "{\"a\": \"b\"}"
+    },
+    {
+      "input": "null",
+      "out": "null"
+    },
+    {
+      "input": "42",
+      "out": "42"
+    },
+    {
+      "input": "\"just a string\"",
+      "out": "\"just a string\""
+    },
+    {
+      "input": "[]",
+      "out": "[]"
+    },
+    {
+      "input": "   ",
+      "error": "Unexpected end of json string at position 3"
+    },
+    {
+      "input": "",
+      "error": "Unexpected end of json string at position 0"
+    },
+    {
+      "input": "{\"a\":1} trailing words",
+      "error": "Unexpected character \"t\" at position 8"
+    },
+    {
+      "input": "{\"a\":\"  sep\"}",
+      "out": "{\"a\":\"  sep\"}"
+    },
+    {
+      "input": "```\n[{\"a\":1},{\"b\":2}]\n```\nThanks!",
+      "out": "[\n\n[{\"a\":1},{\"b\":2}],\n\n\"Thanks!\"\n]"
+    },
+    {
+      "input": "{\"emoji\":\"🎉\",\"nested\":{\"arr\":[true,false,null,1.25e3,-0]}}",
+      "out": "{\"emoji\":\"🎉\",\"nested\":{\"arr\":[true,false,null,1.25e3,-0]}}"
+    },
+    {
+      "input": "{\"dup\":1,\"dup\":2,\"other\":3}",
+      "out": "{\"dup\":1,\"dup\":2,\"other\":3}"
+    },
+    {
+      "input": "{\"__proto__\":{\"x\":1},\"y\":2}",
+      "out": "{\"__proto__\":{\"x\":1},\"y\":2}"
+    },
+    {
+      "input": "{\"big\": 12345678901234567890, \"small\": 1e-7, \"neg\": -1.5E+3}",
+      "out": "{\"big\": 12345678901234567890, \"small\": 1e-7, \"neg\": -1.5E+3}"
+    },
+    {
+      "input": "{a:1}",
+      "out": "{\"a\":1}"
+    },
+    {
+      "input": "[1 2 3]",
+      "out": "[1, 2, 3]"
+    },
+    {
+      "input": "{\"a\" 1}",
+      "out": "{\"a\": 1}"
+    },
+    {
+      "input": "{\"a\":}",
+      "out": "{\"a\":null}"
+    },
+    {
+      "input": "{,\"a\":1}",
+      "out": "{\"a\":1}"
+    },
+    {
+      "input": "[,1]",
+      "out": "[1]"
+    },
+    {
+      "input": "\"abc",
+      "out": "\"abc\""
+    },
+    {
+      "input": "callback({\"a\":1});",
+      "out": "{\"a\":1}"
+    },
+    {
+      "input": "/regex/",
+      "out": "\"/regex/\""
+    },
+    {
+      "input": "{\"a\":\"x\\qy\"}",
+      "out": "{\"a\":\"xqy\"}"
+    },
+    {
+      "input": "{\"a\":\"\\u12\"}",
+      "error": "Invalid unicode character \"\\u12\"}\" at position 6"
+    },
+    {
+      "input": "{\"a\":\"\\u12zz\"}",
+      "error": "Invalid unicode character \"\\u12zz\" at position 6"
+    },
+    {
+      "input": "{\"a\":\"\u0001\"}",
+      "error": "Invalid character \"\\u0001\" at position 6"
+    },
+    {
+      "input": "{\"a\": \"b\" \"c\": 1}",
+      "out": "{\"a\": \"b\", \"c\": 1}"
+    },
+    {
+      "input": "{\"a\":\"The TV is 72\"\"}",
+      "out": "{\"a\":\"The TV is 72\\\"\"}"
+    },
+    {
+      "input": "{\"a\":\"a (b\") c\"}",
+      "out": "{\"a\":\"a (b\\\") c\"}"
+    },
+    {
+      "input": "}",
+      "error": "Unexpected end of json string at position 1"
+    },
+    {
+      "input": "{\"a\":1}}]",
+      "out": "{\"a\":1}"
+    },
+    {
+      "input": "\\\"a\\\"",
+      "out": "\"a\""
+    },
+    {
+      "input": "[```{\"a\":1}```]",
+      "out": "{\"a\":1}"
+    },
+    {
+      "input": "{\"key\": value with spaces, \"b\": 2}",
+      "out": "{\"key\": \"value with spaces\", \"b\": 2}"
+    },
+    {
+      "input": "{\"a\": True, \"b\": False}",
+      "out": "{\"a\": true, \"b\": false}"
+    },
+    {
+      "input": "{\"a\": +1}",
+      "error": "Object key expected at position 6"
+    },
+    {
+      "input": " {\"a\":　 1}",
+      "out": " {\"a\":  1}"
+    },
+    {
+      "input": "[1,2,3,...,9]",
+      "out": "[1,2,3,9]"
+    },
+    {
+      "input": "{\"a\":\"&#x27;q&#39; &lt;b&gt;\"}",
+      "out": "{\"a\":\"&#x27;q&#39; &lt;b&gt;\"}"
+    },
+    {
+      "input": "&quot;x&quot;",
+      "out": "\"x\""
+    }
+  ]
+}
