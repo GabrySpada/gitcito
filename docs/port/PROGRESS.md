@@ -14,17 +14,21 @@ compaction.
   - M0: notes, BRIEF.md copy, inventory (184 preload members, 264 git methods), TEST-MAP generator, baseline.
   - M1: go.mod, wails.yaml (valid), main.go, vite.config.ts, bridgeApi.ts, bridge.ts, bindings committed.
   - Foundation: gitx, gitsvc lock/classify/service/oplog, paths, logbook, testutil (FOUNDATION-API.md).
+  - keychain + settings ported and bound (docs: subagent report in git log 34b4021).
   - Go services bound: AppService (bootstrap, version, releases, ready, finishEdit), DialogService, ShellService,
     menu.Service, logbook.Service. Editor `--wait` flow ported (Core, unbound).
   - Renderer adaptations: clipboard (58 sites), `--wails-draggable`, link guard, native file drop
     (`droppedFilePaths`), zoom, timelapse format, PDF fallback button.
 
 ## In flight (subagents)
-- keychain + settings (main tree, no worktree): internal/keychain, internal/settings, internal/shared additions,
-  test/port/vectors-settings.test.ts, testdata/vectors/{secrets,aiAccounts,settings}.json.
+- hosting + credentials (worktree).
 - Git slices A, B, C, D (worktrees, WAVE1-BRIEF.md): each commits goldens then the port in its worktree branch.
 
 ## Next
+- **Must do at the first slice merge:** switch `bridge.git` from `Call.ByName` to the generated GitService
+  bindings module (`import * as GitService from '../bindings/.../gitsvc/gitservice'`, look up the capitalised
+  name). Wails rejects a call whose argument count differs from the Go signature, and the renderer omits optional
+  trailing args; the generated functions always pass every parameter (undefined → null).
 - Merge each slice branch: `git merge <branch>`, `go build ./... && go test ./internal/gitsvc/`, regenerate
   bindings, wire `bridge.git(method, ...args)` → GitService by name, full gate, commit, push.
 - Hosting + credentials (Wave 1 remainder) when a slot frees.
