@@ -1,8 +1,9 @@
 // Package menu builds the native application menu from the renderer's spec.
 //
 // Serves the renderer channels:
-//   menu:set      (MenuService.Set)
-//   menu:command  (event, emitted when an item with an id is clicked)
+//
+//	menu:set      (MenuService.Set)
+//	menu:command  (event, emitted when an item with an id is clicked)
 //
 // Everything about *what* the menu says is decided in the renderer (see
 // renderer/src/lib/appMenu.ts) and arrives here already translated; this

@@ -1,0 +1,121 @@
+[
+  {
+    "argv": [],
+    "out": null
+  },
+  {
+    "argv": [
+      "/app/Gitcito"
+    ],
+    "out": null
+  },
+  {
+    "argv": [
+      "/app/Gitcito",
+      "--open=/repo"
+    ],
+    "out": {
+      "path": "/repo"
+    }
+  },
+  {
+    "argv": [
+      "/app/Gitcito",
+      "--open=/repo",
+      "--name=Main",
+      "--group=Work"
+    ],
+    "out": {
+      "path": "/repo",
+      "name": "Main",
+      "group": "Work"
+    }
+  },
+  {
+    "argv": [
+      "--view=blame",
+      "--open=/r",
+      "--arg=src/a.ts",
+      "--line=42"
+    ],
+    "out": {
+      "path": "/r",
+      "view": "blame",
+      "arg": "src/a.ts",
+      "line": 42
+    }
+  },
+  {
+    "argv": [
+      "--open=/r",
+      "--view=nonsense"
+    ],
+    "out": {
+      "path": "/r"
+    }
+  },
+  {
+    "argv": [
+      "--open=/r",
+      "--line=abc"
+    ],
+    "out": {
+      "path": "/r"
+    }
+  },
+  {
+    "argv": [
+      "--open=/r",
+      "--line=1234567890"
+    ],
+    "out": {
+      "path": "/r"
+    }
+  },
+  {
+    "argv": [
+      "--open=/r",
+      "--edit=/r/.git/COMMIT_EDITMSG",
+      "--wait=/tmp/s"
+    ],
+    "out": {
+      "path": "/r",
+      "edit": "/r/.git/COMMIT_EDITMSG",
+      "wait": "/tmp/s"
+    }
+  },
+  {
+    "argv": [
+      "--open",
+      "/r"
+    ],
+    "out": null
+  },
+  {
+    "argv": [
+      "--open=/a",
+      "--open=/b"
+    ],
+    "out": {
+      "path": "/a"
+    }
+  },
+  {
+    "argv": [
+      "--open=/with=equals"
+    ],
+    "out": {
+      "path": "/with=equals"
+    }
+  },
+  {
+    "argv": [
+      "--open=/r",
+      "--view=time-machine"
+    ],
+    "out": {
+      "path": "/r",
+      "view": "time-machine"
+    }
+  }
+]
