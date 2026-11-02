@@ -1622,7 +1622,8 @@ async function wikiPayloads(): Promise<unknown> {
     for (const step of WIKI_STEPS) {
       h.calls = []
       h.sent = []
-      h.replies = new Map(Object.entries((step.replies ?? {}) as Record<string, unknown[]>))
+      // A copy: the fake model consumes its queues, the recorded step keeps them.
+      h.replies = new Map(Object.entries((step.replies ?? {}) as Record<string, unknown[]>).map(([k, v]) => [k, [...v]]))
       const args = JSON.parse(JSON.stringify(bind(step.args, tmp, repo)).split(`${tmp}/empty-repo`).join(empty).split('@EMPTY').join(empty))
       let out: unknown = null
       let error: string | null = null

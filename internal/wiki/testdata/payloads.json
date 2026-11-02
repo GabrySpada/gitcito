@@ -400,11 +400,123 @@
         }
       ],
       "replies": {
-        "wikiPlan": [],
-        "wikiPage:Data layer": [],
-        "wikiPage:Overview": [],
-        "wikiPage:App startup": [],
-        "wikiStack": []
+        "wikiPlan": [
+          {
+            "pages": [
+              {
+                "slug": "data-layer",
+                "title": "Data layer Module",
+                "archetype": "module",
+                "scopePaths": [
+                  "src/db.ts",
+                  "ghost.ts"
+                ]
+              },
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "scopePaths": [
+                  "README.md",
+                  "package.json"
+                ]
+              },
+              {
+                "slug": "ghosts",
+                "title": "Ghosts",
+                "archetype": "module",
+                "scopePaths": [
+                  "nope.ts"
+                ]
+              },
+              {
+                "slug": "app",
+                "title": "App startup workflow",
+                "archetype": "workflow",
+                "scopePaths": [
+                  "src/app.ts",
+                  "src/util/log.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "wikiPage:Data layer": [
+          {
+            "summary": " How data is read. ",
+            "sections": [
+              {
+                "heading": "Queries",
+                "claims": [
+                  {
+                    "text": "Queries are logged.",
+                    "sourcePaths": [
+                      "src/db.ts"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "related": [
+              "overview"
+            ]
+          }
+        ],
+        "wikiPage:Overview": [
+          {
+            "summary": "A tiny demo.",
+            "sections": [
+              {
+                "heading": "What it is",
+                "claims": [
+                  {
+                    "text": "A demo app.",
+                    "sourcePaths": [
+                      "README.md",
+                      "package.json"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "related": [
+              "app",
+              "data-layer"
+            ]
+          }
+        ],
+        "wikiPage:App startup": [
+          {
+            "summary": "How the app starts.",
+            "sections": [],
+            "related": []
+          }
+        ],
+        "wikiStack": [
+          {
+            "summary": "A Node app with React.",
+            "groups": [
+              {
+                "name": "Frontend",
+                "items": [
+                  {
+                    "dep": "react",
+                    "role": "renders the UI"
+                  }
+                ]
+              },
+              {
+                "name": "Backend",
+                "items": [
+                  {
+                    "dep": "express",
+                    "role": "serves requests"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "calls": [
         {
@@ -1437,9 +1549,41 @@
         }
       ],
       "replies": {
-        "wikiPlan": [],
-        "wikiPage:Overview": [],
-        "wikiStack": []
+        "wikiPlan": [
+          {
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "scopePaths": []
+              }
+            ]
+          }
+        ],
+        "wikiPage:Overview": [
+          {
+            "summary": "Just an overview.",
+            "sections": [],
+            "related": []
+          }
+        ],
+        "wikiStack": [
+          {
+            "summary": "x",
+            "groups": [
+              {
+                "name": "UI",
+                "items": [
+                  {
+                    "dep": "vue",
+                    "role": "x"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "calls": [
         {
@@ -1726,7 +1870,11 @@
         }
       ],
       "replies": {
-        "wikiPlan": []
+        "wikiPlan": [
+          {
+            "pages": []
+          }
+        ]
       },
       "calls": [
         {
