@@ -1,0 +1,21 @@
+{
+  "method": "undoCommit",
+  "fixture": "line-staging",
+  "case": "root",
+  "write": true,
+  "args": [],
+  "result": {
+    "previousSha": "<Cc9cfb82999>",
+    "parentSha": null,
+    "wasRoot": true,
+    "message": "init: config + readme\n\n",
+    "branch": "main"
+  },
+  "state": {
+    "status": "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 README.md\n1 AM N... 000000 100644 100644 0000000000000000000000000000000000000000 2a706fca596487315a19fc284908a1898b3b8e75 config.js\n",
+    "refs": "",
+    "log": "",
+    "stash": "",
+    "index": "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md\n100644 2a706fca596487315a19fc284908a1898b3b8e75 0\tconfig.js\n"
+  }
+}

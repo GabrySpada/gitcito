@@ -1,0 +1,11 @@
+{
+  "method": "fileDataUrl",
+  "fixture": "binary-images-unicode",
+  "case": "missing-at-ref",
+  "write": false,
+  "args": [
+    "assets/icon.png",
+    "HEAD~4"
+  ],
+  "error": "Cannot read image: assets/icon.png"
+}

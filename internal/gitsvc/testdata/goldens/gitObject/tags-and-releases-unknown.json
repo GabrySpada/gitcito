@@ -1,0 +1,10 @@
+{
+  "method": "gitObject",
+  "fixture": "tags-and-releases",
+  "case": "unknown",
+  "write": false,
+  "args": [
+    "no-such-ref"
+  ],
+  "error": "fatal: Needed a single revision"
+}

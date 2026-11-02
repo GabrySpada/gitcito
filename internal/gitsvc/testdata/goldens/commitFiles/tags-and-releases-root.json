@@ -1,0 +1,21 @@
+{
+  "method": "commitFiles",
+  "fixture": "tags-and-releases",
+  "case": "root",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/chore: initial scaffolding"
+    }
+  ],
+  "result": [
+    {
+      "path": "CHANGELOG.md",
+      "status": "A"
+    },
+    {
+      "path": "app.py",
+      "status": "A"
+    }
+  ]
+}

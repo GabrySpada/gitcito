@@ -1,0 +1,24 @@
+{
+  "method": "commitMenuProbe",
+  "fixture": "multi-remote",
+  "case": "other-branch",
+  "write": false,
+  "args": [
+    {
+      "$rev": "upstream/main"
+    }
+  ],
+  "result": {
+    "isHead": false,
+    "isOnLocalBranch": true,
+    "isPublished": true,
+    "isAncestorOfHead": false,
+    "isWithinResetBoundary": false,
+    "isRoot": false,
+    "parentSha": "<Cdcb6999e78>",
+    "operationInProgress": false,
+    "message": "docs: update README with string module\n\n",
+    "headSha": "<C77c9f76f33>",
+    "branch": "main"
+  }
+}

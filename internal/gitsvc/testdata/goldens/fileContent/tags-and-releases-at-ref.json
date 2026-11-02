@@ -1,0 +1,11 @@
+{
+  "method": "fileContent",
+  "fixture": "tags-and-releases",
+  "case": "at-ref",
+  "write": false,
+  "args": [
+    "app.py",
+    "v1.0.0"
+  ],
+  "result": "VERSION = \"1.0.0\"\n\ndef greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\ndef main():\n    print(f\"App v{VERSION}\")\n    print(greet(\"World\"))\n"
+}

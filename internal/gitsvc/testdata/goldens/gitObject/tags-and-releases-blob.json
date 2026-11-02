@@ -1,0 +1,19 @@
+{
+  "method": "gitObject",
+  "fixture": "tags-and-releases",
+  "case": "blob",
+  "write": false,
+  "args": [
+    "HEAD:app.py"
+  ],
+  "result": {
+    "sha": "b7f4e484d225bd441366880980401921fe2f5b72",
+    "kind": "blob",
+    "size": 319,
+    "rev": "HEAD:app.py",
+    "blob": {
+      "text": "VERSION = \"2.0.0\"\nfrom dataclasses import dataclass\n\n@dataclass\nclass App:\n    name: str\n\n    def greet(self) -> str:\n        return f\"Hello from {self.name}!\"\n\n    def farewell(self) -> str:\n        return f\"{self.name} signing off.\"\n\ndef main():\n    app = App(\"Demo\")\n    print(app.greet())\n    print(app.farewell())\n",
+      "truncated": false
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "method": "commitFiles",
+  "fixture": "conflict-radar",
+  "case": "merge",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/merge chore/merged"
+    }
+  ],
+  "result": [
+    {
+      "path": ".gitignore",
+      "status": "A"
+    }
+  ]
+}

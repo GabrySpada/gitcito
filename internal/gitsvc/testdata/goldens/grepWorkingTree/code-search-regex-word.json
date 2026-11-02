@@ -1,0 +1,20 @@
+{
+  "method": "grepWorkingTree",
+  "fixture": "code-search",
+  "case": "regex-word",
+  "write": false,
+  "args": [
+    "\\w+@corp",
+    {
+      "regex": true,
+      "wholeWord": true
+    }
+  ],
+  "result": [
+    {
+      "file": "src/util/mail.js",
+      "line": 2,
+      "text": "export const team = ['alice@corp.dev', 'bob@corp.dev', 'carol@corp.dev']"
+    }
+  ]
+}

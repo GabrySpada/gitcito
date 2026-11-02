@@ -1,0 +1,16 @@
+{
+  "method": "sparseCheckoutInfo",
+  "fixture": "time-machine",
+  "case": "disabled",
+  "write": false,
+  "args": [],
+  "result": {
+    "enabled": false,
+    "cone": false,
+    "dirs": [],
+    "topLevelDirs": [
+      "docs",
+      "src"
+    ]
+  }
+}

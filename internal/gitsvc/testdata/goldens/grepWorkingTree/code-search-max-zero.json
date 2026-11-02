@@ -1,0 +1,19 @@
+{
+  "method": "grepWorkingTree",
+  "fixture": "code-search",
+  "case": "max-zero",
+  "write": false,
+  "args": [
+    "TODO",
+    {
+      "max": 0
+    }
+  ],
+  "result": [
+    {
+      "file": "README.md",
+      "line": 2,
+      "text": "TODO: document the search feature."
+    }
+  ]
+}

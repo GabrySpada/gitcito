@@ -1,0 +1,16 @@
+{
+  "method": "searchFileContents",
+  "fixture": "code-search",
+  "case": "bad-regex",
+  "write": false,
+  "args": [
+    [
+      "README.md"
+    ],
+    "(",
+    {
+      "regex": true
+    }
+  ],
+  "result": []
+}

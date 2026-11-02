@@ -1,0 +1,12 @@
+{
+  "method": "generateChangelog",
+  "fixture": "tags-and-releases",
+  "case": "tags",
+  "write": false,
+  "args": [],
+  "maskDates": true,
+  "result": {
+    "markdown": "## v2.0.0..HEAD (<DATE>)\n\n### ✨ Features\n\n- plugin system (unreleased, post-v2.0.0 dev) (`<C879b1c93ab~>`)\n",
+    "count": 1
+  }
+}

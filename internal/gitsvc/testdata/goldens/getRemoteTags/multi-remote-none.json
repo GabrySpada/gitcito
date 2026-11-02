@@ -1,0 +1,23 @@
+{
+  "method": "getRemoteTags",
+  "fixture": "multi-remote",
+  "case": "none",
+  "write": false,
+  "args": [
+    "origin"
+  ],
+  "prep": [
+    {
+      "up": "multi-remote-origin.git"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<UP>"
+      ]
+    }
+  ],
+  "result": []
+}

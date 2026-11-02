@@ -1,0 +1,21 @@
+{
+  "method": "commitFiles",
+  "fixture": "time-machine",
+  "case": "renames",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/fold lib/ into src/utils/"
+    }
+  ],
+  "result": [
+    {
+      "path": "src/utils/format.js",
+      "status": "R"
+    },
+    {
+      "path": "src/utils/util.js",
+      "status": "R"
+    }
+  ]
+}

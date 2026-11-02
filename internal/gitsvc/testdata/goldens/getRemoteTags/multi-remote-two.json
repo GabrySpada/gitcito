@@ -1,0 +1,47 @@
+{
+  "method": "getRemoteTags",
+  "fixture": "multi-remote",
+  "case": "two",
+  "write": false,
+  "args": [
+    "origin"
+  ],
+  "prep": [
+    {
+      "up": "multi-remote-origin.git"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<UP>"
+      ]
+    },
+    {
+      "gitUp": [
+        "tag",
+        "v1",
+        "main"
+      ]
+    },
+    {
+      "gitUp": [
+        "-c",
+        "user.name=Tagger",
+        "-c",
+        "user.email=tagger@example.com",
+        "tag",
+        "-a",
+        "v2",
+        "-m",
+        "two",
+        "main"
+      ]
+    }
+  ],
+  "result": [
+    "v1",
+    "v2"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "method": "gitObject",
+  "fixture": "binary-images-unicode",
+  "case": "binary-blob",
+  "write": false,
+  "args": [
+    "HEAD:assets/icon.png"
+  ],
+  "result": {
+    "sha": "efc1ad51195b66f2107c12b5674a460b0407c653",
+    "kind": "blob",
+    "size": 74,
+    "rev": "HEAD:assets/icon.png",
+    "blob": {
+      "text": null,
+      "truncated": false
+    }
+  }
+}

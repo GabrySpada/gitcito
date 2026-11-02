@@ -1,0 +1,14 @@
+{
+  "method": "stashFileDiff",
+  "fixture": "stash-picking",
+  "case": "untracked",
+  "write": false,
+  "args": [
+    {
+      "$rev": "stash@{0}"
+    },
+    "delta-untracked.txt",
+    true
+  ],
+  "result": "diff --git a/delta-untracked.txt b/delta-untracked.txt\nnew file mode 100644\nindex 0000000..23cc7cd\n--- /dev/null\n+++ b/delta-untracked.txt\n@@ -0,0 +1 @@\n+delta — untracked file captured by the stash\n"
+}

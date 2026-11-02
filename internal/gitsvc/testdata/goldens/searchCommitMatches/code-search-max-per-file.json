@@ -1,0 +1,25 @@
+{
+  "method": "searchCommitMatches",
+  "fixture": "code-search",
+  "case": "max-per-file",
+  "write": false,
+  "args": [
+    "HEAD",
+    "TODO",
+    {
+      "maxPerFile": 1
+    }
+  ],
+  "result": [
+    {
+      "file": "README.md",
+      "line": 2,
+      "text": "TODO: document the search feature."
+    },
+    {
+      "file": "src/util/log.js",
+      "line": 1,
+      "text": "// TODO: switch to structured logging"
+    }
+  ]
+}

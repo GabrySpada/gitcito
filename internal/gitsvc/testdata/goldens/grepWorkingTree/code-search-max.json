@@ -1,0 +1,24 @@
+{
+  "method": "grepWorkingTree",
+  "fixture": "code-search",
+  "case": "max",
+  "write": false,
+  "args": [
+    "TODO",
+    {
+      "max": 2
+    }
+  ],
+  "result": [
+    {
+      "file": "README.md",
+      "line": 2,
+      "text": "TODO: document the search feature."
+    },
+    {
+      "file": "scratch.js",
+      "line": 1,
+      "text": "// TODO: try searching for this untracked file in the working-tree tab"
+    }
+  ]
+}

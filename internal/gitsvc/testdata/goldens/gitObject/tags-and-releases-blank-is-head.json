@@ -1,0 +1,24 @@
+{
+  "method": "gitObject",
+  "fixture": "tags-and-releases",
+  "case": "blank-is-head",
+  "write": false,
+  "args": [
+    "   "
+  ],
+  "result": {
+    "sha": "<C879b1c93ab>",
+    "kind": "commit",
+    "size": 268,
+    "rev": "HEAD",
+    "commit": {
+      "tree": "f6a202fe2a6a6392a425d9d5c71e38d4145a1508",
+      "parents": [
+        "<C5d81098c20>"
+      ],
+      "author": "Playground <playground@example.com> <TS> <TZ>",
+      "committer": "Playground <playground@example.com> <TS> <TZ>",
+      "message": "feat: plugin system (unreleased, post-v2.0.0 dev)\n"
+    }
+  }
+}

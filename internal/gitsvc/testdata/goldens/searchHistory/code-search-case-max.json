@@ -1,0 +1,20 @@
+{
+  "method": "searchHistory",
+  "fixture": "code-search",
+  "case": "case-max",
+  "write": false,
+  "args": [
+    "VALIDATETOKEN",
+    {
+      "max": 1
+    }
+  ],
+  "result": [
+    {
+      "hash": "<C9c2a7465dc>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "auth: drop validateToken for sessions"
+    }
+  ]
+}

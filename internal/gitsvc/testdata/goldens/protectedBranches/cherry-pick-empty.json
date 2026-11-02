@@ -1,0 +1,17 @@
+{
+  "method": "protectedBranches",
+  "fixture": "cherry-pick",
+  "case": "empty",
+  "write": false,
+  "args": [],
+  "prep": [
+    {
+      "git": [
+        "config",
+        "gitcito.protectedbranches",
+        ""
+      ]
+    }
+  ],
+  "result": []
+}

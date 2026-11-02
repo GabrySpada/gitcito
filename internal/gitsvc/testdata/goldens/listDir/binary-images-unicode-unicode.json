@@ -1,0 +1,56 @@
+{
+  "method": "listDir",
+  "fixture": "binary-images-unicode",
+  "case": "unicode",
+  "write": false,
+  "args": [
+    ""
+  ],
+  "result": [
+    {
+      "name": "assets",
+      "path": "assets",
+      "dir": true
+    },
+    {
+      "name": "🚀 rocket notes.txt",
+      "path": "🚀 rocket notes.txt",
+      "dir": false
+    },
+    {
+      "name": "café-☕.txt",
+      "path": "café-☕.txt",
+      "dir": false
+    },
+    {
+      "name": "crlf-windows.txt",
+      "path": "crlf-windows.txt",
+      "dir": false
+    },
+    {
+      "name": "data.bin",
+      "path": "data.bin",
+      "dir": false
+    },
+    {
+      "name": "lf-unix.txt",
+      "path": "lf-unix.txt",
+      "dir": false
+    },
+    {
+      "name": "README.md",
+      "path": "README.md",
+      "dir": false
+    },
+    {
+      "name": "مرحبا.txt",
+      "path": "مرحبا.txt",
+      "dir": false
+    },
+    {
+      "name": "日本語ファイル.md",
+      "path": "日本語ファイル.md",
+      "dir": false
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "method": "searchCommitMatches",
+  "fixture": "code-search",
+  "case": "flags",
+  "write": false,
+  "args": [
+    "HEAD",
+    "todo",
+    {
+      "caseSensitive": true,
+      "wholeWord": true,
+      "regex": true,
+      "max": 3,
+      "maxPerFile": 1
+    }
+  ],
+  "result": []
+}

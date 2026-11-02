@@ -1,0 +1,169 @@
+{
+  "method": "timelapseData",
+  "fixture": "time-machine",
+  "case": "all",
+  "write": false,
+  "args": [],
+  "result": [
+    {
+      "hash": "<C95d6739613>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "init: one-file app",
+      "files": [
+        {
+          "path": "index.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "hash": "<Cdcee928106>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "docs: add readme",
+      "files": [
+        {
+          "path": "README.md",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "hash": "<Ca425edbd91>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "refactor: extract lib/util.js",
+      "files": [
+        {
+          "path": "index.js",
+          "status": "M"
+        },
+        {
+          "path": "lib/util.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "hash": "<Caf587e4dbf>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "feat: add lib/format.js",
+      "files": [
+        {
+          "path": "lib/format.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "hash": "<Cf42850c1ea>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "chore: move entry point into src/",
+      "files": [
+        {
+          "path": "src/index.js",
+          "status": "R"
+        }
+      ]
+    },
+    {
+      "hash": "<C2ebdabf473>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "chore: fold lib/ into src/utils/",
+      "files": [
+        {
+          "path": "src/utils/format.js",
+          "status": "R"
+        },
+        {
+          "path": "src/utils/util.js",
+          "status": "R"
+        }
+      ]
+    },
+    {
+      "hash": "<Cc7b0e0a701>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "chore: drop unused formatter",
+      "files": [
+        {
+          "path": "src/utils/format.js",
+          "status": "D"
+        }
+      ]
+    },
+    {
+      "hash": "<C68f5ae9fdb>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "feat: add src/api.js",
+      "files": [
+        {
+          "path": "src/api.js",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "hash": "<C313b66e97b>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "docs: add docs/ folder",
+      "files": [
+        {
+          "path": "docs/guide.md",
+          "status": "A"
+        },
+        {
+          "path": "docs/old.md",
+          "status": "A"
+        }
+      ]
+    },
+    {
+      "hash": "<Cd14f678d34>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "feat: harden the API client",
+      "files": [
+        {
+          "path": "src/api.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "hash": "<Cf58f925b8b>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "docs: rewrite the guide, drop old notes",
+      "files": [
+        {
+          "path": "docs/guide.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/old.md",
+          "status": "D"
+        }
+      ]
+    },
+    {
+      "hash": "<Cfa4c3854a7>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "chore: release 1.2.0",
+      "files": [
+        {
+          "path": "VERSION",
+          "status": "A"
+        }
+      ]
+    }
+  ]
+}

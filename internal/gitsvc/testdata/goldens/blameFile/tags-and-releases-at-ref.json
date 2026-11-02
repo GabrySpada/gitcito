@@ -1,0 +1,75 @@
+{
+  "method": "blameFile",
+  "fixture": "tags-and-releases",
+  "case": "at-ref",
+  "write": false,
+  "args": [
+    "app.py",
+    "v1.0.1"
+  ],
+  "result": [
+    {
+      "sha": "<C2d97ef5358>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 1,
+      "text": "VERSION = \"1.0.1\""
+    },
+    {
+      "sha": "<C2745c85f5d>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 2,
+      "text": ""
+    },
+    {
+      "sha": "<C2745c85f5d>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 3,
+      "text": "def greet(name: str) -> str:"
+    },
+    {
+      "sha": "<C2d97ef5358>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 4,
+      "text": "    name = name.strip() or \"stranger\""
+    },
+    {
+      "sha": "<C2745c85f5d>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 5,
+      "text": "    return f\"Hello, {name}!\""
+    },
+    {
+      "sha": "<C64a0d65bc2>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 6,
+      "text": ""
+    },
+    {
+      "sha": "<C64a0d65bc2>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 7,
+      "text": "def main():"
+    },
+    {
+      "sha": "<C64a0d65bc2>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 8,
+      "text": "    print(f\"App v{VERSION}\")"
+    },
+    {
+      "sha": "<C2745c85f5d>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 9,
+      "text": "    print(greet(\"World\"))"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "method": "listDir",
+  "fixture": "project-tree",
+  "case": "root",
+  "write": false,
+  "args": [
+    ""
+  ],
+  "result": [
+    {
+      "name": "dist",
+      "path": "dist",
+      "dir": true
+    },
+    {
+      "name": "docs",
+      "path": "docs",
+      "dir": true
+    },
+    {
+      "name": "src",
+      "path": "src",
+      "dir": true
+    },
+    {
+      "name": ".env",
+      "path": ".env",
+      "dir": false
+    },
+    {
+      "name": ".gitignore",
+      "path": ".gitignore",
+      "dir": false
+    },
+    {
+      "name": "README.md",
+      "path": "README.md",
+      "dir": false
+    },
+    {
+      "name": "scratch.todo",
+      "path": "scratch.todo",
+      "dir": false
+    }
+  ]
+}

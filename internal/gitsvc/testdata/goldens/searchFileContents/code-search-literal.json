@@ -1,0 +1,20 @@
+{
+  "method": "searchFileContents",
+  "fixture": "code-search",
+  "case": "literal",
+  "write": false,
+  "args": [
+    [
+      "src/util/log.js",
+      "src/util/mail.js",
+      "README.md",
+      "missing.js"
+    ],
+    "TODO"
+  ],
+  "result": [
+    "src/util/log.js",
+    "src/util/mail.js",
+    "README.md"
+  ]
+}

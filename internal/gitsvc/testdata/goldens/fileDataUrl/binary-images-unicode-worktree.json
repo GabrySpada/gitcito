@@ -1,0 +1,10 @@
+{
+  "method": "fileDataUrl",
+  "fixture": "binary-images-unicode",
+  "case": "worktree",
+  "write": false,
+  "args": [
+    "assets/icon.png"
+  ],
+  "result": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAEUlEQVR42mPQqLiDFTEMLQkA8eRfAU3Y8DkAAAAASUVORK5CYII="
+}

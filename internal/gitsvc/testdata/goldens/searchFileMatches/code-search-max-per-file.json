@@ -1,0 +1,27 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "code-search",
+  "case": "max-per-file",
+  "write": false,
+  "args": [
+    [
+      "src/util/log.js"
+    ],
+    "TODO",
+    {
+      "maxPerFile": 2
+    }
+  ],
+  "result": [
+    {
+      "file": "src/util/log.js",
+      "line": 1,
+      "text": "// TODO: switch to structured logging"
+    },
+    {
+      "file": "src/util/log.js",
+      "line": 3,
+      "text": "  console.log(msg) // TODO: add a level"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "method": "fileContent",
+  "fixture": "tags-and-releases",
+  "case": "missing-worktree",
+  "write": false,
+  "args": [
+    "gone.txt"
+  ],
+  "result": ""
+}

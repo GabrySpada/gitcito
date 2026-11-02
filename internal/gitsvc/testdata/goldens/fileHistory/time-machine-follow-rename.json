@@ -1,0 +1,23 @@
+{
+  "method": "fileHistory",
+  "fixture": "time-machine",
+  "case": "follow-rename",
+  "write": false,
+  "args": [
+    "src/utils/util.js"
+  ],
+  "result": [
+    {
+      "hash": "<C2ebdabf473>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "chore: fold lib/ into src/utils/"
+    },
+    {
+      "hash": "<Ca425edbd91>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "refactor: extract lib/util.js"
+    }
+  ]
+}

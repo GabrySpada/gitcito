@@ -1,0 +1,8 @@
+{
+  "method": "stagedDiff",
+  "fixture": "line-staging",
+  "case": "nothing-staged",
+  "write": false,
+  "args": [],
+  "result": ""
+}

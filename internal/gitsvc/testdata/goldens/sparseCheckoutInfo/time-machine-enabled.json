@@ -1,0 +1,30 @@
+{
+  "method": "sparseCheckoutInfo",
+  "fixture": "time-machine",
+  "case": "enabled",
+  "write": false,
+  "args": [],
+  "prep": [
+    {
+      "git": [
+        "sparse-checkout",
+        "set",
+        "--cone",
+        "src",
+        "docs"
+      ]
+    }
+  ],
+  "result": {
+    "enabled": true,
+    "cone": true,
+    "dirs": [
+      "docs",
+      "src"
+    ],
+    "topLevelDirs": [
+      "docs",
+      "src"
+    ]
+  }
+}

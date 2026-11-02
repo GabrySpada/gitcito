@@ -1,0 +1,17 @@
+{
+  "method": "commitFiles",
+  "fixture": "tags-and-releases",
+  "case": "head",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD"
+    }
+  ],
+  "result": [
+    {
+      "path": "plugins.py",
+      "status": "A"
+    }
+  ]
+}

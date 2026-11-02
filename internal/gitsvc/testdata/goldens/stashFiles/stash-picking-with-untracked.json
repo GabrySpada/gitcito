@@ -1,0 +1,33 @@
+{
+  "method": "stashFiles",
+  "fixture": "stash-picking",
+  "case": "with-untracked",
+  "write": false,
+  "args": [
+    {
+      "$rev": "stash@{0}"
+    },
+    {
+      "$rev": "stash@{0}^3"
+    }
+  ],
+  "result": [
+    {
+      "path": "alpha.txt",
+      "status": "M"
+    },
+    {
+      "path": "beta.txt",
+      "status": "M"
+    },
+    {
+      "path": "src/gamma.txt",
+      "status": "M"
+    },
+    {
+      "path": "delta-untracked.txt",
+      "status": "?",
+      "untracked": true
+    }
+  ]
+}

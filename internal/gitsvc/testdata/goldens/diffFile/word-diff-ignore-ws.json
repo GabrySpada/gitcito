@@ -1,0 +1,13 @@
+{
+  "method": "diffFile",
+  "fixture": "word-diff",
+  "case": "ignore-ws",
+  "write": false,
+  "args": [
+    "config.ts",
+    false,
+    false,
+    true
+  ],
+  "result": "diff --git a/config.ts b/config.ts\nindex 1586d5d..a115a62 100644\n--- a/config.ts\n+++ b/config.ts\n@@ -1,11 +1,11 @@\n export const config = {\n-  host: 'localhost',\n-  port: 3000,\n-  retries: 3,\n+  host: 'example.com',\n+  port: 8080,\n+  retries: 5,\n   timeout: 5000,\n-  featureFlags: ['search', 'export'],\n+  featureFlags: ['search', 'import'],\n }\n \n-export function connect(user: string): string {\n-  return `connecting ${user} to localhost`\n+export function connect(account: string): string {\n+  return `connecting ${account} to example.com`\n }\n"
+}

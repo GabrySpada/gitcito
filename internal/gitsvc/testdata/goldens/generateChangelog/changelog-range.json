@@ -1,0 +1,17 @@
+{
+  "method": "generateChangelog",
+  "fixture": "changelog",
+  "case": "range",
+  "write": false,
+  "args": [
+    {
+      "from": "HEAD~3",
+      "to": "HEAD~1"
+    }
+  ],
+  "maskDates": true,
+  "result": {
+    "markdown": "## HEAD~3..HEAD~1 (<DATE>)\n\n### ⚠ BREAKING CHANGES\n\n- **session:** new session store (`<Cc22de9ef9e~>`)\n- **api:** drop v1 endpoints (`<C9efe007cee~>`)\n\n### ✨ Features\n\n- **session:** new session store (`<Cc22de9ef9e~>`)\n- **api:** drop v1 endpoints (`<C9efe007cee~>`)\n",
+    "count": 2
+  }
+}

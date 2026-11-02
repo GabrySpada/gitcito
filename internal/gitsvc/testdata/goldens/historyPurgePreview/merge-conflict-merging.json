@@ -1,0 +1,35 @@
+{
+  "method": "historyPurgePreview",
+  "fixture": "merge-conflict",
+  "case": "merging",
+  "write": false,
+  "args": [
+    [
+      "hello.txt"
+    ]
+  ],
+  "prep": [
+    {
+      "git": [
+        "merge",
+        "--no-commit",
+        "feature"
+      ],
+      "mayFail": true
+    }
+  ],
+  "result": {
+    "paths": [
+      "hello.txt"
+    ],
+    "commits": 0,
+    "firstCommit": null,
+    "branches": [
+      "feature",
+      "main"
+    ],
+    "tags": [],
+    "bytes": 0,
+    "blocked": "Finish or abort the operation in progress first."
+  }
+}

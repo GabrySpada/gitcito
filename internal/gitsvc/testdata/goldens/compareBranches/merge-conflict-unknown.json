@@ -1,0 +1,15 @@
+{
+  "method": "compareBranches",
+  "fixture": "merge-conflict",
+  "case": "unknown",
+  "write": false,
+  "args": [
+    "main",
+    "nope"
+  ],
+  "result": {
+    "aheadCommits": [],
+    "behindCommits": [],
+    "diff": ""
+  }
+}

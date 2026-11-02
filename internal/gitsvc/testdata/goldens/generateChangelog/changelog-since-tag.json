@@ -1,0 +1,12 @@
+{
+  "method": "generateChangelog",
+  "fixture": "changelog",
+  "case": "since-tag",
+  "write": false,
+  "args": [],
+  "maskDates": true,
+  "result": {
+    "markdown": "## v1.0.0..HEAD (<DATE>)\n\n### ⚠ BREAKING CHANGES\n\n- **session:** new session store (`<Cc22de9ef9e~>`)\n- **api:** drop v1 endpoints (`<C9efe007cee~>`)\n\n### ✨ Features\n\n- **session:** new session store (`<Cc22de9ef9e~>`)\n- **api:** drop v1 endpoints (`<C9efe007cee~>`)\n- **ui:** dark mode toggle (`<Cd392e422d2~>`)\n- **auth:** add OAuth login (`<C0c41c50b7b~>`)\n\n### 🐛 Bug Fixes\n\n- off-by-one in pagination (`<C9f214f0b37~>`)\n- **api:** handle null user in profile fetch (`<Ccec46be1ec~>`)\n\n### ⚡ Performance\n\n- **graph:** memoize layout computation (`<Cb6a5368061~>`)\n\n### ♻️ Refactoring\n\n- **core:** extract scheduler module (`<C2c36c0f48e~>`)\n\n### 📝 Documentation\n\n- document the plugin API (`<Cb249dc615a~>`)\n\n### 🔧 Chores\n\n- **deps:** bump electron to 32 (`<C9d53b6ba7d~>`)\n\n### Other\n\n- tweak some stuff without a type prefix (`<C1d4777bc5d~>`)\n",
+    "count": 11
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "method": "objectRefs",
+  "fixture": "empty-repo",
+  "case": "empty",
+  "write": false,
+  "args": [],
+  "result": []
+}

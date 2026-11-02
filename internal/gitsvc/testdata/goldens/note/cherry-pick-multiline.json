@@ -1,0 +1,25 @@
+{
+  "method": "note",
+  "fixture": "cherry-pick",
+  "case": "multiline",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD"
+    }
+  ],
+  "prep": [
+    {
+      "git": [
+        "notes",
+        "add",
+        "-m",
+        "Reviewed by Ana.",
+        "-m",
+        "Shipped in build 412.",
+        "HEAD"
+      ]
+    }
+  ],
+  "result": "Reviewed by Ana.\n\nShipped in build 412."
+}

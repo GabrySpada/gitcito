@@ -1,0 +1,10 @@
+{
+  "method": "fileContent",
+  "fixture": "binary-images-unicode",
+  "case": "binary",
+  "write": false,
+  "args": [
+    "data.bin"
+  ],
+  "result": "\u0000\u0001\u0002\u0003ޭ������\u0010 0@"
+}

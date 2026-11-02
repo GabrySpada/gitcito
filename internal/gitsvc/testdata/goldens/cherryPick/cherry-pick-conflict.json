@@ -1,0 +1,19 @@
+{
+  "method": "cherryPick",
+  "fixture": "cherry-pick",
+  "case": "conflict",
+  "write": true,
+  "args": [
+    {
+      "$rev": ":/will CONFLICT"
+    }
+  ],
+  "error": "Auto-merging config.json\nCONFLICT (content): Merge conflict in config.json\nerror: could not apply <C98916b90e6~>... bump version on feature (will CONFLICT when cherry-picked)\nhint: After resolving the conflicts, mark them with\nhint: \"git add/rm <pathspec>\", then run\nhint: \"git cherry-pick --continue\".\nhint: You can instead skip this commit with \"git cherry-pick --skip\".\nhint: To abort and get back to the state before \"git cherry-pick\",\nhint: run \"git cherry-pick --abort\".\n",
+  "state": {
+    "status": "u UU N... 100644 100644 100644 100644 dc58d08696b063e6b492c5e35b2bc99dae99d302 705d823e7eed583c1c0c01d0832bcafe1a58c06c 79f50a431757a4c0c9500a455839fb3de8cb13b3 config.json\n",
+    "refs": "<C98916b90e6> commit\trefs/heads/feature\n<C1534c9015d> commit\trefs/heads/main\n",
+    "log": "\n<C1534c9015d>\u0000<C55566cd703>\u0000main: rename package\n<C55566cd703>\u0000\u0000initial commit\n<C930fc1a725>\u0000<C55566cd703>\u0000add clean-addition.txt (cherry-picks cleanly)\n<C98916b90e6>\u0000<C930fc1a725>\u0000bump version on feature (will CONFLICT when cherry-picked)",
+    "stash": "",
+    "index": "100644 dc58d08696b063e6b492c5e35b2bc99dae99d302 1\tconfig.json\n100644 705d823e7eed583c1c0c01d0832bcafe1a58c06c 2\tconfig.json\n100644 79f50a431757a4c0c9500a455839fb3de8cb13b3 3\tconfig.json\n100644 89b24ecec50c07aef0d6640a2a9f6dc354a33125 0\tlog.txt\n"
+  }
+}

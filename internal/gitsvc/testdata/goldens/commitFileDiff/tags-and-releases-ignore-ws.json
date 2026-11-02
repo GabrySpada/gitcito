@@ -1,0 +1,14 @@
+{
+  "method": "commitFileDiff",
+  "fixture": "tags-and-releases",
+  "case": "ignore-ws",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/feat!: rewrite as App class"
+    },
+    "app.py",
+    true
+  ],
+  "result": "diff --git a/app.py b/app.py\nindex 4c2f697..b7f4e48 100644\n--- a/app.py\n+++ b/app.py\n@@ -1,13 +1,17 @@\n-VERSION = \"1.1.0\"\n+VERSION = \"2.0.0\"\n+from dataclasses import dataclass\n \n-def greet(name: str) -> str:\n-    name = name.strip() or \"stranger\"\n-    return f\"Hello, {name}!\"\n+@dataclass\n+class App:\n+    name: str\n \n-def farewell(name: str) -> str:\n-    return f\"Goodbye, {name}. See you soon!\"\n+    def greet(self) -> str:\n+        return f\"Hello from {self.name}!\"\n+\n+    def farewell(self) -> str:\n+        return f\"{self.name} signing off.\"\n \n def main():\n-    print(f\"App v{VERSION}\")\n-    print(greet(\"World\"))\n-    print(farewell(\"World\"))\n+    app = App(\"Demo\")\n+    print(app.greet())\n+    print(app.farewell())\n"
+}

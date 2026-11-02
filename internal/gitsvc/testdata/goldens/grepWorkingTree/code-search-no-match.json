@@ -1,0 +1,10 @@
+{
+  "method": "grepWorkingTree",
+  "fixture": "code-search",
+  "case": "no-match",
+  "write": false,
+  "args": [
+    "zzzz-no-such-text"
+  ],
+  "result": []
+}

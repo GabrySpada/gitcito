@@ -1,0 +1,10 @@
+{
+  "method": "commitFiles",
+  "fixture": "tags-and-releases",
+  "case": "bad-object",
+  "write": false,
+  "args": [
+    "nonexistent"
+  ],
+  "error": "fatal: ambiguous argument 'nonexistent': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'\n"
+}

@@ -1,0 +1,15 @@
+{
+  "method": "stashFileDiff",
+  "fixture": "stash-picking",
+  "case": "ignore-ws",
+  "write": false,
+  "args": [
+    {
+      "$rev": "stash@{0}"
+    },
+    "beta.txt",
+    false,
+    true
+  ],
+  "result": "diff --git a/beta.txt b/beta.txt\nindex a77d4b8..51fecdd 100644\n--- a/beta.txt\n+++ b/beta.txt\n@@ -1 +1 @@\n-beta v1\n+beta v2 (stashed change)\n"
+}

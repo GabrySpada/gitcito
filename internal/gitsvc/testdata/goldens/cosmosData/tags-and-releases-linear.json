@@ -1,0 +1,111 @@
+{
+  "method": "cosmosData",
+  "fixture": "tags-and-releases",
+  "case": "linear",
+  "write": false,
+  "args": [
+    5
+  ],
+  "result": [
+    {
+      "hash": "<C879b1c93ab>",
+      "parents": [
+        "<C5d81098c20>"
+      ],
+      "authorName": "Playground",
+      "authorEmail": "playground@example.com",
+      "timestamp": "<TS>",
+      "subject": "feat: plugin system (unreleased, post-v2.0.0 dev)",
+      "files": [
+        {
+          "path": "plugins.py",
+          "added": 14,
+          "removed": 0
+        }
+      ]
+    },
+    {
+      "hash": "<C5d81098c20>",
+      "parents": [
+        "<C358af6a712>"
+      ],
+      "authorName": "Playground",
+      "authorEmail": "playground@example.com",
+      "timestamp": "<TS>",
+      "subject": "feat!: rewrite as App class — v2.0.0 BREAKING",
+      "files": [
+        {
+          "path": "CHANGELOG.md",
+          "added": 3,
+          "removed": 0
+        },
+        {
+          "path": "app.py",
+          "added": 13,
+          "removed": 9
+        }
+      ]
+    },
+    {
+      "hash": "<C358af6a712>",
+      "parents": [
+        "<C2d97ef5358>"
+      ],
+      "authorName": "Playground",
+      "authorEmail": "playground@example.com",
+      "timestamp": "<TS>",
+      "subject": "feat: add farewell() — v1.1.0",
+      "files": [
+        {
+          "path": "CHANGELOG.md",
+          "added": 3,
+          "removed": 0
+        },
+        {
+          "path": "app.py",
+          "added": 5,
+          "removed": 1
+        }
+      ]
+    },
+    {
+      "hash": "<C2d97ef5358>",
+      "parents": [
+        "<C2745c85f5d>"
+      ],
+      "authorName": "Playground",
+      "authorEmail": "playground@example.com",
+      "timestamp": "<TS>",
+      "subject": "fix: handle blank name in greet() — v1.0.1",
+      "files": [
+        {
+          "path": "app.py",
+          "added": 2,
+          "removed": 1
+        }
+      ]
+    },
+    {
+      "hash": "<C2745c85f5d>",
+      "parents": [
+        "<C64a0d65bc2>"
+      ],
+      "authorName": "Playground",
+      "authorEmail": "playground@example.com",
+      "timestamp": "<TS>",
+      "subject": "release: v1.0.0",
+      "files": [
+        {
+          "path": "CHANGELOG.md",
+          "added": 4,
+          "removed": 0
+        },
+        {
+          "path": "app.py",
+          "added": 5,
+          "removed": 1
+        }
+      ]
+    }
+  ]
+}

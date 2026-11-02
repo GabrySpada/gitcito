@@ -1,0 +1,11 @@
+{
+  "method": "listDirAt",
+  "fixture": "time-machine",
+  "case": "not-a-tree",
+  "write": false,
+  "args": [
+    "HEAD",
+    "README.md"
+  ],
+  "error": "fatal: not a tree object\n"
+}

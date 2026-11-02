@@ -1,0 +1,15 @@
+{
+  "method": "imageDiff",
+  "fixture": "binary-images-unicode",
+  "case": "refs",
+  "write": false,
+  "args": [
+    "assets/logo.png",
+    "HEAD~3",
+    "HEAD"
+  ],
+  "result": {
+    "before": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR42mO4o6FBEmIY1TCqYfhqAAAyBCwQhCQ/2gAAAABJRU5ErkJggg==",
+    "after": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAKklEQVR42mPQOBFAU8QwasGoBaMWjFowasGoBaMWjFowasGoBaMWDBULADLfAEzs+SEhAAAAAElFTkSuQmCC"
+  }
+}

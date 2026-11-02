@@ -1,0 +1,82 @@
+{
+  "method": "previewRef",
+  "fixture": "merge-conflict",
+  "case": "missing-ref",
+  "write": true,
+  "args": [
+    "up",
+    "refs/pull/99/head",
+    "merge"
+  ],
+  "prep": [
+    {
+      "up": "merge-conflict"
+    },
+    {
+      "gitUp": [
+        "checkout",
+        "-q",
+        "-b",
+        "tidy",
+        "main"
+      ]
+    },
+    {
+      "writeUp": [
+        "NOTES.md",
+        "from the pull request\n"
+      ]
+    },
+    {
+      "gitUp": [
+        "add",
+        "NOTES.md"
+      ]
+    },
+    {
+      "gitUp": [
+        "commit",
+        "-q",
+        "-m",
+        "docs: add notes"
+      ]
+    },
+    {
+      "gitUp": [
+        "checkout",
+        "-q",
+        "main"
+      ]
+    },
+    {
+      "gitUp": [
+        "update-ref",
+        "refs/pull/7/head",
+        "feature"
+      ]
+    },
+    {
+      "gitUp": [
+        "update-ref",
+        "refs/merge-requests/3/head",
+        "tidy"
+      ]
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "up",
+        "<UP>"
+      ]
+    }
+  ],
+  "error": "fatal: couldn't find remote ref refs/pull/99/head",
+  "state": {
+    "status": "",
+    "refs": "<C5d96083d50> commit\trefs/heads/feature\n<Cc7cb2bcab9> commit\trefs/heads/main\n",
+    "log": "\n<C17de25144d>\u0000\u0000initial commit\n<C5d96083d50>\u0000<C17de25144d>\u0000feature: translate to Spanish\n<Cc7cb2bcab9>\u0000<C17de25144d>\u0000main: shout the greetings",
+    "stash": "",
+    "index": "100644 4f758faea993cfaaabb9e48a8aa613abd7e0db1c 0\tapp.js\n100644 0629d62530841527f2395dabc9c7081af6a7d7db 0\tbig-log.txt\n100644 1e94c3742727a15984b7271b98959721a26fbdd5 0\tgreeting.txt\n100644 b5c5c9fc212ddaa64facb687fa52487bce42696a 0\trelease-notes.md\n"
+  }
+}

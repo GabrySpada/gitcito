@@ -1,0 +1,21 @@
+{
+  "method": "commitBranches",
+  "fixture": "multi-remote",
+  "case": "base",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD~1"
+    }
+  ],
+  "result": [
+    {
+      "name": "main",
+      "isLocal": true,
+      "remotes": [
+        "origin",
+        "upstream"
+      ]
+    }
+  ]
+}

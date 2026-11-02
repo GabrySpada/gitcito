@@ -1,0 +1,25 @@
+{
+  "method": "undoCommit",
+  "fixture": "cherry-pick",
+  "case": "detached",
+  "write": true,
+  "args": [],
+  "prep": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "--detach",
+        "HEAD"
+      ]
+    }
+  ],
+  "error": "HEAD is detached — check out a branch first.",
+  "state": {
+    "status": "",
+    "refs": "<C98916b90e6> commit\trefs/heads/feature\n<C1534c9015d> commit\trefs/heads/main\n",
+    "log": "\n<C1534c9015d>\u0000<C55566cd703>\u0000main: rename package\n<C55566cd703>\u0000\u0000initial commit\n<C930fc1a725>\u0000<C55566cd703>\u0000add clean-addition.txt (cherry-picks cleanly)\n<C98916b90e6>\u0000<C930fc1a725>\u0000bump version on feature (will CONFLICT when cherry-picked)",
+    "stash": "",
+    "index": "100644 705d823e7eed583c1c0c01d0832bcafe1a58c06c 0\tconfig.json\n100644 89b24ecec50c07aef0d6640a2a9f6dc354a33125 0\tlog.txt\n"
+  }
+}

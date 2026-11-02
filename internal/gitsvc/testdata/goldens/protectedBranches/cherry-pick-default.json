@@ -1,0 +1,11 @@
+{
+  "method": "protectedBranches",
+  "fixture": "cherry-pick",
+  "case": "default",
+  "write": false,
+  "args": [],
+  "result": [
+    "main",
+    "master"
+  ]
+}

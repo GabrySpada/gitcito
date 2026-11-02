@@ -1,0 +1,17 @@
+{
+  "method": "deleteTag",
+  "fixture": "tags-and-releases",
+  "case": "missing",
+  "write": true,
+  "args": [
+    "nope"
+  ],
+  "error": "error: tag 'nope' not found.\n",
+  "state": {
+    "status": "",
+    "refs": "<Ce35184d2b9> commit\trefs/heads/hotfix/security-patch\n<C879b1c93ab> commit\trefs/heads/main\n<T721c489cd8> tag\trefs/tags/v1.0.0\n<C2d97ef5358> commit\trefs/tags/v1.0.1\n<Tbb17483f55> tag\trefs/tags/v1.0.2\n<T9bf2b62c9e> tag\trefs/tags/v1.1.0\n<Tb6508f049d> tag\trefs/tags/v2.0.0\n",
+    "log": "\n<C2745c85f5d>\u0000<C64a0d65bc2>\u0000release: v1.0.0\n<C2d97ef5358>\u0000<C2745c85f5d>\u0000fix: handle blank name in greet() — v1.0.1\n<C358af6a712>\u0000<C2d97ef5358>\u0000feat: add farewell() — v1.1.0\n<C5d81098c20>\u0000<C358af6a712>\u0000feat!: rewrite as App class — v2.0.0 BREAKING\n<C64a0d65bc2>\u0000\u0000chore: initial scaffolding\n<C879b1c93ab>\u0000<C5d81098c20>\u0000feat: plugin system (unreleased, post-v2.0.0 dev)\n<Ce35184d2b9>\u0000<C2d97ef5358>\u0000security: sanitise name input — v1.0.2",
+    "stash": "",
+    "index": "100644 b2e68809364fdb5bb9147b09fc82fd45605dd851 0\tCHANGELOG.md\n100644 b7f4e484d225bd441366880980401921fe2f5b72 0\tapp.py\n100644 dffb5000de6f21e47e5f2217f14a02c2e7966c5c 0\tplugins.py\n"
+  }
+}

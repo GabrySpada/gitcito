@@ -1,0 +1,98 @@
+{
+  "method": "repoInsights",
+  "fixture": "time-machine",
+  "case": "renames",
+  "write": false,
+  "args": [],
+  "maskDates": true,
+  "result": {
+    "totalCommits": 12,
+    "first": "<TS>",
+    "last": "<TS>",
+    "filesTouched": 11,
+    "authors": [
+      {
+        "name": "Playground",
+        "commits": 12,
+        "added": 34,
+        "removed": 13
+      }
+    ],
+    "hotspots": [
+      {
+        "path": "docs/guide.md",
+        "commits": 2,
+        "added": 8,
+        "removed": 1
+      },
+      {
+        "path": "docs/old.md",
+        "commits": 2,
+        "added": 3,
+        "removed": 3
+      },
+      {
+        "path": "src/api.js",
+        "commits": 2,
+        "added": 7,
+        "removed": 2
+      },
+      {
+        "path": "src/utils/format.js",
+        "commits": 2,
+        "added": 0,
+        "removed": 3
+      },
+      {
+        "path": "index.js",
+        "commits": 2,
+        "added": 6,
+        "removed": 4
+      },
+      {
+        "path": "VERSION",
+        "commits": 1,
+        "added": 1,
+        "removed": 0
+      },
+      {
+        "path": "src/utils/util.js",
+        "commits": 1,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "path": "src/index.js",
+        "commits": 1,
+        "added": 0,
+        "removed": 0
+      },
+      {
+        "path": "lib/format.js",
+        "commits": 1,
+        "added": 3,
+        "removed": 0
+      },
+      {
+        "path": "lib/util.js",
+        "commits": 1,
+        "added": 3,
+        "removed": 0
+      },
+      {
+        "path": "README.md",
+        "commits": 1,
+        "added": 3,
+        "removed": 0
+      }
+    ],
+    "churn": [
+      {
+        "week": "<DATE>",
+        "added": 34,
+        "removed": 13,
+        "commits": 12
+      }
+    ]
+  }
+}

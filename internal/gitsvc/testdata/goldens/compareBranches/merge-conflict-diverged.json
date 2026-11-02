@@ -1,0 +1,43 @@
+{
+  "method": "compareBranches",
+  "fixture": "merge-conflict",
+  "case": "diverged",
+  "write": false,
+  "args": [
+    "main",
+    "feature"
+  ],
+  "result": {
+    "aheadCommits": [
+      {
+        "hash": "<Cc7cb2bcab9>",
+        "parents": [
+          "<C17de25144d>"
+        ],
+        "author": "Playground",
+        "email": "playground@example.com",
+        "date": "<TS>",
+        "refs": [
+          "HEAD -> main"
+        ],
+        "subject": "main: shout the greetings"
+      }
+    ],
+    "behindCommits": [
+      {
+        "hash": "<C5d96083d50>",
+        "parents": [
+          "<C17de25144d>"
+        ],
+        "author": "Playground",
+        "email": "playground@example.com",
+        "date": "<TS>",
+        "refs": [
+          "feature"
+        ],
+        "subject": "feature: translate to Spanish"
+      }
+    ],
+    "diff": "diff --git a/app.js b/app.js\nindex f3a38ee..4f758fa 100644\n--- a/app.js\n+++ b/app.js\n@@ -1,5 +1,5 @@\n function greet(name) {\n-  return 'Hello ' + name\n+  return `HELLO ${name.toUpperCase()} (main version)`\n }\n \n function farewell(name) {\ndiff --git a/big-log.txt b/big-log.txt\nindex f2f5283..0629d62 100644\n--- a/big-log.txt\n+++ b/big-log.txt\n@@ -147,7 +147,7 @@ line 146: shared padding\n line 147: shared padding\n line 148: shared padding\n line 149: shared padding\n-line 150: base version\n+line 150: MAIN EDITION\n line 151: shared padding\n line 152: shared padding\n line 153: shared padding\n@@ -197,7 +197,7 @@ line 196: shared padding\n line 197: shared padding\n line 198: shared padding\n line 199: shared padding\n-line 200: base version\n+line 200: MAIN EDITION\n line 201: shared padding\n line 202: shared padding\n line 203: shared padding\n@@ -497,7 +497,7 @@ line 496: shared padding\n line 497: shared padding\n line 498: shared padding\n line 499: shared padding\n-line 500: base version\n+line 500: MAIN EDITION\n line 501: shared padding\n line 502: shared padding\n line 503: shared padding\ndiff --git a/greeting.txt b/greeting.txt\nindex 4fae60c..1e94c37 100644\n--- a/greeting.txt\n+++ b/greeting.txt\n@@ -1,3 +1,3 @@\n-Hello world\n+HELLO WORLD (from main)\n This line stays the same.\n-Goodbye world\n+GOODBYE WORLD (from main)\ndiff --git a/release-notes.md b/release-notes.md\nindex 2eb88ad..b5c5c9f 100644\n--- a/release-notes.md\n+++ b/release-notes.md\n@@ -1,21 +1,21 @@\n # Release notes\n \n ## Summary\n-Small maintenance release.\n+SHOUTING RELEASE.\n \n <!-- keep three lines of shared context between sections so git keeps the -->\n <!-- conflicts apart instead of coalescing them into one big chunk -->\n <!-- ------------------------------------------------------------ -->\n \n ## Added\n-- nothing yet\n+- UPPERCASE GREETINGS\n \n <!-- ------------------------------------------------------------ -->\n <!-- shared context -->\n <!-- ------------------------------------------------------------ -->\n \n ## Fixed\n-- nothing yet\n+- QUIET OUTPUT\n \n <!-- ------------------------------------------------------------ -->\n <!-- shared context -->\n@@ -29,4 +29,4 @@ Unchanged on both branches.\n <!-- ------------------------------------------------------------ -->\n \n ## Credits\n-- the team\n+- THE LOUD CREW\ndiff --git a/units_service.dart b/units_service.dart\ndeleted file mode 100644\nindex 68032cc..0000000\n--- a/units_service.dart\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-String formatUnits(int count) {\n-  return 'units: $count';\n-}\n"
+  }
+}

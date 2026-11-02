@@ -1,0 +1,12 @@
+{
+  "method": "commitDiff",
+  "fixture": "binary-images-unicode",
+  "case": "binary",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/design: recolour"
+    }
+  ],
+  "result": "diff --git a/assets/logo.png b/assets/logo.png\nindex 162e436..7ac3e7f 100644\nBinary files a/assets/logo.png and b/assets/logo.png differ\n"
+}

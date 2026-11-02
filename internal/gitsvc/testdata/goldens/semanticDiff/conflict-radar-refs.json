@@ -1,0 +1,25 @@
+{
+  "method": "semanticDiff",
+  "fixture": "conflict-radar",
+  "case": "refs",
+  "write": false,
+  "args": [
+    "src/app.js",
+    {
+      "kind": "ref",
+      "ref": "main^1"
+    },
+    {
+      "kind": "ref",
+      "ref": "main"
+    }
+  ],
+  "result": {
+    "oldText": "export function start() {\n  return \"v1\"\n}\n",
+    "newText": "export function launch() {\n  return \"v2\"\n}\n"
+  },
+  "tsSemantic": {
+    "language": null,
+    "changes": []
+  }
+}

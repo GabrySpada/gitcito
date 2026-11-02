@@ -1,0 +1,21 @@
+{
+  "method": "contributors",
+  "fixture": "insights",
+  "case": "all",
+  "write": false,
+  "args": [],
+  "result": [
+    {
+      "name": "Alice",
+      "email": "alice@corp.dev"
+    },
+    {
+      "name": "Bob",
+      "email": "bob@corp.dev"
+    },
+    {
+      "name": "Carol",
+      "email": "carol@corp.dev"
+    }
+  ]
+}

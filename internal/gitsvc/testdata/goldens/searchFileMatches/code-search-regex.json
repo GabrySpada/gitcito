@@ -1,0 +1,22 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "code-search",
+  "case": "regex",
+  "write": false,
+  "args": [
+    [
+      "src/util/mail.js"
+    ],
+    "\\w+@corp\\.dev",
+    {
+      "regex": true
+    }
+  ],
+  "result": [
+    {
+      "file": "src/util/mail.js",
+      "line": 2,
+      "text": "export const team = ['alice@corp.dev', 'bob@corp.dev', 'carol@corp.dev']"
+    }
+  ]
+}

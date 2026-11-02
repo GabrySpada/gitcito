@@ -1,0 +1,11 @@
+{
+  "method": "fileDataUrl",
+  "fixture": "binary-images-unicode",
+  "case": "at-ref",
+  "write": false,
+  "args": [
+    "assets/logo.png",
+    "HEAD~3"
+  ],
+  "result": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR42mO4o6FBEmIY1TCqYfhqAAAyBCwQhCQ/2gAAAABJRU5ErkJggg=="
+}

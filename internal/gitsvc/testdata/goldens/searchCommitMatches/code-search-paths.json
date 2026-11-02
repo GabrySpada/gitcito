@@ -1,0 +1,22 @@
+{
+  "method": "searchCommitMatches",
+  "fixture": "code-search",
+  "case": "paths",
+  "write": false,
+  "args": [
+    "HEAD",
+    "TODO",
+    {
+      "paths": [
+        "README.md"
+      ]
+    }
+  ],
+  "result": [
+    {
+      "file": "README.md",
+      "line": 2,
+      "text": "TODO: document the search feature."
+    }
+  ]
+}

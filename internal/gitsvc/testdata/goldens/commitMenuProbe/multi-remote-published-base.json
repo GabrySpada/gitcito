@@ -1,0 +1,24 @@
+{
+  "method": "commitMenuProbe",
+  "fixture": "multi-remote",
+  "case": "published-base",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD~2"
+    }
+  ],
+  "result": {
+    "isHead": false,
+    "isOnLocalBranch": true,
+    "isPublished": true,
+    "isAncestorOfHead": true,
+    "isWithinResetBoundary": false,
+    "isRoot": true,
+    "parentSha": null,
+    "operationInProgress": false,
+    "message": "initial commit\n\n",
+    "headSha": "<C77c9f76f33>",
+    "branch": "main"
+  }
+}

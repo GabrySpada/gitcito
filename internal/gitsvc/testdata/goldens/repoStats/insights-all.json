@@ -1,0 +1,84 @@
+{
+  "method": "repoStats",
+  "fixture": "insights",
+  "case": "all",
+  "write": false,
+  "args": [],
+  "result": {
+    "totalCommits": 14,
+    "first": "<TS>",
+    "last": "<TS>",
+    "perDay": [
+      {
+        "date": "2026-05-04",
+        "count": 1
+      },
+      {
+        "date": "2026-05-05",
+        "count": 1
+      },
+      {
+        "date": "2026-05-06",
+        "count": 1
+      },
+      {
+        "date": "2026-05-11",
+        "count": 1
+      },
+      {
+        "date": "2026-05-12",
+        "count": 1
+      },
+      {
+        "date": "2026-05-13",
+        "count": 1
+      },
+      {
+        "date": "2026-05-18",
+        "count": 1
+      },
+      {
+        "date": "2026-05-19",
+        "count": 1
+      },
+      {
+        "date": "2026-05-26",
+        "count": 1
+      },
+      {
+        "date": "2026-05-27",
+        "count": 1
+      },
+      {
+        "date": "2026-06-02",
+        "count": 1
+      },
+      {
+        "date": "2026-06-03",
+        "count": 1
+      },
+      {
+        "date": "2026-06-09",
+        "count": 1
+      },
+      {
+        "date": "2026-06-10",
+        "count": 1
+      }
+    ],
+    "authors": [
+      {
+        "name": "Alice",
+        "commits": 8
+      },
+      {
+        "name": "Bob",
+        "commits": 4
+      },
+      {
+        "name": "Carol",
+        "commits": 2
+      }
+    ]
+  }
+}
