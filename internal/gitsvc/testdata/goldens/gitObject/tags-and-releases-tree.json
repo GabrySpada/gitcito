@@ -1,0 +1,38 @@
+{
+  "method": "gitObject",
+  "fixture": "tags-and-releases",
+  "case": "tree",
+  "write": false,
+  "args": [
+    "HEAD^{tree}"
+  ],
+  "result": {
+    "sha": "f6a202fe2a6a6392a425d9d5c71e38d4145a1508",
+    "kind": "tree",
+    "size": 112,
+    "rev": "HEAD^{tree}",
+    "tree": [
+      {
+        "mode": "100644",
+        "kind": "blob",
+        "sha": "b2e68809364fdb5bb9147b09fc82fd45605dd851",
+        "name": "CHANGELOG.md",
+        "size": 196
+      },
+      {
+        "mode": "100644",
+        "kind": "blob",
+        "sha": "b7f4e484d225bd441366880980401921fe2f5b72",
+        "name": "app.py",
+        "size": 319
+      },
+      {
+        "mode": "100644",
+        "kind": "blob",
+        "sha": "dffb5000de6f21e47e5f2217f14a02c2e7966c5c",
+        "name": "plugins.py",
+        "size": 312
+      }
+    ]
+  }
+}

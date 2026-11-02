@@ -1,0 +1,12 @@
+{
+  "method": "diffFile",
+  "fixture": "code-search",
+  "case": "staged",
+  "write": false,
+  "args": [
+    "src/util/log.js",
+    true,
+    false
+  ],
+  "result": "diff --git a/src/util/log.js b/src/util/log.js\nindex 4e508a2..f5a2fb3 100644\n--- a/src/util/log.js\n+++ b/src/util/log.js\n@@ -1,4 +1,7 @@\n // TODO: switch to structured logging\n export function log(msg) {\n-  console.log(msg)\n+  console.log(msg) // TODO: add a level\n+}\n+export function warn(msg) {\n+  console.warn(msg) // TODO: add a level\n }\n"
+}

@@ -1,0 +1,13 @@
+{
+  "method": "sparseCheckoutInfo",
+  "fixture": "empty-repo",
+  "case": "unborn",
+  "write": false,
+  "args": [],
+  "result": {
+    "enabled": false,
+    "cone": false,
+    "dirs": [],
+    "topLevelDirs": []
+  }
+}

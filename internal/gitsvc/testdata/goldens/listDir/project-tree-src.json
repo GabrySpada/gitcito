@@ -1,0 +1,31 @@
+{
+  "method": "listDir",
+  "fixture": "project-tree",
+  "case": "src",
+  "write": false,
+  "args": [
+    "src"
+  ],
+  "result": [
+    {
+      "name": "app.ts",
+      "path": "src/app.ts",
+      "dir": false
+    },
+    {
+      "name": "draft.ts",
+      "path": "src/draft.ts",
+      "dir": false
+    },
+    {
+      "name": "new-feature.ts",
+      "path": "src/new-feature.ts",
+      "dir": false
+    },
+    {
+      "name": "util.ts",
+      "path": "src/util.ts",
+      "dir": false
+    }
+  ]
+}

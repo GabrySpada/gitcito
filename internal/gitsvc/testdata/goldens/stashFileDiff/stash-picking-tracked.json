@@ -1,0 +1,13 @@
+{
+  "method": "stashFileDiff",
+  "fixture": "stash-picking",
+  "case": "tracked",
+  "write": false,
+  "args": [
+    {
+      "$rev": "stash@{0}"
+    },
+    "alpha.txt"
+  ],
+  "result": "diff --git a/alpha.txt b/alpha.txt\nindex d075eae..8bd2701 100644\n--- a/alpha.txt\n+++ b/alpha.txt\n@@ -1 +1 @@\n-alpha v1\n+alpha v2 (stashed change)\n"
+}

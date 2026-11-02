@@ -1,0 +1,25 @@
+{
+  "method": "semanticDiff",
+  "fixture": "conflict-radar",
+  "case": "missing",
+  "write": false,
+  "args": [
+    "nope.ts",
+    {
+      "kind": "ref",
+      "ref": "main"
+    },
+    {
+      "kind": "ref",
+      "ref": "main"
+    }
+  ],
+  "result": {
+    "oldText": "",
+    "newText": ""
+  },
+  "tsSemantic": {
+    "language": null,
+    "changes": []
+  }
+}

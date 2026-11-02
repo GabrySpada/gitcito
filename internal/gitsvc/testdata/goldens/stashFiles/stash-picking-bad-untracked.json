@@ -1,0 +1,26 @@
+{
+  "method": "stashFiles",
+  "fixture": "stash-picking",
+  "case": "bad-untracked",
+  "write": false,
+  "args": [
+    {
+      "$rev": "stash@{0}"
+    },
+    "nonexistent"
+  ],
+  "result": [
+    {
+      "path": "alpha.txt",
+      "status": "M"
+    },
+    {
+      "path": "beta.txt",
+      "status": "M"
+    },
+    {
+      "path": "src/gamma.txt",
+      "status": "M"
+    }
+  ]
+}

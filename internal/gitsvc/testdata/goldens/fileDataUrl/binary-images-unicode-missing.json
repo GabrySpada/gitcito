@@ -1,0 +1,10 @@
+{
+  "method": "fileDataUrl",
+  "fixture": "binary-images-unicode",
+  "case": "missing",
+  "write": false,
+  "args": [
+    "nope.png"
+  ],
+  "error": "Cannot read image: nope.png"
+}

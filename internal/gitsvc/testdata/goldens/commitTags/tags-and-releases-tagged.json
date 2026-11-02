@@ -1,0 +1,14 @@
+{
+  "method": "commitTags",
+  "fixture": "tags-and-releases",
+  "case": "tagged",
+  "write": false,
+  "args": [
+    {
+      "$rev": "v1.0.1"
+    }
+  ],
+  "result": [
+    "v1.0.1"
+  ]
+}

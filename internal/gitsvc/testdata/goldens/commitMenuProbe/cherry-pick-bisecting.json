@@ -1,0 +1,32 @@
+{
+  "method": "commitMenuProbe",
+  "fixture": "cherry-pick",
+  "case": "bisecting",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD"
+    }
+  ],
+  "prep": [
+    {
+      "git": [
+        "bisect",
+        "start"
+      ]
+    }
+  ],
+  "result": {
+    "isHead": true,
+    "isOnLocalBranch": true,
+    "isPublished": false,
+    "isAncestorOfHead": true,
+    "isWithinResetBoundary": false,
+    "isRoot": false,
+    "parentSha": "<C55566cd703>",
+    "operationInProgress": true,
+    "message": "main: rename package\n\n",
+    "headSha": "<C1534c9015d>",
+    "branch": "main"
+  }
+}

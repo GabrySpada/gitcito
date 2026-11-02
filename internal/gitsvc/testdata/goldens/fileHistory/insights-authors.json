@@ -1,0 +1,65 @@
+{
+  "method": "fileHistory",
+  "fixture": "insights",
+  "case": "authors",
+  "write": false,
+  "args": [
+    "src/core.js"
+  ],
+  "result": [
+    {
+      "hash": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "subject": "core: logging"
+    },
+    {
+      "hash": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "subject": "core: retry policy"
+    },
+    {
+      "hash": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "subject": "core: metrics hooks"
+    },
+    {
+      "hash": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "subject": "core: cache layer"
+    },
+    {
+      "hash": "<Cd77678bc48>",
+      "author": "Bob",
+      "date": "<TS>",
+      "subject": "core: trim dead code"
+    },
+    {
+      "hash": "<C6fdedcdaad>",
+      "author": "Alice",
+      "date": "<TS>",
+      "subject": "core: refactor loop"
+    },
+    {
+      "hash": "<C9073c1861d>",
+      "author": "Bob",
+      "date": "<TS>",
+      "subject": "core: error handling"
+    },
+    {
+      "hash": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "subject": "core: main loop"
+    },
+    {
+      "hash": "<C65d7f46c82>",
+      "author": "Alice",
+      "date": "<TS>",
+      "subject": "core: scaffold project"
+    }
+  ]
+}

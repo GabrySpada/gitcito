@@ -1,0 +1,12 @@
+{
+  "method": "fileContent",
+  "fixture": "tags-and-releases",
+  "case": "forced",
+  "write": false,
+  "args": [
+    "app.py",
+    "",
+    true
+  ],
+  "result": "VERSION = \"2.0.0\"\nfrom dataclasses import dataclass\n\n@dataclass\nclass App:\n    name: str\n\n    def greet(self) -> str:\n        return f\"Hello from {self.name}!\"\n\n    def farewell(self) -> str:\n        return f\"{self.name} signing off.\"\n\ndef main():\n    app = App(\"Demo\")\n    print(app.greet())\n    print(app.farewell())\n"
+}

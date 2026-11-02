@@ -1,0 +1,10 @@
+{
+  "method": "commitBranches",
+  "fixture": "multi-remote",
+  "case": "bad-object",
+  "write": false,
+  "args": [
+    "nonexistent"
+  ],
+  "result": []
+}

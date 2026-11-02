@@ -1,0 +1,57 @@
+{
+  "method": "compareBranches",
+  "fixture": "tags-and-releases",
+  "case": "tags",
+  "write": false,
+  "args": [
+    "v2.0.0",
+    "v1.0.2"
+  ],
+  "result": {
+    "aheadCommits": [
+      {
+        "hash": "<C5d81098c20>",
+        "parents": [
+          "<C358af6a712>"
+        ],
+        "author": "Playground",
+        "email": "playground@example.com",
+        "date": "<TS>",
+        "refs": [
+          "tag: v2.0.0"
+        ],
+        "subject": "feat!: rewrite as App class — v2.0.0 BREAKING"
+      },
+      {
+        "hash": "<C358af6a712>",
+        "parents": [
+          "<C2d97ef5358>"
+        ],
+        "author": "Playground",
+        "email": "playground@example.com",
+        "date": "<TS>",
+        "refs": [
+          "tag: v1.1.0"
+        ],
+        "subject": "feat: add farewell() — v1.1.0"
+      }
+    ],
+    "behindCommits": [
+      {
+        "hash": "<Ce35184d2b9>",
+        "parents": [
+          "<C2d97ef5358>"
+        ],
+        "author": "Playground",
+        "email": "playground@example.com",
+        "date": "<TS>",
+        "refs": [
+          "tag: v1.0.2",
+          "hotfix/security-patch"
+        ],
+        "subject": "security: sanitise name input — v1.0.2"
+      }
+    ],
+    "diff": "diff --git a/CHANGELOG.md b/CHANGELOG.md\nindex 75c81e1..b2e6880 100644\n--- a/CHANGELOG.md\n+++ b/CHANGELOG.md\n@@ -3,3 +3,9 @@\n ## v1.0.0\n - Initial stable release\n - Add `greet()`\n+\n+## v1.1.0\n+- Add `farewell()`\n+\n+## v2.0.0 ⚠ BREAKING\n+- Rewrite as `App` dataclass (breaks standalone `greet()` / `farewell()` API)\ndiff --git a/app.py b/app.py\nindex 4b31f94..b7f4e48 100644\n--- a/app.py\n+++ b/app.py\n@@ -1,9 +1,17 @@\n-VERSION = \"1.0.1\"\n+VERSION = \"2.0.0\"\n+from dataclasses import dataclass\n \n-def greet(name: str) -> str:\n-    name = name.strip() or \"stranger\"\n-    return f\"Hello, {name}!\"\n+@dataclass\n+class App:\n+    name: str\n+\n+    def greet(self) -> str:\n+        return f\"Hello from {self.name}!\"\n+\n+    def farewell(self) -> str:\n+        return f\"{self.name} signing off.\"\n \n def main():\n-    print(f\"App v{VERSION}\")\n-    print(greet(\"World\"))\n+    app = App(\"Demo\")\n+    print(app.greet())\n+    print(app.farewell())\n"
+  }
+}

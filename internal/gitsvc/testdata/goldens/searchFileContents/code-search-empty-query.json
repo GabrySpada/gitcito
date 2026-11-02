@@ -1,0 +1,17 @@
+{
+  "method": "searchFileContents",
+  "fixture": "code-search",
+  "case": "empty-query",
+  "write": false,
+  "args": [
+    [
+      "a",
+      "b"
+    ],
+    ""
+  ],
+  "result": [
+    "a",
+    "b"
+  ]
+}

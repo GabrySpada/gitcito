@@ -1,0 +1,34 @@
+{
+  "method": "commitMenuProbe",
+  "fixture": "merge-conflict",
+  "case": "merging",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD"
+    }
+  ],
+  "prep": [
+    {
+      "git": [
+        "merge",
+        "--no-commit",
+        "feature"
+      ],
+      "mayFail": true
+    }
+  ],
+  "result": {
+    "isHead": true,
+    "isOnLocalBranch": true,
+    "isPublished": false,
+    "isAncestorOfHead": true,
+    "isWithinResetBoundary": false,
+    "isRoot": false,
+    "parentSha": "<C17de25144d>",
+    "operationInProgress": true,
+    "message": "main: shout the greetings\n\n",
+    "headSha": "<Cc7cb2bcab9>",
+    "branch": "main"
+  }
+}

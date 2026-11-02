@@ -1,0 +1,24 @@
+{
+  "method": "commitMenuProbe",
+  "fixture": "cherry-pick",
+  "case": "root",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD~1"
+    }
+  ],
+  "result": {
+    "isHead": false,
+    "isOnLocalBranch": true,
+    "isPublished": false,
+    "isAncestorOfHead": true,
+    "isWithinResetBoundary": true,
+    "isRoot": true,
+    "parentSha": null,
+    "operationInProgress": false,
+    "message": "initial commit\n\n",
+    "headSha": "<C1534c9015d>",
+    "branch": "main"
+  }
+}

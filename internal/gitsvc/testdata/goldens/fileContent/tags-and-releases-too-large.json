@@ -1,0 +1,18 @@
+{
+  "method": "fileContent",
+  "fixture": "tags-and-releases",
+  "case": "too-large",
+  "write": false,
+  "args": [
+    "big.txt"
+  ],
+  "prep": [
+    {
+      "writeBig": [
+        "big.txt",
+        16777217
+      ]
+    }
+  ],
+  "error": "GITCITO_FILE_TOO_LARGE:16777217"
+}

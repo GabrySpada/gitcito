@@ -1,0 +1,24 @@
+{
+  "method": "semanticDiff",
+  "fixture": "code-search",
+  "case": "empty-head",
+  "write": false,
+  "args": [
+    "src/auth/guard.js",
+    {
+      "kind": "empty"
+    },
+    {
+      "kind": "ref",
+      "ref": "HEAD"
+    }
+  ],
+  "result": {
+    "oldText": "",
+    "newText": "export const guard = (tok) => (tok ? 'ok' : 'deny')\n"
+  },
+  "tsSemantic": {
+    "language": null,
+    "changes": []
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "method": "repoStats",
+  "fixture": "insights",
+  "case": "since",
+  "write": false,
+  "args": [
+    36500
+  ],
+  "result": {
+    "totalCommits": 0,
+    "first": 0,
+    "last": 0,
+    "perDay": [],
+    "authors": []
+  }
+}

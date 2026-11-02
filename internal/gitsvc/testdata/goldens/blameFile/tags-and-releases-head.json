@@ -1,0 +1,130 @@
+{
+  "method": "blameFile",
+  "fixture": "tags-and-releases",
+  "case": "head",
+  "write": false,
+  "args": [
+    "app.py"
+  ],
+  "result": [
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 1,
+      "text": "VERSION = \"2.0.0\""
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 2,
+      "text": "from dataclasses import dataclass"
+    },
+    {
+      "sha": "<C2745c85f5d>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 3,
+      "text": ""
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 4,
+      "text": "@dataclass"
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 5,
+      "text": "class App:"
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 6,
+      "text": "    name: str"
+    },
+    {
+      "sha": "<C64a0d65bc2>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 7,
+      "text": ""
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 8,
+      "text": "    def greet(self) -> str:"
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 9,
+      "text": "        return f\"Hello from {self.name}!\""
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 10,
+      "text": ""
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 11,
+      "text": "    def farewell(self) -> str:"
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 12,
+      "text": "        return f\"{self.name} signing off.\""
+    },
+    {
+      "sha": "<C358af6a712>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 13,
+      "text": ""
+    },
+    {
+      "sha": "<C64a0d65bc2>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 14,
+      "text": "def main():"
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 15,
+      "text": "    app = App(\"Demo\")"
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 16,
+      "text": "    print(app.greet())"
+    },
+    {
+      "sha": "<C5d81098c20>",
+      "author": "Playground",
+      "date": "<TS>",
+      "lineNo": 17,
+      "text": "    print(app.farewell())"
+    }
+  ]
+}

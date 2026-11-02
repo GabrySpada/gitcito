@@ -1,0 +1,10 @@
+{
+  "method": "fileHistory",
+  "fixture": "time-machine",
+  "case": "missing",
+  "write": false,
+  "args": [
+    "nope.js"
+  ],
+  "result": []
+}

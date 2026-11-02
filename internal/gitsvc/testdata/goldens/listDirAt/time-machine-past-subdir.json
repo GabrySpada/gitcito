@@ -1,0 +1,22 @@
+{
+  "method": "listDirAt",
+  "fixture": "time-machine",
+  "case": "past-subdir",
+  "write": false,
+  "args": [
+    "HEAD~5",
+    "src"
+  ],
+  "result": [
+    {
+      "name": "utils",
+      "path": "src/utils",
+      "dir": true
+    },
+    {
+      "name": "index.js",
+      "path": "src/index.js",
+      "dir": false
+    }
+  ]
+}

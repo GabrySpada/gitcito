@@ -1,0 +1,24 @@
+{
+  "method": "commitMenuProbe",
+  "fixture": "multi-remote",
+  "case": "local-head",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD"
+    }
+  ],
+  "result": {
+    "isHead": true,
+    "isOnLocalBranch": true,
+    "isPublished": false,
+    "isAncestorOfHead": true,
+    "isWithinResetBoundary": false,
+    "isRoot": false,
+    "parentSha": "<Cc3bcf8d8b8>",
+    "operationInProgress": false,
+    "message": "feat: array.ts — unique/chunk/flatten (not pushed to origin)\n\n",
+    "headSha": "<C77c9f76f33>",
+    "branch": "main"
+  }
+}

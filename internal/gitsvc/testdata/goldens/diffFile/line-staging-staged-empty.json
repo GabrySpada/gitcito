@@ -1,0 +1,12 @@
+{
+  "method": "diffFile",
+  "fixture": "line-staging",
+  "case": "staged-empty",
+  "write": false,
+  "args": [
+    "config.js",
+    true,
+    false
+  ],
+  "result": ""
+}

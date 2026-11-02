@@ -1,0 +1,62 @@
+{
+  "method": "cosmosData",
+  "fixture": "insights",
+  "case": "capped",
+  "write": false,
+  "args": [
+    3
+  ],
+  "result": [
+    {
+      "hash": "<Cbaa121eab2>",
+      "parents": [
+        "<Cf5914cf6ab>"
+      ],
+      "authorName": "Alice",
+      "authorEmail": "alice@corp.dev",
+      "timestamp": "<TS>",
+      "subject": "api: new module",
+      "files": [
+        {
+          "path": "src/api.js",
+          "added": 1,
+          "removed": 0
+        }
+      ]
+    },
+    {
+      "hash": "<Cf5914cf6ab>",
+      "parents": [
+        "<Cf941379b42>"
+      ],
+      "authorName": "Bob",
+      "authorEmail": "bob@corp.dev",
+      "timestamp": "<TS>",
+      "subject": "core: logging",
+      "files": [
+        {
+          "path": "src/core.js",
+          "added": 9,
+          "removed": 0
+        }
+      ]
+    },
+    {
+      "hash": "<Cf941379b42>",
+      "parents": [
+        "<C96ac5279ec>"
+      ],
+      "authorName": "Carol",
+      "authorEmail": "carol@corp.dev",
+      "timestamp": "<TS>",
+      "subject": "helper: tweak",
+      "files": [
+        {
+          "path": "src/helper.js",
+          "added": 6,
+          "removed": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "method": "notedCommits",
+  "fixture": "cherry-pick",
+  "case": "two",
+  "write": false,
+  "args": [],
+  "prep": [
+    {
+      "git": [
+        "notes",
+        "add",
+        "-m",
+        "a",
+        "HEAD"
+      ]
+    },
+    {
+      "git": [
+        "notes",
+        "add",
+        "-m",
+        "b",
+        "HEAD~1"
+      ]
+    }
+  ],
+  "result": [
+    "<C1534c9015d>",
+    "<C55566cd703>"
+  ]
+}

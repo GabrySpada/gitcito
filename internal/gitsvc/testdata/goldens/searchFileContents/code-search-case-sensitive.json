@@ -1,0 +1,17 @@
+{
+  "method": "searchFileContents",
+  "fixture": "code-search",
+  "case": "case-sensitive",
+  "write": false,
+  "args": [
+    [
+      "src/util/log.js",
+      "README.md"
+    ],
+    "todo",
+    {
+      "caseSensitive": true
+    }
+  ],
+  "result": []
+}

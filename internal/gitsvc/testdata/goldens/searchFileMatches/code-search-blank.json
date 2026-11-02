@@ -1,0 +1,13 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "code-search",
+  "case": "blank",
+  "write": false,
+  "args": [
+    [
+      "README.md"
+    ],
+    "   "
+  ],
+  "result": []
+}

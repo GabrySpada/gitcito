@@ -1,0 +1,11 @@
+{
+  "method": "searchCommitMatches",
+  "fixture": "code-search",
+  "case": "gone-at-head",
+  "write": false,
+  "args": [
+    "HEAD",
+    "validateToken"
+  ],
+  "result": []
+}

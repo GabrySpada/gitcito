@@ -1,0 +1,11 @@
+{
+  "method": "fileContent",
+  "fixture": "binary-images-unicode",
+  "case": "unicode",
+  "write": false,
+  "args": [
+    "日本語ファイル.md",
+    "HEAD"
+  ],
+  "result": "# 日本語のファイル\n\nこれはテストです。絵文字も: 🎌🍣🗻\n"
+}

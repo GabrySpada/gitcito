@@ -1,0 +1,89 @@
+{
+  "method": "previewRef",
+  "fixture": "merge-conflict",
+  "case": "checkout",
+  "write": true,
+  "args": [
+    "up",
+    "refs/pull/7/head",
+    "checkout",
+    "pr/7"
+  ],
+  "prep": [
+    {
+      "up": "merge-conflict"
+    },
+    {
+      "gitUp": [
+        "checkout",
+        "-q",
+        "-b",
+        "tidy",
+        "main"
+      ]
+    },
+    {
+      "writeUp": [
+        "NOTES.md",
+        "from the pull request\n"
+      ]
+    },
+    {
+      "gitUp": [
+        "add",
+        "NOTES.md"
+      ]
+    },
+    {
+      "gitUp": [
+        "commit",
+        "-q",
+        "-m",
+        "docs: add notes"
+      ]
+    },
+    {
+      "gitUp": [
+        "checkout",
+        "-q",
+        "main"
+      ]
+    },
+    {
+      "gitUp": [
+        "update-ref",
+        "refs/pull/7/head",
+        "feature"
+      ]
+    },
+    {
+      "gitUp": [
+        "update-ref",
+        "refs/merge-requests/3/head",
+        "tidy"
+      ]
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "up",
+        "<UP>"
+      ]
+    }
+  ],
+  "result": {
+    "ref": "refs/pull/7/head",
+    "sha": "<C5d96083d50>",
+    "mode": "checkout",
+    "localBranch": "pr/7",
+    "conflicts": []
+  },
+  "state": {
+    "status": "",
+    "refs": "<C5d96083d50> commit\trefs/heads/feature\n<Cc7cb2bcab9> commit\trefs/heads/main\n<C5d96083d50> commit\trefs/heads/pr/7\n",
+    "log": "\n<C17de25144d>\u0000\u0000initial commit\n<C5d96083d50>\u0000<C17de25144d>\u0000feature: translate to Spanish\n<Cc7cb2bcab9>\u0000<C17de25144d>\u0000main: shout the greetings",
+    "stash": "",
+    "index": "100644 8b15707c502fded2d7f65cb32cef6c2968f2b2e8 0\tapp.js\n100644 f1a26b09a986b256553a24f6f7b956d86c5fb90f 0\tbig-log.txt\n100644 1effe220d72b766179901f9d49847388420fdada 0\tfeature-notes.md\n100644 58e86221d711b61e61fc087b28878e558bea5dc6 0\tgreeting.txt\n100644 f4f2f698c6f0ae472db0a182e7af08026a208d1e 0\trelease-notes.md\n100644 d7bf55d434e782ce1f0c6ca60acafda3181ea4ed 0\tunits_service.dart\n"
+  }
+}

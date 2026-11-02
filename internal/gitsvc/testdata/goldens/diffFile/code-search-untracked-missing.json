@@ -1,0 +1,12 @@
+{
+  "method": "diffFile",
+  "fixture": "code-search",
+  "case": "untracked-missing",
+  "write": false,
+  "args": [
+    "nope.js",
+    false,
+    true
+  ],
+  "result": ""
+}

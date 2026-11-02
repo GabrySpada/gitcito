@@ -1,0 +1,12 @@
+{
+  "method": "commitDiff",
+  "fixture": "tags-and-releases",
+  "case": "head",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD"
+    }
+  ],
+  "result": "diff --git a/plugins.py b/plugins.py\nnew file mode 100644\nindex 0000000..dffb500\n--- /dev/null\n+++ b/plugins.py\n@@ -0,0 +1,14 @@\n+from typing import Protocol\n+\n+class Plugin(Protocol):\n+    name: str\n+    def run(self, app: object) -> None: ...\n+\n+_registry: dict[str, 'Plugin'] = {}\n+\n+def register(plugin: 'Plugin') -> None:\n+    _registry[plugin.name] = plugin\n+\n+def run_all(app: object) -> None:\n+    for p in _registry.values():\n+        p.run(app)\n"
+}

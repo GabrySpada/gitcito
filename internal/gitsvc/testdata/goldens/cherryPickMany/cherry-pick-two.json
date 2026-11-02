@@ -1,0 +1,25 @@
+{
+  "method": "cherryPickMany",
+  "fixture": "cherry-pick",
+  "case": "two",
+  "write": true,
+  "args": [
+    [
+      {
+        "$rev": ":/add clean-addition"
+      },
+      {
+        "$rev": ":/will CONFLICT"
+      }
+    ],
+    true
+  ],
+  "error": "Auto-merging config.json\nCONFLICT (content): Merge conflict in config.json\nerror: could not apply <C98916b90e6~>... bump version on feature (will CONFLICT when cherry-picked)\nhint: after resolving the conflicts, mark the corrected paths\nhint: with 'git add <paths>' or 'git rm <paths>'\n",
+  "state": {
+    "status": "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 34129293d2f58f4d405c81825c0fe9f06e838dd6 clean-addition.txt\nu UU N... 100644 100644 100644 100644 dc58d08696b063e6b492c5e35b2bc99dae99d302 705d823e7eed583c1c0c01d0832bcafe1a58c06c 79f50a431757a4c0c9500a455839fb3de8cb13b3 config.json\n",
+    "refs": "<C98916b90e6> commit\trefs/heads/feature\n<C1534c9015d> commit\trefs/heads/main\n",
+    "log": "\n<C1534c9015d>\u0000<C55566cd703>\u0000main: rename package\n<C55566cd703>\u0000\u0000initial commit\n<C930fc1a725>\u0000<C55566cd703>\u0000add clean-addition.txt (cherry-picks cleanly)\n<C98916b90e6>\u0000<C930fc1a725>\u0000bump version on feature (will CONFLICT when cherry-picked)",
+    "stash": "",
+    "index": "100644 34129293d2f58f4d405c81825c0fe9f06e838dd6 0\tclean-addition.txt\n100644 dc58d08696b063e6b492c5e35b2bc99dae99d302 1\tconfig.json\n100644 705d823e7eed583c1c0c01d0832bcafe1a58c06c 2\tconfig.json\n100644 79f50a431757a4c0c9500a455839fb3de8cb13b3 3\tconfig.json\n100644 89b24ecec50c07aef0d6640a2a9f6dc354a33125 0\tlog.txt\n"
+  }
+}

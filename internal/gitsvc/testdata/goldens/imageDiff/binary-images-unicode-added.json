@@ -1,0 +1,14 @@
+{
+  "method": "imageDiff",
+  "fixture": "binary-images-unicode",
+  "case": "added",
+  "write": false,
+  "args": [
+    "assets/icon.png",
+    null
+  ],
+  "result": {
+    "before": null,
+    "after": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAEUlEQVR42mPQqLiDFTEMLQkA8eRfAU3Y8DkAAAAASUVORK5CYII="
+  }
+}

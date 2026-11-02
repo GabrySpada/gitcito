@@ -1,0 +1,8 @@
+{
+  "method": "notedCommits",
+  "fixture": "cherry-pick",
+  "case": "none",
+  "write": false,
+  "args": [],
+  "result": []
+}

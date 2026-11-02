@@ -1,0 +1,11 @@
+{
+  "method": "listDirAt",
+  "fixture": "time-machine",
+  "case": "missing-dir",
+  "write": false,
+  "args": [
+    "HEAD",
+    "nope"
+  ],
+  "result": []
+}

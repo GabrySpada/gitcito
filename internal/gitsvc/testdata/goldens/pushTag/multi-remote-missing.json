@@ -1,0 +1,30 @@
+{
+  "method": "pushTag",
+  "fixture": "multi-remote",
+  "case": "missing",
+  "write": true,
+  "args": [
+    "nope"
+  ],
+  "prep": [
+    {
+      "up": "multi-remote-origin.git"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<UP>"
+      ]
+    }
+  ],
+  "error": "Pushing to <UP>\nerror: src refspec refs/tags/nope does not match any\nerror: failed to push some refs to '<UP>'\n",
+  "state": {
+    "status": "",
+    "refs": "<C77c9f76f33> commit\trefs/heads/main\n<Cc3bcf8d8b8> commit\trefs/remotes/origin/HEAD\n<Cc3bcf8d8b8> commit\trefs/remotes/origin/main\n<C9c9c16220f> commit\trefs/remotes/upstream/main\n",
+    "log": "\n<C77c9f76f33>\u0000<Cc3bcf8d8b8>\u0000feat: array.ts — unique/chunk/flatten (not pushed to origin)\n<C9c9c16220f>\u0000<Cdcb6999e78>\u0000docs: update README with string module\n<Cc3bcf8d8b8>\u0000<Cecee2832e2>\u0000feat: add math.ts\n<Cdcb6999e78>\u0000<Cc3bcf8d8b8>\u0000feat: string.ts — capitalize/truncate/slugify\n<Cecee2832e2>\u0000\u0000initial commit",
+    "stash": "",
+    "index": "100644 4d12eeec686041cbef4a766a62dd7806785a26f5 0\tREADME.md\n100644 ca6ee826786a87690acab9a1c34f98f4d08cfe58 0\tarray.ts\n100644 8790a355ad023c7d9159330237117e6cccb36c47 0\tindex.ts\n100644 09439043cb8d580e78ba302b264cb5a501b8a229 0\tmath.ts\n"
+  }
+}

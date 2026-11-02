@@ -1,0 +1,42 @@
+{
+  "method": "sparseCheckoutDisable",
+  "fixture": "time-machine",
+  "case": "after-set",
+  "write": true,
+  "args": [],
+  "prep": [
+    {
+      "git": [
+        "sparse-checkout",
+        "set",
+        "--cone",
+        "src"
+      ]
+    }
+  ],
+  "extra": [
+    [
+      "config",
+      "--get",
+      "core.sparseCheckout"
+    ]
+  ],
+  "result": null,
+  "state": {
+    "status": "",
+    "refs": "<Cfa4c3854a7> commit\trefs/heads/main\n",
+    "log": "\n<C2ebdabf473>\u0000<Cf42850c1ea>\u0000chore: fold lib/ into src/utils/\n<C313b66e97b>\u0000<C68f5ae9fdb>\u0000docs: add docs/ folder\n<C68f5ae9fdb>\u0000<Cc7b0e0a701>\u0000feat: add src/api.js\n<C95d6739613>\u0000\u0000init: one-file app\n<Ca425edbd91>\u0000<Cdcee928106>\u0000refactor: extract lib/util.js\n<Caf587e4dbf>\u0000<Ca425edbd91>\u0000feat: add lib/format.js\n<Cc7b0e0a701>\u0000<C2ebdabf473>\u0000chore: drop unused formatter\n<Cd14f678d34>\u0000<C313b66e97b>\u0000feat: harden the API client\n<Cdcee928106>\u0000<C95d6739613>\u0000docs: add readme\n<Cf42850c1ea>\u0000<Caf587e4dbf>\u0000chore: move entry point into src/\n<Cf58f925b8b>\u0000<Cd14f678d34>\u0000docs: rewrite the guide, drop old notes\n<Cfa4c3854a7>\u0000<Cf58f925b8b>\u0000chore: release 1.2.0",
+    "stash": "",
+    "index": "100644 235044350a2c3d029c05a4a2ff9290185931e18c 0\tREADME.md\n100644 26aaba0e86632e4d537006e45b0ec918d780b3b4 0\tVERSION\n100644 c9c9fe10c02c04f63155757fc850f2297f626f44 0\tdocs/guide.md\n100644 b4940a1e8bdf8f12333fba2477f4d938c232c9e2 0\tsrc/api.js\n100644 ccd808f61d09ccbd8cda8c914a093dfb02650fbf 0\tsrc/index.js\n100644 941c9468397a230cf2b2d58a590a4f6b60208892 0\tsrc/utils/util.js\n",
+    "extra": [
+      {
+        "args": [
+          "config",
+          "--get",
+          "core.sparseCheckout"
+        ],
+        "out": "false\n"
+      }
+    ]
+  }
+}

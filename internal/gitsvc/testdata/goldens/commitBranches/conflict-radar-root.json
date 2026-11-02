@@ -1,0 +1,43 @@
+{
+  "method": "commitBranches",
+  "fixture": "conflict-radar",
+  "case": "root",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/init: app, config and readme"
+    }
+  ],
+  "result": [
+    {
+      "name": "chore/merged",
+      "isLocal": true,
+      "remotes": []
+    },
+    {
+      "name": "feature/big-refactor",
+      "isLocal": true,
+      "remotes": []
+    },
+    {
+      "name": "feature/config-bump",
+      "isLocal": true,
+      "remotes": []
+    },
+    {
+      "name": "feature/docs",
+      "isLocal": true,
+      "remotes": []
+    },
+    {
+      "name": "feature/rename-api",
+      "isLocal": true,
+      "remotes": []
+    },
+    {
+      "name": "main",
+      "isLocal": true,
+      "remotes": []
+    }
+  ]
+}

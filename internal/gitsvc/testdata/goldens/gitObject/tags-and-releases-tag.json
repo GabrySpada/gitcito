@@ -1,0 +1,22 @@
+{
+  "method": "gitObject",
+  "fixture": "tags-and-releases",
+  "case": "tag",
+  "write": false,
+  "args": [
+    "v1.0.0"
+  ],
+  "result": {
+    "sha": "<T721c489cd8>",
+    "kind": "tag",
+    "size": 166,
+    "rev": "v1.0.0",
+    "tag": {
+      "object": "<C2745c85f5d>",
+      "type": "commit",
+      "name": "v1.0.0",
+      "tagger": "Playground <playground@example.com> <TS> <TZ>",
+      "message": "Release v1.0.0 — initial stable\n"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "method": "repoInsights",
+  "fixture": "empty-repo",
+  "case": "empty",
+  "write": false,
+  "args": [],
+  "result": {
+    "totalCommits": 0,
+    "first": 0,
+    "last": 0,
+    "filesTouched": 0,
+    "authors": [],
+    "hotspots": [],
+    "churn": []
+  }
+}

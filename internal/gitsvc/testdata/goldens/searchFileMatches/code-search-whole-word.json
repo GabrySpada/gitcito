@@ -1,0 +1,16 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "code-search",
+  "case": "whole-word",
+  "write": false,
+  "args": [
+    [
+      "src/util/log.js"
+    ],
+    "TOD",
+    {
+      "wholeWord": true
+    }
+  ],
+  "result": []
+}

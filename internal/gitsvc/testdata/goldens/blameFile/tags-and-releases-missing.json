@@ -1,0 +1,10 @@
+{
+  "method": "blameFile",
+  "fixture": "tags-and-releases",
+  "case": "missing",
+  "write": false,
+  "args": [
+    "nope.txt"
+  ],
+  "error": "fatal: no such path 'nope.txt' in HEAD\n"
+}

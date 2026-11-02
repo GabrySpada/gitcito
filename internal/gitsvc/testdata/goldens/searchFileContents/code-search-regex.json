@@ -1,0 +1,19 @@
+{
+  "method": "searchFileContents",
+  "fixture": "code-search",
+  "case": "regex",
+  "write": false,
+  "args": [
+    [
+      "src/util/mail.js",
+      "src/util/log.js"
+    ],
+    "\\w+@corp\\.dev",
+    {
+      "regex": true
+    }
+  ],
+  "result": [
+    "src/util/mail.js"
+  ]
+}

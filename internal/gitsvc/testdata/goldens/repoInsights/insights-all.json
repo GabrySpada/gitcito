@@ -1,0 +1,103 @@
+{
+  "method": "repoInsights",
+  "fixture": "insights",
+  "case": "all",
+  "write": false,
+  "args": [],
+  "result": {
+    "totalCommits": 14,
+    "first": "<TS>",
+    "last": "<TS>",
+    "filesTouched": 5,
+    "authors": [
+      {
+        "name": "Alice",
+        "commits": 8,
+        "added": 110,
+        "removed": 0
+      },
+      {
+        "name": "Bob",
+        "commits": 4,
+        "added": 34,
+        "removed": 46
+      },
+      {
+        "name": "Carol",
+        "commits": 2,
+        "added": 7,
+        "removed": 0
+      }
+    ],
+    "hotspots": [
+      {
+        "path": "src/core.js",
+        "commits": 9,
+        "added": 130,
+        "removed": 46
+      },
+      {
+        "path": "src/helper.js",
+        "commits": 3,
+        "added": 17,
+        "removed": 0
+      },
+      {
+        "path": "README.md",
+        "commits": 2,
+        "added": 2,
+        "removed": 0
+      },
+      {
+        "path": "src/api.js",
+        "commits": 1,
+        "added": 1,
+        "removed": 0
+      },
+      {
+        "path": "LICENSE",
+        "commits": 1,
+        "added": 1,
+        "removed": 0
+      }
+    ],
+    "churn": [
+      {
+        "week": "2026-05-04",
+        "added": 38,
+        "removed": 0,
+        "commits": 3
+      },
+      {
+        "week": "2026-05-11",
+        "added": 31,
+        "removed": 46,
+        "commits": 3
+      },
+      {
+        "week": "2026-05-18",
+        "added": 35,
+        "removed": 0,
+        "commits": 2
+      },
+      {
+        "week": "2026-05-25",
+        "added": 13,
+        "removed": 0,
+        "commits": 2
+      },
+      {
+        "week": "2026-06-01",
+        "added": 24,
+        "removed": 0,
+        "commits": 2
+      },
+      {
+        "week": "2026-06-08",
+        "added": 10,
+        "removed": 0,
+        "commits": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "method": "searchHistory",
+  "fixture": "code-search",
+  "case": "blank",
+  "write": false,
+  "args": [
+    ""
+  ],
+  "result": []
+}

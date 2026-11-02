@@ -1,0 +1,19 @@
+{
+  "method": "searchCommitMatches",
+  "fixture": "code-search",
+  "case": "at-commit",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/add validateToken"
+    },
+    "validateToken"
+  ],
+  "result": [
+    {
+      "file": "src/auth/token.js",
+      "line": 1,
+      "text": "export function validateToken(tok) {"
+    }
+  ]
+}

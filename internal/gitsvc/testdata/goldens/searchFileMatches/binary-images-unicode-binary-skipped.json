@@ -1,0 +1,35 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "binary-images-unicode",
+  "case": "binary-skipped",
+  "write": false,
+  "args": [
+    [
+      "data.bin",
+      "README.md"
+    ],
+    "a"
+  ],
+  "result": [
+    {
+      "file": "README.md",
+      "line": 1,
+      "text": "# Binary, Images & Unicode"
+    },
+    {
+      "file": "README.md",
+      "line": 3,
+      "text": "- `assets/logo.png` changes between commits → exercises **binary diff**."
+    },
+    {
+      "file": "README.md",
+      "line": 4,
+      "text": "- `assets/icon.png`, `data.bin` are committed binaries."
+    },
+    {
+      "file": "README.md",
+      "line": 5,
+      "text": "- Files named with emoji / accents / CJK / RTL test non-ASCII path handling."
+    }
+  ]
+}

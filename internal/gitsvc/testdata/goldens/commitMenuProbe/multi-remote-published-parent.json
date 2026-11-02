@@ -1,0 +1,24 @@
+{
+  "method": "commitMenuProbe",
+  "fixture": "multi-remote",
+  "case": "published-parent",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD~1"
+    }
+  ],
+  "result": {
+    "isHead": false,
+    "isOnLocalBranch": true,
+    "isPublished": true,
+    "isAncestorOfHead": true,
+    "isWithinResetBoundary": true,
+    "isRoot": false,
+    "parentSha": "<Cecee2832e2>",
+    "operationInProgress": false,
+    "message": "feat: add math.ts\n\n",
+    "headSha": "<C77c9f76f33>",
+    "branch": "main"
+  }
+}

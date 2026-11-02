@@ -1,0 +1,10 @@
+{
+  "method": "listDir",
+  "fixture": "project-tree",
+  "case": "missing",
+  "write": false,
+  "args": [
+    "nope"
+  ],
+  "result": []
+}

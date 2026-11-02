@@ -1,0 +1,32 @@
+{
+  "method": "searchHistory",
+  "fixture": "code-search",
+  "case": "regex",
+  "write": false,
+  "args": [
+    "valid.*Token",
+    {
+      "regex": true
+    }
+  ],
+  "result": [
+    {
+      "hash": "<C9c2a7465dc>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "auth: drop validateToken for sessions"
+    },
+    {
+      "hash": "<Cdbc1167df0>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "auth: guard uses validateToken"
+    },
+    {
+      "hash": "<C3c9c457000>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "auth: add validateToken helper"
+    }
+  ]
+}

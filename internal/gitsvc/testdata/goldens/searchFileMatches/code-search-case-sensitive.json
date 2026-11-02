@@ -1,0 +1,16 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "code-search",
+  "case": "case-sensitive",
+  "write": false,
+  "args": [
+    [
+      "README.md"
+    ],
+    "todo",
+    {
+      "caseSensitive": true
+    }
+  ],
+  "result": []
+}

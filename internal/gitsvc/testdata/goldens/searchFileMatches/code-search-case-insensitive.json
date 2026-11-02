@@ -1,0 +1,19 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "code-search",
+  "case": "case-insensitive",
+  "write": false,
+  "args": [
+    [
+      "README.md"
+    ],
+    "todo"
+  ],
+  "result": [
+    {
+      "file": "README.md",
+      "line": 2,
+      "text": "TODO: document the search feature."
+    }
+  ]
+}

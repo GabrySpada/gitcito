@@ -1,0 +1,12 @@
+{
+  "method": "note",
+  "fixture": "cherry-pick",
+  "case": "none",
+  "write": false,
+  "args": [
+    {
+      "$rev": "HEAD"
+    }
+  ],
+  "result": ""
+}

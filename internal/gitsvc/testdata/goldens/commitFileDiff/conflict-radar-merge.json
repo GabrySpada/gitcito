@@ -1,0 +1,13 @@
+{
+  "method": "commitFileDiff",
+  "fixture": "conflict-radar",
+  "case": "merge",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/merge chore/merged"
+    },
+    ".gitignore"
+  ],
+  "result": "diff --git a/.gitignore b/.gitignore\nnew file mode 100644\nindex 0000000..c2658d7\n--- /dev/null\n+++ b/.gitignore\n@@ -0,0 +1 @@\n+node_modules/\n"
+}

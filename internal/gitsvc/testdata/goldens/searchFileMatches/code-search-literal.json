@@ -1,0 +1,40 @@
+{
+  "method": "searchFileMatches",
+  "fixture": "code-search",
+  "case": "literal",
+  "write": false,
+  "args": [
+    [
+      "src/util/log.js",
+      "src/util/mail.js"
+    ],
+    "TODO"
+  ],
+  "result": [
+    {
+      "file": "src/util/log.js",
+      "line": 1,
+      "text": "// TODO: switch to structured logging"
+    },
+    {
+      "file": "src/util/log.js",
+      "line": 3,
+      "text": "  console.log(msg) // TODO: add a level"
+    },
+    {
+      "file": "src/util/log.js",
+      "line": 6,
+      "text": "  console.warn(msg) // TODO: add a level"
+    },
+    {
+      "file": "src/util/mail.js",
+      "line": 3,
+      "text": "// TODO: move contacts to config"
+    },
+    {
+      "file": "src/util/mail.js",
+      "line": 4,
+      "text": "// TODO: validate addresses"
+    }
+  ]
+}

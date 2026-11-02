@@ -1,0 +1,23 @@
+{
+  "method": "semanticDiff",
+  "fixture": "code-search",
+  "case": "index-worktree",
+  "write": false,
+  "args": [
+    "src/util/mail.js",
+    {
+      "kind": "index"
+    },
+    {
+      "kind": "worktree"
+    }
+  ],
+  "result": {
+    "oldText": "// contacts — handy for a regex search: \\w+@\\w+\\.\\w+\nexport const team = ['alice@corp.dev', 'bob@corp.dev', 'carol@corp.dev']\n",
+    "newText": "// contacts — handy for a regex search: \\w+@\\w+\\.\\w+\nexport const team = ['alice@corp.dev', 'bob@corp.dev', 'carol@corp.dev']\n// TODO: move contacts to config\n// TODO: validate addresses\n"
+  },
+  "tsSemantic": {
+    "language": null,
+    "changes": []
+  }
+}

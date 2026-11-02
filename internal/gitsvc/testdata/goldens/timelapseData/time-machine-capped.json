@@ -1,0 +1,51 @@
+{
+  "method": "timelapseData",
+  "fixture": "time-machine",
+  "case": "capped",
+  "write": false,
+  "args": [
+    3
+  ],
+  "result": [
+    {
+      "hash": "<Cd14f678d34>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "feat: harden the API client",
+      "files": [
+        {
+          "path": "src/api.js",
+          "status": "M"
+        }
+      ]
+    },
+    {
+      "hash": "<Cf58f925b8b>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "docs: rewrite the guide, drop old notes",
+      "files": [
+        {
+          "path": "docs/guide.md",
+          "status": "M"
+        },
+        {
+          "path": "docs/old.md",
+          "status": "D"
+        }
+      ]
+    },
+    {
+      "hash": "<Cfa4c3854a7>",
+      "author": "Playground",
+      "date": "<TS>",
+      "subject": "chore: release 1.2.0",
+      "files": [
+        {
+          "path": "VERSION",
+          "status": "A"
+        }
+      ]
+    }
+  ]
+}

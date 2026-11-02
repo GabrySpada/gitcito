@@ -1,0 +1,18 @@
+{
+  "method": "fileDataUrl",
+  "fixture": "tags-and-releases",
+  "case": "too-large",
+  "write": false,
+  "args": [
+    "big.bin"
+  ],
+  "prep": [
+    {
+      "writeBig": [
+        "big.bin",
+        33554433
+      ]
+    }
+  ],
+  "error": "GITCITO_FILE_TOO_LARGE:33554433"
+}

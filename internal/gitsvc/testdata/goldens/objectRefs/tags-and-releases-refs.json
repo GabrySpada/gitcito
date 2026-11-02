@@ -1,0 +1,49 @@
+{
+  "method": "objectRefs",
+  "fixture": "tags-and-releases",
+  "case": "refs",
+  "write": false,
+  "args": [],
+  "result": [
+    {
+      "name": "HEAD",
+      "sha": "<C879b1c93ab>",
+      "kind": "commit"
+    },
+    {
+      "name": "refs/heads/hotfix/security-patch",
+      "sha": "<Ce35184d2b9>",
+      "kind": "commit"
+    },
+    {
+      "name": "refs/heads/main",
+      "sha": "<C879b1c93ab>",
+      "kind": "commit"
+    },
+    {
+      "name": "refs/tags/v1.0.0",
+      "sha": "<T721c489cd8>",
+      "kind": "tag"
+    },
+    {
+      "name": "refs/tags/v1.0.1",
+      "sha": "<C2d97ef5358>",
+      "kind": "commit"
+    },
+    {
+      "name": "refs/tags/v1.0.2",
+      "sha": "<Tbb17483f55>",
+      "kind": "tag"
+    },
+    {
+      "name": "refs/tags/v1.1.0",
+      "sha": "<T9bf2b62c9e>",
+      "kind": "tag"
+    },
+    {
+      "name": "refs/tags/v2.0.0",
+      "sha": "<Tb6508f049d>",
+      "kind": "tag"
+    }
+  ]
+}

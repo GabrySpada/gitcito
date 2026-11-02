@@ -1,0 +1,12 @@
+{
+  "method": "commitTags",
+  "fixture": "tags-and-releases",
+  "case": "untagged",
+  "write": false,
+  "args": [
+    {
+      "$rev": ":/chore: initial scaffolding"
+    }
+  ],
+  "result": []
+}

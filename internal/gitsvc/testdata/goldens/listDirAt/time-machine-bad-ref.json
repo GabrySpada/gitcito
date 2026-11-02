@@ -1,0 +1,11 @@
+{
+  "method": "listDirAt",
+  "fixture": "time-machine",
+  "case": "bad-ref",
+  "write": false,
+  "args": [
+    "nosuchref",
+    ""
+  ],
+  "result": []
+}

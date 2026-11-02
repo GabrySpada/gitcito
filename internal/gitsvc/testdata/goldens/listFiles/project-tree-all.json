@@ -1,0 +1,18 @@
+{
+  "method": "listFiles",
+  "fixture": "project-tree",
+  "case": "all",
+  "write": false,
+  "args": [],
+  "result": [
+    "scratch.todo",
+    "src/draft.ts",
+    ".gitignore",
+    "README.md",
+    "docs/guide.md",
+    "src/app.ts",
+    "src/legacy.ts",
+    "src/new-feature.ts",
+    "src/util.ts"
+  ]
+}

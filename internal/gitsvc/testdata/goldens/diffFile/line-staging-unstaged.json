@@ -1,0 +1,12 @@
+{
+  "method": "diffFile",
+  "fixture": "line-staging",
+  "case": "unstaged",
+  "write": false,
+  "args": [
+    "config.js",
+    false,
+    false
+  ],
+  "result": "diff --git a/config.js b/config.js\nindex 2a706fc..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,7 +1,9 @@\n const config = {\n-  host: 'localhost',\n+  host: 'api.example.com',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n+  debug: true,\n+  tls: true,\n }\n module.exports = config\n"
+}

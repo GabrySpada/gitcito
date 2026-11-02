@@ -1,0 +1,32 @@
+{
+  "method": "listDirAt",
+  "fixture": "time-machine",
+  "case": "root",
+  "write": false,
+  "args": [
+    "HEAD",
+    ""
+  ],
+  "result": [
+    {
+      "name": "docs",
+      "path": "docs",
+      "dir": true
+    },
+    {
+      "name": "src",
+      "path": "src",
+      "dir": true
+    },
+    {
+      "name": "README.md",
+      "path": "README.md",
+      "dir": false
+    },
+    {
+      "name": "VERSION",
+      "path": "VERSION",
+      "dir": false
+    }
+  ]
+}

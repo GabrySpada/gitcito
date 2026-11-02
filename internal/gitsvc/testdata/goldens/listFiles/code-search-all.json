@@ -1,0 +1,15 @@
+{
+  "method": "listFiles",
+  "fixture": "code-search",
+  "case": "all",
+  "write": false,
+  "args": [],
+  "result": [
+    "scratch.js",
+    "README.md",
+    "src/auth/guard.js",
+    "src/auth/token.js",
+    "src/util/log.js",
+    "src/util/mail.js"
+  ]
+}

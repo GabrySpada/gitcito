@@ -1,0 +1,25 @@
+{
+  "method": "gitObject",
+  "fixture": "conflict-radar",
+  "case": "merge-commit",
+  "write": false,
+  "args": [
+    ":/merge chore/merged"
+  ],
+  "result": {
+    "sha": "<C19721d801c>",
+    "kind": "commit",
+    "size": 285,
+    "rev": ":/merge chore/merged",
+    "commit": {
+      "tree": "9aa5d4b072abf6ac4764b5cd00814636e44cade7",
+      "parents": [
+        "<C6fdec0159f>",
+        "<Cb5905c7567>"
+      ],
+      "author": "Playground <playground@example.com> <TS> <TZ>",
+      "committer": "Playground <playground@example.com> <TS> <TZ>",
+      "message": "merge chore/merged\n"
+    }
+  }
+}

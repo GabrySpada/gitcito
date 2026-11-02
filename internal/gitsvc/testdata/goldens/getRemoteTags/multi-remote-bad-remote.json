@@ -1,0 +1,10 @@
+{
+  "method": "getRemoteTags",
+  "fixture": "multi-remote",
+  "case": "bad-remote",
+  "write": false,
+  "args": [
+    "nowhere"
+  ],
+  "result": []
+}

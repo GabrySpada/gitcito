@@ -1,0 +1,34 @@
+{
+  "method": "createTag",
+  "fixture": "changelog",
+  "case": "lightweight",
+  "write": true,
+  "args": [
+    "light-1"
+  ],
+  "extra": [
+    [
+      "cat-file",
+      "-t",
+      "light-1"
+    ]
+  ],
+  "result": null,
+  "state": {
+    "status": "",
+    "refs": "<C1d4777bc5d> commit\trefs/heads/main\n<C1d4777bc5d> commit\trefs/tags/light-1\n<C6bffda18a7> commit\trefs/tags/v1.0.0\n",
+    "log": "\n<C0c41c50b7b>\u0000<C6bffda18a7>\u0000feat(auth): add OAuth login\n<C1d4777bc5d>\u0000<Cc22de9ef9e>\u0000tweak some stuff without a type prefix\n<C2c36c0f48e>\u0000<Cb249dc615a>\u0000refactor(core): extract scheduler module\n<C6bffda18a7>\u0000<Ce228cb92f6>\u0000feat: first feature\n<C9d53b6ba7d>\u0000<C2c36c0f48e>\u0000chore(deps): bump electron to 32\n<C9efe007cee>\u0000<C9d53b6ba7d>\u0000feat(api)!: drop v1 endpoints\n<C9f214f0b37>\u0000<Ccec46be1ec>\u0000fix: off-by-one in pagination\n<Cb249dc615a>\u0000<Cb6a5368061>\u0000docs: document the plugin API\n<Cb6a5368061>\u0000<C9f214f0b37>\u0000perf(graph): memoize layout computation\n<Cc22de9ef9e>\u0000<C9efe007cee>\u0000feat(session): new session store\n<Ccec46be1ec>\u0000<Cd392e422d2>\u0000fix(api): handle null user in profile fetch\n<Cd392e422d2>\u0000<C0c41c50b7b>\u0000feat(ui): dark mode toggle\n<Ce228cb92f6>\u0000\u0000chore: initial commit",
+    "stash": "",
+    "index": "",
+    "extra": [
+      {
+        "args": [
+          "cat-file",
+          "-t",
+          "light-1"
+        ],
+        "out": "commit\n"
+      }
+    ]
+  }
+}

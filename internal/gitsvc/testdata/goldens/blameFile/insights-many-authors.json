@@ -1,0 +1,599 @@
+{
+  "method": "blameFile",
+  "fixture": "insights",
+  "case": "many-authors",
+  "write": false,
+  "args": [
+    "src/core.js"
+  ],
+  "result": [
+    {
+      "sha": "<C65d7f46c82>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 1,
+      "text": "export const core = () => 1"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 2,
+      "text": "// a line 1"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 3,
+      "text": "// a line 2"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 4,
+      "text": "// a line 3"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 5,
+      "text": "// a line 4"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 6,
+      "text": "// a line 5"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 7,
+      "text": "// a line 6"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 8,
+      "text": "// a line 7"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 9,
+      "text": "// a line 8"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 10,
+      "text": "// a line 9"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 11,
+      "text": "// a line 10"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 12,
+      "text": "// a line 11"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 13,
+      "text": "// a line 12"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 14,
+      "text": "// a line 13"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 15,
+      "text": "// a line 14"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 16,
+      "text": "// a line 15"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 17,
+      "text": "// a line 16"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 18,
+      "text": "// a line 17"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 19,
+      "text": "// a line 18"
+    },
+    {
+      "sha": "<C3a3db2fa61>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 20,
+      "text": "// a line 19"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 21,
+      "text": "// a line 1"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 22,
+      "text": "// a line 2"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 23,
+      "text": "// a line 3"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 24,
+      "text": "// a line 4"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 25,
+      "text": "// a line 5"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 26,
+      "text": "// a line 6"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 27,
+      "text": "// a line 7"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 28,
+      "text": "// a line 8"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 29,
+      "text": "// a line 9"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 30,
+      "text": "// a line 10"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 31,
+      "text": "// a line 11"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 32,
+      "text": "// a line 12"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 33,
+      "text": "// a line 13"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 34,
+      "text": "// a line 14"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 35,
+      "text": "// a line 15"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 36,
+      "text": "// a line 16"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 37,
+      "text": "// a line 17"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 38,
+      "text": "// a line 18"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 39,
+      "text": "// a line 19"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 40,
+      "text": "// a line 20"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 41,
+      "text": "// a line 21"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 42,
+      "text": "// a line 22"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 43,
+      "text": "// a line 23"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 44,
+      "text": "// a line 24"
+    },
+    {
+      "sha": "<C80157b1e2c>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 45,
+      "text": "// a line 25"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 46,
+      "text": "// a line 1"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 47,
+      "text": "// a line 2"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 48,
+      "text": "// a line 3"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 49,
+      "text": "// a line 4"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 50,
+      "text": "// a line 5"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 51,
+      "text": "// a line 6"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 52,
+      "text": "// a line 7"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 53,
+      "text": "// a line 8"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 54,
+      "text": "// a line 9"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 55,
+      "text": "// a line 10"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 56,
+      "text": "// a line 11"
+    },
+    {
+      "sha": "<Ccaa9b8af2a>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 57,
+      "text": "// a line 12"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 58,
+      "text": "// a line 1"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 59,
+      "text": "// a line 2"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 60,
+      "text": "// a line 3"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 61,
+      "text": "// a line 4"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 62,
+      "text": "// a line 5"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 63,
+      "text": "// a line 6"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 64,
+      "text": "// a line 7"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 65,
+      "text": "// a line 8"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 66,
+      "text": "// a line 9"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 67,
+      "text": "// a line 10"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 68,
+      "text": "// a line 11"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 69,
+      "text": "// a line 12"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 70,
+      "text": "// a line 13"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 71,
+      "text": "// a line 14"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 72,
+      "text": "// a line 15"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 73,
+      "text": "// a line 16"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 74,
+      "text": "// a line 17"
+    },
+    {
+      "sha": "<C96ac5279ec>",
+      "author": "Alice",
+      "date": "<TS>",
+      "lineNo": 75,
+      "text": "// a line 18"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 76,
+      "text": "// a line 1"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 77,
+      "text": "// a line 2"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 78,
+      "text": "// a line 3"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 79,
+      "text": "// a line 4"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 80,
+      "text": "// a line 5"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 81,
+      "text": "// a line 6"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 82,
+      "text": "// a line 7"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 83,
+      "text": "// a line 8"
+    },
+    {
+      "sha": "<Cf5914cf6ab>",
+      "author": "Bob",
+      "date": "<TS>",
+      "lineNo": 84,
+      "text": "// a line 9"
+    }
+  ]
+}

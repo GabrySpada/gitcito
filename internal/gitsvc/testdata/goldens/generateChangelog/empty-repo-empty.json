@@ -1,0 +1,12 @@
+{
+  "method": "generateChangelog",
+  "fixture": "empty-repo",
+  "case": "empty",
+  "write": false,
+  "args": [],
+  "maskDates": true,
+  "result": {
+    "markdown": "## HEAD (<DATE>)\n\n_No commits in this range._\n",
+    "count": 0
+  }
+}
