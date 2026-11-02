@@ -951,3 +951,34 @@ describe('analytics store', () => {
     check('internal/analytics/testdata/scenario.json', { tz: process.env.TZ, scenarios: [fresh, seeded, clearFirst] })
   })
 })
+
+// ─── the other direction: TS opens what Go wrote ───────────────────────────
+
+describe('TS opens Go-produced bundles', () => {
+  // Written by internal/secure/goproduced_test.go (PORT_WRITE_VECTORS=1): a v4
+  // (Electron) user must be able to import what a v5 (Wails) user exported.
+  const DIR = join(ROOT, 'testdata/vectors/secure-go-produced')
+  const expected = JSON.parse(readFileSync(join(DIR, 'expected.json'), 'utf-8')) as {
+    file: string
+    password: string
+    header: unknown
+    sections: unknown
+  }[]
+
+  it('has bundles to open', () => {
+    expect(expected.length).toBeGreaterThanOrEqual(3)
+  })
+
+  for (const c of expected) {
+    it(`reads, decrypts and opens ${c.file}`, async () => {
+      const text = readFileSync(join(DIR, c.file), 'utf-8')
+      expect(readBundleHeader(text)).toEqual(c.header)
+      expect(unpackSections(text, c.password).map(encSection)).toEqual(c.sections)
+      expect(() => unpackSections(text, c.password + 'x')).toThrowError(
+        expect.objectContaining({ code: 'bad-password' })
+      )
+      const opened = await openBundleV2(join(DIR, c.file), c.password)
+      expect('error' in opened).toBe(false)
+    }, 30_000)
+  }
+})
