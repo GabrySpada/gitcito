@@ -102,7 +102,7 @@ func errMessage(err error) string {
 }
 
 // deliver sends a CLI request to the renderer once it is ready.
-func (s *AppService) deliver(p *shared.CliOpenPayload) {
+func (s *Core) deliver(p *shared.CliOpenPayload) {
 	s.whenReady(func() {
 		a := application.Get()
 		if a == nil {
@@ -118,7 +118,7 @@ func (s *AppService) deliver(p *shared.CliOpenPayload) {
 // deliverEdit hands a file git is waiting on to the renderer. Reading fails?
 // Release immediately: a hung `git commit` is a far worse outcome than an editor
 // that refused to open.
-func (s *AppService) deliverEdit(file, sentinel string) {
+func (s *Core) deliverEdit(file, sentinel string) {
 	b, err := os.ReadFile(file)
 	if err != nil {
 		_ = os.Remove(sentinel)
@@ -132,14 +132,14 @@ func (s *AppService) deliverEdit(file, sentinel string) {
 
 // HandleColdLaunch delivers a `gitcito <dir>` request from this process's own
 // argv. Not bound: main calls it.
-func (s *AppService) HandleColdLaunch(argv []string) {
+func (s *Core) HandleColdLaunch(argv []string) {
 	if p := shared.ParseCliOpenArgs(argv); p != nil {
 		s.deliver(p)
 	}
 }
 
 // HandleSecondInstance delivers a request handed over by a second launch.
-func (s *AppService) HandleSecondInstance(argv []string) {
+func (s *Core) HandleSecondInstance(argv []string) {
 	if p := shared.ParseCliOpenArgs(argv); p != nil {
 		s.deliver(p)
 	}
@@ -147,8 +147,8 @@ func (s *AppService) HandleSecondInstance(argv []string) {
 
 // FinishEdit answers cli:finishEdit.
 func (s *AppService) FinishEdit(sentinel string, content *string) FinishResult {
-	return s.edits.finish(sentinel, content)
+	return s.core.edits.finish(sentinel, content)
 }
 
 // ReleaseAllWaits runs on shutdown.
-func (s *AppService) ReleaseAllWaits() { s.edits.releaseAll() }
+func (s *Core) ReleaseAllWaits() { s.edits.releaseAll() }

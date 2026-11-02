@@ -12,7 +12,11 @@
  * name (Go emits on identical names), and fire-and-forget members log once and do nothing. Porting a
  * channel means replacing its stub with `invoke(() => SomeService.Method(...))`.
  */
-import { Call, Events } from '@wailsio/runtime'
+import { Events, Window } from '@wailsio/runtime'
+import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
+import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
+import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
+import * as MenuService from '../bindings/github.com/GabrySpada/gitcito/internal/menu/service'
 import type { BootstrapInfo, PreloadApi } from '../../../shared/bridgeApi'
 
 /**
@@ -42,13 +46,6 @@ export function invoke<T>(fn: () => Promise<T>): Promise<T> {
   })
 }
 
-// The Go binding's fully qualified name is `<package path>.<Type>.<Method>`. AppService is planned for
-// internal/app (BRIEF §5); the `main` spelling covers a service declared next to main.go. Once bindings are
-// generated this whole lookup becomes `AppService.Bootstrap()`.
-const BOOTSTRAP_METHODS = [
-  'github.com/GabrySpada/gitcito/internal/app.AppService.Bootstrap',
-  'main.AppService.Bootstrap'
-]
 
 function guessPlatform(): string {
   const ua = typeof navigator === 'undefined' ? '' : navigator.userAgent
@@ -79,15 +76,12 @@ function mergeBootstrap(base: BootstrapInfo, got: unknown): BootstrapInfo {
  */
 export async function loadBootstrap(): Promise<BootstrapInfo> {
   const base = defaultBootstrap()
-  for (const name of BOOTSTRAP_METHODS) {
-    try {
-      const got: unknown = await invoke(() => Call.ByName(name))
-      return mergeBootstrap(base, got)
-    } catch (e) {
-      console.warn(`[bridge] bootstrap via ${name} failed:`, normalizeError(e).message)
-    }
+  try {
+    return mergeBootstrap(base, await invoke(() => AppService.Bootstrap()))
+  } catch (e) {
+    console.warn('[bridge] bootstrap failed:', normalizeError(e).message)
+    return base
   }
-  return base
 }
 
 const notPorted =
@@ -104,6 +98,22 @@ const sendNoop =
     warned.add(channel)
     console.warn(`[bridge] not ported: ${channel}`)
   }
+
+/** Fire-and-forget calls never reject into the caller; a failure is logged, as Electron's send would drop it. */
+const logSendError =
+  (channel: string) =>
+  (e: unknown): void => {
+    console.warn(`[bridge] ${channel} failed:`, normalizeError(e).message)
+  }
+
+function toBase64(data: Uint8Array): string {
+  let bin = ''
+  const CHUNK = 0x8000
+  for (let i = 0; i < data.length; i += CHUNK) {
+    bin += String.fromCharCode(...data.subarray(i, i + CHUNK))
+  }
+  return btoa(bin)
+}
 
 /** Subscribe to a Go-emitted event; the payload is the event's data, as webContents.send delivered it. */
 function listen<T>(channel: string, cb: (data: T) => void): () => void {
@@ -149,23 +159,27 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
       set: notPorted('keychain:set')
     },
 
-    selectDirectory: notPorted('dialog:selectDirectory'),
-    savePatch: notPorted('dialog:savePatch'),
-    openPatch: notPorted('dialog:openPatch'),
-    saveBinary: notPorted('dialog:saveBinary'),
-    choosePath: notPorted('dialog:choosePath'),
-    openFilePath: notPorted('dialog:openFilePath'),
-    openExternal: notPorted('shell:openExternal'),
-    appVersion: notPorted('app:version'),
-    appReleases: notPorted('app:releases'),
+    selectDirectory: (title) => invoke(() => DialogService.SelectDirectory(title ?? '')),
+    savePatch: (defaultName, content) => invoke(() => DialogService.SavePatch(defaultName, content)),
+    openPatch: () => invoke(() => DialogService.OpenPatch()),
+    // JSON has no bytes: Go's []byte decodes from base64.
+    saveBinary: (defaultName, data, filters) =>
+      invoke(() => DialogService.SaveBinary(defaultName, toBase64(data), filters ?? null)),
+    choosePath: (title, defaultName, filters) =>
+      invoke(() => DialogService.ChoosePath(title, defaultName, filters ?? null)),
+    openFilePath: (title, filters) => invoke(() => DialogService.OpenFilePath(title, filters ?? null)),
+    openExternal: (url) => invoke(() => ShellService.OpenExternal(url)),
+    appVersion: () => invoke(() => AppService.Version()),
+    appReleases: () => invoke(() => AppService.Releases()).then((r) => r ?? []),
 
     shell: {
-      showItemInFolder: notPorted('shell:showItemInFolder'),
-      openPath: notPorted('shell:openPath'),
-      openWithPicker: notPorted('shell:openWithPicker'),
-      pickApplication: notPorted('shell:pickApplication'),
-      openWithApp: notPorted('shell:openWithApp'),
-      writeFiles: notPorted('shell:writeFiles')
+      showItemInFolder: (p) => invoke(() => ShellService.ShowItemInFolder(p)),
+      openPath: (p) => invoke(() => ShellService.OpenPath(p)),
+      openWithPicker: (p) => invoke(() => ShellService.OpenWithPicker(p)),
+      pickApplication: () => invoke(() => ShellService.PickApplication()),
+      openWithApp: (t, a) => invoke(() => ShellService.OpenWithApp(t, a)),
+      writeFiles: (repoPath, files) =>
+        invoke(() => ShellService.WriteFiles(repoPath, files as { path: string; content: string }[]))
     },
 
     difftool: {
@@ -350,14 +364,15 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     menu: {
-      set: notPorted('menu:set'),
+      // The spec is built by lib/appMenu.ts; the Go Item model mirrors MenuSpecItem field for field.
+      set: (spec) => invoke(() => MenuService.Set(spec as Parameters<typeof MenuService.Set>[0])),
       onCommand: (cb) => listen('menu:command', cb)
     },
 
     window: {
-      minimize: sendNoop('window:minimize'),
-      maximize: sendNoop('window:maximize'),
-      close: sendNoop('window:close')
+      minimize: () => void Window.Minimise().catch(logSendError('window:minimize')),
+      maximize: () => void Window.ToggleMaximise().catch(logSendError('window:maximize')),
+      close: () => void Window.Close().catch(logSendError('window:close'))
     },
 
     // Electron's webFrame answers the getter synchronously; mirror the last value set so it still does.
@@ -387,9 +402,15 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
       isInstalled: notPorted('cli:isInstalled'),
       install: notPorted('cli:install'),
       uninstall: notPorted('cli:uninstall'),
-      onOpenPath: (cb) => listen('cli:open-path', cb),
+      // Go holds CLI deliveries until the page can receive them (Electron's did-finish-load gate). The
+      // listener existing is the moment it can: subscribe first, then release the queue.
+      onOpenPath: (cb) => {
+        const off = listen('cli:open-path', cb)
+        void AppService.Ready().catch(logSendError('app:ready'))
+        return off
+      },
       onEdit: (cb) => listen('cli:edit', cb),
-      finishEdit: notPorted('cli:finishEdit')
+      finishEdit: (sentinel, content) => invoke(() => AppService.FinishEdit(sentinel, content))
     }
   }
 

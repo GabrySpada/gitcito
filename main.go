@@ -35,7 +35,7 @@ func main() {
 	// any spawn.
 	gitx.FixPath(context.Background())
 
-	appSvc := app.NewAppService(*shot, paths.IsDev())
+	core := app.NewCore(*shot, paths.IsDev())
 
 	var single *application.SingleInstanceOptions
 	if !app.SingleInstanceAvailable() {
@@ -50,7 +50,7 @@ func main() {
 					return
 				}
 				app.Focus(a)
-				appSvc.HandleSecondInstance(data.Args)
+				core.HandleSecondInstance(data.Args)
 			},
 		}
 	} else {
@@ -61,7 +61,7 @@ func main() {
 		Name:        "Gitcito",
 		Description: "A lightweight Git client",
 		Services: []application.Service{
-			application.NewService(appSvc),
+			application.NewService(app.NewAppService(core)),
 			application.NewService(&app.ShellService{}),
 			application.NewService(&app.DialogService{}),
 			application.NewService(&menu.Service{}),
@@ -71,9 +71,9 @@ func main() {
 		Mac:            application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: false},
 	})
 
-	a.OnShutdown(appSvc.ReleaseAllWaits)
+	a.OnShutdown(core.ReleaseAllWaits)
 	app.NewMainWindow(a)
-	appSvc.HandleColdLaunch(os.Args)
+	core.HandleColdLaunch(os.Args)
 
 	if err := a.Run(); err != nil {
 		log.Fatal(err)

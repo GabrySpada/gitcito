@@ -36,8 +36,12 @@ type AppRelease struct {
 	Prerelease  bool    `json:"prerelease"`
 }
 
-// AppService is bound to the page.
-type AppService struct {
+// Core holds the app-level state main.go drives: launch flags, the ready gate
+// and the pending editor hand-offs. It is NOT registered with Wails — its
+// exported methods (HandleSecondInstance, ReleaseAllWaits, …) must never be
+// callable from the page: a script that could forge a second-instance argv
+// could make the app read, then overwrite, any file via the editor flow.
+type Core struct {
 	shot bool
 	dev  bool
 
@@ -48,14 +52,21 @@ type AppService struct {
 	edits waits
 }
 
-// NewAppService builds the service from the launch flags.
-func NewAppService(shot, dev bool) *AppService {
-	return &AppService{shot: shot, dev: dev}
+// NewCore builds the core from the launch flags.
+func NewCore(shot, dev bool) *Core {
+	return &Core{shot: shot, dev: dev}
 }
+
+// AppService is the page-facing facade over Core. Only the methods below are
+// bound; keep it that way.
+type AppService struct{ core *Core }
+
+// NewAppService wraps a Core for binding.
+func NewAppService(c *Core) *AppService { return &AppService{core: c} }
 
 // Bootstrap returns the facts the renderer reads synchronously.
 func (s *AppService) Bootstrap() Bootstrap {
-	return Bootstrap{Platform: nodePlatform(), ShotMode: s.shot, Version: version.Version, Dev: s.dev, Zoom: 1}
+	return Bootstrap{Platform: nodePlatform(), ShotMode: s.core.shot, Version: version.Version, Dev: s.core.dev, Zoom: 1}
 }
 
 // Version answers app:version.
@@ -65,7 +76,9 @@ func (s *AppService) Version() string { return version.Version }
 // queued for it before then (a CLI-requested path, an editor hand-off) is
 // delivered now: the settings load resolves asynchronously and would otherwise
 // clobber a tab added too early. Replaces Electron's did-finish-load gating.
-func (s *AppService) Ready() {
+func (s *AppService) Ready() { s.core.markReady() }
+
+func (s *Core) markReady() {
 	s.mu.Lock()
 	s.ready = true
 	queued := s.pending
@@ -78,7 +91,7 @@ func (s *AppService) Ready() {
 
 // whenReady runs f now if the renderer is ready, or queues it until it is.
 // Not exported: it must not be callable from the page.
-func (s *AppService) whenReady(f func()) {
+func (s *Core) whenReady(f func()) {
 	s.mu.Lock()
 	if !s.ready {
 		s.pending = append(s.pending, f)
