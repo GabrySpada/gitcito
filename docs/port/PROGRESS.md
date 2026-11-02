@@ -19,21 +19,23 @@ compaction.
     menu.Service, logbook.Service. Editor `--wait` flow ported (Core, unbound).
   - Server build (`-tags server`, loopback-guarded) + e2e harness (`npm run test:e2e`, 8 tests: boot, settings,
     log, origin isolation). Wails debug log scrubbed of call args/results. ci.yml written.
+  - Git slices A, B, C merged (184 of 264 git methods), hosting merged and bound (30 channels).
+    `bridge.git` dispatches through the generated GitService bindings (arity-safe). Semantic diff runs in the
+    renderer (lib/semantic.ts; grammars under /tree-sitter; CSP + 'wasm-unsafe-eval').
   - Renderer adaptations: clipboard (58 sites), `--wails-draggable`, link guard, native file drop
     (`droppedFilePaths`), zoom, timelapse format, PDF fallback button.
 
-## In flight (subagents)
-- hosting + credentials (worktree).
-- Git slices A, B, C, D (worktrees, WAVE1-BRIEF.md): each commits goldens then the port in its worktree branch.
+## In flight (subagents, worktrees)
+- Git slice D (WAVE1-BRIEF.md).
+- Wave 2 (WAVE2-BRIEF.md): ai; repochat+grounding+wiki; processes; secure/vault/analytics/info.
+- Worktrees start on `main`: every brief now says `git reset --hard claude/wizardly-hypatia-gttsk8` first.
 
 ## Next
-- **Must do at the first slice merge:** switch `bridge.git` from `Call.ByName` to the generated GitService
-  bindings module (`import * as GitService from '../bindings/.../gitsvc/gitservice'`, look up the capitalised
-  name). Wails rejects a call whose argument count differs from the Go signature, and the renderer omits optional
-  trailing args; the generated functions always pass every parameter (undefined → null).
 - Merge each slice branch: `git merge <branch>`, `go build ./... && go test ./internal/gitsvc/`, regenerate
   bindings, wire `bridge.git(method, ...args)` → GitService by name, full gate, commit, push.
-- Hosting + credentials (Wave 1 remainder) when a slot frees.
+- Registry group (repoRegistry, repoScan, repoMeta, repoConfig, repoFileActions, watcher, textconv) when a slot frees.
+- After all slices: hoist duplicated helpers (a*/b*/c*/d* — see slice reports in git log) into gitx; wire
+  analytics as gitsvc ActivityRecorder; the snapshot guard reads settings through internal/settings.
 - Wave 2 (WAVE2-BRIEF.md): ai; repochat+grounding+wiki; processes; secure/vault/analytics/info; registry.
 - Wave 3: editor, difftool, ssh, cli + cmd/gitcito-cli, updater; semantic diff → renderer (needs slice B contract).
 - Renderer subagent: D6 (remove DevToolsPage + 'devtools' page type, DebugToolbar button → openExternal gated by
