@@ -1,0 +1,34 @@
+{
+  "method": "init",
+  "fixture": "",
+  "case": "named",
+  "repo": "tmp",
+  "args": [
+    "<REPO>",
+    " proj "
+  ],
+  "stateOf": "result",
+  "capture": [
+    {
+      "git": [
+        "symbolic-ref",
+        "HEAD"
+      ],
+      "dir": "<REPO>/proj"
+    }
+  ],
+  "extra": [
+    {
+      "out": "refs/heads/main"
+    }
+  ],
+  "result": "<REPO>/proj",
+  "state": {
+    "index": [],
+    "log": [],
+    "refs": [],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

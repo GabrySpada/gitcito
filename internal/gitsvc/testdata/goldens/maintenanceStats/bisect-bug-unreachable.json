@@ -1,0 +1,88 @@
+{
+  "method": "maintenanceStats",
+  "fixture": "bisect-bug",
+  "case": "unreachable",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": "doomed.txt",
+      "content": "this commit is about to be abandoned\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "doomed"
+      ]
+    },
+    {
+      "git": [
+        "reset",
+        "-q",
+        "--hard",
+        "HEAD~1"
+      ]
+    },
+    {
+      "git": [
+        "reflog",
+        "expire",
+        "--expire=now",
+        "--all"
+      ]
+    },
+    {
+      "git": [
+        "gc",
+        "-q"
+      ]
+    },
+    {
+      "write": ".git/gc.log",
+      "content": "warning: There are too many unreachable loose objects\n"
+    },
+    {
+      "git": [
+        "config",
+        "--global",
+        "--add",
+        "maintenance.repo",
+        "<REPO>"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "looseBytes",
+    "packBytes",
+    "garbageBytes",
+    "prunableBytes",
+    "gitBytes",
+    "lastPack"
+  ],
+  "result": {
+    "garbageBytes": 0,
+    "garbageFiles": 0,
+    "gcLog": "warning: There are too many unreachable loose objects\n",
+    "gitBytes": "<POS>",
+    "lastPack": "<MASKED>",
+    "looseBytes": 0,
+    "looseObjects": 0,
+    "packBytes": "<POS>",
+    "packedObjects": 42,
+    "packs": 2,
+    "prunable": 0,
+    "prunableBytes": 0,
+    "prunePackable": 0,
+    "scheduled": true
+  }
+}

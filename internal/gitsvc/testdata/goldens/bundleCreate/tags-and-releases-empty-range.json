@@ -1,0 +1,29 @@
+{
+  "method": "bundleCreate",
+  "fixture": "tags-and-releases",
+  "case": "empty-range",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/empty.bundle",
+    {
+      "kind": "range",
+      "from": "main",
+      "to": "main"
+    }
+  ],
+  "capture": [
+    {
+      "exists": "<OUT>/empty.bundle"
+    }
+  ],
+  "error": "fatal: Refusing to create empty bundle.",
+  "extra": [
+    false
+  ]
+}

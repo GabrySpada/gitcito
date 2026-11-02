@@ -1,0 +1,33 @@
+{
+  "method": "repoDoctor",
+  "fixture": "project-tree",
+  "case": "node",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitcito.json",
+      "content": "{\"version\":1,\"requires\":{\"node\":\">=9999\",\"files\":[\".env\"]}}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "actual"
+  ],
+  "result": [
+    {
+      "actual": "<MASKED>",
+      "expected": ">=9999",
+      "id": "node",
+      "kind": "node",
+      "status": "warn"
+    },
+    {
+      "expected": ".env",
+      "id": "file:.env",
+      "kind": "file",
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "method": "bundleCreate",
+  "fixture": "tags-and-releases",
+  "case": "range",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/range.bundle",
+    {
+      "kind": "range",
+      "from": "HEAD~2",
+      "to": "main"
+    }
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "result": {
+    "bytes": "<POS>",
+    "path": "<OUT>/range.bundle",
+    "refs": 1
+  }
+}

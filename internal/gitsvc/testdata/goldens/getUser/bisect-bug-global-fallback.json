@@ -1,0 +1,31 @@
+{
+  "method": "getUser",
+  "fixture": "bisect-bug",
+  "case": "global-fallback",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "--local",
+        "--unset",
+        "user.name"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "--unset",
+        "user.email"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "email": "test@gitcito.invalid",
+    "name": "Gitcito Test"
+  }
+}

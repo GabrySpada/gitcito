@@ -1,0 +1,95 @@
+{
+  "method": "pushToRemotes",
+  "fixture": "multi-remote",
+  "case": "one-fails",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "multi-remote-origin.git",
+      "as": "ORIGIN"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<ORIGIN>"
+      ]
+    },
+    {
+      "copy": "multi-remote-upstream.git",
+      "as": "UPSTREAM"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "upstream",
+        "<UPSTREAM>"
+      ]
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "upstream",
+        "/nowhere/at/all.git"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "feature/push-test"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "feature/push-test",
+    [
+      " origin ",
+      "upstream",
+      ""
+    ]
+  ],
+  "result": [
+    {
+      "error": "",
+      "ok": true,
+      "remote": "origin"
+    },
+    {
+      "error": "fatal: '/nowhere/at/all.git' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.",
+      "ok": false,
+      "remote": "upstream"
+    }
+  ],
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md",
+      "100644 <SHA2> 0\tarray.ts",
+      "100644 <SHA3> 0\tindex.ts",
+      "100644 <SHA4> 0\tmath.ts"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6>\u0000docs: update README with string module",
+      "<SHA7>\u0000<SHA8>\u0000feat: add math.ts",
+      "<SHA9>\u0000<SHA7>\u0000feat: array.ts — unique/chunk/flatten (not pushed to origin)",
+      "<SHA6>\u0000<SHA7>\u0000feat: string.ts — capitalize/truncate/slugify",
+      "<SHA8>\u0000\u0000initial commit"
+    ],
+    "refs": [
+      "refs/heads/feature/push-test <SHA9>",
+      "refs/heads/main <SHA9>",
+      "refs/remotes/origin/HEAD <SHA7>",
+      "refs/remotes/origin/feature/push-test <SHA9>",
+      "refs/remotes/origin/main <SHA7>",
+      "refs/remotes/upstream/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

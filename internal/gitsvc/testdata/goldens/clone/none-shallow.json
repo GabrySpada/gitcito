@@ -1,0 +1,54 @@
+{
+  "method": "clone",
+  "fixture": "",
+  "case": "shallow",
+  "repo": "tmp",
+  "args": [
+    "<REPO>",
+    "<PLAYGROUND>/merge-conflict",
+    "shallow",
+    {
+      "depth": 1
+    }
+  ],
+  "stateOf": "result",
+  "capture": [
+    {
+      "exists": "<REPO>/shallow/.git/shallow"
+    },
+    {
+      "git": [
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "dir": "<REPO>/shallow"
+    }
+  ],
+  "extra": [
+    true,
+    {
+      "out": "<PLAYGROUND>/merge-conflict"
+    }
+  ],
+  "result": "<REPO>/shallow",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tapp.js",
+      "100644 <SHA2> 0\tbig-log.txt",
+      "100644 <SHA3> 0\tgreeting.txt",
+      "100644 <SHA4> 0\trelease-notes.md"
+    ],
+    "log": [
+      "<SHA5>\u0000\u0000main: shout the greetings"
+    ],
+    "refs": [
+      "refs/heads/main <SHA5>",
+      "refs/remotes/origin/HEAD <SHA5>",
+      "refs/remotes/origin/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

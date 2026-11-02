@@ -1,0 +1,114 @@
+{
+  "method": "hooksInfo",
+  "fixture": "hooks",
+  "case": "fixture",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "customHooksPath": false,
+    "hooks": [
+      {
+        "executable": false,
+        "exists": false,
+        "name": "applypatch-msg",
+        "sample": true,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-applypatch",
+        "sample": true,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-applypatch",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": true,
+        "exists": true,
+        "name": "pre-commit",
+        "sample": false,
+        "size": 192
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-merge-commit",
+        "sample": true,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "prepare-commit-msg",
+        "sample": true,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": true,
+        "name": "commit-msg",
+        "sample": false,
+        "size": 243
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-commit",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-rebase",
+        "sample": true,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-checkout",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-merge",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-push",
+        "sample": true,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-rewrite",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-auto-gc",
+        "sample": false,
+        "size": 0
+      }
+    ],
+    "hooksDir": "<REPO>/.git/hooks",
+    "preCommitFramework": true
+  }
+}

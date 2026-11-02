@@ -1,0 +1,10 @@
+{
+  "method": "upstreamSuggestion",
+  "fixture": "bisect-bug",
+  "case": "no-remotes",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": null
+}

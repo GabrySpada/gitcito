@@ -1,0 +1,85 @@
+{
+  "method": "push",
+  "fixture": "multi-remote",
+  "case": "new-branch",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "multi-remote-origin.git",
+      "as": "ORIGIN"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<ORIGIN>"
+      ]
+    },
+    {
+      "copy": "multi-remote-upstream.git",
+      "as": "UPSTREAM"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "upstream",
+        "<UPSTREAM>"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "feature/push-test"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "feature/push-test"
+  ],
+  "capture": [
+    {
+      "git": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "dir": "<ORIGIN>"
+    }
+  ],
+  "extra": [
+    {
+      "out": "refs/heads/feature/push-test <SHA1>\nrefs/heads/main <SHA2>"
+    }
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA3> 0\tREADME.md",
+      "100644 <SHA4> 0\tarray.ts",
+      "100644 <SHA5> 0\tindex.ts",
+      "100644 <SHA6> 0\tmath.ts"
+    ],
+    "log": [
+      "<SHA7>\u0000<SHA8>\u0000docs: update README with string module",
+      "<SHA2>\u0000<SHA9>\u0000feat: add math.ts",
+      "<SHA1>\u0000<SHA2>\u0000feat: array.ts — unique/chunk/flatten (not pushed to origin)",
+      "<SHA8>\u0000<SHA2>\u0000feat: string.ts — capitalize/truncate/slugify",
+      "<SHA9>\u0000\u0000initial commit"
+    ],
+    "refs": [
+      "refs/heads/feature/push-test <SHA1>",
+      "refs/heads/main <SHA1>",
+      "refs/remotes/origin/HEAD <SHA2>",
+      "refs/remotes/origin/feature/push-test <SHA1>",
+      "refs/remotes/origin/main <SHA2>",
+      "refs/remotes/upstream/main <SHA7>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "method": "worktrees",
+  "fixture": "",
+  "case": "not-a-repo",
+  "repo": "tmp",
+  "args": [
+    "<REPO>"
+  ],
+  "result": []
+}

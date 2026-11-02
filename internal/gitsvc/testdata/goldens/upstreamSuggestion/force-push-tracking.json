@@ -1,0 +1,10 @@
+{
+  "method": "upstreamSuggestion",
+  "fixture": "force-push",
+  "case": "tracking",
+  "repo": "clone",
+  "args": [
+    "<REPO>"
+  ],
+  "result": null
+}

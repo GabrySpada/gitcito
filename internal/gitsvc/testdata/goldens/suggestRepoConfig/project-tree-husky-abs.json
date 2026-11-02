@@ -1,0 +1,35 @@
+{
+  "method": "suggestRepoConfig",
+  "fixture": "project-tree",
+  "case": "husky-abs",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": "package.json",
+      "content": "{\"engines\":{\"node\":\">=18\"}}"
+    },
+    {
+      "mkdir": ".husky/_"
+    },
+    {
+      "git": [
+        "config",
+        "core.hooksPath",
+        "<REPO>/.husky/_"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "protect": [
+      "main"
+    ],
+    "requires": {
+      "hooksPath": ".husky/_",
+      "node": ">=18"
+    },
+    "version": 1
+  }
+}

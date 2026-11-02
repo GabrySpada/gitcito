@@ -1,0 +1,18 @@
+{
+  "method": "subtrees",
+  "fixture": "subtree",
+  "case": "fixture",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "lastSplit": "<SHA1>",
+      "prefix": "vendor/parser",
+      "present": true,
+      "ref": "",
+      "url": ""
+    }
+  ]
+}

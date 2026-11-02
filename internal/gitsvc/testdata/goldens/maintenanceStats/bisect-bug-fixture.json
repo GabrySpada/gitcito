@@ -1,0 +1,33 @@
+{
+  "method": "maintenanceStats",
+  "fixture": "bisect-bug",
+  "case": "fixture",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "looseBytes",
+    "packBytes",
+    "garbageBytes",
+    "prunableBytes",
+    "gitBytes",
+    "lastPack"
+  ],
+  "result": {
+    "garbageBytes": 0,
+    "garbageFiles": 0,
+    "gcLog": "",
+    "gitBytes": "<POS>",
+    "lastPack": null,
+    "looseBytes": "<POS>",
+    "looseObjects": 39,
+    "packBytes": 0,
+    "packedObjects": 0,
+    "packs": 0,
+    "prunable": 0,
+    "prunableBytes": 0,
+    "prunePackable": 0,
+    "scheduled": false
+  }
+}

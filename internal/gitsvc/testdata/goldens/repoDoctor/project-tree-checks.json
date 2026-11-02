@@ -1,0 +1,67 @@
+{
+  "method": "repoDoctor",
+  "fixture": "project-tree",
+  "case": "checks",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".env.example",
+      "content": "A=1\n"
+    },
+    {
+      "mkdir": ".husky/_"
+    },
+    {
+      "git": [
+        "config",
+        "core.hooksPath",
+        "<REPO>/.husky/_"
+      ]
+    },
+    {
+      "write": ".gitcito.json",
+      "content": "{\"version\":1,\"requires\":{\"submodules\":true,\"lfs\":true,\"hooksPath\":\".husky/_\",\"files\":[{\"path\":\".env.local\",\"from\":\".env.example\",\"why\":\"the dev server reads it\"},{\"path\":\".env\"},{\"path\":\"nofile\",\"from\":\"nofrom\"}]}}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "id": "lfs",
+      "kind": "lfs",
+      "status": "ok"
+    },
+    {
+      "actual": ".husky/_",
+      "expected": ".husky/_",
+      "id": "hooks",
+      "kind": "hooks",
+      "status": "ok"
+    },
+    {
+      "expected": ".env.local",
+      "fix": {
+        "from": ".env.example",
+        "kind": "copyFile",
+        "to": ".env.local"
+      },
+      "id": "file:.env.local",
+      "kind": "file",
+      "status": "fail",
+      "why": "the dev server reads it"
+    },
+    {
+      "expected": ".env",
+      "id": "file:.env",
+      "kind": "file",
+      "status": "ok"
+    },
+    {
+      "expected": "nofile",
+      "id": "file:nofile",
+      "kind": "file",
+      "status": "fail"
+    }
+  ]
+}

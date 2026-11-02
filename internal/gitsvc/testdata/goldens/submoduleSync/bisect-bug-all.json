@@ -1,0 +1,103 @@
+{
+  "method": "submoduleSync",
+  "fixture": "bisect-bug",
+  "case": "all",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "--global",
+        "protocol.file.allow",
+        "always"
+      ]
+    },
+    {
+      "copy": "cherry-pick",
+      "as": "SUB"
+    },
+    {
+      "git": [
+        "submodule",
+        "add",
+        "-q",
+        "<SUB>",
+        "libs/sub"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "chore: add submodule"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--file",
+        ".gitmodules",
+        "submodule.libs/sub.url",
+        "../elsewhere.git"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "capture": [
+    {
+      "git": [
+        "config",
+        "--get",
+        "submodule.libs/sub.url"
+      ]
+    }
+  ],
+  "extra": [
+    {
+      "out": "<TMP>/elsewhere.git"
+    }
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.bisect-hint",
+      "100644 <SHA2> 0\t.gitmodules",
+      "100644 <SHA3> 0\tREADME.md",
+      "100644 <SHA4> 0\tcurrency.js",
+      "100644 <SHA5> 0\tdiscount.js",
+      "100644 <SHA6> 0\tformat.js",
+      "100644 <SHA7> 0\tindex.js",
+      "160000 <SHA8> 0\tlibs/sub",
+      "100644 <SHA9> 0\tmath.js",
+      "100644 <SHA10> 0\tstats.js",
+      "100644 <SHA11> 0\ttax.js"
+    ],
+    "log": [
+      "<SHA12>\u0000<SHA13>\u0000chore: add .bisect-hint",
+      "<SHA13>\u0000<SHA14>\u0000chore: add stats to barrel export",
+      "<SHA15>\u0000<SHA12>\u0000chore: add submodule",
+      "<SHA16>\u0000<SHA17>\u0000docs: README with bisect instructions",
+      "<SHA18>\u0000<SHA19>\u0000feat: abs + clamp",
+      "<SHA20>\u0000\u0000feat: add + subtract",
+      "<SHA21>\u0000<SHA18>\u0000feat: addTax",
+      "<SHA17>\u0000<SHA22>\u0000feat: barrel export index.js",
+      "<SHA23>\u0000<SHA24>\u0000feat: currency helpers",
+      "<SHA25>\u0000<SHA23>\u0000feat: discount function",
+      "<SHA19>\u0000<SHA25>\u0000feat: formatCurrency",
+      "<SHA24>\u0000<SHA20>\u0000feat: multiply + divide",
+      "<SHA14>\u0000<SHA16>\u0000feat: stats — sum / mean / median",
+      "<SHA22>\u0000<SHA21>\u0000refactor: simplify discount calculation"
+    ],
+    "refs": [
+      "refs/heads/main <SHA15>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": [
+      "1 .M N... 100644 100644 100644 <SHA2> <SHA2> .gitmodules"
+    ]
+  }
+}

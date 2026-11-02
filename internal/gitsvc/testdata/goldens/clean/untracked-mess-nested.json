@@ -1,0 +1,55 @@
+{
+  "method": "clean",
+  "fixture": "untracked-mess",
+  "case": "nested",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    [
+      "experiment/",
+      "notes.md"
+    ],
+    false
+  ],
+  "capture": [
+    {
+      "exists": "experiment"
+    },
+    {
+      "exists": "notes.md"
+    }
+  ],
+  "error": "Could not remove 1 of 2:\nexperiment/ — git skipped it — a nested repository can only go to the trash",
+  "extra": [
+    true,
+    false
+  ],
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.gitignore",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tsrc/app.js",
+      "100644 <SHA4> 0\tsrc/render.js"
+    ],
+    "log": [
+      "<SHA5>\u0000\u0000initial project"
+    ],
+    "refs": [
+      "refs/heads/main <SHA5>"
+    ],
+    "snapshots": [
+      {
+        "parents": "<SHA5>",
+        "ref": "refs/gitcito/wip/<TS>-g",
+        "subject": "gitcito-wip <TIME> (guard)",
+        "tree": "<SHA6>"
+      }
+    ],
+    "stash": [],
+    "status": [
+      "? debug-output.txt",
+      "? experiment/",
+      "? tmp/"
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "method": "setRepoConfig",
+  "fixture": "project-tree",
+  "case": "write",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    {
+      "version": 1,
+      "protect": [
+        "main",
+        " "
+      ],
+      "commit": {
+        "scopes": [
+          "ui"
+        ],
+        "ticketFromBranch": false
+      },
+      "requires": {
+        "node": "20",
+        "files": [
+          {
+            "path": ".env",
+            "from": ".env.example"
+          }
+        ]
+      },
+      "links": {
+        "tickets": [
+          {
+            "match": "#(\\d+)",
+            "url": "https://x.example/$1"
+          }
+        ]
+      },
+      "checklist": {
+        "push": [
+          "<b>&</b>"
+        ]
+      }
+    }
+  ],
+  "capture": [
+    {
+      "read": ".gitcito.json"
+    }
+  ],
+  "extra": [
+    "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\"\n  ],\n  \"links\": {\n    \"tickets\": [\n      {\n        \"match\": \"#(\\\\d+)\",\n        \"url\": \"https://x.example/$1\"\n      }\n    ]\n  },\n  \"commit\": {\n    \"scopes\": [\n      \"ui\"\n    ],\n    \"ticketFromBranch\": false\n  },\n  \"requires\": {\n    \"node\": \"20\",\n    \"files\": [\n      {\n        \"path\": \".env\",\n        \"from\": \".env.example\"\n      }\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"<b>&</b>\"\n    ]\n  }\n}\n"
+  ],
+  "result": {
+    "config": {
+      "checklist": {
+        "push": [
+          "<b>&</b>"
+        ]
+      },
+      "commit": {
+        "scopes": [
+          "ui"
+        ],
+        "ticketFromBranch": false
+      },
+      "links": {
+        "tickets": [
+          {
+            "match": "#(\\d+)",
+            "url": "https://x.example/$1"
+          }
+        ]
+      },
+      "protect": [
+        "main"
+      ],
+      "requires": {
+        "files": [
+          {
+            "from": ".env.example",
+            "path": ".env"
+          }
+        ],
+        "node": "20"
+      },
+      "version": 1
+    },
+    "exists": true,
+    "issues": [],
+    "path": "<REPO>/.gitcito.json"
+  },
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.gitignore",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tdocs/guide.md",
+      "100644 <SHA4> 0\tsrc/app.ts",
+      "100644 <SHA5> 0\tsrc/legacy.ts",
+      "100644 <SHA6> 0\tsrc/new-feature.ts",
+      "100644 <SHA7> 0\tsrc/util.ts"
+    ],
+    "log": [
+      "<SHA8>\u0000<SHA9>\u0000add .gitignore",
+      "<SHA9>\u0000\u0000initial project tree"
+    ],
+    "refs": [
+      "refs/heads/main <SHA8>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": [
+      "2 R. N... 100644 100644 100644 <SHA3> <SHA3> R100 docs/guide.md\tdocs/intro.md",
+      "1 .D N... 100644 100644 000000 <SHA5> <SHA5> src/legacy.ts",
+      "1 A. N... 000000 100644 100644 <SHA10> <SHA6> src/new-feature.ts",
+      "1 .M N... 100644 100644 100644 <SHA7> <SHA7> src/util.ts",
+      "? .gitcito.json",
+      "? scratch.todo",
+      "? src/draft.ts"
+    ]
+  }
+}

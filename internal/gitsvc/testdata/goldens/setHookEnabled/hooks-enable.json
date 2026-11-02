@@ -1,0 +1,35 @@
+{
+  "method": "setHookEnabled",
+  "fixture": "hooks",
+  "case": "enable",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    "commit-msg",
+    true
+  ],
+  "capture": [
+    {
+      "mode": ".git/hooks/commit-msg"
+    }
+  ],
+  "extra": [
+    493
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.pre-commit-config.yaml",
+      "100644 <SHA2> 0\tREADME.md"
+    ],
+    "log": [
+      "<SHA3>\u0000\u0000chore: add pre-commit-framework config + README"
+    ],
+    "refs": [
+      "refs/heads/main <SHA3>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

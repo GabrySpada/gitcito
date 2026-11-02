@@ -1,0 +1,15 @@
+{
+  "method": "lfsInfo",
+  "fixture": "bisect-bug",
+  "case": "none",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "enabled": false,
+    "files": [],
+    "installed": true,
+    "patterns": []
+  }
+}

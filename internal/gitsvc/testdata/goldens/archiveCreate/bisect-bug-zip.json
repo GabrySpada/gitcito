@@ -1,0 +1,34 @@
+{
+  "method": "archiveCreate",
+  "fixture": "bisect-bug",
+  "case": "zip",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/a.zip",
+    "main",
+    "zip",
+    "",
+    ""
+  ],
+  "capture": [
+    {
+      "exists": "<OUT>/a.zip"
+    }
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "extra": [
+    true
+  ],
+  "result": {
+    "bytes": "<POS>",
+    "path": "<OUT>/a.zip"
+  }
+}

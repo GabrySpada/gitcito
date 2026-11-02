@@ -1,0 +1,10 @@
+{
+  "method": "submodules",
+  "fixture": "bisect-bug",
+  "case": "none",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": []
+}

@@ -1,0 +1,29 @@
+{
+  "method": "lfsPrune",
+  "fixture": "lfs-assets",
+  "case": "prune",
+  "repo": "clone",
+  "args": [
+    "<REPO>"
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.gitattributes",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tasset.bin",
+      "100644 <SHA4> 0\tdesign.psd"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6>\u0000chore: track *.bin and *.psd with LFS",
+      "<SHA6>\u0000\u0000docs: readme",
+      "<SHA7>\u0000<SHA5>\u0000feat: add binary assets (asset.bin, design.psd)"
+    ],
+    "refs": [
+      "refs/heads/main <SHA7>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

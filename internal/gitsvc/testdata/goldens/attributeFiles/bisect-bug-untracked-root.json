@@ -1,0 +1,22 @@
+{
+  "method": "attributeFiles",
+  "fixture": "bisect-bug",
+  "case": "untracked-root",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitattributes",
+      "content": "* text=auto\n"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "content": "* text=auto\n",
+      "local": false,
+      "path": ".gitattributes"
+    }
+  ]
+}

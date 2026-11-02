@@ -1,0 +1,59 @@
+{
+  "method": "submodules",
+  "fixture": "submodule-states",
+  "case": "states",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "ahead": 0,
+      "behind": 0,
+      "branch": null,
+      "describe": null,
+      "name": "libs/api",
+      "path": "libs/api",
+      "recordedSha": "<SHA1>",
+      "sha": "<SHA1>",
+      "status": "uninitialized",
+      "url": "<PLAYGROUND>/_sub_src/api"
+    },
+    {
+      "ahead": 0,
+      "behind": 0,
+      "branch": null,
+      "describe": "heads/main",
+      "name": "libs/core",
+      "path": "libs/core",
+      "recordedSha": "<SHA2>",
+      "sha": "<SHA2>",
+      "status": "initialized",
+      "url": "<PLAYGROUND>/_sub_src/core"
+    },
+    {
+      "ahead": 0,
+      "behind": 0,
+      "branch": null,
+      "describe": "heads/main",
+      "name": "libs/theme",
+      "path": "libs/theme",
+      "recordedSha": "<SHA3>",
+      "sha": "<SHA3>",
+      "status": "initialized",
+      "url": "<PLAYGROUND>/_sub_src/theme"
+    },
+    {
+      "ahead": 0,
+      "behind": 1,
+      "branch": null,
+      "describe": "<SHA5>~",
+      "name": "libs/ui",
+      "path": "libs/ui",
+      "recordedSha": "<SHA4>",
+      "sha": "<SHA5>",
+      "status": "modified",
+      "url": "<PLAYGROUND>/_sub_src/ui"
+    }
+  ]
+}

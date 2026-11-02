@@ -1,0 +1,19 @@
+{
+  "method": "init",
+  "fixture": "",
+  "case": "default-name",
+  "repo": "tmp",
+  "args": [
+    "<REPO>",
+    ""
+  ],
+  "capture": [
+    {
+      "exists": "<REPO>/my-repo/.git"
+    }
+  ],
+  "extra": [
+    true
+  ],
+  "result": "<REPO>/my-repo"
+}

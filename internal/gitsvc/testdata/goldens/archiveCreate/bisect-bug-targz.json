@@ -1,0 +1,45 @@
+{
+  "method": "archiveCreate",
+  "fixture": "bisect-bug",
+  "case": "targz",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/a.tar.gz",
+    "main",
+    "tar.gz",
+    "p",
+    ""
+  ],
+  "capture": [
+    {
+      "tar": "<OUT>/a.tar.gz"
+    }
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "extra": [
+    [
+      "p/",
+      "p/.bisect-hint",
+      "p/README.md",
+      "p/currency.js",
+      "p/discount.js",
+      "p/format.js",
+      "p/index.js",
+      "p/math.js",
+      "p/stats.js",
+      "p/tax.js"
+    ]
+  ],
+  "result": {
+    "bytes": "<POS>",
+    "path": "<OUT>/a.tar.gz"
+  }
+}

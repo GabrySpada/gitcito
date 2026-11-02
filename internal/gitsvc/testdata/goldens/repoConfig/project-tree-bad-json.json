@@ -1,0 +1,26 @@
+{
+  "method": "repoConfig",
+  "fixture": "project-tree",
+  "case": "bad-json",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitcito.json",
+      "content": "{ nope"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "config": null,
+    "exists": true,
+    "issues": [
+      {
+        "code": "json",
+        "field": ".gitcito.json"
+      }
+    ],
+    "path": "<REPO>/.gitcito.json"
+  }
+}

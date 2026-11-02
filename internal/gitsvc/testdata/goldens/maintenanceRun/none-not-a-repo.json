@@ -1,0 +1,11 @@
+{
+  "method": "maintenanceRun",
+  "fixture": "",
+  "case": "not-a-repo",
+  "repo": "tmp",
+  "args": [
+    "<REPO>",
+    "gc"
+  ],
+  "error": "fatal: not a git repository (or any of the parent directories): .git"
+}

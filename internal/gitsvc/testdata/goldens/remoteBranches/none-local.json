@@ -1,0 +1,13 @@
+{
+  "method": "remoteBranches",
+  "fixture": "",
+  "case": "local",
+  "repo": "shared",
+  "args": [
+    "<PLAYGROUND>/merge-conflict"
+  ],
+  "result": [
+    "feature",
+    "main"
+  ]
+}

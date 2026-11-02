@@ -1,0 +1,135 @@
+{
+  "method": "pull",
+  "fixture": "bisect-bug",
+  "case": "autostash",
+  "repo": "clone",
+  "setup": [
+    {
+      "tmpdir": "O"
+    },
+    {
+      "git": [
+        "init",
+        "-q",
+        "--bare",
+        "-b",
+        "main",
+        "<O>/origin.git"
+      ],
+      "dir": "<O>"
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "origin",
+        "<O>/origin.git"
+      ]
+    },
+    {
+      "git": [
+        "push",
+        "-q",
+        "-u",
+        "origin",
+        "main"
+      ]
+    },
+    {
+      "tmpdir": "W"
+    },
+    {
+      "git": [
+        "clone",
+        "-q",
+        "-b",
+        "main",
+        "<O>/origin.git",
+        "<W>/theirs"
+      ],
+      "dir": "<W>"
+    },
+    {
+      "write": "<W>/theirs/NEWS.md",
+      "content": "docs: news\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ],
+      "dir": "<W>/theirs"
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "docs: news"
+      ],
+      "dir": "<W>/theirs"
+    },
+    {
+      "git": [
+        "push",
+        "-q",
+        "origin",
+        "main"
+      ],
+      "dir": "<W>/theirs"
+    },
+    {
+      "write": "README.md",
+      "content": "# dirty\n"
+    },
+    {
+      "write": "untracked.txt",
+      "content": "u\n"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "ff-only"
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.bisect-hint",
+      "100644 <SHA2> 0\tNEWS.md",
+      "100644 <SHA3> 0\tREADME.md",
+      "100644 <SHA4> 0\tcurrency.js",
+      "100644 <SHA5> 0\tdiscount.js",
+      "100644 <SHA6> 0\tformat.js",
+      "100644 <SHA7> 0\tindex.js",
+      "100644 <SHA8> 0\tmath.js",
+      "100644 <SHA9> 0\tstats.js",
+      "100644 <SHA10> 0\ttax.js"
+    ],
+    "log": [
+      "<SHA11>\u0000<SHA12>\u0000chore: add .bisect-hint",
+      "<SHA12>\u0000<SHA13>\u0000chore: add stats to barrel export",
+      "<SHA14>\u0000<SHA15>\u0000docs: README with bisect instructions",
+      "<SHA16>\u0000<SHA11>\u0000docs: news",
+      "<SHA17>\u0000<SHA18>\u0000feat: abs + clamp",
+      "<SHA19>\u0000\u0000feat: add + subtract",
+      "<SHA20>\u0000<SHA17>\u0000feat: addTax",
+      "<SHA15>\u0000<SHA21>\u0000feat: barrel export index.js",
+      "<SHA22>\u0000<SHA23>\u0000feat: currency helpers",
+      "<SHA24>\u0000<SHA22>\u0000feat: discount function",
+      "<SHA18>\u0000<SHA24>\u0000feat: formatCurrency",
+      "<SHA23>\u0000<SHA19>\u0000feat: multiply + divide",
+      "<SHA13>\u0000<SHA14>\u0000feat: stats — sum / mean / median",
+      "<SHA21>\u0000<SHA20>\u0000refactor: simplify discount calculation"
+    ],
+    "refs": [
+      "refs/heads/main <SHA16>",
+      "refs/remotes/origin/main <SHA16>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": [
+      "1 .M N... 100644 100644 100644 <SHA3> <SHA3> README.md",
+      "? untracked.txt"
+    ]
+  }
+}

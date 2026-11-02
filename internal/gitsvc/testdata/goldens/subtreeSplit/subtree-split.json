@@ -1,0 +1,49 @@
+{
+  "method": "subtreeSplit",
+  "fixture": "subtree",
+  "case": "split",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    "vendor/parser",
+    " parser-only "
+  ],
+  "capture": [
+    {
+      "git": [
+        "ls-tree",
+        "--name-only",
+        "parser-only"
+      ]
+    }
+  ],
+  "extra": [
+    {
+      "out": "README.md\nparser.js"
+    }
+  ],
+  "result": "<SHA1>",
+  "state": {
+    "index": [
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tapp.js",
+      "100644 <SHA4> 0\tvendor/parser/README.md",
+      "100644 <SHA5> 0\tvendor/parser/parser.js"
+    ],
+    "log": [
+      "<SHA6>\u0000<SHA7> <SHA8>\u0000Merge commit '<SHA8>' as 'vendor/parser'",
+      "<SHA8>\u0000\u0000Squashed 'vendor/parser/' content from commit <SHA1>~",
+      "<SHA9>\u0000\u0000feat: parser",
+      "<SHA1>\u0000<SHA9>\u0000feat: safe parse",
+      "<SHA10>\u0000<SHA6>\u0000feat: use safe parse",
+      "<SHA7>\u0000\u0000init: app + readme"
+    ],
+    "refs": [
+      "refs/heads/main <SHA10>",
+      "refs/heads/parser-only <SHA1>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

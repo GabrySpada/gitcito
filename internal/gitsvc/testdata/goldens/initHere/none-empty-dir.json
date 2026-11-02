@@ -1,0 +1,23 @@
+{
+  "method": "initHere",
+  "fixture": "",
+  "case": "empty-dir",
+  "repo": "tmp",
+  "args": [
+    "<REPO>"
+  ],
+  "capture": [
+    {
+      "git": [
+        "symbolic-ref",
+        "HEAD"
+      ]
+    }
+  ],
+  "extra": [
+    {
+      "out": "refs/heads/main"
+    }
+  ],
+  "result": null
+}

@@ -1,0 +1,51 @@
+{
+  "method": "fsck",
+  "fixture": "bisect-bug",
+  "case": "dangling",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": "orphan.txt",
+      "content": "dropped\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "orphan"
+      ]
+    },
+    {
+      "git": [
+        "reset",
+        "-q",
+        "--hard",
+        "HEAD~1"
+      ]
+    },
+    {
+      "git": [
+        "reflog",
+        "expire",
+        "--expire=now",
+        "--all"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "dangling": 1,
+    "missing": 0,
+    "ok": true,
+    "output": "dangling commit <SHA1>"
+  }
+}

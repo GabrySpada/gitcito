@@ -1,0 +1,26 @@
+{
+  "method": "repoConfig",
+  "fixture": "project-tree",
+  "case": "future-version",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitcito.json",
+      "content": "{\"version\":2}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "config": null,
+    "exists": true,
+    "issues": [
+      {
+        "code": "version",
+        "field": "version"
+      }
+    ],
+    "path": "<REPO>/.gitcito.json"
+  }
+}

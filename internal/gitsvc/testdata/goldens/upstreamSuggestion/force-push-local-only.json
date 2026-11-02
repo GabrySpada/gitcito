@@ -1,0 +1,24 @@
+{
+  "method": "upstreamSuggestion",
+  "fixture": "force-push",
+  "case": "local-only",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "local-only"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "branch": "local-only",
+    "remote": "origin",
+    "remoteRefExists": false
+  }
+}

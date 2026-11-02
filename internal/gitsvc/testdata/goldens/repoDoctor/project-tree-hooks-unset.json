@@ -1,0 +1,27 @@
+{
+  "method": "repoDoctor",
+  "fixture": "project-tree",
+  "case": "hooks-unset",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitcito.json",
+      "content": "{\"version\":1,\"requires\":{\"hooksPath\":\".husky\"}}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "expected": ".husky",
+      "fix": {
+        "kind": "hooksPath",
+        "value": ".husky"
+      },
+      "id": "hooks",
+      "kind": "hooks",
+      "status": "fail"
+    }
+  ]
+}

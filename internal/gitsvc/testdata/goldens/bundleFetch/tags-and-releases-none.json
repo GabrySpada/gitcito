@@ -1,0 +1,42 @@
+{
+  "method": "bundleFetch",
+  "fixture": "tags-and-releases",
+  "case": "none",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    "<TMP>/x.bundle",
+    [
+      ""
+    ]
+  ],
+  "error": "Choose at least one ref to import.",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tCHANGELOG.md",
+      "100644 <SHA2> 0\tapp.py",
+      "100644 <SHA3> 0\tplugins.py"
+    ],
+    "log": [
+      "<SHA4>\u0000\u0000chore: initial scaffolding",
+      "<SHA5>\u0000<SHA6>\u0000feat!: rewrite as App class — v2.0.0 BREAKING",
+      "<SHA6>\u0000<SHA7>\u0000feat: add farewell() — v1.1.0",
+      "<SHA8>\u0000<SHA5>\u0000feat: plugin system (unreleased, post-v2.0.0 dev)",
+      "<SHA7>\u0000<SHA9>\u0000fix: handle blank name in greet() — v1.0.1",
+      "<SHA9>\u0000<SHA4>\u0000release: v1.0.0",
+      "<SHA10>\u0000<SHA7>\u0000security: sanitise name input — v1.0.2"
+    ],
+    "refs": [
+      "refs/heads/hotfix/security-patch <SHA10>",
+      "refs/heads/main <SHA8>",
+      "refs/tags/v1.0.0 <SHA11>",
+      "refs/tags/v1.0.1 <SHA7>",
+      "refs/tags/v1.0.2 <SHA12>",
+      "refs/tags/v1.1.0 <SHA13>",
+      "refs/tags/v2.0.0 <SHA14>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

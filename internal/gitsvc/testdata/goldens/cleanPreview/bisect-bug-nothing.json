@@ -1,0 +1,13 @@
+{
+  "method": "cleanPreview",
+  "fixture": "bisect-bug",
+  "case": "nothing",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "entries": [],
+    "truncated": false
+  }
+}
