@@ -93,6 +93,8 @@ func main() {
 		},
 		Assets:         application.AssetOptions{Handler: application.AssetFileServerFS(assets)},
 		SingleInstance: single,
+		// Used only by the `server` build tag (automation): loopback only, port from WAILS_SERVER_PORT.
+		Server: application.ServerOptions{Host: "127.0.0.1"},
 		Mac:            application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: false},
 	})
 
