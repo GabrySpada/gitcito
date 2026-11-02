@@ -174,6 +174,7 @@ func writeRepoFiles(repoPath string, files []FileToWrite) error {
 		full, err := filepath.Abs(filepath.Join(repoPath, f.Path))
 		if err != nil || !shared.IsSafeRepoPath(f.Path) ||
 			(full != root && !strings.HasPrefix(full, root+string(filepath.Separator))) {
+			//lint:ignore ST1005 byte-identical to the Electron error the renderer shows
 			return fmt.Errorf("Refusing to write outside the repository: %s", f.Path)
 		}
 	}

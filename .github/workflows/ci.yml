@@ -1,0 +1,114 @@
+name: CI
+
+# The full gate on all three desktop platforms: Go (vet, staticcheck, tests), the renderer (typecheck, i18n,
+# docs, vitest), the generated bindings, a host build, and the end-to-end suite on the Linux server build.
+on:
+  pull_request:
+  push:
+    branches: ['feat/**', 'claude/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned with go.mod's toolchain line and package.json's @wailsio/runtime (DECISIONS 003).
+  WAILS_VERSION: v3.1.0
+  STATICCHECK_VERSION: 2026.2.2
+  WAILS_EXP_USE_WAKE: '1'
+
+jobs:
+  gate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # Playground scenarios are bash scripts; on Windows this is Git Bash.
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Linux GUI libraries (GTK4 + WebKitGTK 6.0)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-4-dev libwebkitgtk-6.0-dev pkg-config xvfb
+
+      - name: Install the Wails CLI
+        run: go install github.com/wailsapp/wails/v3/cmd/wails3@${WAILS_VERSION}
+
+      - name: wails3 doctor
+        run: wails3 doctor
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Git identity for fixture repos
+        run: |
+          git config --global user.name "CI"
+          git config --global user.email "ci@example.invalid"
+          git config --global init.defaultBranch main
+
+      - name: Generated bindings are up to date
+        run: |
+          wails3 generate bindings -ts -i -clean -d src/renderer/src/bindings
+          git diff --exit-code -- src/renderer/src/bindings
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: i18n guard
+        run: npm run lint:i18n
+
+      - name: Docs guard
+        run: npm run lint:docs
+
+      - name: Bound surface is fully tagged
+        run: go run ./scripts/port/surface -check
+
+      - name: gofmt
+        run: test -z "$(gofmt -l $(git ls-files '*.go'))"
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: staticcheck
+        run: go run honnef.co/go/tools/cmd/staticcheck@${STATICCHECK_VERSION} ./...
+
+      - name: vitest
+        run: npm test
+
+      - name: go test
+        if: runner.os != 'Linux'
+        run: go test ./...
+
+      - name: go test (race)
+        if: runner.os == 'Linux'
+        run: go test -race ./...
+
+      - name: Host build
+        run: wails3 build
+
+      - name: End-to-end (server build)
+        if: runner.os == 'Linux'
+        run: |
+          npx playwright install chromium
+          npm run build:server
+          npm run test:e2e
