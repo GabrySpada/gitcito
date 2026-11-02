@@ -64,3 +64,31 @@ Every decision the brief did not dictate. One entry each: context, options, choi
 - **Choice:** The lead writes `internal/app`, `main.go`, `wails.yaml` and integrates; a subagent writes
   `gitx`/`paths`/`logbook`/`testutil`/lock skeleton, another the renderer bridge skeleton, in the main tree on
   disjoint files. Shared files remain the lead's.
+
+## 013 — Bound services are facades over unbound cores
+- **Context:** Wails binds every exported method of a registered service. The first `AppService` exported
+  `HandleSecondInstance`, which would have let page script forge a CLI hand-off (`--edit=<any file>`) and then
+  overwrite that file through `cli:finishEdit`.
+- **Choice:** Each registered type exposes exactly its renderer channels. State and lifecycle hooks live on an
+  unregistered type (`app.Core`, `logbook.Logbook`); the registered one (`AppService`, `logbook.Service`) wraps it.
+  Wave briefs require `// channel: <name>` above each facade method; SURFACE.md is generated from those.
+
+## 014 — CLI ready gate is the first cli:open-path subscription
+- **Context:** Electron delivered `cli:open-path` after `did-finish-load`. Wails events emitted before a listener
+  exists are lost.
+- **Choice:** Go queues CLI deliveries until `AppService.Ready()`. The bridge calls it right after subscribing the
+  `cli:open-path` listener (App.tsx subscribes `onEdit` in the same commit phase, before the call resolves), so
+  no extra renderer change is needed.
+
+## 015 — Single instance off when Linux has no D-Bus session bus
+- **Context:** Wails' Linux single-instance uses D-Bus; without a session bus or `dbus-launch` it aborts startup.
+- **Choice:** `app.SingleInstanceAvailable()` skips the option in that case and logs a warning. A second launch
+  then opens a second window instead of the app refusing to start. Listed in MANUAL-CHECKS.
+
+## 016 — Go module fence for examples/
+- The generated playground repos contain sample `.go` files. `examples/go.mod` makes `examples/` its own module
+  so `go build ./...` / `go vet ./...` / `go test ./...` skip them.
+
+## 017 — Bindings are committed under src/renderer/src/bindings
+- Generated with `wails3 generate bindings -ts -i -clean -d src/renderer/src/bindings` (TypeScript interfaces).
+  CI regenerates and fails on drift (M8).
