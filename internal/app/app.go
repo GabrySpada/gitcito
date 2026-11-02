@@ -44,6 +44,8 @@ type AppService struct {
 	mu      sync.Mutex
 	ready   bool
 	pending []func()
+
+	edits waits
 }
 
 // NewAppService builds the service from the launch flags.
