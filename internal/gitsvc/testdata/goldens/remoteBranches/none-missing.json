@@ -1,0 +1,10 @@
+{
+  "method": "remoteBranches",
+  "fixture": "",
+  "case": "missing",
+  "repo": "shared",
+  "args": [
+    "/nowhere/at/all.git"
+  ],
+  "error": "fatal: '/nowhere/at/all.git' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists."
+}

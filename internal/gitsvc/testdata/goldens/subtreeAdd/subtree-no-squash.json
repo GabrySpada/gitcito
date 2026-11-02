@@ -1,0 +1,45 @@
+{
+  "method": "subtreeAdd",
+  "fixture": "subtree",
+  "case": "no-squash",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "subtree-lib.git",
+      "as": "LIB"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "vendor/third",
+    "<LIB>",
+    "main",
+    false
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md",
+      "100644 <SHA2> 0\tapp.js",
+      "100644 <SHA3> 0\tvendor/parser/README.md",
+      "100644 <SHA4> 0\tvendor/parser/parser.js",
+      "100644 <SHA3> 0\tvendor/third/README.md",
+      "100644 <SHA4> 0\tvendor/third/parser.js"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6> <SHA7>\u0000Add 'vendor/third/' from commit '<SHA7>'",
+      "<SHA8>\u0000<SHA9> <SHA10>\u0000Merge commit '<SHA10>' as 'vendor/parser'",
+      "<SHA10>\u0000\u0000Squashed 'vendor/parser/' content from commit <SHA7>~",
+      "<SHA11>\u0000\u0000feat: parser",
+      "<SHA7>\u0000<SHA11>\u0000feat: safe parse",
+      "<SHA6>\u0000<SHA8>\u0000feat: use safe parse",
+      "<SHA9>\u0000\u0000init: app + readme"
+    ],
+    "refs": [
+      "refs/heads/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "method": "repoDoctor",
+  "fixture": "project-tree",
+  "case": "hooks-wrong",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "core.hooksPath",
+        "/opt/elsewhere"
+      ]
+    },
+    {
+      "write": ".gitcito.json",
+      "content": "{\"version\":1,\"requires\":{\"hooksPath\":\".husky\"}}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "actual": "/opt/elsewhere",
+      "expected": ".husky",
+      "fix": {
+        "kind": "hooksPath",
+        "value": ".husky"
+      },
+      "id": "hooks",
+      "kind": "hooks",
+      "status": "fail"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "method": "subtreeAdd",
+  "fixture": "subtree",
+  "case": "missing-prefix",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    " / ",
+    "x",
+    "main"
+  ],
+  "error": "A prefix, a repository and a ref are all required.",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md",
+      "100644 <SHA2> 0\tapp.js",
+      "100644 <SHA3> 0\tvendor/parser/README.md",
+      "100644 <SHA4> 0\tvendor/parser/parser.js"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6> <SHA7>\u0000Merge commit '<SHA7>' as 'vendor/parser'",
+      "<SHA7>\u0000\u0000Squashed 'vendor/parser/' content from commit <ABBR1>",
+      "<SHA8>\u0000<SHA5>\u0000feat: use safe parse",
+      "<SHA6>\u0000\u0000init: app + readme"
+    ],
+    "refs": [
+      "refs/heads/main <SHA8>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

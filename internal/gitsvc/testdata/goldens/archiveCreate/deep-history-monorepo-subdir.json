@@ -1,0 +1,44 @@
+{
+  "method": "archiveCreate",
+  "fixture": "deep-history-monorepo",
+  "case": "subdir",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/part.tar",
+    " ",
+    "tar",
+    "",
+    " packages/ "
+  ],
+  "capture": [
+    {
+      "tar": "<OUT>/part.tar"
+    }
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "extra": [
+    [
+      "packages/",
+      "packages/api/",
+      "packages/api/src/",
+      "packages/api/src/index.ts",
+      "packages/cli/",
+      "packages/cli/main.go",
+      "packages/web/",
+      "packages/web/src/",
+      "packages/web/src/App.tsx"
+    ]
+  ],
+  "result": {
+    "bytes": "<POS>",
+    "path": "<OUT>/part.tar"
+  }
+}

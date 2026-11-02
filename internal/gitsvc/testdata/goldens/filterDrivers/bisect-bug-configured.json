@@ -1,0 +1,80 @@
+{
+  "method": "filterDrivers",
+  "fixture": "bisect-bug",
+  "case": "configured",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "--local",
+        "filter.vault.clean",
+        "cat"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "filter.vault.smudge",
+        "definitely-not-installed --x"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "filter.vault.required",
+        "true"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "filter.half.required",
+        "yes"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--global",
+        "filter.glob.clean",
+        "cat"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "clean": "cat",
+      "cleanAvailable": true,
+      "name": "vault",
+      "required": true,
+      "scope": "repo",
+      "smudge": "definitely-not-installed --x",
+      "smudgeAvailable": false
+    },
+    {
+      "clean": "",
+      "cleanAvailable": true,
+      "name": "half",
+      "required": false,
+      "scope": "repo",
+      "smudge": "",
+      "smudgeAvailable": true
+    },
+    {
+      "clean": "cat",
+      "cleanAvailable": true,
+      "name": "glob",
+      "required": false,
+      "scope": "global",
+      "smudge": "",
+      "smudgeAvailable": true
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "method": "archiveCreate",
+  "fixture": "attributes",
+  "case": "tar-prefix",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/src.tar",
+    "HEAD",
+    "tar",
+    " demo-1.0// ",
+    ""
+  ],
+  "capture": [
+    {
+      "tar": "<OUT>/src.tar"
+    }
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "extra": [
+    [
+      "demo-1.0/",
+      "demo-1.0/.gitattributes",
+      "demo-1.0/CHANGELOG.md",
+      "demo-1.0/design/",
+      "demo-1.0/design/.gitattributes",
+      "demo-1.0/design/README.md",
+      "demo-1.0/design/logo.psd",
+      "demo-1.0/design/spec.docx",
+      "demo-1.0/src/",
+      "demo-1.0/src/app.ts"
+    ]
+  ],
+  "result": {
+    "bytes": "<POS>",
+    "path": "<OUT>/src.tar"
+  }
+}

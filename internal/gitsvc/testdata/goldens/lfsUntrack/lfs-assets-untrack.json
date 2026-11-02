@@ -1,0 +1,41 @@
+{
+  "method": "lfsUntrack",
+  "fixture": "lfs-assets",
+  "case": "untrack",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    "*.psd"
+  ],
+  "capture": [
+    {
+      "read": ".gitattributes"
+    }
+  ],
+  "extra": [
+    "*.bin filter=lfs diff=lfs merge=lfs -text\n"
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.gitattributes",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tasset.bin",
+      "100644 <SHA4> 0\tdesign.psd"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6>\u0000chore: track *.bin and *.psd with LFS",
+      "<SHA6>\u0000\u0000docs: readme",
+      "<SHA7>\u0000<SHA5>\u0000feat: add binary assets (asset.bin, design.psd)"
+    ],
+    "refs": [
+      "refs/heads/main <SHA7>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": [
+      "1 .M N... 100644 100644 100644 <SHA1> <SHA1> .gitattributes",
+      "1 .M N... 100644 100644 100644 <SHA4> <SHA4> design.psd"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "method": "submodules",
+  "fixture": "submodules-worktrees",
+  "case": "two",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "ahead": 0,
+      "behind": 0,
+      "branch": null,
+      "describe": "heads/main",
+      "name": "vendor/logger",
+      "path": "vendor/logger",
+      "recordedSha": "<SHA1>",
+      "sha": "<SHA1>",
+      "status": "initialized",
+      "url": "<PLAYGROUND>/_sub_src/logger"
+    },
+    {
+      "ahead": 0,
+      "behind": 0,
+      "branch": null,
+      "describe": "heads/main",
+      "name": "vendor/utils",
+      "path": "vendor/utils",
+      "recordedSha": "<SHA2>",
+      "sha": "<SHA2>",
+      "status": "initialized",
+      "url": "<PLAYGROUND>/_sub_src/utils"
+    }
+  ]
+}

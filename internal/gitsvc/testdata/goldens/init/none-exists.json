@@ -1,0 +1,16 @@
+{
+  "method": "init",
+  "fixture": "",
+  "case": "exists",
+  "repo": "tmp",
+  "setup": [
+    {
+      "mkdir": "proj"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "proj"
+  ],
+  "error": "A folder named \"proj\" already exists here."
+}

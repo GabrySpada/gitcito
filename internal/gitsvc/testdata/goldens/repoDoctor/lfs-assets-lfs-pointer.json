@@ -1,0 +1,30 @@
+{
+  "method": "repoDoctor",
+  "fixture": "lfs-assets",
+  "case": "lfs-pointer",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": "asset.bin",
+      "content": "version https://git-lfs.github.com/spec/v1\noid sha256:00\nsize 1\n"
+    },
+    {
+      "write": ".gitcito.json",
+      "content": "{\"version\":1,\"requires\":{\"lfs\":true}}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "actual": "asset.bin",
+      "fix": {
+        "kind": "lfsPull"
+      },
+      "id": "lfs",
+      "kind": "lfs",
+      "status": "warn"
+    }
+  ]
+}

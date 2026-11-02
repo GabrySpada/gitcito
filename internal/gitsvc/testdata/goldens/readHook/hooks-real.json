@@ -1,0 +1,11 @@
+{
+  "method": "readHook",
+  "fixture": "hooks",
+  "case": "real",
+  "repo": "shared",
+  "args": [
+    "<REPO>",
+    "pre-commit"
+  ],
+  "result": "#!/bin/sh\n# Reject commits whose staged changes still contain a FIXME marker.\nif git diff --cached | grep -q 'FIXME'; then\n  echo \"pre-commit: remove FIXME before committing.\" >&2\n  exit 1\nfi\n"
+}

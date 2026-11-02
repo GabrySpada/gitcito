@@ -1,0 +1,33 @@
+{
+  "method": "replacements",
+  "fixture": "deep-history-monorepo",
+  "case": "object",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "replace",
+        "-f",
+        "<REV:HEAD~2>",
+        "<REV:HEAD~7>"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "enabled": true,
+    "refs": [
+      {
+        "original": "<SHA1>",
+        "originalSubject": "fix: iterate on main.go (#218)",
+        "replacement": "<SHA2>",
+        "replacementParents": [
+          "<SHA3>"
+        ],
+        "replacementSubject": "docs: iterate on worker.py (#213)"
+      }
+    ]
+  }
+}

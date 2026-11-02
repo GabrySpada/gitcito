@@ -1,0 +1,36 @@
+{
+  "method": "addToGitignore",
+  "fixture": "untracked-mess",
+  "case": "all-present",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    [
+      "dist/",
+      ".env"
+    ]
+  ],
+  "result": [],
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.gitignore",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tsrc/app.js",
+      "100644 <SHA4> 0\tsrc/render.js"
+    ],
+    "log": [
+      "<SHA5>\u0000\u0000initial project"
+    ],
+    "refs": [
+      "refs/heads/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": [
+      "? debug-output.txt",
+      "? experiment/",
+      "? notes.md",
+      "? tmp/"
+    ]
+  }
+}

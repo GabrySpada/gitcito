@@ -1,0 +1,20 @@
+{
+  "method": "lastFetchAt",
+  "fixture": "bisect-bug",
+  "case": "fetch-head",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".git/FETCH_HEAD",
+      "content": ""
+    },
+    {
+      "mtime": ".git/FETCH_HEAD",
+      "ms": 1700000000000
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": 1700000000000
+}

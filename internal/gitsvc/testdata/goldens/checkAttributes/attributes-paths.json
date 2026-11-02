@@ -1,0 +1,52 @@
+{
+  "method": "checkAttributes",
+  "fixture": "attributes",
+  "case": "paths",
+  "repo": "shared",
+  "args": [
+    "<REPO>",
+    [
+      "CHANGELOG.md",
+      " design/logo.psd ",
+      "test/fixture.txt",
+      "x.scratch",
+      ""
+    ]
+  ],
+  "result": [
+    {
+      "attrs": {
+        "eol": "lf",
+        "merge": "union",
+        "text": "auto"
+      },
+      "path": "CHANGELOG.md"
+    },
+    {
+      "attrs": {
+        "binary": "set",
+        "diff": "unset",
+        "eol": "lf",
+        "linguist-vendored": "set",
+        "merge": "unset",
+        "text": "unset"
+      },
+      "path": "design/logo.psd"
+    },
+    {
+      "attrs": {
+        "eol": "lf",
+        "text": "auto"
+      },
+      "path": "test/fixture.txt"
+    },
+    {
+      "attrs": {
+        "diff": "unset",
+        "eol": "lf",
+        "text": "auto"
+      },
+      "path": "x.scratch"
+    }
+  ]
+}

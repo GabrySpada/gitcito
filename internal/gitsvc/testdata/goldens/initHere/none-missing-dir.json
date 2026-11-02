@@ -1,0 +1,10 @@
+{
+  "method": "initHere",
+  "fixture": "",
+  "case": "missing-dir",
+  "repo": "tmp",
+  "args": [
+    "<REPO>/missing"
+  ],
+  "error": "Cannot use simple-git on a directory that does not exist"
+}

@@ -1,0 +1,135 @@
+{
+  "method": "hooksInfo",
+  "fixture": "bisect-bug",
+  "case": "custom-path",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "core.hooksPath",
+        ".githooks"
+      ]
+    },
+    {
+      "write": ".githooks/pre-push",
+      "content": "#!/bin/sh\nexit 0\n"
+    },
+    {
+      "chmod": ".githooks/pre-push",
+      "mode": 493
+    },
+    {
+      "write": ".pre-commit-config.yml",
+      "content": "repos: []\n"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "customHooksPath": true,
+    "hooks": [
+      {
+        "executable": false,
+        "exists": false,
+        "name": "applypatch-msg",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-applypatch",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-applypatch",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-commit",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-merge-commit",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "prepare-commit-msg",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "commit-msg",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-commit",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-rebase",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-checkout",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-merge",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": true,
+        "exists": true,
+        "name": "pre-push",
+        "sample": false,
+        "size": 17
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "post-rewrite",
+        "sample": false,
+        "size": 0
+      },
+      {
+        "executable": false,
+        "exists": false,
+        "name": "pre-auto-gc",
+        "sample": false,
+        "size": 0
+      }
+    ],
+    "hooksDir": "<REPO>/.githooks",
+    "preCommitFramework": true
+  }
+}

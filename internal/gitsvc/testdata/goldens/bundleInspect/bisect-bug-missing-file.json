@@ -1,0 +1,16 @@
+{
+  "method": "bundleInspect",
+  "fixture": "bisect-bug",
+  "case": "missing-file",
+  "repo": "shared",
+  "args": [
+    "<REPO>",
+    "<TMP>/no-such.bundle"
+  ],
+  "result": {
+    "message": "error: could not open '<TMP>/no-such.bundle'",
+    "prerequisites": [],
+    "refs": [],
+    "usable": false
+  }
+}

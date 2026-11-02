@@ -1,0 +1,119 @@
+{
+  "method": "repoConfig",
+  "fixture": "project-tree",
+  "case": "mixed",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitcito.json",
+      "content": "{\"2\":true,\"version\":1,\"zeta\":1,\"alpha\":2,\"protect\":[\"main\",\"  \",3,\"release/*\",\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"],\"links\":{\"tickets\":[{\"match\":\"[A-Z]+-\\\\d+\",\"url\":\"https://t.example/$0\",\"label\":\"Tracker\"},{\"match\":\"(\",\"url\":\"https://x\"},{\"match\":\"a\",\"url\":\"javascript:alert(1)\"},\"nope\",{\"match\":\"b\"}]},\"commit\":{\"scopes\":[\"ui\",\"api\"],\"trailers\":\"nope\",\"ticketFromBranch\":false},\"requires\":{\"node\":\" 20 \",\"submodules\":\"yes\",\"lfs\":true,\"hooksPath\":\"../elsewhere\",\"files\":[\".env\",{\"path\":\"/etc/passwd\"},{\"path\":\"a\",\"from\":\"../b\"},{\"path\":\".env.local\",\"from\":\".env.example\",\"why\":\"dev server\"},7]},\"checklist\":{\"push\":[\"Run the tests\",\"\"]}}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "config": {
+      "checklist": {
+        "push": [
+          "Run the tests"
+        ]
+      },
+      "commit": {
+        "scopes": [
+          "ui",
+          "api"
+        ],
+        "ticketFromBranch": false
+      },
+      "links": {
+        "tickets": [
+          {
+            "label": "Tracker",
+            "match": "[A-Z]+-\\d+",
+            "url": "https://t.example/$0"
+          }
+        ]
+      },
+      "protect": [
+        "main",
+        "release/*"
+      ],
+      "requires": {
+        "files": [
+          {
+            "path": ".env"
+          },
+          {
+            "from": ".env.example",
+            "path": ".env.local",
+            "why": "dev server"
+          }
+        ],
+        "lfs": true,
+        "node": "20"
+      },
+      "version": 1
+    },
+    "exists": true,
+    "issues": [
+      {
+        "code": "unknown",
+        "field": "2"
+      },
+      {
+        "code": "unknown",
+        "field": "zeta"
+      },
+      {
+        "code": "unknown",
+        "field": "alpha"
+      },
+      {
+        "code": "type",
+        "field": "protect[2]"
+      },
+      {
+        "code": "limit",
+        "field": "protect[4]"
+      },
+      {
+        "code": "regex",
+        "field": "links.tickets[1].match"
+      },
+      {
+        "code": "url",
+        "field": "links.tickets[2].url"
+      },
+      {
+        "code": "type",
+        "field": "links.tickets[3]"
+      },
+      {
+        "code": "type",
+        "field": "commit.trailers"
+      },
+      {
+        "code": "type",
+        "field": "requires.submodules"
+      },
+      {
+        "code": "unsafe",
+        "field": "requires.hooksPath"
+      },
+      {
+        "code": "unsafe",
+        "field": "requires.files[1].path"
+      },
+      {
+        "code": "unsafe",
+        "field": "requires.files[2].from"
+      },
+      {
+        "code": "type",
+        "field": "requires.files[4]"
+      }
+    ],
+    "path": "<REPO>/.gitcito.json"
+  }
+}

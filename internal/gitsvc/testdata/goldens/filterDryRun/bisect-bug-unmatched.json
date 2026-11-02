@@ -1,0 +1,16 @@
+{
+  "method": "filterDryRun",
+  "fixture": "bisect-bug",
+  "case": "unmatched",
+  "repo": "shared",
+  "args": [
+    "<REPO>",
+    "*.nothing-matches-this",
+    "cat",
+    "cat"
+  ],
+  "result": {
+    "matched": 0,
+    "tested": []
+  }
+}

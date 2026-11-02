@@ -1,0 +1,65 @@
+{
+  "method": "discard",
+  "fixture": "snapshots",
+  "case": "modified",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    [
+      "draft.md"
+    ],
+    false
+  ],
+  "capture": [
+    {
+      "read": "draft.md"
+    }
+  ],
+  "extra": [
+    "# Draft\nInitial committed content.\n"
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tdraft.md",
+      "100644 <SHA2> 0\tnotes.md"
+    ],
+    "log": [
+      "<SHA3>\u0000\u0000draft: initial content"
+    ],
+    "refs": [
+      "refs/heads/main <SHA3>"
+    ],
+    "snapshots": [
+      {
+        "parents": "<SHA3> <SHA4>",
+        "ref": "refs/gitcito/wip/<TS>-m",
+        "subject": "On main: gitcito-wip manual",
+        "tree": "<SHA5>"
+      },
+      {
+        "parents": "<SHA3> <SHA6>",
+        "ref": "refs/gitcito/wip/<TS>-a",
+        "subject": "On main: gitcito-wip (auto)",
+        "tree": "<SHA7>"
+      },
+      {
+        "parents": "<SHA3> <SHA8>",
+        "ref": "refs/gitcito/wip/<TS>-g",
+        "subject": "On main: gitcito-wip (guard)",
+        "tree": "<SHA9>"
+      },
+      {
+        "parents": "<SHA3>",
+        "ref": "refs/gitcito/wip/<TS>-g",
+        "subject": "gitcito-wip <TIME> (guard)",
+        "tree": "<SHA10>"
+      }
+    ],
+    "stash": [],
+    "status": [
+      "1 A. N... 000000 100644 100644 <SHA11> <SHA2> notes.md",
+      "? scratch.txt"
+    ]
+  }
+}

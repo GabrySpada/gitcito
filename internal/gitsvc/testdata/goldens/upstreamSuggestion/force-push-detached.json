@@ -1,0 +1,20 @@
+{
+  "method": "upstreamSuggestion",
+  "fixture": "force-push",
+  "case": "detached",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "--detach",
+        "main"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": null
+}

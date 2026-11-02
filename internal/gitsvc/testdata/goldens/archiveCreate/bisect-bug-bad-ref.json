@@ -1,0 +1,20 @@
+{
+  "method": "archiveCreate",
+  "fixture": "bisect-bug",
+  "case": "bad-ref",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/a.tar",
+    "no-such-ref",
+    "tar",
+    "",
+    ""
+  ],
+  "error": "fatal: not a valid object name: no-such-ref"
+}

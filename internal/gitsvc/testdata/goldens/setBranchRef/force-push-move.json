@@ -1,0 +1,32 @@
+{
+  "method": "setBranchRef",
+  "fixture": "force-push",
+  "case": "move",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    "feature/login",
+    "<REV:main>"
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md"
+    ],
+    "log": [
+      "<SHA2>\u0000<SHA3>\u0000add debug logging",
+      "<SHA4>\u0000<SHA5>\u0000add login form",
+      "<SHA5>\u0000\u0000init: auth service",
+      "<SHA3>\u0000<SHA4>\u0000validate password"
+    ],
+    "refs": [
+      "refs/heads/feature/login <SHA5>",
+      "refs/heads/main <SHA5>",
+      "refs/remotes/origin/feature/login <SHA2>",
+      "refs/remotes/origin/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

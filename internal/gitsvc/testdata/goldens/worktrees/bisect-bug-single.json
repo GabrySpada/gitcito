@@ -1,0 +1,20 @@
+{
+  "method": "worktrees",
+  "fixture": "bisect-bug",
+  "case": "single",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "branch": "main",
+      "detached": false,
+      "head": "<SHA1>",
+      "isCurrent": true,
+      "isMain": true,
+      "locked": false,
+      "path": "<REPO>"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "method": "clone",
+  "fixture": "",
+  "case": "no-parent",
+  "repo": "tmp",
+  "args": [
+    "<REPO>/missing",
+    "<PLAYGROUND>/merge-conflict",
+    "x"
+  ],
+  "error": "Cannot use simple-git on a directory that does not exist"
+}

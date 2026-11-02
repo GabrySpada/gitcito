@@ -1,0 +1,10 @@
+{
+  "method": "repoDoctor",
+  "fixture": "project-tree",
+  "case": "no-config",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": []
+}

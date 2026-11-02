@@ -1,0 +1,17 @@
+{
+  "method": "clone",
+  "fixture": "",
+  "case": "exists",
+  "repo": "tmp",
+  "setup": [
+    {
+      "mkdir": "taken"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<PLAYGROUND>/merge-conflict",
+    "taken"
+  ],
+  "error": "A folder named \"taken\" already exists here."
+}

@@ -1,0 +1,11 @@
+{
+  "method": "readHook",
+  "fixture": "bisect-bug",
+  "case": "nothing",
+  "repo": "shared",
+  "args": [
+    "<REPO>",
+    "post-rewrite"
+  ],
+  "result": "#!/bin/sh\n"
+}

@@ -1,0 +1,10 @@
+{
+  "method": "lastFetchAt",
+  "fixture": "empty-repo",
+  "case": "never",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": null
+}

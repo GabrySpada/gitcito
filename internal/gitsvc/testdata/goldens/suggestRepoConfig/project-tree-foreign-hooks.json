@@ -1,0 +1,27 @@
+{
+  "method": "suggestRepoConfig",
+  "fixture": "project-tree",
+  "case": "foreign-hooks",
+  "repo": "clone",
+  "setup": [
+    {
+      "mkdir": ".husky"
+    },
+    {
+      "git": [
+        "config",
+        "core.hooksPath",
+        "/opt/somebody-elses/hooks"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "protect": [
+      "main"
+    ],
+    "version": 1
+  }
+}

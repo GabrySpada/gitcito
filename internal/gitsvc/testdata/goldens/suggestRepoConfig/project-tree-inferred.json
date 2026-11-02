@@ -1,0 +1,163 @@
+{
+  "method": "suggestRepoConfig",
+  "fixture": "project-tree",
+  "case": "inferred",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".nvmrc",
+      "content": "v20.11.1\n"
+    },
+    {
+      "write": ".env.example",
+      "content": "A=1\n"
+    },
+    {
+      "rm": ".env"
+    },
+    {
+      "mkdir": ".husky"
+    },
+    {
+      "write": ".gitattributes",
+      "content": "*.bin filter=lfs\n"
+    },
+    {
+      "write": ".gitmodules",
+      "content": ""
+    },
+    {
+      "git": [
+        "config",
+        "gitcito.protectedbranches",
+        "main, release/3.x,,develop"
+      ]
+    },
+    {
+      "git": [
+        "branch",
+        "develop"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "feat(ui): a"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "fix(ui)!: b"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "chore(build): c"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "docs(build): d"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "feat(once): e"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "GC-1: work"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "GC-2: work"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "GC-3: work"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "GC-4: work"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "--allow-empty",
+        "-m",
+        "GC-5: work"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "commit": {
+      "scopes": [
+        "build",
+        "ui"
+      ],
+      "ticketFromBranch": true
+    },
+    "protect": [
+      "main",
+      "develop",
+      "release/3.x"
+    ],
+    "requires": {
+      "files": [
+        {
+          "from": ".env.example",
+          "path": ".env"
+        }
+      ],
+      "hooksPath": ".husky",
+      "lfs": true,
+      "node": "20.11.1",
+      "submodules": true
+    },
+    "version": 1
+  }
+}

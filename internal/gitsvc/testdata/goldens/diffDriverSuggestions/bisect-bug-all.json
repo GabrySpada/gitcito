@@ -1,0 +1,76 @@
+{
+  "method": "diffDriverSuggestions",
+  "fixture": "bisect-bug",
+  "case": "all",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "available"
+  ],
+  "result": [
+    {
+      "available": "<MASKED>",
+      "binary": "",
+      "bundled": true,
+      "name": "word",
+      "patterns": [
+        "*.docx"
+      ],
+      "textconv": "\"<ROOT>/resources/cli/gitcito-textconv\""
+    },
+    {
+      "available": "<MASKED>",
+      "binary": "",
+      "bundled": true,
+      "name": "excel",
+      "patterns": [
+        "*.xlsx",
+        "*.xls"
+      ],
+      "textconv": "\"<ROOT>/resources/cli/gitcito-textconv\""
+    },
+    {
+      "available": "<MASKED>",
+      "binary": "",
+      "bundled": true,
+      "name": "json",
+      "patterns": [
+        "*.json",
+        "*.xcstrings"
+      ],
+      "textconv": "\"<ROOT>/resources/cli/gitcito-textconv\""
+    },
+    {
+      "available": "<MASKED>",
+      "binary": "",
+      "bundled": true,
+      "name": "strings",
+      "patterns": [
+        "*.strings"
+      ],
+      "textconv": "\"<ROOT>/resources/cli/gitcito-textconv\""
+    },
+    {
+      "available": "<MASKED>",
+      "binary": "pdftotext",
+      "name": "pdf",
+      "patterns": [
+        "*.pdf"
+      ],
+      "textconv": "pdftotext -layout - -"
+    },
+    {
+      "available": "<MASKED>",
+      "binary": "exiftool",
+      "name": "exif",
+      "patterns": [
+        "*.jpg",
+        "*.jpeg",
+        "*.png"
+      ],
+      "textconv": "exiftool"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "method": "bundleCreate",
+  "fixture": "tags-and-releases",
+  "case": "ref",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/main.bundle",
+    {
+      "kind": "ref",
+      "ref": "main"
+    }
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "result": {
+    "bytes": "<POS>",
+    "path": "<OUT>/main.bundle",
+    "refs": 1
+  }
+}

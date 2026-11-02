@@ -1,0 +1,63 @@
+{
+  "method": "bundleInspect",
+  "fixture": "tags-and-releases",
+  "case": "all",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    },
+    {
+      "git": [
+        "bundle",
+        "create",
+        "-q",
+        "<OUT>/all.bundle",
+        "--all"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/all.bundle"
+  ],
+  "result": {
+    "message": "The bundle contains these 8 refs:\n<SHA1> refs/heads/hotfix/security-patch\n<SHA2> refs/heads/main\n<SHA3> refs/tags/v1.0.0\n<SHA4> refs/tags/v1.0.1\n<SHA5> refs/tags/v1.0.2\n<SHA6> refs/tags/v1.1.0\n<SHA7> refs/tags/v2.0.0\n<SHA2> HEAD\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\n<OUT>/all.bundle is okay",
+    "prerequisites": [],
+    "refs": [
+      {
+        "name": "refs/heads/hotfix/security-patch",
+        "sha": "<SHA1>"
+      },
+      {
+        "name": "refs/heads/main",
+        "sha": "<SHA2>"
+      },
+      {
+        "name": "refs/tags/v1.0.0",
+        "sha": "<SHA3>"
+      },
+      {
+        "name": "refs/tags/v1.0.1",
+        "sha": "<SHA4>"
+      },
+      {
+        "name": "refs/tags/v1.0.2",
+        "sha": "<SHA5>"
+      },
+      {
+        "name": "refs/tags/v1.1.0",
+        "sha": "<SHA6>"
+      },
+      {
+        "name": "refs/tags/v2.0.0",
+        "sha": "<SHA7>"
+      },
+      {
+        "name": "HEAD",
+        "sha": "<SHA2>"
+      }
+    ],
+    "usable": true
+  }
+}

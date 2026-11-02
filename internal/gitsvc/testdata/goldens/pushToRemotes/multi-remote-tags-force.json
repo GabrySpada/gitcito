@@ -1,0 +1,103 @@
+{
+  "method": "pushToRemotes",
+  "fixture": "multi-remote",
+  "case": "tags-force",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "multi-remote-origin.git",
+      "as": "ORIGIN"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<ORIGIN>"
+      ]
+    },
+    {
+      "copy": "multi-remote-upstream.git",
+      "as": "UPSTREAM"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "upstream",
+        "<UPSTREAM>"
+      ]
+    },
+    {
+      "git": [
+        "fetch",
+        "-q",
+        "upstream"
+      ]
+    },
+    {
+      "git": [
+        "tag",
+        "-a",
+        "v9.9.9",
+        "-m",
+        "Release"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "main",
+    [
+      "upstream"
+    ],
+    {
+      "force": true,
+      "tags": true
+    }
+  ],
+  "capture": [
+    {
+      "git": [
+        "tag",
+        "--list"
+      ],
+      "dir": "<UPSTREAM>"
+    }
+  ],
+  "extra": [
+    {
+      "out": "v9.9.9"
+    }
+  ],
+  "result": [
+    {
+      "error": "",
+      "ok": true,
+      "remote": "upstream"
+    }
+  ],
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md",
+      "100644 <SHA2> 0\tarray.ts",
+      "100644 <SHA3> 0\tindex.ts",
+      "100644 <SHA4> 0\tmath.ts"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6>\u0000feat: add math.ts",
+      "<SHA7>\u0000<SHA5>\u0000feat: array.ts — unique/chunk/flatten (not pushed to origin)",
+      "<SHA6>\u0000\u0000initial commit"
+    ],
+    "refs": [
+      "refs/heads/main <SHA7>",
+      "refs/remotes/origin/HEAD <SHA5>",
+      "refs/remotes/origin/main <SHA5>",
+      "refs/remotes/upstream/main <SHA7>",
+      "refs/tags/v9.9.9 <SHA8>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "method": "subtreeAdd",
+  "fixture": "subtree",
+  "case": "add",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "subtree-lib.git",
+      "as": "LIB"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "/vendor/second/",
+    " <LIB> ",
+    " main "
+  ],
+  "capture": [
+    {
+      "git": [
+        "config",
+        "--get-regexp",
+        "^gitcito\\."
+      ]
+    },
+    {
+      "exists": "vendor/second/parser.js"
+    }
+  ],
+  "extra": [
+    {
+      "out": "gitcito.subtree.vendor%2Fsecond.url <LIB>\ngitcito.subtree.vendor%2Fsecond.ref main"
+    },
+    true
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md",
+      "100644 <SHA2> 0\tapp.js",
+      "100644 <SHA3> 0\tvendor/parser/README.md",
+      "100644 <SHA4> 0\tvendor/parser/parser.js",
+      "100644 <SHA3> 0\tvendor/second/README.md",
+      "100644 <SHA4> 0\tvendor/second/parser.js"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6> <SHA7>\u0000Merge commit '<SHA7>' as 'vendor/parser'",
+      "<SHA8>\u0000<SHA9> <SHA10>\u0000Merge commit '<SHA10>' as 'vendor/second'",
+      "<SHA7>\u0000\u0000Squashed 'vendor/parser/' content from commit <ABBR1>",
+      "<SHA10>\u0000\u0000Squashed 'vendor/second/' content from commit <ABBR1>",
+      "<SHA9>\u0000<SHA5>\u0000feat: use safe parse",
+      "<SHA6>\u0000\u0000init: app + readme"
+    ],
+    "refs": [
+      "refs/heads/main <SHA8>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

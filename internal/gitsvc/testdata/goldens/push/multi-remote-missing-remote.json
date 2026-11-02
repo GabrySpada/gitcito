@@ -1,0 +1,38 @@
+{
+  "method": "push",
+  "fixture": "multi-remote",
+  "case": "missing-remote",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    "main",
+    {
+      "remote": "nope"
+    }
+  ],
+  "error": "fatal: 'nope' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md",
+      "100644 <SHA2> 0\tarray.ts",
+      "100644 <SHA3> 0\tindex.ts",
+      "100644 <SHA4> 0\tmath.ts"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6>\u0000docs: update README with string module",
+      "<SHA7>\u0000<SHA8>\u0000feat: add math.ts",
+      "<SHA9>\u0000<SHA7>\u0000feat: array.ts — unique/chunk/flatten (not pushed to origin)",
+      "<SHA6>\u0000<SHA7>\u0000feat: string.ts — capitalize/truncate/slugify",
+      "<SHA8>\u0000\u0000initial commit"
+    ],
+    "refs": [
+      "refs/heads/main <SHA9>",
+      "refs/remotes/origin/HEAD <SHA7>",
+      "refs/remotes/origin/main <SHA7>",
+      "refs/remotes/upstream/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

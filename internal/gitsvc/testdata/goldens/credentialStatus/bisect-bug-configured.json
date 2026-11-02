@@ -1,0 +1,153 @@
+{
+  "method": "credentialStatus",
+  "fixture": "bisect-bug",
+  "case": "configured",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "--local",
+        "--add",
+        "credential.helper",
+        "cache"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "--add",
+        "credential.helper",
+        "store --file /tmp/x"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "--add",
+        "credential.helper",
+        "definitely-not-a-helper"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--global",
+        "credential.helper",
+        "!true"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "credential.https://example.com.helper",
+        "cache"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "credential.https://example.com.username",
+        "octocat"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--global",
+        "credential.https://git.example.org.username",
+        "me"
+      ]
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "origin",
+        "https://git.example.com/example/demo.git"
+      ]
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "other",
+        "http://user@other.example.com:8080/demo.git"
+      ]
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "ssh",
+        "git@ssh.example.com:example/demo.git"
+      ]
+    },
+    {
+      "write": "<HOME>/.git-credentials",
+      "content": "https://a:b@x.example\n\nhttps://c:d@y.example\n"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "candidates"
+  ],
+  "result": {
+    "candidates": "<MASKED>",
+    "helpers": [
+      {
+        "available": true,
+        "plaintext": false,
+        "scope": "global",
+        "value": "!true"
+      },
+      {
+        "available": true,
+        "plaintext": false,
+        "scope": "repo",
+        "value": "cache"
+      },
+      {
+        "available": true,
+        "plaintext": true,
+        "scope": "repo",
+        "value": "store --file /tmp/x"
+      },
+      {
+        "available": false,
+        "plaintext": false,
+        "scope": "repo",
+        "value": "definitely-not-a-helper"
+      }
+    ],
+    "httpsHosts": [
+      "git.example.com",
+      "other.example.com:8080"
+    ],
+    "plaintextFile": {
+      "entries": 2,
+      "exists": true,
+      "path": "<HOME>/.git-credentials"
+    },
+    "urlRules": [
+      {
+        "helper": "",
+        "scope": "global",
+        "url": "https://git.example.org",
+        "username": "me"
+      },
+      {
+        "helper": "cache",
+        "scope": "repo",
+        "url": "https://example.com",
+        "username": "octocat"
+      }
+    ]
+  }
+}
