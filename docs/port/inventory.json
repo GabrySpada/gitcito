@@ -574,8 +574,8 @@
           "via": "analyticsApi.clear"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "analytics.Service.Clear",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -598,8 +598,8 @@
           "via": "analyticsApi.get"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "analytics.Service.Get",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -624,8 +624,8 @@
           "via": "analyticsApi.setRetention"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "analytics.Service.SetRetention",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -746,11 +746,11 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:519",
+          "at": "src/renderer/src/App.tsx:507",
           "via": null
         },
         {
-          "at": "src/renderer/src/App.tsx:674",
+          "at": "src/renderer/src/App.tsx:662",
           "via": null
         },
         {
@@ -1085,7 +1085,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:161",
+          "at": "src/renderer/src/App.tsx:160",
           "via": null
         },
         {
@@ -1604,7 +1604,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:868",
+          "at": "src/renderer/src/App.tsx:856",
           "via": "hostingApi.listNotifications"
         },
         {
@@ -2208,8 +2208,8 @@
           "via": "infoApi.exportAll"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "info.Service.ExportAll",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2234,8 +2234,8 @@
           "via": "infoApi.importAll"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "info.Service.ImportAll",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2260,8 +2260,8 @@
           "via": "infoApi.list"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "info.Service.List",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2287,8 +2287,8 @@
           "via": "infoApi.remove"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "info.Service.Remove",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2309,8 +2309,8 @@
         "src/main/info.ts:95"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "info.Service.Reorder",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2336,8 +2336,8 @@
           "via": "infoApi.upsert"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "info.Service.Upsert",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3186,8 +3186,8 @@
           "via": "secureShareApi.apply"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.Apply",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3216,8 +3216,8 @@
           "via": "secureShareApi.applyV2"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.ApplyV2",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3246,8 +3246,8 @@
           "via": "secureShareApi.candidates"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.Candidates",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3275,8 +3275,8 @@
           "via": "secureShareApi.export"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.Export",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3303,8 +3303,8 @@
           "via": "secureShareApi.exportV2"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.ExportV2",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3330,8 +3330,8 @@
           "via": "secureShareApi.openV2"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.OpenV2",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3358,8 +3358,8 @@
           "via": "secureShareApi.pick"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.Pick",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3386,8 +3386,8 @@
           "via": "secureShareApi.preview"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.Preview",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3415,8 +3415,8 @@
           "via": "secureShareApi.previewNotesV2"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.PreviewNotesV2",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3444,8 +3444,8 @@
           "via": "secureShareApi.previewRepoV2"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "secure.Service.PreviewRepoV2",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3598,15 +3598,15 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:663",
+          "at": "src/renderer/src/App.tsx:651",
           "via": null
         },
         {
-          "at": "src/renderer/src/App.tsx:883",
+          "at": "src/renderer/src/App.tsx:871",
           "via": null
         },
         {
-          "at": "src/renderer/src/App.tsx:1296",
+          "at": "src/renderer/src/App.tsx:1284",
           "via": null
         },
         {
@@ -3638,8 +3638,8 @@
           "via": null
         },
         {
-          "at": "src/renderer/src/components/DevToolsPage.tsx:102",
-          "via": null
+          "at": "src/renderer/src/components/DebugToolbar.tsx:310",
+          "via": "shellApi.openExternal"
         },
         {
           "at": "src/renderer/src/components/GraphView.tsx:226",
@@ -4513,8 +4513,8 @@
           "via": "vaultApi.exportAll"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "vault.Service.ExportAll",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4541,8 +4541,8 @@
           "via": "vaultApi.importAll"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "vault.Service.ImportAll",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4577,8 +4577,8 @@
           "via": "vaultApi.list"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "vault.Service.List",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4611,8 +4611,8 @@
           "via": "vaultApi.remove"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "vault.Service.Remove",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4653,8 +4653,8 @@
           "via": "vaultApi.upsert"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "vault.Service.Upsert",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4699,11 +4699,11 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:832",
+          "at": "src/renderer/src/App.tsx:820",
           "via": null
         },
         {
-          "at": "src/renderer/src/App.tsx:839",
+          "at": "src/renderer/src/App.tsx:827",
           "via": null
         }
       ],
@@ -4889,11 +4889,11 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:629",
+          "at": "src/renderer/src/App.tsx:617",
           "via": null
         },
         {
-          "at": "src/renderer/src/components/TitleBar.tsx:1259",
+          "at": "src/renderer/src/components/TitleBar.tsx:1257",
           "via": null
         }
       ],
@@ -4917,7 +4917,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/components/TitleBar.tsx:1256",
+          "at": "src/renderer/src/components/TitleBar.tsx:1254",
           "via": null
         }
       ],
@@ -4941,7 +4941,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/components/TitleBar.tsx:1253",
+          "at": "src/renderer/src/components/TitleBar.tsx:1251",
           "via": null
         }
       ],
@@ -4996,7 +4996,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:567",
+          "at": "src/renderer/src/App.tsx:555",
           "via": "cliApi.onEdit"
         }
       ],
@@ -5022,7 +5022,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:551",
+          "at": "src/renderer/src/App.tsx:539",
           "via": "cliApi.onOpenPath"
         }
       ],
@@ -5119,7 +5119,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:575",
+          "at": "src/renderer/src/App.tsx:563",
           "via": "keychainApi.onAsk"
         }
       ],
@@ -5333,7 +5333,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:833",
+          "at": "src/renderer/src/App.tsx:821",
           "via": null
         }
       ],
@@ -5525,7 +5525,7 @@
           "via": "shellApi.revealLabel"
         },
         {
-          "at": "src/renderer/src/components/TitleBar.tsx:110",
+          "at": "src/renderer/src/components/TitleBar.tsx:108",
           "via": null
         },
         {
@@ -7662,7 +7662,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:903",
+          "at": "src/renderer/src/App.tsx:891",
           "via": "window.api.git"
         },
         {
@@ -9254,7 +9254,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:133",
+          "at": "src/renderer/src/App.tsx:132",
           "via": "gitApi.initHere"
         }
       ],
@@ -11208,7 +11208,7 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/App.tsx:97",
+          "at": "src/renderer/src/App.tsx:96",
           "via": "gitApi.resolveRev"
         },
         {

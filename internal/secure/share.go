@@ -7,6 +7,7 @@ package secure
 
 import (
 	"context"
+	"errors"
 	"math"
 	"os"
 	"path/filepath"
@@ -324,9 +325,30 @@ func (s *Share) Preview(bundlePath, password, repoPath string) PreviewResult {
 
 // writeBundleFile writes one file into a repo. Secrets land owner-only;
 // everything else keeps normal perms.
-func writeBundleFile(full string, f BundleFile) error {
+//
+// resolveInside only checks the path as text. A bundle comes from someone
+// else, and a repository can contain symlinks (a checked-out one, or one an
+// earlier bundle file created): writing "config/.env" through a `config ->
+// ~/.ssh` link would land outside the repo. So the directory is resolved for
+// real before writing, and an existing symlink at the target is refused. (The
+// Electron build had the textual check only.)
+func writeBundleFile(repoRoot, full string, f BundleFile) error {
 	if err := os.MkdirAll(filepath.Dir(full), 0o777); err != nil {
 		return err
+	}
+	root, err := filepath.EvalSymlinks(repoRoot)
+	if err != nil {
+		return err
+	}
+	dir, err := filepath.EvalSymlinks(filepath.Dir(full))
+	if err != nil {
+		return err
+	}
+	if dir != root && !strings.HasPrefix(dir, root+string(filepath.Separator)) {
+		return errors.New("refusing to write through a symlink that leaves the repository")
+	}
+	if st, err := os.Lstat(full); err == nil && st.Mode()&os.ModeSymlink != 0 {
+		return errors.New("refusing to write through a symlink")
 	}
 	var mode os.FileMode = 0o644
 	switch {
@@ -364,7 +386,7 @@ func (s *Share) Apply(bundlePath, password, repoPath string, selected []string) 
 		if !ok {
 			continue // unsafe path — silently dropped, preview already flagged it
 		}
-		if err := writeBundleFile(full, f); err != nil {
+		if err := writeBundleFile(repoPath, full, f); err != nil {
 			return WrittenResult{Error: ErrWriteFailed}
 		}
 		written = append(written, f.Path)
@@ -631,7 +653,7 @@ func (s *Share) ApplyV2(ctx context.Context, bundlePath, password string, plan [
 				if !ok {
 					continue // unsafe path — silently dropped, preview flagged it
 				}
-				if err := writeBundleFile(full, f); err != nil {
+				if err := writeBundleFile(step.TargetRepoPath, full, f); err != nil {
 					return ApplyResult{Error: ErrWriteFailed}, nil
 				}
 				res.FilesWritten++

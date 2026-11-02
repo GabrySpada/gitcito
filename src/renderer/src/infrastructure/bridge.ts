@@ -16,6 +16,10 @@ import { Clipboard, Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
+import * as AnalyticsService from '../bindings/github.com/GabrySpada/gitcito/internal/analytics/service'
+import * as InfoService from '../bindings/github.com/GabrySpada/gitcito/internal/info/service'
+import * as SecureService from '../bindings/github.com/GabrySpada/gitcito/internal/secure/service'
+import * as VaultService from '../bindings/github.com/GabrySpada/gitcito/internal/vault/service'
 import * as GitService from '../bindings/github.com/GabrySpada/gitcito/internal/gitsvc/gitservice'
 import * as HostingService from '../bindings/github.com/GabrySpada/gitcito/internal/hosting/service'
 import * as KeychainService from '../bindings/github.com/GabrySpada/gitcito/internal/keychain/service'
@@ -153,13 +157,20 @@ export function installLinkGuard(openExternal: (url: string) => Promise<void>): 
 
 type AnyCall = (...args: unknown[]) => Promise<unknown>
 
-/** The hosting channels carry `unknown` payloads in the contract; forward them as-is to the generated
+/** Most channels carry loosely typed payloads in the contract; forward them as-is to the generated Go
  *  function of the same name (which sends every parameter, missing ones as null). */
-const hostingMethods = HostingService as unknown as Record<string, AnyCall>
-const hostingCall =
-  (name: string): AnyCall =>
-  (...args) =>
-    invoke(() => hostingMethods[name](...args))
+const forwarder =
+  (mod: object) =>
+  (name: string): AnyCall => {
+    const fn = (mod as Record<string, AnyCall | undefined>)[name]
+    if (!fn) throw new Error(`bridge: no bound method ${name}`)
+    return (...args) => invoke(() => fn(...args))
+  }
+const hostingCall = forwarder(HostingService)
+const vaultCall = forwarder(VaultService)
+const secureCall = forwarder(SecureService)
+const analyticsCall = forwarder(AnalyticsService)
+const infoCall = forwarder(InfoService)
 
 // Looked up by name at call time; the generated module is the authoritative list of ported git methods.
 const gitMethods = GitService as unknown as Record<string, ((...args: unknown[]) => Promise<unknown>) | undefined>
@@ -319,17 +330,17 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     analytics: {
-      get: notPorted('analytics:get'),
-      clear: notPorted('analytics:clear'),
-      setRetention: notPorted('analytics:setRetention')
+      get: analyticsCall('Get'),
+      clear: analyticsCall('Clear'),
+      setRetention: analyticsCall('SetRetention')
     },
 
     vault: {
-      list: notPorted('vault:list'),
-      upsert: notPorted('vault:upsert'),
-      remove: notPorted('vault:remove'),
-      exportAll: notPorted('vault:exportAll'),
-      importAll: notPorted('vault:importAll')
+      list: vaultCall('List'),
+      upsert: vaultCall('Upsert'),
+      remove: vaultCall('Remove'),
+      exportAll: vaultCall('ExportAll'),
+      importAll: vaultCall('ImportAll')
     },
 
     repos: {
@@ -342,25 +353,25 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     secureShare: {
-      candidates: notPorted('secure:candidates'),
-      export: notPorted('secure:export'),
-      pick: notPorted('secure:pick'),
-      preview: notPorted('secure:preview'),
-      apply: notPorted('secure:apply'),
-      exportV2: notPorted('secure:exportV2'),
-      openV2: notPorted('secure:openV2'),
-      previewRepoV2: notPorted('secure:previewRepoV2'),
-      applyV2: notPorted('secure:applyV2'),
-      previewNotesV2: notPorted('secure:previewNotesV2')
+      candidates: secureCall('Candidates'),
+      export: secureCall('Export'),
+      pick: secureCall('Pick'),
+      preview: secureCall('Preview'),
+      apply: secureCall('Apply'),
+      exportV2: secureCall('ExportV2'),
+      openV2: secureCall('OpenV2'),
+      previewRepoV2: secureCall('PreviewRepoV2'),
+      applyV2: secureCall('ApplyV2'),
+      previewNotesV2: secureCall('PreviewNotesV2')
     },
 
     info: {
-      list: notPorted('info:list'),
-      upsert: notPorted('info:upsert'),
-      remove: notPorted('info:remove'),
-      reorder: notPorted('info:reorder'),
-      exportAll: notPorted('info:exportAll'),
-      importAll: notPorted('info:importAll')
+      list: infoCall('List'),
+      upsert: infoCall('Upsert'),
+      remove: infoCall('Remove'),
+      reorder: infoCall('Reorder'),
+      exportAll: infoCall('ExportAll'),
+      importAll: infoCall('ImportAll')
     },
 
     log: {
