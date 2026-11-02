@@ -9,7 +9,7 @@ Every vitest case from the pre-port baseline (1686 tests in 42 files,
 - `deleted` — the subject no longer exists; the note says why.
 - `todo → Go (…)` — not ported yet.
 
-Open rows: **1148** of 1686.
+Open rows: **1029** of 1686.
 
 | file | test | new home | note |
 |------|------|----------|------|
@@ -190,15 +190,15 @@ Open rows: **1148** of 1686.
 | test/filePathClipboard.test.ts | buildFilePathClipboardPayload copies deleted, renamed, untracked, and nested names without corruption | still in vitest |  |
 | test/filePathClipboard.test.ts | buildFilePathClipboardPayload joins Windows multi-select with native separators and CRLF | still in vitest |  |
 | test/filePathClipboard.test.ts | buildFilePathClipboardPayload does not require files to exist on disk | still in vitest |  |
-| test/filters.test.ts | clean/smudge filter drivers writes a filter, lists it, and returns what it overwrote | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers flags a filter whose command does not exist | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers dry run: a lossless pair roundtrips, and nothing is configured | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers dry run: a lossy clean is reported as a differing roundtrip | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers dry run: no smudge command means the roundtrip is skipped, not failed | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers dry run: a failing command reports its stderr instead of pretending | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers dry run: an unmatched pattern says so | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers substitutes %f with the repo-relative path, like git does | todo → Go (git) |  |
-| test/filters.test.ts | clean/smudge filter drivers classifies the new methods correctly for the repo lock | todo → Go (git) |  |
+| test/filters.test.ts | clean/smudge filter drivers writes a filter, lists it, and returns what it overwrote | Go: gitsvc.TestDFilterDriverWriteListOverwrite |  |
+| test/filters.test.ts | clean/smudge filter drivers flags a filter whose command does not exist | Go: gitsvc.TestDFilterDriverMissingCommand |  |
+| test/filters.test.ts | clean/smudge filter drivers dry run: a lossless pair roundtrips, and nothing is configured | Go: gitsvc.TestDFilterDryRunLossless |  |
+| test/filters.test.ts | clean/smudge filter drivers dry run: a lossy clean is reported as a differing roundtrip | Go: gitsvc.TestDFilterDryRunLossy |  |
+| test/filters.test.ts | clean/smudge filter drivers dry run: no smudge command means the roundtrip is skipped, not failed | Go: gitsvc.TestDFilterDryRunNoSmudge |  |
+| test/filters.test.ts | clean/smudge filter drivers dry run: a failing command reports its stderr instead of pretending | Go: gitsvc.TestDFilterDryRunFailing |  |
+| test/filters.test.ts | clean/smudge filter drivers dry run: an unmatched pattern says so | Go: gitsvc.TestDFilterDryRunUnmatched |  |
+| test/filters.test.ts | clean/smudge filter drivers substitutes %f with the repo-relative path, like git does | Go: gitsvc.TestDFilterDryRunPercentF |  |
+| test/filters.test.ts | clean/smudge filter drivers classifies the new methods correctly for the repo lock | Go: gitsvc.TestDFilterMethodsClassified |  |
 | test/gitOps.test.ts | repository chat file actions applies a prepared edit as an exclusive repository write | Go: gitsvc.TestCRepoChatAppliesPreparedEdit |  |
 | test/gitOps.test.ts | merge → conflict → abort detects conflicts on merge and aborts cleanly | Go: gitsvc.TestSliceAOpsMergeConflictAbort + gitsvc.TestCMergeConflictThenAbort |  |
 | test/gitOps.test.ts | cherry-pick → clean then conflict → resolve applies a clean commit, then resolves a conflicting one | Go: gitsvc.TestBCherryPickCleanThenConflict |  |
@@ -217,15 +217,15 @@ Open rows: **1148** of 1686.
 | test/gitOps.test.ts | rename branch renames a branch you are not on, leaving HEAD alone | Go: gitsvc.TestCRenameOtherBranch |  |
 | test/gitOps.test.ts | rename branch renames back, which is what undo does | Go: gitsvc.TestCRenameBack |  |
 | test/gitOps.test.ts | rename branch refuses a name that is already taken | Go: gitsvc.TestCRenameRefusesTakenName |  |
-| test/gitOps.test.ts | pull a branch you are not on fast-forwards a branch without checking it out | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pull a branch you are not on falls back to a normal pull when the branch is the checked-out one | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pull a branch you are not on refuses a branch that tracks nothing | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pull a branch you are not on refuses a diverged branch instead of merging behind your back | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pull a branch you are not on moves a branch back to where it was, and refuses to move the current one | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pull a branch you are not on takes the exclusive lock — a branch pull is a write | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | gitignore + untrack adds patterns to .gitignore without duplicating | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | gitignore + untrack stops tracking a file but keeps it on disk | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | gitignore + untrack deletes a tracked file from Git and disk | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | pull a branch you are not on fast-forwards a branch without checking it out | Go: gitsvc.TestDPullBranchFastForwardsWithoutCheckout |  |
+| test/gitOps.test.ts | pull a branch you are not on falls back to a normal pull when the branch is the checked-out one | Go: gitsvc.TestDPullBranchCheckedOutFallsBackToPull |  |
+| test/gitOps.test.ts | pull a branch you are not on refuses a branch that tracks nothing | Go: gitsvc.TestDPullBranchRefusesUntracked |  |
+| test/gitOps.test.ts | pull a branch you are not on refuses a diverged branch instead of merging behind your back | Go: gitsvc.TestDPullBranchRefusesDiverged |  |
+| test/gitOps.test.ts | pull a branch you are not on moves a branch back to where it was, and refuses to move the current one | Go: gitsvc.TestDSetBranchRefUndoesBranchPull |  |
+| test/gitOps.test.ts | pull a branch you are not on takes the exclusive lock — a branch pull is a write | Go: gitsvc.TestDPullBranchIsAWrite |  |
+| test/gitOps.test.ts | gitignore + untrack adds patterns to .gitignore without duplicating | Go: gitsvc.TestDAddToGitignore |  |
+| test/gitOps.test.ts | gitignore + untrack stops tracking a file but keeps it on disk | Go: gitsvc.TestDUntrackKeepsFile |  |
+| test/gitOps.test.ts | gitignore + untrack deletes a tracked file from Git and disk | Go: gitsvc.TestDUntrackDeletesFile |  |
 | test/gitOps.test.ts | project tree drag & drop moves a tracked file into a folder as a git rename | Go: gitsvc.TestCTreeDndMovesTrackedFile |  |
 | test/gitOps.test.ts | project tree drag & drop moves an untracked file to the repository root | Go: gitsvc.TestCTreeDndMovesUntrackedFile |  |
 | test/gitOps.test.ts | project tree drag & drop refuses to move a folder into its own descendant | Go: gitsvc.TestCTreeDndRefusesMoveIntoItself |  |
@@ -236,12 +236,12 @@ Open rows: **1148** of 1686.
 | test/gitOps.test.ts | project tree drop conflicts replace trashes the existing entry and takes its name | Go: gitsvc.TestCDropConflictsReplace |  |
 | test/gitOps.test.ts | project tree drop conflicts keepBoth lands next to the existing entry under a free name | Go: gitsvc.TestCDropConflictsKeepBoth |  |
 | test/gitOps.test.ts | project tree drop conflicts applies the chosen mode to OS imports too | Go: gitsvc.TestCDropConflictsImportModes |  |
-| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) lists the branches a remote advertises | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) clones the whole history when no options are given | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) keeps only the requested number of commits when shallow | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) checks out the branch it was asked for instead of the default | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) fetches one branch only when asked, and every branch otherwise | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) refuses to clone over an existing folder | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) lists the branches a remote advertises | Go: gitsvc.TestDRemoteBranches |  |
+| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) clones the whole history when no options are given | Go: gitsvc.TestDCloneFull |  |
+| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) keeps only the requested number of commits when shallow | Go: gitsvc.TestDCloneShallow |  |
+| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) checks out the branch it was asked for instead of the default | Go: gitsvc.TestDCloneBranch |  |
+| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) fetches one branch only when asked, and every branch otherwise | Go: gitsvc.TestDCloneSingleBranch |  |
+| test/gitOps.test.ts | clone options (merge-conflict playground as the remote) refuses to clone over an existing folder | Go: gitsvc.TestDCloneRefusesExisting |  |
 | test/gitOps.test.ts | git-flow (gitflow playground) reads the layout the git flow CLI wrote, and spots the current flow branch | Go: gitsvc.TestCGitflowReadsLayout |  |
 | test/gitOps.test.ts | git-flow (gitflow playground) proposes a layout, and creates develop, for a repo that has never used it | Go: gitsvc.TestCGitflowProposesLayoutAndCreatesDevelop |  |
 | test/gitOps.test.ts | git-flow (gitflow playground) starts a feature off develop and a hotfix off main | Go: gitsvc.TestCGitflowStartsFeatureAndHotfix |  |
@@ -262,11 +262,11 @@ Open rows: **1148** of 1686.
 | test/gitOps.test.ts | history path picker (leaked-secret playground) marks files that are still tracked as not deleted | Go: gitsvc.TestBHistoryPathsMarksTracked |  |
 | test/gitOps.test.ts | history path picker (leaked-secret playground) orders by weight, so the reason a clone is huge is at the top | Go: gitsvc.TestBHistoryPathsHeaviestFirst |  |
 | test/gitOps.test.ts | history path picker (leaked-secret playground) honours the cap rather than returning a whole monorepo | Go: gitsvc.TestBHistoryPathsHonoursCap |  |
-| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) pushes one branch to every remote asked for | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) keeps going when one remote rejects, and says which | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) sets the upstream from the first remote only | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) refuses an empty remote list rather than guessing | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) publishes every local tag, annotated and lightweight alike | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) pushes one branch to every remote asked for | Go: gitsvc.TestDPushToRemotesPushesEveryRemote |  |
+| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) keeps going when one remote rejects, and says which | Go: gitsvc.TestDPushToRemotesKeepsGoing |  |
+| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) sets the upstream from the first remote only | Go: gitsvc.TestDPushToRemotesFirstRemoteIsUpstream |  |
+| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) refuses an empty remote list rather than guessing | Go: gitsvc.TestDPushToRemotesRefusesEmpty |  |
+| test/gitOps.test.ts | pushing to several remotes (multi-remote playground) publishes every local tag, annotated and lightweight alike | Go: gitsvc.TestDPushAllTags |  |
 | test/gitOps.test.ts | commit notes (cherry-pick playground) reports no note for a commit that has none | Go: gitsvc.TestBNoteNone |  |
 | test/gitOps.test.ts | commit notes (cherry-pick playground) writes a note and reads it back verbatim, newlines and all | Go: gitsvc.TestBNoteRoundTrip |  |
 | test/gitOps.test.ts | commit notes (cherry-pick playground) overwrites rather than appending when a note already exists | Go: gitsvc.TestBNoteOverwrites |  |
@@ -274,33 +274,33 @@ Open rows: **1148** of 1686.
 | test/gitOps.test.ts | commit notes (cherry-pick playground) treats an empty note as a removal, not as an empty note | Go: gitsvc.TestBNoteBlankRemoves |  |
 | test/gitOps.test.ts | commit notes (cherry-pick playground) removes a note, and removing a missing one is not an error | Go: gitsvc.TestBRemoveNoteIdempotent |  |
 | test/gitOps.test.ts | commit notes (cherry-pick playground) leaves the commit itself untouched — that is the point of a note | Go: gitsvc.TestBNoteLeavesCommitAlone |  |
-| test/gitOps.test.ts | subtrees (subtree playground) finds a subtree from the trailer git leaves in history | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | subtrees (subtree playground) remembers the source after an add, since git does not | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | subtrees (subtree playground) refuses to add onto a path that already exists | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | subtrees (subtree playground) refuses an add missing any of prefix, repository or ref | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | subtrees (subtree playground) pulls upstream changes into the vendored directory | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | subtrees (subtree playground) splits the vendored directory back into a branch of its own | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | subtrees (subtree playground) refuses a pull or push with no repository to talk to | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | subtrees (subtree playground) forgets the remembered source without touching the files | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | subtrees (subtree playground) finds a subtree from the trailer git leaves in history | Go: gitsvc.TestDSubtreesFromTrailer |  |
+| test/gitOps.test.ts | subtrees (subtree playground) remembers the source after an add, since git does not | Go: gitsvc.TestDSubtreeAddRemembers |  |
+| test/gitOps.test.ts | subtrees (subtree playground) refuses to add onto a path that already exists | Go: gitsvc.TestDSubtreeAddRefusesExisting |  |
+| test/gitOps.test.ts | subtrees (subtree playground) refuses an add missing any of prefix, repository or ref | Go: gitsvc.TestDSubtreeAddRequiresAll |  |
+| test/gitOps.test.ts | subtrees (subtree playground) pulls upstream changes into the vendored directory | Go: gitsvc.TestDSubtreePull |  |
+| test/gitOps.test.ts | subtrees (subtree playground) splits the vendored directory back into a branch of its own | Go: gitsvc.TestDSubtreeSplit |  |
+| test/gitOps.test.ts | subtrees (subtree playground) refuses a pull or push with no repository to talk to | Go: gitsvc.TestDSubtreeNoRepository |  |
+| test/gitOps.test.ts | subtrees (subtree playground) forgets the remembered source without touching the files | Go: gitsvc.TestDSubtreeForget |  |
 | test/gitOps.test.ts | rerere (merge-conflict playground) reports the memory off by default, with nothing recorded | Go: gitsvc.TestCRerereOffByDefault |  |
 | test/gitOps.test.ts | rerere (merge-conflict playground) turns on per repository without touching the global setting | Go: gitsvc.TestCRerereTurnsOnPerRepo |  |
 | test/gitOps.test.ts | rerere (merge-conflict playground) replays a resolution the second time the same conflict appears | Go: gitsvc.TestCRerereReplaysResolution |  |
 | test/gitOps.test.ts | rerere (merge-conflict playground) forgets one file’s resolution, so the conflict comes back raw | Go: gitsvc.TestCRerereForgetBringsConflictBack |  |
 | test/gitOps.test.ts | rerere (merge-conflict playground) clears the whole memory without touching the working tree | Go: gitsvc.TestCRerereClear |  |
-| test/gitOps.test.ts | remove untracked files (git clean) previews untracked and ignored paths apart, collapsing whole directories | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | remove untracked files (git clean) removes only the chosen paths and leaves ignored ones alone | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | remove untracked files (git clean) removes an ignored path when it is explicitly chosen | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | remove untracked files (git clean) refuses a tracked path and anything outside the repository | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | remove untracked files (git clean) reports the nested repository git skips, and takes it via the trash | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | bundles and archives bundles the whole repository, and another repo can fetch from the file | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | bundles and archives bundles a range, and says so when the other side lacks its starting point | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | bundles and archives refuses to create an empty bundle rather than writing a useless file | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | bundles and archives archives one tree, wrapped in a prefix, honouring export-ignore | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | bundles and archives archives a single subdirectory when asked for one | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | repository maintenance reports where the disk went, and packs the loose objects away | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | repository maintenance counts unreachable objects, and prune is what actually drops them | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | repository maintenance fsck passes on a healthy repository and counts dangling objects as normal | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | repository maintenance rebuilds the commit graph without changing what git reports | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | remove untracked files (git clean) previews untracked and ignored paths apart, collapsing whole directories | Go: gitsvc.TestDCleanPreview |  |
+| test/gitOps.test.ts | remove untracked files (git clean) removes only the chosen paths and leaves ignored ones alone | Go: gitsvc.TestDCleanChosen |  |
+| test/gitOps.test.ts | remove untracked files (git clean) removes an ignored path when it is explicitly chosen | Go: gitsvc.TestDCleanIgnoredWhenChosen |  |
+| test/gitOps.test.ts | remove untracked files (git clean) refuses a tracked path and anything outside the repository | Go: gitsvc.TestDCleanRefusesTrackedAndEscape |  |
+| test/gitOps.test.ts | remove untracked files (git clean) reports the nested repository git skips, and takes it via the trash | Go: gitsvc.TestDCleanNestedRepoViaTrash |  |
+| test/gitOps.test.ts | bundles and archives bundles the whole repository, and another repo can fetch from the file | Go: gitsvc.TestDBundleAllAndFetch |  |
+| test/gitOps.test.ts | bundles and archives bundles a range, and says so when the other side lacks its starting point | Go: gitsvc.TestDBundleRangePrerequisites |  |
+| test/gitOps.test.ts | bundles and archives refuses to create an empty bundle rather than writing a useless file | Go: gitsvc.TestDBundleRefusesEmpty |  |
+| test/gitOps.test.ts | bundles and archives archives one tree, wrapped in a prefix, honouring export-ignore | Go: gitsvc.TestDArchivePrefixExportIgnore |  |
+| test/gitOps.test.ts | bundles and archives archives a single subdirectory when asked for one | Go: gitsvc.TestDArchiveSubdirectory |  |
+| test/gitOps.test.ts | repository maintenance reports where the disk went, and packs the loose objects away | Go: gitsvc.TestDMaintenanceGc |  |
+| test/gitOps.test.ts | repository maintenance counts unreachable objects, and prune is what actually drops them | Go: gitsvc.TestDMaintenancePrune |  |
+| test/gitOps.test.ts | repository maintenance fsck passes on a healthy repository and counts dangling objects as normal | Go: gitsvc.TestDFsckDangling |  |
+| test/gitOps.test.ts | repository maintenance rebuilds the commit graph without changing what git reports | Go: gitsvc.TestDMaintenanceCommitGraph |  |
 | test/gitOps.test.ts | advanced merge options -X ours resolves the clashing hunks in favour of the current branch | Go: gitsvc.TestCMergeFavourOurs |  |
 | test/gitOps.test.ts | advanced merge options -X theirs takes the incoming side instead | Go: gitsvc.TestCMergeFavourTheirs |  |
 | test/gitOps.test.ts | advanced merge options -X cannot decide a modify/delete clash, which is not a content hunk | Go: gitsvc.TestCMergeFavourCannotDecideModifyDelete |  |
@@ -320,27 +320,27 @@ Open rows: **1148** of 1686.
 | test/gitOps.test.ts | automated bisect (git bisect run) refuses to run without a seeded session, rather than starting one silently | Go: gitsvc.TestCBisectRunRefusesUnseeded |  |
 | test/gitOps.test.ts | automated bisect (git bisect run) refuses an empty command | Go: gitsvc.TestCBisectRunRefusesEmptyCommand |  |
 | test/gitOps.test.ts | automated bisect (git bisect run) reports nothing to cancel when no run is in flight | Go: gitsvc.TestCBisectCancelNothingInFlight |  |
-| test/gitOps.test.ts | gitattributes finds every attributes file, including the private local one | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | gitattributes asks git what applies to a path, not the file | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | gitattributes writes an attributes file and refuses anything that is not one | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | gitattributes finds every attributes file, including the private local one | Go: gitsvc.TestDAttributeFiles |  |
+| test/gitOps.test.ts | gitattributes asks git what applies to a path, not the file | Go: gitsvc.TestDCheckAttributes |  |
+| test/gitOps.test.ts | gitattributes writes an attributes file and refuses anything that is not one | Go: gitsvc.TestDAttributeWrite |  |
 | test/gitOps.test.ts | gitattributes makes merge=union stop a changelog conflicting | Go: gitsvc.TestCMergeUnionAttribute |  |
-| test/gitOps.test.ts | gitattributes keeps export-ignore paths out of an archive | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | gitattributes lists configured diff drivers and says which converters are missing | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | gitattributes offers converter suggestions with honest availability | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers reports a repository-scoped helper, and flags the plaintext one | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers clears every stacked helper rather than leaving one behind | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers marks a helper that is not installed | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers surfaces per-URL rules, which beat the plain setting | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers lists the https hosts this repository would ask about | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers offers exactly one recommended helper for this platform | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers counts the plaintext credentials file without reading it out | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | credential helpers refuses to forget nothing | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object replacement (git replace) grafts a commit to the start of history without rewriting anything | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object replacement (git replace) puts the history back when the replacement is deleted | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object replacement (git replace) grafts onto chosen parents, which is how an archive is reattached | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object replacement (git replace) reports and honours core.useReplaceRefs | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object replacement (git replace) replaces one object with another outright | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object replacement (git replace) refuses an empty graft or delete | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | gitattributes keeps export-ignore paths out of an archive | Go: gitsvc.TestDArchiveExportIgnore |  |
+| test/gitOps.test.ts | gitattributes lists configured diff drivers and says which converters are missing | Go: gitsvc.TestDDiffDrivers |  |
+| test/gitOps.test.ts | gitattributes offers converter suggestions with honest availability | Go: gitsvc.TestDDiffDriverSuggestions |  |
+| test/gitOps.test.ts | credential helpers reports a repository-scoped helper, and flags the plaintext one | Go: gitsvc.TestDCredentialRepoHelper |  |
+| test/gitOps.test.ts | credential helpers clears every stacked helper rather than leaving one behind | Go: gitsvc.TestDCredentialClearsStacked |  |
+| test/gitOps.test.ts | credential helpers marks a helper that is not installed | Go: gitsvc.TestDCredentialMissingHelper |  |
+| test/gitOps.test.ts | credential helpers surfaces per-URL rules, which beat the plain setting | Go: gitsvc.TestDCredentialURLRules |  |
+| test/gitOps.test.ts | credential helpers lists the https hosts this repository would ask about | Go: gitsvc.TestDCredentialHTTPSHosts |  |
+| test/gitOps.test.ts | credential helpers offers exactly one recommended helper for this platform | Go: gitsvc.TestDCredentialCandidates |  |
+| test/gitOps.test.ts | credential helpers counts the plaintext credentials file without reading it out | Go: gitsvc.TestDCredentialPlaintextFileShape |  |
+| test/gitOps.test.ts | credential helpers refuses to forget nothing | Go: gitsvc.TestDForgetCredentialNeedsHost |  |
+| test/gitOps.test.ts | object replacement (git replace) grafts a commit to the start of history without rewriting anything | Go: gitsvc.TestDReplaceGraftRoot |  |
+| test/gitOps.test.ts | object replacement (git replace) puts the history back when the replacement is deleted | Go: gitsvc.TestDReplaceDeleteRestores |  |
+| test/gitOps.test.ts | object replacement (git replace) grafts onto chosen parents, which is how an archive is reattached | Go: gitsvc.TestDReplaceGraftParents |  |
+| test/gitOps.test.ts | object replacement (git replace) reports and honours core.useReplaceRefs | Go: gitsvc.TestDReplaceUseReplaceRefs |  |
+| test/gitOps.test.ts | object replacement (git replace) replaces one object with another outright | Go: gitsvc.TestDReplaceObject |  |
+| test/gitOps.test.ts | object replacement (git replace) refuses an empty graft or delete | Go: gitsvc.TestDReplaceRefusesEmpty |  |
 | test/gitOps.test.ts | checkout remote: local branch ahead reports ahead-only without checking anything out | Go: gitsvc.TestCCheckoutRemoteAheadOnly |  |
 | test/gitOps.test.ts | checkout remote: local branch ahead resets mixed to the remote tip, keeping the changes unstaged | Go: gitsvc.TestCResolveDivergedResetMixed |  |
 | test/gitOps.test.ts | checkout remote: local branch ahead resets soft to the remote tip, keeping the changes staged | Go: gitsvc.TestCResolveDivergedResetSoft |  |
@@ -350,7 +350,7 @@ Open rows: **1148** of 1686.
 | test/gitOps.test.ts | Xcode project conflicts (project.pbxproj) refuses to guess when both sides moved the same build setting | still in vitest (pbxproj merger) + Go: gitsvc.TestCXcodeMergeStopsOnProjectFile/bump |  |
 | test/gitOps.test.ts | Xcode project conflicts (project.pbxproj) declines the whole file rather than guessing at something unparseable | still in vitest (pbxproj merger) + Go: gitsvc.TestCXcodeMergeStopsOnProjectFile/feature |  |
 | test/gitOps.test.ts | UTF-16 .strings localization files is what git calls binary, and what the bundled converter turns back into lines | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | UTF-16 .strings localization files suggests a driver that needs nothing installed, and writes it to git config | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | UTF-16 .strings localization files suggests a driver that needs nothing installed, and writes it to git config | Go: gitsvc.TestDStringsDriverSuggestion |  |
 | test/gitService.test.ts | merge-conflict has feature + main, current is main | Go: gitsvc.TestSliceASmokeMergeConflictBranches |  |
 | test/gitService.test.ts | cherry-pick feature is ahead of main | Go: gitsvc.TestSliceASmokeCherryPickFeatureAhead |  |
 | test/gitService.test.ts | stash-picking holds exactly one stash with the WIP message | Go: gitsvc.TestSliceASmokeStashPickingOneStash |  |
@@ -362,7 +362,7 @@ Open rows: **1148** of 1686.
 | test/gitService.test.ts | tags-and-releases has the v1.0.0–v2.0.0 tag set and a hotfix branch | Go: gitsvc.TestSliceASmokeTagsAndReleases |  |
 | test/gitService.test.ts | detached-head is in detached HEAD with main + stable present | Go: gitsvc.TestSliceASmokeDetachedHead |  |
 | test/gitService.test.ts | collaborators has 4 distinct authors and co-authored commits | Go: gitsvc.TestSliceASmokeCollaborators |  |
-| test/gitService.test.ts | submodules-worktrees lists the main worktree plus two linked worktrees | todo → Go (git) |  |
+| test/gitService.test.ts | submodules-worktrees lists the main worktree plus two linked worktrees | Go: gitsvc.TestDWorktreesLinked |  |
 | test/gitService.test.ts | reflog-recovery deleted experiment branch is gone; amended commit is on main | Go: gitsvc.TestSliceASmokeReflogRecovery |  |
 | test/gitService.test.ts | binary-images-unicode has a clean tree and the binary-diff logo commit | Go: gitsvc.TestSliceASmokeBinaryImagesUnicode |  |
 | test/gitService.test.ts | deep-history-monorepo has deep history with multiple authors and release tags | Go: gitsvc.TestSliceASmokeDeepHistory |  |
@@ -494,11 +494,11 @@ Open rows: **1148** of 1686.
 | test/newFeatures.test.ts | stacked branches (stacked-branches playground) reports the chain and that both lower levels need restack | Go: gitsvc.TestCStackInfoReportsChain |  |
 | test/newFeatures.test.ts | stacked branches (stacked-branches playground) restack cascades so nothing needs restacking afterwards | Go: gitsvc.TestCStackRestackCascades |  |
 | test/newFeatures.test.ts | remote branch worktree checkout does not expose a symbolic remote HEAD as a branch named after the remote | Go: gitsvc.TestSliceAFeaturesBranchesSkipSymbolicRemoteHead |  |
-| test/newFeatures.test.ts | remote branch worktree checkout starts the new local branch at the selected remote ref | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | remote branch worktree checkout starts the new local branch at the selected remote ref | Go: gitsvc.TestDWorktreeAddFromRemoteRef |  |
 | test/newFeatures.test.ts | WIP snapshots (snapshots playground) lists the seeded snapshots with their kinds and takes a new one when dirty | Go: gitsvc.TestSliceAFeaturesSnapshotsListAndCreate |  |
 | test/newFeatures.test.ts | WIP snapshots (snapshots playground) captures untracked files and restores one after deletion | Go: gitsvc.TestSliceAFeaturesSnapshotCapturesUntracked |  |
 | test/newFeatures.test.ts | WIP snapshots (snapshots playground) dedupes timer ticks on an unchanged tree but always honours a manual request | Go: gitsvc.TestSliceAFeaturesSnapshotDedupe |  |
-| test/newFeatures.test.ts | WIP snapshots (snapshots playground) guards a discard: the destroyed state lands in a guard snapshot | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | WIP snapshots (snapshots playground) guards a discard: the destroyed state lands in a guard snapshot | Go: gitsvc.TestDDiscardTakesGuardSnapshot |  |
 | test/newFeatures.test.ts | WIP snapshots (snapshots playground) restores a legacy stash-shaped snapshot | Go: gitsvc.TestSliceAFeaturesSnapshotRestoreLegacy |  |
 | test/newFeatures.test.ts | local CI (local-ci playground) lists workflows with their names, filename as fallback | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | local CI (local-ci playground) reports tool availability truthfully (machine-dependent, shape only) | todo → Go (git, localCi, semantic) |  |
@@ -512,7 +512,7 @@ Open rows: **1148** of 1686.
 | test/newFeatures.test.ts | stacked-PR autopilot plumbing (stacked-branches playground) prunes a merged bottom: reparents the child, untracks and deletes it | Go: gitsvc.TestCStackPruneMergedBottom |  |
 | test/newFeatures.test.ts | stacked-PR autopilot plumbing (stacked-branches playground) prunes a squash-merged bottom when the host vouches for it | Go: gitsvc.TestCStackPruneSquashMergedWithHostProof |  |
 | test/newFeatures.test.ts | stacked-PR autopilot plumbing (stacked-branches playground) prune is a no-op while nothing has landed | Go: gitsvc.TestCStackPruneNoOp |  |
-| test/newFeatures.test.ts | stacked-PR autopilot plumbing (stacked-branches playground) pushes a non-current stack level to a remote without checking it out | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | stacked-PR autopilot plumbing (stacked-branches playground) pushes a non-current stack level to a remote without checking it out | Go: gitsvc.TestDPushNonCurrentBranch |  |
 | test/newFeatures.test.ts | teammateRadar (teammate-radar playground) reports remote activity, overlap with dirty files and conflict risk | Go: gitsvc.TestSliceAFeaturesTeammateRadar |  |
 | test/newFeatures.test.ts | teammateRadar (teammate-radar playground) is quiet in a repo with no remote branches | Go: gitsvc.TestSliceAFeaturesTeammateRadarQuiet |  |
 | test/newFeatures.test.ts | rebaseOnto (drag-to-rebase) checks out the branch and rebases it onto the target | Go: gitsvc.TestCRebaseOnto |  |
@@ -543,20 +543,20 @@ Open rows: **1148** of 1686.
 | test/newFeatures.test.ts | semantic diff (tree-sitter) refuses to pair two unrelated one-liners as a rename | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
 | test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) summarises a commit against its parent | Go: gitsvc.TestBSemanticDiffSidesOverBlobs (+ renderer vitest for semanticCompare) |  |
 | test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) returns nothing for a path missing on both sides | Go: gitsvc.TestBSemanticDiffSidesOverBlobs |  |
-| test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) reports the force-pushed ref, with the commit it used to point at | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) reports the force-pushed ref, with the commit it used to point at | Go: gitsvc.TestDFetchAllReportsForcedUpdate |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) reads the previous positions of a tracking ref from its reflog | Go: gitsvc.TestSliceAFeaturesRefTipsForcedUpdate |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) pairs the rewritten commit and separates the dropped and new ones | Go: gitsvc.TestSliceAFeaturesRangeDiffPairs |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) accepts a reflog selector, which the plain old...new form rejects | Go: gitsvc.TestSliceAFeaturesRangeDiffReflogSelector |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) carries the interdiff of the rewritten commit, not its whole content | Go: gitsvc.TestSliceAFeaturesRangeDiffInterdiff |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) reports nothing when a ref is compared with itself | Go: gitsvc.TestSliceAFeaturesRangeDiffSelf |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) returns no tips for a ref that has no reflog | Go: gitsvc.TestSliceAFeaturesRefTipsNoReflog |  |
-| test/newFeatures.test.ts | lastFetchAt is null for a repository that has never fetched | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | lastFetchAt reports FETCH_HEAD's mtime, so a fetch run outside the app counts too | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) has nothing to suggest while the branch already tracks something | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) offers the remote branch that is already there once tracking is dropped | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) links the branch back to its remote, and then has nothing left to offer | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) marks a branch the remote has never seen, so the repair is a push | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) suggests nothing on a detached HEAD — there is no branch to track with | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | lastFetchAt is null for a repository that has never fetched | Go: gitsvc.TestDLastFetchAtNeverFetched |  |
+| test/newFeatures.test.ts | lastFetchAt reports FETCH_HEAD's mtime, so a fetch run outside the app counts too | Go: gitsvc.TestDLastFetchAtAfterFetch |  |
+| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) has nothing to suggest while the branch already tracks something | Go: gitsvc.TestDUpstreamSuggestion |  |
+| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) offers the remote branch that is already there once tracking is dropped | Go: gitsvc.TestDUpstreamSuggestion |  |
+| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) links the branch back to its remote, and then has nothing left to offer | Go: gitsvc.TestDUpstreamSuggestion |  |
+| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) marks a branch the remote has never seen, so the repair is a push | Go: gitsvc.TestDUpstreamSuggestion |  |
+| test/newFeatures.test.ts | upstreamSuggestion + setUpstream (force-push playground) suggests nothing on a detached HEAD — there is no branch to track with | Go: gitsvc.TestDUpstreamSuggestion |  |
 | test/newFeatures.test.ts | absorb (absorb playground) routes each staged hunk to the commit that introduced its lines | Go: gitsvc.TestSliceAFeaturesAbsorbRoutesHunks |  |
 | test/newFeatures.test.ts | absorb (absorb playground) never offers to rewrite a commit that is already pushed | Go: gitsvc.TestSliceAFeaturesAbsorbNeverRewritesPushed |  |
 | test/newFeatures.test.ts | absorb (absorb playground) creates one fixup per target and leaves the rest staged | Go: gitsvc.TestSliceAFeaturesAbsorbCreatesFixups |  |
@@ -582,9 +582,9 @@ Open rows: **1148** of 1686.
 | test/newFeatures.test.ts | discoverLaunch — compounds & serverReadyAction (launch-configs playground) preserves serverReadyAction on the config it belongs to | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | tree status (untracked-mess playground) collapses an ignored directory instead of naming every file inside it | Go: gitsvc.TestCTreeStatusCollapsesIgnoredDirs |  |
 | test/newFeatures.test.ts | tree status (untracked-mess playground) still names every untracked file individually, which -uall is for | Go: gitsvc.TestCTreeStatusNamesUntrackedFiles |  |
-| test/newFeatures.test.ts | leftover git locks (stacked-branches playground) reports a lock with its age and kind, and refuses to delete a fresh one | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | leftover git locks (stacked-branches playground) removes an old lock, including one on a single ref | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | leftover git locks (stacked-branches playground) refuses a path that escapes the git directory or is not a lock | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | leftover git locks (stacked-branches playground) reports a lock with its age and kind, and refuses to delete a fresh one | Go: gitsvc.TestDLocksFreshLockStays |  |
+| test/newFeatures.test.ts | leftover git locks (stacked-branches playground) removes an old lock, including one on a single ref | Go: gitsvc.TestDLocksOldLocksGo |  |
+| test/newFeatures.test.ts | leftover git locks (stacked-branches playground) refuses a path that escapes the git directory or is not a lock | Go: gitsvc.TestDLocksRefuseEscape |  |
 | test/newFeatures.test.ts | stack editing (stacked-branches playground) inserts a level in the middle and re-points the level that sat there | Go: gitsvc.TestCStackInsertInTheMiddle |  |
 | test/newFeatures.test.ts | stack editing (stacked-branches playground) swaps two levels and replays them so nothing needs restacking | Go: gitsvc.TestCStackReorderSwaps |  |
 | test/newFeatures.test.ts | stack editing (stacked-branches playground) re-links the stack onto a different trunk | Go: gitsvc.TestCStackReorderNewTrunk |  |
@@ -1544,28 +1544,28 @@ Open rows: **1148** of 1686.
 | test/repoChat.test.ts | repository chat pinned context reads a pinned commit as diff hunks plus its message | todo → Go (git, repoChat) |  |
 | test/repoChat.test.ts | repository chat pinned context sends pinned context with the turn and keeps it for follow-ups | todo → Go (git, repoChat) |  |
 | test/repoChatLive.test.ts | prepares a license file action through an OpenAI-compatible provider | todo → Go (repoChat) | skipped at baseline |
-| test/repoConfig.test.ts | reading and writing .gitcito.json reports a repository that has none, without inventing a config | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | reading and writing .gitcito.json writes a config and reads back exactly what it stored | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | reading and writing .gitcito.json re-validates on write rather than trusting the caller | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | reading and writing .gitcito.json keeps the good half of a file with a bad field | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | the repo doctor says nothing at all when the repository declares no requirements | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | the repo doctor finds a missing file, offers the copy, and goes green once it is there | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | the repo doctor offers no copy when there is no template to copy from | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | the repo doctor checks core.hooksPath and can set it | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | the repo doctor accepts an absolute core.hooksPath that points at the declared directory | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | the repo doctor checks the node version against this machine | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | the repo doctor skips the submodule check in a repository with no submodules | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | doctor repairs refuse to leave the repository or destroy work never overwrites the file it was asked to create | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | doctor repairs refuse to leave the repository or destroy work refuses a copy that would read or write outside the repository | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | doctor repairs refuse to leave the repository or destroy work refuses a hooksPath that escapes, even though the loader already checked | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository infers requirements from the files that are already there | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository proposes the hooks path the clone actually uses, not the directory name | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository falls back to .husky only when nothing is configured | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository never writes another machine's absolute path into a shared file | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository leaves the .env requirement out when the file is already there | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository lifts protected branches out of the per-clone git config | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository reads the scopes the history is already using, ignoring one-offs | todo → Go (repoConfig) |  |
-| test/repoConfig.test.ts | proposing a config from the repository turns on ticketFromBranch only when the history is full of ticket keys | todo → Go (repoConfig) |  |
+| test/repoConfig.test.ts | reading and writing .gitcito.json reports a repository that has none, without inventing a config | Go: gitsvc.TestDRepoConfigAbsent |  |
+| test/repoConfig.test.ts | reading and writing .gitcito.json writes a config and reads back exactly what it stored | Go: gitsvc.TestDRepoConfigRoundTrip |  |
+| test/repoConfig.test.ts | reading and writing .gitcito.json re-validates on write rather than trusting the caller | Go: gitsvc.TestDRepoConfigRevalidatesOnWrite |  |
+| test/repoConfig.test.ts | reading and writing .gitcito.json keeps the good half of a file with a bad field | Go: gitsvc.TestDRepoConfigKeepsGoodHalf |  |
+| test/repoConfig.test.ts | the repo doctor says nothing at all when the repository declares no requirements | Go: gitsvc.TestDDoctorNoRequirements |  |
+| test/repoConfig.test.ts | the repo doctor finds a missing file, offers the copy, and goes green once it is there | Go: gitsvc.TestDDoctorMissingFileCopy |  |
+| test/repoConfig.test.ts | the repo doctor offers no copy when there is no template to copy from | Go: gitsvc.TestDDoctorNoTemplate |  |
+| test/repoConfig.test.ts | the repo doctor checks core.hooksPath and can set it | Go: gitsvc.TestDDoctorHooksPath |  |
+| test/repoConfig.test.ts | the repo doctor accepts an absolute core.hooksPath that points at the declared directory | Go: gitsvc.TestDDoctorAbsoluteHooksPath |  |
+| test/repoConfig.test.ts | the repo doctor checks the node version against this machine | Go: gitsvc.TestDDoctorNodeVersion |  |
+| test/repoConfig.test.ts | the repo doctor skips the submodule check in a repository with no submodules | Go: gitsvc.TestDDoctorNoSubmodules |  |
+| test/repoConfig.test.ts | doctor repairs refuse to leave the repository or destroy work never overwrites the file it was asked to create | Go: gitsvc.TestDDoctorFixNeverOverwrites |  |
+| test/repoConfig.test.ts | doctor repairs refuse to leave the repository or destroy work refuses a copy that would read or write outside the repository | Go: gitsvc.TestDDoctorFixRefusesEscape |  |
+| test/repoConfig.test.ts | doctor repairs refuse to leave the repository or destroy work refuses a hooksPath that escapes, even though the loader already checked | Go: gitsvc.TestDDoctorFixRefusesEscapingHooksPath |  |
+| test/repoConfig.test.ts | proposing a config from the repository infers requirements from the files that are already there | Go: gitsvc.TestDSuggestInfers |  |
+| test/repoConfig.test.ts | proposing a config from the repository proposes the hooks path the clone actually uses, not the directory name | Go: gitsvc.TestDSuggestUsesConfiguredHooksPath |  |
+| test/repoConfig.test.ts | proposing a config from the repository falls back to .husky only when nothing is configured | Go: gitsvc.TestDSuggestHuskyFallback |  |
+| test/repoConfig.test.ts | proposing a config from the repository never writes another machine's absolute path into a shared file | Go: gitsvc.TestDSuggestNoForeignAbsolutePath |  |
+| test/repoConfig.test.ts | proposing a config from the repository leaves the .env requirement out when the file is already there | Go: gitsvc.TestDSuggestEnvAlreadyThere |  |
+| test/repoConfig.test.ts | proposing a config from the repository lifts protected branches out of the per-clone git config | Go: gitsvc.TestDSuggestProtectedBranches |  |
+| test/repoConfig.test.ts | proposing a config from the repository reads the scopes the history is already using, ignoring one-offs | Go: gitsvc.TestDSuggestScopes |  |
+| test/repoConfig.test.ts | proposing a config from the repository turns on ticketFromBranch only when the history is full of ticket keys | Go: gitsvc.TestDSuggestTicketFromBranch |  |
 | test/repoFileActions.test.ts | repository file action preparation prepares an exact edit with a local preview and hash | todo → Go (repoFileActions) |  |
 | test/repoFileActions.test.ts | repository file action preparation rejects ambiguous edits and incomplete whole-file replacement | todo → Go (repoFileActions) |  |
 | test/repoFileActions.test.ts | repository file action preparation prepares create, replace-all, delete, and sequential edits in memory | todo → Go (repoFileActions) |  |
@@ -1676,7 +1676,7 @@ Open rows: **1148** of 1686.
 | test/textconv.test.ts | stringsToText ends with a newline so the last line diffs like the others | todo → Go (git, textconv) |  |
 | test/textconv.test.ts | stringsToText refuses a truncated UTF-16 file rather than emitting half a character | todo → Go (git, textconv) |  |
 | test/textconv.test.ts | Apple localization files end to end converts a .strings and a .xcstrings from disk | todo → Go (git, textconv) |  |
-| test/textconv.test.ts | Apple localization files end to end offers both as bundled drivers, so nothing has to be installed | todo → Go (git, textconv) |  |
+| test/textconv.test.ts | Apple localization files end to end offers both as bundled drivers, so nothing has to be installed | Go: gitsvc.TestDBundledAppleDrivers |  |
 | test/todoScan.test.ts | parseTodoLine reads a tag whatever the comment leader and the case | todo → Go (todoScan) |  |
 | test/todoScan.test.ts | parseTodoLine unites the owner whether the parens hug the tag or not | todo → Go (todoScan) |  |
 | test/todoScan.test.ts | parseTodoLine keeps a parenthesised sentence as the message, not as an owner | todo → Go (todoScan) |  |
