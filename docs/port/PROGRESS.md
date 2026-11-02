@@ -30,7 +30,8 @@ compaction.
 ## In flight (subagents, worktrees)
 - Registry group (repoRegistry, repoScan, repoMeta, repoConfig, repoFileActions, watcher, textconv).
 - Wave 2 (WAVE2-BRIEF.md): ai; repochat+grounding+wiki; processes; secure/vault/analytics/info.
-  (All four stopped on an API usage limit at ~13:10 UTC and were resumed with SendMessage after the reset.)
+  (All stopped on the API usage limit at ~13:10 and again ~17:00 UTC; resumed with SendMessage after each
+  reset, told to commit in small steps. Their worktrees keep partial work between interruptions.)
 - Worktrees start on `main`: every brief now says `git reset --hard claude/wizardly-hypatia-gttsk8` first.
 
 ## Next
