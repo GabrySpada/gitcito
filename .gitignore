@@ -26,3 +26,6 @@ reference/
 
 # Wails frontend build (npm run build:frontend), embedded by the Go binary
 frontend-dist/
+
+# Subagent worktrees created during the Wails port
+.claude/worktrees/
