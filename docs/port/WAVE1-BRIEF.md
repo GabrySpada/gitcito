@@ -6,6 +6,7 @@ You port one slice of `src/main/git.ts`'s `gitService` to Go, behaviour-identica
 and the foundation packages you build on — read their code, it is the API:
 `internal/gitx` (runners, NoPromptEnv, FixPath, parsers, LRU…), `internal/gitsvc/{service,lock,classify,oplog}.go`,
 `internal/testutil` (Playground, CloneFixture, NoNulls, git helpers), `internal/paths`, `internal/logbook`.
+**Read `docs/port/FOUNDATION-API.md` first: it fixes naming, classification and the lock helpers.**
 
 ## Environment
 - You run in your own git worktree. `node_modules` is not there: run `ln -s /home/user/gitcito/node_modules node_modules`
@@ -28,10 +29,8 @@ and the foundation packages you build on — read their code, it is the API:
    remote fixture (`file://`) or document precisely why not in your report.
 2. **Port.** Go code in `internal/gitsvc/<domain>.go` files named for your slice's domains. Each `GitService`
    method: exported, `ctx context.Context` first, then the TS args in order (repo path first — it is the lock key),
-   wrapped by the foundation's lock helper (read vs write from `classify.go`; add your WRITE methods to the
-   explicit write table — put your entries in a new file `classify_<slice>.go` (e.g. via an `init()` appending to
-   the table, or whatever mechanism classify.go supports; if it needs a hook, add the smallest one), never by editing
-   another slice's entries). Above each exported method put `// gitsvc: <tsMethodName>` (the inventory scanner uses it).
+   wrapped by `locked`/`lockedErr`/`lockedNoRepo` (classification is already complete in `classify.go`; do not
+   edit it). Above each exported method put `// gitsvc: <tsMethodName>` (the inventory scanner uses it).
    Return structs whose JSON tags match `src/shared/types.ts` exactly; nil slices → `[]`; optional TS fields
    (`?:`) → `omitempty`/pointer; `T | null` → pointer without omitempty. Error strings byte-identical to TS
    (renderer parses `*_PREFIX` markers). Port the TS why-comments with the logic. Activity/op-log recording and
@@ -45,7 +44,7 @@ and the foundation packages you build on — read their code, it is the API:
    (and the state snapshot for writes). Also run `testutil.NoNulls` on every result. Port every existing vitest
    case that covers your methods (grep `test/*.test.ts` for each method name) as Go tests.
 4. **Gate:** `gofmt -l internal` empty, `go vet ./internal/gitsvc/`, `go test -race ./internal/gitsvc/`,
-   staticcheck (`go run honnef.co/go/tools/cmd/staticcheck@2025.1.1 ./internal/gitsvc/` or the version the
+   staticcheck (`go run honnef.co/go/tools/cmd/staticcheck@2026.2.2 ./internal/gitsvc/` or the version the
    foundation used — see go.mod/notes), and `npx vitest run test/port/goldens-<slice>.test.ts` all green.
 5. **Commit in your worktree branch** in two commits: `test(port): capture slice <x> git goldens from typescript`
    then `feat(port): port git slice <x> to go`. Lowercase subject, no Co-Authored-By/attribution trailers.

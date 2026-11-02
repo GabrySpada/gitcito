@@ -25,3 +25,6 @@ frontend:
     interfaces: true
 build:
   output: bin
+# The dev loop gets its own data dir, keychain entry and single-instance id.
+dev:
+  tags: [dev]
