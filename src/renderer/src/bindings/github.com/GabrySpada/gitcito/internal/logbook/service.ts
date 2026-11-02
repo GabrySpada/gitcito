@@ -18,6 +18,7 @@ import * as $models from "./models.js";
 
 /**
  * Clear answers log:clear.
+ * channel: log:clear
  */
 export function Clear(): $CancellablePromise<$models.LogEntry[] | null> {
     return $Call.ByID(2656983706);
@@ -25,6 +26,7 @@ export function Clear(): $CancellablePromise<$models.LogEntry[] | null> {
 
 /**
  * Get answers log:get.
+ * channel: log:get
  */
 export function Get(): $CancellablePromise<$models.LogEntry[] | null> {
     return $Call.ByID(1564750367);

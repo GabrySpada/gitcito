@@ -19,6 +19,7 @@ import * as $models from "./models.js";
  * OpenExternal opens a web link in the default browser. Anything other than
  * http(s) is ignored silently, exactly as before: a `file:` or custom-scheme URL
  * from repository content must never reach the OS opener.
+ * channel: shell:openExternal
  */
 export function OpenExternal(url: string): $CancellablePromise<void> {
     return $Call.ByID(1526895028, url);
@@ -27,6 +28,7 @@ export function OpenExternal(url: string): $CancellablePromise<void> {
 /**
  * OpenPath opens a file or folder with its default application. Like Electron's
  * shell.openPath it reports failure as a message string, empty on success.
+ * channel: shell:openPath
  */
 export function OpenPath(fullPath: string): $CancellablePromise<string> {
     return $Call.ByID(1440843720, fullPath);
@@ -36,6 +38,7 @@ export function OpenPath(fullPath: string): $CancellablePromise<string> {
  * OpenWithApp launches a specific application with a file/folder path, e.g. the
  * equivalent of running `code <path>` for VS Code, without relying on a
  * shell/PATH lookup. Returns an error message, empty on success.
+ * channel: shell:openWithApp
  */
 export function OpenWithApp(targetPath: string, appPath: string): $CancellablePromise<string> {
     return $Call.ByID(3747279218, targetPath, appPath);
@@ -46,6 +49,7 @@ export function OpenWithApp(targetPath: string, appPath: string): $CancellablePr
  * folder. macOS and Windows have first-class support; other platforms fall back
  * to the default opener since there's no universal picker across Linux desktop
  * environments.
+ * channel: shell:openWithPicker
  */
 export function OpenWithPicker(fullPath: string): $CancellablePromise<string> {
     return $Call.ByID(1556493181, fullPath);
@@ -55,6 +59,7 @@ export function OpenWithPicker(fullPath: string): $CancellablePromise<string> {
  * PickApplication lets the user browse to and pick a specific application (e.g.
  * VS Code), to be remembered as the default "Open with <App>" target. Returns
  * nil if cancelled.
+ * channel: shell:pickApplication
  */
 export function PickApplication(): $CancellablePromise<$models.AppChoice | null> {
     return $Call.ByID(1806091724);
@@ -62,6 +67,7 @@ export function PickApplication(): $CancellablePromise<$models.AppChoice | null>
 
 /**
  * ShowItemInFolder reveals a file in the platform file manager.
+ * channel: shell:showItemInFolder
  */
 export function ShowItemInFolder(fullPath: string): $CancellablePromise<void> {
     return $Call.ByID(2557269214, fullPath);
@@ -69,6 +75,7 @@ export function ShowItemInFolder(fullPath: string): $CancellablePromise<void> {
 
 /**
  * WriteFiles writes generated files into a repository.
+ * channel: shell:writeFiles
  */
 export function WriteFiles(repoPath: string, files: $models.FileToWrite[] | null): $CancellablePromise<void> {
     return $Call.ByID(2404372345, repoPath, files);

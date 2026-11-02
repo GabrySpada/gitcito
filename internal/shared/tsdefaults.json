@@ -1,0 +1,353 @@
+{
+  "defaultSettings": {
+    "profiles": [
+      {
+        "id": "default",
+        "name": "Default",
+        "gitName": "",
+        "gitEmail": "",
+        "githubToken": "",
+        "azureToken": "",
+        "azureOrg": "",
+        "gitlabToken": "",
+        "bitbucketToken": "",
+        "ai": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "https://api.openai.com/v1",
+              "apiKey": "",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        }
+      }
+    ],
+    "activeProfileId": "default",
+    "repoProfiles": {},
+    "repoAliases": {},
+    "tabs": [],
+    "activeTabId": null,
+    "workspaces": [
+      {
+        "id": "default",
+        "name": "Default",
+        "tabs": [],
+        "activeTabId": null
+      }
+    ],
+    "activeWorkspaceId": "default",
+    "recentRepos": [],
+    "repoScanRoots": [],
+    "favouriteRepos": [],
+    "repoSectionColors": {},
+    "pullMode": "default",
+    "appThemeId": "gitcito",
+    "codeThemeId": "gitcito",
+    "themeMode": "auto",
+    "codeFontSize": 12,
+    "customAppThemes": [],
+    "customCodeThemes": [],
+    "language": "en",
+    "initialCommitCount": 400,
+    "loadMoreCount": 400,
+    "autoLoadOnScroll": true,
+    "relativeDates": true,
+    "commitAvatars": true,
+    "avatarMotion": true,
+    "fileListView": "path",
+    "groupBranches": true,
+    "graphColumns": {
+      "branch": {
+        "width": 168,
+        "visible": true
+      },
+      "graph": {
+        "width": 0,
+        "visible": true
+      },
+      "message": {
+        "width": 0,
+        "visible": true
+      },
+      "deployment": {
+        "width": 90,
+        "visible": true
+      },
+      "author": {
+        "width": 160,
+        "visible": true
+      },
+      "date": {
+        "width": 80,
+        "visible": true
+      },
+      "sha": {
+        "width": 74,
+        "visible": true
+      },
+      "signature": {
+        "width": 96,
+        "visible": true
+      }
+    },
+    "graphColumnOrder": [
+      "message",
+      "author",
+      "date",
+      "sha",
+      "signature",
+      "deployment"
+    ],
+    "graphStyle": {
+      "paletteId": "classic",
+      "edgeStyle": "rounded",
+      "density": "comfortable",
+      "lineWidth": "normal",
+      "nodeStyle": "normal",
+      "topology": "full",
+      "focus": "all",
+      "labelStyle": "solid",
+      "laneColors": "branch"
+    },
+    "customGraphPalettes": [],
+    "repoLayouts": {},
+    "repoTodos": {},
+    "repoBookmarks": {},
+    "analyzerMode": "onOpen",
+    "todosHideDone": true,
+    "todosManualOrder": false,
+    "autoFetchMinutes": 5,
+    "desktopNotifications": false,
+    "confirmForcePush": true,
+    "mergeCommit": true,
+    "sidebarOrder": [
+      "local",
+      "todos",
+      "bookmarks",
+      "remotes",
+      "stashes",
+      "tags",
+      "prs",
+      "issues",
+      "milestones",
+      "releases",
+      "worktrees",
+      "submodules"
+    ],
+    "sidebarHidden": [],
+    "onboardingCompleted": false,
+    "aiAccountsNoticeSeen": false,
+    "autoOpenChangelog": true,
+    "wipSnapshotMinutes": 15,
+    "snapshotGuard": true,
+    "localCiEnabled": false,
+    "maskSecrets": true,
+    "showChangeGutter": true,
+    "showMinimap": true,
+    "enableLaunchJson": true,
+    "shortcuts": {},
+    "largeFileKb": 5120,
+    "warnOnClose": "always",
+    "terminalPlacement": "bottom",
+    "sidebarSide": "left",
+    "rightPanelFullHeight": false
+  },
+  "defaultAIConfig": {
+    "enabled": true,
+    "accounts": [
+      {
+        "id": "default",
+        "label": "OpenAI",
+        "provider": "openai",
+        "endpoint": "https://api.openai.com/v1",
+        "apiKey": "",
+        "model": "gpt-4o-mini"
+      }
+    ],
+    "defaultAccountId": "default",
+    "assignments": {},
+    "provider": "openai",
+    "endpoint": "https://api.openai.com/v1",
+    "apiKey": "",
+    "model": "gpt-4o-mini",
+    "accountId": "default",
+    "transport": "openai",
+    "commitStyle": "auto",
+    "explainStyle": "normal",
+    "conflictStyle": "clean",
+    "branchNamingStyle": "prefix/description",
+    "customInstructions": "",
+    "generateDescription": true,
+    "hoverExplain": true,
+    "hoverExplainKey": "shift",
+    "repoChat": true,
+    "repoChatModel": "",
+    "repoChatCommittedOnly": false,
+    "repoChatActions": true,
+    "repoChatReadOnly": true,
+    "repoChatApproval": "ask"
+  },
+  "aiProviders": [
+    {
+      "id": "openai",
+      "label": "OpenAI",
+      "endpoint": "https://api.openai.com/v1",
+      "defaultModel": "gpt-4o-mini",
+      "needsKey": true,
+      "transport": "openai",
+      "keyUrl": "https://platform.openai.com/api-keys",
+      "models": [
+        "gpt-4o-mini",
+        "gpt-4o",
+        "gpt-4.1-mini",
+        "gpt-4.1"
+      ]
+    },
+    {
+      "id": "anthropic",
+      "label": "Anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "defaultModel": "claude-haiku-4-5-20251001",
+      "needsKey": true,
+      "transport": "anthropic",
+      "keyUrl": "https://console.anthropic.com/settings/keys",
+      "models": [
+        "claude-haiku-4-5-20251001",
+        "claude-sonnet-5",
+        "claude-opus-5"
+      ]
+    },
+    {
+      "id": "google",
+      "label": "Google Gemini",
+      "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "defaultModel": "gemini-2.5-flash",
+      "needsKey": true,
+      "transport": "openai",
+      "keyUrl": "https://aistudio.google.com/apikey",
+      "models": [
+        "gemini-2.5-flash",
+        "gemini-2.5-pro",
+        "gemini-2.0-flash"
+      ]
+    },
+    {
+      "id": "openrouter",
+      "label": "OpenRouter",
+      "endpoint": "https://openrouter.ai/api/v1",
+      "defaultModel": "openai/gpt-4o-mini",
+      "needsKey": true,
+      "transport": "openai",
+      "keyUrl": "https://openrouter.ai/keys",
+      "models": [
+        "openai/gpt-4o-mini",
+        "openai/gpt-4o",
+        "anthropic/claude-3.5-haiku",
+        "anthropic/claude-3.5-sonnet"
+      ]
+    },
+    {
+      "id": "groq",
+      "label": "Groq",
+      "endpoint": "https://api.groq.com/openai/v1",
+      "defaultModel": "llama-3.3-70b-versatile",
+      "needsKey": true,
+      "transport": "openai",
+      "keyUrl": "https://console.groq.com/keys",
+      "models": [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "mixtral-8x7b-32768"
+      ]
+    },
+    {
+      "id": "mistral",
+      "label": "Mistral",
+      "endpoint": "https://api.mistral.ai/v1",
+      "defaultModel": "mistral-small-latest",
+      "needsKey": true,
+      "transport": "openai",
+      "keyUrl": "https://console.mistral.ai/api-keys",
+      "models": [
+        "mistral-small-latest",
+        "mistral-medium-latest",
+        "mistral-large-latest",
+        "codestral-latest"
+      ]
+    },
+    {
+      "id": "ollama",
+      "label": "Ollama (local)",
+      "endpoint": "http://localhost:11434/v1",
+      "defaultModel": "llama3.2",
+      "needsKey": false,
+      "transport": "openai",
+      "models": [
+        "llama3.2",
+        "llama3.1",
+        "qwen2.5-coder",
+        "codellama",
+        "mistral"
+      ]
+    },
+    {
+      "id": "cli",
+      "label": "Local CLI (subscription)",
+      "endpoint": "",
+      "defaultModel": "",
+      "needsKey": false,
+      "transport": "cli",
+      "models": []
+    },
+    {
+      "id": "custom",
+      "label": "Custom (OpenAI-compatible)",
+      "endpoint": "",
+      "defaultModel": "",
+      "needsKey": false,
+      "transport": "openai",
+      "models": []
+    }
+  ],
+  "aiFeatures": [
+    "commit",
+    "chat",
+    "explain",
+    "review",
+    "conflict",
+    "wiki",
+    "theme"
+  ],
+  "tokenFields": [
+    "githubToken",
+    "azureToken",
+    "gitlabToken",
+    "bitbucketToken"
+  ]
+}

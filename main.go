@@ -12,10 +12,13 @@ import (
 
 	"github.com/GabrySpada/gitcito/internal/app"
 	"github.com/GabrySpada/gitcito/internal/gitx"
+	"github.com/GabrySpada/gitcito/internal/keychain"
 	"github.com/GabrySpada/gitcito/internal/logbook"
 	"github.com/GabrySpada/gitcito/internal/menu"
 	"github.com/GabrySpada/gitcito/internal/paths"
+	"github.com/GabrySpada/gitcito/internal/settings"
 	"github.com/wailsapp/wails/v3/pkg/application"
+	"github.com/wailsapp/wails/v3/pkg/events"
 )
 
 //go:embed all:frontend-dist
@@ -43,6 +46,10 @@ func main() {
 		log.Fatalf("data directory: %v", err)
 	}
 	book := logbook.New(dataDir)
+	// One keychain for the whole app: settings, the vault and token lookups share
+	// the same consent and the same in-flight question.
+	keys := keychain.New(keychain.Options{Emitter: app.Emitter{}, HasWindow: app.HasWindow})
+	store := settings.New(settings.Options{Keychain: keys, Dialogs: settings.WailsDialogs{}})
 
 	var single *application.SingleInstanceOptions
 	if !app.SingleInstanceAvailable() {
@@ -73,6 +80,8 @@ func main() {
 			application.NewService(&app.DialogService{}),
 			application.NewService(&menu.Service{}),
 			application.NewService(logbook.NewService(book)),
+			application.NewService(keychain.NewService(keys)),
+			application.NewService(settings.NewService(store)),
 		},
 		Assets:         application.AssetOptions{Handler: application.AssetFileServerFS(assets)},
 		SingleInstance: single,
@@ -85,7 +94,9 @@ func main() {
 			slog.Error("log flush", "err", err)
 		}
 	})
-	app.NewMainWindow(a)
+	win := app.NewMainWindow(a)
+	// The window going away mid-question must not leave keychain callers hanging.
+	win.OnWindowEvent(events.Common.WindowClosing, func(*application.WindowEvent) { keys.Cancel() })
 	core.HandleColdLaunch(os.Args)
 
 	if err := a.Run(); err != nil {

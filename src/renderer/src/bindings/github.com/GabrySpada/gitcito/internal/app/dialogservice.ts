@@ -17,6 +17,7 @@ import * as $models from "./models.js";
 /**
  * ChoosePath picks a destination path without writing anything: git writes the
  * file itself (bundle, archive), so the renderer only needs somewhere to point it.
+ * channel: dialog:choosePath
  */
 export function ChoosePath(title: string, defaultName: string, filters: $models.DialogFilter[] | null): $CancellablePromise<string | null> {
     return $Call.ByID(3796756655, title, defaultName, filters);
@@ -25,6 +26,7 @@ export function ChoosePath(title: string, defaultName: string, filters: $models.
 /**
  * OpenFilePath picks an existing file, by path only — for binary formats the
  * renderer never reads itself (a bundle is handed straight to git).
+ * channel: dialog:openFilePath
  */
 export function OpenFilePath(title: string, filters: $models.DialogFilter[] | null): $CancellablePromise<string | null> {
     return $Call.ByID(4018525696, title, filters);
@@ -32,6 +34,7 @@ export function OpenFilePath(title: string, filters: $models.DialogFilter[] | nu
 
 /**
  * OpenPatch opens a patch/diff file. Returns { path, content } or nil if cancelled.
+ * channel: dialog:openPatch
  */
 export function OpenPatch(): $CancellablePromise<$models.PatchFile | null> {
     return $Call.ByID(133435477);
@@ -42,6 +45,7 @@ export function OpenPatch(): $CancellablePromise<$models.PatchFile | null> {
  * The renderer records in-page and hands the bytes over; nothing is written
  * anywhere until the user picks a destination. []byte arrives base64-encoded
  * over the bridge and is decoded by encoding/json.
+ * channel: dialog:saveBinary
  */
 export function SaveBinary(defaultName: string, data: string | null, filters: $models.DialogFilter[] | null): $CancellablePromise<string | null> {
     return $Call.ByID(2045044021, defaultName, data, filters);
@@ -50,6 +54,7 @@ export function SaveBinary(defaultName: string, data: string | null, filters: $m
 /**
  * SavePatch saves a generated patch to a user-chosen file. Returns the path, or
  * nil if cancelled.
+ * channel: dialog:savePatch
  */
 export function SavePatch(defaultName: string, content: string): $CancellablePromise<string | null> {
     return $Call.ByID(521867118, defaultName, content);
@@ -57,6 +62,7 @@ export function SavePatch(defaultName: string, content: string): $CancellablePro
 
 /**
  * SelectDirectory picks a folder (dialog:selectDirectory).
+ * channel: dialog:selectDirectory
  */
 export function SelectDirectory(title: string): $CancellablePromise<string | null> {
     return $Call.ByID(945402856, title);

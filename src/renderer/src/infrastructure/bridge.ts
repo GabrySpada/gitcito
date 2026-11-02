@@ -16,9 +16,12 @@ import { Clipboard, Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
+import * as KeychainService from '../bindings/github.com/GabrySpada/gitcito/internal/keychain/service'
 import * as LogService from '../bindings/github.com/GabrySpada/gitcito/internal/logbook/service'
 import * as MenuService from '../bindings/github.com/GabrySpada/gitcito/internal/menu/service'
+import * as SettingsService from '../bindings/github.com/GabrySpada/gitcito/internal/settings/service'
 import type { BootstrapInfo, PreloadApi } from '../../../shared/bridgeApi'
+import type { KeychainConsent } from '../../../shared/types'
 
 /**
  * A Wails bound call rejects with a RuntimeError (the Go method returned an error), a TypeError (argument
@@ -146,6 +149,10 @@ export function installLinkGuard(openExternal: (url: string) => Promise<void>): 
   })
 }
 
+function toConsent(c: string): KeychainConsent {
+  return c === 'granted' || c === 'declined' ? c : 'unset'
+}
+
 const NATIVE_DROP_TIMEOUT_MS = 1500
 
 function nextNativeDrop(): Promise<string[]> {
@@ -193,9 +200,15 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
 
     keychain: {
       onAsk: (cb) => listen('keychain:ask', cb),
-      answer: notPorted('keychain:answer'),
-      status: notPorted('keychain:status'),
-      set: notPorted('keychain:set')
+      answer: (granted) => invoke(() => KeychainService.Answer(granted)),
+      // Go's Consent is generated as a TS enum; the renderer's contract is the string union. Narrow by value.
+      status: () =>
+        invoke(() => KeychainService.Status()).then((st) => ({
+          consent: toConsent(st.consent),
+          explained: st.explained,
+          available: st.available
+        })),
+      set: (granted) => invoke(() => KeychainService.Set(granted))
     },
 
     selectDirectory: (title) => invoke(() => DialogService.SelectDirectory(title ?? '')),
@@ -244,11 +257,11 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     settings: {
-      get: notPorted('settings:get'),
-      unlock: notPorted('settings:unlock'),
-      set: notPorted('settings:set'),
-      importFile: notPorted('settings:importFile'),
-      exportFile: notPorted('settings:exportFile')
+      get: () => invoke(() => SettingsService.Get()),
+      unlock: () => invoke(() => SettingsService.Unlock()),
+      set: (settings) => invoke(() => SettingsService.Set(settings)),
+      importFile: () => invoke(() => SettingsService.ImportFile()),
+      exportFile: (settings) => invoke(() => SettingsService.ExportFile(settings))
     },
 
     ai: {

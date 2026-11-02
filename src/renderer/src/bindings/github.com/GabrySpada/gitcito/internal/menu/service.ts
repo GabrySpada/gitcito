@@ -17,6 +17,7 @@ import * as $models from "./models.js";
 /**
  * Set answers menu:set. A malformed spec must never leave the app menu-less:
  * a panic while building keeps the previous menu and logs the reason.
+ * channel: menu:set
  */
 export function Set(spec: $models.Item[] | null): $CancellablePromise<void> {
     return $Call.ByID(2078546789, spec);

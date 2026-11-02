@@ -17,6 +17,7 @@ import * as $models from "./models.js";
 
 /**
  * Bootstrap returns the facts the renderer reads synchronously.
+ * channel: bootstrap (Wails only)
  */
 export function Bootstrap(): $CancellablePromise<$models.Bootstrap> {
     return $Call.ByID(659502360);
@@ -24,6 +25,7 @@ export function Bootstrap(): $CancellablePromise<$models.Bootstrap> {
 
 /**
  * FinishEdit answers cli:finishEdit.
+ * channel: cli:finishEdit
  */
 export function FinishEdit(sentinel: string, content: string | null): $CancellablePromise<$models.FinishResult> {
     return $Call.ByID(11451337, sentinel, content);
@@ -34,6 +36,7 @@ export function FinishEdit(sentinel: string, content: string | null): $Cancellab
  * queued for it before then (a CLI-requested path, an editor hand-off) is
  * delivered now: the settings load resolves asynchronously and would otherwise
  * clobber a tab added too early. Replaces Electron's did-finish-load gating.
+ * channel: app:ready (Wails only)
  */
 export function Ready(): $CancellablePromise<void> {
     return $Call.ByID(3554741193);
@@ -45,6 +48,7 @@ export function Ready(): $CancellablePromise<void> {
  * no token needed for public repos. Same upstream feed as the updater, so the
  * same kill switch applies: it still announces this install to a repo the fork
  * does not control.
+ * channel: app:releases
  */
 export function Releases(): $CancellablePromise<$models.AppRelease[] | null> {
     return $Call.ByID(3785900624);
@@ -52,6 +56,7 @@ export function Releases(): $CancellablePromise<$models.AppRelease[] | null> {
 
 /**
  * Version answers app:version.
+ * channel: app:version
  */
 export function Version(): $CancellablePromise<string> {
     return $Call.ByID(1250562158);
