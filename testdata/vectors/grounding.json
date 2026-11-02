@@ -1,0 +1,5184 @@
+{
+  "cases": [
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {}
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "src/app.ts",
+            "startLine": 10,
+            "endLine": 13,
+            "text": "@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }"
+          },
+          {
+            "id": "E2",
+            "path": "README.md",
+            "startLine": 1,
+            "endLine": 3,
+            "text": "@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {}
+      ],
+      "out": "[E1] src/app.ts:10-13\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\n\n[E2] README.md:1-3\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "README.md",
+            "startLine": 1,
+            "endLine": 3,
+            "text": "@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n"
+          }
+        ],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": "[E1] README.md:1-3\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n\n\n(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "src/app.ts",
+            "startLine": 10,
+            "endLine": 13,
+            "text": "@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }"
+          }
+        ],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": "[E1] src/app.ts:10-13\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\n\n(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "src/app.ts",
+            "startLine": 10,
+            "endLine": 13,
+            "text": "@@ -10,3 +10,4 @@ fu\n…(hunk truncated)"
+          },
+          {
+            "id": "E2",
+            "path": "README.md",
+            "startLine": 1,
+            "endLine": 3,
+            "text": "@@ -1,2 +1,2 @@\n-# O\n…(hunk truncated)"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": "[E1] src/app.ts:10-13\n@@ -10,3 +10,4 @@ fu\n…(hunk truncated)\n\n[E2] README.md:1-3\n@@ -1,2 +1,2 @@\n-# O\n…(hunk truncated)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 2
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": "(2 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {}
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "old.ts",
+            "startLine": 1,
+            "endLine": 4,
+            "text": "@@ -1,3 +0,0 @@\n-one\n-two\n-three\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {}
+      ],
+      "out": "[E1] old.ts:1-4\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "old.ts",
+            "startLine": 1,
+            "endLine": 4,
+            "text": "@@ -1,3 +0,0 @@\n-one\n-two\n-three\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": "[E1] old.ts:1-4\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "old.ts",
+            "startLine": 1,
+            "endLine": 4,
+            "text": "@@ -1,3 +0,0 @@\n-one\n-two\n-three\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": "[E1] old.ts:1-4\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "old.ts",
+            "startLine": 1,
+            "endLine": 4,
+            "text": "@@ -1,3 +0,0 @@\n-one\n…(hunk truncated)"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": "[E1] old.ts:1-4\n@@ -1,3 +0,0 @@\n-one\n…(hunk truncated)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/old.ts b/old.ts\ndeleted file mode 100644\nindex 5555555..0000000\n--- a/old.ts\n+++ /dev/null\n@@ -1,3 +0,0 @@\n-one\n-two\n-three\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": "(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {}
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "new.ts",
+            "startLine": 1,
+            "endLine": 3,
+            "text": "@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {}
+      ],
+      "out": "[E1] new.ts:1-3\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": "(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "new.ts",
+            "startLine": 1,
+            "endLine": 3,
+            "text": "@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": "[E1] new.ts:1-3\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "new.ts",
+            "startLine": 1,
+            "endLine": 3,
+            "text": "@@ -0,0 +1,2 @@\n+hél\n…(hunk truncated)"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": "[E1] new.ts:1-3\n@@ -0,0 +1,2 @@\n+hél\n…(hunk truncated)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/new.ts b/new.ts\nnew file mode 100644\nindex 0000000..6666666\n--- /dev/null\n+++ b/new.ts\n@@ -0,0 +1,2 @@\n+héllo 🌍\n+world\n\\ No newline at end of file\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": "(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {}
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "x.ts",
+            "startLine": 5,
+            "endLine": 5,
+            "text": "@@ -5 +5 @@\n-a\n+b"
+          },
+          {
+            "id": "E2",
+            "path": "x.ts",
+            "startLine": 21,
+            "endLine": 23,
+            "text": "@@ -20,0 +21,2 @@ tail\n+c\n+d\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {}
+      ],
+      "out": "[E1] x.ts:5\n@@ -5 +5 @@\n-a\n+b\n\n[E2] x.ts:21-23\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "x.ts",
+            "startLine": 5,
+            "endLine": 5,
+            "text": "@@ -5 +5 @@\n-a\n+b"
+          },
+          {
+            "id": "E2",
+            "path": "x.ts",
+            "startLine": 21,
+            "endLine": 23,
+            "text": "@@ -20,0 +21,2 @@ tail\n+c\n+d\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": "[E1] x.ts:5\n@@ -5 +5 @@\n-a\n+b\n\n[E2] x.ts:21-23\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "x.ts",
+            "startLine": 5,
+            "endLine": 5,
+            "text": "@@ -5 +5 @@\n-a\n+b"
+          }
+        ],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": "[E1] x.ts:5\n@@ -5 +5 @@\n-a\n+b\n\n(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "x.ts",
+            "startLine": 5,
+            "endLine": 5,
+            "text": "@@ -5 +5 @@\n-a\n+b"
+          },
+          {
+            "id": "E2",
+            "path": "x.ts",
+            "startLine": 21,
+            "endLine": 23,
+            "text": "@@ -20,0 +21,2 @@ ta\n…(hunk truncated)"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": "[E1] x.ts:5\n@@ -5 +5 @@\n-a\n+b\n\n[E2] x.ts:21-23\n@@ -20,0 +21,2 @@ ta\n…(hunk truncated)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 2
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "--- a/x.ts\n+++ b/x.ts\n@@ -5 +5 @@\n-a\n+b\n@@ -20,0 +21,2 @@ tail\n+c\n+d\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": "(2 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {}
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "d.ts",
+            "startLine": 4,
+            "endLine": 5,
+            "text": "@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {}
+      ],
+      "out": "[E1] d.ts:4-5\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "d.ts",
+            "startLine": 4,
+            "endLine": 5,
+            "text": "@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": "[E1] d.ts:4-5\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "d.ts",
+            "startLine": 4,
+            "endLine": 5,
+            "text": "@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": "[E1] d.ts:4-5\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "d.ts",
+            "startLine": 4,
+            "endLine": 5,
+            "text": "@@ -4,3 +4,1 @@\n kee\n…(hunk truncated)"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": "[E1] d.ts:4-5\n@@ -4,3 +4,1 @@\n kee\n…(hunk truncated)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/d.ts b/d.ts\n--- a/d.ts\n+++ b/d.ts\n@@ -4,3 +4,1 @@\n keep\n-gone one\n-gone two\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": "(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {}
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "w.ts",
+            "startLine": 1,
+            "endLine": 2,
+            "text": "@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {}
+      ],
+      "out": "[E1] w.ts:1-2\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "w.ts",
+            "startLine": 1,
+            "endLine": 2,
+            "text": "@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": "[E1] w.ts:1-2\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "w.ts",
+            "startLine": 1,
+            "endLine": 2,
+            "text": "@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": "[E1] w.ts:1-2\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [
+          {
+            "id": "E1",
+            "path": "w.ts",
+            "startLine": 1,
+            "endLine": 2,
+            "text": "@@ -1,1 +1,1 @@\r\n-a\r\n…(hunk truncated)"
+          }
+        ],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": "[E1] w.ts:1-2\n@@ -1,1 +1,1 @@\r\n-a\r\n…(hunk truncated)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 1
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/w.ts b/w.ts\r\n--- a/w.ts\r\n+++ b/w.ts\r\n@@ -1,1 +1,1 @@\r\n-a\r\n+b\r\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": "(1 further hunk(s) omitted — do not reference them.)"
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "",
+        {}
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "",
+        {}
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {}
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {}
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxBytes": 60
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxHunks": 1
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxHunkBytes": 20
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "buildDiffEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": {
+        "items": [],
+        "omitted": 0
+      }
+    },
+    {
+      "fn": "serializeEvidence",
+      "args": [
+        "diff --git a/x.png b/x.png\nBinary files differ\n",
+        {
+          "maxBytes": 0
+        }
+      ],
+      "out": ""
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "Adds a helper.",
+          "findings": [
+            {
+              "kind": "risk",
+              "severity": "high",
+              "evidenceId": "E1",
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "Adds a helper.",
+          "findings": [
+            {
+              "kind": "risk",
+              "severity": "high",
+              "evidenceId": "E1",
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        []
+      ],
+      "out": [
+        "findings[0].evidenceId \"E1\" is not in the evidence list. Cite one of: (none)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x",
+          "findings": [
+            {
+              "kind": "risk",
+              "severity": "high",
+              "evidenceId": "E9",
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "findings[0].evidenceId \"E9\" is not in the evidence list. Cite one of: E1, E2."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x",
+          "findings": [
+            {
+              "kind": "risk",
+              "severity": "high",
+              "evidenceId": "E9",
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        []
+      ],
+      "out": [
+        "findings[0].evidenceId \"E9\" is not in the evidence list. Cite one of: (none)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x",
+          "findings": [
+            {
+              "kind": "nit",
+              "severity": "critical",
+              "evidenceId": "E1",
+              "claim": "  ",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "findings[0].kind must be \"risk\" or \"suggestion\".",
+        "findings[0].severity must be \"high\", \"medium\" or \"low\".",
+        "findings[0].claim must be a non-empty sentence."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x",
+          "findings": [
+            {
+              "kind": "nit",
+              "severity": "critical",
+              "evidenceId": "E1",
+              "claim": "  ",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        []
+      ],
+      "out": [
+        "findings[0].evidenceId \"E1\" is not in the evidence list. Cite one of: (none).",
+        "findings[0].kind must be \"risk\" or \"suggestion\".",
+        "findings[0].severity must be \"high\", \"medium\" or \"low\".",
+        "findings[0].claim must be a non-empty sentence."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "findings": []
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "\"summary\" must be a non-empty string."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "findings": []
+        },
+        []
+      ],
+      "out": [
+        "\"summary\" must be a non-empty string."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x"
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "\"findings\" must be an array (use [] when there is nothing to report)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x"
+        },
+        []
+      ],
+      "out": [
+        "\"findings\" must be an array (use [] when there is nothing to report)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "  ",
+          "findings": "nope"
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "\"summary\" must be a non-empty string.",
+        "\"findings\" must be an array (use [] when there is nothing to report)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "  ",
+          "findings": "nope"
+        },
+        []
+      ],
+      "out": [
+        "\"summary\" must be a non-empty string.",
+        "\"findings\" must be an array (use [] when there is nothing to report)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "Looks fine.",
+          "findings": []
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "Looks fine.",
+          "findings": []
+        },
+        []
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x",
+          "findings": [
+            null,
+            3,
+            "str",
+            [],
+            {
+              "kind": "risk",
+              "severity": "high",
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            },
+            {
+              "kind": "risk",
+              "severity": "high",
+              "evidenceId": 7,
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "findings[0] must be an object.",
+        "findings[1] must be an object.",
+        "findings[2] must be an object.",
+        "findings[3].evidenceId null is not in the evidence list. Cite one of: E1, E2.",
+        "findings[3].kind must be \"risk\" or \"suggestion\".",
+        "findings[3].severity must be \"high\", \"medium\" or \"low\".",
+        "findings[3].claim must be a non-empty sentence.",
+        "findings[4].evidenceId null is not in the evidence list. Cite one of: E1, E2.",
+        "findings[5].evidenceId 7 is not in the evidence list. Cite one of: E1, E2."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        {
+          "summary": "x",
+          "findings": [
+            null,
+            3,
+            "str",
+            [],
+            {
+              "kind": "risk",
+              "severity": "high",
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            },
+            {
+              "kind": "risk",
+              "severity": "high",
+              "evidenceId": 7,
+              "claim": "Null is dereferenced.",
+              "suggestion": "Guard it."
+            }
+          ]
+        },
+        []
+      ],
+      "out": [
+        "findings[0] must be an object.",
+        "findings[1] must be an object.",
+        "findings[2] must be an object.",
+        "findings[3].evidenceId null is not in the evidence list. Cite one of: (none).",
+        "findings[3].kind must be \"risk\" or \"suggestion\".",
+        "findings[3].severity must be \"high\", \"medium\" or \"low\".",
+        "findings[3].claim must be a non-empty sentence.",
+        "findings[4].evidenceId null is not in the evidence list. Cite one of: (none).",
+        "findings[5].evidenceId 7 is not in the evidence list. Cite one of: (none)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        null,
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        null,
+        []
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        "text",
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        "text",
+        []
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        [
+          1,
+          2
+        ],
+        [
+          "E1",
+          "E2"
+        ]
+      ],
+      "out": [
+        "\"summary\" must be a non-empty string.",
+        "\"findings\" must be an array (use [] when there is nothing to report)."
+      ]
+    },
+    {
+      "fn": "validateReview",
+      "args": [
+        [
+          1,
+          2
+        ],
+        []
+      ],
+      "out": [
+        "\"summary\" must be a non-empty string.",
+        "\"findings\" must be an array (use [] when there is nothing to report)."
+      ]
+    },
+    {
+      "fn": "groundFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "severity": "high",
+            "evidenceId": "E1",
+            "claim": "c",
+            "suggestion": "s"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n"
+      ],
+      "out": [
+        {
+          "kind": "risk",
+          "severity": "high",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "c",
+          "suggestion": "s"
+        }
+      ]
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "severity": "high",
+            "evidenceId": "E1",
+            "claim": "c",
+            "suggestion": "s"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "risk"
+      ],
+      "out": "- `src/app.ts:10` c — s"
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "severity": "high",
+            "evidenceId": "E1",
+            "claim": "c",
+            "suggestion": "s"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "suggestion"
+      ],
+      "out": ""
+    },
+    {
+      "fn": "groundFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "evidenceId": "E7",
+            "claim": "c"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n"
+      ],
+      "out": []
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "evidenceId": "E7",
+            "claim": "c"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "risk"
+      ],
+      "out": ""
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "evidenceId": "E7",
+            "claim": "c"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "suggestion"
+      ],
+      "out": ""
+    },
+    {
+      "fn": "groundFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": "c"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n"
+      ],
+      "out": [
+        {
+          "kind": "risk",
+          "severity": "medium",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "c",
+          "suggestion": ""
+        }
+      ]
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": "c"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "risk"
+      ],
+      "out": "- `src/app.ts:10` c"
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": "c"
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "suggestion"
+      ],
+      "out": ""
+    },
+    {
+      "fn": "groundFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "severity": "high",
+            "evidenceId": "E1",
+            "claim": "Leaks a handle.",
+            "suggestion": "Close it."
+          },
+          {
+            "kind": "suggestion",
+            "severity": "low",
+            "evidenceId": "E2",
+            "claim": "Naming.",
+            "suggestion": "Rename b."
+          },
+          {
+            "kind": "other",
+            "severity": "low",
+            "evidenceId": "E2",
+            "claim": "  padded  ",
+            "suggestion": "  s  "
+          },
+          {
+            "kind": "suggestion",
+            "evidenceId": "E1",
+            "claim": "Only claim."
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": 42,
+            "suggestion": 5
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": null
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": true
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1"
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": [
+              "a",
+              "b"
+            ]
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n"
+      ],
+      "out": [
+        {
+          "kind": "risk",
+          "severity": "high",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "Leaks a handle.",
+          "suggestion": "Close it."
+        },
+        {
+          "kind": "suggestion",
+          "severity": "low",
+          "path": "README.md",
+          "line": 1,
+          "claim": "Naming.",
+          "suggestion": "Rename b."
+        },
+        {
+          "kind": "risk",
+          "severity": "low",
+          "path": "README.md",
+          "line": 1,
+          "claim": "padded",
+          "suggestion": "s"
+        },
+        {
+          "kind": "suggestion",
+          "severity": "medium",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "Only claim.",
+          "suggestion": ""
+        },
+        {
+          "kind": "risk",
+          "severity": "medium",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "42",
+          "suggestion": ""
+        },
+        {
+          "kind": "risk",
+          "severity": "medium",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "",
+          "suggestion": ""
+        },
+        {
+          "kind": "risk",
+          "severity": "medium",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "true",
+          "suggestion": ""
+        },
+        {
+          "kind": "risk",
+          "severity": "medium",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "",
+          "suggestion": ""
+        },
+        {
+          "kind": "risk",
+          "severity": "medium",
+          "path": "src/app.ts",
+          "line": 10,
+          "claim": "a,b",
+          "suggestion": ""
+        }
+      ]
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "severity": "high",
+            "evidenceId": "E1",
+            "claim": "Leaks a handle.",
+            "suggestion": "Close it."
+          },
+          {
+            "kind": "suggestion",
+            "severity": "low",
+            "evidenceId": "E2",
+            "claim": "Naming.",
+            "suggestion": "Rename b."
+          },
+          {
+            "kind": "other",
+            "severity": "low",
+            "evidenceId": "E2",
+            "claim": "  padded  ",
+            "suggestion": "  s  "
+          },
+          {
+            "kind": "suggestion",
+            "evidenceId": "E1",
+            "claim": "Only claim."
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": 42,
+            "suggestion": 5
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": null
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": true
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1"
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": [
+              "a",
+              "b"
+            ]
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "risk"
+      ],
+      "out": "- `src/app.ts:10` Leaks a handle. — Close it.\n- `README.md:1` padded — s\n- `src/app.ts:10` 42\n- `src/app.ts:10` \n- `src/app.ts:10` true\n- `src/app.ts:10` \n- `src/app.ts:10` a,b"
+    },
+    {
+      "fn": "renderFindings",
+      "args": [
+        [
+          {
+            "kind": "risk",
+            "severity": "high",
+            "evidenceId": "E1",
+            "claim": "Leaks a handle.",
+            "suggestion": "Close it."
+          },
+          {
+            "kind": "suggestion",
+            "severity": "low",
+            "evidenceId": "E2",
+            "claim": "Naming.",
+            "suggestion": "Rename b."
+          },
+          {
+            "kind": "other",
+            "severity": "low",
+            "evidenceId": "E2",
+            "claim": "  padded  ",
+            "suggestion": "  s  "
+          },
+          {
+            "kind": "suggestion",
+            "evidenceId": "E1",
+            "claim": "Only claim."
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": 42,
+            "suggestion": 5
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": null
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": true
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1"
+          },
+          {
+            "kind": "risk",
+            "evidenceId": "E1",
+            "claim": [
+              "a",
+              "b"
+            ]
+          }
+        ],
+        "diff --git a/src/app.ts b/src/app.ts\nindex 1111111..2222222 100644\n--- a/src/app.ts\n+++ b/src/app.ts\n@@ -10,3 +10,4 @@ function main() {\n   const a = 1\n-  return a\n+  const b = 2\n+  return a + b\n }\ndiff --git a/README.md b/README.md\nindex 3333333..4444444 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,2 @@\n-# Old\n+# New\n body\n",
+        "suggestion"
+      ],
+      "out": "- `README.md:1` Rename b.\n- `src/app.ts:10` Only claim."
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        100,
+        {
+          "radius": 5
+        }
+      ],
+      "out": {
+        "startLine": 95,
+        "endLine": 105,
+        "numbers": [
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105
+        ],
+        "text": "95 | line 95 content\n96 | line 96 content\n97 | line 97 content\n98 | line 98 content\n99 | line 99 content\n100 | line 100 content\n101 | line 101 content\n102 | line 102 content\n103 | line 103 content\n104 | line 104 content\n105 | line 105 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        3,
+        {
+          "radius": 1
+        }
+      ],
+      "out": {
+        "startLine": 2,
+        "endLine": 4,
+        "numbers": [
+          2,
+          3,
+          4
+        ],
+        "text": "2 | line 2 content\n3 | line 3 content\n4 | line 4 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        1,
+        {
+          "radius": 10
+        }
+      ],
+      "out": {
+        "startLine": 1,
+        "endLine": 11,
+        "numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "text": "1 | line 1 content\n2 | line 2 content\n3 | line 3 content\n4 | line 4 content\n5 | line 5 content\n6 | line 6 content\n7 | line 7 content\n8 | line 8 content\n9 | line 9 content\n10 | line 10 content\n11 | line 11 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        200,
+        {
+          "radius": 10
+        }
+      ],
+      "out": {
+        "startLine": 190,
+        "endLine": 200,
+        "numbers": [
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200
+        ],
+        "text": "190 | line 190 content\n191 | line 191 content\n192 | line 192 content\n193 | line 193 content\n194 | line 194 content\n195 | line 195 content\n196 | line 196 content\n197 | line 197 content\n198 | line 198 content\n199 | line 199 content\n200 | line 200 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        999,
+        {
+          "radius": 2
+        }
+      ],
+      "out": {
+        "startLine": 198,
+        "endLine": 200,
+        "numbers": [
+          198,
+          199,
+          200
+        ],
+        "text": "198 | line 198 content\n199 | line 199 content\n200 | line 200 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        0,
+        {
+          "radius": 2
+        }
+      ],
+      "out": {
+        "startLine": 1,
+        "endLine": 3,
+        "numbers": [
+          1,
+          2,
+          3
+        ],
+        "text": "1 | line 1 content\n2 | line 2 content\n3 | line 3 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        -5,
+        {}
+      ],
+      "out": {
+        "startLine": 1,
+        "endLine": 31,
+        "numbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        "text": "1 | line 1 content\n2 | line 2 content\n3 | line 3 content\n4 | line 4 content\n5 | line 5 content\n6 | line 6 content\n7 | line 7 content\n8 | line 8 content\n9 | line 9 content\n10 | line 10 content\n11 | line 11 content\n12 | line 12 content\n13 | line 13 content\n14 | line 14 content\n15 | line 15 content\n16 | line 16 content\n17 | line 17 content\n18 | line 18 content\n19 | line 19 content\n20 | line 20 content\n21 | line 21 content\n22 | line 22 content\n23 | line 23 content\n24 | line 24 content\n25 | line 25 content\n26 | line 26 content\n27 | line 27 content\n28 | line 28 content\n29 | line 29 content\n30 | line 30 content\n31 | line 31 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        100,
+        {
+          "radius": 50,
+          "maxBytes": 120
+        }
+      ],
+      "out": {
+        "startLine": 98,
+        "endLine": 102,
+        "numbers": [
+          98,
+          99,
+          100,
+          101,
+          102
+        ],
+        "text": "98 | line 98 content\n99 | line 99 content\n100 | line 100 content\n101 | line 101 content\n102 | line 102 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "line 1 content\nline 2 content\nline 3 content\nline 4 content\nline 5 content\nline 6 content\nline 7 content\nline 8 content\nline 9 content\nline 10 content\nline 11 content\nline 12 content\nline 13 content\nline 14 content\nline 15 content\nline 16 content\nline 17 content\nline 18 content\nline 19 content\nline 20 content\nline 21 content\nline 22 content\nline 23 content\nline 24 content\nline 25 content\nline 26 content\nline 27 content\nline 28 content\nline 29 content\nline 30 content\nline 31 content\nline 32 content\nline 33 content\nline 34 content\nline 35 content\nline 36 content\nline 37 content\nline 38 content\nline 39 content\nline 40 content\nline 41 content\nline 42 content\nline 43 content\nline 44 content\nline 45 content\nline 46 content\nline 47 content\nline 48 content\nline 49 content\nline 50 content\nline 51 content\nline 52 content\nline 53 content\nline 54 content\nline 55 content\nline 56 content\nline 57 content\nline 58 content\nline 59 content\nline 60 content\nline 61 content\nline 62 content\nline 63 content\nline 64 content\nline 65 content\nline 66 content\nline 67 content\nline 68 content\nline 69 content\nline 70 content\nline 71 content\nline 72 content\nline 73 content\nline 74 content\nline 75 content\nline 76 content\nline 77 content\nline 78 content\nline 79 content\nline 80 content\nline 81 content\nline 82 content\nline 83 content\nline 84 content\nline 85 content\nline 86 content\nline 87 content\nline 88 content\nline 89 content\nline 90 content\nline 91 content\nline 92 content\nline 93 content\nline 94 content\nline 95 content\nline 96 content\nline 97 content\nline 98 content\nline 99 content\nline 100 content\nline 101 content\nline 102 content\nline 103 content\nline 104 content\nline 105 content\nline 106 content\nline 107 content\nline 108 content\nline 109 content\nline 110 content\nline 111 content\nline 112 content\nline 113 content\nline 114 content\nline 115 content\nline 116 content\nline 117 content\nline 118 content\nline 119 content\nline 120 content\nline 121 content\nline 122 content\nline 123 content\nline 124 content\nline 125 content\nline 126 content\nline 127 content\nline 128 content\nline 129 content\nline 130 content\nline 131 content\nline 132 content\nline 133 content\nline 134 content\nline 135 content\nline 136 content\nline 137 content\nline 138 content\nline 139 content\nline 140 content\nline 141 content\nline 142 content\nline 143 content\nline 144 content\nline 145 content\nline 146 content\nline 147 content\nline 148 content\nline 149 content\nline 150 content\nline 151 content\nline 152 content\nline 153 content\nline 154 content\nline 155 content\nline 156 content\nline 157 content\nline 158 content\nline 159 content\nline 160 content\nline 161 content\nline 162 content\nline 163 content\nline 164 content\nline 165 content\nline 166 content\nline 167 content\nline 168 content\nline 169 content\nline 170 content\nline 171 content\nline 172 content\nline 173 content\nline 174 content\nline 175 content\nline 176 content\nline 177 content\nline 178 content\nline 179 content\nline 180 content\nline 181 content\nline 182 content\nline 183 content\nline 184 content\nline 185 content\nline 186 content\nline 187 content\nline 188 content\nline 189 content\nline 190 content\nline 191 content\nline 192 content\nline 193 content\nline 194 content\nline 195 content\nline 196 content\nline 197 content\nline 198 content\nline 199 content\nline 200 content",
+        100,
+        {}
+      ],
+      "out": {
+        "startLine": 70,
+        "endLine": 130,
+        "numbers": [
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130
+        ],
+        "text": "70 | line 70 content\n71 | line 71 content\n72 | line 72 content\n73 | line 73 content\n74 | line 74 content\n75 | line 75 content\n76 | line 76 content\n77 | line 77 content\n78 | line 78 content\n79 | line 79 content\n80 | line 80 content\n81 | line 81 content\n82 | line 82 content\n83 | line 83 content\n84 | line 84 content\n85 | line 85 content\n86 | line 86 content\n87 | line 87 content\n88 | line 88 content\n89 | line 89 content\n90 | line 90 content\n91 | line 91 content\n92 | line 92 content\n93 | line 93 content\n94 | line 94 content\n95 | line 95 content\n96 | line 96 content\n97 | line 97 content\n98 | line 98 content\n99 | line 99 content\n100 | line 100 content\n101 | line 101 content\n102 | line 102 content\n103 | line 103 content\n104 | line 104 content\n105 | line 105 content\n106 | line 106 content\n107 | line 107 content\n108 | line 108 content\n109 | line 109 content\n110 | line 110 content\n111 | line 111 content\n112 | line 112 content\n113 | line 113 content\n114 | line 114 content\n115 | line 115 content\n116 | line 116 content\n117 | line 117 content\n118 | line 118 content\n119 | line 119 content\n120 | line 120 content\n121 | line 121 content\n122 | line 122 content\n123 | line 123 content\n124 | line 124 content\n125 | line 125 content\n126 | line 126 content\n127 | line 127 content\n128 | line 128 content\n129 | line 129 content\n130 | line 130 content"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "only line",
+        1,
+        {}
+      ],
+      "out": {
+        "startLine": 1,
+        "endLine": 1,
+        "numbers": [
+          1
+        ],
+        "text": "1 | only line"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "",
+        1,
+        {}
+      ],
+      "out": {
+        "startLine": 1,
+        "endLine": 1,
+        "numbers": [
+          1
+        ],
+        "text": "1 | "
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "a\nb\nc",
+        2,
+        {
+          "radius": 0
+        }
+      ],
+      "out": {
+        "startLine": 2,
+        "endLine": 2,
+        "numbers": [
+          2
+        ],
+        "text": "2 | b"
+      }
+    },
+    {
+      "fn": "buildLineWindow",
+      "args": [
+        "ünïcödé 🌍 line\nsecond",
+        1,
+        {
+          "maxBytes": 10
+        }
+      ],
+      "out": {
+        "startLine": 1,
+        "endLine": 1,
+        "numbers": [
+          1
+        ],
+        "text": "1 | ünïcödé 🌍 line"
+      }
+    },
+    {
+      "fn": "buildWindowFromLines",
+      "args": [
+        [
+          {
+            "no": 10,
+            "text": "function a() {"
+          },
+          {
+            "no": 11,
+            "text": "  return 1"
+          },
+          {
+            "no": 12,
+            "text": "}"
+          },
+          {
+            "no": 80,
+            "text": "function b() {"
+          },
+          {
+            "no": 81,
+            "text": "  return 2"
+          }
+        ],
+        11,
+        {
+          "radius": 1
+        }
+      ],
+      "out": {
+        "startLine": 10,
+        "endLine": 12,
+        "numbers": [
+          10,
+          11,
+          12
+        ],
+        "text": "10 | function a() {\n11 |   return 1\n12 | }"
+      }
+    },
+    {
+      "fn": "buildWindowFromLines",
+      "args": [
+        [
+          {
+            "no": 10,
+            "text": "function a() {"
+          },
+          {
+            "no": 11,
+            "text": "  return 1"
+          },
+          {
+            "no": 12,
+            "text": "}"
+          },
+          {
+            "no": 80,
+            "text": "function b() {"
+          },
+          {
+            "no": 81,
+            "text": "  return 2"
+          }
+        ],
+        30,
+        {
+          "radius": 0
+        }
+      ],
+      "out": {
+        "startLine": 12,
+        "endLine": 12,
+        "numbers": [
+          12
+        ],
+        "text": "12 | }"
+      }
+    },
+    {
+      "fn": "buildWindowFromLines",
+      "args": [
+        [
+          {
+            "no": 10,
+            "text": "function a() {"
+          },
+          {
+            "no": 11,
+            "text": "  return 1"
+          },
+          {
+            "no": 12,
+            "text": "}"
+          },
+          {
+            "no": 80,
+            "text": "function b() {"
+          },
+          {
+            "no": 81,
+            "text": "  return 2"
+          }
+        ],
+        70,
+        {
+          "radius": 0
+        }
+      ],
+      "out": {
+        "startLine": 80,
+        "endLine": 80,
+        "numbers": [
+          80
+        ],
+        "text": "80 | function b() {"
+      }
+    },
+    {
+      "fn": "buildWindowFromLines",
+      "args": [
+        [
+          {
+            "no": 10,
+            "text": "function a() {"
+          },
+          {
+            "no": 11,
+            "text": "  return 1"
+          },
+          {
+            "no": 12,
+            "text": "}"
+          },
+          {
+            "no": 80,
+            "text": "function b() {"
+          },
+          {
+            "no": 81,
+            "text": "  return 2"
+          }
+        ],
+        46,
+        {
+          "radius": 1
+        }
+      ],
+      "out": {
+        "startLine": 11,
+        "endLine": 80,
+        "numbers": [
+          11,
+          12,
+          80
+        ],
+        "text": "11 |   return 1\n12 | }\n80 | function b() {"
+      }
+    },
+    {
+      "fn": "buildWindowFromLines",
+      "args": [
+        [
+          {
+            "no": 10,
+            "text": "function a() {"
+          },
+          {
+            "no": 11,
+            "text": "  return 1"
+          },
+          {
+            "no": 12,
+            "text": "}"
+          },
+          {
+            "no": 80,
+            "text": "function b() {"
+          },
+          {
+            "no": 81,
+            "text": "  return 2"
+          }
+        ],
+        5,
+        {}
+      ],
+      "out": {
+        "startLine": 10,
+        "endLine": 81,
+        "numbers": [
+          10,
+          11,
+          12,
+          80,
+          81
+        ],
+        "text": "10 | function a() {\n11 |   return 1\n12 | }\n80 | function b() {\n81 |   return 2"
+      }
+    },
+    {
+      "fn": "buildWindowFromLines",
+      "args": [
+        [
+          {
+            "no": 10,
+            "text": "function a() {"
+          },
+          {
+            "no": 11,
+            "text": "  return 1"
+          },
+          {
+            "no": 12,
+            "text": "}"
+          },
+          {
+            "no": 80,
+            "text": "function b() {"
+          },
+          {
+            "no": 81,
+            "text": "  return 2"
+          }
+        ],
+        81,
+        {
+          "radius": 3,
+          "maxBytes": 30
+        }
+      ],
+      "out": {
+        "startLine": 81,
+        "endLine": 81,
+        "numbers": [
+          81
+        ],
+        "text": "81 |   return 2"
+      }
+    },
+    {
+      "fn": "buildWindowFromLines",
+      "args": [
+        [],
+        5,
+        {}
+      ],
+      "out": {
+        "startLine": 5,
+        "endLine": 5,
+        "numbers": [],
+        "text": ""
+      }
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "summary": "A helper.",
+          "bullets": [
+            "Used twice."
+          ],
+          "lines": [
+            10,
+            20
+          ]
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "summary": "A helper.",
+          "lines": [
+            42
+          ]
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "\"lines\" contains 42, which is not a line you were shown. Cite only lines between 10 and 20 that appear in the window."
+      ]
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "summary": "   "
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "\"summary\" must be a single sentence."
+      ]
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "summary": "x",
+          "bullets": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "\"bullets\" must have at most 3 entries."
+      ]
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "summary": "Defined elsewhere."
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "summary": "x",
+          "bullets": "no",
+          "lines": "no"
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "\"bullets\" must be an array of short strings.",
+        "\"lines\" must be an array of line numbers from the window."
+      ]
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "summary": "x",
+          "lines": [
+            "10",
+            12.5,
+            null,
+            15
+          ]
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "\"lines\" contains \"10\", which is not a line you were shown. Cite only lines between 10 and 20 that appear in the window.",
+        "\"lines\" contains 12.5, which is not a line you were shown. Cite only lines between 10 and 20 that appear in the window.",
+        "\"lines\" contains null, which is not a line you were shown. Cite only lines between 10 and 20 that appear in the window."
+      ]
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        {
+          "lines": [],
+          "bullets": []
+        },
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "\"summary\" must be a single sentence."
+      ]
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        null,
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "validateHoverExplain",
+      "args": [
+        [
+          1
+        ],
+        {
+          "startLine": 10,
+          "endLine": 20,
+          "numbers": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "text": "10 | line 10\n11 | line 11\n12 | line 12\n13 | line 13\n14 | line 14\n15 | line 15\n16 | line 16\n17 | line 17\n18 | line 18\n19 | line 19\n20 | line 20"
+        }
+      ],
+      "out": [
+        "\"summary\" must be a single sentence."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "Stage a.ts",
+          "actions": [
+            {
+              "type": "stage",
+              "files": [
+                "a.ts"
+              ],
+              "description": "Stage a.ts"
+            }
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "x",
+          "actions": [
+            {
+              "type": "stage",
+              "files": [
+                "ghost.ts"
+              ],
+              "description": "Stage ghost"
+            }
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "actions[0].files contains \"ghost.ts\", which is not one of the files listed in the working-tree state. Use only paths from those lists."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "x",
+          "actions": [
+            {
+              "type": "push",
+              "description": "Push it"
+            }
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "actions[0].type \"push\" needs remote actions, which are off in Settings. Propose only local actions."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "x",
+          "actions": [
+            {
+              "type": "gitignore",
+              "patterns": [
+                "*.tsx"
+              ],
+              "description": "Ignore tsx"
+            }
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "x",
+          "actions": [
+            {
+              "type": "commit",
+              "description": "Commit"
+            }
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "actions[0].message must be a commit message."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "x",
+          "actions": [
+            {
+              "type": "branch",
+              "description": "Branch"
+            }
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "actions[0].name must be a branch name."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "",
+          "actions": [],
+          "note": "Nothing to do."
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": 1
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "\"summary\" must be a string.",
+        "\"actions\" must be an array (use [] when nothing can be done)."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "x",
+          "actions": [
+            null,
+            "x",
+            {
+              "type": "rebase",
+              "onto": "main",
+              "description": "r"
+            },
+            {
+              "type": "zap"
+            },
+            {}
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "actions[0] must be an object.",
+        "actions[1] must be an object.",
+        "actions[2].type \"rebase\" is not available on this surface. Use repository chat for merge, rebase, revert and cherry-pick.",
+        "actions[3].type \"zap\" is not an action this app can run. Use one of: gitignore, stage, unstage, commit, stash, discard, branch, checkout, tag.",
+        "actions[4].type null is not an action this app can run. Use one of: gitignore, stage, unstage, commit, stash, discard, branch, checkout, tag."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        {
+          "summary": "x",
+          "actions": [
+            {
+              "type": "tag",
+              "name": " ",
+              "description": " "
+            },
+            {
+              "type": "checkout",
+              "description": "c"
+            },
+            {
+              "type": "gitignore",
+              "patterns": [],
+              "description": "g"
+            },
+            {
+              "type": "stage",
+              "files": "a.ts",
+              "description": "s"
+            },
+            {
+              "type": "unstage",
+              "files": [
+                1,
+                "docs/b.md"
+              ],
+              "description": "u"
+            },
+            {
+              "type": "stash",
+              "description": "st"
+            },
+            {
+              "type": "discard",
+              "files": [
+                "a.ts"
+              ],
+              "description": "d"
+            }
+          ]
+        },
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "actions[0].description must be a short sentence.",
+        "actions[0].name must be a tag name.",
+        "actions[1].ref must be a branch, tag or commit to switch to.",
+        "actions[2].patterns must be a non-empty array of gitignore patterns.",
+        "actions[3].files must be an array of repo-relative paths.",
+        "actions[4].files contains 1, which is not one of the files listed in the working-tree state. Use only paths from those lists."
+      ]
+    },
+    {
+      "fn": "validateAskPlan",
+      "args": [
+        null,
+        [
+          "a.ts",
+          "docs/b.md"
+        ]
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "validateAskActions",
+      "args": [
+        [
+          {
+            "type": "rebase",
+            "onto": "main",
+            "description": "Rebase onto main"
+          }
+        ],
+        [
+          "a.ts"
+        ],
+        {}
+      ],
+      "out": [
+        "actions[0].type \"rebase\" is not available on this surface. Use repository chat for merge, rebase, revert and cherry-pick."
+      ]
+    },
+    {
+      "fn": "validateAskActions",
+      "args": [
+        [
+          {
+            "type": "rebase",
+            "onto": "main",
+            "description": "Rebase onto main"
+          }
+        ],
+        [
+          "a.ts"
+        ],
+        {
+          "history": true
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateAskActions",
+      "args": [
+        [
+          {
+            "type": "push",
+            "branch": "x",
+            "description": "Push"
+          }
+        ],
+        [
+          "a.ts"
+        ],
+        {
+          "history": true
+        }
+      ],
+      "out": [
+        "actions[0].type \"push\" needs remote actions, which are off in Settings. Propose only local actions."
+      ]
+    },
+    {
+      "fn": "validateAskActions",
+      "args": [
+        [
+          {
+            "type": "push",
+            "branch": "x",
+            "description": "Push"
+          }
+        ],
+        [
+          "a.ts"
+        ],
+        {
+          "remote": true
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateAskActions",
+      "args": [
+        [
+          {
+            "type": "merge",
+            "description": "m"
+          },
+          {
+            "type": "rebase",
+            "onto": "  ",
+            "description": "r"
+          },
+          {
+            "type": "revert",
+            "hashes": [],
+            "description": "rv"
+          },
+          {
+            "type": "cherry_pick",
+            "hashes": [
+              "abc1234",
+              "the last one"
+            ],
+            "description": "cp"
+          },
+          {
+            "type": "revert",
+            "description": "rv"
+          },
+          {
+            "type": "pull",
+            "mode": "merge",
+            "description": "p"
+          },
+          {
+            "type": "pull",
+            "mode": "ff-only",
+            "description": "p"
+          },
+          {
+            "type": "open_pr",
+            "description": "pr"
+          },
+          {
+            "type": "open_pr",
+            "title": "t",
+            "target": "main",
+            "description": "pr"
+          },
+          {
+            "type": "fetch",
+            "description": "f"
+          },
+          {
+            "type": "stack_submit",
+            "description": "s"
+          }
+        ],
+        [
+          "a.ts"
+        ],
+        {
+          "history": true,
+          "remote": true
+        }
+      ],
+      "out": [
+        "actions[0].ref must be the branch or commit to merge in.",
+        "actions[1].onto must be the branch to rebase onto.",
+        "actions[2].hashes must be a non-empty array of commit hashes copied from the history you were shown.",
+        "actions[3].hashes must contain only commit hashes; never invent one.",
+        "actions[4].hashes must be a non-empty array of commit hashes copied from the history you were shown.",
+        "actions[5].mode must be one of: default, ff-only, rebase.",
+        "actions[7].title must be the pull request title.",
+        "actions[7].target must be the branch the pull request merges into."
+      ]
+    },
+    {
+      "fn": "validateAskActions",
+      "args": [
+        "not an array",
+        [
+          "a.ts"
+        ],
+        {}
+      ],
+      "out": [
+        "\"actions\" must be an array (use [] when nothing can be done)."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "Stage"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ],
+          "allowFileActions": false
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "edit_file",
+            "path": "LICENSE",
+            "oldText": "MIT License",
+            "newText": "Apache License",
+            "description": "Replace the license heading"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ],
+          "allowFileActions": false
+        }
+      ],
+      "out": [
+        "actions[0] file actions are disabled by file read-only mode."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "edit_file",
+            "path": "LICENSE",
+            "oldText": "MIT License",
+            "newText": "Apache License",
+            "description": "Replace the license heading"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "LICENSE"
+            ],
+            "description": "Stage LICENSE"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "delete_file",
+            "path": "ghost.ts",
+            "description": "Delete it"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "actions[0].path \"ghost.ts\" requires repository evidence."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "stage",
+            "files": [
+              "dirty.ts"
+            ],
+            "description": "Stage"
+          },
+          {
+            "type": "edit_file",
+            "path": "LICENSE",
+            "oldText": "MIT License",
+            "newText": "Apache License",
+            "description": "Replace the license heading"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "actions[1] file actions must appear before Git actions."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "write_file",
+            "path": "LICENSE",
+            "content": "Apache",
+            "mode": "replace",
+            "description": "Replace"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": []
+        }
+      ],
+      "out": [
+        "actions[0].path \"LICENSE\" requires complete evidence before replacement."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "write_file",
+            "path": "new-0.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-1.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-2.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-3.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-4.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-5.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-6.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-7.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-8.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-9.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-10.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-11.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-12.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-13.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-14.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-15.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-16.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-17.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-18.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-19.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-20.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-21.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-22.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-23.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-24.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-25.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-26.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-27.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-28.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-29.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-30.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-31.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-32.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-33.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-34.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-35.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-36.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-37.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-38.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-39.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-40.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-41.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-42.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-43.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-44.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-45.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-46.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-47.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          },
+          {
+            "type": "write_file",
+            "path": "new-48.txt",
+            "content": "x",
+            "mode": "create",
+            "description": "Create file"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "Repository chat may propose at most 48 file actions."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "Repository chat may propose at most 64 total actions.",
+        "Repository chat may propose at most 12 Git actions."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "a.ts"
+            ],
+            "description": "s"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "Repository chat may propose at most 12 Git actions."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "push",
+            "branch": "feature/x",
+            "description": "Publish the branch"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ],
+          "allowFileActions": true
+        }
+      ],
+      "out": [
+        "actions[0].type \"push\" needs remote actions, which are off in Settings. Propose only local actions."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "push",
+            "branch": "feature/x",
+            "description": "Publish the branch"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ],
+          "allowRemoteActions": true
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "rebase",
+            "onto": "main",
+            "description": "Rebase onto main"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "revert",
+            "hashes": [
+              "the last one"
+            ],
+            "description": "Revert"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "actions[0].hashes must contain only commit hashes; never invent one."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "open_pr",
+            "title": "feat: x",
+            "description": "Open it"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ],
+          "allowRemoteActions": true
+        }
+      ],
+      "out": [
+        "actions[0].target must be the branch the pull request merges into."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [
+          {
+            "type": "edit_file",
+            "path": "../escape",
+            "oldText": "",
+            "newText": 1,
+            "replaceAll": "yes",
+            "description": ""
+          },
+          {
+            "type": "edit_file",
+            "path": "LICENSE",
+            "oldText": "a",
+            "newText": "b",
+            "replaceAll": true,
+            "description": "ok"
+          },
+          {
+            "type": "write_file",
+            "path": " new.md ",
+            "content": 5,
+            "mode": "append",
+            "description": "w"
+          },
+          {
+            "type": "write_file",
+            "path": "new.md",
+            "content": "c",
+            "mode": "create",
+            "description": "w"
+          },
+          {
+            "type": "delete_file",
+            "path": 7,
+            "description": "d"
+          },
+          {
+            "type": "stage",
+            "files": [
+              "new.md",
+              "LICENSE",
+              "ghost"
+            ],
+            "description": "stage"
+          },
+          null,
+          [
+            1
+          ],
+          "str",
+          {
+            "type": "edit_file",
+            "path": "LICENSE",
+            "oldText": "x",
+            "newText": "y",
+            "description": "late"
+          }
+        ],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "actions[0].description must be a short sentence.",
+        "actions[0].path must be a relative path inside the repository.",
+        "actions[2].mode must be either \"create\" or \"replace\".",
+        "actions[2].content must be a string.",
+        "actions[4].path must be a relative path inside the repository.",
+        "actions[9] file actions must appear before Git actions.",
+        "actions[0].files contains \"ghost\", which is not one of the files listed in the working-tree state. Use only paths from those lists.",
+        "actions[1] must be an object.",
+        "actions[2].type null is not an action this app can run. Use one of: gitignore, stage, unstage, commit, stash, discard, branch, checkout, tag, merge, rebase, revert, cherry_pick.",
+        "actions[3] must be an object."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        "nope",
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": [
+        "\"actions\" must be an array (use [] when nothing can be done)."
+      ]
+    },
+    {
+      "fn": "validateRepoChatActions",
+      "args": [
+        [],
+        {
+          "workingTreePaths": [
+            "dirty.ts",
+            "a.ts"
+          ],
+          "evidencePaths": [
+            "LICENSE"
+          ],
+          "completePaths": [
+            "LICENSE"
+          ]
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "```json\n{\"a\":1}\n```"
+      ],
+      "out": {
+        "a": 1
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "Sure! Here is the answer."
+      ],
+      "out": null
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Core\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"README.md\"]},{\"{\"text\":\"two\",\"sourcePaths\":[\"README.md\"]}\"]}],\"related\":[]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Core",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              },
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\\\"value\\\":\\\"x\\\"}"
+      ],
+      "out": {
+        "value": "x"
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\\\"summary\\\":\\\"x\\\",\\\"sections\\\":[{\\\"heading\\\":\\\"Core\\\",\\\"claims\\\":[{\\\"text\\\":\\\"one\\\",\\\"sourcePaths\\\":[\\\"README.md\\\"]},{\\\"{\\\"text\\\":\\\"two\\\",\\\"sourcePaths\\\":[\\\"README.md\\\"]}\\\"]}],\\\"related\\\":[]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Core",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              },
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "README.md"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CI\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"src/main/localCi.ts\"]}]],\"related\":[]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "CI",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "src/main/localCi.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"summary\":\"x\",\"sections\":[{\"heading\":\"i18n\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]},{\"{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]]],\"related\":[]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "i18n",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "a.ts"
+                ]
+              },
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "b.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"summary\":\"x\",\"sections\":[{\"heading\":\"CLI\",\"claims\":\":[{\"text\":\"one\",\"sourcePaths\":[\"cli.ts\"]}]}],\"related\":[]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "CLI",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "cli.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"summary\":\"x\",\"heading\":\"First\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"a.ts\"]}]},{\"heading\":\"Second\",\"claims\":[{\"text\":\"two\",\"sourcePaths\":[\"b.ts\"]}]}],\"related\":[\"overview\"]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "First",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "a.ts"
+                ]
+              }
+            ]
+          },
+          {
+            "heading": "Second",
+            "claims": [
+              {
+                "text": "two",
+                "sourcePaths": [
+                  "b.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": [
+          "overview"
+        ]
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Security\",\"claims\":[{\"text\":\"one\",\"\",\"sourcePaths\":[\"keychain.ts\"]}]}],\"related\":[]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Security",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "keychain.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": []
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"summary\":\"x\",\"sections\":[{\"heading\":\"Renderer\",\"claims\":[{\"text\":\"one\",\"sourcePaths\":[\"App.tsx\"]}]},{\"related\":[\"overview\",\"cli\"]}"
+      ],
+      "out": {
+        "summary": "x",
+        "sections": [
+          {
+            "heading": "Renderer",
+            "claims": [
+              {
+                "text": "one",
+                "sourcePaths": [
+                  "App.tsx"
+                ]
+              }
+            ]
+          }
+        ],
+        "related": [
+          "overview",
+          "cli"
+        ]
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"value\":\"first\"}\nWait, here is the corrected object.\n{\"value\":\"second\"}\n{\"value\":\"truncated\""
+      ],
+      "out": {
+        "value": "second"
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"items\":[{\"value\":\"one\"},{\"{\"value\":\"two\"}\"]}\nCorrected:\n{\"items\":[{\"value\":\"three\"}]}"
+      ],
+      "out": {
+        "items": [
+          {
+            "value": "three"
+          }
+        ]
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"pages\":[{\"\n  \"slug\":\"overview\",\"title\":\"Overview\"}]}"
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview"
+          }
+        ]
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"value\":\"{\\\"nested\\\":true}\"}"
+      ],
+      "out": {
+        "value": "{\"nested\":true}"
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "<think>I should answer {\"no\":1}</think>\n{\"a\":2}"
+      ],
+      "out": {
+        "a": 2
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "<THINK>a</think>{\"a\":3}<think>trailing"
+      ],
+      "out": {
+        "a": 3
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "prefix </think> {\"b\":[1,2,3]}"
+      ],
+      "out": {
+        "b": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "```\n[1, 2, 3]\n```"
+      ],
+      "out": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"a\": 1, \"b\": [1, 2,]}"
+      ],
+      "out": {
+        "a": 1,
+        "b": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"a\": \"unterminated"
+      ],
+      "out": {
+        "a": "unterminated"
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{'single': 'quotes'}"
+      ],
+      "out": {
+        "single": "quotes"
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"n\": 1.50, \"e\": 1e3, \"neg\": -0, \"big\": 12345678901234567890}"
+      ],
+      "out": {
+        "n": 1.5,
+        "e": 1000,
+        "neg": 0,
+        "big": 12345678901234567000
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "  {\"a\":1}  "
+      ],
+      "out": {
+        "a": 1
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"a\":1}\n```"
+      ],
+      "out": {
+        "a": 1
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "\"just a string\""
+      ],
+      "out": "just a string"
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "42"
+      ],
+      "out": 42
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "null"
+      ],
+      "out": null
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "true"
+      ],
+      "out": true
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        ""
+      ],
+      "out": null
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "["
+      ],
+      "out": []
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"x\": {\"y\": [true, false, null]}}"
+      ],
+      "out": {
+        "x": {
+          "y": [
+            true,
+            false,
+            null
+          ]
+        }
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"emoji\":\"🌍\",\"esc\":\"\\u00e9\\n\\t\"}"
+      ],
+      "out": {
+        "emoji": "🌍",
+        "esc": "é\n\t"
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "Here: {\"a\": {\"b\": 1}} and also [2]"
+      ],
+      "out": [
+        2
+      ]
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"a\":1}}"
+      ],
+      "out": {
+        "a": 1
+      }
+    },
+    {
+      "fn": "parseLooseJson",
+      "args": [
+        "{\"text\": \"has } brace and ] bracket\", \"ok\": true"
+      ],
+      "out": {
+        "text": "has } brace and ] bracket",
+        "ok": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,1964 @@
+{
+  "gitEnv": {
+    "GIT_AUTHOR_NAME": "Port Tester",
+    "GIT_AUTHOR_EMAIL": "port@example.invalid",
+    "GIT_COMMITTER_NAME": "Port Tester",
+    "GIT_COMMITTER_EMAIL": "port@example.invalid",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "/dev/null"
+  },
+  "recipe": [
+    {
+      "git": [
+        "init",
+        "-q",
+        "-b",
+        "main"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "commit.gpgsign",
+        "false"
+      ]
+    },
+    {
+      "write": "README.md",
+      "content": "# Demo\n\nA tiny demo app. Run `createApp()` to start.\n"
+    },
+    {
+      "write": "LICENSE",
+      "content": "MIT License\n\nCopyright Demo\n"
+    },
+    {
+      "write": "package.json",
+      "content": "{\n  \"name\": \"demo\",\n  \"dependencies\": {\n    \"react\": \"^18.0.0\",\n    \"react-dom\": \"^18.0.0\",\n    \"express\": \"^4.0.0\"\n  },\n  \"devDependencies\": {\n    \"vitest\": \"^2.0.0\",\n    \"@types/node\": \"^20.0.0\",\n    \"typescript\": \"^5.0.0\"\n  }\n}\n"
+    },
+    {
+      "write": "requirements.txt",
+      "content": "requests==2.0\n"
+    },
+    {
+      "write": "src/app.ts",
+      "content": "import { query } from './db'\nimport { log } from './util/log'\n\nexport function createApp(): void {\n  log('start')\n  query('select 1')\n}\n"
+    },
+    {
+      "write": "src/db.ts",
+      "content": "import { log } from './util/log'\n\nexport function query(sql: string): string {\n  log(sql)\n  return sql\n}\n"
+    },
+    {
+      "write": "src/util/log.ts",
+      "content": "export function log(message: string): void {\n  console.log(message)\n}\n"
+    },
+    {
+      "write": "src/ui/panel.tsx",
+      "content": "import { createApp } from '../app'\nexport const Panel = (): null => { createApp(); return null }\n"
+    },
+    {
+      "write": ".env",
+      "content": "TOKEN=secret\n"
+    },
+    {
+      "write": "src/generated/client.ts",
+      "content": "export const x = 1\n"
+    },
+    {
+      "write": "assets/logo.png",
+      "content": "PNG\u0000\u0001\u0002"
+    },
+    {
+      "write": ".gitignore",
+      "content": "*.log\nignored-tracked.txt\n"
+    },
+    {
+      "write": "ignored-tracked.txt",
+      "content": "tracked although ignored\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "add",
+        "-f",
+        "ignored-tracked.txt"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "feat: initial demo"
+      ],
+      "date": "2026-01-01T00:00:00Z"
+    },
+    {
+      "write": "src/app.ts",
+      "content": "import { query } from './db'\nimport { log } from './util/log'\n\nexport const VERSION = '1.0'\n\nexport function createApp(): void {\n  log('start')\n  query('select 1')\n}\n"
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-am",
+        "feat: add version"
+      ],
+      "date": "2026-01-02T00:00:00Z"
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "origin",
+        "https://example.invalid/demo.git"
+      ]
+    },
+    {
+      "write": "src/db.ts",
+      "content": "import { log } from './util/log'\n\nexport function query(sql: string): string {\n  log(sql)\n  return sql\n}\nexport const POOL = 4\n"
+    },
+    {
+      "write": "README.md",
+      "content": "# Demo\n\nA tiny demo app. Run `createApp()` to start.\n\nMore docs.\n"
+    },
+    {
+      "git": [
+        "add",
+        "README.md"
+      ]
+    },
+    {
+      "write": "new.txt",
+      "content": "hello\n"
+    },
+    {
+      "write": "@TMP/notes.md",
+      "content": "Outside notes about createApp.\n"
+    },
+    {
+      "write": "@TMP/id_rsa",
+      "content": "not a key\n"
+    }
+  ],
+  "now": 1768478400000,
+  "steps": [
+    {
+      "channel": "wiki:facts",
+      "args": [
+        "@REPO"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "languages": [
+          {
+            "language": "TypeScript",
+            "bytes": 479,
+            "files": 5,
+            "share": 1
+          }
+        ],
+        "totalBytes": 868,
+        "manifests": [
+          "package.json",
+          "requirements.txt"
+        ],
+        "dependencies": [
+          {
+            "name": "react",
+            "version": "^18.0.0",
+            "dev": false
+          },
+          {
+            "name": "react-dom",
+            "version": "^18.0.0",
+            "dev": false
+          },
+          {
+            "name": "express",
+            "version": "^4.0.0",
+            "dev": false
+          },
+          {
+            "name": "vitest",
+            "version": "^2.0.0",
+            "dev": true
+          },
+          {
+            "name": "@types/node",
+            "version": "^20.0.0",
+            "dev": true
+          },
+          {
+            "name": "typescript",
+            "version": "^5.0.0",
+            "dev": true
+          },
+          {
+            "name": "requests",
+            "version": "==2.0",
+            "dev": false
+          }
+        ]
+      },
+      "error": null,
+      "exported": {},
+      "stored": null
+    },
+    {
+      "channel": "wiki:imports",
+      "args": [
+        "@REPO",
+        0
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "nodes": [
+          {
+            "id": "src",
+            "files": 2,
+            "out": 2,
+            "in": 1
+          },
+          {
+            "id": "src/util",
+            "files": 1,
+            "out": 0,
+            "in": 2
+          },
+          {
+            "id": "src/ui",
+            "files": 1,
+            "out": 1,
+            "in": 0
+          }
+        ],
+        "edges": [
+          {
+            "from": "src",
+            "to": "src/util",
+            "count": 2
+          },
+          {
+            "from": "src/ui",
+            "to": "src",
+            "count": 1
+          }
+        ],
+        "depth": 2,
+        "resolved": 4,
+        "external": 0,
+        "omittedEdges": 0
+      },
+      "error": null,
+      "exported": {},
+      "stored": null
+    },
+    {
+      "channel": "wiki:imports",
+      "args": [
+        "@REPO",
+        2
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "nodes": [
+          {
+            "id": "src",
+            "files": 2,
+            "out": 2,
+            "in": 1
+          },
+          {
+            "id": "src/util",
+            "files": 1,
+            "out": 0,
+            "in": 2
+          },
+          {
+            "id": "src/ui",
+            "files": 1,
+            "out": 1,
+            "in": 0
+          }
+        ],
+        "edges": [
+          {
+            "from": "src",
+            "to": "src/util",
+            "count": 2
+          },
+          {
+            "from": "src/ui",
+            "to": "src",
+            "count": 1
+          }
+        ],
+        "depth": 2,
+        "resolved": 4,
+        "external": 0,
+        "omittedEdges": 0
+      },
+      "error": null,
+      "exported": {},
+      "stored": null
+    },
+    {
+      "channel": "wiki:get",
+      "args": [
+        "@REPO",
+        "gpt-test"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "wiki": null,
+        "freshness": "outdated",
+        "headSha": "@HEAD"
+      },
+      "error": null,
+      "exported": {},
+      "stored": null
+    },
+    {
+      "channel": "wiki:export",
+      "args": [
+        "@REPO"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": null,
+      "error": "There is no wiki for this repository yet.",
+      "exported": {},
+      "stored": null
+    },
+    {
+      "channel": "wiki:generate",
+      "args": [
+        "@REPO",
+        {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "https://api.openai.com/v1",
+              "apiKey": "",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "",
+          "model": "gpt-test",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        }
+      ],
+      "replies": {
+        "wikiPlan": [],
+        "wikiPage:Data layer": [],
+        "wikiPage:Overview": [],
+        "wikiPage:App startup": [],
+        "wikiStack": []
+      },
+      "calls": [
+        {
+          "feature": "wikiPlan",
+          "model": "gpt-test",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a staff engineer planning a short wiki that explains a codebase to a new contributor.\n\nYou are given the repository's file list and some facts about it. Plan the pages.\n\nRules:\n- Between 3 and 12 pages. Fewer, better pages beat many thin ones.\n- Exactly one page must have archetype \"overview\": what the project is and how it fits together.\n- Every other page must list, in \"scopePaths\", the files it is about — copied EXACTLY from the file list. Never invent a path.\n- Group by what the code does (a subsystem, a workflow), not by folder depth.\n- \"slug\" is kebab-case and unique.\n- \"title\" names the thing itself, in sentence case: \"Data layer\", \"Release process\", \"Commit graph\". Never repeat the archetype in it — no \"… Module\", \"… Page\", \"… Overview\", \"… Reference\".\n\nReply ONLY with valid JSON (no markdown fences):\n{\"pages\":[{\"slug\":\"overview\",\"title\":\"Overview\",\"archetype\":\"overview\",\"scopePaths\":[\"README.md\"]}]}\n- \"archetype\" is one of: overview, module, workflow, reference."
+            },
+            {
+              "role": "user",
+              "content": "Repository: demo-repo\nCurrent branch: main\nCommits analysed: 2\nMost active authors: Port Tester (2)\n\nMost frequently changed files:\nsrc/app.ts (2 commits)\n.env (1 commits)\n.gitignore (1 commits)\nLICENSE (1 commits)\nREADME.md (1 commits)\nassets/logo.png (1 commits)\nignored-tracked.txt (1 commits)\npackage.json (1 commits)\nrequirements.txt (1 commits)\nsrc/db.ts (1 commits)\nsrc/generated/client.ts (1 commits)\nsrc/ui/panel.tsx (1 commits)\nsrc/util/log.ts (1 commits)\n\nFiles:\nREADME.md\npackage.json\nsrc/app.ts\n.gitignore\nLICENSE\nignored-tracked.txt\nrequirements.txt\nsrc/db.ts\nsrc/generated/client.ts\nsrc/ui/panel.tsx\nsrc/util/log.ts"
+            }
+          ],
+          "spec": {
+            "name": "wiki_plan",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"pages\"],\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"slug\",\"title\",\"archetype\",\"scopePaths\"],\"properties\":{\"slug\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"archetype\":{\"type\":\"string\",\"enum\":[\"overview\",\"module\",\"workflow\",\"reference\"]},\"scopePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}",
+            "strict": null,
+            "maxTokens": 2048,
+            "nativeStructuredOutput": true,
+            "normalize": true
+          },
+          "temperature": 0.2,
+          "reply": {
+            "pages": [
+              {
+                "slug": "data-layer",
+                "title": "Data layer Module",
+                "archetype": "module",
+                "scopePaths": [
+                  "src/db.ts",
+                  "ghost.ts"
+                ]
+              },
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "scopePaths": [
+                  "README.md",
+                  "package.json"
+                ]
+              },
+              {
+                "slug": "ghosts",
+                "title": "Ghosts",
+                "archetype": "module",
+                "scopePaths": [
+                  "nope.ts"
+                ]
+              },
+              {
+                "slug": "app",
+                "title": "App startup workflow",
+                "archetype": "workflow",
+                "scopePaths": [
+                  "src/app.ts",
+                  "src/util/log.ts"
+                ]
+              }
+            ]
+          },
+          "errors": []
+        },
+        {
+          "feature": "wikiPage",
+          "model": "gpt-test",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are writing one page of a wiki that explains a codebase, for a new contributor.\n\nYou are given the full text of the files this page covers. Rules:\n- Every claim must be supported by one of those files, named in \"sourcePaths\" exactly as given. If no file supports a claim, leave the claim out.\n- Never invent file paths, function names or behaviour you cannot see.\n- Never write Markdown, links or line numbers — the app renders those from what you return.\n- At most 6 sections, at most 8 claims each. Prefer explaining how things fit together over listing what exists.\n- \"related\" may only contain slugs of other pages in this wiki: overview, data-layer.\n\nReply ONLY with valid JSON (no markdown fences):\n{\"summary\":\"one or two sentences\",\"sections\":[{\"heading\":\"...\",\"claims\":[{\"text\":\"...\",\"sourcePaths\":[\"src/x.ts\"]}]}],\"related\":[]}"
+            },
+            {
+              "role": "user",
+              "content": "Page: App startup (workflow)\n\nFiles:\n\n--- FILE: src/app.ts ---\nimport { query } from './db'\nimport { log } from './util/log'\n\nexport const VERSION = '1.0'\n\nexport function createApp(): void {\n  log('start')\n  query('select 1')\n}\n\n\n--- FILE: src/util/log.ts ---\nexport function log(message: string): void {\n  console.log(message)\n}\n"
+            }
+          ],
+          "spec": {
+            "name": "wiki_page",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"sections\",\"related\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"sections\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"heading\",\"claims\"],\"properties\":{\"heading\":{\"type\":\"string\"},\"claims\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"text\",\"sourcePaths\"],\"properties\":{\"text\":{\"type\":\"string\"},\"sourcePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}},\"related\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}",
+            "strict": null,
+            "maxTokens": 4096,
+            "nativeStructuredOutput": true,
+            "normalize": false
+          },
+          "temperature": 0.3,
+          "reply": {
+            "summary": "How the app starts.",
+            "sections": [],
+            "related": []
+          },
+          "errors": []
+        },
+        {
+          "feature": "wikiPage",
+          "model": "gpt-test",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are writing one page of a wiki that explains a codebase, for a new contributor.\n\nYou are given the full text of the files this page covers. Rules:\n- Every claim must be supported by one of those files, named in \"sourcePaths\" exactly as given. If no file supports a claim, leave the claim out.\n- Never invent file paths, function names or behaviour you cannot see.\n- Never write Markdown, links or line numbers — the app renders those from what you return.\n- At most 6 sections, at most 8 claims each. Prefer explaining how things fit together over listing what exists.\n- \"related\" may only contain slugs of other pages in this wiki: overview, app.\n\nReply ONLY with valid JSON (no markdown fences):\n{\"summary\":\"one or two sentences\",\"sections\":[{\"heading\":\"...\",\"claims\":[{\"text\":\"...\",\"sourcePaths\":[\"src/x.ts\"]}]}],\"related\":[]}"
+            },
+            {
+              "role": "user",
+              "content": "Page: Data layer (module)\n\nFiles:\n\n--- FILE: src/db.ts ---\nimport { log } from './util/log'\n\nexport function query(sql: string): string {\n  log(sql)\n  return sql\n}\nexport const POOL = 4\n"
+            }
+          ],
+          "spec": {
+            "name": "wiki_page",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"sections\",\"related\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"sections\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"heading\",\"claims\"],\"properties\":{\"heading\":{\"type\":\"string\"},\"claims\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"text\",\"sourcePaths\"],\"properties\":{\"text\":{\"type\":\"string\"},\"sourcePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}},\"related\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}",
+            "strict": null,
+            "maxTokens": 4096,
+            "nativeStructuredOutput": true,
+            "normalize": false
+          },
+          "temperature": 0.3,
+          "reply": {
+            "summary": " How data is read. ",
+            "sections": [
+              {
+                "heading": "Queries",
+                "claims": [
+                  {
+                    "text": "Queries are logged.",
+                    "sourcePaths": [
+                      "src/db.ts"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "related": [
+              "overview"
+            ]
+          },
+          "errors": []
+        },
+        {
+          "feature": "wikiPage",
+          "model": "gpt-test",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are writing one page of a wiki that explains a codebase, for a new contributor.\n\nYou are given the full text of the files this page covers. Rules:\n- Every claim must be supported by one of those files, named in \"sourcePaths\" exactly as given. If no file supports a claim, leave the claim out.\n- Never invent file paths, function names or behaviour you cannot see.\n- Never write Markdown, links or line numbers — the app renders those from what you return.\n- At most 6 sections, at most 8 claims each. Prefer explaining how things fit together over listing what exists.\n- \"related\" may only contain slugs of other pages in this wiki: app, data-layer.\n\nReply ONLY with valid JSON (no markdown fences):\n{\"summary\":\"one or two sentences\",\"sections\":[{\"heading\":\"...\",\"claims\":[{\"text\":\"...\",\"sourcePaths\":[\"src/x.ts\"]}]}],\"related\":[]}"
+            },
+            {
+              "role": "user",
+              "content": "Page: Overview (overview)\n\nFiles:\n\n--- FILE: README.md ---\n# Demo\n\nA tiny demo app. Run `createApp()` to start.\n\nMore docs.\n\n\n--- FILE: package.json ---\n{\n  \"name\": \"demo\",\n  \"dependencies\": {\n    \"react\": \"^18.0.0\",\n    \"react-dom\": \"^18.0.0\",\n    \"express\": \"^4.0.0\"\n  },\n  \"devDependencies\": {\n    \"vitest\": \"^2.0.0\",\n    \"@types/node\": \"^20.0.0\",\n    \"typescript\": \"^5.0.0\"\n  }\n}\n"
+            }
+          ],
+          "spec": {
+            "name": "wiki_page",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"sections\",\"related\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"sections\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"heading\",\"claims\"],\"properties\":{\"heading\":{\"type\":\"string\"},\"claims\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"text\",\"sourcePaths\"],\"properties\":{\"text\":{\"type\":\"string\"},\"sourcePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}},\"related\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}",
+            "strict": null,
+            "maxTokens": 4096,
+            "nativeStructuredOutput": true,
+            "normalize": false
+          },
+          "temperature": 0.3,
+          "reply": {
+            "summary": "A tiny demo.",
+            "sections": [
+              {
+                "heading": "What it is",
+                "claims": [
+                  {
+                    "text": "A demo app.",
+                    "sourcePaths": [
+                      "README.md",
+                      "package.json"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "related": [
+              "app",
+              "data-layer"
+            ]
+          },
+          "errors": []
+        },
+        {
+          "feature": "wikiStack",
+          "model": "gpt-test",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are explaining what a project is built on, to someone deciding whether they could work on it.\n\nYou get the languages it is written in and the dependencies it declares. Write the stack, not an inventory.\n\nRules:\n- \"summary\": 2-3 sentences describing the ARCHITECTURE — what kind of application this is, what runs where, and which pieces carry the weight. Name frameworks, not packages. Say \"a desktop app built with Electron, React in the renderer and a Go service for indexing\", never \"this project uses a mix of technologies\".\n- Group by architectural role: \"Frontend\", \"Backend\", \"Desktop shell\", \"Data\", \"Testing\", \"Build\". At most 6 groups.\n- Include only dependencies that tell someone something. Skip a package whose presence is implied by another (a React app obviously has react-dom), skip plugins and helpers. It is correct to leave most of the list out.\n- \"dep\" must be copied EXACTLY from the list. Never invent one, never list one twice.\n- \"role\" says what THIS project uses it for, in a few words. Not a description of the package in general — \"renders the commit graph\", not \"a library for rendering\".\n\nReply ONLY with valid JSON (no markdown fences):\n{\"summary\":\"…\",\"groups\":[{\"name\":\"Frontend\",\"items\":[{\"dep\":\"react\",\"role\":\"renders the whole interface\"}]}]}"
+            },
+            {
+              "role": "user",
+              "content": "Languages: TypeScript 100%\nFrameworks detected: React, Express, Vitest/Jest, TypeScript\n\nDeclared dependencies:\nreact ^18.0.0\nexpress ^4.0.0\nvitest ^2.0.0 (dev)\ntypescript ^5.0.0 (dev)\nrequests ==2.0"
+            }
+          ],
+          "spec": {
+            "name": "tech_stack",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"groups\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"groups\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"name\",\"items\"],\"properties\":{\"name\":{\"type\":\"string\"},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"dep\",\"role\"],\"properties\":{\"dep\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}}}}}}}}}",
+            "strict": null,
+            "maxTokens": 2048,
+            "nativeStructuredOutput": true,
+            "normalize": false
+          },
+          "temperature": 0.2,
+          "reply": {
+            "summary": "A Node app with React.",
+            "groups": [
+              {
+                "name": "Frontend",
+                "items": [
+                  {
+                    "dep": "react",
+                    "role": "renders the UI"
+                  }
+                ]
+              },
+              {
+                "name": "Backend",
+                "items": [
+                  {
+                    "dep": "express",
+                    "role": "serves requests"
+                  }
+                ]
+              }
+            ]
+          },
+          "errors": []
+        }
+      ],
+      "events": {
+        "sequence": [
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "planning"
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "page",
+                "slug": "app",
+                "title": "App startup",
+                "total": 3
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "page",
+                "slug": "data-layer",
+                "title": "Data layer",
+                "total": 3
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "page",
+                "slug": "overview",
+                "title": "Overview",
+                "total": 3
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "done"
+              }
+            }
+          }
+        ],
+        "done": [
+          1,
+          2,
+          3
+        ]
+      },
+      "result": {
+        "headSha": "@HEAD",
+        "generatedAt": 1768478400000,
+        "model": "gpt-test",
+        "promptVersion": "wiki.v1",
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "summary": "A tiny demo.",
+            "sections": [
+              {
+                "heading": "What it is",
+                "claims": [
+                  {
+                    "text": "A demo app.",
+                    "sourcePaths": [
+                      "README.md",
+                      "package.json"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "related": [
+              "app",
+              "data-layer"
+            ],
+            "markdown": "# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n"
+          },
+          {
+            "slug": "app",
+            "title": "App startup",
+            "archetype": "workflow",
+            "summary": "How the app starts.",
+            "sections": [],
+            "related": [],
+            "markdown": "# App startup\n\nHow the app starts.\n"
+          },
+          {
+            "slug": "data-layer",
+            "title": "Data layer",
+            "archetype": "module",
+            "summary": "How data is read.",
+            "sections": [
+              {
+                "heading": "Queries",
+                "claims": [
+                  {
+                    "text": "Queries are logged.",
+                    "sourcePaths": [
+                      "src/db.ts"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "related": [
+              "overview"
+            ],
+            "markdown": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n"
+          }
+        ],
+        "stack": {
+          "summary": "A Node app with React.",
+          "groups": [
+            {
+              "name": "Frontend",
+              "items": [
+                {
+                  "dep": "react",
+                  "role": "renders the UI"
+                }
+              ]
+            },
+            {
+              "name": "Backend",
+              "items": [
+                {
+                  "dep": "express",
+                  "role": "serves requests"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "gpt-test",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "A tiny demo.",
+                "sections": [
+                  {
+                    "heading": "What it is",
+                    "claims": [
+                      {
+                        "text": "A demo app.",
+                        "sourcePaths": [
+                          "README.md",
+                          "package.json"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "app",
+                  "data-layer"
+                ],
+                "markdown": "# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n"
+              },
+              {
+                "slug": "app",
+                "title": "App startup",
+                "archetype": "workflow",
+                "summary": "How the app starts.",
+                "sections": [],
+                "related": [],
+                "markdown": "# App startup\n\nHow the app starts.\n"
+              },
+              {
+                "slug": "data-layer",
+                "title": "Data layer",
+                "archetype": "module",
+                "summary": "How data is read.",
+                "sections": [
+                  {
+                    "heading": "Queries",
+                    "claims": [
+                      {
+                        "text": "Queries are logged.",
+                        "sourcePaths": [
+                          "src/db.ts"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "overview"
+                ],
+                "markdown": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n"
+              }
+            ],
+            "stack": {
+              "summary": "A Node app with React.",
+              "groups": [
+                {
+                  "name": "Frontend",
+                  "items": [
+                    {
+                      "dep": "react",
+                      "role": "renders the UI"
+                    }
+                  ]
+                },
+                {
+                  "name": "Backend",
+                  "items": [
+                    {
+                      "dep": "express",
+                      "role": "serves requests"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:get",
+      "args": [
+        "@REPO",
+        "gpt-test"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "wiki": {
+          "headSha": "@HEAD",
+          "generatedAt": 1768478400000,
+          "model": "gpt-test",
+          "promptVersion": "wiki.v1",
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "summary": "A tiny demo.",
+              "sections": [
+                {
+                  "heading": "What it is",
+                  "claims": [
+                    {
+                      "text": "A demo app.",
+                      "sourcePaths": [
+                        "README.md",
+                        "package.json"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "related": [
+                "app",
+                "data-layer"
+              ],
+              "markdown": "# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n"
+            },
+            {
+              "slug": "app",
+              "title": "App startup",
+              "archetype": "workflow",
+              "summary": "How the app starts.",
+              "sections": [],
+              "related": [],
+              "markdown": "# App startup\n\nHow the app starts.\n"
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "summary": "How data is read.",
+              "sections": [
+                {
+                  "heading": "Queries",
+                  "claims": [
+                    {
+                      "text": "Queries are logged.",
+                      "sourcePaths": [
+                        "src/db.ts"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "related": [
+                "overview"
+              ],
+              "markdown": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n"
+            }
+          ],
+          "stack": {
+            "summary": "A Node app with React.",
+            "groups": [
+              {
+                "name": "Frontend",
+                "items": [
+                  {
+                    "dep": "react",
+                    "role": "renders the UI"
+                  }
+                ]
+              },
+              {
+                "name": "Backend",
+                "items": [
+                  {
+                    "dep": "express",
+                    "role": "serves requests"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "freshness": "current",
+        "headSha": "@HEAD"
+      },
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "gpt-test",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "A tiny demo.",
+                "sections": [
+                  {
+                    "heading": "What it is",
+                    "claims": [
+                      {
+                        "text": "A demo app.",
+                        "sourcePaths": [
+                          "README.md",
+                          "package.json"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "app",
+                  "data-layer"
+                ],
+                "markdown": "# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n"
+              },
+              {
+                "slug": "app",
+                "title": "App startup",
+                "archetype": "workflow",
+                "summary": "How the app starts.",
+                "sections": [],
+                "related": [],
+                "markdown": "# App startup\n\nHow the app starts.\n"
+              },
+              {
+                "slug": "data-layer",
+                "title": "Data layer",
+                "archetype": "module",
+                "summary": "How data is read.",
+                "sections": [
+                  {
+                    "heading": "Queries",
+                    "claims": [
+                      {
+                        "text": "Queries are logged.",
+                        "sourcePaths": [
+                          "src/db.ts"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "overview"
+                ],
+                "markdown": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n"
+              }
+            ],
+            "stack": {
+              "summary": "A Node app with React.",
+              "groups": [
+                {
+                  "name": "Frontend",
+                  "items": [
+                    {
+                      "dep": "react",
+                      "role": "renders the UI"
+                    }
+                  ]
+                },
+                {
+                  "name": "Backend",
+                  "items": [
+                    {
+                      "dep": "express",
+                      "role": "serves requests"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:get",
+      "args": [
+        "@REPO",
+        "other-model"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "wiki": {
+          "headSha": "@HEAD",
+          "generatedAt": 1768478400000,
+          "model": "gpt-test",
+          "promptVersion": "wiki.v1",
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "summary": "A tiny demo.",
+              "sections": [
+                {
+                  "heading": "What it is",
+                  "claims": [
+                    {
+                      "text": "A demo app.",
+                      "sourcePaths": [
+                        "README.md",
+                        "package.json"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "related": [
+                "app",
+                "data-layer"
+              ],
+              "markdown": "# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n"
+            },
+            {
+              "slug": "app",
+              "title": "App startup",
+              "archetype": "workflow",
+              "summary": "How the app starts.",
+              "sections": [],
+              "related": [],
+              "markdown": "# App startup\n\nHow the app starts.\n"
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "summary": "How data is read.",
+              "sections": [
+                {
+                  "heading": "Queries",
+                  "claims": [
+                    {
+                      "text": "Queries are logged.",
+                      "sourcePaths": [
+                        "src/db.ts"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "related": [
+                "overview"
+              ],
+              "markdown": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n"
+            }
+          ],
+          "stack": {
+            "summary": "A Node app with React.",
+            "groups": [
+              {
+                "name": "Frontend",
+                "items": [
+                  {
+                    "dep": "react",
+                    "role": "renders the UI"
+                  }
+                ]
+              },
+              {
+                "name": "Backend",
+                "items": [
+                  {
+                    "dep": "express",
+                    "role": "serves requests"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "freshness": "outdated",
+        "headSha": "@HEAD"
+      },
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "gpt-test",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "A tiny demo.",
+                "sections": [
+                  {
+                    "heading": "What it is",
+                    "claims": [
+                      {
+                        "text": "A demo app.",
+                        "sourcePaths": [
+                          "README.md",
+                          "package.json"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "app",
+                  "data-layer"
+                ],
+                "markdown": "# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n"
+              },
+              {
+                "slug": "app",
+                "title": "App startup",
+                "archetype": "workflow",
+                "summary": "How the app starts.",
+                "sections": [],
+                "related": [],
+                "markdown": "# App startup\n\nHow the app starts.\n"
+              },
+              {
+                "slug": "data-layer",
+                "title": "Data layer",
+                "archetype": "module",
+                "summary": "How data is read.",
+                "sections": [
+                  {
+                    "heading": "Queries",
+                    "claims": [
+                      {
+                        "text": "Queries are logged.",
+                        "sourcePaths": [
+                          "src/db.ts"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "overview"
+                ],
+                "markdown": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n"
+              }
+            ],
+            "stack": {
+              "summary": "A Node app with React.",
+              "groups": [
+                {
+                  "name": "Frontend",
+                  "items": [
+                    {
+                      "dep": "react",
+                      "role": "renders the UI"
+                    }
+                  ]
+                },
+                {
+                  "name": "Backend",
+                  "items": [
+                    {
+                      "dep": "express",
+                      "role": "serves requests"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:export",
+      "args": [
+        "@REPO"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": [
+        "docs/wiki/README.md",
+        "docs/wiki/overview.md",
+        "docs/wiki/app.md",
+        "docs/wiki/data-layer.md"
+      ],
+      "error": null,
+      "exported": {
+        "docs/wiki/README.md": "# demo-repo wiki\n\n<!-- Generated by Gitcito from 18eff24 on 2026-01-15. Regenerate rather than editing by hand. -->\n\n- [Overview](overview.md) — A tiny demo.\n- [App startup](app.md) — How the app starts.\n- [Data layer](data-layer.md) — How data is read.\n",
+        "docs/wiki/overview.md": "<!-- Generated by Gitcito from 18eff24 on 2026-01-15. Regenerate rather than editing by hand. -->\n\n# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n\n## See also\n\n- [App startup](app.md)\n- [Data layer](data-layer.md)\n\n\n[← Index](README.md)\n",
+        "docs/wiki/app.md": "<!-- Generated by Gitcito from 18eff24 on 2026-01-15. Regenerate rather than editing by hand. -->\n\n# App startup\n\nHow the app starts.\n\n[← Index](README.md)\n",
+        "docs/wiki/data-layer.md": "<!-- Generated by Gitcito from 18eff24 on 2026-01-15. Regenerate rather than editing by hand. -->\n\n# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n\n## See also\n\n- [Overview](overview.md)\n\n\n[← Index](README.md)\n"
+      },
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "gpt-test",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "A tiny demo.",
+                "sections": [
+                  {
+                    "heading": "What it is",
+                    "claims": [
+                      {
+                        "text": "A demo app.",
+                        "sourcePaths": [
+                          "README.md",
+                          "package.json"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "app",
+                  "data-layer"
+                ],
+                "markdown": "# Overview\n\nA tiny demo.\n\n## What it is\n\n- A demo app. — `README.md`, `package.json`\n"
+              },
+              {
+                "slug": "app",
+                "title": "App startup",
+                "archetype": "workflow",
+                "summary": "How the app starts.",
+                "sections": [],
+                "related": [],
+                "markdown": "# App startup\n\nHow the app starts.\n"
+              },
+              {
+                "slug": "data-layer",
+                "title": "Data layer",
+                "archetype": "module",
+                "summary": "How data is read.",
+                "sections": [
+                  {
+                    "heading": "Queries",
+                    "claims": [
+                      {
+                        "text": "Queries are logged.",
+                        "sourcePaths": [
+                          "src/db.ts"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "related": [
+                  "overview"
+                ],
+                "markdown": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries are logged. — `src/db.ts`\n"
+              }
+            ],
+            "stack": {
+              "summary": "A Node app with React.",
+              "groups": [
+                {
+                  "name": "Frontend",
+                  "items": [
+                    {
+                      "dep": "react",
+                      "role": "renders the UI"
+                    }
+                  ]
+                },
+                {
+                  "name": "Backend",
+                  "items": [
+                    {
+                      "dep": "express",
+                      "role": "serves requests"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:generate",
+      "args": [
+        "@REPO",
+        {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "https://api.openai.com/v1",
+              "apiKey": "",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "ollama",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "",
+          "model": "",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        }
+      ],
+      "replies": {
+        "wikiPlan": [],
+        "wikiPage:Overview": [],
+        "wikiStack": []
+      },
+      "calls": [
+        {
+          "feature": "wikiPlan",
+          "model": "",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a staff engineer planning a short wiki that explains a codebase to a new contributor.\n\nYou are given the repository's file list and some facts about it. Plan the pages.\n\nRules:\n- Between 3 and 12 pages. Fewer, better pages beat many thin ones.\n- Exactly one page must have archetype \"overview\": what the project is and how it fits together.\n- Every other page must list, in \"scopePaths\", the files it is about — copied EXACTLY from the file list. Never invent a path.\n- Group by what the code does (a subsystem, a workflow), not by folder depth.\n- \"slug\" is kebab-case and unique.\n- \"title\" names the thing itself, in sentence case: \"Data layer\", \"Release process\", \"Commit graph\". Never repeat the archetype in it — no \"… Module\", \"… Page\", \"… Overview\", \"… Reference\".\n\nReply ONLY with valid JSON (no markdown fences):\n{\"pages\":[{\"slug\":\"overview\",\"title\":\"Overview\",\"archetype\":\"overview\",\"scopePaths\":[\"README.md\"]}]}\n- \"archetype\" is one of: overview, module, workflow, reference."
+            },
+            {
+              "role": "user",
+              "content": "Repository: demo-repo\nCurrent branch: main\nCommits analysed: 2\nMost active authors: Port Tester (2)\n\nMost frequently changed files:\nsrc/app.ts (2 commits)\n.env (1 commits)\n.gitignore (1 commits)\nLICENSE (1 commits)\nREADME.md (1 commits)\nassets/logo.png (1 commits)\nignored-tracked.txt (1 commits)\npackage.json (1 commits)\nrequirements.txt (1 commits)\nsrc/db.ts (1 commits)\nsrc/generated/client.ts (1 commits)\nsrc/ui/panel.tsx (1 commits)\nsrc/util/log.ts (1 commits)\n\nFiles:\nREADME.md\npackage.json\nsrc/app.ts\n.gitignore\nLICENSE\nignored-tracked.txt\nrequirements.txt\nsrc/db.ts\nsrc/generated/client.ts\nsrc/ui/panel.tsx\nsrc/util/log.ts"
+            }
+          ],
+          "spec": {
+            "name": "wiki_plan",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"pages\"],\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"slug\",\"title\",\"archetype\",\"scopePaths\"],\"properties\":{\"slug\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"archetype\":{\"type\":\"string\",\"enum\":[\"overview\",\"module\",\"workflow\",\"reference\"]},\"scopePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}",
+            "strict": null,
+            "maxTokens": 2048,
+            "nativeStructuredOutput": false,
+            "normalize": true
+          },
+          "temperature": 0.2,
+          "reply": {
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "scopePaths": []
+              }
+            ]
+          },
+          "errors": []
+        },
+        {
+          "feature": "wikiPage",
+          "model": "",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are writing one page of a wiki that explains a codebase, for a new contributor.\n\nYou are given the full text of the files this page covers. Rules:\n- Every claim must be supported by one of those files, named in \"sourcePaths\" exactly as given. If no file supports a claim, leave the claim out.\n- Never invent file paths, function names or behaviour you cannot see.\n- Never write Markdown, links or line numbers — the app renders those from what you return.\n- At most 6 sections, at most 8 claims each. Prefer explaining how things fit together over listing what exists.\n- \"related\" may only contain slugs of other pages in this wiki: (none).\n\nReply ONLY with valid JSON (no markdown fences):\n{\"summary\":\"one or two sentences\",\"sections\":[{\"heading\":\"...\",\"claims\":[{\"text\":\"...\",\"sourcePaths\":[\"src/x.ts\"]}]}],\"related\":[]}"
+            },
+            {
+              "role": "user",
+              "content": "Page: Overview (overview)\n\nFiles:\n\n"
+            }
+          ],
+          "spec": {
+            "name": "wiki_page",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"sections\",\"related\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"sections\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"heading\",\"claims\"],\"properties\":{\"heading\":{\"type\":\"string\"},\"claims\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"text\",\"sourcePaths\"],\"properties\":{\"text\":{\"type\":\"string\"},\"sourcePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}},\"related\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}",
+            "strict": null,
+            "maxTokens": 4096,
+            "nativeStructuredOutput": false,
+            "normalize": false
+          },
+          "temperature": 0.3,
+          "reply": {
+            "summary": "Just an overview.",
+            "sections": [],
+            "related": []
+          },
+          "errors": []
+        },
+        {
+          "feature": "wikiStack",
+          "model": "",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are explaining what a project is built on, to someone deciding whether they could work on it.\n\nYou get the languages it is written in and the dependencies it declares. Write the stack, not an inventory.\n\nRules:\n- \"summary\": 2-3 sentences describing the ARCHITECTURE — what kind of application this is, what runs where, and which pieces carry the weight. Name frameworks, not packages. Say \"a desktop app built with Electron, React in the renderer and a Go service for indexing\", never \"this project uses a mix of technologies\".\n- Group by architectural role: \"Frontend\", \"Backend\", \"Desktop shell\", \"Data\", \"Testing\", \"Build\". At most 6 groups.\n- Include only dependencies that tell someone something. Skip a package whose presence is implied by another (a React app obviously has react-dom), skip plugins and helpers. It is correct to leave most of the list out.\n- \"dep\" must be copied EXACTLY from the list. Never invent one, never list one twice.\n- \"role\" says what THIS project uses it for, in a few words. Not a description of the package in general — \"renders the commit graph\", not \"a library for rendering\".\n\nReply ONLY with valid JSON (no markdown fences):\n{\"summary\":\"…\",\"groups\":[{\"name\":\"Frontend\",\"items\":[{\"dep\":\"react\",\"role\":\"renders the whole interface\"}]}]}"
+            },
+            {
+              "role": "user",
+              "content": "Languages: TypeScript 100%\nFrameworks detected: React, Express, Vitest/Jest, TypeScript\n\nDeclared dependencies:\nreact ^18.0.0\nexpress ^4.0.0\nvitest ^2.0.0 (dev)\ntypescript ^5.0.0 (dev)\nrequests ==2.0"
+            }
+          ],
+          "spec": {
+            "name": "tech_stack",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"groups\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"groups\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"name\",\"items\"],\"properties\":{\"name\":{\"type\":\"string\"},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"dep\",\"role\"],\"properties\":{\"dep\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}}}}}}}}}",
+            "strict": null,
+            "maxTokens": 2048,
+            "nativeStructuredOutput": false,
+            "normalize": false
+          },
+          "temperature": 0.2,
+          "reply": {
+            "summary": "x",
+            "groups": [
+              {
+                "name": "UI",
+                "items": [
+                  {
+                    "dep": "vue",
+                    "role": "x"
+                  }
+                ]
+              }
+            ]
+          },
+          "errors": [
+            "groups[0].items[0].dep \"vue\" is not a dependency this project declares. Use only names from the list."
+          ]
+        }
+      ],
+      "events": {
+        "sequence": [
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "planning"
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "page",
+                "slug": "overview",
+                "title": "Overview",
+                "total": 1
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "done"
+              }
+            }
+          }
+        ],
+        "done": [
+          1
+        ]
+      },
+      "result": {
+        "headSha": "@HEAD",
+        "generatedAt": 1768478400000,
+        "model": "",
+        "promptVersion": "wiki.v1",
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "summary": "Just an overview.",
+            "sections": [],
+            "related": [],
+            "markdown": "# Overview\n\nJust an overview.\n"
+          }
+        ],
+        "stack": null
+      },
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "Just an overview.",
+                "sections": [],
+                "related": [],
+                "markdown": "# Overview\n\nJust an overview.\n"
+              }
+            ],
+            "stack": null
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:get",
+      "args": [
+        "@REPO",
+        ""
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "wiki": {
+          "headSha": "@HEAD",
+          "generatedAt": 1768478400000,
+          "model": "",
+          "promptVersion": "wiki.v1",
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "summary": "Just an overview.",
+              "sections": [],
+              "related": [],
+              "markdown": "# Overview\n\nJust an overview.\n"
+            }
+          ],
+          "stack": null
+        },
+        "freshness": "current",
+        "headSha": "@HEAD"
+      },
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "Just an overview.",
+                "sections": [],
+                "related": [],
+                "markdown": "# Overview\n\nJust an overview.\n"
+              }
+            ],
+            "stack": null
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:generate",
+      "args": [
+        "@REPO",
+        {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "https://api.openai.com/v1",
+              "apiKey": "",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "custom",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "",
+          "model": "gpt-test",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        }
+      ],
+      "replies": {
+        "wikiPlan": []
+      },
+      "calls": [
+        {
+          "feature": "wikiPlan",
+          "model": "gpt-test",
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a staff engineer planning a short wiki that explains a codebase to a new contributor.\n\nYou are given the repository's file list and some facts about it. Plan the pages.\n\nRules:\n- Between 3 and 12 pages. Fewer, better pages beat many thin ones.\n- Exactly one page must have archetype \"overview\": what the project is and how it fits together.\n- Every other page must list, in \"scopePaths\", the files it is about — copied EXACTLY from the file list. Never invent a path.\n- Group by what the code does (a subsystem, a workflow), not by folder depth.\n- \"slug\" is kebab-case and unique.\n- \"title\" names the thing itself, in sentence case: \"Data layer\", \"Release process\", \"Commit graph\". Never repeat the archetype in it — no \"… Module\", \"… Page\", \"… Overview\", \"… Reference\".\n\nReply ONLY with valid JSON (no markdown fences):\n{\"pages\":[{\"slug\":\"overview\",\"title\":\"Overview\",\"archetype\":\"overview\",\"scopePaths\":[\"README.md\"]}]}\n- \"archetype\" is one of: overview, module, workflow, reference."
+            },
+            {
+              "role": "user",
+              "content": "Repository: demo-repo\nCurrent branch: main\nCommits analysed: 2\nMost active authors: Port Tester (2)\n\nMost frequently changed files:\nsrc/app.ts (2 commits)\n.env (1 commits)\n.gitignore (1 commits)\nLICENSE (1 commits)\nREADME.md (1 commits)\nassets/logo.png (1 commits)\nignored-tracked.txt (1 commits)\npackage.json (1 commits)\nrequirements.txt (1 commits)\nsrc/db.ts (1 commits)\nsrc/generated/client.ts (1 commits)\nsrc/ui/panel.tsx (1 commits)\nsrc/util/log.ts (1 commits)\n\nFiles:\nREADME.md\npackage.json\nsrc/app.ts\n.gitignore\nLICENSE\nignored-tracked.txt\nrequirements.txt\nsrc/db.ts\nsrc/generated/client.ts\nsrc/ui/panel.tsx\nsrc/util/log.ts"
+            }
+          ],
+          "spec": {
+            "name": "wiki_plan",
+            "schema": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"pages\"],\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"slug\",\"title\",\"archetype\",\"scopePaths\"],\"properties\":{\"slug\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"archetype\":{\"type\":\"string\",\"enum\":[\"overview\",\"module\",\"workflow\",\"reference\"]},\"scopePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}",
+            "strict": null,
+            "maxTokens": 2048,
+            "nativeStructuredOutput": false,
+            "normalize": true
+          },
+          "temperature": 0.2,
+          "reply": {
+            "pages": []
+          },
+          "errors": [
+            "\"pages\" is empty — plan at least an overview page."
+          ]
+        }
+      ],
+      "events": {
+        "sequence": [
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "planning"
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@REPO",
+              "progress": {
+                "phase": "error",
+                "message": "The AI returned an invalid response: \"pages\" is empty — plan at least an overview page."
+              }
+            }
+          }
+        ],
+        "done": []
+      },
+      "result": null,
+      "error": "The AI returned an invalid response: \"pages\" is empty — plan at least an overview page.",
+      "exported": {},
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "Just an overview.",
+                "sections": [],
+                "related": [],
+                "markdown": "# Overview\n\nJust an overview.\n"
+              }
+            ],
+            "stack": null
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:generate",
+      "args": [
+        "@EMPTY",
+        {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "https://api.openai.com/v1",
+              "apiKey": "",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "",
+          "model": "gpt-test",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        }
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@EMPTY",
+              "progress": {
+                "phase": "planning"
+              }
+            }
+          },
+          {
+            "channel": "wiki:progress",
+            "payload": {
+              "repoPath": "@EMPTY",
+              "progress": {
+                "phase": "error",
+                "message": "This repository has no tracked files to read."
+              }
+            }
+          }
+        ],
+        "done": []
+      },
+      "result": null,
+      "error": "This repository has no tracked files to read.",
+      "exported": {},
+      "stored": {
+        "repos": {
+          "@REPO": {
+            "headSha": "@HEAD",
+            "generatedAt": 1768478400000,
+            "model": "",
+            "promptVersion": "wiki.v1",
+            "pages": [
+              {
+                "slug": "overview",
+                "title": "Overview",
+                "archetype": "overview",
+                "summary": "Just an overview.",
+                "sections": [],
+                "related": [],
+                "markdown": "# Overview\n\nJust an overview.\n"
+              }
+            ],
+            "stack": null
+          }
+        }
+      }
+    },
+    {
+      "channel": "wiki:clear",
+      "args": [
+        "@REPO"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": null,
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {}
+      }
+    },
+    {
+      "channel": "wiki:get",
+      "args": [
+        "@REPO",
+        ""
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": {
+        "wiki": null,
+        "freshness": "outdated",
+        "headSha": "@HEAD"
+      },
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {}
+      }
+    },
+    {
+      "channel": "wiki:clear",
+      "args": [
+        "@REPO"
+      ],
+      "replies": {},
+      "calls": [],
+      "events": {
+        "sequence": [],
+        "done": []
+      },
+      "result": null,
+      "error": null,
+      "exported": {},
+      "stored": {
+        "repos": {}
+      }
+    }
+  ]
+}
