@@ -23,3 +23,6 @@ examples/monster/
 
 # Untracked visual references (competitor UI, mockups) — never published
 reference/
+
+# Wails frontend build (npm run build:frontend), embedded by the Go binary
+frontend-dist/

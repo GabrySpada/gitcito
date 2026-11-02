@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "electron-vite dev",
     "build": "node scripts/sync-grammars.mjs && node scripts/gen-licenses.mjs && electron-vite build",
+    "build:frontend": "node scripts/sync-grammars.mjs && node scripts/gen-licenses.mjs && vite build",
+    "dev:frontend": "vite",
     "dist:mac": "electron-builder --mac",
     "dist:win": "electron-builder --win",
     "dist:linux": "electron-builder --linux",
@@ -33,7 +35,8 @@
     "postinstall": "electron-rebuild -f -w node-pty || true && node scripts/sync-grammars.mjs",
     "prepare": "husky",
     "playground:monster": "bash examples/monster-repo.sh",
-    "repo:stats": "bash examples/repo-stats.sh"
+    "repo:stats": "bash examples/repo-stats.sh",
+    "port:inventory": "node scripts/port/inventory.mjs"
   },
   "build": {
     "appId": "com.gitcito.desktop",

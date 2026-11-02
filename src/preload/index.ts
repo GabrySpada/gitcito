@@ -1,7 +1,23 @@
 import { contextBridge, ipcRenderer, webFrame, webUtils } from 'electron'
+import type { PreloadApi } from '../shared/bridgeApi'
 import type { CliOpenPayload } from '../shared/cli'
+import type { DiffToolConfig } from '../shared/diffTools'
+import type { DetectedEditor } from '../shared/editors'
+import type { SshStatus, SshTest } from '../shared/sshKeys'
+import type {
+  AnalyzeResult,
+  AppRelease,
+  CloneProgress,
+  KeychainConsent,
+  LaunchGroup,
+  RunDevice,
+  RunDeviceSnapshot,
+  TodoScanResult,
+  UpdateState
+} from '../shared/types'
 
-const api = {
+// Annotated, not inferred: tsc proves this preload still satisfies the contract the renderer codes against.
+const api: PreloadApi = {
   platform: process.platform,
 
   // True when launched with `--shot` (forwarded by the main process via
@@ -10,8 +26,8 @@ const api = {
 
   git: (method: string, ...args: unknown[]): Promise<unknown> => ipcRenderer.invoke('git', method, ...args),
 
-  onCloneProgress: (cb: (p: unknown) => void): (() => void) => {
-    const listener = (_e: unknown, p: unknown): void => cb(p)
+  onCloneProgress: (cb: (p: CloneProgress) => void): (() => void) => {
+    const listener = (_e: unknown, p: CloneProgress): void => cb(p)
     ipcRenderer.on('clone:progress', listener)
     return () => ipcRenderer.removeListener('clone:progress', listener)
   },
@@ -61,7 +77,8 @@ const api = {
       return () => ipcRenderer.removeListener('keychain:ask', listener)
     },
     answer: (granted: boolean): Promise<void> => ipcRenderer.invoke('keychain:answer', granted),
-    status: (): Promise<unknown> => ipcRenderer.invoke('keychain:status'),
+    status: (): Promise<{ consent: KeychainConsent; explained: boolean; available: boolean | null }> =>
+      ipcRenderer.invoke('keychain:status'),
     set: (granted: boolean): Promise<boolean> => ipcRenderer.invoke('keychain:set', granted)
   },
 
@@ -83,7 +100,7 @@ const api = {
   ): Promise<string | null> => ipcRenderer.invoke('dialog:saveBinary', defaultName, data, filters),
   openExternal: (url: string): Promise<void> => ipcRenderer.invoke('shell:openExternal', url),
   appVersion: (): Promise<string> => ipcRenderer.invoke('app:version'),
-  appReleases: (): Promise<unknown> => ipcRenderer.invoke('app:releases'),
+  appReleases: (): Promise<AppRelease[]> => ipcRenderer.invoke('app:releases'),
 
   shell: {
     showItemInFolder: (fullPath: string): Promise<void> => ipcRenderer.invoke('shell:showItemInFolder', fullPath),
@@ -98,7 +115,7 @@ const api = {
   },
 
   difftool: {
-    config: (repoPath: string): Promise<unknown> => ipcRenderer.invoke('difftool:config', repoPath),
+    config: (repoPath: string): Promise<DiffToolConfig> => ipcRenderer.invoke('difftool:config', repoPath),
     set: (repoPath: string, values: unknown, scope: string): Promise<void> =>
       ipcRenderer.invoke('difftool:set', repoPath, values, scope),
     diff: (repoPath: string, file: string, rev?: string, tool?: string): Promise<string> =>
@@ -108,16 +125,16 @@ const api = {
   },
 
   ssh: {
-    status: (): Promise<unknown> => ipcRenderer.invoke('ssh:status'),
+    status: (): Promise<SshStatus> => ipcRenderer.invoke('ssh:status'),
     generate: (name: string, comment: string, passphrase: string): Promise<string> =>
       ipcRenderer.invoke('ssh:generate', name, comment, passphrase),
     addToAgent: (publicKeyPath: string, passphrase: string): Promise<string> =>
       ipcRenderer.invoke('ssh:addToAgent', publicKeyPath, passphrase),
-    test: (host: string): Promise<unknown> => ipcRenderer.invoke('ssh:test', host)
+    test: (host: string): Promise<SshTest> => ipcRenderer.invoke('ssh:test', host)
   },
 
   editor: {
-    detect: (): Promise<unknown> => ipcRenderer.invoke('editor:detect'),
+    detect: (): Promise<DetectedEditor[]> => ipcRenderer.invoke('editor:detect'),
     open: (setting: unknown, target: unknown): Promise<string> =>
       ipcRenderer.invoke('editor:open', setting, target)
   },
@@ -336,7 +353,7 @@ const api = {
   },
 
   launch: {
-    discover: (repoPath: string): Promise<unknown> => ipcRenderer.invoke('launch:discover', repoPath),
+    discover: (repoPath: string): Promise<LaunchGroup[]> => ipcRenderer.invoke('launch:discover', repoPath),
     run: (payload: unknown): Promise<{ id: number } | { error: string }> =>
       ipcRenderer.invoke('launch:run', payload),
     runTasks: (payload: unknown): Promise<{ id: number } | { error: string }> =>
@@ -369,21 +386,22 @@ const api = {
 
   // Problems: the project's own analyzers, run on demand.
   analyze: {
-    run: (repoPath: string): Promise<unknown> => ipcRenderer.invoke('analyze:run', repoPath),
-    detect: (repoPath: string): Promise<unknown> => ipcRenderer.invoke('analyze:detect', repoPath),
+    run: (repoPath: string): Promise<AnalyzeResult> => ipcRenderer.invoke('analyze:run', repoPath),
+    detect: (repoPath: string): Promise<string[]> => ipcRenderer.invoke('analyze:detect', repoPath),
     cancel: (repoPath: string): void => ipcRenderer.send('analyze:cancel', repoPath)
   },
 
   // TODO markers carried by the repository's own source, scanned on demand.
   todoScan: {
-    run: (repoPath: string): Promise<unknown> => ipcRenderer.invoke('todoscan:run', repoPath),
+    run: (repoPath: string): Promise<TodoScanResult> => ipcRenderer.invoke('todoscan:run', repoPath),
     cancel: (repoPath: string): void => ipcRenderer.send('todoscan:cancel', repoPath)
   },
 
   // Run targets for a launch config: phones, simulators, emulators, desktops.
   devices: {
-    list: (repoPath: string): Promise<unknown> => ipcRenderer.invoke('devices:list', repoPath),
-    boot: (device: unknown): Promise<unknown> => ipcRenderer.invoke('devices:boot', device)
+    list: (repoPath: string): Promise<RunDeviceSnapshot> => ipcRenderer.invoke('devices:list', repoPath),
+    boot: (device: RunDevice): Promise<{ ok: true } | { error: string }> =>
+      ipcRenderer.invoke('devices:boot', device)
   },
 
   // The native application menu: the renderer describes it (translated, with
@@ -419,12 +437,12 @@ const api = {
   },
 
   updates: {
-    getState: (): Promise<unknown> => ipcRenderer.invoke('update:getState'),
+    getState: (): Promise<UpdateState> => ipcRenderer.invoke('update:getState'),
     check: (silent?: boolean): Promise<void> => ipcRenderer.invoke('update:check', silent),
     download: (): Promise<void> => ipcRenderer.invoke('update:download'),
     install: (): void => ipcRenderer.send('update:install'),
-    onEvent: (cb: (state: unknown) => void): (() => void) => {
-      const listener = (_e: unknown, state: unknown): void => cb(state)
+    onEvent: (cb: (state: UpdateState) => void): (() => void) => {
+      const listener = (_e: unknown, state: UpdateState): void => cb(state)
       ipcRenderer.on('update:event', listener)
       return () => ipcRenderer.removeListener('update:event', listener)
     }
@@ -454,6 +472,6 @@ const api = {
   }
 }
 
-export type PreloadApi = typeof api
+export type { PreloadApi }
 
 contextBridge.exposeInMainWorld('api', api)
