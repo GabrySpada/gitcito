@@ -107,3 +107,15 @@ Every decision the brief did not dictate. One entry each: context, options, choi
 - 58 `navigator.clipboard.writeText` call sites now use `clipboardApi.writeText` → `window.api.clipboard`
   (Electron: `clipboard.writeText`; Wails: `Clipboard.SetText`). WebKit rejects clipboard writes outside a
   user gesture, and several call sites run after an `await`.
+
+## 020 — PDF preview frame is not sandboxed
+- **Context:** The brief asks for `sandbox` (without `allow-same-origin`) on every iframe, and for a fallback when
+  WebKitGTK cannot render a PDF.
+- **Finding:** Each webview renders PDFs with a plugin-style viewer (Chromium/WebView2 PDF viewer, WKWebView
+  PDFKit, WebKitGTK PDF.js). A `sandbox` attribute — with any token set — disables plugins, so a sandboxed PDF
+  frame renders nothing on every platform.
+- **Choice:** The frame keeps a `data:` URL, which already gives it an opaque origin (the same isolation
+  `sandbox` without `allow-same-origin` provides for origin checks); it is the only iframe in the renderer. A
+  cross-origin frame cannot be inspected for a failed render, so the working-tree preview always shows an
+  "Open in default app" button (existing key `fileTree.openDefaultApp`, translated in every locale). The
+  server-build e2e (M8) asserts an opaque-origin frame cannot call `/wails/runtime`.

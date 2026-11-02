@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { gitApi } from '../infrastructure/api'
+import { gitApi, shellApi } from '../infrastructure/api'
 import { useT, interp } from '../i18n'
 import { formatBytes, parseTooLargeError } from '../lib/fileSize'
 import { renderMarkdown, sanitizeHtml } from '../preview/markdown'
@@ -229,7 +229,25 @@ export function PreviewPane({ repoPath, file, gitRef, kind }: Props): React.JSX.
     )
   }
   if (kind === 'pdf' && dataUrl) {
-    return <iframe className="pdf-preview" title={file} src={dataUrl} />
+    // A data: URL frame has an opaque origin, so the PDF cannot reach the app's bindings. It is not given a
+    // `sandbox` attribute because every webview's PDF viewer is a plugin, and sandboxed frames refuse
+    // plugins outright (docs/port/DECISIONS.md). Some WebKitGTK builds ship no PDF viewer at all and paint
+    // an empty frame — undetectable from here across origins — so the working-tree copy always gets a
+    // way out to the system viewer.
+    return (
+      <div className="pdf-preview-wrap">
+        <iframe className="pdf-preview" title={file} src={dataUrl} />
+        {!gitRef && (
+          <button
+            type="button"
+            className="link-btn pdf-preview-open"
+            onClick={() => void shellApi.openPath(`${repoPath.replace(/\/+$/, '')}/${file}`)}
+          >
+            {t('fileTree.openDefaultApp')}
+          </button>
+        )}
+      </div>
+    )
   }
   if (kind === 'video' && dataUrl) {
     return (
