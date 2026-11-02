@@ -18,7 +18,14 @@
     "newText": "export const guard = (tok) => (tok ? 'ok' : 'deny')\n"
   },
   "tsSemantic": {
-    "language": null,
-    "changes": []
+    "language": "javascript",
+    "changes": [
+      {
+        "kind": "added",
+        "symbol": "guard",
+        "symbolKind": "function",
+        "line": 1
+      }
+    ]
   }
 }

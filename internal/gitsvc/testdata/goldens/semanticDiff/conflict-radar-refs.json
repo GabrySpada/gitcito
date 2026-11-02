@@ -19,7 +19,16 @@
     "newText": "export function launch() {\n  return \"v2\"\n}\n"
   },
   "tsSemantic": {
-    "language": null,
-    "changes": []
+    "language": "javascript",
+    "changes": [
+      {
+        "kind": "renamed",
+        "symbol": "launch",
+        "oldName": "start",
+        "symbolKind": "function",
+        "line": 1,
+        "bodyChanged": true
+      }
+    ]
   }
 }

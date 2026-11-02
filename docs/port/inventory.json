@@ -1,12 +1,12 @@
 {
   "generatedBy": "scripts/port/inventory.mjs",
   "counts": {
-    "preloadMembers": 184,
+    "preloadMembers": 185,
     "preloadByKind": {
       "invoke": 149,
       "send": 14,
       "event": 16,
-      "local": 5
+      "local": 6
     },
     "ipcMainHandlers": 163,
     "eventChannels": 16,
@@ -36,7 +36,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:151",
+        "src/preload/index.ts:158",
         "src/main/ai.ts:998"
       ],
       "sites": [
@@ -64,7 +64,7 @@
       "returns": "Promise<{ binary: AICliBinary; label: string; path: string; }[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:154",
+        "src/preload/index.ts:161",
         "src/main/ai.ts:1004"
       ],
       "sites": [
@@ -94,7 +94,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:155",
+        "src/preload/index.ts:162",
         "src/main/ai.ts:1005"
       ],
       "sites": [
@@ -127,7 +127,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:167",
+        "src/preload/index.ts:174",
         "src/main/ai.ts:1021"
       ],
       "sites": [
@@ -157,7 +157,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:173",
+        "src/preload/index.ts:180",
         "src/main/ai.ts:1024"
       ],
       "sites": [
@@ -186,7 +186,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:169",
+        "src/preload/index.ts:176",
         "src/main/ai.ts:1022"
       ],
       "sites": [
@@ -217,7 +217,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:161",
+        "src/preload/index.ts:168",
         "src/main/ai.ts:1010"
       ],
       "sites": [
@@ -246,7 +246,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:171",
+        "src/preload/index.ts:178",
         "src/main/ai.ts:1023"
       ],
       "sites": [
@@ -275,7 +275,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:157",
+        "src/preload/index.ts:164",
         "src/main/ai.ts:1006"
       ],
       "sites": [
@@ -304,7 +304,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:153",
+        "src/preload/index.ts:160",
         "src/main/ai.ts:1001"
       ],
       "sites": [
@@ -334,7 +334,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:179",
+        "src/preload/index.ts:186",
         "src/main/ai.ts:995"
       ],
       "sites": [],
@@ -359,7 +359,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:177",
+        "src/preload/index.ts:184",
         "src/main/ai.ts:1028"
       ],
       "sites": [
@@ -390,7 +390,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:181",
+        "src/preload/index.ts:188",
         "src/main/repoChat.ts:1144"
       ],
       "sites": [
@@ -421,7 +421,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:183",
+        "src/preload/index.ts:190",
         "src/main/repoChat.ts:1149"
       ],
       "sites": [
@@ -451,7 +451,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:159",
+        "src/preload/index.ts:166",
         "src/main/ai.ts:1007"
       ],
       "sites": [
@@ -480,7 +480,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:175",
+        "src/preload/index.ts:182",
         "src/main/ai.ts:1027"
       ],
       "sites": [
@@ -509,7 +509,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:165",
+        "src/preload/index.ts:172",
         "src/main/ai.ts:1020"
       ],
       "sites": [
@@ -541,7 +541,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:163",
+        "src/preload/index.ts:170",
         "src/main/ai.ts:1015"
       ],
       "sites": [
@@ -565,7 +565,7 @@
       "returns": "Analytics (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:205",
+        "src/preload/index.ts:212",
         "src/main/analytics.ts:133"
       ],
       "sites": [
@@ -589,7 +589,7 @@
       "returns": "Promise<Analytics> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:204",
+        "src/preload/index.ts:211",
         "src/main/analytics.ts:132"
       ],
       "sites": [
@@ -615,7 +615,7 @@
       "returns": "Promise<Analytics> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:206",
+        "src/preload/index.ts:213",
         "src/main/analytics.ts:139"
       ],
       "sites": [
@@ -641,7 +641,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:391",
+        "src/preload/index.ts:398",
         "src/main/analyze.ts:512"
       ],
       "sites": [
@@ -667,7 +667,7 @@
       "returns": "string[] (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:390",
+        "src/preload/index.ts:397",
         "src/main/analyze.ts:511"
       ],
       "sites": [
@@ -693,7 +693,7 @@
       "returns": "Promise<AnalyzeResult> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:389",
+        "src/preload/index.ts:396",
         "src/main/analyze.ts:510"
       ],
       "sites": [
@@ -717,7 +717,7 @@
       "returns": "Promise<AppRelease[]>",
       "events": [],
       "source": [
-        "src/preload/index.ts:103",
+        "src/preload/index.ts:110",
         "src/main/index.ts:281"
       ],
       "sites": [
@@ -726,8 +726,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.AppService.Releases",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -741,7 +741,7 @@
       "returns": "string (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:102",
+        "src/preload/index.ts:109",
         "src/main/index.ts:277"
       ],
       "sites": [
@@ -762,8 +762,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.AppService.Version",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -780,7 +780,7 @@
       "returns": "Promise<{ ok: boolean; error?: string }>",
       "events": [],
       "source": [
-        "src/preload/index.ts:470",
+        "src/preload/index.ts:477",
         "src/main/cli.ts:156"
       ],
       "sites": [
@@ -793,8 +793,8 @@
           "via": "cliApi.finishEdit"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.AppService.FinishEdit",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -808,7 +808,7 @@
       "returns": "Promise<{ ok: boolean; error?: string; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:453",
+        "src/preload/index.ts:460",
         "src/main/cli.ts:150"
       ],
       "sites": [
@@ -832,7 +832,7 @@
       "returns": "Promise<boolean> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:452",
+        "src/preload/index.ts:459",
         "src/main/cli.ts:149"
       ],
       "sites": [
@@ -856,7 +856,7 @@
       "returns": "Promise<{ ok: boolean; error?: string; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:454",
+        "src/preload/index.ts:461",
         "src/main/cli.ts:151"
       ],
       "sites": [
@@ -882,7 +882,7 @@
       "returns": "Promise<{ ok: true; } | { error: string; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:403",
+        "src/preload/index.ts:410",
         "src/main/devices.ts:371"
       ],
       "sites": [
@@ -908,7 +908,7 @@
       "returns": "Promise<RunDeviceSnapshot> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:402",
+        "src/preload/index.ts:409",
         "src/main/devices.ts:370"
       ],
       "sites": [
@@ -936,7 +936,7 @@
       "returns": "Promise<string | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:89",
+        "src/preload/index.ts:90",
         "src/main/index.ts:240"
       ],
       "sites": [
@@ -949,8 +949,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.DialogService.ChoosePath",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -967,7 +967,7 @@
       "returns": "Promise<string | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:94",
+        "src/preload/index.ts:95",
         "src/main/index.ts:254"
       ],
       "sites": [
@@ -976,12 +976,12 @@
           "via": null
         },
         {
-          "at": "src/renderer/src/components/RepoChatPanel.tsx:676",
+          "at": "src/renderer/src/components/RepoChatPanel.tsx:675",
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.DialogService.OpenFilePath",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -995,7 +995,7 @@
       "returns": "Promise<{ path: string; content: string; } | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:88",
+        "src/preload/index.ts:89",
         "src/main/index.ts:267"
       ],
       "sites": [
@@ -1004,8 +1004,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.DialogService.OpenPatch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1023,17 +1023,17 @@
       "returns": "Promise<string | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:96",
+        "src/preload/index.ts:97",
         "src/main/index.ts:224"
       ],
       "sites": [
         {
-          "at": "src/renderer/src/components/TimelapseModal.tsx:210",
+          "at": "src/renderer/src/components/TimelapseModal.tsx:211",
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.DialogService.SaveBinary",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1050,7 +1050,7 @@
       "returns": "Promise<string | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:86",
+        "src/preload/index.ts:87",
         "src/main/index.ts:210"
       ],
       "sites": [
@@ -1063,8 +1063,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.DialogService.SavePatch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1080,7 +1080,7 @@
       "returns": "Promise<string | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:85",
+        "src/preload/index.ts:86",
         "src/main/index.ts:197"
       ],
       "sites": [
@@ -1121,8 +1121,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.DialogService.SelectDirectory",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1138,7 +1138,7 @@
       "returns": "Promise<DiffToolConfig> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:118",
+        "src/preload/index.ts:125",
         "src/main/difftool.ts:114"
       ],
       "sites": [
@@ -1175,7 +1175,7 @@
       "returns": "Promise<string> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:121",
+        "src/preload/index.ts:128",
         "src/main/difftool.ts:120"
       ],
       "sites": [
@@ -1203,7 +1203,7 @@
       "returns": "Promise<string> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:123",
+        "src/preload/index.ts:130",
         "src/main/difftool.ts:123"
       ],
       "sites": [
@@ -1231,7 +1231,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:119",
+        "src/preload/index.ts:126",
         "src/main/difftool.ts:115"
       ],
       "sites": [
@@ -1255,7 +1255,7 @@
       "returns": "DetectedEditor[] (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:137",
+        "src/preload/index.ts:144",
         "src/main/editor.ts:119"
       ],
       "sites": [
@@ -1282,7 +1282,7 @@
       "returns": "Promise<string> | \"No editor is configured.\" (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:138",
+        "src/preload/index.ts:145",
         "src/main/editor.ts:120"
       ],
       "sites": [
@@ -1341,7 +1341,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:322",
+        "src/preload/index.ts:329",
         "src/main/hosting.ts:2155"
       ],
       "sites": [
@@ -1369,7 +1369,7 @@
       "returns": "Promise<Record<string, CiStatus>> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:286",
+        "src/preload/index.ts:293",
         "src/main/hosting.ts:2063"
       ],
       "sites": [
@@ -1397,7 +1397,7 @@
       "returns": "Promise<{ number: number; url: string; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:320",
+        "src/preload/index.ts:327",
         "src/main/hosting.ts:2150"
       ],
       "sites": [
@@ -1425,7 +1425,7 @@
       "returns": "Promise<CreatePrResult> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:290",
+        "src/preload/index.ts:297",
         "src/main/hosting.ts:2071"
       ],
       "sites": [
@@ -1462,7 +1462,7 @@
       "returns": "Promise<RemoteRepo> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:280",
+        "src/preload/index.ts:287",
         "src/main/hosting.ts:2054"
       ],
       "sites": [
@@ -1490,7 +1490,7 @@
       "returns": "Promise<GithubStackInfo | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:328",
+        "src/preload/index.ts:335",
         "src/main/hosting.ts:2106"
       ],
       "sites": [
@@ -1518,7 +1518,7 @@
       "returns": "Promise<IssueDetail> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:316",
+        "src/preload/index.ts:323",
         "src/main/hosting.ts:2142"
       ],
       "sites": [
@@ -1545,7 +1545,7 @@
       "returns": "Promise<{ provider: HostingProvider; issues: IssueInfo[]; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:312",
+        "src/preload/index.ts:319",
         "src/main/hosting.ts:2130"
       ],
       "sites": [
@@ -1572,7 +1572,7 @@
       "returns": "Promise<{ provider: HostingProvider; milestones: MilestoneInfo[]; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:330",
+        "src/preload/index.ts:337",
         "src/main/hosting.ts:2133"
       ],
       "sites": [
@@ -1599,7 +1599,7 @@
       "returns": "Promise<GitHubNotification[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:306",
+        "src/preload/index.ts:313",
         "src/main/hosting.ts:2121"
       ],
       "sites": [
@@ -1631,7 +1631,7 @@
       "returns": "Promise<RemoteOwner[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:276",
+        "src/preload/index.ts:283",
         "src/main/hosting.ts:2048"
       ],
       "sites": [
@@ -1658,7 +1658,7 @@
       "returns": "Promise<{ provider: HostingProvider; prs: PullRequest[]; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:282",
+        "src/preload/index.ts:289",
         "src/main/hosting.ts:2057"
       ],
       "sites": [
@@ -1685,7 +1685,7 @@
       "returns": "Promise<{ provider: HostingProvider; releases: ReleaseInfo[]; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:284",
+        "src/preload/index.ts:291",
         "src/main/hosting.ts:2060"
       ],
       "sites": [
@@ -1713,7 +1713,7 @@
       "returns": "Promise<RemoteRepo[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:274",
+        "src/preload/index.ts:281",
         "src/main/hosting.ts:2045"
       ],
       "sites": [
@@ -1739,7 +1739,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:310",
+        "src/preload/index.ts:317",
         "src/main/hosting.ts:2127"
       ],
       "sites": [
@@ -1766,7 +1766,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:308",
+        "src/preload/index.ts:315",
         "src/main/hosting.ts:2124"
       ],
       "sites": [
@@ -1794,7 +1794,7 @@
       "returns": "Promise<string[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:326",
+        "src/preload/index.ts:333",
         "src/main/hosting.ts:2103"
       ],
       "sites": [
@@ -1822,7 +1822,7 @@
       "returns": "Promise<IssueInfo[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:332",
+        "src/preload/index.ts:339",
         "src/main/hosting.ts:2136"
       ],
       "sites": [
@@ -1850,7 +1850,7 @@
       "returns": "boolean (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:288",
+        "src/preload/index.ts:295",
         "src/main/hosting.ts:2066"
       ],
       "sites": [
@@ -1878,7 +1878,7 @@
       "returns": "Promise<PrCheck[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:298",
+        "src/preload/index.ts:305",
         "src/main/hosting.ts:2090"
       ],
       "sites": [
@@ -1907,7 +1907,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:294",
+        "src/preload/index.ts:301",
         "src/main/hosting.ts:2079"
       ],
       "sites": [
@@ -1939,7 +1939,7 @@
       "returns": "Promise<PrDetail> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:292",
+        "src/preload/index.ts:299",
         "src/main/hosting.ts:2076"
       ],
       "sites": [
@@ -1967,7 +1967,7 @@
       "returns": "Promise<PrFile[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:300",
+        "src/preload/index.ts:307",
         "src/main/hosting.ts:2087"
       ],
       "sites": [
@@ -1996,7 +1996,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:304",
+        "src/preload/index.ts:311",
         "src/main/hosting.ts:2098"
       ],
       "sites": [
@@ -2026,7 +2026,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:296",
+        "src/preload/index.ts:303",
         "src/main/hosting.ts:2082"
       ],
       "sites": [
@@ -2056,7 +2056,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:302",
+        "src/preload/index.ts:309",
         "src/main/hosting.ts:2093"
       ],
       "sites": [
@@ -2085,7 +2085,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:318",
+        "src/preload/index.ts:325",
         "src/main/hosting.ts:2145"
       ],
       "sites": [
@@ -2114,7 +2114,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:324",
+        "src/preload/index.ts:331",
         "src/main/hosting.ts:2111"
       ],
       "sites": [
@@ -2146,7 +2146,7 @@
       "returns": "Promise<{ id: number; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:314",
+        "src/preload/index.ts:321",
         "src/main/hosting.ts:2139"
       ],
       "sites": [
@@ -2175,7 +2175,7 @@
       "returns": "Promise<ConnectedAccount> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:278",
+        "src/preload/index.ts:285",
         "src/main/hosting.ts:2051"
       ],
       "sites": [
@@ -2199,7 +2199,7 @@
       "returns": "Promise<InfoExport> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:264",
+        "src/preload/index.ts:271",
         "src/main/info.ts:96"
       ],
       "sites": [
@@ -2225,7 +2225,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:265",
+        "src/preload/index.ts:272",
         "src/main/info.ts:97"
       ],
       "sites": [
@@ -2251,7 +2251,7 @@
       "returns": "Promise<InfoEntry[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:257",
+        "src/preload/index.ts:264",
         "src/main/info.ts:92"
       ],
       "sites": [
@@ -2278,7 +2278,7 @@
       "returns": "Promise<InfoEntry[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:260",
+        "src/preload/index.ts:267",
         "src/main/info.ts:94"
       ],
       "sites": [
@@ -2305,7 +2305,7 @@
       "returns": "Promise<InfoEntry[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:262",
+        "src/preload/index.ts:269",
         "src/main/info.ts:95"
       ],
       "sites": [],
@@ -2327,7 +2327,7 @@
       "returns": "Promise<InfoEntry[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:258",
+        "src/preload/index.ts:265",
         "src/main/info.ts:93"
       ],
       "sites": [
@@ -2353,7 +2353,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:79",
+        "src/preload/index.ts:80",
         "src/main/keychain.ts:130"
       ],
       "sites": [
@@ -2366,8 +2366,8 @@
           "via": "keychainApi.answer"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "keychain.Service.Answer",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2383,7 +2383,7 @@
       "returns": "Promise<boolean> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:82",
+        "src/preload/index.ts:83",
         "src/main/keychain.ts:138"
       ],
       "sites": [
@@ -2392,8 +2392,8 @@
           "via": "keychainApi.set"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "keychain.Service.Set",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2407,7 +2407,7 @@
       "returns": "Promise<{ consent: KeychainConsent; explained: boolean; available: boolean | null; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:80",
+        "src/preload/index.ts:81",
         "src/main/keychain.ts:133"
       ],
       "sites": [
@@ -2420,8 +2420,8 @@
           "via": "keychainApi.status"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "keychain.Service.Status",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2437,7 +2437,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:362",
+        "src/preload/index.ts:369",
         "src/main/launch.ts:923"
       ],
       "sites": [
@@ -2463,7 +2463,7 @@
       "returns": "Promise<LaunchGroup[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:356",
+        "src/preload/index.ts:363",
         "src/main/launch.ts:820"
       ],
       "sites": [
@@ -2490,7 +2490,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:363",
+        "src/preload/index.ts:370",
         "src/main/launch.ts:924"
       ],
       "sites": [
@@ -2526,7 +2526,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:364",
+        "src/preload/index.ts:371",
         "src/main/launch.ts:925"
       ],
       "sites": [
@@ -2556,7 +2556,7 @@
         "launch:exit:${id}"
       ],
       "source": [
-        "src/preload/index.ts:357",
+        "src/preload/index.ts:364",
         "src/main/launch.ts:822"
       ],
       "sites": [
@@ -2585,7 +2585,7 @@
         "launch:exit:${id}"
       ],
       "source": [
-        "src/preload/index.ts:359",
+        "src/preload/index.ts:366",
         "src/main/launch.ts:893"
       ],
       "sites": [
@@ -2612,7 +2612,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:366",
+        "src/preload/index.ts:373",
         "src/main/launch.ts:928"
       ],
       "sites": [
@@ -2638,7 +2638,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:367",
+        "src/preload/index.ts:374",
         "src/main/launch.ts:931"
       ],
       "sites": [
@@ -2925,7 +2925,7 @@
       "returns": "LogEntry[] (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:270",
+        "src/preload/index.ts:277",
         "src/main/log.ts:59"
       ],
       "sites": [
@@ -2934,8 +2934,8 @@
           "via": "logApi.clear"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "logbook.Service.Clear",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2949,7 +2949,7 @@
       "returns": "Promise<LogEntry[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:269",
+        "src/preload/index.ts:276",
         "src/main/log.ts:58"
       ],
       "sites": [
@@ -2966,8 +2966,8 @@
           "via": "logApi.get"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "logbook.Service.Get",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2985,7 +2985,7 @@
         "menu:command"
       ],
       "source": [
-        "src/preload/index.ts:410",
+        "src/preload/index.ts:417",
         "src/main/menu.ts:74",
         "src/main/menu.ts:63"
       ],
@@ -2995,8 +2995,8 @@
           "via": "menuApi.set"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "menu.Service.Set",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3012,7 +3012,7 @@
       "returns": "Promise<RegistryRepo[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:220",
+        "src/preload/index.ts:227",
         "src/main/repoRegistry.ts:211"
       ],
       "sites": [
@@ -3036,7 +3036,7 @@
       "returns": "Promise<RegistryRepo[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:218",
+        "src/preload/index.ts:225",
         "src/main/repoRegistry.ts:209"
       ],
       "sites": [
@@ -3067,7 +3067,7 @@
       "returns": "Promise<RegistryRepo[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:222",
+        "src/preload/index.ts:229",
         "src/main/repoRegistry.ts:213"
       ],
       "sites": [
@@ -3093,7 +3093,7 @@
       "returns": "Promise<RegistryRepo[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:224",
+        "src/preload/index.ts:231",
         "src/main/repoRegistry.ts:214"
       ],
       "sites": [],
@@ -3114,7 +3114,7 @@
       "returns": "Promise<RegistryRepo[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:219",
+        "src/preload/index.ts:226",
         "src/main/repoRegistry.ts:210"
       ],
       "sites": [
@@ -3148,7 +3148,7 @@
       "returns": "Promise<RepoScanResult> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:221",
+        "src/preload/index.ts:228",
         "src/main/repoRegistry.ts:212"
       ],
       "sites": [
@@ -3177,7 +3177,7 @@
       "returns": "Promise<{ written: string[]; } | { error: SecureShareError; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:233",
+        "src/preload/index.ts:240",
         "src/main/secureShare.ts:536"
       ],
       "sites": [
@@ -3207,7 +3207,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:246",
+        "src/preload/index.ts:253",
         "src/main/secureShare.ts:519"
       ],
       "sites": [
@@ -3233,7 +3233,7 @@
       "returns": "Promise<SecureShareCandidate[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:227",
+        "src/preload/index.ts:234",
         "src/main/secureShare.ts:505"
       ],
       "sites": [
@@ -3266,7 +3266,7 @@
       "returns": "Promise<{ path: string; } | { canceled: true; } | { error: SecureShareError; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:228",
+        "src/preload/index.ts:235",
         "src/main/secureShare.ts:527"
       ],
       "sites": [
@@ -3294,7 +3294,7 @@
       "returns": "Promise<{ path: string; } | { canceled: true; } | { error: SecureShareError; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:235",
+        "src/preload/index.ts:242",
         "src/main/secureShare.ts:506"
       ],
       "sites": [
@@ -3321,7 +3321,7 @@
       "returns": "Promise<SecureBundleOpened | { error: SecureShareError; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:237",
+        "src/preload/index.ts:244",
         "src/main/secureShare.ts:511"
       ],
       "sites": [
@@ -3345,7 +3345,7 @@
       "returns": "Promise<{ path: string; header: SecureBundleHeader; } | { error: SecureShareError; } | null> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:230",
+        "src/preload/index.ts:237",
         "src/main/secureShare.ts:532"
       ],
       "sites": [
@@ -3377,7 +3377,7 @@
       "returns": "Promise<{ files: SecureSharePreviewEntry[]; } | { error: SecureShareError; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:231",
+        "src/preload/index.ts:238",
         "src/main/secureShare.ts:533"
       ],
       "sites": [
@@ -3406,7 +3406,7 @@
       "returns": "Promise<{ notes: SecureNotePreviewEntry[]; } | { error: SecureShareError; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:248",
+        "src/preload/index.ts:255",
         "src/main/secureShare.ts:522"
       ],
       "sites": [
@@ -3435,7 +3435,7 @@
       "returns": "Promise<{ files: SecureSharePreviewEntry[]; } | { error: SecureShareError; }> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:239",
+        "src/preload/index.ts:246",
         "src/main/secureShare.ts:514"
       ],
       "sites": [
@@ -3461,7 +3461,7 @@
       "returns": "Promise<boolean> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:147",
+        "src/preload/index.ts:154",
         "src/main/settings.ts:296"
       ],
       "sites": [
@@ -3470,8 +3470,8 @@
           "via": "settingsApi.exportFile"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "settings.Service.ExportFile",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3485,7 +3485,7 @@
       "returns": "Promise<AppSettings> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:143",
+        "src/preload/index.ts:150",
         "src/main/settings.ts:264"
       ],
       "sites": [
@@ -3494,8 +3494,8 @@
           "via": "settingsApi.get"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "settings.Service.Get",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3509,7 +3509,7 @@
       "returns": "Promise<any> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:146",
+        "src/preload/index.ts:153",
         "src/main/settings.ts:281"
       ],
       "sites": [
@@ -3522,8 +3522,8 @@
           "via": "settingsApi.importFile"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "settings.Service.ImportFile",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3541,7 +3541,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:145",
+        "src/preload/index.ts:152",
         "src/main/settings.ts:269"
       ],
       "sites": [
@@ -3550,8 +3550,8 @@
           "via": "settingsApi.set"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "settings.Service.Set",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3567,7 +3567,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:144",
+        "src/preload/index.ts:151",
         "src/main/settings.ts:275"
       ],
       "sites": [
@@ -3576,8 +3576,8 @@
           "via": "settingsApi.unlock"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "settings.Service.Unlock",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3593,7 +3593,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:101",
+        "src/preload/index.ts:102",
         "src/main/index.ts:205"
       ],
       "sites": [
@@ -3798,7 +3798,7 @@
           "via": null
         },
         {
-          "at": "src/renderer/src/components/Toasts.tsx:96",
+          "at": "src/renderer/src/components/Toasts.tsx:97",
           "via": null
         },
         {
@@ -3810,12 +3810,16 @@
           "via": "shellApi.openExternal"
         },
         {
+          "at": "src/renderer/src/main.tsx:19",
+          "via": null
+        },
+        {
           "at": "src/renderer/src/stores/updates.ts:54",
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.ShellService.OpenExternal",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3831,7 +3835,7 @@
       "returns": "Promise<string> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:107",
+        "src/preload/index.ts:114",
         "src/main/index.ts:319"
       ],
       "sites": [
@@ -3852,15 +3856,19 @@
           "via": "shellApi.openPath"
         },
         {
-          "at": "src/renderer/src/components/FileTree.tsx:492",
+          "at": "src/renderer/src/components/FileTree.tsx:490",
           "via": "shellApi.openPath"
         },
         {
-          "at": "src/renderer/src/components/FileTree.tsx:552",
+          "at": "src/renderer/src/components/FileTree.tsx:550",
           "via": "shellApi.openPath"
         },
         {
           "at": "src/renderer/src/components/LfsModal.tsx:20",
+          "via": "shellApi.openPath"
+        },
+        {
+          "at": "src/renderer/src/components/PreviewPane.tsx:244",
           "via": "shellApi.openPath"
         },
         {
@@ -3876,8 +3884,8 @@
           "via": "shellApi.openPath"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.ShellService.OpenPath",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3894,7 +3902,7 @@
       "returns": "Promise<string>",
       "events": [],
       "source": [
-        "src/preload/index.ts:111",
+        "src/preload/index.ts:118",
         "src/main/index.ts:370"
       ],
       "sites": [
@@ -3907,8 +3915,8 @@
           "via": "shellApi.openWithApp"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.ShellService.OpenWithApp",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3924,7 +3932,7 @@
       "returns": "Promise<string>",
       "events": [],
       "source": [
-        "src/preload/index.ts:108",
+        "src/preload/index.ts:115",
         "src/main/index.ts:324"
       ],
       "sites": [
@@ -3937,8 +3945,8 @@
           "via": "shellApi.openWithPicker"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.ShellService.OpenWithPicker",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3952,7 +3960,7 @@
       "returns": "Promise<{ name: string; path: string } | null>",
       "events": [],
       "source": [
-        "src/preload/index.ts:109",
+        "src/preload/index.ts:116",
         "src/main/index.ts:345"
       ],
       "sites": [
@@ -3965,8 +3973,8 @@
           "via": "shellApi.pickApplication"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.ShellService.PickApplication",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3982,7 +3990,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:106",
+        "src/preload/index.ts:113",
         "src/main/index.ts:315"
       ],
       "sites": [
@@ -4015,7 +4023,7 @@
           "via": "shellApi.revealInFolder"
         },
         {
-          "at": "src/renderer/src/components/FileTree.tsx:491",
+          "at": "src/renderer/src/components/FileTree.tsx:489",
           "via": "shellApi.revealInFolder"
         },
         {
@@ -4047,8 +4055,8 @@
           "via": "shellApi.revealInFolder"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.ShellService.ShowItemInFolder",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4065,7 +4073,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:113",
+        "src/preload/index.ts:120",
         "src/main/index.ts:383"
       ],
       "sites": [
@@ -4078,8 +4086,8 @@
           "via": "shellApi.writeFiles"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "app.ShellService.WriteFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4096,7 +4104,7 @@
       "returns": "Promise<string> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:131",
+        "src/preload/index.ts:138",
         "src/main/ssh.ts:195"
       ],
       "sites": [
@@ -4124,7 +4132,7 @@
       "returns": "Promise<string> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:129",
+        "src/preload/index.ts:136",
         "src/main/ssh.ts:192"
       ],
       "sites": [
@@ -4148,7 +4156,7 @@
       "returns": "Promise<SshStatus> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:128",
+        "src/preload/index.ts:135",
         "src/main/ssh.ts:191"
       ],
       "sites": [
@@ -4174,7 +4182,7 @@
       "returns": "Promise<SshTest> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:133",
+        "src/preload/index.ts:140",
         "src/main/ssh.ts:198"
       ],
       "sites": [
@@ -4205,7 +4213,7 @@
         "term:exit:${id}"
       ],
       "source": [
-        "src/preload/index.ts:337",
+        "src/preload/index.ts:344",
         "src/main/terminal.ts:148"
       ],
       "sites": [
@@ -4232,7 +4240,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:339",
+        "src/preload/index.ts:346",
         "src/main/terminal.ts:155"
       ],
       "sites": [
@@ -4262,7 +4270,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:341",
+        "src/preload/index.ts:348",
         "src/main/terminal.ts:157"
       ],
       "sites": [
@@ -4288,7 +4296,7 @@
       "returns": "string (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:342",
+        "src/preload/index.ts:349",
         "src/main/terminal.ts:154"
       ],
       "sites": [
@@ -4316,7 +4324,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:340",
+        "src/preload/index.ts:347",
         "src/main/terminal.ts:156"
       ],
       "sites": [
@@ -4342,7 +4350,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:397",
+        "src/preload/index.ts:404",
         "src/main/todoScan.ts:207"
       ],
       "sites": [
@@ -4368,7 +4376,7 @@
       "returns": "Promise<TodoScanResult> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:396",
+        "src/preload/index.ts:403",
         "src/main/todoScan.ts:206"
       ],
       "sites": [
@@ -4396,7 +4404,7 @@
         "update:event"
       ],
       "source": [
-        "src/preload/index.ts:441",
+        "src/preload/index.ts:448",
         "src/main/updater.ts:182"
       ],
       "sites": [
@@ -4422,7 +4430,7 @@
         "update:event"
       ],
       "source": [
-        "src/preload/index.ts:442",
+        "src/preload/index.ts:449",
         "src/main/updater.ts:200"
       ],
       "sites": [
@@ -4446,7 +4454,7 @@
       "returns": "UpdateState",
       "events": [],
       "source": [
-        "src/preload/index.ts:440",
+        "src/preload/index.ts:447",
         "src/main/updater.ts:178"
       ],
       "sites": [
@@ -4470,7 +4478,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:443",
+        "src/preload/index.ts:450",
         "src/main/updater.ts:223"
       ],
       "sites": [
@@ -4496,7 +4504,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:214",
+        "src/preload/index.ts:221",
         "src/main/vault.ts:155"
       ],
       "sites": [
@@ -4524,7 +4532,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:215",
+        "src/preload/index.ts:222",
         "src/main/vault.ts:156"
       ],
       "sites": [
@@ -4552,7 +4560,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:209",
+        "src/preload/index.ts:216",
         "src/main/vault.ts:150"
       ],
       "sites": [
@@ -4590,7 +4598,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:212",
+        "src/preload/index.ts:219",
         "src/main/vault.ts:154"
       ],
       "sites": [
@@ -4624,7 +4632,7 @@
         "keychain:ask"
       ],
       "source": [
-        "src/preload/index.ts:210",
+        "src/preload/index.ts:217",
         "src/main/vault.ts:151"
       ],
       "sites": [
@@ -4663,7 +4671,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:431",
+        "src/preload/index.ts:438",
         "src/main/watcher.ts:122"
       ],
       "sites": [],
@@ -4686,7 +4694,7 @@
         "repo:changed"
       ],
       "source": [
-        "src/preload/index.ts:430",
+        "src/preload/index.ts:437",
         "src/main/watcher.ts:117"
       ],
       "sites": [
@@ -4716,7 +4724,7 @@
       "returns": "Promise<void> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:195",
+        "src/preload/index.ts:202",
         "src/main/wiki.ts:444"
       ],
       "sites": [
@@ -4742,7 +4750,7 @@
       "returns": "Promise<string[]> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:194",
+        "src/preload/index.ts:201",
         "src/main/wiki.ts:443"
       ],
       "sites": [
@@ -4768,7 +4776,7 @@
       "returns": "Promise<RepoFacts> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:188",
+        "src/preload/index.ts:195",
         "src/main/wiki.ts:440"
       ],
       "sites": [
@@ -4798,7 +4806,7 @@
         "wiki:progress"
       ],
       "source": [
-        "src/preload/index.ts:192",
+        "src/preload/index.ts:199",
         "src/main/wiki.ts:442"
       ],
       "sites": [
@@ -4825,7 +4833,7 @@
       "returns": "Promise<StoredWiki> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:191",
+        "src/preload/index.ts:198",
         "src/main/wiki.ts:441"
       ],
       "sites": [
@@ -4852,7 +4860,7 @@
       "returns": "Promise<ImportGraph> (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:189",
+        "src/preload/index.ts:196",
         "src/main/wiki.ts:439"
       ],
       "sites": [
@@ -4876,7 +4884,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:421",
+        "src/preload/index.ts:428",
         "src/main/index.ts:413"
       ],
       "sites": [
@@ -4904,7 +4912,7 @@
       "returns": "void (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:420",
+        "src/preload/index.ts:427",
         "src/main/index.ts:409"
       ],
       "sites": [
@@ -4928,7 +4936,7 @@
       "returns": "void | undefined (inferred)",
       "events": [],
       "source": [
-        "src/preload/index.ts:419",
+        "src/preload/index.ts:426",
         "src/main/index.ts:408"
       ],
       "sites": [
@@ -4983,7 +4991,7 @@
       "returns": "() => void (unsubscribe)",
       "events": [],
       "source": [
-        "src/preload/index.ts:465",
+        "src/preload/index.ts:472",
         "src/main/index.ts:68"
       ],
       "sites": [
@@ -5009,7 +5017,7 @@
       "returns": "() => void (unsubscribe)",
       "events": [],
       "source": [
-        "src/preload/index.ts:458",
+        "src/preload/index.ts:465",
         "src/main/index.ts:50"
       ],
       "sites": [
@@ -5106,7 +5114,7 @@
         "wiki:generate"
       ],
       "source": [
-        "src/preload/index.ts:74",
+        "src/preload/index.ts:75",
         "src/main/keychain.ts:96"
       ],
       "sites": [
@@ -5136,7 +5144,7 @@
         "launch:runTasks"
       ],
       "source": [
-        "src/preload/index.ts:368",
+        "src/preload/index.ts:375",
         "src/main/launch.ts:667",
         "src/main/launch.ts:679"
       ],
@@ -5166,7 +5174,7 @@
         "launch:run"
       ],
       "source": [
-        "src/preload/index.ts:375",
+        "src/preload/index.ts:382",
         "src/main/launch.ts:625"
       ],
       "sites": [
@@ -5196,7 +5204,7 @@
         "launch:runTasks"
       ],
       "source": [
-        "src/preload/index.ts:380",
+        "src/preload/index.ts:387",
         "src/main/launch.ts:671",
         "src/main/launch.ts:680"
       ],
@@ -5292,7 +5300,7 @@
         "menu:set"
       ],
       "source": [
-        "src/preload/index.ts:411",
+        "src/preload/index.ts:418",
         "src/main/menu.ts:52"
       ],
       "sites": [
@@ -5320,7 +5328,7 @@
         "watch:repo"
       ],
       "source": [
-        "src/preload/index.ts:432",
+        "src/preload/index.ts:439",
         "src/main/watcher.ts:86"
       ],
       "sites": [
@@ -5349,7 +5357,7 @@
         "term:create"
       ],
       "source": [
-        "src/preload/index.ts:343",
+        "src/preload/index.ts:350",
         "src/main/terminal.ts:55",
         "src/main/terminal.ts:105"
       ],
@@ -5379,7 +5387,7 @@
         "term:create"
       ],
       "source": [
-        "src/preload/index.ts:348",
+        "src/preload/index.ts:355",
         "src/main/terminal.ts:58",
         "src/main/terminal.ts:112"
       ],
@@ -5409,7 +5417,7 @@
         "update:download"
       ],
       "source": [
-        "src/preload/index.ts:444",
+        "src/preload/index.ts:451",
         "src/main/updater.ts:32"
       ],
       "sites": [
@@ -5437,7 +5445,7 @@
         "wiki:generate"
       ],
       "source": [
-        "src/preload/index.ts:196",
+        "src/preload/index.ts:203",
         "src/main/wiki.ts:352"
       ],
       "sites": [
@@ -5501,7 +5509,7 @@
           "via": "shellApi.revealLabel"
         },
         {
-          "at": "src/renderer/src/components/FileTree.tsx:491",
+          "at": "src/renderer/src/components/FileTree.tsx:489",
           "via": "shellApi.revealLabel"
         },
         {
@@ -5552,11 +5560,11 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/components/Toasts.tsx:117",
+          "at": "src/renderer/src/components/Toasts.tsx:118",
           "via": null
         },
         {
-          "at": "src/renderer/src/main.tsx:28",
+          "at": "src/renderer/src/main.tsx:29",
           "via": null
         }
       ],
@@ -5566,31 +5574,284 @@
     },
     {
       "table": "local",
-      "key": "api.getPathForFile",
+      "key": "api.droppedFilePaths",
       "api": [
-        "getPathForFile"
+        "droppedFilePaths"
       ],
       "kind": "local",
       "args": [
-        "file: File"
+        "files: File[]"
       ],
-      "returns": "string",
+      "returns": "Promise<string[]>",
       "events": [],
       "source": [
         "src/preload/index.ts:69"
       ],
       "sites": [
         {
-          "at": "src/renderer/src/components/FileTree.tsx:335",
+          "at": "src/renderer/src/components/FileTree.tsx:334",
           "via": null
         },
         {
-          "at": "src/renderer/src/components/RepoChatPanel.tsx:653",
+          "at": "src/renderer/src/components/RepoChatPanel.tsx:652",
           "via": null
         },
         {
-          "at": "src/renderer/src/components/TerminalPanel.tsx:55",
+          "at": "src/renderer/src/components/TerminalPanel.tsx:54",
           "via": null
+        }
+      ],
+      "owner": "—",
+      "status": "todo",
+      "test": "—"
+    },
+    {
+      "table": "local",
+      "key": "api.clipboard.writeText",
+      "api": [
+        "clipboard.writeText"
+      ],
+      "kind": "local",
+      "args": [
+        "text: string"
+      ],
+      "returns": "Promise<void>",
+      "events": [],
+      "source": [
+        "src/preload/index.ts:104"
+      ],
+      "sites": [
+        {
+          "at": "src/renderer/src/components/BranchStatusPicker.tsx:123",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/ChangelogGenModal.tsx:45",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/CommitComposer.tsx:518",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/CommitComposer.tsx:519",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/CommitComposer.tsx:661",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/CommitDetails.tsx:290",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/CommitDetails.tsx:499",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/CommitDetails.tsx:525",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/FileTree.tsx:501",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/FileViewer.tsx:697",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/FileViewer.tsx:956",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1082",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1239",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1248",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1250",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1304",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1319",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1399",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1400",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1402",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1503",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:1504",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/GraphView.tsx:2202",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/LocalCIModal.tsx:164",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/ReflogModal.tsx:105",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/RepoChatPanel.tsx:137",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/RepoChatPanel.tsx:144",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/RepoChatPanel.tsx:151",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/RepoInfoTab.tsx:71",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/RepoVaultTab.tsx:88",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/RepoVaultTab.tsx:92",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/SettingsPanel.tsx:3229",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:810",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:814",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:974",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1004",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1038",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1058",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1136",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1171",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1172",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1261",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1262",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1264",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1282",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1283",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1300",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1301",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1309",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Sidebar.tsx:1311",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/StashDetails.tsx:219",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/StashDetails.tsx:237",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/TimeMachineModal.tsx:182",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/Toasts.tsx:43",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/VaultPage.tsx:91",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/components/VaultPage.tsx:95",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/lib/openWith.ts:49",
+          "via": "clipboardApi.writeText"
+        },
+        {
+          "at": "src/renderer/src/lib/repositoryMenuItems.ts:119",
+          "via": "clipboardApi.writeText"
         }
       ],
       "owner": "—",
@@ -5608,7 +5869,7 @@
       "returns": "number",
       "events": [],
       "source": [
-        "src/preload/index.ts:425"
+        "src/preload/index.ts:432"
       ],
       "sites": [],
       "owner": "—",
@@ -5628,7 +5889,7 @@
       "returns": "void",
       "events": [],
       "source": [
-        "src/preload/index.ts:426"
+        "src/preload/index.ts:433"
       ],
       "sites": [
         {
@@ -6211,8 +6472,8 @@
           "via": "gitApi.blameFile"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BlameFile",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6498,8 +6759,8 @@
           "via": "gitApi.cherryPick"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CherryPick",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6533,8 +6794,8 @@
           "via": "gitApi.cherryPickMany"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CherryPickMany",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6738,8 +6999,8 @@
           "via": "gitApi.commitBranches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitBranches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6764,8 +7025,8 @@
           "via": "gitApi.commitDiff"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitDiff",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6878,8 +7139,8 @@
           "via": "gitApi.commitFileDiff"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitFileDiff",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6916,8 +7177,8 @@
           "via": "gitApi.commitFiles"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6972,8 +7233,8 @@
           "via": "gitApi.commitMenuProbe"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitMenuProbe",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7046,8 +7307,8 @@
           "via": "gitApi.commitTags"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitTags",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7114,8 +7375,8 @@
           "via": "gitApi.compareBranches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CompareBranches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7306,8 +7567,8 @@
           "via": "gitApi.contributors"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Contributors",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7332,8 +7593,8 @@
           "via": "gitApi.cosmosData"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CosmosData",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7459,8 +7720,8 @@
           "via": "gitApi.createTag"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CreateTag",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7624,8 +7885,8 @@
           "via": "gitApi.deleteRemoteTag"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DeleteRemoteTag",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7684,8 +7945,8 @@
           "via": "gitApi.deleteTag"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DeleteTag",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7767,8 +8028,8 @@
           "via": "gitApi.diffFile"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DiffFile",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7911,8 +8172,8 @@
           "via": "gitApi.fetchNotes"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FetchNotes",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7996,8 +8257,8 @@
           "via": "gitApi.fileContent"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FileContent",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8036,8 +8297,8 @@
           "via": "gitApi.fileDataUrl"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FileDataUrl",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8062,8 +8323,8 @@
           "via": "gitApi.fileHistory"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FileHistory",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8439,8 +8700,8 @@
           "via": "gitApi.generateChangelog"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GenerateChangelog",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8491,8 +8752,8 @@
           "via": "gitApi.getRemoteTags"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GetRemoteTags",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8686,8 +8947,8 @@
           "via": "gitApi.gitObject"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GitObject",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8713,8 +8974,8 @@
           "via": "gitApi.grepWorkingTree"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GrepWorkingTree",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8739,8 +9000,8 @@
           "via": "gitApi.historyPaths"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.HistoryPaths",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8765,8 +9026,8 @@
           "via": "gitApi.historyPurge"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.HistoryPurge",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8790,8 +9051,8 @@
           "via": "gitApi.historyPurgeBackups"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.HistoryPurgeBackups",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8816,8 +9077,8 @@
           "via": "gitApi.historyPurgeDropBackup"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.HistoryPurgeDropBackup",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8842,8 +9103,8 @@
           "via": "gitApi.historyPurgePreview"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.HistoryPurgePreview",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8868,8 +9129,8 @@
           "via": "gitApi.historyPurgeRestore"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.HistoryPurgeRestore",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8942,8 +9203,8 @@
           "via": "gitApi.imageDiff"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ImageDiff",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9205,8 +9466,8 @@
           "via": "gitApi.listDir"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ListDir",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9232,8 +9493,8 @@
           "via": "gitApi.listDirAt"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ListDirAt",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9261,8 +9522,8 @@
           "via": "gitApi.listFiles"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ListFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9587,8 +9848,8 @@
           "via": "gitApi.note"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Note",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9612,8 +9873,8 @@
           "via": "gitApi.notedCommits"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.NotedCommits",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9637,8 +9898,8 @@
           "via": "gitApi.objectRefs"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ObjectRefs",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9692,8 +9953,8 @@
           "via": "gitApi.previewRef"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.PreviewRef",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9729,8 +9990,8 @@
           "via": "gitApi.protectedBranches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ProtectedBranches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9905,8 +10166,8 @@
           "via": "gitApi.pushNotes"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.PushNotes",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9932,8 +10193,8 @@
           "via": "gitApi.pushTag"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.PushTag",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10268,8 +10529,8 @@
         "src/main/git.ts:4617"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RemoveNote",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10596,8 +10857,8 @@
           "via": "gitApi.repoInsights"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RepoInsights",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10651,8 +10912,8 @@
           "via": "gitApi.repoStats"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RepoStats",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10834,8 +11095,8 @@
           "via": "gitApi.reset"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Reset",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10925,8 +11186,8 @@
           "via": "gitApi.resolvePrRef"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ResolvePrRef",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11055,8 +11316,8 @@
           "via": "gitApi.restoreUndoneCommit"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RestoreUndoneCommit",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11091,8 +11352,8 @@
           "via": "gitApi.revertCommit"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RevertCommit",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11148,8 +11409,8 @@
           "via": "gitApi.searchCommitMatches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SearchCommitMatches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11171,8 +11432,8 @@
         "src/main/git.ts:5942"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SearchFileContents",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11203,8 +11464,8 @@
           "via": "gitApi.searchFileMatches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SearchFileMatches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11230,8 +11491,8 @@
           "via": "gitApi.searchHistory"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SearchHistory",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11258,8 +11519,8 @@
           "via": "gitApi.semanticDiff"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SemanticDiff",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11446,8 +11707,8 @@
           "via": "gitApi.setNote"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetNote",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11472,8 +11733,8 @@
           "via": "gitApi.setProtectedBranches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetProtectedBranches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11689,8 +11950,8 @@
           "via": "gitApi.sparseCheckoutDisable"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SparseCheckoutDisable",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11714,8 +11975,8 @@
           "via": "gitApi.sparseCheckoutInfo"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SparseCheckoutInfo",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11740,8 +12001,8 @@
           "via": "gitApi.sparseCheckoutSet"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SparseCheckoutSet",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12144,8 +12405,8 @@
           "via": "gitApi.stagedDiff"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StagedDiff",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12425,8 +12686,8 @@
           "via": "gitApi.stashFileDiff"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StashFileDiff",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12452,8 +12713,8 @@
           "via": "gitApi.stashFiles"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StashFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13022,12 +13283,12 @@
       ],
       "sites": [
         {
-          "at": "src/renderer/src/components/TimelapseModal.tsx:58",
+          "at": "src/renderer/src/components/TimelapseModal.tsx:59",
           "via": "gitApi.timelapseData"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.TimelapseData",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13080,8 +13341,8 @@
           "via": "gitApi.undoCommit"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.UndoCommit",
+      "status": "ported",
       "test": "—"
     },
     {

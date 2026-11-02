@@ -9,7 +9,7 @@ Every vitest case from the pre-port baseline (1686 tests in 42 files,
 - `deleted` — the subject no longer exists; the note says why.
 - `todo → Go (…)` — not ported yet.
 
-Open rows: **1519** of 1686.
+Open rows: **1422** of 1686.
 
 | file | test | new home | note |
 |------|------|----------|------|
@@ -109,23 +109,23 @@ Open rows: **1519** of 1686.
 | test/commitEditMerges.test.ts | commit editing across merges leaves a side branch alone when it does not descend from the edited commit | todo → Go (git) |  |
 | test/commitEditMerges.test.ts | commit editing across merges forecasts a conflict when the edit collides with a replayed change | todo → Go (git) |  |
 | test/commitEditMerges.test.ts | commit editing across merges rewords a merge commit itself, keeping tree and both parents | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit labels commitMenuProbe as a read and undoCommit as a write | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit unpushed HEAD: amend+undo, not reset, not GitHub | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit pushed HEAD: amend on, undo off, view on GitHub when origin is github.com | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit older local ancestor is resettable; first published ancestor is the boundary | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit older published commit beyond the first published ancestor is not resettable | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit a tag on a published commit does not by itself make an older commit resettable | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit root commit undo leaves an unborn branch and preserves the working tree | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit undo of a non-root HEAD is a mixed reset and keeps prior WIP | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit detached HEAD is not on a local branch | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit no remote: unpublished, GitHub URL null | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit non-GitHub remote: published but no github commit URL | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit dirty working tree and staged files do not change probe flags | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit merge in progress sets operationInProgress | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit cherry-pick in progress sets operationInProgress | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit rebase in progress sets operationInProgress | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit mutationInFlight is a UI flag — the probe itself does not set it | todo → Go (git) |  |
-| test/commitMenu.test.ts | commitMenuProbe + undoCommit reset mixed preserves uncommitted work relative to the target | todo → Go (git) |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit labels commitMenuProbe as a read and undoCommit as a write | Go: gitsvc.TestBCommitMenuClassification |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit unpushed HEAD: amend+undo, not reset, not GitHub | Go: gitsvc.TestBCommitMenuUnpushedHead (+ vitest for commitMenuCapabilities) |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit pushed HEAD: amend on, undo off, view on GitHub when origin is github.com | Go: gitsvc.TestBCommitMenuPushedHead (+ vitest for commitMenuCapabilities) |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit older local ancestor is resettable; first published ancestor is the boundary | Go: gitsvc.TestBCommitMenuResetBoundary |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit older published commit beyond the first published ancestor is not resettable | Go: gitsvc.TestBCommitMenuBeyondFirstPublished |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit a tag on a published commit does not by itself make an older commit resettable | Go: gitsvc.TestBCommitMenuTagDoesNotMakeResettable |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit root commit undo leaves an unborn branch and preserves the working tree | Go: gitsvc.TestBUndoRootCommitLeavesUnbornBranch |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit undo of a non-root HEAD is a mixed reset and keeps prior WIP | Go: gitsvc.TestBUndoNonRootIsMixedReset |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit detached HEAD is not on a local branch | Go: gitsvc.TestBCommitMenuDetachedHead |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit no remote: unpublished, GitHub URL null | Go: gitsvc.TestBCommitMenuNoRemote (+ vitest for githubCommitUrl) |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit non-GitHub remote: published but no github commit URL | Go: gitsvc.TestBCommitMenuNonGitHubRemote (+ vitest) |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit dirty working tree and staged files do not change probe flags | Go: gitsvc.TestBCommitMenuDirtyTreeDoesNotChangeFlags |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit merge in progress sets operationInProgress | Go: gitsvc.TestBCommitMenuOperationInProgress/merge |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit cherry-pick in progress sets operationInProgress | Go: gitsvc.TestBCommitMenuOperationInProgress/cherry-pick |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit rebase in progress sets operationInProgress | Go: gitsvc.TestBCommitMenuOperationInProgress/rebase |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit mutationInFlight is a UI flag — the probe itself does not set it | Go: gitsvc.TestBCommitMenuProbeIsQuietWithoutOperation (+ vitest UI half) |  |
+| test/commitMenu.test.ts | commitMenuProbe + undoCommit reset mixed preserves uncommitted work relative to the target | Go: gitsvc.TestBResetMixedKeepsUncommittedWork |  |
 | test/devices.test.ts | run devices: flutter devices --machine reads the JSON out of a noisy stdout and classifies each target | todo → Go (devices) |  |
 | test/devices.test.ts | run devices: flutter devices --machine survives output that is not JSON at all | todo → Go (devices) |  |
 | test/devices.test.ts | run devices: the other three tools parses `flutter emulators` bullet lines as cold targets | todo → Go (devices) |  |
@@ -201,7 +201,7 @@ Open rows: **1519** of 1686.
 | test/filters.test.ts | clean/smudge filter drivers classifies the new methods correctly for the repo lock | todo → Go (git) |  |
 | test/gitOps.test.ts | repository chat file actions applies a prepared edit as an exclusive repository write | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | merge → conflict → abort detects conflicts on merge and aborts cleanly | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | cherry-pick → clean then conflict → resolve applies a clean commit, then resolves a conflicting one | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | cherry-pick → clean then conflict → resolve applies a clean commit, then resolves a conflicting one | Go: gitsvc.TestBCherryPickCleanThenConflict |  |
 | test/gitOps.test.ts | rebase → conflict → abort rebasing feature onto main conflicts, then aborts back to feature | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | partial stash apply restores only the selected tracked + untracked files | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | restore files from a commit overwrites the working copy with the version at the commit, leaving HEAD alone | todo → Go (git, repoFileActions, textconv) |  |
@@ -250,30 +250,30 @@ Open rows: **1519** of 1686.
 | test/gitOps.test.ts | git-flow (gitflow playground) finishes a release into main and develop, and tags it | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | git-flow (gitflow playground) puts every ref back when a finish is undone | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | git-flow (gitflow playground) refuses to finish with a dirty working tree, changing nothing | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) measures the damage before anything is rewritten | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) refuses while the working tree is dirty, and says why | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) refuses a path no commit ever touched, rather than rewriting for nothing | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) removes the blob from every commit, on every branch and tag | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) keeps a backup of every ref, outside the range the rewrite touches | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) puts every branch and tag back when the purge is undone | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) makes the purge permanent only when the backup is dropped | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | removing a path from history (leaked-secret playground) will not restore or drop something that is not a purge backup | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | history path picker (leaked-secret playground) lists paths that no longer exist in the working tree | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | history path picker (leaked-secret playground) marks files that are still tracked as not deleted | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | history path picker (leaked-secret playground) orders by weight, so the reason a clone is huge is at the top | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | history path picker (leaked-secret playground) honours the cap rather than returning a whole monorepo | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) measures the damage before anything is rewritten | Go: gitsvc.TestBHistoryPurgePreviewMeasures |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) refuses while the working tree is dirty, and says why | Go: gitsvc.TestBHistoryPurgeRefusesDirtyTree |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) refuses a path no commit ever touched, rather than rewriting for nothing | Go: gitsvc.TestBHistoryPurgeRefusesUntouchedPath |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) removes the blob from every commit, on every branch and tag | Go: gitsvc.TestBHistoryPurgeRemovesBlobEverywhere |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) keeps a backup of every ref, outside the range the rewrite touches | Go: gitsvc.TestBHistoryPurgeKeepsBackup |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) puts every branch and tag back when the purge is undone | Go: gitsvc.TestBHistoryPurgeRestore |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) makes the purge permanent only when the backup is dropped | Go: gitsvc.TestBHistoryPurgeDropBackupIsPermanent |  |
+| test/gitOps.test.ts | removing a path from history (leaked-secret playground) will not restore or drop something that is not a purge backup | Go: gitsvc.TestBHistoryPurgeRejectsNonBackup |  |
+| test/gitOps.test.ts | history path picker (leaked-secret playground) lists paths that no longer exist in the working tree | Go: gitsvc.TestBHistoryPathsListsDeletedPaths |  |
+| test/gitOps.test.ts | history path picker (leaked-secret playground) marks files that are still tracked as not deleted | Go: gitsvc.TestBHistoryPathsMarksTracked |  |
+| test/gitOps.test.ts | history path picker (leaked-secret playground) orders by weight, so the reason a clone is huge is at the top | Go: gitsvc.TestBHistoryPathsHeaviestFirst |  |
+| test/gitOps.test.ts | history path picker (leaked-secret playground) honours the cap rather than returning a whole monorepo | Go: gitsvc.TestBHistoryPathsHonoursCap |  |
 | test/gitOps.test.ts | pushing to several remotes (multi-remote playground) pushes one branch to every remote asked for | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | pushing to several remotes (multi-remote playground) keeps going when one remote rejects, and says which | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | pushing to several remotes (multi-remote playground) sets the upstream from the first remote only | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | pushing to several remotes (multi-remote playground) refuses an empty remote list rather than guessing | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | pushing to several remotes (multi-remote playground) publishes every local tag, annotated and lightweight alike | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | commit notes (cherry-pick playground) reports no note for a commit that has none | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | commit notes (cherry-pick playground) writes a note and reads it back verbatim, newlines and all | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | commit notes (cherry-pick playground) overwrites rather than appending when a note already exists | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | commit notes (cherry-pick playground) lists exactly the commits that carry a note | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | commit notes (cherry-pick playground) treats an empty note as a removal, not as an empty note | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | commit notes (cherry-pick playground) removes a note, and removing a missing one is not an error | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | commit notes (cherry-pick playground) leaves the commit itself untouched — that is the point of a note | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | commit notes (cherry-pick playground) reports no note for a commit that has none | Go: gitsvc.TestBNoteNone |  |
+| test/gitOps.test.ts | commit notes (cherry-pick playground) writes a note and reads it back verbatim, newlines and all | Go: gitsvc.TestBNoteRoundTrip |  |
+| test/gitOps.test.ts | commit notes (cherry-pick playground) overwrites rather than appending when a note already exists | Go: gitsvc.TestBNoteOverwrites |  |
+| test/gitOps.test.ts | commit notes (cherry-pick playground) lists exactly the commits that carry a note | Go: gitsvc.TestBNotedCommitsExact |  |
+| test/gitOps.test.ts | commit notes (cherry-pick playground) treats an empty note as a removal, not as an empty note | Go: gitsvc.TestBNoteBlankRemoves |  |
+| test/gitOps.test.ts | commit notes (cherry-pick playground) removes a note, and removing a missing one is not an error | Go: gitsvc.TestBRemoveNoteIdempotent |  |
+| test/gitOps.test.ts | commit notes (cherry-pick playground) leaves the commit itself untouched — that is the point of a note | Go: gitsvc.TestBNoteLeavesCommitAlone |  |
 | test/gitOps.test.ts | subtrees (subtree playground) finds a subtree from the trailer git leaves in history | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | subtrees (subtree playground) remembers the source after an add, since git does not | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | subtrees (subtree playground) refuses to add onto a path that already exists | todo → Go (git, repoFileActions, textconv) |  |
@@ -309,12 +309,12 @@ Open rows: **1519** of 1686.
 | test/gitOps.test.ts | advanced merge options --no-commit merges but leaves the commit to you | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | advanced merge options ignore-space-change merges a reindent against a real edit | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | advanced merge options names the commits from each side behind a conflict | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object explorer lists every ref plus HEAD, with what each points at | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object explorer walks a commit to its tree, and a tree entry to its blob | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object explorer accepts the revision expressions git accepts | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object explorer reads an annotated tag as its own object, pointing at the commit | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object explorer says a blob is binary instead of spraying it at the pane | todo → Go (git, repoFileActions, textconv) |  |
-| test/gitOps.test.ts | object explorer reports an unknown revision as an error rather than an empty object | todo → Go (git, repoFileActions, textconv) |  |
+| test/gitOps.test.ts | object explorer lists every ref plus HEAD, with what each points at | Go: gitsvc.TestBObjectRefsListsHeadFirst |  |
+| test/gitOps.test.ts | object explorer walks a commit to its tree, and a tree entry to its blob | Go: gitsvc.TestBGitObjectWalk |  |
+| test/gitOps.test.ts | object explorer accepts the revision expressions git accepts | Go: gitsvc.TestBGitObjectRevExpressions |  |
+| test/gitOps.test.ts | object explorer reads an annotated tag as its own object, pointing at the commit | Go: gitsvc.TestBGitObjectAnnotatedTag |  |
+| test/gitOps.test.ts | object explorer says a blob is binary instead of spraying it at the pane | Go: gitsvc.TestBGitObjectBinaryBlob |  |
+| test/gitOps.test.ts | object explorer reports an unknown revision as an error rather than an empty object | Go: gitsvc.TestBGitObjectUnknownRev |  |
 | test/gitOps.test.ts | automated bisect (git bisect run) finds the first bad commit from a command exit code alone | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | automated bisect (git bisect run) streams the command output while it runs | todo → Go (git, repoFileActions, textconv) |  |
 | test/gitOps.test.ts | automated bisect (git bisect run) refuses to run without a seeded session, rather than starting one silently | todo → Go (git, repoFileActions, textconv) |  |
@@ -481,16 +481,16 @@ Open rows: **1519** of 1686.
 | test/localCiSweep.test.ts | local CI against a commit you are not on rejects a sha that is not a commit | todo → Go (localCi) |  |
 | test/localCiSweep.test.ts | local CI against a commit you are not on resolveRange caps the list, reports the true total, and refuses option-like specs | todo → Go (localCi) |  |
 | test/localCiSweep.test.ts | local CI against a commit you are not on sweeps a range sequentially and records one verdict per commit | todo → Go (localCi) |  |
-| test/newFeatures.test.ts | generateChangelog (changelog playground) groups conventional commits since the latest tag, breaking first | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | generateChangelog (changelog playground) honours an explicit version heading | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | repoInsights (insights playground) ranks the hot file and the top author, with weekly churn | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | code search (code-search playground) greps tracked + untracked working tree | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | code search (code-search playground) searchFileMatches returns every matching line of the given files | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | code search (code-search playground) searchFileMatches honours the case/whole-word/regex toggles | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | code search (code-search playground) searchFileMatches caps the hits per file | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | code search (code-search playground) searchCommitMatches greps the tree of a commit, not the working copy | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | code search (code-search playground) searchCommitMatches limits the search to the given paths | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | code search (code-search playground) history pickaxe finds add + remove of a symbol | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | generateChangelog (changelog playground) groups conventional commits since the latest tag, breaking first | Go: gitsvc.TestBGenerateChangelogGroups |  |
+| test/newFeatures.test.ts | generateChangelog (changelog playground) honours an explicit version heading | Go: gitsvc.TestBGenerateChangelogVersionHeading |  |
+| test/newFeatures.test.ts | repoInsights (insights playground) ranks the hot file and the top author, with weekly churn | Go: gitsvc.TestBRepoInsightsRanks |  |
+| test/newFeatures.test.ts | code search (code-search playground) greps tracked + untracked working tree | Go: gitsvc.TestBGrepWorkingTree |  |
+| test/newFeatures.test.ts | code search (code-search playground) searchFileMatches returns every matching line of the given files | Go: gitsvc.TestBSearchFileMatchesLines |  |
+| test/newFeatures.test.ts | code search (code-search playground) searchFileMatches honours the case/whole-word/regex toggles | Go: gitsvc.TestBSearchFileMatchesToggles |  |
+| test/newFeatures.test.ts | code search (code-search playground) searchFileMatches caps the hits per file | Go: gitsvc.TestBSearchFileMatchesPerFileCap |  |
+| test/newFeatures.test.ts | code search (code-search playground) searchCommitMatches greps the tree of a commit, not the working copy | Go: gitsvc.TestBSearchCommitMatchesTree |  |
+| test/newFeatures.test.ts | code search (code-search playground) searchCommitMatches limits the search to the given paths | Go: gitsvc.TestBSearchCommitMatchesPaths |  |
+| test/newFeatures.test.ts | code search (code-search playground) history pickaxe finds add + remove of a symbol | Go: gitsvc.TestBSearchHistoryPickaxe |  |
 | test/newFeatures.test.ts | stacked branches (stacked-branches playground) reports the chain and that both lower levels need restack | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | stacked branches (stacked-branches playground) restack cascades so nothing needs restacking afterwards | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | remote branch worktree checkout does not expose a symbolic remote HEAD as a branch named after the remote | todo → Go (git, localCi, semantic) |  |
@@ -516,13 +516,13 @@ Open rows: **1519** of 1686.
 | test/newFeatures.test.ts | teammateRadar (teammate-radar playground) reports remote activity, overlap with dirty files and conflict risk | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | teammateRadar (teammate-radar playground) is quiet in a repo with no remote branches | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | rebaseOnto (drag-to-rebase) checks out the branch and rebases it onto the target | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | cherryPickMany (multi-select graph) applies several commits onto another branch in order | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | createTag (annotated tags) creates a lightweight tag by default and an annotated tag with a message | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | cherryPickMany (multi-select graph) applies several commits onto another branch in order | Go: gitsvc.TestBCherryPickManyInOrder |  |
+| test/newFeatures.test.ts | createTag (annotated tags) creates a lightweight tag by default and an annotated tag with a message | Go: gitsvc.TestBCreateTagKinds |  |
 | test/newFeatures.test.ts | squashCommits (multi-select squash) folds a contiguous run of the newest commits into one | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | squashCommits (multi-select squash) ignores a rejecting pre-commit hook and never strands HEAD | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | squashCommits (multi-select squash) leaves already-staged changes staged instead of folding them in | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | interactive rebase edit pauses the rebase at an edit step | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | contributors (co-author picker) lists distinct authors with name + email | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | contributors (co-author picker) lists distinct authors with name + email | Go: gitsvc.TestBContributorsDistinct |  |
 | test/newFeatures.test.ts | stashToBranch (stash → branch) creates the branch, applies the stash there and drops it | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | stashPush (partial stash) stashes only the selected file, leaving the rest dirty | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | stashPush (partial stash) keeps staged changes in the tree with keepIndex | todo → Go (git, localCi, semantic) |  |
@@ -541,8 +541,8 @@ Open rows: **1519** of 1686.
 | test/newFeatures.test.ts | semantic diff (tree-sitter) calls a symbol that only shifted position a move | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | semantic diff (tree-sitter) ignores the small drift of a symbol whose neighbour grew | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | semantic diff (tree-sitter) refuses to pair two unrelated one-liners as a rename | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) summarises a commit against its parent | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) returns nothing for a path missing on both sides | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) summarises a commit against its parent | Go: gitsvc.TestBSemanticDiffSidesOverBlobs (+ renderer vitest for semanticCompare) |  |
+| test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) returns nothing for a path missing on both sides | Go: gitsvc.TestBSemanticDiffSidesOverBlobs |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) reports the force-pushed ref, with the commit it used to point at | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) reads the previous positions of a tracking ref from its reflog | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) pairs the rewritten commit and separates the dropped and new ones | todo → Go (git, localCi, semantic) |  |
@@ -562,13 +562,13 @@ Open rows: **1519** of 1686.
 | test/newFeatures.test.ts | absorb (absorb playground) creates one fixup per target and leaves the rest staged | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | absorb (absorb playground) folds the fixups into their commits when asked to rebase | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | absorb (absorb playground) says why there is nothing to do instead of failing | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) lists a past commit tree without touching the working copy | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) returns repo-relative paths for a subdirectory | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) reflects the tree as it was, not as it is | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) treats a folder that does not exist at that commit as empty | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | timelapseData (time-machine playground) streams the whole history oldest-first, with the files each commit touched | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | timelapseData (time-machine playground) reports adds, edits and deletions so the animation can play them | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | timelapseData (time-machine playground) honours the commit cap | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) lists a past commit tree without touching the working copy | Go: gitsvc.TestBListDirAtPastTree |  |
+| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) returns repo-relative paths for a subdirectory | Go: gitsvc.TestBListDirAtSubdirPaths |  |
+| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) reflects the tree as it was, not as it is | Go: gitsvc.TestBListDirAtAsItWas |  |
+| test/newFeatures.test.ts | listDirAt — time machine tree (semantic-diff playground) treats a folder that does not exist at that commit as empty | Go: gitsvc.TestBListDirAtMissingIsEmpty |  |
+| test/newFeatures.test.ts | timelapseData (time-machine playground) streams the whole history oldest-first, with the files each commit touched | Go: gitsvc.TestBTimelapseStream |  |
+| test/newFeatures.test.ts | timelapseData (time-machine playground) reports adds, edits and deletions so the animation can play them | Go: gitsvc.TestBTimelapseKinds |  |
+| test/newFeatures.test.ts | timelapseData (time-machine playground) honours the commit cap | Go: gitsvc.TestBTimelapseCap |  |
 | test/newFeatures.test.ts | repoPulse — mission control (playground) reads branch, upstream and ahead/behind in one pass | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | repoPulse — mission control (playground) counts staged, unstaged and untracked separately | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | repoPulse — mission control (playground) flags a conflicted merge left in progress | todo → Go (git, localCi, semantic) |  |
@@ -595,9 +595,9 @@ Open rows: **1519** of 1686.
 | test/newFeatures.test.ts | a route edit that conflicts (stacked-branches playground) rolls the whole thing back: tips, parent links and the rebase itself | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | a route edit that conflicts (stacked-branches playground) names both branches, so the toast can say which two clash | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | restack refuses protected branches (stacked-branches playground) will not replay a level whose own branch is protected | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | protected branches default (stacked-branches playground) defaults to main/master when the setting was never configured | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | protected branches default (stacked-branches playground) honours an explicit empty list — that is a choice, not an absence | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | protected branches default (stacked-branches playground) reads a configured list | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | protected branches default (stacked-branches playground) defaults to main/master when the setting was never configured | Go: gitsvc.TestBProtectedBranchesDefaults |  |
+| test/newFeatures.test.ts | protected branches default (stacked-branches playground) honours an explicit empty list — that is a choice, not an absence | Go: gitsvc.TestBProtectedBranchesExplicitEmpty |  |
+| test/newFeatures.test.ts | protected branches default (stacked-branches playground) reads a configured list | Go: gitsvc.TestBProtectedBranchesConfigured |  |
 | test/newFeatures.test.ts | a branch that is on no stack (stacked-branches playground) answers with an empty stack, not a one-level stack that lands on itself | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | a branch that is on no stack (stacked-branches playground) still answers for a stack asked about by its leaf, wherever you stand | todo → Go (git, localCi, semantic) |  |
 | test/newFeatures.test.ts | finding the stacks in a repository (stacked-branches playground) lists the leaf of each stack, and nothing that is somebody’s parent | todo → Go (git, localCi, semantic) |  |
@@ -684,16 +684,16 @@ Open rows: **1519** of 1686.
 | test/playground.smoke.test.ts | playground fixtures "readme-showcase" is an openable git repo | todo → Go (git) |  |
 | test/playground.smoke.test.ts | playground fixtures "dated-history" is an openable git repo | todo → Go (git) |  |
 | test/playground.smoke.test.ts | playground fixtures "split-diff" is an openable git repo | todo → Go (git) |  |
-| test/prPreview.test.ts | pull request ref conventions offers every convention, with the URL-hinted one first | todo → Go (git) |  |
+| test/prPreview.test.ts | pull request ref conventions offers every convention, with the URL-hinted one first | Go: gitsvc.TestBPrRefCandidatesOrder |  |
 | test/prPreview.test.ts | pull request ref conventions reads a PR number from a bare number, a #ref or any forge URL | todo → Go (git) |  |
 | test/prPreview.test.ts | pull request ref conventions suggests a predictable local branch name | todo → Go (git) |  |
-| test/prPreview.test.ts | resolvePrRef finds the ref a pull request head lives under, and reports the flavor | todo → Go (git) |  |
-| test/prPreview.test.ts | resolvePrRef returns null when the remote publishes no ref for that number | todo → Go (git) |  |
-| test/prPreview.test.ts | previewRef checks the pull request head out onto a local branch, leaving no commit behind | todo → Go (git) |  |
-| test/prPreview.test.ts | previewRef moves an existing preview branch to the new head instead of failing | todo → Go (git) |  |
-| test/prPreview.test.ts | previewRef merges a clean pull request into the current branch without committing | todo → Go (git) |  |
-| test/prPreview.test.ts | previewRef reports conflicts rather than throwing, so the conflicted tree can be inspected | todo → Go (git) |  |
-| test/prPreview.test.ts | previewRef refuses a checkout preview with no branch name to put it on | todo → Go (git) |  |
+| test/prPreview.test.ts | resolvePrRef finds the ref a pull request head lives under, and reports the flavor | Go: gitsvc.TestBResolvePrRefFindsFlavor |  |
+| test/prPreview.test.ts | resolvePrRef returns null when the remote publishes no ref for that number | Go: gitsvc.TestBResolvePrRefNone |  |
+| test/prPreview.test.ts | previewRef checks the pull request head out onto a local branch, leaving no commit behind | Go: gitsvc.TestBPreviewRefCheckout |  |
+| test/prPreview.test.ts | previewRef moves an existing preview branch to the new head instead of failing | Go: gitsvc.TestBPreviewRefReusesBranch |  |
+| test/prPreview.test.ts | previewRef merges a clean pull request into the current branch without committing | Go: gitsvc.TestBPreviewRefMergeClean |  |
+| test/prPreview.test.ts | previewRef reports conflicts rather than throwing, so the conflicted tree can be inspected | Go: gitsvc.TestBPreviewRefMergeConflicts |  |
+| test/prPreview.test.ts | previewRef refuses a checkout preview with no branch name to put it on | Go: gitsvc.TestBPreviewRefCheckoutNeedsBranch |  |
 | test/pureLogic.test.ts | parseRemoteUrl parses GitHub https + ssh | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
 | test/pureLogic.test.ts | parseRemoteUrl parses GitLab, including multi-level subgroups (https + ssh) | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
 | test/pureLogic.test.ts | parseRemoteUrl parses Bitbucket https + ssh | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
