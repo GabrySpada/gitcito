@@ -1,0 +1,24 @@
+{
+  "method": "gitflowStatus",
+  "fixture": "gitflow",
+  "case": "initialized",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "config": {
+      "main": "main",
+      "develop": "develop",
+      "featurePrefix": "feature/",
+      "releasePrefix": "release/",
+      "hotfixPrefix": "hotfix/",
+      "versionTagPrefix": "v"
+    },
+    "initialized": true,
+    "hasMain": true,
+    "hasDevelop": true,
+    "current": "develop",
+    "currentFlow": null
+  }
+}

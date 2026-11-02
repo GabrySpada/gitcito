@@ -1,0 +1,11 @@
+{
+  "method": "conflictCommits",
+  "fixture": "bisect-bug",
+  "case": "no-merge",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "math.js"
+  ],
+  "result": []
+}

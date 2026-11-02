@@ -1,0 +1,138 @@
+{
+  "method": "rerereForget",
+  "fixture": "merge-conflict",
+  "case": "brings-conflict-back",
+  "kind": "write",
+  "setup": [
+    {
+      "call": "setRerere",
+      "args": [
+        "<REPO>",
+        {
+          "enabled": true
+        },
+        "repo"
+      ]
+    },
+    {
+      "call": "merge",
+      "args": [
+        "<REPO>",
+        "feature"
+      ],
+      "allowFail": true
+    },
+    {
+      "write": "greeting.txt",
+      "content": "first answer\n"
+    },
+    {
+      "write": "app.js",
+      "content": "first answer\n"
+    },
+    {
+      "write": "units_service.dart",
+      "content": "first answer\n"
+    },
+    {
+      "write": "release-notes.md",
+      "content": "first answer\n"
+    },
+    {
+      "write": "big-log.txt",
+      "content": "first answer\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-q",
+        "--no-edit"
+      ]
+    },
+    {
+      "git": [
+        "reset",
+        "-q",
+        "--hard",
+        "HEAD~1"
+      ]
+    },
+    {
+      "call": "merge",
+      "args": [
+        "<REPO>",
+        "feature"
+      ],
+      "allowFail": true
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "greeting.txt"
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <main: shout the greetings@b509ab3d>",
+      "# branch.head main",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 1effe220d72b766179901f9d49847388420fdada feature-notes.md",
+      "u UU N... 100644 100644 100644 100644 f3a38ee5a0b62f2cf87c6d3874c7911ff08e4e42 4f758faea993cfaaabb9e48a8aa613abd7e0db1c 8b15707c502fded2d7f65cb32cef6c2968f2b2e8 app.js",
+      "u UU N... 100644 100644 100644 100644 f2f52831d073cc668dc19f6390295676069845a2 0629d62530841527f2395dabc9c7081af6a7d7db f1a26b09a986b256553a24f6f7b956d86c5fb90f big-log.txt",
+      "u UU N... 100644 100644 100644 100644 4fae60cd20a248b67d6517b44d48d1f7a46a7603 1e94c3742727a15984b7271b98959721a26fbdd5 58e86221d711b61e61fc087b28878e558bea5dc6 greeting.txt",
+      "u UU N... 100644 100644 100644 100644 2eb88adc4b85475d86ec0d3c4c5a909fd77bd8c0 b5c5c9fc212ddaa64facb687fa52487bce42696a f4f2f698c6f0ae472db0a182e7af08026a208d1e release-notes.md",
+      "u DU N... 100644 000000 100644 100644 68032cce14df199921d79e8a444eac5fa6f6542e 0000000000000000000000000000000000000000 d7bf55d434e782ce1f0c6ca60acafda3181ea4ed units_service.dart"
+    ],
+    "refs": [
+      "refs/heads/feature <feature: translate to Spanish@3fa91df4>",
+      "refs/heads/main <main: shout the greetings@b509ab3d>"
+    ],
+    "log": [
+      "<feature: translate to Spanish@3fa91df4>\u0000<initial commit@00ba9f13>\u0000feature: translate to Spanish",
+      "<initial commit@00ba9f13>\u0000\u0000initial commit",
+      "<main: shout the greetings@b509ab3d>\u0000<initial commit@00ba9f13>\u0000main: shout the greetings"
+    ],
+    "stash": [],
+    "index": [
+      "100644 f3a38ee5a0b62f2cf87c6d3874c7911ff08e4e42 1\tapp.js",
+      "100644 4f758faea993cfaaabb9e48a8aa613abd7e0db1c 2\tapp.js",
+      "100644 8b15707c502fded2d7f65cb32cef6c2968f2b2e8 3\tapp.js",
+      "100644 f2f52831d073cc668dc19f6390295676069845a2 1\tbig-log.txt",
+      "100644 0629d62530841527f2395dabc9c7081af6a7d7db 2\tbig-log.txt",
+      "100644 f1a26b09a986b256553a24f6f7b956d86c5fb90f 3\tbig-log.txt",
+      "100644 1effe220d72b766179901f9d49847388420fdada 0\tfeature-notes.md",
+      "100644 4fae60cd20a248b67d6517b44d48d1f7a46a7603 1\tgreeting.txt",
+      "100644 1e94c3742727a15984b7271b98959721a26fbdd5 2\tgreeting.txt",
+      "100644 58e86221d711b61e61fc087b28878e558bea5dc6 3\tgreeting.txt",
+      "100644 2eb88adc4b85475d86ec0d3c4c5a909fd77bd8c0 1\trelease-notes.md",
+      "100644 b5c5c9fc212ddaa64facb687fa52487bce42696a 2\trelease-notes.md",
+      "100644 f4f2f698c6f0ae472db0a182e7af08026a208d1e 3\trelease-notes.md",
+      "100644 68032cce14df199921d79e8a444eac5fa6f6542e 1\tunits_service.dart",
+      "100644 d7bf55d434e782ce1f0c6ca60acafda3181ea4ed 3\tunits_service.dart"
+    ],
+    "diff": "diff --cc app.js\nindex 4f758fa,8b15707..0000000\n--- a/app.js\n+++ b/app.js\n@@@ -1,9 -1,9 +1,1 @@@\n--function greet(name) {\n-   return `HELLO ${name.toUpperCase()} (main version)`\n -  return `¡Hola ${name}! (feature version)`\n--}\n--\n--function farewell(name) {\n--  return 'Bye ' + name\n--}\n--\n--module.exports = { greet, farewell }\n++first answer\ndiff --cc big-log.txt\nindex 0629d62,f1a26b0..0000000\n--- a/big-log.txt\n+++ b/big-log.txt\n@@@ -1,520 -1,520 +1,1 @@@\n--line 1: shared padding\n--line 2: shared padding\n--line 3: shared padding\n--line 4: shared padding\n--line 5: shared padding\n--line 6: shared padding\n--line 7: shared padding\n--line 8: shared padding\n--line 9: shared padding\n--line 10: shared padding\n--line 11: shared padding\n--line 12: shared padding\n--line 13: shared padding\n--line 14: shared padding\n--line 15: shared padding\n--line 16: shared padding\n--line 17: shared padding\n--line 18: shared padding\n--line 19: shared padding\n--line 20: shared padding\n--line 21: shared padding\n--line 22: shared padding\n--line 23: shared padding\n--line 24: shared padding\n--line 25: shared padding\n--line 26: shared padding\n--line 27: shared padding\n--line 28: shared padding\n--line 29: shared padding\n--line 30: shared padding\n--line 31: shared padding\n--line 32: shared padding\n--line 33: shared padding\n--line 34: shared padding\n--line 35: shared padding\n--line 36: shared padding\n--line 37: shared padding\n--line 38: shared padding\n--line 39: shared padding\n--line 40: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 41: shared padding\n--line 42: shared padding\n--line 43: shared padding\n--line 44: shared padding\n--line 45: shared padding\n--line 46: shared padding\n--line 47: shared padding\n--line 48: shared padding\n--line 49: shared padding\n--line 50: shared padding\n--line 51: shared padding\n--line 52: shared padding\n--line 53: shared padding\n--line 54: shared padding\n--line 55: shared padding\n--line 56: shared padding\n--line 57: shared padding\n--line 58: shared padding\n--line 59: shared padding\n--line 60: shared padding\n--line 61: shared padding\n--line 62: shared padding\n--line 63: shared padding\n--line 64: shared padding\n--line 65: shared padding\n--line 66: shared padding\n--line 67: shared padding\n--line 68: shared padding\n--line 69: shared padding\n--line 70: shared padding\n--line 71: shared padding\n--line 72: shared padding\n--line 73: shared padding\n--line 74: shared padding\n--line 75: shared padding\n--line 76: shared padding\n--line 77: shared padding\n--line 78: shared padding\n--line 79: shared padding\n--line 80: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 81: shared padding\n--line 82: shared padding\n--line 83: shared padding\n--line 84: shared padding\n--line 85: shared padding\n--line 86: shared padding\n--line 87: shared padding\n--line 88: shared padding\n--line 89: shared padding\n--line 90: shared padding\n--line 91: shared padding\n--line 92: shared padding\n--line 93: shared padding\n--line 94: shared padding\n--line 95: shared padding\n--line 96: shared padding\n--line 97: shared padding\n--line 98: shared padding\n--line 99: shared padding\n--line 100: shared padding\n--line 101: shared padding\n--line 102: shared padding\n--line 103: shared padding\n--line 104: shared padding\n--line 105: shared padding\n--line 106: shared padding\n--line 107: shared padding\n--line 108: shared padding\n--line 109: shared padding\n--line 110: shared padding\n--line 111: shared padding\n--line 112: shared padding\n--line 113: shared padding\n--line 114: shared padding\n--line 115: shared padding\n--line 116: shared padding\n--line 117: shared padding\n--line 118: shared padding\n--line 119: shared padding\n--line 120: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 121: shared padding\n--line 122: shared padding\n--line 123: shared padding\n--line 124: shared padding\n--line 125: shared padding\n--line 126: shared padding\n--line 127: shared padding\n--line 128: shared padding\n--line 129: shared padding\n--line 130: shared padding\n--line 131: shared padding\n--line 132: shared padding\n--line 133: shared padding\n--line 134: shared padding\n--line 135: shared padding\n--line 136: shared padding\n--line 137: shared padding\n--line 138: shared padding\n--line 139: shared padding\n--line 140: shared padding\n--line 141: shared padding\n--line 142: shared padding\n--line 143: shared padding\n--line 144: shared padding\n--line 145: shared padding\n--line 146: shared padding\n--line 147: shared padding\n--line 148: shared padding\n--line 149: shared padding\n- line 150: MAIN EDITION\n -line 150: feature edition\n--line 151: shared padding\n--line 152: shared padding\n--line 153: shared padding\n--line 154: shared padding\n--line 155: shared padding\n--line 156: shared padding\n--line 157: shared padding\n--line 158: shared padding\n--line 159: shared padding\n--line 160: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 161: shared padding\n--line 162: shared padding\n--line 163: shared padding\n--line 164: shared padding\n--line 165: shared padding\n--line 166: shared padding\n--line 167: shared padding\n--line 168: shared padding\n--line 169: shared padding\n--line 170: shared padding\n--line 171: shared padding\n--line 172: shared padding\n--line 173: shared padding\n--line 174: shared padding\n--line 175: shared padding\n--line 176: shared padding\n--line 177: shared padding\n--line 178: shared padding\n--line 179: shared padding\n--line 180: shared padding\n--line 181: shared padding\n--line 182: shared padding\n--line 183: shared padding\n--line 184: shared padding\n--line 185: shared padding\n--line 186: shared padding\n--line 187: shared padding\n--line 188: shared padding\n--line 189: shared padding\n--line 190: shared padding\n--line 191: shared padding\n--line 192: shared padding\n--line 193: shared padding\n--line 194: shared padding\n--line 195: shared padding\n--line 196: shared padding\n--line 197: shared padding\n--line 198: shared padding\n--line 199: shared padding\n- line 200: MAIN EDITION\n -line 200: feature edition\n--line 201: shared padding\n--line 202: shared padding\n--line 203: shared padding\n--line 204: shared padding\n--line 205: shared padding\n--line 206: shared padding\n--line 207: shared padding\n--line 208: shared padding\n--line 209: shared padding\n--line 210: shared padding\n--line 211: shared padding\n--line 212: shared padding\n--line 213: shared padding\n--line 214: shared padding\n--line 215: shared padding\n--line 216: shared padding\n--line 217: shared padding\n--line 218: shared padding\n--line 219: shared padding\n--line 220: shared padding\n--line 221: shared padding\n--line 222: shared padding\n--line 223: shared padding\n--line 224: shared padding\n--line 225: shared padding\n--line 226: shared padding\n--line 227: shared padding\n--line 228: shared padding\n--line 229: shared padding\n--line 230: shared padding\n--line 231: shared padding\n--line 232: shared padding\n--line 233: shared padding\n--line 234: shared padding\n--line 235: shared padding\n--line 236: shared padding\n--line 237: shared padding\n--line 238: shared padding\n--line 239: shared padding\n--line 240: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 241: shared padding\n--line 242: shared padding\n--line 243: shared padding\n--line 244: shared padding\n--line 245: shared padding\n--line 246: shared padding\n--line 247: shared padding\n--line 248: shared padding\n--line 249: shared padding\n--line 250: shared padding\n--line 251: shared padding\n--line 252: shared padding\n--line 253: shared padding\n--line 254: shared padding\n--line 255: shared padding\n--line 256: shared padding\n--line 257: shared padding\n--line 258: shared padding\n--line 259: shared padding\n--line 260: shared padding\n--line 261: shared padding\n--line 262: shared padding\n--line 263: shared padding\n--line 264: shared padding\n--line 265: shared padding\n--line 266: shared padding\n--line 267: shared padding\n--line 268: shared padding\n--line 269: shared padding\n--line 270: shared padding\n--line 271: shared padding\n--line 272: shared padding\n--line 273: shared padding\n--line 274: shared padding\n--line 275: shared padding\n--line 276: shared padding\n--line 277: shared padding\n--line 278: shared padding\n--line 279: shared padding\n--line 280: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 281: shared padding\n--line 282: shared padding\n--line 283: shared padding\n--line 284: shared padding\n--line 285: shared padding\n--line 286: shared padding\n--line 287: shared padding\n--line 288: shared padding\n--line 289: shared padding\n--line 290: shared padding\n--line 291: shared padding\n--line 292: shared padding\n--line 293: shared padding\n--line 294: shared padding\n--line 295: shared padding\n--line 296: shared padding\n--line 297: shared padding\n--line 298: shared padding\n--line 299: shared padding\n--line 300: shared padding\n--line 301: shared padding\n--line 302: shared padding\n--line 303: shared padding\n--line 304: shared padding\n--line 305: shared padding\n--line 306: shared padding\n--line 307: shared padding\n--line 308: shared padding\n--line 309: shared padding\n--line 310: shared padding\n--line 311: shared padding\n--line 312: shared padding\n--line 313: shared padding\n--line 314: shared padding\n--line 315: shared padding\n--line 316: shared padding\n--line 317: shared padding\n--line 318: shared padding\n--line 319: shared padding\n--line 320: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 321: shared padding\n--line 322: shared padding\n--line 323: shared padding\n--line 324: shared padding\n--line 325: shared padding\n--line 326: shared padding\n--line 327: shared padding\n--line 328: shared padding\n--line 329: shared padding\n--line 330: shared padding\n--line 331: shared padding\n--line 332: shared padding\n--line 333: shared padding\n--line 334: shared padding\n--line 335: shared padding\n--line 336: shared padding\n--line 337: shared padding\n--line 338: shared padding\n--line 339: shared padding\n--line 340: shared padding\n--line 341: shared padding\n--line 342: shared padding\n--line 343: shared padding\n--line 344: shared padding\n--line 345: shared padding\n--line 346: shared padding\n--line 347: shared padding\n--line 348: shared padding\n--line 349: shared padding\n--line 350: shared padding\n--line 351: shared padding\n--line 352: shared padding\n--line 353: shared padding\n--line 354: shared padding\n--line 355: shared padding\n--line 356: shared padding\n--line 357: shared padding\n--line 358: shared padding\n--line 359: shared padding\n--line 360: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 361: shared padding\n--line 362: shared padding\n--line 363: shared padding\n--line 364: shared padding\n--line 365: shared padding\n--line 366: shared padding\n--line 367: shared padding\n--line 368: shared padding\n--line 369: shared padding\n--line 370: shared padding\n--line 371: shared padding\n--line 372: shared padding\n--line 373: shared padding\n--line 374: shared padding\n--line 375: shared padding\n--line 376: shared padding\n--line 377: shared padding\n--line 378: shared padding\n--line 379: shared padding\n--line 380: shared padding\n--line 381: shared padding\n--line 382: shared padding\n--line 383: shared padding\n--line 384: shared padding\n--line 385: shared padding\n--line 386: shared padding\n--line 387: shared padding\n--line 388: shared padding\n--line 389: shared padding\n--line 390: shared padding\n--line 391: shared padding\n--line 392: shared padding\n--line 393: shared padding\n--line 394: shared padding\n--line 395: shared padding\n--line 396: shared padding\n--line 397: shared padding\n--line 398: shared padding\n--line 399: shared padding\n--line 400: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 401: shared padding\n--line 402: shared padding\n--line 403: shared padding\n--line 404: shared padding\n--line 405: shared padding\n--line 406: shared padding\n--line 407: shared padding\n--line 408: shared padding\n--line 409: shared padding\n--line 410: shared padding\n--line 411: shared padding\n--line 412: shared padding\n--line 413: shared padding\n--line 414: shared padding\n--line 415: shared padding\n--line 416: shared padding\n--line 417: shared padding\n--line 418: shared padding\n--line 419: shared padding\n--line 420: shared padding\n--line 421: shared padding\n--line 422: shared padding\n--line 423: shared padding\n--line 424: shared padding\n--line 425: shared padding\n--line 426: shared padding\n--line 427: shared padding\n--line 428: shared padding\n--line 429: shared padding\n--line 430: shared padding\n--line 431: shared padding\n--line 432: shared padding\n--line 433: shared padding\n--line 434: shared padding\n--line 435: shared padding\n--line 436: shared padding\n--line 437: shared padding\n--line 438: shared padding\n--line 439: shared padding\n--line 440: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 441: shared padding\n--line 442: shared padding\n--line 443: shared padding\n--line 444: shared padding\n--line 445: shared padding\n--line 446: shared padding\n--line 447: shared padding\n--line 448: shared padding\n--line 449: shared padding\n--line 450: shared padding\n--line 451: shared padding\n--line 452: shared padding\n--line 453: shared padding\n--line 454: shared padding\n--line 455: shared padding\n--line 456: shared padding\n--line 457: shared padding\n--line 458: shared padding\n--line 459: shared padding\n--line 460: shared padding\n--line 461: shared padding\n--line 462: shared padding\n--line 463: shared padding\n--line 464: shared padding\n--line 465: shared padding\n--line 466: shared padding\n--line 467: shared padding\n--line 468: shared padding\n--line 469: shared padding\n--line 470: shared padding\n--line 471: shared padding\n--line 472: shared padding\n--line 473: shared padding\n--line 474: shared padding\n--line 475: shared padding\n--line 476: shared padding\n--line 477: shared padding\n--line 478: shared padding\n--line 479: shared padding\n--line 480: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n--line 481: shared padding\n--line 482: shared padding\n--line 483: shared padding\n--line 484: shared padding\n--line 485: shared padding\n--line 486: shared padding\n--line 487: shared padding\n--line 488: shared padding\n--line 489: shared padding\n--line 490: shared padding\n--line 491: shared padding\n--line 492: shared padding\n--line 493: shared padding\n--line 494: shared padding\n--line 495: shared padding\n--line 496: shared padding\n--line 497: shared padding\n--line 498: shared padding\n--line 499: shared padding\n- line 500: MAIN EDITION\n -line 500: feature edition\n--line 501: shared padding\n--line 502: shared padding\n--line 503: shared padding\n--line 504: shared padding\n--line 505: shared padding\n--line 506: shared padding\n--line 507: shared padding\n--line 508: shared padding\n--line 509: shared padding\n--line 510: shared padding\n--line 511: shared padding\n--line 512: shared padding\n--line 513: shared padding\n--line 514: shared padding\n--line 515: shared padding\n--line 516: shared padding\n--line 517: shared padding\n--line 518: shared padding\n--line 519: shared padding\n--line 520: a deliberately long line to exercise the wrap toggle — lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\n++first answer\ndiff --cc greeting.txt\nindex 1e94c37,58e8622..0000000\n--- a/greeting.txt\n+++ b/greeting.txt\n@@@ -1,3 -1,3 +1,9 @@@\n++<<<<<<< ours\n +HELLO WORLD (from main)\n +This line stays the same.\n +GOODBYE WORLD (from main)\n++=======\n+ Hola mundo (from feature)\n+ This line stays the same.\n+ Adios mundo (from feature)\n++>>>>>>> theirs\ndiff --cc release-notes.md\nindex b5c5c9f,f4f2f69..0000000\n--- a/release-notes.md\n+++ b/release-notes.md\n@@@ -1,32 -1,33 +1,1 @@@\n--# Release notes\n--\n--## Summary\n- SHOUTING RELEASE.\n -Spanish translation pass.\n--\n--<!-- keep three lines of shared context between sections so git keeps the -->\n--<!-- conflicts apart instead of coalescing them into one big chunk -->\n--<!-- ------------------------------------------------------------ -->\n--\n--## Added\n- - UPPERCASE GREETINGS\n -- Spanish greetings\n -- localized farewells\n--\n--<!-- ------------------------------------------------------------ -->\n--<!-- shared context -->\n--<!-- ------------------------------------------------------------ -->\n--\n--## Fixed\n- - QUIET OUTPUT\n -- accent handling\n--\n--<!-- ------------------------------------------------------------ -->\n--<!-- shared context -->\n--<!-- ------------------------------------------------------------ -->\n--\n--## Notes\n--Unchanged on both branches.\n--\n--<!-- ------------------------------------------------------------ -->\n--<!-- shared context -->\n--<!-- ------------------------------------------------------------ -->\n--\n--## Credits\n- - THE LOUD CREW\n -- the i18n crew\n++first answer\n* Unmerged path units_service.dart\n",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=true"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "MERGE_HEAD",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 4
+  }
+}

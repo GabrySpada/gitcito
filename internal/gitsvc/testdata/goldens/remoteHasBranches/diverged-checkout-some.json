@@ -1,0 +1,19 @@
+{
+  "method": "remoteHasBranches",
+  "fixture": "diverged-checkout",
+  "case": "some",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "origin",
+    [
+      "feature",
+      "main",
+      "nope"
+    ]
+  ],
+  "result": [
+    "feature",
+    "main"
+  ]
+}

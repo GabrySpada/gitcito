@@ -1,0 +1,14 @@
+{
+  "method": "commitsTouchingPath",
+  "fixture": "bisect-bug",
+  "case": "max",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "math.js",
+    1
+  ],
+  "result": [
+    "<feat: abs + clamp@6dabe43f>"
+  ]
+}

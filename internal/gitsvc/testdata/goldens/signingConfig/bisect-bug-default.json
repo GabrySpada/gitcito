@@ -1,0 +1,14 @@
+{
+  "method": "signingConfig",
+  "fixture": "bisect-bug",
+  "case": "default",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "sign": false,
+    "format": "openpgp",
+    "key": ""
+  }
+}

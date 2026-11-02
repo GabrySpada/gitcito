@@ -1,0 +1,14 @@
+{
+  "method": "commitAuthor",
+  "fixture": "collaborators",
+  "case": "first",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD~3"
+  ],
+  "result": {
+    "name": "Alice Liddell",
+    "email": "alice-liddell@users.noreply.github.com"
+  }
+}

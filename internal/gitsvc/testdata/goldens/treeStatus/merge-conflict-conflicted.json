@@ -1,0 +1,26 @@
+{
+  "method": "treeStatus",
+  "fixture": "merge-conflict",
+  "case": "conflicted",
+  "kind": "read",
+  "setup": [
+    {
+      "git": [
+        "merge",
+        "feature"
+      ],
+      "allowFail": true
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "app.js": "conflicted",
+    "big-log.txt": "conflicted",
+    "feature-notes.md": "added",
+    "greeting.txt": "conflicted",
+    "release-notes.md": "conflicted",
+    "units_service.dart": "conflicted"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "method": "resolveDivergedCheckout",
+  "fixture": "diverged-checkout",
+  "case": "reset-soft",
+  "kind": "write",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "feature"
+      ]
+    },
+    {
+      "git": [
+        "reset",
+        "-q",
+        "--hard",
+        "origin/feature"
+      ]
+    },
+    {
+      "write": "local-only.ts",
+      "content": "export const localOnly = 1\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "feat: unpushed work"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "main"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "origin/feature",
+    "feature",
+    "reset-soft",
+    false
+  ],
+  "result": {
+    "previousRef": "<feat: unpushed work@b79b9ec0>"
+  },
+  "state": {
+    "head": "refs/heads/feature",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <feat: remote tweak to feature@3fa7a5ad>",
+      "# branch.head feature",
+      "# branch.upstream origin/feature",
+      "# branch.ab +0 -0",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 d5a5a08d731dbf22762523c2688b816ac1036d85 local-only.ts"
+    ],
+    "refs": [
+      "refs/heads/feature <feat: remote tweak to feature@3fa7a5ad>",
+      "refs/heads/main <initial commit@00ba9f13>",
+      "refs/remotes/origin/HEAD <initial commit@00ba9f13>",
+      "refs/remotes/origin/feature <feat: remote tweak to feature@3fa7a5ad>",
+      "refs/remotes/origin/main <initial commit@00ba9f13>"
+    ],
+    "log": [
+      "<feat: remote tweak to feature@3fa7a5ad>\u0000<feat: start feature@93d749df>\u0000feat: remote tweak to feature",
+      "<feat: start feature@93d749df>\u0000<initial commit@00ba9f13>\u0000feat: start feature",
+      "<initial commit@00ba9f13>\u0000\u0000initial commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tapp.ts",
+      "100644 fec777d9494690a090c3a37de8c3edd057ae80ef 0\tfeature.ts",
+      "100644 d5a5a08d731dbf22762523c2688b816ac1036d85 0\tlocal-only.ts"
+    ],
+    "diff": "",
+    "config": [
+      "remote.origin.url=<PLAYGROUND>/diverged-checkout-origin.git",
+      "remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*",
+      "branch.main.remote=origin",
+      "branch.main.merge=refs/heads/main",
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "branch.feature.remote=origin",
+      "branch.feature.merge=refs/heads/feature",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

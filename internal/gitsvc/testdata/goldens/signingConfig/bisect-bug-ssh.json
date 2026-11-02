@@ -1,0 +1,37 @@
+{
+  "method": "signingConfig",
+  "fixture": "bisect-bug",
+  "case": "ssh",
+  "kind": "read",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "commit.gpgsign",
+        "true"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "gpg.format",
+        "ssh"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "user.signingkey",
+        "~/.ssh/id.pub"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "sign": true,
+    "format": "ssh",
+    "key": "~/.ssh/id.pub"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "method": "commitTemplate",
+  "fixture": "commit-template",
+  "case": "relative",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": "<type>(<scope>): <short summary>\n\nWhy is this change needed?\n\nWhat does it do?\n\nRefs:\n\n# ── Commit template ─────────────────────────────────────────────────────────\n# type: feat | fix | docs | refactor | test | chore\n# Keep the summary under ~50 chars; wrap the body at 72.\n# Lines starting with '#' are comments — they are stripped, not committed.\n"
+}

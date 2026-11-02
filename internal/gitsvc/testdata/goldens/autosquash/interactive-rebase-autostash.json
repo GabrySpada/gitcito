@@ -1,0 +1,57 @@
+{
+  "method": "autosquash",
+  "fixture": "interactive-rebase",
+  "case": "autostash",
+  "kind": "write",
+  "setup": [
+    {
+      "write": "README.md",
+      "content": "dirty\n"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "main",
+    true
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/messy-feature",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <finish session module — getSession + clearToken@1722a943>",
+      "# branch.head messy-feature",
+      "? README.md"
+    ],
+    "refs": [
+      "refs/heads/main <initial commit@00ba9f13>",
+      "refs/heads/messy-feature <finish session module — getSession + clearToken@1722a943>"
+    ],
+    "log": [
+      "<WIP session module@f472bda5>\u0000<add logout + fix login path@00e8c25e>\u0000WIP session module",
+      "<WIP@3d1a155a>\u0000<add login function@fbf63dee>\u0000WIP",
+      "<add login function@fbf63dee>\u0000<initial commit@00ba9f13>\u0000add login function",
+      "<add logout + fix login path@00e8c25e>\u0000<WIP@3d1a155a>\u0000add logout + fix login path",
+      "<finish session module — getSession + clearToken@1722a943>\u0000<WIP session module@f472bda5>\u0000finish session module — getSession + clearToken",
+      "<initial commit@00ba9f13>\u0000\u0000initial commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 e2f0c2bb3914c602dbff8b30347634bf8c6a0dbe 0\tauth.ts",
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tindex.ts",
+      "100644 6250972daa55c6ed76dd7a04b8f48b1314b13e5b 0\tsession.ts"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "method": "gitflowStatus",
+  "fixture": "gitflow",
+  "case": "on-feature",
+  "kind": "read",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "feature/search"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "config": {
+      "main": "main",
+      "develop": "develop",
+      "featurePrefix": "feature/",
+      "releasePrefix": "release/",
+      "hotfixPrefix": "hotfix/",
+      "versionTagPrefix": "v"
+    },
+    "initialized": true,
+    "hasMain": true,
+    "hasDevelop": true,
+    "current": "feature/search",
+    "currentFlow": {
+      "kind": "feature",
+      "name": "search"
+    }
+  }
+}

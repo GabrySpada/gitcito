@@ -1,0 +1,17 @@
+{
+  "method": "commitSummary",
+  "fixture": "collaborators",
+  "case": "body",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD"
+  ],
+  "result": {
+    "hash": "<docs: credit the whole squad for v1.1@ad366564>",
+    "author": "Alice Liddell",
+    "date": "<DATE>",
+    "subject": "docs: credit the whole squad for v1.1",
+    "body": "Co-authored-by: Bob Marley <bob-marley@users.noreply.github.com>\nCo-authored-by: Carol Danvers <carol-danvers@users.noreply.github.com>\nCo-authored-by: Dave Grohl <dave-grohl@users.noreply.github.com>\nCo-authored-by: Erin Reyes <erin-reyes@users.noreply.github.com>\nCo-authored-by: Frank Castillo <frank-castillo@users.noreply.github.com>\nCo-authored-by: Grace Okafor <grace-okafor@users.noreply.github.com>"
+  }
+}

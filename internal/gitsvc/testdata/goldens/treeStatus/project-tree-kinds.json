@@ -1,0 +1,21 @@
+{
+  "method": "treeStatus",
+  "fixture": "project-tree",
+  "case": "kinds",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "docs/guide.md": "renamed",
+    "docs": "renamed",
+    "src/legacy.ts": "deleted",
+    "src": "modified",
+    "src/new-feature.ts": "added",
+    "src/util.ts": "modified",
+    "scratch.todo": "untracked",
+    "src/draft.ts": "untracked",
+    ".env": "ignored",
+    "dist": "ignored"
+  }
+}

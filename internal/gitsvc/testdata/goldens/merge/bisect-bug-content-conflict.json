@@ -1,0 +1,153 @@
+{
+  "method": "merge",
+  "fixture": "bisect-bug",
+  "case": "content-conflict",
+  "kind": "write",
+  "setup": [
+    {
+      "write": "shared.txt",
+      "content": "alpha\nbeta\ngamma\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "base"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "incoming"
+      ]
+    },
+    {
+      "write": "shared.txt",
+      "content": "alpha\ntheir beta\ngamma\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "their edit"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "mine",
+        "HEAD~1"
+      ]
+    },
+    {
+      "write": "shared.txt",
+      "content": "alpha\nour beta\ngamma\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "our edit"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "incoming"
+  ],
+  "error": "CONFLICTS: shared.txt:content",
+  "state": {
+    "head": "refs/heads/mine",
+    "headAuthor": "Setup <setup@example.com>",
+    "status": [
+      "# branch.oid <our edit@edc6fc50>",
+      "# branch.head mine",
+      "u UU N... 100644 100644 100644 100644 85c30401ce288f253613cb07ee32e62128089caa c25a05ea7417457d9092c409bcceff34a5a0cc47 b73bb1b748efd635c319d0e24598b72b6abf3414 shared.txt"
+    ],
+    "refs": [
+      "refs/heads/incoming <their edit@7586a005>",
+      "refs/heads/main <base@2dd30efe>",
+      "refs/heads/mine <our edit@edc6fc50>"
+    ],
+    "log": [
+      "<base@2dd30efe>\u0000<chore: add .bisect-hint@f4faf03d>\u0000base",
+      "<chore: add .bisect-hint@f4faf03d>\u0000<chore: add stats to barrel export@548f1bb9>\u0000chore: add .bisect-hint",
+      "<chore: add stats to barrel export@548f1bb9>\u0000<feat: stats — sum / mean / median@edfa8801>\u0000chore: add stats to barrel export",
+      "<docs: README with bisect instructions@88b71287>\u0000<feat: barrel export index.js@352313e5>\u0000docs: README with bisect instructions",
+      "<feat: abs + clamp@6dabe43f>\u0000<feat: formatCurrency@892eae7f>\u0000feat: abs + clamp",
+      "<feat: add + subtract@29bc8f4b>\u0000\u0000feat: add + subtract",
+      "<feat: addTax@5fc42b9c>\u0000<feat: abs + clamp@6dabe43f>\u0000feat: addTax",
+      "<feat: barrel export index.js@352313e5>\u0000<refactor: simplify discount calculation@8f8d109d>\u0000feat: barrel export index.js",
+      "<feat: currency helpers@90316150>\u0000<feat: multiply + divide@f39947ec>\u0000feat: currency helpers",
+      "<feat: discount function@8cf41030>\u0000<feat: currency helpers@90316150>\u0000feat: discount function",
+      "<feat: formatCurrency@892eae7f>\u0000<feat: discount function@8cf41030>\u0000feat: formatCurrency",
+      "<feat: multiply + divide@f39947ec>\u0000<feat: add + subtract@29bc8f4b>\u0000feat: multiply + divide",
+      "<feat: stats — sum / mean / median@edfa8801>\u0000<docs: README with bisect instructions@88b71287>\u0000feat: stats — sum / mean / median",
+      "<our edit@edc6fc50>\u0000<base@2dd30efe>\u0000our edit",
+      "<refactor: simplify discount calculation@8f8d109d>\u0000<feat: addTax@5fc42b9c>\u0000refactor: simplify discount calculation",
+      "<their edit@7586a005>\u0000<base@2dd30efe>\u0000their edit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 <VOLATILE> 0\t.bisect-hint",
+      "100644 cbd4f3d59074914ab1b67b998822ce51978b1f9a 0\tREADME.md",
+      "100644 7ba12e27fdbf4c7cda6af1c2d526e19824205d46 0\tcurrency.js",
+      "100644 8eb12d88f64c95a719e648483ee32a01c37b5419 0\tdiscount.js",
+      "100644 c1d0d217efe6ebc6aaf0ea7a2685a51ef3fb8cbd 0\tformat.js",
+      "100644 d50f4d4ec8cb6a88f60d5b13aa72c6e8b5c67136 0\tindex.js",
+      "100644 e429128985eaeadea8b19a17f5fa971135fa4bb0 0\tmath.js",
+      "100644 85c30401ce288f253613cb07ee32e62128089caa 1\tshared.txt",
+      "100644 c25a05ea7417457d9092c409bcceff34a5a0cc47 2\tshared.txt",
+      "100644 b73bb1b748efd635c319d0e24598b72b6abf3414 3\tshared.txt",
+      "100644 44b3962e2e96ac61d8986b526cd3dab5ab00f06c 0\tstats.js",
+      "100644 fdb19749ef49124520c3fe247aeb8e0fda10af16 0\ttax.js"
+    ],
+    "diff": "diff --cc shared.txt\nindex c25a05e,b73bb1b..0000000\n--- a/shared.txt\n+++ b/shared.txt\n@@@ -1,3 -1,3 +1,7 @@@\n  alpha\n++<<<<<<< HEAD\n +our beta\n++=======\n+ their beta\n++>>>>>>> incoming\n  gamma\n",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "MERGE_HEAD",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

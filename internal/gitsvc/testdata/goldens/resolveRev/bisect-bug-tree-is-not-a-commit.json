@@ -1,0 +1,11 @@
+{
+  "method": "resolveRev",
+  "fixture": "bisect-bug",
+  "case": "tree-is-not-a-commit",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD^{tree}"
+  ],
+  "result": null
+}

@@ -1,0 +1,21 @@
+{
+  "method": "ignoredTrackedFiles",
+  "fixture": "untracked-mess",
+  "case": "mixed",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    [
+      "node_modules/x.js",
+      "notes.md",
+      "app.log",
+      "src/index.js",
+      "dist"
+    ]
+  ],
+  "result": [
+    "node_modules/x.js",
+    "app.log",
+    "dist"
+  ]
+}

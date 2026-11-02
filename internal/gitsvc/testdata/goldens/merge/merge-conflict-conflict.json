@@ -1,0 +1,65 @@
+{
+  "method": "merge",
+  "fixture": "merge-conflict",
+  "case": "conflict",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "feature"
+  ],
+  "error": "CONFLICTS: app.js:content, big-log.txt:content, greeting.txt:content, release-notes.md:content, units_service.dart:modify/delete",
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <main: shout the greetings@b509ab3d>",
+      "# branch.head main",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 1effe220d72b766179901f9d49847388420fdada feature-notes.md",
+      "u UU N... 100644 100644 100644 100644 f3a38ee5a0b62f2cf87c6d3874c7911ff08e4e42 4f758faea993cfaaabb9e48a8aa613abd7e0db1c 8b15707c502fded2d7f65cb32cef6c2968f2b2e8 app.js",
+      "u UU N... 100644 100644 100644 100644 f2f52831d073cc668dc19f6390295676069845a2 0629d62530841527f2395dabc9c7081af6a7d7db f1a26b09a986b256553a24f6f7b956d86c5fb90f big-log.txt",
+      "u UU N... 100644 100644 100644 100644 4fae60cd20a248b67d6517b44d48d1f7a46a7603 1e94c3742727a15984b7271b98959721a26fbdd5 58e86221d711b61e61fc087b28878e558bea5dc6 greeting.txt",
+      "u UU N... 100644 100644 100644 100644 2eb88adc4b85475d86ec0d3c4c5a909fd77bd8c0 b5c5c9fc212ddaa64facb687fa52487bce42696a f4f2f698c6f0ae472db0a182e7af08026a208d1e release-notes.md",
+      "u DU N... 100644 000000 100644 100644 68032cce14df199921d79e8a444eac5fa6f6542e 0000000000000000000000000000000000000000 d7bf55d434e782ce1f0c6ca60acafda3181ea4ed units_service.dart"
+    ],
+    "refs": [
+      "refs/heads/feature <feature: translate to Spanish@3fa91df4>",
+      "refs/heads/main <main: shout the greetings@b509ab3d>"
+    ],
+    "log": [
+      "<feature: translate to Spanish@3fa91df4>\u0000<initial commit@00ba9f13>\u0000feature: translate to Spanish",
+      "<initial commit@00ba9f13>\u0000\u0000initial commit",
+      "<main: shout the greetings@b509ab3d>\u0000<initial commit@00ba9f13>\u0000main: shout the greetings"
+    ],
+    "stash": [],
+    "index": [
+      "100644 f3a38ee5a0b62f2cf87c6d3874c7911ff08e4e42 1\tapp.js",
+      "100644 4f758faea993cfaaabb9e48a8aa613abd7e0db1c 2\tapp.js",
+      "100644 8b15707c502fded2d7f65cb32cef6c2968f2b2e8 3\tapp.js",
+      "100644 f2f52831d073cc668dc19f6390295676069845a2 1\tbig-log.txt",
+      "100644 0629d62530841527f2395dabc9c7081af6a7d7db 2\tbig-log.txt",
+      "100644 f1a26b09a986b256553a24f6f7b956d86c5fb90f 3\tbig-log.txt",
+      "100644 1effe220d72b766179901f9d49847388420fdada 0\tfeature-notes.md",
+      "100644 4fae60cd20a248b67d6517b44d48d1f7a46a7603 1\tgreeting.txt",
+      "100644 1e94c3742727a15984b7271b98959721a26fbdd5 2\tgreeting.txt",
+      "100644 58e86221d711b61e61fc087b28878e558bea5dc6 3\tgreeting.txt",
+      "100644 2eb88adc4b85475d86ec0d3c4c5a909fd77bd8c0 1\trelease-notes.md",
+      "100644 b5c5c9fc212ddaa64facb687fa52487bce42696a 2\trelease-notes.md",
+      "100644 f4f2f698c6f0ae472db0a182e7af08026a208d1e 3\trelease-notes.md",
+      "100644 68032cce14df199921d79e8a444eac5fa6f6542e 1\tunits_service.dart",
+      "100644 d7bf55d434e782ce1f0c6ca60acafda3181ea4ed 3\tunits_service.dart"
+    ],
+    "diff": "diff --cc app.js\nindex 4f758fa,8b15707..0000000\n--- a/app.js\n+++ b/app.js\n@@@ -1,5 -1,5 +1,9 @@@\n  function greet(name) {\n++<<<<<<< HEAD\n +  return `HELLO ${name.toUpperCase()} (main version)`\n++=======\n+   return `¡Hola ${name}! (feature version)`\n++>>>>>>> feature\n  }\n  \n  function farewell(name) {\ndiff --cc big-log.txt\nindex 0629d62,f1a26b0..0000000\n--- a/big-log.txt\n+++ b/big-log.txt\n@@@ -147,7 -147,7 +147,11 @@@ line 146: shared paddin\n  line 147: shared padding\n  line 148: shared padding\n  line 149: shared padding\n++<<<<<<< HEAD\n +line 150: MAIN EDITION\n++=======\n+ line 150: feature edition\n++>>>>>>> feature\n  line 151: shared padding\n  line 152: shared padding\n  line 153: shared padding\n@@@ -197,7 -197,7 +201,11 @@@ line 196: shared paddin\n  line 197: shared padding\n  line 198: shared padding\n  line 199: shared padding\n++<<<<<<< HEAD\n +line 200: MAIN EDITION\n++=======\n+ line 200: feature edition\n++>>>>>>> feature\n  line 201: shared padding\n  line 202: shared padding\n  line 203: shared padding\n@@@ -497,7 -497,7 +505,11 @@@ line 496: shared paddin\n  line 497: shared padding\n  line 498: shared padding\n  line 499: shared padding\n++<<<<<<< HEAD\n +line 500: MAIN EDITION\n++=======\n+ line 500: feature edition\n++>>>>>>> feature\n  line 501: shared padding\n  line 502: shared padding\n  line 503: shared padding\ndiff --cc greeting.txt\nindex 1e94c37,58e8622..0000000\n--- a/greeting.txt\n+++ b/greeting.txt\n@@@ -1,3 -1,3 +1,9 @@@\n++<<<<<<< HEAD\n +HELLO WORLD (from main)\n +This line stays the same.\n +GOODBYE WORLD (from main)\n++=======\n+ Hola mundo (from feature)\n+ This line stays the same.\n+ Adios mundo (from feature)\n++>>>>>>> feature\ndiff --cc release-notes.md\nindex b5c5c9f,f4f2f69..0000000\n--- a/release-notes.md\n+++ b/release-notes.md\n@@@ -1,21 -1,22 +1,34 @@@\n  # Release notes\n  \n  ## Summary\n++<<<<<<< HEAD\n +SHOUTING RELEASE.\n++=======\n+ Spanish translation pass.\n++>>>>>>> feature\n  \n  <!-- keep three lines of shared context between sections so git keeps the -->\n  <!-- conflicts apart instead of coalescing them into one big chunk -->\n  <!-- ------------------------------------------------------------ -->\n  \n  ## Added\n++<<<<<<< HEAD\n +- UPPERCASE GREETINGS\n++=======\n+ - Spanish greetings\n+ - localized farewells\n++>>>>>>> feature\n  \n  <!-- ------------------------------------------------------------ -->\n  <!-- shared context -->\n  <!-- ------------------------------------------------------------ -->\n  \n  ## Fixed\n++<<<<<<< HEAD\n +- QUIET OUTPUT\n++=======\n+ - accent handling\n++>>>>>>> feature\n  \n  <!-- ------------------------------------------------------------ -->\n  <!-- shared context -->\n@@@ -29,4 -30,4 +42,8 @@@ Unchanged on both branches\n  <!-- ------------------------------------------------------------ -->\n  \n  ## Credits\n++<<<<<<< HEAD\n +- THE LOUD CREW\n++=======\n+ - the i18n crew\n++>>>>>>> feature\n* Unmerged path units_service.dart\n",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "MERGE_HEAD",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

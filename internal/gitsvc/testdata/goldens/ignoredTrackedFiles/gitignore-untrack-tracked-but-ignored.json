@@ -1,0 +1,16 @@
+{
+  "method": "ignoredTrackedFiles",
+  "fixture": "gitignore-untrack",
+  "case": "tracked-but-ignored",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    [
+      ".env",
+      "debug.log",
+      "build/out.js",
+      "README.md"
+    ]
+  ],
+  "result": []
+}

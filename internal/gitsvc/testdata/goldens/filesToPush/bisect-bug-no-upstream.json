@@ -1,0 +1,21 @@
+{
+  "method": "filesToPush",
+  "fixture": "bisect-bug",
+  "case": "no-upstream",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "main"
+  ],
+  "result": [
+    ".bisect-hint",
+    "README.md",
+    "currency.js",
+    "discount.js",
+    "format.js",
+    "index.js",
+    "math.js",
+    "stats.js",
+    "tax.js"
+  ]
+}

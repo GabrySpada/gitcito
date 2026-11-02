@@ -1,0 +1,62 @@
+{
+  "method": "resolveDivergedCheckout",
+  "fixture": "diverged-checkout",
+  "case": "rebase-backup",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "origin/feature",
+    "feature",
+    "rebase",
+    true
+  ],
+  "error": "Auto-merging feature.ts\nCONFLICT (content): Merge conflict in feature.ts\nRebasing (1/1)\rerror: could not apply <feat: local tweak to feature (not pushed)@177d8804>... feat: local tweak to feature (not pushed)\nhint: Resolve all conflicts manually, mark them as resolved with\nhint: \"git add/rm <conflicted_files>\", then run \"git rebase --continue\".\nhint: You can instead skip this commit: run \"git rebase --skip\".\nhint: To abort and get back to the state before \"git rebase\", run \"git rebase --abort\".\nCould not apply <feat: local tweak to feature (not pushed)@177d8804>... feat: local tweak to feature (not pushed)\n",
+  "state": {
+    "head": "DETACHED",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <feat: remote tweak to feature@3fa7a5ad>",
+      "# branch.head (detached)",
+      "u UU N... 100644 100644 100644 100644 2850652f62a539b17dfb5a2a4e44c908dbcbd618 fec777d9494690a090c3a37de8c3edd057ae80ef c8683041ad2ca7400c5f009a25493aa45d53d6f7 feature.ts"
+    ],
+    "refs": [
+      "refs/heads/backup/feature-<STAMP> <feat: local tweak to feature (not pushed)@177d8804>",
+      "refs/heads/feature <feat: local tweak to feature (not pushed)@177d8804>",
+      "refs/heads/main <initial commit@00ba9f13>",
+      "refs/remotes/origin/HEAD <initial commit@00ba9f13>",
+      "refs/remotes/origin/feature <feat: remote tweak to feature@3fa7a5ad>",
+      "refs/remotes/origin/main <initial commit@00ba9f13>"
+    ],
+    "log": [
+      "<feat: local tweak to feature (not pushed)@177d8804>\u0000<feat: start feature@93d749df>\u0000feat: local tweak to feature (not pushed)",
+      "<feat: remote tweak to feature@3fa7a5ad>\u0000<feat: start feature@93d749df>\u0000feat: remote tweak to feature",
+      "<feat: start feature@93d749df>\u0000<initial commit@00ba9f13>\u0000feat: start feature",
+      "<initial commit@00ba9f13>\u0000\u0000initial commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tapp.ts",
+      "100644 2850652f62a539b17dfb5a2a4e44c908dbcbd618 1\tfeature.ts",
+      "100644 fec777d9494690a090c3a37de8c3edd057ae80ef 2\tfeature.ts",
+      "100644 c8683041ad2ca7400c5f009a25493aa45d53d6f7 3\tfeature.ts"
+    ],
+    "diff": "diff --cc feature.ts\nindex fec777d,c868304..0000000\n--- a/feature.ts\n+++ b/feature.ts\n@@@ -1,2 -1,2 +1,6 @@@\n  export const feature = () => 'wip'\n++<<<<<<< HEAD\n +export const remoteOnly = () => 'added on remote'\n++=======\n+ export const localOnly = () => 'added locally'\n++>>>>>>> <feat: local tweak to feature (not pushed)@177d8804> (feat: local tweak to feature (not pushed))\n",
+    "config": [
+      "remote.origin.url=<PLAYGROUND>/diverged-checkout-origin.git",
+      "remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*",
+      "branch.main.remote=origin",
+      "branch.main.merge=refs/heads/main",
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "branch.feature.remote=origin",
+      "branch.feature.merge=refs/heads/feature",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "rebase-merge",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

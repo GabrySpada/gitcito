@@ -1,0 +1,29 @@
+{
+  "method": "stackLeaves",
+  "fixture": "stacked-branches",
+  "case": "two",
+  "kind": "read",
+  "setup": [
+    {
+      "git": [
+        "branch",
+        "docs-1",
+        "main"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "branch.docs-1.gitcitoparent",
+        "main"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    "docs-1",
+    "feature/ui"
+  ]
+}

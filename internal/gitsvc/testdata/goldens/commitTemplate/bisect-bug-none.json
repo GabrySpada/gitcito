@@ -1,0 +1,10 @@
+{
+  "method": "commitTemplate",
+  "fixture": "bisect-bug",
+  "case": "none",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": ""
+}

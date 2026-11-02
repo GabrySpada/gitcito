@@ -1,0 +1,11 @@
+{
+  "method": "filesToPush",
+  "fixture": "diverged-checkout",
+  "case": "in-sync",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "main"
+  ],
+  "result": []
+}

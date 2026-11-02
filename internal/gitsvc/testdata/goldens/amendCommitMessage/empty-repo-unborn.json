@@ -1,0 +1,40 @@
+{
+  "method": "amendCommitMessage",
+  "fixture": "empty-repo",
+  "case": "unborn",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "nothing to amend"
+  ],
+  "error": "fatal: You have nothing to amend.\n",
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "",
+    "status": [
+      "# branch.oid (initial)",
+      "# branch.head main",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 2752eb92e5922f0f1d60494d1793a54775e0d830 .gitignore",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 8d92e7b6fecb7c29ce328951cc32fb8e531d73bf README.md",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 19dfa14dabf45a25c64aa835eb891ac7e163178e main.js"
+    ],
+    "refs": [],
+    "log": [],
+    "stash": [],
+    "index": [
+      "100644 2752eb92e5922f0f1d60494d1793a54775e0d830 0\t.gitignore",
+      "100644 8d92e7b6fecb7c29ce328951cc32fb8e531d73bf 0\tREADME.md",
+      "100644 19dfa14dabf45a25c64aa835eb891ac7e163178e 0\tmain.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [],
+    "rrCache": 0
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "method": "bisectStatus",
+  "fixture": "bisect-bug",
+  "case": "idle",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "inProgress": false,
+    "needGood": false,
+    "needBad": false,
+    "currentSha": "",
+    "currentSubject": "",
+    "remainingSteps": -1,
+    "finished": false,
+    "firstBadSha": "",
+    "firstBadSubject": ""
+  }
+}

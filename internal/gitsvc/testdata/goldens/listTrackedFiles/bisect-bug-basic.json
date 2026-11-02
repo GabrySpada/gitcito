@@ -1,0 +1,20 @@
+{
+  "method": "listTrackedFiles",
+  "fixture": "bisect-bug",
+  "case": "basic",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    ".bisect-hint",
+    "README.md",
+    "currency.js",
+    "discount.js",
+    "format.js",
+    "index.js",
+    "math.js",
+    "stats.js",
+    "tax.js"
+  ]
+}

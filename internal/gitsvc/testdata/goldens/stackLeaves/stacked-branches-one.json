@@ -1,0 +1,12 @@
+{
+  "method": "stackLeaves",
+  "fixture": "stacked-branches",
+  "case": "one",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    "feature/ui"
+  ]
+}

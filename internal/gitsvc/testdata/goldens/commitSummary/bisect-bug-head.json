@@ -1,0 +1,17 @@
+{
+  "method": "commitSummary",
+  "fixture": "bisect-bug",
+  "case": "head",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD"
+  ],
+  "result": {
+    "hash": "<chore: add .bisect-hint@f4faf03d>",
+    "author": "Playground",
+    "date": "<DATE>",
+    "subject": "chore: add .bisect-hint",
+    "body": ""
+  }
+}

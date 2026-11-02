@@ -1,0 +1,53 @@
+{
+  "method": "squashCommits",
+  "fixture": "changelog",
+  "case": "top-two",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "HEAD~1",
+    "squash two\n\nbody"
+  ],
+  "result": {
+    "before": "<tweak some stuff without a type prefix@cb2f53c6>",
+    "after": "<squash two@98a82914>"
+  },
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <squash two@98a82914>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "refs/heads/main <squash two@98a82914>",
+      "refs/tags/v1.0.0 <feat: first feature@91844a01>"
+    ],
+    "log": [
+      "<chore(deps): bump electron to 32@01efe68b>\u0000<refactor(core): extract scheduler module@87be4901>\u0000chore(deps): bump electron to 32",
+      "<chore: initial commit@4f0da6ae>\u0000\u0000chore: initial commit",
+      "<docs: document the plugin API@3d7e99ef>\u0000<perf(graph): memoize layout computation@a5bffeaa>\u0000docs: document the plugin API",
+      "<feat(api)!: drop v1 endpoints@36745b8e>\u0000<chore(deps): bump electron to 32@01efe68b>\u0000feat(api)!: drop v1 endpoints",
+      "<feat(auth): add OAuth login@e52731b1>\u0000<feat: first feature@91844a01>\u0000feat(auth): add OAuth login",
+      "<feat(ui): dark mode toggle@a5339dd7>\u0000<feat(auth): add OAuth login@e52731b1>\u0000feat(ui): dark mode toggle",
+      "<feat: first feature@91844a01>\u0000<chore: initial commit@4f0da6ae>\u0000feat: first feature",
+      "<fix(api): handle null user in profile fetch@a4357b08>\u0000<feat(ui): dark mode toggle@a5339dd7>\u0000fix(api): handle null user in profile fetch",
+      "<fix: off-by-one in pagination@2bdc0ee7>\u0000<fix(api): handle null user in profile fetch@a4357b08>\u0000fix: off-by-one in pagination",
+      "<perf(graph): memoize layout computation@a5bffeaa>\u0000<fix: off-by-one in pagination@2bdc0ee7>\u0000perf(graph): memoize layout computation",
+      "<refactor(core): extract scheduler module@87be4901>\u0000<docs: document the plugin API@3d7e99ef>\u0000refactor(core): extract scheduler module",
+      "<squash two@98a82914>\u0000<feat(api)!: drop v1 endpoints@36745b8e>\u0000squash two"
+    ],
+    "stash": [],
+    "index": [],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [],
+    "rrCache": 0
+  }
+}

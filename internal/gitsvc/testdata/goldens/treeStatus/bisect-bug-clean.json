@@ -1,0 +1,10 @@
+{
+  "method": "treeStatus",
+  "fixture": "bisect-bug",
+  "case": "clean",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {}
+}

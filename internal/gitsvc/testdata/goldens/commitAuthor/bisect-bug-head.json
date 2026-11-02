@@ -1,0 +1,14 @@
+{
+  "method": "commitAuthor",
+  "fixture": "bisect-bug",
+  "case": "head",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD"
+  ],
+  "result": {
+    "name": "Playground",
+    "email": "playground@example.com"
+  }
+}

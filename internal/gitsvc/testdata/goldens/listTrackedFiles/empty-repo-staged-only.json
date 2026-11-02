@@ -1,0 +1,14 @@
+{
+  "method": "listTrackedFiles",
+  "fixture": "empty-repo",
+  "case": "staged-only",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    ".gitignore",
+    "README.md",
+    "main.js"
+  ]
+}

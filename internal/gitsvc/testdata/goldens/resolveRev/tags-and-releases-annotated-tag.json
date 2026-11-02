@@ -1,0 +1,11 @@
+{
+  "method": "resolveRev",
+  "fixture": "tags-and-releases",
+  "case": "annotated-tag",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "v1.0.0"
+  ],
+  "result": "<release: v1.0.0@3eeb8a3f>"
+}

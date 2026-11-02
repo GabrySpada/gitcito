@@ -1,0 +1,65 @@
+{
+  "method": "applyRepoFileActions",
+  "fixture": "untracked-mess",
+  "case": "ignored",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    [
+      {
+        "type": "write_file",
+        "path": "app.log",
+        "content": "x",
+        "mode": "replace",
+        "description": "d",
+        "expectedHash": null,
+        "preview": ""
+      }
+    ]
+  ],
+  "result": {
+    "ok": false,
+    "error": {
+      "code": "ignored_path",
+      "detail": "Ignored files cannot be changed by repository chat.",
+      "paths": [
+        "app.log"
+      ]
+    }
+  },
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <initial project@98ba0f89>",
+      "# branch.head main",
+      "? debug-output.txt",
+      "? experiment/",
+      "? notes.md",
+      "? tmp/"
+    ],
+    "refs": [
+      "refs/heads/main <initial project@98ba0f89>"
+    ],
+    "log": [
+      "<initial project@98ba0f89>\u0000\u0000initial project"
+    ],
+    "stash": [],
+    "index": [
+      "100644 e9c470a394c6bb66b1da7007b2a7027523211dfd 0\t.gitignore",
+      "100644 a3a7a1af9b2503d48699cacc40165d3d6c73d59f 0\tREADME.md",
+      "100644 df421a4a8ed1fcfc1b3641a7eb45b213983175c5 0\tsrc/app.js",
+      "100644 2281340f5b963591a432aaa78e4fd5a2fe0d4c80 0\tsrc/render.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [],
+    "rrCache": 0
+  }
+}

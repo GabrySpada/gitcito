@@ -1,0 +1,13 @@
+{
+  "method": "stackInfo",
+  "fixture": "merge-conflict",
+  "case": "no-stack",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "trunk": "",
+    "branches": []
+  }
+}

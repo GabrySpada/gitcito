@@ -1,0 +1,22 @@
+{
+  "method": "treeStatus",
+  "fixture": "untracked-mess",
+  "case": "ignored-collapsed",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "debug-output.txt": "untracked",
+    "experiment": "untracked",
+    "notes.md": "untracked",
+    "tmp/cache/blob.txt": "untracked",
+    "tmp/cache": "untracked",
+    "tmp": "untracked",
+    "tmp/scratch.txt": "untracked",
+    ".env": "ignored",
+    "app.log": "ignored",
+    "dist": "ignored",
+    "node_modules": "ignored"
+  }
+}

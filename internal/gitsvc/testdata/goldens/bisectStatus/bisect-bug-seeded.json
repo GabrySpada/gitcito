@@ -1,0 +1,43 @@
+{
+  "method": "bisectStatus",
+  "fixture": "bisect-bug",
+  "case": "seeded",
+  "kind": "read",
+  "setup": [
+    {
+      "call": "bisectStart",
+      "args": [
+        "<REPO>"
+      ]
+    },
+    {
+      "call": "bisectMark",
+      "args": [
+        "<REPO>",
+        "bad"
+      ]
+    },
+    {
+      "call": "bisectMark",
+      "args": [
+        "<REPO>",
+        "good",
+        ":/feat: discount function"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "inProgress": true,
+    "needGood": false,
+    "needBad": false,
+    "currentSha": "<refactor: simplify discount calculation@8f8d109d>",
+    "currentSubject": "refactor: simplify discount calculation",
+    "remainingSteps": -1,
+    "finished": false,
+    "firstBadSha": "",
+    "firstBadSubject": ""
+  }
+}
