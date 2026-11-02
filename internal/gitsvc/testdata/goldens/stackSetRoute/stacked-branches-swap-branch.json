@@ -1,0 +1,68 @@
+{
+  "method": "stackSetRoute",
+  "fixture": "stacked-branches",
+  "case": "swap-branch",
+  "kind": "write",
+  "setup": [
+    {
+      "git": [
+        "branch",
+        "feature/docs",
+        "main"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "main",
+    [
+      "feature/docs",
+      "feature/ui"
+    ]
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/feature/ui",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <ui: add OrgCard@a12597d8>",
+      "# branch.head feature/ui"
+    ],
+    "refs": [
+      "refs/heads/feature/api <api: add fetchTeam@e2737aec>",
+      "refs/heads/feature/docs <main: hotfix@698503be>",
+      "refs/heads/feature/ui <ui: add OrgCard@a12597d8>",
+      "refs/heads/main <main: hotfix@698503be>"
+    ],
+    "log": [
+      "<api: add fetchOrg@5d7429a2>\u0000<api: add fetchUser@3ab43b4c>\u0000api: add fetchOrg",
+      "<api: add fetchTeam@e2737aec>\u0000<api: add fetchOrg@5d7429a2>\u0000api: add fetchTeam",
+      "<api: add fetchUser@3ab43b4c>\u0000<main: initial app@579d4aa5>\u0000api: add fetchUser",
+      "<main: hotfix@698503be>\u0000<main: initial app@579d4aa5>\u0000main: hotfix",
+      "<main: initial app@579d4aa5>\u0000\u0000main: initial app",
+      "<ui: add OrgCard@a12597d8>\u0000<ui: add UserCard@2d51b6b7>\u0000ui: add OrgCard",
+      "<ui: add UserCard@2d51b6b7>\u0000<main: hotfix@698503be>\u0000ui: add UserCard"
+    ],
+    "stash": [],
+    "index": [
+      "100644 9c4baa2ee9e7fffca06813679163dff345eb9e9b 0\tapp.js",
+      "100644 35b60e818c2ee68942e2ea992dcef088b2b6c957 0\tui.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "branch.feature/ui.gitcitoparent=feature/docs",
+      "branch.feature/ui.gitcitobase=<main: hotfix@698503be>",
+      "branch.feature/docs.gitcitobase=<main: hotfix@698503be>",
+      "branch.feature/docs.gitcitoparent=main"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

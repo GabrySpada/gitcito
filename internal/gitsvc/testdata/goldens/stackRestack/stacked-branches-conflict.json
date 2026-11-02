@@ -1,0 +1,95 @@
+{
+  "method": "stackRestack",
+  "fixture": "stacked-branches",
+  "case": "conflict",
+  "kind": "write",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "main"
+      ]
+    },
+    {
+      "write": "api.js",
+      "content": "main owns this now\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "main: claim api.js"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "feature/ui"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "feature/ui"
+  ],
+  "error": "GITCITO_ROUTE_CONFLICT:feature/api:main",
+  "state": {
+    "head": "DETACHED",
+    "headAuthor": "Setup <setup@example.com>",
+    "status": [
+      "# branch.oid <main: claim api.js@799ed878>",
+      "# branch.head (detached)",
+      "u AA N... 000000 100644 100644 100644 0000000000000000000000000000000000000000 92f83d84d56a64fd4dba91326b5c90facd370541 2c689c50af5b4f9a03229db9f9a28f138d66675b api.js"
+    ],
+    "refs": [
+      "refs/heads/feature/api <api: add fetchTeam@e2737aec>",
+      "refs/heads/feature/ui <ui: add OrgCard@8197be88>",
+      "refs/heads/main <main: claim api.js@799ed878>"
+    ],
+    "log": [
+      "<api: add fetchOrg@5d7429a2>\u0000<api: add fetchUser@3ab43b4c>\u0000api: add fetchOrg",
+      "<api: add fetchTeam@e2737aec>\u0000<api: add fetchOrg@5d7429a2>\u0000api: add fetchTeam",
+      "<api: add fetchUser@3ab43b4c>\u0000<main: initial app@579d4aa5>\u0000api: add fetchUser",
+      "<main: claim api.js@799ed878>\u0000<main: hotfix@698503be>\u0000main: claim api.js",
+      "<main: hotfix@698503be>\u0000<main: initial app@579d4aa5>\u0000main: hotfix",
+      "<main: initial app@579d4aa5>\u0000\u0000main: initial app",
+      "<ui: add OrgCard@8197be88>\u0000<ui: add UserCard@901e4219>\u0000ui: add OrgCard",
+      "<ui: add UserCard@901e4219>\u0000<api: add fetchOrg@5d7429a2>\u0000ui: add UserCard"
+    ],
+    "stash": [],
+    "index": [
+      "100644 92f83d84d56a64fd4dba91326b5c90facd370541 2\tapi.js",
+      "100644 2c689c50af5b4f9a03229db9f9a28f138d66675b 3\tapi.js",
+      "100644 9c4baa2ee9e7fffca06813679163dff345eb9e9b 0\tapp.js"
+    ],
+    "diff": "diff --cc api.js\nindex 92f83d8,2c689c5..0000000\n--- a/api.js\n+++ b/api.js\n@@@ -1,1 -1,1 +1,5 @@@\n++<<<<<<< HEAD\n +main owns this now\n++=======\n+ export const fetchUser = (id) => ({ id })\n++>>>>>>> <api: add fetchUser@3ab43b4c> (api: add fetchUser)\n",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "branch.feature/api.gitcitoparent=main",
+      "branch.feature/api.gitcitobase=<main: initial app@579d4aa5>",
+      "branch.feature/ui.gitcitoparent=feature/api",
+      "branch.feature/ui.gitcitobase=<api: add fetchOrg@5d7429a2>"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "rebase-merge",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

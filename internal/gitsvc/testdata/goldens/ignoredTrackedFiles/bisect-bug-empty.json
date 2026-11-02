@@ -1,0 +1,11 @@
+{
+  "method": "ignoredTrackedFiles",
+  "fixture": "bisect-bug",
+  "case": "empty",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    []
+  ],
+  "result": []
+}

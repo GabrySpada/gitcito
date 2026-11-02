@@ -1,0 +1,123 @@
+{
+  "method": "gitflowFinish",
+  "fixture": "gitflow",
+  "case": "conflict-rolls-back",
+  "kind": "write",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "feature/search"
+      ]
+    },
+    {
+      "write": "CLASH",
+      "content": "feature side\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "feature clash"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "develop"
+      ]
+    },
+    {
+      "write": "CLASH",
+      "content": "develop side\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "develop clash"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "feature",
+    "search"
+  ],
+  "error": "Command failed: git -C <REPO> merge --no-ff -m Merge branch 'feature/search' into develop feature/search",
+  "state": {
+    "head": "refs/heads/develop",
+    "headAuthor": "Setup <setup@example.com>",
+    "status": [
+      "# branch.oid <develop clash@253f483a>",
+      "# branch.head develop",
+      "1 A. N... 000000 100644 100644 0000000000000000000000000000000000000000 7d25e42cfe96ff992d1561e91a38e9a9600314fe search.js",
+      "u AA N... 000000 100644 100644 100644 0000000000000000000000000000000000000000 dc02cc9a5fa74e8cc817333a8420ea21ba04716b e64d4376e44e3e7cc90cafda7b639f1d704d1414 CLASH"
+    ],
+    "refs": [
+      "refs/heads/develop <develop clash@253f483a>",
+      "refs/heads/feature/search <feature clash@fa60c1b5>",
+      "refs/heads/main <init: app + readme@0ae15dfc>",
+      "refs/heads/release/1.1.0 <chore: bump to 1.1.0@25050c90>",
+      "refs/tags/v1.0.0 <TAG:v1.0.0>"
+    ],
+    "log": [
+      "<chore: bump to 1.1.0@25050c90>\u0000<chore: start 1.1.0@1d2dab20>\u0000chore: bump to 1.1.0",
+      "<chore: start 1.1.0@1d2dab20>\u0000<init: app + readme@0ae15dfc>\u0000chore: start 1.1.0",
+      "<develop clash@253f483a>\u0000<chore: start 1.1.0@1d2dab20>\u0000develop clash",
+      "<feat: add search@6d5ec589>\u0000<chore: start 1.1.0@1d2dab20>\u0000feat: add search",
+      "<feature clash@fa60c1b5>\u0000<feat: add search@6d5ec589>\u0000feature clash",
+      "<init: app + readme@0ae15dfc>\u0000\u0000init: app + readme"
+    ],
+    "stash": [],
+    "index": [
+      "100644 dc02cc9a5fa74e8cc817333a8420ea21ba04716b 2\tCLASH",
+      "100644 e64d4376e44e3e7cc90cafda7b639f1d704d1414 3\tCLASH",
+      "100644 14a1c1f99b44723bbcb5a8e82f2e02a9e32d0dc8 0\tREADME.md",
+      "100644 ea5943fc5ac81887cedf4c9aff2ac35ce047c830 0\tapp.js",
+      "100644 7d25e42cfe96ff992d1561e91a38e9a9600314fe 0\tsearch.js",
+      "100644 f52cedc9857055e1fcf24bb3cbd7d3ee6af939fb 0\tversion.js"
+    ],
+    "diff": "diff --cc CLASH\nindex dc02cc9,e64d437..0000000\n--- a/CLASH\n+++ b/CLASH\n@@@ -1,1 -1,1 +1,5 @@@\n++<<<<<<< HEAD\n +develop side\n++=======\n+ feature side\n++>>>>>>> feature/search\n",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "gitflow.branch.master=main",
+      "gitflow.branch.develop=develop",
+      "gitflow.prefix.feature=feature/",
+      "gitflow.prefix.release=release/",
+      "gitflow.prefix.hotfix=hotfix/",
+      "gitflow.prefix.versiontag=v"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "MERGE_HEAD",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

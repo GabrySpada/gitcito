@@ -1,0 +1,19 @@
+{
+  "method": "ignoredTrackedFiles",
+  "fixture": "bisect-bug",
+  "case": "not-a-repo",
+  "kind": "read",
+  "setup": [
+    {
+      "mkdir": "plain",
+      "out": true
+    }
+  ],
+  "args": [
+    "<OUT>/plain",
+    [
+      "a.txt"
+    ]
+  ],
+  "error": "Could not determine ignored files: Command failed: git -C <OUT>/plain check-ignore --no-index -- a.txt\nfatal: not a git repository (or any of the parent directories): .git\n"
+}

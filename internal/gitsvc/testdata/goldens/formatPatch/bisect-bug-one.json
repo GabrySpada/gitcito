@@ -1,0 +1,11 @@
+{
+  "method": "formatPatch",
+  "fixture": "bisect-bug",
+  "case": "one",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD~1"
+  ],
+  "result": "From <chore: add stats to barrel export@548f1bb9> Mon Sep 17 00:00:00 2001\nFrom: Playground <playground@example.com>\nDate: <DATE>\nSubject: [PATCH] chore: add stats to barrel export\n\n---\n index.js | 1 +\n 1 file changed, 1 insertion(+)\n\ndiff --git a/index.js b/index.js\nindex f9be641..d50f4d4 100644\n--- a/index.js\n+++ b/index.js\n@@ -4,4 +4,5 @@ module.exports = {\n   ...require('./discount'),\n   ...require('./tax'),\n   ...require('./format'),\n+  ...require('./stats'),\n }\n-- \n<GITVERSION>\n\n"
+}

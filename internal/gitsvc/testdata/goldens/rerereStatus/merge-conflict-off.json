@@ -1,0 +1,16 @@
+{
+  "method": "rerereStatus",
+  "fixture": "merge-conflict",
+  "case": "off",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "enabled": false,
+    "autoUpdate": false,
+    "perRepo": true,
+    "recorded": 0,
+    "replayed": []
+  }
+}

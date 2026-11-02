@@ -1,0 +1,108 @@
+{
+  "method": "gitflowFinish",
+  "fixture": "gitflow",
+  "case": "hotfix",
+  "kind": "write",
+  "setup": [
+    {
+      "call": "gitflowStart",
+      "args": [
+        "<REPO>",
+        "hotfix",
+        "1.0.1"
+      ]
+    },
+    {
+      "write": "HOTFIX",
+      "content": "fixed\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "fix: hot"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "hotfix",
+    "1.0.1"
+  ],
+  "result": {
+    "refs": [
+      {
+        "name": "main",
+        "sha": "<init: app + readme@0ae15dfc>"
+      },
+      {
+        "name": "develop",
+        "sha": "<chore: start 1.1.0@1d2dab20>"
+      }
+    ],
+    "tag": "v1.0.1",
+    "branch": {
+      "name": "hotfix/1.0.1",
+      "sha": "<fix: hot@9aaabd26>"
+    }
+  },
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <Merge branch 'hotfix/1.0.1' into main@01b6ad1b>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "refs/heads/develop <Merge branch 'hotfix/1.0.1' into develop@9a5fe582>",
+      "refs/heads/feature/search <feat: add search@6d5ec589>",
+      "refs/heads/main <Merge branch 'hotfix/1.0.1' into main@01b6ad1b>",
+      "refs/heads/release/1.1.0 <chore: bump to 1.1.0@25050c90>",
+      "refs/tags/v1.0.0 <TAG:v1.0.0>",
+      "refs/tags/v1.0.1 <TAG:v1.0.1>"
+    ],
+    "log": [
+      "<Merge branch 'hotfix/1.0.1' into develop@9a5fe582>\u0000<chore: start 1.1.0@1d2dab20> <fix: hot@9aaabd26>\u0000Merge branch 'hotfix/1.0.1' into develop",
+      "<Merge branch 'hotfix/1.0.1' into main@01b6ad1b>\u0000<init: app + readme@0ae15dfc> <fix: hot@9aaabd26>\u0000Merge branch 'hotfix/1.0.1' into main",
+      "<chore: bump to 1.1.0@25050c90>\u0000<chore: start 1.1.0@1d2dab20>\u0000chore: bump to 1.1.0",
+      "<chore: start 1.1.0@1d2dab20>\u0000<init: app + readme@0ae15dfc>\u0000chore: start 1.1.0",
+      "<feat: add search@6d5ec589>\u0000<chore: start 1.1.0@1d2dab20>\u0000feat: add search",
+      "<fix: hot@9aaabd26>\u0000<init: app + readme@0ae15dfc>\u0000fix: hot",
+      "<init: app + readme@0ae15dfc>\u0000\u0000init: app + readme"
+    ],
+    "stash": [],
+    "index": [
+      "100644 eaaa2f850255dbabab16074c24aaa935b9804f3d 0\tHOTFIX",
+      "100644 14a1c1f99b44723bbcb5a8e82f2e02a9e32d0dc8 0\tREADME.md",
+      "100644 ea5943fc5ac81887cedf4c9aff2ac35ce047c830 0\tapp.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "gitflow.branch.master=main",
+      "gitflow.branch.develop=develop",
+      "gitflow.prefix.feature=feature/",
+      "gitflow.prefix.release=release/",
+      "gitflow.prefix.hotfix=hotfix/",
+      "gitflow.prefix.versiontag=v"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "method": "stackSetRoute",
+  "fixture": "stacked-branches",
+  "case": "conflict-rolls-back",
+  "kind": "write",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "main"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "note-1"
+      ]
+    },
+    {
+      "write": "NOTES.md",
+      "content": "one\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "note one"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "note-2"
+      ]
+    },
+    {
+      "write": "NOTES.md",
+      "content": "one\ntwo\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-qm",
+        "note two"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "branch.note-1.gitcitoparent",
+        "main"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "branch.note-2.gitcitoparent",
+        "note-1"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "main",
+    [
+      "note-2",
+      "note-1"
+    ]
+  ],
+  "error": "GITCITO_ROUTE_CONFLICT:note-1:note-2",
+  "state": {
+    "head": "refs/heads/note-2",
+    "headAuthor": "Setup <setup@example.com>",
+    "status": [
+      "# branch.oid <note two@a516a23a>",
+      "# branch.head note-2"
+    ],
+    "refs": [
+      "refs/heads/feature/api <api: add fetchTeam@e2737aec>",
+      "refs/heads/feature/ui <ui: add OrgCard@8197be88>",
+      "refs/heads/main <main: hotfix@698503be>",
+      "refs/heads/note-1 <note one@5c9051ca>",
+      "refs/heads/note-2 <note two@a516a23a>"
+    ],
+    "log": [
+      "<api: add fetchOrg@5d7429a2>\u0000<api: add fetchUser@3ab43b4c>\u0000api: add fetchOrg",
+      "<api: add fetchTeam@e2737aec>\u0000<api: add fetchOrg@5d7429a2>\u0000api: add fetchTeam",
+      "<api: add fetchUser@3ab43b4c>\u0000<main: initial app@579d4aa5>\u0000api: add fetchUser",
+      "<main: hotfix@698503be>\u0000<main: initial app@579d4aa5>\u0000main: hotfix",
+      "<main: initial app@579d4aa5>\u0000\u0000main: initial app",
+      "<note one@5c9051ca>\u0000<main: hotfix@698503be>\u0000note one",
+      "<note two@a516a23a>\u0000<note one@5c9051ca>\u0000note two",
+      "<ui: add OrgCard@8197be88>\u0000<ui: add UserCard@901e4219>\u0000ui: add OrgCard",
+      "<ui: add UserCard@901e4219>\u0000<api: add fetchOrg@5d7429a2>\u0000ui: add UserCard"
+    ],
+    "stash": [],
+    "index": [
+      "100644 814f4a422927b82f5f8a43f8fab6d3839e3983f2 0\tNOTES.md",
+      "100644 9c4baa2ee9e7fffca06813679163dff345eb9e9b 0\tapp.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "branch.feature/api.gitcitoparent=main",
+      "branch.feature/api.gitcitobase=<main: initial app@579d4aa5>",
+      "branch.feature/ui.gitcitoparent=feature/api",
+      "branch.feature/ui.gitcitobase=<api: add fetchOrg@5d7429a2>",
+      "branch.note-1.gitcitoparent=main",
+      "branch.note-2.gitcitoparent=note-1"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

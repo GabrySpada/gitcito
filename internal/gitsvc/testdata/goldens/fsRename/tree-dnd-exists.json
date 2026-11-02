@@ -1,0 +1,48 @@
+{
+  "method": "fsRename",
+  "fixture": "tree-dnd",
+  "case": "exists",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "loose.txt",
+    "draft.md"
+  ],
+  "error": "Already exists: draft.md",
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <chore: scaffold tree-dnd repo@856f7831>",
+      "# branch.head main",
+      "? draft.md",
+      "? loose.txt",
+      "? readme.md"
+    ],
+    "refs": [
+      "refs/heads/main <chore: scaffold tree-dnd repo@856f7831>"
+    ],
+    "log": [
+      "<chore: scaffold tree-dnd repo@856f7831>\u0000\u0000chore: scaffold tree-dnd repo"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d0fa60edab3510b80d03fa4af708bea7a61cc4cd 0\tdocs/readme.md",
+      "100644 3e7df5de1a92630e6759248845d60a086472db0d 0\tlib/helpers.ts",
+      "100644 a1fe9822eb59a13b7ddcc3947ce84ff5fac06003 0\tsrc/app.ts",
+      "100644 17bdd60b424a55865074b18815fde29ca2b1d3fe 0\tsrc/deep/nested/keep.ts",
+      "100644 df55bb4fc4145132972623c6d2dd27687d7c8c54 0\tsrc/util.ts",
+      "100644 e9885bb102c3164c43c961d90ce5cdc0b7c60646 0\tvendor/dep.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [],
+    "rrCache": 0
+  }
+}

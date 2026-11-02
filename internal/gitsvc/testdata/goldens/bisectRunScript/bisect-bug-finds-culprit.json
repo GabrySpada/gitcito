@@ -1,0 +1,95 @@
+{
+  "method": "bisectRunScript",
+  "fixture": "bisect-bug",
+  "case": "finds-culprit",
+  "kind": "write",
+  "setup": [
+    {
+      "call": "bisectStart",
+      "args": [
+        "<REPO>"
+      ]
+    },
+    {
+      "call": "bisectMark",
+      "args": [
+        "<REPO>",
+        "bad"
+      ]
+    },
+    {
+      "call": "bisectMark",
+      "args": [
+        "<REPO>",
+        "good",
+        ":/feat: discount function"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "  grep -q 'price - multiply' discount.js  "
+  ],
+  "result": {
+    "inProgress": true,
+    "needGood": false,
+    "needBad": true,
+    "currentSha": "",
+    "currentSubject": "",
+    "remainingSteps": 1,
+    "finished": true,
+    "firstBadSha": "<refactor: simplify discount calculation@8f8d109d>",
+    "firstBadSubject": "refactor: simplify discount calculation"
+  },
+  "state": {
+    "head": "DETACHED",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <feat: addTax@5fc42b9c>",
+      "# branch.head (detached)"
+    ],
+    "refs": [
+      "refs/bisect/bad <refactor: simplify discount calculation@8f8d109d>",
+      "refs/bisect/good-<feat: abs + clamp@6dabe43f> <feat: abs + clamp@6dabe43f>",
+      "refs/bisect/good-<feat: addTax@5fc42b9c> <feat: addTax@5fc42b9c>",
+      "refs/bisect/good-<feat: discount function@8cf41030> <feat: discount function@8cf41030>",
+      "refs/heads/main <chore: add .bisect-hint@f4faf03d>"
+    ],
+    "log": [
+      "<chore: add .bisect-hint@f4faf03d>\u0000<chore: add stats to barrel export@548f1bb9>\u0000chore: add .bisect-hint",
+      "<chore: add stats to barrel export@548f1bb9>\u0000<feat: stats — sum / mean / median@edfa8801>\u0000chore: add stats to barrel export",
+      "<docs: README with bisect instructions@88b71287>\u0000<feat: barrel export index.js@352313e5>\u0000docs: README with bisect instructions",
+      "<feat: abs + clamp@6dabe43f>\u0000<feat: formatCurrency@892eae7f>\u0000feat: abs + clamp",
+      "<feat: add + subtract@29bc8f4b>\u0000\u0000feat: add + subtract",
+      "<feat: addTax@5fc42b9c>\u0000<feat: abs + clamp@6dabe43f>\u0000feat: addTax",
+      "<feat: barrel export index.js@352313e5>\u0000<refactor: simplify discount calculation@8f8d109d>\u0000feat: barrel export index.js",
+      "<feat: currency helpers@90316150>\u0000<feat: multiply + divide@f39947ec>\u0000feat: currency helpers",
+      "<feat: discount function@8cf41030>\u0000<feat: currency helpers@90316150>\u0000feat: discount function",
+      "<feat: formatCurrency@892eae7f>\u0000<feat: discount function@8cf41030>\u0000feat: formatCurrency",
+      "<feat: multiply + divide@f39947ec>\u0000<feat: add + subtract@29bc8f4b>\u0000feat: multiply + divide",
+      "<feat: stats — sum / mean / median@edfa8801>\u0000<docs: README with bisect instructions@88b71287>\u0000feat: stats — sum / mean / median",
+      "<refactor: simplify discount calculation@8f8d109d>\u0000<feat: addTax@5fc42b9c>\u0000refactor: simplify discount calculation"
+    ],
+    "stash": [],
+    "index": [
+      "100644 7ba12e27fdbf4c7cda6af1c2d526e19824205d46 0\tcurrency.js",
+      "100644 e198735c2bc06a04d2f02d44c9f719d8cd9c6ba3 0\tdiscount.js",
+      "100644 c1d0d217efe6ebc6aaf0ea7a2685a51ef3fb8cbd 0\tformat.js",
+      "100644 e429128985eaeadea8b19a17f5fa971135fa4bb0 0\tmath.js",
+      "100644 fdb19749ef49124520c3fe247aeb8e0fda10af16 0\ttax.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "BISECT_START"
+    ],
+    "rrCache": 0
+  },
+  "events": "running 'sh' '-c' 'grep -q '\\''price - multiply'\\'' discount.js'\nBisecting: 1 revision left to test after this (roughly 1 step)\n[<feat: abs + clamp@6dabe43f>] feat: abs + clamp\nrunning 'sh' '-c' 'grep -q '\\''price - multiply'\\'' discount.js'\nBisecting: 0 revisions left to test after this (roughly 0 steps)\n[<feat: addTax@5fc42b9c>] feat: addTax\nrunning 'sh' '-c' 'grep -q '\\''price - multiply'\\'' discount.js'\n<refactor: simplify discount calculation@8f8d109d> is the first bad commit\ncommit <refactor: simplify discount calculation@8f8d109d>\nAuthor: Playground <playground@example.com>\nDate: <DATE>\n\n    refactor: simplify discount calculation\n\n discount.js | 4 ++--\n 1 file changed, 2 insertions(+), 2 deletions(-)\nbisect found first bad commit\n"
+}

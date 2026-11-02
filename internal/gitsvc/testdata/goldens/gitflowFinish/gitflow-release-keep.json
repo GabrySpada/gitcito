@@ -1,0 +1,79 @@
+{
+  "method": "gitflowFinish",
+  "fixture": "gitflow",
+  "case": "release-keep",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "release",
+    "1.1.0",
+    {
+      "tag": false,
+      "deleteBranch": false
+    }
+  ],
+  "result": {
+    "refs": [
+      {
+        "name": "main",
+        "sha": "<init: app + readme@0ae15dfc>"
+      },
+      {
+        "name": "develop",
+        "sha": "<chore: start 1.1.0@1d2dab20>"
+      }
+    ],
+    "tag": null,
+    "branch": {
+      "name": "release/1.1.0",
+      "sha": "<chore: bump to 1.1.0@25050c90>"
+    }
+  },
+  "state": {
+    "head": "refs/heads/develop",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <Merge branch 'release/1.1.0' into develop@6a5c950b>",
+      "# branch.head develop"
+    ],
+    "refs": [
+      "refs/heads/develop <Merge branch 'release/1.1.0' into develop@6a5c950b>",
+      "refs/heads/feature/search <feat: add search@6d5ec589>",
+      "refs/heads/main <Merge branch 'release/1.1.0' into main@5558166c>",
+      "refs/heads/release/1.1.0 <chore: bump to 1.1.0@25050c90>",
+      "refs/tags/v1.0.0 <TAG:v1.0.0>"
+    ],
+    "log": [
+      "<Merge branch 'release/1.1.0' into develop@6a5c950b>\u0000<chore: start 1.1.0@1d2dab20> <chore: bump to 1.1.0@25050c90>\u0000Merge branch 'release/1.1.0' into develop",
+      "<Merge branch 'release/1.1.0' into main@5558166c>\u0000<init: app + readme@0ae15dfc> <chore: bump to 1.1.0@25050c90>\u0000Merge branch 'release/1.1.0' into main",
+      "<chore: bump to 1.1.0@25050c90>\u0000<chore: start 1.1.0@1d2dab20>\u0000chore: bump to 1.1.0",
+      "<chore: start 1.1.0@1d2dab20>\u0000<init: app + readme@0ae15dfc>\u0000chore: start 1.1.0",
+      "<feat: add search@6d5ec589>\u0000<chore: start 1.1.0@1d2dab20>\u0000feat: add search",
+      "<init: app + readme@0ae15dfc>\u0000\u0000init: app + readme"
+    ],
+    "stash": [],
+    "index": [
+      "100644 14a1c1f99b44723bbcb5a8e82f2e02a9e32d0dc8 0\tREADME.md",
+      "100644 ea5943fc5ac81887cedf4c9aff2ac35ce047c830 0\tapp.js",
+      "100644 34db6a8fb439c51217a83beb802c47546e4736bd 0\tversion.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "gitflow.branch.master=main",
+      "gitflow.branch.develop=develop",
+      "gitflow.prefix.feature=feature/",
+      "gitflow.prefix.release=release/",
+      "gitflow.prefix.hotfix=hotfix/",
+      "gitflow.prefix.versiontag=v"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

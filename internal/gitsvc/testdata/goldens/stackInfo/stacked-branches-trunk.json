@@ -1,0 +1,14 @@
+{
+  "method": "stackInfo",
+  "fixture": "stacked-branches",
+  "case": "trunk",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "main"
+  ],
+  "result": {
+    "trunk": "",
+    "branches": []
+  }
+}

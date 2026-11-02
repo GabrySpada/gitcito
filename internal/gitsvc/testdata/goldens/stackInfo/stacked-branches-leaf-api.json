@@ -1,0 +1,22 @@
+{
+  "method": "stackInfo",
+  "fixture": "stacked-branches",
+  "case": "leaf-api",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "feature/api"
+  ],
+  "result": {
+    "trunk": "main",
+    "branches": [
+      {
+        "name": "feature/api",
+        "parent": "main",
+        "isCurrent": false,
+        "ahead": 3,
+        "needsRestack": true
+      }
+    ]
+  }
+}

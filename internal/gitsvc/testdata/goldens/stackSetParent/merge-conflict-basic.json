@@ -1,0 +1,48 @@
+{
+  "method": "stackSetParent",
+  "fixture": "merge-conflict",
+  "case": "basic",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "feature",
+    "main"
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <main: shout the greetings@b509ab3d>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "refs/heads/feature <feature: translate to Spanish@3fa91df4>",
+      "refs/heads/main <main: shout the greetings@b509ab3d>"
+    ],
+    "log": [
+      "<feature: translate to Spanish@3fa91df4>\u0000<initial commit@00ba9f13>\u0000feature: translate to Spanish",
+      "<initial commit@00ba9f13>\u0000\u0000initial commit",
+      "<main: shout the greetings@b509ab3d>\u0000<initial commit@00ba9f13>\u0000main: shout the greetings"
+    ],
+    "stash": [],
+    "index": [
+      "100644 4f758faea993cfaaabb9e48a8aa613abd7e0db1c 0\tapp.js",
+      "100644 0629d62530841527f2395dabc9c7081af6a7d7db 0\tbig-log.txt",
+      "100644 1e94c3742727a15984b7271b98959721a26fbdd5 0\tgreeting.txt",
+      "100644 b5c5c9fc212ddaa64facb687fa52487bce42696a 0\trelease-notes.md"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "branch.feature.gitcitoparent=main",
+      "branch.feature.gitcitobase=<main: shout the greetings@b509ab3d>"
+    ],
+    "globalRerere": [],
+    "ops": [],
+    "rrCache": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "method": "commitsTouchingPath",
+  "fixture": "bisect-bug",
+  "case": "file",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "discount.js"
+  ],
+  "result": [
+    "<refactor: simplify discount calculation@8f8d109d>",
+    "<feat: discount function@8cf41030>"
+  ]
+}

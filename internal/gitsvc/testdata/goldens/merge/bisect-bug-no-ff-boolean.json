@@ -1,0 +1,80 @@
+{
+  "method": "merge",
+  "fixture": "bisect-bug",
+  "case": "no-ff-boolean",
+  "kind": "write",
+  "setup": [
+    {
+      "git": [
+        "branch",
+        "side",
+        "HEAD~2"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "side"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "main",
+    true
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/side",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <Merge branch 'main' into side@8c3109c8>",
+      "# branch.head side"
+    ],
+    "refs": [
+      "refs/heads/main <chore: add .bisect-hint@f4faf03d>",
+      "refs/heads/side <Merge branch 'main' into side@8c3109c8>"
+    ],
+    "log": [
+      "<Merge branch 'main' into side@8c3109c8>\u0000<feat: stats — sum / mean / median@edfa8801> <chore: add .bisect-hint@f4faf03d>\u0000Merge branch 'main' into side",
+      "<chore: add .bisect-hint@f4faf03d>\u0000<chore: add stats to barrel export@548f1bb9>\u0000chore: add .bisect-hint",
+      "<chore: add stats to barrel export@548f1bb9>\u0000<feat: stats — sum / mean / median@edfa8801>\u0000chore: add stats to barrel export",
+      "<docs: README with bisect instructions@88b71287>\u0000<feat: barrel export index.js@352313e5>\u0000docs: README with bisect instructions",
+      "<feat: abs + clamp@6dabe43f>\u0000<feat: formatCurrency@892eae7f>\u0000feat: abs + clamp",
+      "<feat: add + subtract@29bc8f4b>\u0000\u0000feat: add + subtract",
+      "<feat: addTax@5fc42b9c>\u0000<feat: abs + clamp@6dabe43f>\u0000feat: addTax",
+      "<feat: barrel export index.js@352313e5>\u0000<refactor: simplify discount calculation@8f8d109d>\u0000feat: barrel export index.js",
+      "<feat: currency helpers@90316150>\u0000<feat: multiply + divide@f39947ec>\u0000feat: currency helpers",
+      "<feat: discount function@8cf41030>\u0000<feat: currency helpers@90316150>\u0000feat: discount function",
+      "<feat: formatCurrency@892eae7f>\u0000<feat: discount function@8cf41030>\u0000feat: formatCurrency",
+      "<feat: multiply + divide@f39947ec>\u0000<feat: add + subtract@29bc8f4b>\u0000feat: multiply + divide",
+      "<feat: stats — sum / mean / median@edfa8801>\u0000<docs: README with bisect instructions@88b71287>\u0000feat: stats — sum / mean / median",
+      "<refactor: simplify discount calculation@8f8d109d>\u0000<feat: addTax@5fc42b9c>\u0000refactor: simplify discount calculation"
+    ],
+    "stash": [],
+    "index": [
+      "100644 <VOLATILE> 0\t.bisect-hint",
+      "100644 cbd4f3d59074914ab1b67b998822ce51978b1f9a 0\tREADME.md",
+      "100644 7ba12e27fdbf4c7cda6af1c2d526e19824205d46 0\tcurrency.js",
+      "100644 8eb12d88f64c95a719e648483ee32a01c37b5419 0\tdiscount.js",
+      "100644 c1d0d217efe6ebc6aaf0ea7a2685a51ef3fb8cbd 0\tformat.js",
+      "100644 d50f4d4ec8cb6a88f60d5b13aa72c6e8b5c67136 0\tindex.js",
+      "100644 e429128985eaeadea8b19a17f5fa971135fa4bb0 0\tmath.js",
+      "100644 44b3962e2e96ac61d8986b526cd3dab5ab00f06c 0\tstats.js",
+      "100644 fdb19749ef49124520c3fe247aeb8e0fda10af16 0\ttax.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

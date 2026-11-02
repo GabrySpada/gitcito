@@ -1,0 +1,11 @@
+{
+  "method": "resolveRev",
+  "fixture": "bisect-bug",
+  "case": "missing",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "nope"
+  ],
+  "result": null
+}

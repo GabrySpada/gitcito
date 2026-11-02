@@ -1,0 +1,13 @@
+{
+  "method": "filesToPush",
+  "fixture": "diverged-checkout",
+  "case": "ahead",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "feature"
+  ],
+  "result": [
+    "feature.ts"
+  ]
+}

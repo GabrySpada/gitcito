@@ -1,0 +1,59 @@
+{
+  "method": "mergeInto",
+  "fixture": "stacked-branches",
+  "case": "options",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "feature/api",
+    "main",
+    {
+      "noFf": true
+    }
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <Merge branch 'feature/api'@001ce7fd>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "refs/heads/feature/api <api: add fetchTeam@e2737aec>",
+      "refs/heads/feature/ui <ui: add OrgCard@8197be88>",
+      "refs/heads/main <Merge branch 'feature/api'@001ce7fd>"
+    ],
+    "log": [
+      "<Merge branch 'feature/api'@001ce7fd>\u0000<main: hotfix@698503be> <api: add fetchTeam@e2737aec>\u0000Merge branch 'feature/api'",
+      "<api: add fetchOrg@5d7429a2>\u0000<api: add fetchUser@3ab43b4c>\u0000api: add fetchOrg",
+      "<api: add fetchTeam@e2737aec>\u0000<api: add fetchOrg@5d7429a2>\u0000api: add fetchTeam",
+      "<api: add fetchUser@3ab43b4c>\u0000<main: initial app@579d4aa5>\u0000api: add fetchUser",
+      "<main: hotfix@698503be>\u0000<main: initial app@579d4aa5>\u0000main: hotfix",
+      "<main: initial app@579d4aa5>\u0000\u0000main: initial app",
+      "<ui: add OrgCard@8197be88>\u0000<ui: add UserCard@901e4219>\u0000ui: add OrgCard",
+      "<ui: add UserCard@901e4219>\u0000<api: add fetchOrg@5d7429a2>\u0000ui: add UserCard"
+    ],
+    "stash": [],
+    "index": [
+      "100644 ac6c0aac6437c41426314e03eb27b17b0ea90ee6 0\tapi.js",
+      "100644 9c4baa2ee9e7fffca06813679163dff345eb9e9b 0\tapp.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "branch.feature/api.gitcitoparent=main",
+      "branch.feature/api.gitcitobase=<main: initial app@579d4aa5>",
+      "branch.feature/ui.gitcitoparent=feature/api",
+      "branch.feature/ui.gitcitobase=<api: add fetchOrg@5d7429a2>"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

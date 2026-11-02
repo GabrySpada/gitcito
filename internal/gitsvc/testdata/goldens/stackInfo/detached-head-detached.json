@@ -1,0 +1,13 @@
+{
+  "method": "stackInfo",
+  "fixture": "detached-head",
+  "case": "detached",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "trunk": "",
+    "branches": []
+  }
+}

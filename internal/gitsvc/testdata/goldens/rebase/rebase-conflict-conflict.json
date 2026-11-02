@@ -1,0 +1,52 @@
+{
+  "method": "rebase",
+  "fixture": "rebase-conflict",
+  "case": "conflict",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "main"
+  ],
+  "error": "Auto-merging api.ts\nCONFLICT (content): Merge conflict in api.ts\nRebasing (1/2)\rerror: could not apply <feature: add credentials + createOrder@a00baf6c>... feature: add credentials + createOrder\nhint: Resolve all conflicts manually, mark them as resolved with\nhint: \"git add/rm <conflicted_files>\", then run \"git rebase --continue\".\nhint: You can instead skip this commit: run \"git rebase --skip\".\nhint: To abort and get back to the state before \"git rebase\", run \"git rebase --abort\".\nCould not apply <feature: add credentials + createOrder@a00baf6c>... feature: add credentials + createOrder\n",
+  "state": {
+    "head": "DETACHED",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <main: upgrade utils — date-fns + Intl@2c8a4fc4>",
+      "# branch.head (detached)",
+      "u UU N... 100644 100644 100644 100644 5363f5baf03d2a6f246a6ac2f660f561774f5feb 21e777e61eaee23091334236bc538d42d2fcf473 55a2f2f0215642ac81e7651050be85b82de29887 api.ts"
+    ],
+    "refs": [
+      "refs/heads/feature <feature: en-GB formatting + debounce helper@99045035>",
+      "refs/heads/main <main: upgrade utils — date-fns + Intl@2c8a4fc4>"
+    ],
+    "log": [
+      "<feature: add credentials + createOrder@a00baf6c>\u0000<initial: api + utils@0cc3a5e4>\u0000feature: add credentials + createOrder",
+      "<feature: en-GB formatting + debounce helper@99045035>\u0000<feature: add credentials + createOrder@a00baf6c>\u0000feature: en-GB formatting + debounce helper",
+      "<initial: api + utils@0cc3a5e4>\u0000\u0000initial: api + utils",
+      "<main: migrate to v2 API + add logger@9ccc3c0e>\u0000<initial: api + utils@0cc3a5e4>\u0000main: migrate to v2 API + add logger",
+      "<main: upgrade utils — date-fns + Intl@2c8a4fc4>\u0000<main: migrate to v2 API + add logger@9ccc3c0e>\u0000main: upgrade utils — date-fns + Intl"
+    ],
+    "stash": [],
+    "index": [
+      "100644 5363f5baf03d2a6f246a6ac2f660f561774f5feb 1\tapi.ts",
+      "100644 21e777e61eaee23091334236bc538d42d2fcf473 2\tapi.ts",
+      "100644 55a2f2f0215642ac81e7651050be85b82de29887 3\tapi.ts",
+      "100644 505ce1087270adcdfaeddf30f0103fe68b2d93cf 0\tlogger.ts",
+      "100644 cc50812a79de37ec9c754e2d483b254b3cd6d222 0\tutils.ts"
+    ],
+    "diff": "diff --cc api.ts\nindex 21e777e,55a2f2f..0000000\n--- a/api.ts\n+++ b/api.ts\n@@@ -1,10 -1,9 +1,21 @@@\n++<<<<<<< HEAD\n +import { logger } from './logger'\n +\n +export async function getUser(id: string) {\n +  logger.info('getUser', id)\n +  return fetch(`/api/v2/users/${id}`).then(r => r.json())\n +}\n +export async function getProducts(category?: string) {\n +  const url = category ? `/api/v2/products?cat=${category}` : '/api/v2/products'\n +  return fetch(url).then(r => r.json())\n++=======\n+ export function getUser(id: string) {\n+   return fetch(`/api/users/${id}`, { credentials: 'include' }).then(r => r.json())\n+ }\n+ export function getProducts() {\n+   return fetch('/api/products', { credentials: 'include' }).then(r => r.json())\n+ }\n+ export function createOrder(payload: unknown) {\n+   return fetch('/api/orders', { method: 'POST', body: JSON.stringify(payload) })\n++>>>>>>> <feature: add credentials + createOrder@a00baf6c> (feature: add credentials + createOrder)\n  }\n",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "rebase-merge",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

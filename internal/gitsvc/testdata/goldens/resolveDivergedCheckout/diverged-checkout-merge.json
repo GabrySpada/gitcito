@@ -1,0 +1,63 @@
+{
+  "method": "resolveDivergedCheckout",
+  "fixture": "diverged-checkout",
+  "case": "merge",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "origin/feature",
+    "feature",
+    "merge",
+    false
+  ],
+  "error": "CONFLICTS: feature.ts:content",
+  "state": {
+    "head": "refs/heads/feature",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <feat: local tweak to feature (not pushed)@177d8804>",
+      "# branch.head feature",
+      "# branch.upstream origin/feature",
+      "# branch.ab +1 -1",
+      "u UU N... 100644 100644 100644 100644 2850652f62a539b17dfb5a2a4e44c908dbcbd618 c8683041ad2ca7400c5f009a25493aa45d53d6f7 fec777d9494690a090c3a37de8c3edd057ae80ef feature.ts"
+    ],
+    "refs": [
+      "refs/heads/feature <feat: local tweak to feature (not pushed)@177d8804>",
+      "refs/heads/main <initial commit@00ba9f13>",
+      "refs/remotes/origin/HEAD <initial commit@00ba9f13>",
+      "refs/remotes/origin/feature <feat: remote tweak to feature@3fa7a5ad>",
+      "refs/remotes/origin/main <initial commit@00ba9f13>"
+    ],
+    "log": [
+      "<feat: local tweak to feature (not pushed)@177d8804>\u0000<feat: start feature@93d749df>\u0000feat: local tweak to feature (not pushed)",
+      "<feat: remote tweak to feature@3fa7a5ad>\u0000<feat: start feature@93d749df>\u0000feat: remote tweak to feature",
+      "<feat: start feature@93d749df>\u0000<initial commit@00ba9f13>\u0000feat: start feature",
+      "<initial commit@00ba9f13>\u0000\u0000initial commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tapp.ts",
+      "100644 2850652f62a539b17dfb5a2a4e44c908dbcbd618 1\tfeature.ts",
+      "100644 c8683041ad2ca7400c5f009a25493aa45d53d6f7 2\tfeature.ts",
+      "100644 fec777d9494690a090c3a37de8c3edd057ae80ef 3\tfeature.ts"
+    ],
+    "diff": "diff --cc feature.ts\nindex c868304,fec777d..0000000\n--- a/feature.ts\n+++ b/feature.ts\n@@@ -1,2 -1,2 +1,6 @@@\n  export const feature = () => 'wip'\n++<<<<<<< HEAD\n +export const localOnly = () => 'added locally'\n++=======\n+ export const remoteOnly = () => 'added on remote'\n++>>>>>>> origin/feature\n",
+    "config": [
+      "remote.origin.url=<PLAYGROUND>/diverged-checkout-origin.git",
+      "remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*",
+      "branch.main.remote=origin",
+      "branch.main.merge=refs/heads/main",
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "branch.feature.remote=origin",
+      "branch.feature.merge=refs/heads/feature",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "MERGE_HEAD",
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "method": "commitTemplate",
+  "fixture": "bisect-bug",
+  "case": "absolute",
+  "kind": "read",
+  "setup": [
+    {
+      "write": "tpl.txt",
+      "content": "subject\n\n# body\n",
+      "out": true
+    },
+    {
+      "git": [
+        "config",
+        "commit.template",
+        "<OUT>/tpl.txt"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": "subject\n\n# body\n"
+}

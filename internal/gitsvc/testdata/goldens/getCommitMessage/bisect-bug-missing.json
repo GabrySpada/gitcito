@@ -1,0 +1,11 @@
+{
+  "method": "getCommitMessage",
+  "fixture": "bisect-bug",
+  "case": "missing",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "nope"
+  ],
+  "error": "fatal: ambiguous argument 'nope': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'\n"
+}

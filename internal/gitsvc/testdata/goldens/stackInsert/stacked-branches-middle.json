@@ -1,0 +1,56 @@
+{
+  "method": "stackInsert",
+  "fixture": "stacked-branches",
+  "case": "middle",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "feature/mid",
+    "feature/api"
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/feature/mid",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <api: add fetchTeam@e2737aec>",
+      "# branch.head feature/mid"
+    ],
+    "refs": [
+      "refs/heads/feature/api <api: add fetchTeam@e2737aec>",
+      "refs/heads/feature/mid <api: add fetchTeam@e2737aec>",
+      "refs/heads/feature/ui <ui: add OrgCard@8197be88>",
+      "refs/heads/main <main: hotfix@698503be>"
+    ],
+    "log": [
+      "<api: add fetchOrg@5d7429a2>\u0000<api: add fetchUser@3ab43b4c>\u0000api: add fetchOrg",
+      "<api: add fetchTeam@e2737aec>\u0000<api: add fetchOrg@5d7429a2>\u0000api: add fetchTeam",
+      "<api: add fetchUser@3ab43b4c>\u0000<main: initial app@579d4aa5>\u0000api: add fetchUser",
+      "<main: hotfix@698503be>\u0000<main: initial app@579d4aa5>\u0000main: hotfix",
+      "<main: initial app@579d4aa5>\u0000\u0000main: initial app",
+      "<ui: add OrgCard@8197be88>\u0000<ui: add UserCard@901e4219>\u0000ui: add OrgCard",
+      "<ui: add UserCard@901e4219>\u0000<api: add fetchOrg@5d7429a2>\u0000ui: add UserCard"
+    ],
+    "stash": [],
+    "index": [
+      "100644 ac6c0aac6437c41426314e03eb27b17b0ea90ee6 0\tapi.js",
+      "100644 0d27c9206228eab8c280d923d68486710ef6ed0a 0\tapp.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false",
+      "branch.feature/api.gitcitoparent=main",
+      "branch.feature/api.gitcitobase=<main: initial app@579d4aa5>",
+      "branch.feature/ui.gitcitoparent=feature/mid",
+      "branch.feature/ui.gitcitobase=<api: add fetchOrg@5d7429a2>",
+      "branch.feature/mid.gitcitoparent=feature/api",
+      "branch.feature/mid.gitcitobase=<api: add fetchTeam@e2737aec>"
+    ],
+    "globalRerere": [],
+    "ops": [],
+    "rrCache": 0
+  }
+}

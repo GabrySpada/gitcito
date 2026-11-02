@@ -1,0 +1,19 @@
+{
+  "method": "commitTemplate",
+  "fixture": "bisect-bug",
+  "case": "missing-file",
+  "kind": "read",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "commit.template",
+        "missing.txt"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": ""
+}

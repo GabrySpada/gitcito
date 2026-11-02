@@ -1,0 +1,11 @@
+{
+  "method": "getCommitMessage",
+  "fixture": "bisect-bug",
+  "case": "head",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD"
+  ],
+  "result": "chore: add .bisect-hint\n\n"
+}

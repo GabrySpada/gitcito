@@ -1,0 +1,11 @@
+{
+  "method": "commitAuthor",
+  "fixture": "empty-repo",
+  "case": "unborn",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD"
+  ],
+  "result": null
+}

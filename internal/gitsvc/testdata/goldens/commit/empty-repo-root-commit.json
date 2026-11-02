@@ -1,0 +1,41 @@
+{
+  "method": "commit",
+  "fixture": "empty-repo",
+  "case": "root-commit",
+  "kind": "write",
+  "args": [
+    "<REPO>",
+    "first commit"
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/main",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <first commit@e222c551>",
+      "# branch.head main"
+    ],
+    "refs": [
+      "refs/heads/main <first commit@e222c551>"
+    ],
+    "log": [
+      "<first commit@e222c551>\u0000\u0000first commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 2752eb92e5922f0f1d60494d1793a54775e0d830 0\t.gitignore",
+      "100644 8d92e7b6fecb7c29ce328951cc32fb8e531d73bf 0\tREADME.md",
+      "100644 19dfa14dabf45a25c64aa835eb891ac7e163178e 0\tmain.js"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [],
+    "rrCache": 0
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "method": "rerereStatus",
+  "fixture": "merge-conflict",
+  "case": "replayed",
+  "kind": "read",
+  "setup": [
+    {
+      "call": "setRerere",
+      "args": [
+        "<REPO>",
+        {
+          "enabled": true
+        },
+        "repo"
+      ]
+    },
+    {
+      "call": "merge",
+      "args": [
+        "<REPO>",
+        "feature"
+      ],
+      "allowFail": true
+    },
+    {
+      "write": "greeting.txt",
+      "content": "resolved by hand\n"
+    },
+    {
+      "write": "app.js",
+      "content": "resolved by hand\n"
+    },
+    {
+      "write": "units_service.dart",
+      "content": "resolved by hand\n"
+    },
+    {
+      "write": "release-notes.md",
+      "content": "resolved by hand\n"
+    },
+    {
+      "write": "big-log.txt",
+      "content": "resolved by hand\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "-c",
+        "user.name=Setup",
+        "-c",
+        "user.email=setup@example.com",
+        "commit",
+        "-q",
+        "--no-edit"
+      ]
+    },
+    {
+      "git": [
+        "reset",
+        "-q",
+        "--hard",
+        "HEAD~1"
+      ]
+    },
+    {
+      "call": "merge",
+      "args": [
+        "<REPO>",
+        "feature"
+      ],
+      "allowFail": true
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "enabled": true,
+    "autoUpdate": false,
+    "perRepo": true,
+    "recorded": 4,
+    "replayed": [
+      "app.js",
+      "big-log.txt",
+      "greeting.txt",
+      "release-notes.md"
+    ]
+  }
+}

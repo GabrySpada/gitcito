@@ -1,0 +1,11 @@
+{
+  "method": "commitsTouchingPath",
+  "fixture": "bisect-bug",
+  "case": "none",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "nope.txt"
+  ],
+  "result": []
+}

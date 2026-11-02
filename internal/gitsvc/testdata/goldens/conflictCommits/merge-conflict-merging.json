@@ -1,0 +1,35 @@
+{
+  "method": "conflictCommits",
+  "fixture": "merge-conflict",
+  "case": "merging",
+  "kind": "read",
+  "setup": [
+    {
+      "git": [
+        "merge",
+        "feature"
+      ],
+      "allowFail": true
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "greeting.txt"
+  ],
+  "result": [
+    {
+      "sha": "<main: shout the greetings@b509ab3d>",
+      "subject": "main: shout the greetings",
+      "author": "Playground",
+      "date": "<DATE>",
+      "side": "ours"
+    },
+    {
+      "sha": "<feature: translate to Spanish@3fa91df4>",
+      "subject": "feature: translate to Spanish",
+      "author": "Playground",
+      "date": "<DATE>",
+      "side": "theirs"
+    }
+  ]
+}

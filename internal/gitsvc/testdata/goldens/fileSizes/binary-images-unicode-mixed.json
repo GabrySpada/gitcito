@@ -1,0 +1,29 @@
+{
+  "method": "fileSizes",
+  "fixture": "binary-images-unicode",
+  "case": "mixed",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    [
+      "data.bin",
+      "café-☕.txt",
+      "missing.txt",
+      "assets"
+    ]
+  ],
+  "result": {
+    "data.bin": {
+      "size": 16,
+      "binary": true
+    },
+    "assets": {
+      "size": 4096,
+      "binary": false
+    },
+    "café-☕.txt": {
+      "size": 76,
+      "binary": false
+    }
+  }
+}

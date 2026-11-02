@@ -1,0 +1,55 @@
+{
+  "method": "rebaseAbort",
+  "fixture": "rebase-conflict",
+  "case": "mid-rebase",
+  "kind": "write",
+  "setup": [
+    {
+      "git": [
+        "rebase",
+        "main"
+      ],
+      "allowFail": true
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": null,
+  "state": {
+    "head": "refs/heads/feature",
+    "headAuthor": "Playground <playground@example.com>",
+    "status": [
+      "# branch.oid <feature: en-GB formatting + debounce helper@99045035>",
+      "# branch.head feature"
+    ],
+    "refs": [
+      "refs/heads/feature <feature: en-GB formatting + debounce helper@99045035>",
+      "refs/heads/main <main: upgrade utils — date-fns + Intl@2c8a4fc4>"
+    ],
+    "log": [
+      "<feature: add credentials + createOrder@a00baf6c>\u0000<initial: api + utils@0cc3a5e4>\u0000feature: add credentials + createOrder",
+      "<feature: en-GB formatting + debounce helper@99045035>\u0000<feature: add credentials + createOrder@a00baf6c>\u0000feature: en-GB formatting + debounce helper",
+      "<initial: api + utils@0cc3a5e4>\u0000\u0000initial: api + utils",
+      "<main: migrate to v2 API + add logger@9ccc3c0e>\u0000<initial: api + utils@0cc3a5e4>\u0000main: migrate to v2 API + add logger",
+      "<main: upgrade utils — date-fns + Intl@2c8a4fc4>\u0000<main: migrate to v2 API + add logger@9ccc3c0e>\u0000main: upgrade utils — date-fns + Intl"
+    ],
+    "stash": [],
+    "index": [
+      "100644 55a2f2f0215642ac81e7651050be85b82de29887 0\tapi.ts",
+      "100644 e18d52cc34e082d598583b78b50bad7ad545a135 0\tutils.ts"
+    ],
+    "diff": "",
+    "config": [
+      "user.name=Playground",
+      "user.email=playground@example.com",
+      "commit.gpgsign=false",
+      "rerere.enabled=false"
+    ],
+    "globalRerere": [],
+    "ops": [
+      "ORIG_HEAD"
+    ],
+    "rrCache": 0
+  }
+}

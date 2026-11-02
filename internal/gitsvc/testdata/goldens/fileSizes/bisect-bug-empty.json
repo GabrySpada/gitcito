@@ -1,0 +1,11 @@
+{
+  "method": "fileSizes",
+  "fixture": "bisect-bug",
+  "case": "empty",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    []
+  ],
+  "result": {}
+}

@@ -1,0 +1,10 @@
+{
+  "method": "stackLeaves",
+  "fixture": "merge-conflict",
+  "case": "none",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": []
+}

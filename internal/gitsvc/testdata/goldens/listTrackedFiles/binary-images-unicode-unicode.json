@@ -1,0 +1,21 @@
+{
+  "method": "listTrackedFiles",
+  "fixture": "binary-images-unicode",
+  "case": "unicode",
+  "kind": "read",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    "README.md",
+    "assets/icon.png",
+    "assets/logo.png",
+    "café-☕.txt",
+    "crlf-windows.txt",
+    "data.bin",
+    "lf-unix.txt",
+    "مرحبا.txt",
+    "日本語ファイル.md",
+    "🚀 rocket notes.txt"
+  ]
+}

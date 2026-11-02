@@ -1,0 +1,11 @@
+{
+  "method": "resolveRev",
+  "fixture": "bisect-bug",
+  "case": "relative",
+  "kind": "read",
+  "args": [
+    "<REPO>",
+    "HEAD~2"
+  ],
+  "result": "<feat: stats — sum / mean / median@edfa8801>"
+}
