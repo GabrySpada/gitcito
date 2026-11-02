@@ -1,0 +1,477 @@
+{
+  "normalizeModelIds": [
+    {
+      "input": [
+        "gpt-4o-mini",
+        "text-embedding-3-small",
+        "whisper-1",
+        "dall-e-3",
+        "omni-moderation-latest",
+        "gpt-4o"
+      ],
+      "out": [
+        "gpt-4o",
+        "gpt-4o-mini"
+      ]
+    },
+    {
+      "input": [
+        "models/gemini-2.5-flash",
+        "gemini-2.5-flash",
+        " ",
+        null
+      ],
+      "out": [
+        "gemini-2.5-flash"
+      ]
+    },
+    {
+      "input": [
+        "gpt-4o",
+        "babbage-002",
+        "davinci-002",
+        "gpt-3.5-turbo-instruct",
+        "gpt-3.5-turbo"
+      ],
+      "out": [
+        "gpt-3.5-turbo",
+        "gpt-4o"
+      ]
+    },
+    {
+      "input": [
+        "gpt-4o",
+        "nova-adaptive"
+      ],
+      "out": [
+        "gpt-4o",
+        "nova-adaptive"
+      ]
+    },
+    {
+      "input": [
+        "my-embed-model"
+      ],
+      "out": [
+        "my-embed-model"
+      ]
+    },
+    {
+      "input": [
+        "Zeta",
+        "alpha",
+        "Alpha",
+        "beta-2",
+        "beta_1",
+        "beta.3",
+        "beta-10",
+        "b",
+        "B",
+        "_x",
+        "-y",
+        "1abc",
+        "éclair",
+        "eclair",
+        "gpt-4o:latest"
+      ],
+      "out": [
+        "_x",
+        "-y",
+        "1abc",
+        "alpha",
+        "Alpha",
+        "b",
+        "B",
+        "beta_1",
+        "beta-10",
+        "beta-2",
+        "beta.3",
+        "eclair",
+        "éclair",
+        "gpt-4o:latest",
+        "Zeta"
+      ]
+    },
+    {
+      "input": [
+        "x-2024-01-01",
+        "x-2023-01-01",
+        "y-20250101",
+        "y-0125",
+        "z-0125",
+        "z",
+        "mixtral-8x7b-32768",
+        "gpt-3.5-turbo-16k"
+      ],
+      "out": [
+        "gpt-3.5-turbo-16k",
+        "mixtral-8x7b-32768",
+        "x-2024-01-01",
+        "y-20250101",
+        "z"
+      ]
+    },
+    {
+      "input": [
+        "ft:davinci-002:org",
+        "openai/ada-v2",
+        "curie",
+        "x-instruct-v2",
+        "realtime-preview",
+        "GUARD",
+        "rerank-3",
+        "sora-2",
+        "codestral-embed"
+      ],
+      "out": [
+        "ft:davinci-002:org"
+      ]
+    }
+  ],
+  "chatModelsOnly": [
+    {
+      "input": [
+        "gpt-4o-mini",
+        "text-embedding-3-small",
+        "whisper-1",
+        "dall-e-3",
+        "omni-moderation-latest",
+        "gpt-4o"
+      ],
+      "out": [
+        "gpt-4o-mini",
+        "gpt-4o"
+      ]
+    },
+    {
+      "input": [
+        "models/gemini-2.5-flash",
+        "gemini-2.5-flash",
+        " "
+      ],
+      "out": [
+        "models/gemini-2.5-flash",
+        "gemini-2.5-flash",
+        " "
+      ]
+    },
+    {
+      "input": [
+        "gpt-4o",
+        "babbage-002",
+        "davinci-002",
+        "gpt-3.5-turbo-instruct",
+        "gpt-3.5-turbo"
+      ],
+      "out": [
+        "gpt-4o",
+        "gpt-3.5-turbo"
+      ]
+    },
+    {
+      "input": [
+        "gpt-4o",
+        "nova-adaptive"
+      ],
+      "out": [
+        "gpt-4o",
+        "nova-adaptive"
+      ]
+    },
+    {
+      "input": [
+        "my-embed-model"
+      ],
+      "out": [
+        "my-embed-model"
+      ]
+    },
+    {
+      "input": [
+        "Zeta",
+        "alpha",
+        "Alpha",
+        "beta-2",
+        "beta_1",
+        "beta.3",
+        "beta-10",
+        "b",
+        "B",
+        "_x",
+        "-y",
+        "1abc",
+        "éclair",
+        "eclair",
+        "gpt-4o:latest"
+      ],
+      "out": [
+        "Zeta",
+        "alpha",
+        "Alpha",
+        "beta-2",
+        "beta_1",
+        "beta.3",
+        "beta-10",
+        "b",
+        "B",
+        "_x",
+        "-y",
+        "1abc",
+        "éclair",
+        "eclair",
+        "gpt-4o:latest"
+      ]
+    },
+    {
+      "input": [
+        "x-2024-01-01",
+        "x-2023-01-01",
+        "y-20250101",
+        "y-0125",
+        "z-0125",
+        "z",
+        "mixtral-8x7b-32768",
+        "gpt-3.5-turbo-16k"
+      ],
+      "out": [
+        "x-2024-01-01",
+        "x-2023-01-01",
+        "y-20250101",
+        "y-0125",
+        "z-0125",
+        "z",
+        "mixtral-8x7b-32768",
+        "gpt-3.5-turbo-16k"
+      ]
+    },
+    {
+      "input": [
+        "ft:davinci-002:org",
+        "openai/ada-v2",
+        "curie",
+        "x-instruct-v2",
+        "realtime-preview",
+        "GUARD",
+        "rerank-3",
+        "sora-2",
+        "codestral-embed"
+      ],
+      "out": [
+        "ft:davinci-002:org"
+      ]
+    }
+  ],
+  "buildModelLists": [
+    {
+      "input": [
+        {
+          "id": "gpt-4o"
+        },
+        {
+          "id": "gpt-4o-2024-05-13"
+        },
+        {
+          "id": "gpt-4o-2024-08-06"
+        },
+        {
+          "id": "gpt-4o-2024-11-20"
+        },
+        {
+          "id": "gpt-4o-mini"
+        },
+        {
+          "id": "gpt-4o-mini-2024-07-18"
+        },
+        {
+          "id": "gpt-3.5-turbo"
+        },
+        {
+          "id": "gpt-3.5-turbo-0125"
+        }
+      ],
+      "out": {
+        "models": [
+          "gpt-3.5-turbo",
+          "gpt-4o",
+          "gpt-4o-mini"
+        ],
+        "allModels": [
+          "gpt-3.5-turbo",
+          "gpt-3.5-turbo-0125",
+          "gpt-4o",
+          "gpt-4o-2024-05-13",
+          "gpt-4o-2024-08-06",
+          "gpt-4o-2024-11-20",
+          "gpt-4o-mini",
+          "gpt-4o-mini-2024-07-18"
+        ]
+      }
+    },
+    {
+      "input": [
+        {
+          "id": "claude-haiku-4-5-20251001",
+          "created": 3
+        },
+        {
+          "id": "claude-haiku-4-5-20250101",
+          "created": 1
+        },
+        {
+          "id": "claude-opus-5-20260401",
+          "created": 4
+        }
+      ],
+      "out": {
+        "models": [
+          "claude-opus-5-20260401",
+          "claude-haiku-4-5-20251001"
+        ],
+        "allModels": [
+          "claude-opus-5-20260401",
+          "claude-haiku-4-5-20251001",
+          "claude-haiku-4-5-20250101"
+        ]
+      }
+    },
+    {
+      "input": [
+        {
+          "id": "mixtral-8x7b-32768"
+        },
+        {
+          "id": "gpt-3.5-turbo-16k"
+        },
+        {
+          "id": "llama-3.1-8b-instant"
+        }
+      ],
+      "out": {
+        "models": [
+          "gpt-3.5-turbo-16k",
+          "llama-3.1-8b-instant",
+          "mixtral-8x7b-32768"
+        ],
+        "allModels": [
+          "gpt-3.5-turbo-16k",
+          "llama-3.1-8b-instant",
+          "mixtral-8x7b-32768"
+        ]
+      }
+    },
+    {
+      "input": [
+        {
+          "id": "old-model",
+          "created": 1600000000000
+        },
+        {
+          "id": "new-model",
+          "created": 1700000000000
+        },
+        {
+          "id": "undated-b"
+        },
+        {
+          "id": "undated-a"
+        }
+      ],
+      "out": {
+        "models": [
+          "new-model",
+          "old-model",
+          "undated-a",
+          "undated-b"
+        ],
+        "allModels": [
+          "new-model",
+          "old-model",
+          "undated-a",
+          "undated-b"
+        ]
+      }
+    },
+    {
+      "input": [
+        {
+          "id": "m-20240101"
+        },
+        {
+          "id": "m-20230101",
+          "created": 5
+        },
+        {
+          "id": "n-20240101"
+        },
+        {
+          "id": "n-20230101"
+        },
+        {
+          "id": " models/m-20220101 ",
+          "created": 9
+        },
+        {
+          "id": "tie-a",
+          "created": 7
+        },
+        {
+          "id": "Tie-b",
+          "created": 7
+        },
+        {
+          "id": "tie-a",
+          "created": 1
+        }
+      ],
+      "out": {
+        "models": [
+          "m-20220101",
+          "tie-a",
+          "Tie-b",
+          "n-20240101"
+        ],
+        "allModels": [
+          "m-20220101",
+          "tie-a",
+          "Tie-b",
+          "m-20230101",
+          "m-20240101",
+          "n-20230101",
+          "n-20240101"
+        ]
+      }
+    }
+  ],
+  "baseModelName": [
+    {
+      "input": "gpt-4o-2024-05-13",
+      "out": "gpt-4o",
+      "snapshot": true
+    },
+    {
+      "input": "x-20250101",
+      "out": "x",
+      "snapshot": true
+    },
+    {
+      "input": "y-0125",
+      "out": "y",
+      "snapshot": true
+    },
+    {
+      "input": "z-125",
+      "out": "z-125",
+      "snapshot": false
+    },
+    {
+      "input": "w-2024-5-13",
+      "out": "w-2024-5-13",
+      "snapshot": false
+    },
+    {
+      "input": "plain",
+      "out": "plain",
+      "snapshot": false
+    }
+  ]
+}

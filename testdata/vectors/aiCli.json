@@ -1,0 +1,161 @@
+{
+  "binaries": [
+    "claude",
+    "gemini",
+    "codex"
+  ],
+  "specs": [
+    {
+      "binary": "claude",
+      "bin": "claude",
+      "label": "Claude Code",
+      "stdin": true,
+      "models": [
+        "haiku",
+        "sonnet",
+        "opus"
+      ],
+      "args": {
+        "": [
+          "-p",
+          "--output-format",
+          "json"
+        ],
+        "sonnet": [
+          "-p",
+          "--output-format",
+          "json",
+          "--model",
+          "sonnet"
+        ]
+      }
+    },
+    {
+      "binary": "gemini",
+      "bin": "gemini",
+      "label": "Gemini CLI",
+      "stdin": true,
+      "models": [
+        "gemini-2.5-flash",
+        "gemini-2.5-pro"
+      ],
+      "args": {
+        "": [],
+        "sonnet": [
+          "-m",
+          "sonnet"
+        ]
+      }
+    },
+    {
+      "binary": "codex",
+      "bin": "codex",
+      "label": "Codex CLI",
+      "stdin": true,
+      "models": [],
+      "args": {
+        "": [
+          "exec",
+          "-"
+        ],
+        "sonnet": [
+          "exec",
+          "--model",
+          "sonnet",
+          "-"
+        ]
+      }
+    },
+    {
+      "binary": "unknown",
+      "bin": "claude",
+      "label": "Claude Code",
+      "stdin": true,
+      "models": [
+        "haiku",
+        "sonnet",
+        "opus"
+      ],
+      "args": {
+        "": [
+          "-p",
+          "--output-format",
+          "json"
+        ],
+        "sonnet": [
+          "-p",
+          "--output-format",
+          "json",
+          "--model",
+          "sonnet"
+        ]
+      }
+    }
+  ],
+  "flattenMessages": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Be terse."
+        },
+        {
+          "role": "user",
+          "content": "Why?"
+        },
+        {
+          "role": "assistant",
+          "content": "Because."
+        },
+        {
+          "role": "user",
+          "content": "Expand."
+        }
+      ],
+      "out": "Instructions:\nBe terse.\n\nWhy?\n\nYour previous reply:\nBecause.\n\nExpand."
+    },
+    {
+      "messages": [],
+      "out": ""
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "a"
+        },
+        {
+          "role": "system",
+          "content": "b"
+        }
+      ],
+      "out": "Instructions:\na\n\nb"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": ""
+        },
+        {
+          "role": "user",
+          "content": "x"
+        }
+      ],
+      "out": "\n\nx"
+    },
+    {
+      "messages": [
+        {
+          "role": "assistant",
+          "content": "only"
+        },
+        {
+          "role": "system",
+          "content": "late system"
+        }
+      ],
+      "out": "Instructions:\nlate system\n\nYour previous reply:\nonly"
+    }
+  ]
+}

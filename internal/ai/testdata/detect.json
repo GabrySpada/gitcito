@@ -1,0 +1,209 @@
+[
+  {
+    "name": "all three installed",
+    "cli": [
+      {
+        "stdout": "/usr/local/bin/claude\n"
+      },
+      {
+        "stdout": " /usr/bin/gemini \r\n/other/gemini\n"
+      },
+      {
+        "stdout": "/opt/codex"
+      }
+    ],
+    "procs": [
+      {
+        "file": "which",
+        "args": [
+          "claude"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "gemini"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "codex"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      }
+    ],
+    "result": {
+      "value": [
+        {
+          "binary": "claude",
+          "label": "Claude Code",
+          "path": "/usr/local/bin/claude"
+        },
+        {
+          "binary": "gemini",
+          "label": "Gemini CLI",
+          "path": "/usr/bin/gemini"
+        },
+        {
+          "binary": "codex",
+          "label": "Codex CLI",
+          "path": "/opt/codex"
+        }
+      ]
+    }
+  },
+  {
+    "name": "only codex",
+    "cli": [
+      {
+        "code": 1
+      },
+      {
+        "code": 1,
+        "stdout": ""
+      },
+      {
+        "stdout": "/opt/codex\n"
+      }
+    ],
+    "procs": [
+      {
+        "file": "which",
+        "args": [
+          "claude"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "gemini"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "codex"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      }
+    ],
+    "result": {
+      "value": [
+        {
+          "binary": "codex",
+          "label": "Codex CLI",
+          "path": "/opt/codex"
+        }
+      ]
+    }
+  },
+  {
+    "name": "lookup tool missing",
+    "cli": [
+      {
+        "enoent": true
+      },
+      {
+        "enoent": true
+      },
+      {
+        "enoent": true
+      }
+    ],
+    "procs": [
+      {
+        "file": "which",
+        "args": [
+          "claude"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "gemini"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "codex"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      }
+    ],
+    "result": {
+      "value": []
+    }
+  },
+  {
+    "name": "empty stdout and a timeout",
+    "cli": [
+      {
+        "stdout": "\n"
+      },
+      {
+        "killed": true
+      },
+      {
+        "stdout": "   "
+      }
+    ],
+    "procs": [
+      {
+        "file": "which",
+        "args": [
+          "claude"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "gemini"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      },
+      {
+        "file": "which",
+        "args": [
+          "codex"
+        ],
+        "timeout": 5000,
+        "maxBuffer": 8388608,
+        "input": ""
+      }
+    ],
+    "result": {
+      "value": []
+    }
+  }
+]

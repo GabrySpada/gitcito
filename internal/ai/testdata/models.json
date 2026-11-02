@@ -1,0 +1,1810 @@
+[
+  {
+    "name": "openai live list",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"object\":\"list\",\"data\":[{\"id\":\"gpt-4o\",\"created\":1715000000},{\"id\":\"gpt-4o-2024-08-06\",\"created\":1722000000},{\"id\":\"gpt-4o-mini\",\"created\":1721000000},{\"id\":\"text-embedding-3-small\",\"created\":1705000000},{\"id\":\"whisper-1\",\"created\":1677000000},{\"id\":\"o3-mini\",\"created\":1737000000000},{\"id\":\"babbage-002\",\"created\":1692000000},{\"id\":\"Custom-Model\",\"created\":0},{\"id\":\"custom-model-b\"},{\"id\":\"  models/gpt-4o  \"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "o3-mini",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "allModels": [
+              "o3-mini",
+              "gpt-4o-2024-08-06",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "text-embedding-3-small",
+              "babbage-002",
+              "whisper-1",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"o3-mini\",\"gpt-4o-mini\",\"gpt-4o\",\"Custom-Model\",\"custom-model-b\"],\"allModels\":[\"o3-mini\",\"gpt-4o-2024-08-06\",\"gpt-4o-mini\",\"gpt-4o\",\"text-embedding-3-small\",\"babbage-002\",\"whisper-1\",\"Custom-Model\",\"custom-model-b\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "anthropic live list",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Anthropic",
+              "provider": "anthropic",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "claude-haiku-4-5-20251001"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "anthropic",
+          "endpoint": "https://api.anthropic.com",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001",
+          "accountId": "default",
+          "transport": "anthropic",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"data\":[{\"id\":\"claude-haiku-4-5-20251001\",\"created_at\":\"2025-10-01T00:00:00Z\"},{\"id\":\"claude-opus-4-1-20250805\",\"created_at\":\"2025-08-05T00:00:00Z\"},{\"id\":\"claude-3-5-haiku-20241022\",\"created_at\":\"not a date\"},{\"id\":\"claude-sonnet-4-5\",\"created_at\":\"2025-09-29T12:30:00.000Z\"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.anthropic.com/v1/models?limit=1000",
+            "headers": {
+              "anthropic-version": "2023-06-01",
+              "content-type": "application/json",
+              "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "claude-haiku-4-5-20251001",
+              "claude-sonnet-4-5",
+              "claude-opus-4-1-20250805",
+              "claude-3-5-haiku-20241022"
+            ],
+            "allModels": [
+              "claude-haiku-4-5-20251001",
+              "claude-sonnet-4-5",
+              "claude-opus-4-1-20250805",
+              "claude-3-5-haiku-20241022"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"anthropic:https://api.anthropic.com\":{\"models\":[\"claude-haiku-4-5-20251001\",\"claude-sonnet-4-5\",\"claude-opus-4-1-20250805\",\"claude-3-5-haiku-20241022\"],\"allModels\":[\"claude-haiku-4-5-20251001\",\"claude-sonnet-4-5\",\"claude-opus-4-1-20250805\",\"claude-3-5-haiku-20241022\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "google native list",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Google Gemini",
+              "provider": "google",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gemini-2.5-flash"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "google",
+          "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gemini-2.5-flash",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"models\":[{\"name\":\"models/gemini-2.5-flash\",\"supportedGenerationMethods\":[\"generateContent\",\"countTokens\"]},{\"name\":\"models/text-embedding-004\",\"supportedGenerationMethods\":[\"embedContent\"]},{\"name\":\"models/gemini-2.5-pro\",\"supportedGenerationMethods\":[\"generateContent\"]},{\"name\":\"models/gemini-1.5-flash-002\"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://generativelanguage.googleapis.com/v1beta/models?pageSize=200",
+            "headers": {
+              "content-type": "application/json",
+              "x-goog-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "gemini-1.5-flash-002",
+              "gemini-2.5-flash",
+              "gemini-2.5-pro"
+            ],
+            "allModels": [
+              "gemini-1.5-flash-002",
+              "gemini-2.5-flash",
+              "gemini-2.5-pro"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"google:https://generativelanguage.googleapis.com/v1beta/openai\":{\"models\":[\"gemini-1.5-flash-002\",\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"allModels\":[\"gemini-1.5-flash-002\",\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "google keyless list",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Google Gemini",
+              "provider": "google",
+              "endpoint": "",
+              "apiKey": "",
+              "model": "gemini-2.5-flash"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "google",
+          "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai",
+          "apiKey": "",
+          "model": "gemini-2.5-flash",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"models\":[{\"name\":\"models/gemini-2.5-flash\",\"supportedGenerationMethods\":[\"generateContent\",\"countTokens\"]},{\"name\":\"models/text-embedding-004\",\"supportedGenerationMethods\":[\"embedContent\"]},{\"name\":\"models/gemini-2.5-pro\",\"supportedGenerationMethods\":[\"generateContent\"]},{\"name\":\"models/gemini-1.5-flash-002\"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://generativelanguage.googleapis.com/v1beta/models?pageSize=200",
+            "headers": {
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [
+          "default"
+        ],
+        "result": {
+          "value": {
+            "models": [
+              "gemini-1.5-flash-002",
+              "gemini-2.5-flash",
+              "gemini-2.5-pro"
+            ],
+            "allModels": [
+              "gemini-1.5-flash-002",
+              "gemini-2.5-flash",
+              "gemini-2.5-pro"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"google:https://generativelanguage.googleapis.com/v1beta/openai\":{\"models\":[\"gemini-1.5-flash-002\",\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"allModels\":[\"gemini-1.5-flash-002\",\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "ollama list",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Ollama (local)",
+              "provider": "ollama",
+              "endpoint": "",
+              "apiKey": "",
+              "model": "llama3.2"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "ollama",
+          "endpoint": "http://localhost:11434/v1",
+          "apiKey": "",
+          "model": "llama3.2",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"data\":[{\"id\":\"qwen2.5:7b\",\"created\":1730000000},{\"id\":\"llama3.2:latest\",\"created\":1730000000}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "http://localhost:11434/v1/models",
+            "headers": {
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [
+          "default"
+        ],
+        "result": {
+          "value": {
+            "models": [
+              "llama3.2:latest",
+              "qwen2.5:7b"
+            ],
+            "allModels": [
+              "llama3.2:latest",
+              "qwen2.5:7b"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"ollama:http://localhost:11434/v1\":{\"models\":[\"llama3.2:latest\",\"qwen2.5:7b\"],\"allModels\":[\"llama3.2:latest\",\"qwen2.5:7b\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "openrouter list",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenRouter",
+              "provider": "openrouter",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "openai/gpt-5-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openrouter",
+          "endpoint": "https://openrouter.ai/api/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "openai/gpt-5-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"object\":\"list\",\"data\":[{\"id\":\"gpt-4o\",\"created\":1715000000},{\"id\":\"gpt-4o-2024-08-06\",\"created\":1722000000},{\"id\":\"gpt-4o-mini\",\"created\":1721000000},{\"id\":\"text-embedding-3-small\",\"created\":1705000000},{\"id\":\"whisper-1\",\"created\":1677000000},{\"id\":\"o3-mini\",\"created\":1737000000000},{\"id\":\"babbage-002\",\"created\":1692000000},{\"id\":\"Custom-Model\",\"created\":0},{\"id\":\"custom-model-b\"},{\"id\":\"  models/gpt-4o  \"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://openrouter.ai/api/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "o3-mini",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "allModels": [
+              "o3-mini",
+              "gpt-4o-2024-08-06",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "text-embedding-3-small",
+              "babbage-002",
+              "whisper-1",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"openrouter:https://openrouter.ai/api/v1\":{\"models\":[\"o3-mini\",\"gpt-4o-mini\",\"gpt-4o\",\"Custom-Model\",\"custom-model-b\"],\"allModels\":[\"o3-mini\",\"gpt-4o-2024-08-06\",\"gpt-4o-mini\",\"gpt-4o\",\"text-embedding-3-small\",\"babbage-002\",\"whisper-1\",\"Custom-Model\",\"custom-model-b\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "cli list never fetches",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Local CLI (subscription)",
+              "provider": "cli",
+              "endpoint": "",
+              "apiKey": "",
+              "model": "gemini-2.5-pro"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "cli",
+          "endpoint": "",
+          "apiKey": "",
+          "model": "gemini-2.5-pro",
+          "accountId": "default",
+          "transport": "cli",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask",
+          "cli": "gemini",
+          "cliPath": " /opt/bin/gemini "
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [],
+        "requests": [],
+        "keyCalls": [
+          "default"
+        ],
+        "result": {
+          "value": {
+            "models": [
+              "gemini-2.5-flash",
+              "gemini-2.5-pro"
+            ],
+            "allModels": [
+              "gemini-2.5-flash",
+              "gemini-2.5-pro"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"cli:gemini\":{\"models\":[\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"allModels\":[\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"fetchedAt\":1760000000000}}"
+      },
+      {
+        "at": 1760000000005,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Local CLI (subscription)",
+              "provider": "cli",
+              "endpoint": "",
+              "apiKey": "",
+              "model": ""
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "cli",
+          "endpoint": "",
+          "apiKey": "",
+          "model": "gpt-5",
+          "accountId": "default",
+          "transport": "cli",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask",
+          "cli": "codex"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [],
+        "requests": [],
+        "keyCalls": [
+          "default"
+        ],
+        "result": {
+          "value": {
+            "models": [],
+            "allModels": [],
+            "source": "fallback",
+            "fetchedAt": null,
+            "error": "The provider returned an empty model list."
+          }
+        },
+        "cacheFile": "{\"cli:gemini\":{\"models\":[\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"allModels\":[\"gemini-2.5-flash\",\"gemini-2.5-pro\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "cached list is served until it expires, then refreshed",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"object\":\"list\",\"data\":[{\"id\":\"gpt-4o\",\"created\":1715000000},{\"id\":\"gpt-4o-2024-08-06\",\"created\":1722000000},{\"id\":\"gpt-4o-mini\",\"created\":1721000000},{\"id\":\"text-embedding-3-small\",\"created\":1705000000},{\"id\":\"whisper-1\",\"created\":1677000000},{\"id\":\"o3-mini\",\"created\":1737000000000},{\"id\":\"babbage-002\",\"created\":1692000000},{\"id\":\"Custom-Model\",\"created\":0},{\"id\":\"custom-model-b\"},{\"id\":\"  models/gpt-4o  \"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "o3-mini",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "allModels": [
+              "o3-mini",
+              "gpt-4o-2024-08-06",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "text-embedding-3-small",
+              "babbage-002",
+              "whisper-1",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"o3-mini\",\"gpt-4o-mini\",\"gpt-4o\",\"Custom-Model\",\"custom-model-b\"],\"allModels\":[\"o3-mini\",\"gpt-4o-2024-08-06\",\"gpt-4o-mini\",\"gpt-4o\",\"text-embedding-3-small\",\"babbage-002\",\"whisper-1\",\"Custom-Model\",\"custom-model-b\"],\"fetchedAt\":1760000000000}}"
+      },
+      {
+        "at": 1760086399999,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [],
+        "requests": [],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "o3-mini",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "allModels": [
+              "o3-mini",
+              "gpt-4o-2024-08-06",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "text-embedding-3-small",
+              "babbage-002",
+              "whisper-1",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "source": "cache",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"o3-mini\",\"gpt-4o-mini\",\"gpt-4o\",\"Custom-Model\",\"custom-model-b\"],\"allModels\":[\"o3-mini\",\"gpt-4o-2024-08-06\",\"gpt-4o-mini\",\"gpt-4o\",\"text-embedding-3-small\",\"babbage-002\",\"whisper-1\",\"Custom-Model\",\"custom-model-b\"],\"fetchedAt\":1760000000000}}"
+      },
+      {
+        "at": 1760086400000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"data\":[{\"id\":\"qwen2.5:7b\",\"created\":1730000000},{\"id\":\"llama3.2:latest\",\"created\":1730000000}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "llama3.2:latest",
+              "qwen2.5:7b"
+            ],
+            "allModels": [
+              "llama3.2:latest",
+              "qwen2.5:7b"
+            ],
+            "source": "live",
+            "fetchedAt": 1760086400000
+          }
+        },
+        "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"llama3.2:latest\",\"qwen2.5:7b\"],\"allModels\":[\"llama3.2:latest\",\"qwen2.5:7b\"],\"fetchedAt\":1760086400000}}"
+      },
+      {
+        "at": 1760086400001,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": true,
+        "storedKey": null,
+        "fetch": [
+          {
+            "status": 503,
+            "body": "unavailable"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "llama3.2:latest",
+              "qwen2.5:7b"
+            ],
+            "allModels": [
+              "llama3.2:latest",
+              "qwen2.5:7b"
+            ],
+            "source": "cache",
+            "fetchedAt": 1760086400000,
+            "error": "Could not list models (503): unavailable"
+          }
+        },
+        "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"llama3.2:latest\",\"qwen2.5:7b\"],\"allModels\":[\"llama3.2:latest\",\"qwen2.5:7b\"],\"fetchedAt\":1760086400000}}"
+      }
+    ]
+  },
+  {
+    "name": "fresh cache from disk",
+    "cacheFile": "{\"cli:claude\":{\"models\":[\"x\"],\"fetchedAt\":1760000000000},\"openai:https://api.openai.com/v1\":{\"models\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"tts-1\"],\"allModels\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"tts-1\",\"zeta\"],\"fetchedAt\":1759999999000}}",
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [],
+        "requests": [],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "gpt-4o-2024-05-13",
+              "gpt-4o"
+            ],
+            "allModels": [
+              "gpt-4o-2024-05-13",
+              "gpt-4o",
+              "tts-1",
+              "zeta"
+            ],
+            "source": "cache",
+            "fetchedAt": 1759999999000
+          }
+        },
+        "cacheFile": "{\"cli:claude\":{\"models\":[\"x\"],\"fetchedAt\":1760000000000},\"openai:https://api.openai.com/v1\":{\"models\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"tts-1\"],\"allModels\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"tts-1\",\"zeta\"],\"fetchedAt\":1759999999000}}"
+      },
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Local CLI (subscription)",
+              "provider": "cli",
+              "endpoint": "",
+              "apiKey": "",
+              "model": "sonnet"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "cli",
+          "endpoint": "",
+          "apiKey": "",
+          "model": "sonnet",
+          "accountId": "default",
+          "transport": "cli",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask",
+          "cli": "claude"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [],
+        "requests": [],
+        "keyCalls": [
+          "default"
+        ],
+        "result": {
+          "value": {
+            "models": [
+              "x"
+            ],
+            "allModels": [
+              "x"
+            ],
+            "source": "cache",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"cli:claude\":{\"models\":[\"x\"],\"fetchedAt\":1760000000000},\"openai:https://api.openai.com/v1\":{\"models\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"tts-1\"],\"allModels\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"tts-1\",\"zeta\"],\"fetchedAt\":1759999999000}}"
+      }
+    ]
+  },
+  {
+    "name": "stale cache beats the bundled list on failure",
+    "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"dall-e-3\"],\"fetchedAt\":1759827200000}}",
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "network": {
+              "code": "ECONNREFUSED"
+            }
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "gpt-4o"
+            ],
+            "allModels": [
+              "gpt-4o-2024-05-13",
+              "gpt-4o",
+              "dall-e-3"
+            ],
+            "source": "cache",
+            "fetchedAt": 1759827200000,
+            "error": "Could not reach https://api.openai.com/v1/models. The endpoint refused the connection. Check your network, endpoint, or proxy/VPN."
+          }
+        },
+        "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"gpt-4o-2024-05-13\",\"gpt-4o\",\"dall-e-3\"],\"fetchedAt\":1759827200000}}"
+      }
+    ]
+  },
+  {
+    "name": "corrupt cache is a cold start",
+    "cacheFile": "{nope",
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "status": 401,
+            "body": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "gpt-4o-mini",
+              "gpt-4o",
+              "gpt-4.1-mini",
+              "gpt-4.1"
+            ],
+            "allModels": [
+              "gpt-4o-mini",
+              "gpt-4o",
+              "gpt-4.1-mini",
+              "gpt-4.1"
+            ],
+            "source": "fallback",
+            "fetchedAt": null,
+            "error": "Could not list models (401): yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+          }
+        },
+        "cacheFile": "{nope"
+      }
+    ]
+  },
+  {
+    "name": "remote network failure hints at the proxy",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Groq",
+              "provider": "groq",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "llama-3.3-70b-versatile"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "groq",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "llama-3.3-70b-versatile",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "network": {
+              "code": "ENOTFOUND"
+            }
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.groq.com/openai/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "llama-3.3-70b-versatile",
+              "llama-3.1-8b-instant",
+              "mixtral-8x7b-32768"
+            ],
+            "allModels": [
+              "llama-3.3-70b-versatile",
+              "llama-3.1-8b-instant",
+              "mixtral-8x7b-32768"
+            ],
+            "source": "fallback",
+            "fetchedAt": null,
+            "error": "Could not reach https://api.groq.com/openai/v1/models. The endpoint host could not be resolved. Check your network, endpoint, or proxy/VPN."
+          }
+        },
+        "cacheFile": null
+      }
+    ]
+  },
+  {
+    "name": "local network failure hints at the provider",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Ollama (local)",
+              "provider": "ollama",
+              "endpoint": "",
+              "apiKey": "",
+              "model": "llama3.2"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "ollama",
+          "endpoint": "http://localhost:11434/v1",
+          "apiKey": "",
+          "model": "llama3.2",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "network": {
+              "code": "ECONNREFUSED",
+              "message": "x"
+            }
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "http://localhost:11434/v1/models",
+            "headers": {
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [
+          "default"
+        ],
+        "result": {
+          "value": {
+            "models": [
+              "llama3.2",
+              "llama3.1",
+              "qwen2.5-coder",
+              "codellama",
+              "mistral"
+            ],
+            "allModels": [
+              "llama3.2",
+              "llama3.1",
+              "qwen2.5-coder",
+              "codellama",
+              "mistral"
+            ],
+            "source": "fallback",
+            "fetchedAt": null,
+            "error": "Could not reach http://localhost:11434/v1/models. The endpoint refused the connection. Is the local provider running?"
+          }
+        },
+        "cacheFile": null
+      }
+    ]
+  },
+  {
+    "name": "empty list is an error",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Mistral",
+              "provider": "mistral",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "mistral-small-latest"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "mistral",
+          "endpoint": "https://api.mistral.ai/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "mistral-small-latest",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"data\":[]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.mistral.ai/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "mistral-small-latest",
+              "mistral-medium-latest",
+              "mistral-large-latest",
+              "codestral-latest"
+            ],
+            "allModels": [
+              "mistral-small-latest",
+              "mistral-medium-latest",
+              "mistral-large-latest",
+              "codestral-latest"
+            ],
+            "source": "fallback",
+            "fetchedAt": null,
+            "error": "The provider returned an empty model list."
+          }
+        },
+        "cacheFile": null
+      }
+    ]
+  },
+  {
+    "name": "malformed list body",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Mistral",
+              "provider": "mistral",
+              "endpoint": "",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "mistral-small-latest"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "mistral",
+          "endpoint": "https://api.mistral.ai/v1",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "mistral-small-latest",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "not json"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.mistral.ai/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "mistral-small-latest",
+              "mistral-medium-latest",
+              "mistral-large-latest",
+              "codestral-latest"
+            ],
+            "allModels": [
+              "mistral-small-latest",
+              "mistral-medium-latest",
+              "mistral-large-latest",
+              "codestral-latest"
+            ],
+            "source": "fallback",
+            "fetchedAt": null,
+            "error": "Unexpected token 'o', \"not json\" is not valid JSON"
+          }
+        },
+        "cacheFile": null
+      }
+    ]
+  },
+  {
+    "name": "stored key is used for listing",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "OpenAI",
+              "provider": "openai",
+              "endpoint": "",
+              "apiKey": "",
+              "model": "gpt-4o-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "openai",
+          "endpoint": "https://api.openai.com/v1",
+          "apiKey": "",
+          "model": "gpt-4o-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": "sk-stored-SENTINEL",
+        "fetch": [
+          {
+            "body": "{\"object\":\"list\",\"data\":[{\"id\":\"gpt-4o\",\"created\":1715000000},{\"id\":\"gpt-4o-2024-08-06\",\"created\":1722000000},{\"id\":\"gpt-4o-mini\",\"created\":1721000000},{\"id\":\"text-embedding-3-small\",\"created\":1705000000},{\"id\":\"whisper-1\",\"created\":1677000000},{\"id\":\"o3-mini\",\"created\":1737000000000},{\"id\":\"babbage-002\",\"created\":1692000000},{\"id\":\"Custom-Model\",\"created\":0},{\"id\":\"custom-model-b\"},{\"id\":\"  models/gpt-4o  \"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:c69a422f21f830d75621a09757fa08dc675d63df3560134238373de852b730cd>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [
+          "default"
+        ],
+        "result": {
+          "value": {
+            "models": [
+              "o3-mini",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "allModels": [
+              "o3-mini",
+              "gpt-4o-2024-08-06",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "text-embedding-3-small",
+              "babbage-002",
+              "whisper-1",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"openai:https://api.openai.com/v1\":{\"models\":[\"o3-mini\",\"gpt-4o-mini\",\"gpt-4o\",\"Custom-Model\",\"custom-model-b\"],\"allModels\":[\"o3-mini\",\"gpt-4o-2024-08-06\",\"gpt-4o-mini\",\"gpt-4o\",\"text-embedding-3-small\",\"babbage-002\",\"whisper-1\",\"Custom-Model\",\"custom-model-b\"],\"fetchedAt\":1760000000000}}"
+      }
+    ]
+  },
+  {
+    "name": "anthropic legacy endpoint and custom gateway share no cache",
+    "cacheFile": null,
+    "steps": [
+      {
+        "at": 1760000000000,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Anthropic",
+              "provider": "anthropic",
+              "endpoint": "https://api.anthropic.com/v1/",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "claude-haiku-4-5-20251001"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "anthropic",
+          "endpoint": "https://api.anthropic.com/v1/",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001",
+          "accountId": "default",
+          "transport": "anthropic",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"data\":[{\"id\":\"claude-haiku-4-5-20251001\",\"created_at\":\"2025-10-01T00:00:00Z\"},{\"id\":\"claude-opus-4-1-20250805\",\"created_at\":\"2025-08-05T00:00:00Z\"},{\"id\":\"claude-3-5-haiku-20241022\",\"created_at\":\"not a date\"},{\"id\":\"claude-sonnet-4-5\",\"created_at\":\"2025-09-29T12:30:00.000Z\"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://api.anthropic.com/v1/models?limit=1000",
+            "headers": {
+              "anthropic-version": "2023-06-01",
+              "content-type": "application/json",
+              "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "claude-haiku-4-5-20251001",
+              "claude-sonnet-4-5",
+              "claude-opus-4-1-20250805",
+              "claude-3-5-haiku-20241022"
+            ],
+            "allModels": [
+              "claude-haiku-4-5-20251001",
+              "claude-sonnet-4-5",
+              "claude-opus-4-1-20250805",
+              "claude-3-5-haiku-20241022"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000000
+          }
+        },
+        "cacheFile": "{\"anthropic:https://api.anthropic.com\":{\"models\":[\"claude-haiku-4-5-20251001\",\"claude-sonnet-4-5\",\"claude-opus-4-1-20250805\",\"claude-3-5-haiku-20241022\"],\"allModels\":[\"claude-haiku-4-5-20251001\",\"claude-sonnet-4-5\",\"claude-opus-4-1-20250805\",\"claude-3-5-haiku-20241022\"],\"fetchedAt\":1760000000000}}"
+      },
+      {
+        "at": 1760000000001,
+        "cfg": {
+          "enabled": true,
+          "accounts": [
+            {
+              "id": "default",
+              "label": "Custom (OpenAI-compatible)",
+              "provider": "custom",
+              "endpoint": "https://gateway.example.com/v1/chat/completions/",
+              "apiKey": "sk-test-SENTINEL-0123456789",
+              "model": "o3-mini"
+            }
+          ],
+          "defaultAccountId": "default",
+          "assignments": {},
+          "provider": "custom",
+          "endpoint": "https://gateway.example.com/v1/chat/completions/",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "o3-mini",
+          "accountId": "default",
+          "transport": "openai",
+          "commitStyle": "auto",
+          "explainStyle": "normal",
+          "conflictStyle": "clean",
+          "branchNamingStyle": "prefix/description",
+          "customInstructions": "",
+          "generateDescription": true,
+          "hoverExplain": true,
+          "hoverExplainKey": "shift",
+          "repoChat": true,
+          "repoChatModel": "",
+          "repoChatCommittedOnly": false,
+          "repoChatActions": true,
+          "repoChatReadOnly": true,
+          "repoChatApproval": "ask"
+        },
+        "force": null,
+        "storedKey": null,
+        "fetch": [
+          {
+            "body": "{\"object\":\"list\",\"data\":[{\"id\":\"gpt-4o\",\"created\":1715000000},{\"id\":\"gpt-4o-2024-08-06\",\"created\":1722000000},{\"id\":\"gpt-4o-mini\",\"created\":1721000000},{\"id\":\"text-embedding-3-small\",\"created\":1705000000},{\"id\":\"whisper-1\",\"created\":1677000000},{\"id\":\"o3-mini\",\"created\":1737000000000},{\"id\":\"babbage-002\",\"created\":1692000000},{\"id\":\"Custom-Model\",\"created\":0},{\"id\":\"custom-model-b\"},{\"id\":\"  models/gpt-4o  \"}]}"
+          }
+        ],
+        "requests": [
+          {
+            "method": "GET",
+            "url": "https://gateway.example.com/v1/models",
+            "headers": {
+              "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+              "content-type": "application/json"
+            },
+            "body": null
+          }
+        ],
+        "keyCalls": [],
+        "result": {
+          "value": {
+            "models": [
+              "o3-mini",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "allModels": [
+              "o3-mini",
+              "gpt-4o-2024-08-06",
+              "gpt-4o-mini",
+              "gpt-4o",
+              "text-embedding-3-small",
+              "babbage-002",
+              "whisper-1",
+              "Custom-Model",
+              "custom-model-b"
+            ],
+            "source": "live",
+            "fetchedAt": 1760000000001
+          }
+        },
+        "cacheFile": "{\"anthropic:https://api.anthropic.com\":{\"models\":[\"claude-haiku-4-5-20251001\",\"claude-sonnet-4-5\",\"claude-opus-4-1-20250805\",\"claude-3-5-haiku-20241022\"],\"allModels\":[\"claude-haiku-4-5-20251001\",\"claude-sonnet-4-5\",\"claude-opus-4-1-20250805\",\"claude-3-5-haiku-20241022\"],\"fetchedAt\":1760000000000},\"custom:https://gateway.example.com/v1\":{\"models\":[\"o3-mini\",\"gpt-4o-mini\",\"gpt-4o\",\"Custom-Model\",\"custom-model-b\"],\"allModels\":[\"o3-mini\",\"gpt-4o-2024-08-06\",\"gpt-4o-mini\",\"gpt-4o\",\"text-embedding-3-small\",\"babbage-002\",\"whisper-1\",\"Custom-Model\",\"custom-model-b\"],\"fetchedAt\":1760000000001}}"
+      }
+    ]
+  }
+]

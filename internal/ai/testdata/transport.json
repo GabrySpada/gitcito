@@ -1,0 +1,2773 @@
+[
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic system-only prompt",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Only system."
+      },
+      {
+        "role": "system",
+        "content": "Second system."
+      }
+    ],
+    "temperature": 0,
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":8192,\"temperature\":0,\"system\":\"Only system.\\n\\nSecond system.\",\"messages\":[{\"role\":\"user\",\"content\":\"Proceed.\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic chat with every role",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 1.5,
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":8192,\"temperature\":1.5,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens 99999.9",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 99999.9,
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":8192,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens 99999.9",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 99999.9
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":99999}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens -4.2",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": -4.2,
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":1,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens -4.2",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": -4.2
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":1}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens NaN",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": "NaN",
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":8192,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens NaN",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": "NaN"
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":1}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens Infinity",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": "Infinity",
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":8192,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens Infinity",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": "Infinity"
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":1}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens 0",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 0,
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":1,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens 0",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 0
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":1}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens 1",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 1,
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":1,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens 1",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 1
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":1}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens 8192",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 8192,
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":8192,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens 8192",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 8192
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":8192}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"content\":[{\"type\":\"text\",\"text\":\"ok\"}],\"usage\":{\"input_tokens\":4,\"output_tokens\":5}}"
+      }
+    ],
+    "cli": [],
+    "name": "anthropic maxTokens 300.7",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Anthropic",
+          "provider": "anthropic",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "claude-haiku-4-5-20251001"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "anthropic",
+      "endpoint": "https://api.anthropic.com",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "claude-haiku-4-5-20251001",
+      "accountId": "default",
+      "transport": "anthropic",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 300.7,
+      "extra": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
+          "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+        },
+        "body": "{\"model\":\"claude-haiku-4-5-20251001\",\"max_tokens\":300,\"temperature\":0.2,\"system\":\"S\",\"messages\":[{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 4,
+          "completionTokens": 5,
+          "totalTokens": 9
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai maxTokens 300.7",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "maxTokens": 300.7
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o-mini\",\"temperature\":0.2,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":300}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai token field for o3-mini",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "o3-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.3,
+    "options": {
+      "maxTokens": 256,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"o3-mini\",\"temperature\":0.3,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_completion_tokens\":256}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai token field for gpt-5-mini",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-5-mini",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.3,
+    "options": {
+      "maxTokens": 256,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-5-mini\",\"temperature\":0.3,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_completion_tokens\":256}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai token field for openai/o1",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "openai/o1",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.3,
+    "options": {
+      "maxTokens": 256,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"openai/o1\",\"temperature\":0.3,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_completion_tokens\":256}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai token field for ft:gpt-5:org:x:1",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "ft:gpt-5:org:x:1",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.3,
+    "options": {
+      "maxTokens": 256,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"ft:gpt-5:org:x:1\",\"temperature\":0.3,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_completion_tokens\":256}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai token field for gpt-4o",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-4o",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.3,
+    "options": {
+      "maxTokens": 256,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-4o\",\"temperature\":0.3,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":256}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai token field for o10",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "o10",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.3,
+    "options": {
+      "maxTokens": 256,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"o10\",\"temperature\":0.3,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":256}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai token field for gpt-50",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "gpt-50",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.3,
+    "options": {
+      "maxTokens": 256,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"gpt-50\",\"temperature\":0.3,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":256}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "extra overrides a payload field in place",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Custom (OpenAI-compatible)",
+          "provider": "custom",
+          "endpoint": "http://127.0.0.1:8000/v1",
+          "apiKey": "",
+          "model": "default"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "custom",
+      "endpoint": "http://127.0.0.1:8000/v1",
+      "apiKey": "",
+      "model": "default",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "options": {
+      "extra": {
+        "model": "override",
+        "temperature": 1,
+        "seed": 7
+      },
+      "maxTokens": 10,
+      "disableThinking": true
+    },
+    "requests": [
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/v1/chat/completions",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"override\",\"temperature\":1,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}],\"max_tokens\":10,\"chat_template_kwargs\":{\"enable_thinking\":false},\"seed\":7}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [
+      {
+        "body": "{\"choices\":[{\"message\":{\"content\":\"ok\"}}],\"usage\":{\"prompt_tokens\":3}}"
+      }
+    ],
+    "cli": [],
+    "name": "openai empty model",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "OpenAI",
+          "provider": "openai",
+          "endpoint": "",
+          "apiKey": "sk-test-SENTINEL-0123456789",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "openai",
+      "endpoint": "https://api.openai.com/v1",
+      "apiKey": "sk-test-SENTINEL-0123456789",
+      "model": "",
+      "accountId": "default",
+      "transport": "openai",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.25,
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "headers": {
+          "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+          "content-type": "application/json"
+        },
+        "body": "{\"model\":\"\",\"temperature\":0.25,\"messages\":[{\"role\":\"system\",\"content\":\"S\"},{\"role\":\"user\",\"content\":\"U1\"},{\"role\":\"assistant\",\"content\":\"A1\"},{\"role\":\"user\",\"content\":\"U2\"}]}"
+      }
+    ],
+    "procs": [],
+    "result": {
+      "value": {
+        "text": "ok",
+        "usage": {
+          "promptTokens": 3,
+          "completionTokens": 0,
+          "totalTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "fetch": [],
+    "cli": [
+      {
+        "stdout": "answer"
+      }
+    ],
+    "name": "cli codex flattened chat",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Local CLI (subscription)",
+          "provider": "cli",
+          "endpoint": "",
+          "apiKey": "",
+          "model": ""
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "cli",
+      "endpoint": "",
+      "apiKey": "",
+      "model": "gpt-5",
+      "accountId": "default",
+      "transport": "cli",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask",
+      "cli": "codex"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "requests": [],
+    "procs": [
+      {
+        "file": "codex",
+        "args": [
+          "exec",
+          "--model",
+          "gpt-5",
+          "-"
+        ],
+        "timeout": 180000,
+        "maxBuffer": 8388608,
+        "input": "Instructions:\nS\n\nU1\n\nYour previous reply:\nA1\n\nU2"
+      }
+    ],
+    "result": {
+      "value": {
+        "text": "answer",
+        "usage": {
+          "promptTokens": 0,
+          "completionTokens": 0,
+          "totalTokens": 0
+        }
+      }
+    }
+  },
+  {
+    "fetch": [],
+    "cli": [
+      {
+        "stdout": "answer"
+      }
+    ],
+    "name": "cli gemini system only",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Local CLI (subscription)",
+          "provider": "cli",
+          "endpoint": "",
+          "apiKey": "",
+          "model": "gemini-2.5-pro"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "cli",
+      "endpoint": "",
+      "apiKey": "",
+      "model": "gemini-2.5-pro",
+      "accountId": "default",
+      "transport": "cli",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask",
+      "cli": "gemini",
+      "cliPath": " /opt/bin/gemini "
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Only system."
+      },
+      {
+        "role": "system",
+        "content": "Second system."
+      }
+    ],
+    "temperature": 0.2,
+    "requests": [],
+    "procs": [
+      {
+        "file": "/opt/bin/gemini",
+        "args": [
+          "-m",
+          "gemini-2.5-pro"
+        ],
+        "timeout": 180000,
+        "maxBuffer": 8388608,
+        "input": "Instructions:\nOnly system.\n\nSecond system."
+      }
+    ],
+    "result": {
+      "value": {
+        "text": "answer",
+        "usage": {
+          "promptTokens": 0,
+          "completionTokens": 0,
+          "totalTokens": 0
+        }
+      }
+    }
+  },
+  {
+    "fetch": [],
+    "cli": [
+      {
+        "stdout": "{\"result\":\"r\",\"usage\":{\"input_tokens\":2}}"
+      }
+    ],
+    "name": "cli claude usage envelope",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Local CLI (subscription)",
+          "provider": "cli",
+          "endpoint": "",
+          "apiKey": "",
+          "model": "sonnet"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "cli",
+      "endpoint": "",
+      "apiKey": "",
+      "model": "sonnet",
+      "accountId": "default",
+      "transport": "cli",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask",
+      "cli": "claude",
+      "cliPath": ""
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "requests": [],
+    "procs": [
+      {
+        "file": "claude",
+        "args": [
+          "-p",
+          "--output-format",
+          "json",
+          "--model",
+          "sonnet"
+        ],
+        "timeout": 180000,
+        "maxBuffer": 8388608,
+        "input": "Instructions:\nS\n\nU1\n\nYour previous reply:\nA1\n\nU2"
+      }
+    ],
+    "result": {
+      "value": {
+        "text": "r",
+        "usage": {
+          "promptTokens": 2,
+          "completionTokens": 0,
+          "totalTokens": 2
+        }
+      }
+    }
+  },
+  {
+    "fetch": [],
+    "cli": [
+      {
+        "stdout": "x"
+      }
+    ],
+    "name": "cli unknown binary falls back to claude",
+    "cfg": {
+      "enabled": true,
+      "accounts": [
+        {
+          "id": "default",
+          "label": "Local CLI (subscription)",
+          "provider": "cli",
+          "endpoint": "",
+          "apiKey": "",
+          "model": "sonnet"
+        }
+      ],
+      "defaultAccountId": "default",
+      "assignments": {},
+      "provider": "cli",
+      "endpoint": "",
+      "apiKey": "",
+      "model": "sonnet",
+      "accountId": "default",
+      "transport": "cli",
+      "commitStyle": "auto",
+      "explainStyle": "normal",
+      "conflictStyle": "clean",
+      "branchNamingStyle": "prefix/description",
+      "customInstructions": "",
+      "generateDescription": true,
+      "hoverExplain": true,
+      "hoverExplainKey": "shift",
+      "repoChat": true,
+      "repoChatModel": "",
+      "repoChatCommittedOnly": false,
+      "repoChatActions": true,
+      "repoChatReadOnly": true,
+      "repoChatApproval": "ask",
+      "cli": "nope"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "S"
+      },
+      {
+        "role": "user",
+        "content": "U1"
+      },
+      {
+        "role": "assistant",
+        "content": "A1"
+      },
+      {
+        "role": "user",
+        "content": "U2"
+      }
+    ],
+    "temperature": 0.2,
+    "requests": [],
+    "procs": [
+      {
+        "file": "claude",
+        "args": [
+          "-p",
+          "--output-format",
+          "json",
+          "--model",
+          "sonnet"
+        ],
+        "timeout": 180000,
+        "maxBuffer": 8388608,
+        "input": "Instructions:\nS\n\nU1\n\nYour previous reply:\nA1\n\nU2"
+      }
+    ],
+    "result": {
+      "value": {
+        "text": "x",
+        "usage": {
+          "promptTokens": 0,
+          "completionTokens": 0,
+          "totalTokens": 0
+        }
+      }
+    }
+  }
+]
