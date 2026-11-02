@@ -17,6 +17,7 @@ import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
 import * as GitService from '../bindings/github.com/GabrySpada/gitcito/internal/gitsvc/gitservice'
+import * as HostingService from '../bindings/github.com/GabrySpada/gitcito/internal/hosting/service'
 import * as KeychainService from '../bindings/github.com/GabrySpada/gitcito/internal/keychain/service'
 import * as LogService from '../bindings/github.com/GabrySpada/gitcito/internal/logbook/service'
 import * as MenuService from '../bindings/github.com/GabrySpada/gitcito/internal/menu/service'
@@ -149,6 +150,16 @@ export function installLinkGuard(openExternal: (url: string) => Promise<void>): 
     if (url.protocol === 'http:' || url.protocol === 'https:') void openExternal(url.href)
   })
 }
+
+type AnyCall = (...args: unknown[]) => Promise<unknown>
+
+/** The hosting channels carry `unknown` payloads in the contract; forward them as-is to the generated
+ *  function of the same name (which sends every parameter, missing ones as null). */
+const hostingMethods = HostingService as unknown as Record<string, AnyCall>
+const hostingCall =
+  (name: string): AnyCall =>
+  (...args) =>
+    invoke(() => hostingMethods[name](...args))
 
 // Looked up by name at call time; the generated module is the authoritative list of ported git methods.
 const gitMethods = GitService as unknown as Record<string, ((...args: unknown[]) => Promise<unknown>) | undefined>
@@ -358,36 +369,37 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     hosting: {
-      listRepos: notPorted('hosting:listRepos'),
-      uploadSshKey: notPorted('hosting:uploadSshKey'),
-      listOwners: notPorted('hosting:listOwners'),
-      whoAmI: notPorted('hosting:whoAmI'),
-      createRepo: notPorted('hosting:createRepo'),
-      listPRs: notPorted('hosting:listPRs'),
-      listReleases: notPorted('hosting:listReleases'),
-      ciStatuses: notPorted('hosting:ciStatuses'),
-      openCreatePR: notPorted('hosting:openCreatePR'),
-      createPR: notPorted('hosting:createPR'),
-      prDetail: notPorted('hosting:prDetail'),
-      prComment: notPorted('hosting:prComment'),
-      prReplyReviewComment: notPorted('hosting:prReplyReviewComment'),
-      prChecks: notPorted('hosting:prChecks'),
-      prFiles: notPorted('hosting:prFiles'),
-      prReview: notPorted('hosting:prReview'),
-      prMerge: notPorted('hosting:prMerge'),
-      listNotifications: notPorted('hosting:listNotifications'),
-      markNotificationRead: notPorted('hosting:markNotificationRead'),
-      markAllNotificationsRead: notPorted('hosting:markAllNotificationsRead'),
-      listIssues: notPorted('hosting:listIssues'),
-      issueDetail: notPorted('hosting:issueDetail'),
-      setIssueState: notPorted('hosting:setIssueState'),
-      createIssue: notPorted('hosting:createIssue'),
-      applyPrMeta: notPorted('hosting:applyPrMeta'),
-      updatePR: notPorted('hosting:updatePR'),
-      mergedPrHeads: notPorted('hosting:mergedPrHeads'),
-      ensureStack: notPorted('hosting:ensureStack'),
-      listMilestones: notPorted('hosting:listMilestones'),
-      milestoneIssues: notPorted('hosting:milestoneIssues')
+      listRepos: hostingCall('ListRepos'),
+      uploadSshKey: hostingCall('UploadSshKey'),
+      listOwners: hostingCall('ListOwners'),
+      whoAmI: hostingCall('WhoAmI'),
+      createRepo: hostingCall('CreateRepo'),
+      listPRs: hostingCall('ListPRs'),
+      listReleases: hostingCall('ListReleases'),
+      ciStatuses: hostingCall('CiStatuses'),
+      openCreatePR: (remoteUrl, source, target) =>
+        invoke(() => HostingService.OpenCreatePR(remoteUrl, source, target)),
+      createPR: hostingCall('CreatePR'),
+      prDetail: hostingCall('PrDetail'),
+      prComment: hostingCall('PrComment'),
+      prReplyReviewComment: hostingCall('PrReplyReviewComment'),
+      prChecks: hostingCall('PrChecks'),
+      prFiles: hostingCall('PrFiles'),
+      prReview: hostingCall('PrReview'),
+      prMerge: hostingCall('PrMerge'),
+      listNotifications: hostingCall('ListNotifications'),
+      markNotificationRead: hostingCall('MarkNotificationRead'),
+      markAllNotificationsRead: hostingCall('MarkAllNotificationsRead'),
+      listIssues: hostingCall('ListIssues'),
+      issueDetail: hostingCall('IssueDetail'),
+      setIssueState: hostingCall('SetIssueState'),
+      createIssue: hostingCall('CreateIssue'),
+      applyPrMeta: hostingCall('ApplyPrMeta'),
+      updatePR: hostingCall('UpdatePR'),
+      mergedPrHeads: hostingCall('MergedPrHeads'),
+      ensureStack: hostingCall('EnsureStack'),
+      listMilestones: hostingCall('ListMilestones'),
+      milestoneIssues: hostingCall('MilestoneIssues')
     },
 
     term: {

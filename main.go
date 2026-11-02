@@ -13,6 +13,7 @@ import (
 	"github.com/GabrySpada/gitcito/internal/app"
 	"github.com/GabrySpada/gitcito/internal/gitsvc"
 	"github.com/GabrySpada/gitcito/internal/gitx"
+	"github.com/GabrySpada/gitcito/internal/hosting"
 	"github.com/GabrySpada/gitcito/internal/keychain"
 	"github.com/GabrySpada/gitcito/internal/logbook"
 	"github.com/GabrySpada/gitcito/internal/menu"
@@ -92,6 +93,9 @@ func main() {
 			application.NewService(keychain.NewService(keys)),
 			application.NewService(settings.NewService(store)),
 			application.NewService(git),
+			application.NewService(hosting.NewService(hosting.Options{OpenURL: func(u string) error {
+				return application.Get().Browser.OpenURL(u)
+			}})),
 		},
 		Assets:         application.AssetOptions{Handler: application.AssetFileServerFS(assets)},
 		SingleInstance: single,

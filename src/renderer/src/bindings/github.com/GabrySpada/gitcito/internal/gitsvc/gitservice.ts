@@ -12,6 +12,10 @@ import { Call as $Call, CancellablePromise as $CancellablePromise } from "@wails
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: Unused imports
+import * as gitx$0 from "../gitx/models.js";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore: Unused imports
 import * as $models from "./models.js";
 
 /**
@@ -50,6 +54,112 @@ export function AddRemote(repoPath: string, name: string, url: string, pushURL: 
 }
 
 /**
+ * AmendCommitMessage rewrites HEAD's message only, whatever is staged.
+ * gitsvc: amendCommitMessage
+ */
+export function AmendCommitMessage(repoPath: string, message: string): $CancellablePromise<void> {
+    return $Call.ByID(1356244087, repoPath, message);
+}
+
+/**
+ * ApplyPatch applies a patch. With am, `git am` applies AND commits,
+ * preserving the author/message of a format-patch mailbox; otherwise
+ * `git apply` patches the working tree without committing. Both use a 3-way
+ * merge for better fuzz.
+ * gitsvc: applyPatch
+ */
+export function ApplyPatch(repoPath: string, content: string, am: boolean): $CancellablePromise<void> {
+    return $Call.ByID(2345042904, repoPath, content, am);
+}
+
+/**
+ * ApplyRepoFileActions applies a validated repository-chat file batch under
+ * the git write lock. A refusal is a result ({ ok: false, error }), not an
+ * error; anything unexpected is an error.
+ * gitsvc: applyRepoFileActions
+ */
+export function ApplyRepoFileActions(repoPath: string, actions: $models.PreparedRepoChatFileAction[] | null): $CancellablePromise<$models.RepoFileBatchResult> {
+    return $Call.ByID(2495783547, repoPath, actions);
+}
+
+/**
+ * Autosquash rebases onto base, auto-ordering and folding any fixup!/squash!
+ * commits. It runs non-interactively (the generated todo is accepted as is).
+ * gitsvc: autosquash
+ */
+export function Autosquash(repoPath: string, base: string, autostash: boolean): $CancellablePromise<void> {
+    return $Call.ByID(2886418468, repoPath, base, autostash);
+}
+
+/**
+ * BisectCancel stops a running `bisect run`; the session itself stays open.
+ * It reports whether there was a run to stop.
+ * 
+ * Like every write here it takes the repository's exclusive lock — the one a
+ * running bisectRunScript holds — so, exactly as in TS, it is served only
+ * after the run it would cancel has ended.
+ * gitsvc: bisectCancel
+ */
+export function BisectCancel(repoPath: string): $CancellablePromise<boolean> {
+    return $Call.ByID(1947708730, repoPath);
+}
+
+/**
+ * BisectMark marks a commit during bisect. term is good/bad/skip; rev
+ * defaults to the current candidate (HEAD). Git narrows the range and checks
+ * out the next commit to test, or reports the first bad commit when done.
+ * gitsvc: bisectMark
+ */
+export function BisectMark(repoPath: string, term: string, rev: string): $CancellablePromise<$models.BisectStatus> {
+    return $Call.ByID(3145670017, repoPath, term, rev);
+}
+
+/**
+ * BisectReset ends the bisect session and returns to the original
+ * branch/HEAD.
+ * gitsvc: bisectReset
+ */
+export function BisectReset(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(4187647519, repoPath);
+}
+
+/**
+ * BisectRunScript hands the whole search to a command: `git bisect run`.
+ * 
+ * git checks out each candidate, runs the command, and reads its **exit
+ * code**: 0 means good, 125 means "cannot test this one, skip it", anything
+ * else (bar 128+) means bad. That contract is the entire feature — a test
+ * suite already speaks it, which is why `git bisect run npm test` finds a
+ * regression while you make coffee.
+ * 
+ * Output is streamed as the `bisect:output` event as it arrives, in order,
+ * because a bisect that takes ten minutes with a silent window is
+ * indistinguishable from a hung one.
+ * gitsvc: bisectRunScript
+ */
+export function BisectRunScript(repoPath: string, command: string): $CancellablePromise<$models.BisectStatus> {
+    return $Call.ByID(3215668442, repoPath, command);
+}
+
+/**
+ * BisectStart begins a bisect session. The caller then marks HEAD good/bad to
+ * seed the range.
+ * gitsvc: bisectStart
+ */
+export function BisectStart(repoPath: string): $CancellablePromise<$models.BisectStatus> {
+    return $Call.ByID(3709407068, repoPath);
+}
+
+/**
+ * BisectStatus is the current bisect state (used when (re)opening the UI
+ * mid-session).
+ * gitsvc: bisectStatus
+ */
+export function BisectStatus(repoPath: string): $CancellablePromise<$models.BisectStatus> {
+    return $Call.ByID(3140292994, repoPath);
+}
+
+/**
  * gitsvc: blameFile
  */
 export function BlameFile(repoPath: string, file: string, ref: string): $CancellablePromise<$models.BlameLine[] | null> {
@@ -74,6 +184,23 @@ export function Branches(repoPath: string): $CancellablePromise<$models.Branches
 }
 
 /**
+ * Checkout switches to ref.
+ * gitsvc: checkout
+ */
+export function Checkout(repoPath: string, ref: string): $CancellablePromise<void> {
+    return $Call.ByID(2325471518, repoPath, ref);
+}
+
+/**
+ * CheckoutRemote checks out remote branch fullName as the local localName.
+ * remote, when given, is fetched first.
+ * gitsvc: checkoutRemote
+ */
+export function CheckoutRemote(repoPath: string, fullName: string, localName: string, remote: string): $CancellablePromise<$models.CheckoutRemoteResult> {
+    return $Call.ByID(184222636, repoPath, fullName, localName, remote);
+}
+
+/**
  * gitsvc: cherryPick
  */
 export function CherryPick(repoPath: string, hash: string, noCommit: boolean): $CancellablePromise<void> {
@@ -88,6 +215,30 @@ export function CherryPick(repoPath: string, hash: string, noCommit: boolean): $
  */
 export function CherryPickMany(repoPath: string, hashes: string[] | null, noCommit: boolean): $CancellablePromise<void> {
     return $Call.ByID(2812484225, repoPath, hashes, noCommit);
+}
+
+/**
+ * Commit commits the staged changes.
+ * 
+ * `resetAuthor` only means something with `amend`: an amend otherwise keeps
+ * the amended commit's author and author date, so new work folded into a
+ * colleague's commit would be credited to them.
+ * 
+ * Like simple-git's commit, a commit with nothing staged is not an error: git
+ * exits 1 with a silent stderr, which simple-git reads as success.
+ * gitsvc: commit
+ */
+export function Commit(repoPath: string, message: string, amend: boolean, resetAuthor: boolean): $CancellablePromise<void> {
+    return $Call.ByID(1020311863, repoPath, message, amend, resetAuthor);
+}
+
+/**
+ * CommitAuthor is the author of one commit — nil when `rev` names nothing
+ * (an unborn branch).
+ * gitsvc: commitAuthor
+ */
+export function CommitAuthor(repoPath: string, rev: string): $CancellablePromise<gitx$0.CommitAuthor | null> {
+    return $Call.ByID(3119664712, repoPath, rev);
 }
 
 /**
@@ -156,6 +307,15 @@ export function CommitFiles(repoPath: string, hash: string): $CancellablePromise
 }
 
 /**
+ * CommitFixup commits the staged changes as a `fixup!` of targetSha (for
+ * autosquash).
+ * gitsvc: commitFixup
+ */
+export function CommitFixup(repoPath: string, targetSha: string): $CancellablePromise<void> {
+    return $Call.ByID(992622319, repoPath, targetSha);
+}
+
+/**
  * gitsvc: commitMenuProbe
  * 
  * One round-trip for the commit context menu: ancestry, remote reachability,
@@ -169,6 +329,15 @@ export function CommitMenuProbe(repoPath: string, sha: string): $CancellableProm
 }
 
 /**
+ * CommitSummary is the author, date and message of one commit — for pinned
+ * chat context.
+ * gitsvc: commitSummary
+ */
+export function CommitSummary(repoPath: string, hash: string): $CancellablePromise<$models.CommitSummary> {
+    return $Call.ByID(1086407729, repoPath, hash);
+}
+
+/**
  * gitsvc: commitTags
  * 
  * Tags that point exactly at this commit.
@@ -178,10 +347,43 @@ export function CommitTags(repoPath: string, hash: string): $CancellablePromise<
 }
 
 /**
+ * CommitTemplate is the contents of the repo's `commit.template`
+ * (.gitmessage), or ” if none is configured or the file is missing. The path
+ * is resolved against ~ and the repo root, so both absolute and relative
+ * settings work.
+ * gitsvc: commitTemplate
+ */
+export function CommitTemplate(repoPath: string): $CancellablePromise<string> {
+    return $Call.ByID(801322037, repoPath);
+}
+
+/**
+ * CommitsTouchingPath is the hashes of the commits that touched path (file or
+ * folder) — for the graph path filter. A nil max means 1000.
+ * gitsvc: commitsTouchingPath
+ */
+export function CommitsTouchingPath(repoPath: string, path: string, max: number | null): $CancellablePromise<string[] | null> {
+    return $Call.ByID(3989962070, repoPath, path, max);
+}
+
+/**
  * gitsvc: compareBranches
  */
 export function CompareBranches(repoPath: string, a: string, b: string): $CancellablePromise<$models.BranchCompareResult> {
     return $Call.ByID(1296795573, repoPath, a, b);
+}
+
+/**
+ * ConflictCommits is the commits behind a conflict: what each side did to
+ * this file since they parted.
+ * 
+ * This is `git log --merge`, which git has shipped forever and nobody finds.
+ * A conflict marker says *what* clashes; this says *who changed it and why*,
+ * which is usually the question that actually decides the resolution.
+ * gitsvc: conflictCommits
+ */
+export function ConflictCommits(repoPath: string, file: string): $CancellablePromise<$models.ConflictCommit[] | null> {
+    return $Call.ByID(1889919682, repoPath, file);
 }
 
 /**
@@ -248,6 +450,15 @@ export function CosmosData(repoPath: string, limit: number | null): $Cancellable
 }
 
 /**
+ * CreateBranch creates name at at (HEAD when empty) and, unless checkout is
+ * false, checks it out. A nil checkout means true.
+ * gitsvc: createBranch
+ */
+export function CreateBranch(repoPath: string, name: string, at: string, checkout: boolean | null): $CancellablePromise<void> {
+    return $Call.ByID(142277118, repoPath, name, at, checkout);
+}
+
+/**
  * gitsvc: createSnapshot
  * 
  * Take a snapshot of the current working tree. Returns nil when nothing
@@ -264,6 +475,23 @@ export function CreateSnapshot(repoPath: string, kind: string | null, max: numbe
  */
 export function CreateTag(repoPath: string, name: string, hash: string, opts: $models.CreateTagOptions | null): $CancellablePromise<void> {
     return $Call.ByID(1129597006, repoPath, name, hash, opts);
+}
+
+/**
+ * DeleteBranch deletes a local branch (`-d`, or `-D` with force).
+ * gitsvc: deleteBranch
+ */
+export function DeleteBranch(repoPath: string, name: string, force: boolean): $CancellablePromise<void> {
+    return $Call.ByID(2672011077, repoPath, name, force);
+}
+
+/**
+ * DeleteRemoteBranch deletes name on remote and drops the local
+ * remote-tracking ref.
+ * gitsvc: deleteRemoteBranch
+ */
+export function DeleteRemoteBranch(repoPath: string, remote: string, name: string): $CancellablePromise<void> {
+    return $Call.ByID(3125837291, repoPath, remote, name);
 }
 
 /**
@@ -349,6 +577,95 @@ export function FileHistory(repoPath: string, file: string): $CancellablePromise
 }
 
 /**
+ * FileSizes is the byte size and binary-ness of working-tree files — for the
+ * large-file commit guard. Missing files are left out.
+ * gitsvc: fileSizes
+ */
+export function FileSizes(repoPath: string, files: string[] | null): $CancellablePromise<{ [_ in string]?: $models.FileSizeInfo } | null> {
+    return $Call.ByID(3158167762, repoPath, files);
+}
+
+/**
+ * FilesToPush is the files this push would actually publish: the ones changed
+ * in the commits ahead of the upstream. The secret-push guard uses it so it
+ * only warns about credentials introduced by the unpushed commits, not every
+ * secret already tracked (and long since pushed) in the repo.
+ * 
+ * With no upstream (branch never pushed), the whole history publishes, so it
+ * falls back to every tracked file.
+ * gitsvc: filesToPush
+ */
+export function FilesToPush(repoPath: string, branch: string): $CancellablePromise<string[] | null> {
+    return $Call.ByID(3511002712, repoPath, branch);
+}
+
+/**
+ * FormatPatch is a mailbox-style patch (format-patch) for count commits
+ * ending at ref; a nil count means 1.
+ * gitsvc: formatPatch
+ */
+export function FormatPatch(repoPath: string, ref: string, count: number | null): $CancellablePromise<string> {
+    return $Call.ByID(4140858621, repoPath, ref, count);
+}
+
+/**
+ * FsCreate creates an empty file, or a directory, at relPath (repo-relative).
+ * gitsvc: fsCreate
+ */
+export function FsCreate(repoPath: string, relPath: string, isDir: boolean): $CancellablePromise<void> {
+    return $Call.ByID(3290815869, repoPath, relPath, isDir);
+}
+
+/**
+ * FsDelete moves paths to the OS trash (recoverable). It refuses paths
+ * outside the repo.
+ * gitsvc: fsDelete
+ */
+export function FsDelete(repoPath: string, relPaths: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(2192565098, repoPath, relPaths);
+}
+
+/**
+ * FsExisting is the base names of names that already exist in destDir — the
+ * renderer asks before a drop so it can offer "Replace" / "Keep both".
+ * gitsvc: fsExisting
+ */
+export function FsExisting(repoPath: string, destDir: string, names: string[] | null): $CancellablePromise<string[] | null> {
+    return $Call.ByID(4159771132, repoPath, destDir, names);
+}
+
+/**
+ * FsImport copies absolute paths dropped from the OS into destDir (” = repo
+ * root). Sources that already live inside this repo are moved instead of
+ * duplicated.
+ * gitsvc: fsImport
+ */
+export function FsImport(repoPath: string, srcPaths: string[] | null, destDir: string, mode: string): $CancellablePromise<void> {
+    return $Call.ByID(2186675188, repoPath, srcPaths, destDir, mode);
+}
+
+/**
+ * FsMove moves repo-relative paths into destDir (” = repo root), keeping
+ * their base names. It refuses to move a folder into itself or one of its
+ * descendants. mode decides what an existing name at the destination means:
+ * fail ('error', also when empty), trash it first ('replace'), or land next
+ * to it under a free name ('keepBoth').
+ * gitsvc: fsMove
+ */
+export function FsMove(repoPath: string, froms: string[] | null, destDir: string, mode: string): $CancellablePromise<void> {
+    return $Call.ByID(4085988148, repoPath, froms, destDir, mode);
+}
+
+/**
+ * FsRename renames/moves a path within the repo — `git mv` when it is
+ * tracked, so history follows; a plain rename for untracked paths.
+ * gitsvc: fsRename
+ */
+export function FsRename(repoPath: string, $from: string, to: string): $CancellablePromise<void> {
+    return $Call.ByID(4078840563, repoPath, $from, to);
+}
+
+/**
  * gitsvc: generateChangelog
  * 
  * Build a Conventional-Commits changelog for the range `from..to` (defaults
@@ -357,6 +674,14 @@ export function FileHistory(repoPath: string, file: string): $CancellablePromise
  */
 export function GenerateChangelog(repoPath: string, opts: $models.ChangelogOptions | null): $CancellablePromise<$models.ChangelogResult> {
     return $Call.ByID(1344881841, repoPath, opts);
+}
+
+/**
+ * GetCommitMessage is the full message (%B) of one commit.
+ * gitsvc: getCommitMessage
+ */
+export function GetCommitMessage(repoPath: string, hash: string): $CancellablePromise<string> {
+    return $Call.ByID(441419082, repoPath, hash);
 }
 
 /**
@@ -379,6 +704,52 @@ export function GetRemoteTags(repoPath: string, remote: string): $CancellablePro
  */
 export function GitObject(repoPath: string, rev: string): $CancellablePromise<$models.GitObject> {
     return $Call.ByID(325107057, repoPath, rev);
+}
+
+/**
+ * GitflowFinish closes a flow branch: merges it where it belongs, tags a
+ * release/hotfix, and deletes the branch. It returns the refs as they were, so
+ * gitflowUndo can put everything back — a merge conflict rolls back and
+ * leaves nothing behind.
+ * gitsvc: gitflowFinish
+ */
+export function GitflowFinish(repoPath: string, kind: string, name: string, opts: $models.GitflowFinishOptions): $CancellablePromise<$models.GitflowSnapshot> {
+    return $Call.ByID(3134873217, repoPath, kind, name, opts);
+}
+
+/**
+ * GitflowInit writes the layout and creates the develop branch if it does not
+ * exist yet.
+ * gitsvc: gitflowInit
+ */
+export function GitflowInit(repoPath: string, config: $models.GitflowConfig): $CancellablePromise<void> {
+    return $Call.ByID(2091949516, repoPath, config);
+}
+
+/**
+ * GitflowStart branches off the right base and checks the new branch out. It
+ * returns the branch name.
+ * gitsvc: gitflowStart
+ */
+export function GitflowStart(repoPath: string, kind: string, name: string): $CancellablePromise<string> {
+    return $Call.ByID(649079222, repoPath, kind, name);
+}
+
+/**
+ * GitflowStatus is what the dialog needs to know about the repository now.
+ * gitsvc: gitflowStatus
+ */
+export function GitflowStatus(repoPath: string): $CancellablePromise<$models.GitflowStatus> {
+    return $Call.ByID(2374148088, repoPath);
+}
+
+/**
+ * GitflowUndo puts every ref a finish moved back where it was, drops the tag
+ * and restores the branch.
+ * gitsvc: gitflowUndo
+ */
+export function GitflowUndo(repoPath: string, snapshot: $models.GitflowSnapshot): $CancellablePromise<void> {
+    return $Call.ByID(3160884324, repoPath, snapshot);
 }
 
 /**
@@ -457,6 +828,17 @@ export function HistoryPurgeRestore(repoPath: string, prefix: string): $Cancella
 }
 
 /**
+ * IgnoredTrackedFiles is the paths (from paths) that an ignore rule matches,
+ * tracked or not. Git normally keeps tracking such files, but AI context
+ * deliberately honours the rule as a privacy boundary. `--no-index` makes
+ * check-ignore consider tracked paths.
+ * gitsvc: ignoredTrackedFiles
+ */
+export function IgnoredTrackedFiles(repoPath: string, paths: string[] | null): $CancellablePromise<string[] | null> {
+    return $Call.ByID(1017569, repoPath, paths);
+}
+
+/**
  * gitsvc: imageDiff
  * 
  * beforeRef null means "no before side" (an added file); "" would read the
@@ -516,6 +898,15 @@ export function ListSnapshots(repoPath: string): $CancellablePromise<$models.Sna
 }
 
 /**
+ * ListTrackedFiles is every tracked file (in the index) — for the push-time
+ * secret guard.
+ * gitsvc: listTrackedFiles
+ */
+export function ListTrackedFiles(repoPath: string): $CancellablePromise<string[] | null> {
+    return $Call.ByID(1744033963, repoPath);
+}
+
+/**
  * gitsvc: log
  * 
  * `skip` pages deeper into history so "load more" fetches only the next
@@ -526,6 +917,23 @@ export function ListSnapshots(repoPath: string): $CancellablePromise<$models.Sna
  */
 export function Log(repoPath: string, maxCount: number | null, skip: number): $CancellablePromise<$models.GraphCommit[] | null> {
     return $Call.ByID(413294224, repoPath, maxCount, skip);
+}
+
+/**
+ * Merge merges ref into the current branch. options is MergeOptions or the
+ * legacy boolean noFf.
+ * gitsvc: merge
+ */
+export function Merge(repoPath: string, ref: string, options: $models.MergeOptionsArg): $CancellablePromise<void> {
+    return $Call.ByID(3160095394, repoPath, ref, options);
+}
+
+/**
+ * MergeInto checks out target and merges source into it.
+ * gitsvc: mergeInto
+ */
+export function MergeInto(repoPath: string, source: string, target: string, options: $models.MergeOptionsArg): $CancellablePromise<void> {
+    return $Call.ByID(2161895356, repoPath, source, target, options);
 }
 
 /**
@@ -654,6 +1062,31 @@ export function RangeDiff(repoPath: string, oldRev: string, newRev: string, base
 }
 
 /**
+ * Rebase rebases the current branch onto onto.
+ * gitsvc: rebase
+ */
+export function Rebase(repoPath: string, onto: string): $CancellablePromise<void> {
+    return $Call.ByID(3524725226, repoPath, onto);
+}
+
+/**
+ * RebaseAbort abandons the rebase in progress.
+ * gitsvc: rebaseAbort
+ */
+export function RebaseAbort(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(1240275164, repoPath);
+}
+
+/**
+ * RebaseOnto checks out branch then rebases it onto onto (the drag-to-rebase
+ * gesture).
+ * gitsvc: rebaseOnto
+ */
+export function RebaseOnto(repoPath: string, branch: string, onto: string): $CancellablePromise<void> {
+    return $Call.ByID(1637558094, repoPath, branch, onto);
+}
+
+/**
  * gitsvc: refTips
  * 
  * Where a ref has been, newest first, from its reflog — the free record of
@@ -678,6 +1111,20 @@ export function Reflog(repoPath: string, ref: string | null, max: number | null)
 }
 
 /**
+ * RemoteHasBranches is which of branches the remote actually carries, in one
+ * `ls-remote`.
+ * 
+ * A push that "succeeded" into the wrong remote, or a branch nobody pushed,
+ * both end as the same GitHub 422 — a validation failure whose entry carries
+ * no message. Asking the remote first turns that into a sentence naming the
+ * branch.
+ * gitsvc: remoteHasBranches
+ */
+export function RemoteHasBranches(repoPath: string, remote: string, branches: string[] | null): $CancellablePromise<string[] | null> {
+    return $Call.ByID(740477724, repoPath, remote, branches);
+}
+
+/**
  * gitsvc: remotes
  */
 export function Remotes(repoPath: string): $CancellablePromise<$models.RemoteInfo[] | null> {
@@ -696,6 +1143,24 @@ export function RemoveNote(repoPath: string, sha: string): $CancellablePromise<v
  */
 export function RemoveRemote(repoPath: string, name: string): $CancellablePromise<void> {
     return $Call.ByID(471811404, repoPath, name);
+}
+
+/**
+ * RenameBranch renames a local branch.
+ * gitsvc: renameBranch
+ */
+export function RenameBranch(repoPath: string, oldName: string, newName: string): $CancellablePromise<void> {
+    return $Call.ByID(1126855052, repoPath, oldName, newName);
+}
+
+/**
+ * RenameBranchRemote renames a branch and moves it on the remote too: local
+ * `-m`, delete the old upstream branch, then push the new name and set it as
+ * upstream. The remote delete is best-effort (a protected branch may refuse).
+ * gitsvc: renameBranchRemote
+ */
+export function RenameBranchRemote(repoPath: string, oldName: string, newName: string, remote: string): $CancellablePromise<void> {
+    return $Call.ByID(2925250922, repoPath, oldName, newName, remote);
 }
 
 /**
@@ -760,6 +1225,37 @@ export function RepoStats(repoPath: string, sinceDays: number): $CancellableProm
 }
 
 /**
+ * RerereClear empties the whole memory. Files and history are untouched.
+ * gitsvc: rerereClear
+ */
+export function RerereClear(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(1670471516, repoPath);
+}
+
+/**
+ * RerereForget drops the memorised resolution for one file and brings its
+ * conflict back.
+ * 
+ * `git rerere forget` alone only stops the replay happening *next* time — it
+ * leaves the already-written file as it is, which is not what someone asking
+ * for the conflict back means. `checkout --merge` rebuilds the markers from
+ * the index stages, which are still there.
+ * gitsvc: rerereForget
+ */
+export function RerereForget(repoPath: string, file: string): $CancellablePromise<void> {
+    return $Call.ByID(1046525266, repoPath, file);
+}
+
+/**
+ * RerereStatus says whether git is memorising conflict resolutions, how many
+ * it holds, and which files of the current conflict it replayed.
+ * gitsvc: rerereStatus
+ */
+export function RerereStatus(repoPath: string): $CancellablePromise<$models.RerereStatus> {
+    return $Call.ByID(1082424677, repoPath);
+}
+
+/**
  * gitsvc: reset
  * 
  * mode is 'soft' | 'mixed' | 'hard' | 'keep'.
@@ -776,6 +1272,23 @@ export function ResolveConflict(repoPath: string, file: string, content: string)
 }
 
 /**
+ * ResolveDivergedCheckout reconciles a diverged local branch with its remote
+ * after the user picks a strategy in the divergence dialog. With backup, a
+ * `backup/<localName>-<timestamp>` branch is created at the current local tip
+ * first, so even a reset can be undone by checking that branch out.
+ *   - rebase:      replay local commits on top of the remote tip (linear history)
+ *   - merge:       --no-ff merge, keeping both histories
+ *   - reset-soft:  move the branch to the remote tip, keep the commits' changes staged
+ *   - reset-mixed: same, but leave the changes unstaged in the working tree
+ *   - reset-hard:  discard the local commits and their changes entirely
+ * 
+ * gitsvc: resolveDivergedCheckout
+ */
+export function ResolveDivergedCheckout(repoPath: string, fullName: string, localName: string, strategy: string, backup: boolean): $CancellablePromise<$models.DivergedCheckoutResult> {
+    return $Call.ByID(3650485646, repoPath, fullName, localName, strategy, backup);
+}
+
+/**
  * gitsvc: resolvePrRef
  * 
  * Find which ref a pull request's head lives under on remote. null when none
@@ -788,6 +1301,17 @@ export function ResolveConflict(repoPath: string, file: string, content: string)
  */
 export function ResolvePrRef(repoPath: string, remote: string, $number: number): $CancellablePromise<$models.PrRefProbe | null> {
     return $Call.ByID(3830398409, repoPath, remote, $number);
+}
+
+/**
+ * ResolveRev is the full SHA for any revision expression — `HEAD~2`, a tag,
+ * a short hash. It returns nil rather than failing when the expression names
+ * nothing: the caller is usually turning user input into a selection, and
+ * "no such commit" is an answer, not a failure.
+ * gitsvc: resolveRev
+ */
+export function ResolveRev(repoPath: string, rev: string): $CancellablePromise<string | null> {
+    return $Call.ByID(267717907, repoPath, rev);
 }
 
 /**
@@ -913,6 +1437,34 @@ export function SetProtectedBranches(repoPath: string, branches: string[] | null
 }
 
 /**
+ * SetRerere turns the memory on or off. It is written globally by default
+ * (scope ” or "global") — someone who wants git to remember their
+ * resolutions wants that everywhere, and it is the same `rerere.enabled`
+ * their command line reads. Any other scope writes the repository's config.
+ * gitsvc: setRerere
+ */
+export function SetRerere(repoPath: string, values: $models.RerereSettings, scope: string): $CancellablePromise<void> {
+    return $Call.ByID(1155599091, repoPath, values, scope);
+}
+
+/**
+ * SetSigningConfig updates this repo's commit-signing configuration; only the
+ * fields present are written, and an empty key unsets user.signingkey.
+ * gitsvc: setSigningConfig
+ */
+export function SetSigningConfig(repoPath: string, opts: $models.SigningConfigUpdate): $CancellablePromise<void> {
+    return $Call.ByID(1228942451, repoPath, opts);
+}
+
+/**
+ * SigningConfig reads this repo's commit-signing configuration.
+ * gitsvc: signingConfig
+ */
+export function SigningConfig(repoPath: string): $CancellablePromise<$models.SigningConfig> {
+    return $Call.ByID(1337121907, repoPath);
+}
+
+/**
  * gitsvc: sparseCheckoutDisable
  * 
  * Disable sparse-checkout — restore the full working tree.
@@ -937,6 +1489,137 @@ export function SparseCheckoutInfo(repoPath: string): $CancellablePromise<$model
  */
 export function SparseCheckoutSet(repoPath: string, dirs: string[] | null): $CancellablePromise<void> {
     return $Call.ByID(4036939634, repoPath, dirs);
+}
+
+/**
+ * SquashCommits folds HEAD back through oldestSha into one commit with
+ * message.
+ * 
+ * It is built with plumbing and landed with a single compare-and-swap ref
+ * update, so it either happens or leaves HEAD where it was: `reset --soft` +
+ * `commit` stranded the branch whenever a commit hook refused, and folded in
+ * whatever was already staged. Hooks are skipped on purpose — like an
+ * interactive rebase, this re-packages commits that already exist rather than
+ * recording new work. `commit-tree` still honours `commit.gpgSign`.
+ * gitsvc: squashCommits
+ */
+export function SquashCommits(repoPath: string, oldestSha: string, message: string): $CancellablePromise<$models.SquashResult> {
+    return $Call.ByID(2646644891, repoPath, oldestSha, message);
+}
+
+/**
+ * StackClearParent stops tracking a branch as part of a stack.
+ * gitsvc: stackClearParent
+ */
+export function StackClearParent(repoPath: string, branch: string): $CancellablePromise<void> {
+    return $Call.ByID(3506665723, repoPath, branch);
+}
+
+/**
+ * StackInfo is the stack containing leaf (the current branch when empty):
+ * parent links walked down to the trunk, then each level reported bottom→top
+ * with its own commit count and whether its parent has moved (needs a
+ * restack).
+ * gitsvc: stackInfo
+ */
+export function StackInfo(repoPath: string, leaf: string): $CancellablePromise<$models.StackInfo> {
+    return $Call.ByID(2145531346, repoPath, leaf);
+}
+
+/**
+ * StackInsert adds a level directly above parent — `gh stack`'s `add`,
+ * including in the middle of a stack: whatever level sat on parent is
+ * re-pointed at the new branch, so the chain keeps its order and gains a
+ * floor.
+ * 
+ * No restack follows, and that is deliberate: the branch is created at the
+ * parent's tip, so the level that moved onto it sees the same commits it saw
+ * before and has nothing to replay.
+ * gitsvc: stackInsert
+ */
+export function StackInsert(repoPath: string, name: string, parent: string): $CancellablePromise<void> {
+    return $Call.ByID(382994563, repoPath, name, parent);
+}
+
+/**
+ * StackLeaves is the leaf of every stack in the repository: a branch that
+ * records a parent and that nothing else records as its parent.
+ * 
+ * stackInfo answers for one branch, which is right when you are standing on a
+ * stack and useless when you are not — the modal opens on the trunk more often
+ * than not. This is how it finds the stacks that exist anyway.
+ * gitsvc: stackLeaves
+ */
+export function StackLeaves(repoPath: string): $CancellablePromise<string[] | null> {
+    return $Call.ByID(298637014, repoPath);
+}
+
+/**
+ * StackPruneMerged drops stack levels whose PR has landed: while the
+ * bottom-most tracked branch is already contained in the trunk (as seen by the
+ * last fetch when an origin/<trunk> exists), its child is reparented onto the
+ * trunk, it is untracked, and the branch is deleted (the current branch is
+ * left alone). Squash merges are invisible to the local ancestry check;
+ * callers pass branches with a host-verified merged PR in alsoMerged. It
+ * returns the pruned branch names, bottom first.
+ * gitsvc: stackPruneMerged
+ */
+export function StackPruneMerged(repoPath: string, alsoMerged: string[] | null, leaf: string): $CancellablePromise<string[] | null> {
+    return $Call.ByID(2239448694, repoPath, alsoMerged, leaf);
+}
+
+/**
+ * StackReorder re-links a whole stack to order (bottom → top, sitting on
+ * trunk) and replays it.
+ * 
+ * Reordering is not "set some config": each level's commits have to move onto
+ * a different base, which is a rebase per level. What makes that survivable is
+ * the boundary snapshot below — a level's own commits are the ones after its
+ * recorded base, and once the parent links are rewritten the old merge-base is
+ * gone. So the boundary is written first, for every level that lacks one, and
+ * only then do the links change.
+ * 
+ * A conflicting rebase fails the whole edit and leaves the repository as it
+ * was (cWithStackRollback).
+ * gitsvc: stackReorder
+ */
+export function StackReorder(repoPath: string, trunk: string, order: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(931772777, repoPath, trunk, order);
+}
+
+/**
+ * StackRestack restacks the chain ending at leaf: bottom→top, each branch is
+ * rebased onto its parent's current tip using the recorded base (so parent
+ * rewrites don't duplicate commits). It leaves you on leaf, and fails on a
+ * conflict.
+ * gitsvc: stackRestack
+ */
+export function StackRestack(repoPath: string, leaf: string): $CancellablePromise<void> {
+    return $Call.ByID(2290648777, repoPath, leaf);
+}
+
+/**
+ * StackSetParent records (or changes) a branch's stack parent, snapshotting
+ * the parent tip.
+ * gitsvc: stackSetParent
+ */
+export function StackSetParent(repoPath: string, branch: string, parent: string): $CancellablePromise<void> {
+    return $Call.ByID(3913224402, repoPath, branch, parent);
+}
+
+/**
+ * StackSetRoute sets the whole route in one move: order (bottom → top)
+ * sitting on trunk, and anything currently in the stack but missing from
+ * order untracked.
+ * 
+ * The modal edits the stack as a list — swap a stop, drop one, change where it
+ * starts — and each of those is this call with a different list. Doing it in
+ * one operation is what keeps the undo entry honest: half a re-route is not a
+ * state the user asked for.
+ * gitsvc: stackSetRoute
+ */
+export function StackSetRoute(repoPath: string, trunk: string, order: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(1680517259, repoPath, trunk, order);
 }
 
 /**
@@ -1104,6 +1787,17 @@ export function TeammateRadar(repoPath: string, opts: $models.TeammateRadarOpts 
  */
 export function TimelapseData(repoPath: string, max: number | null): $CancellablePromise<$models.TimelapseCommit[] | null> {
     return $Call.ByID(1140055448, repoPath, max);
+}
+
+/**
+ * TreeStatus maps repo-relative path → status kind for every
+ * changed/untracked/ignored path, from one `git status --ignored=matching`
+ * walk. Directories also get an aggregated status so a folder can show a dot
+ * when something inside changed. Clean tracked files are absent (= clean).
+ * gitsvc: treeStatus
+ */
+export function TreeStatus(repoPath: string): $CancellablePromise<{ [_ in string]?: string } | null> {
+    return $Call.ByID(691769656, repoPath);
 }
 
 /**

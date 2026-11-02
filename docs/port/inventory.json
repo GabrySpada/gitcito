@@ -1350,8 +1350,8 @@
           "via": "hostingApi.applyPrMeta"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ApplyPrMeta",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1378,8 +1378,8 @@
           "via": "hostingApi.ciStatuses"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.CiStatuses",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1406,8 +1406,8 @@
           "via": "hostingApi.createIssue"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.CreateIssue",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1442,8 +1442,8 @@
           "via": "hostingApi.createPR"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.CreatePR",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1471,8 +1471,8 @@
           "via": "hostingApi.createRepo"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.CreateRepo",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1499,8 +1499,8 @@
           "via": "hostingApi.ensureStack"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.EnsureStack",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1527,8 +1527,8 @@
           "via": "hostingApi.issueDetail"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.IssueDetail",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1554,8 +1554,8 @@
           "via": "hostingApi.listIssues"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ListIssues",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1581,8 +1581,8 @@
           "via": "hostingApi.listMilestones"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ListMilestones",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1612,8 +1612,8 @@
           "via": "hostingApi.listNotifications"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ListNotifications",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1640,8 +1640,8 @@
           "via": "hostingApi.listOwners"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ListOwners",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1667,8 +1667,8 @@
           "via": "hostingApi.listPRs"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ListPRs",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1694,8 +1694,8 @@
           "via": "hostingApi.listReleases"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ListReleases",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1722,8 +1722,8 @@
           "via": "hostingApi.listRepos"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.ListRepos",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1748,8 +1748,8 @@
           "via": "hostingApi.markAllNotificationsRead"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.MarkAllNotificationsRead",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1775,8 +1775,8 @@
           "via": "hostingApi.markNotificationRead"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.MarkNotificationRead",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1803,8 +1803,8 @@
           "via": "hostingApi.mergedPrHeads"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.MergedPrHeads",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1831,8 +1831,8 @@
           "via": "hostingApi.milestoneIssues"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.MilestoneIssues",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1859,8 +1859,8 @@
           "via": "hostingApi.openCreatePR"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.OpenCreatePR",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1887,8 +1887,8 @@
           "via": "hostingApi.prChecks"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.PrChecks",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1920,8 +1920,8 @@
           "via": "hostingApi.prComment"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.PrComment",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1948,8 +1948,8 @@
           "via": "hostingApi.prDetail"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.PrDetail",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1976,8 +1976,8 @@
           "via": "hostingApi.prFiles"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.PrFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2005,8 +2005,8 @@
           "via": "hostingApi.prMerge"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.PrMerge",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2035,8 +2035,8 @@
           "via": "hostingApi.prReplyReviewComment"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.PrReplyReviewComment",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2065,8 +2065,8 @@
           "via": "hostingApi.prReview"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.PrReview",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2094,8 +2094,8 @@
           "via": "hostingApi.setIssueState"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.SetIssueState",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2127,8 +2127,8 @@
           "via": "hostingApi.updatePR"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.UpdatePR",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2155,8 +2155,8 @@
           "via": "hostingApi.uploadSshKey"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.UploadSshKey",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2184,8 +2184,8 @@
           "via": "hostingApi.whoAmI"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "hosting.Service.WhoAmI",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6089,8 +6089,8 @@
           "via": "gitApi.amendCommitMessage"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.AmendCommitMessage",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6142,8 +6142,8 @@
           "via": "gitApi.applyPatch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ApplyPatch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6168,8 +6168,8 @@
           "via": "gitApi.applyRepoFileActions"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ApplyRepoFileActions",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6289,8 +6289,8 @@
           "via": "gitApi.autosquash"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Autosquash",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6314,8 +6314,8 @@
           "via": "gitApi.bisectCancel"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BisectCancel",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6341,8 +6341,8 @@
           "via": "gitApi.bisectMark"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BisectMark",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6366,8 +6366,8 @@
           "via": "gitApi.bisectReset"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BisectReset",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6395,8 +6395,8 @@
           "via": "gitApi.bisectRunScript"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BisectRunScript",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6420,8 +6420,8 @@
           "via": "gitApi.bisectStart"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BisectStart",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6445,8 +6445,8 @@
           "via": "gitApi.bisectStatus"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BisectStatus",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6692,8 +6692,8 @@
           "via": "gitApi.checkout"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Checkout",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6722,8 +6722,8 @@
           "via": "gitApi.checkoutRemote"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CheckoutRemote",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6947,8 +6947,8 @@
           "via": "gitApi.commit"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Commit",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6973,8 +6973,8 @@
           "via": "gitApi.commitAuthor"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitAuthor",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7207,8 +7207,8 @@
           "via": "gitApi.commitFixup"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitFixup",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7260,8 +7260,8 @@
           "via": "gitApi.commitsTouchingPath"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitsTouchingPath",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7281,8 +7281,8 @@
         "src/main/git.ts:5106"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitSummary",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7332,8 +7332,8 @@
           "via": "gitApi.commitTemplate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CommitTemplate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7401,8 +7401,8 @@
           "via": "gitApi.conflictCommits"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ConflictCommits",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7639,8 +7639,8 @@
           "via": "gitApi.createBranch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CreateBranch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7798,8 +7798,8 @@
           "via": "gitApi.deleteBranch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DeleteBranch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7858,8 +7858,8 @@
           "via": "gitApi.deleteRemoteBranch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DeleteRemoteBranch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8349,8 +8349,8 @@
           "via": "gitApi.fileSizes"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FileSizes",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8375,8 +8375,8 @@
           "via": "gitApi.filesToPush"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FilesToPush",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8486,8 +8486,8 @@
           "via": "gitApi.formatPatch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FormatPatch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8538,8 +8538,8 @@
           "via": "gitApi.fsCreate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FsCreate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8564,8 +8564,8 @@
           "via": "gitApi.fsDelete"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FsDelete",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8591,8 +8591,8 @@
           "via": "gitApi.fsExisting"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FsExisting",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8619,8 +8619,8 @@
           "via": "gitApi.fsImport"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FsImport",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8647,8 +8647,8 @@
           "via": "gitApi.fsMove"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FsMove",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8674,8 +8674,8 @@
           "via": "gitApi.fsRename"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FsRename",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8726,8 +8726,8 @@
           "via": "gitApi.getCommitMessage"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GetCommitMessage",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8811,8 +8811,8 @@
           "via": "gitApi.gitflowFinish"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GitflowFinish",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8837,8 +8837,8 @@
           "via": "gitApi.gitflowInit"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GitflowInit",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8870,8 +8870,8 @@
           "via": "gitApi.gitflowStart"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GitflowStart",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8895,8 +8895,8 @@
           "via": "gitApi.gitflowStatus"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GitflowStatus",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8921,8 +8921,8 @@
           "via": "gitApi.gitflowUndo"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GitflowUndo",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9175,8 +9175,8 @@
         "src/main/git.ts:5061"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.IgnoredTrackedFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9567,8 +9567,8 @@
         "src/main/git.ts:5051"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ListTrackedFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9716,8 +9716,8 @@
           "via": "gitApi.merge"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Merge",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9750,8 +9750,8 @@
           "via": "gitApi.mergeInto"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.MergeInto",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10314,8 +10314,8 @@
           "via": "gitApi.rebase"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Rebase",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10334,8 +10334,8 @@
         "src/main/git.ts:2927"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RebaseAbort",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10365,8 +10365,8 @@
           "via": "gitApi.rebaseOnto"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RebaseOnto",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10475,8 +10475,8 @@
           "via": "gitApi.remoteHasBranches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RemoteHasBranches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10590,8 +10590,8 @@
           "via": "gitApi.renameBranch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RenameBranch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10620,8 +10620,8 @@
           "via": "gitApi.renameBranchRemote"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RenameBranchRemote",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10937,8 +10937,8 @@
           "via": "gitApi.rerereClear"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RerereClear",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10963,8 +10963,8 @@
           "via": "gitApi.rerereForget"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RerereForget",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10992,8 +10992,8 @@
           "via": "gitApi.rerereStatus"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RerereStatus",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11157,8 +11157,8 @@
           "via": "gitApi.resolveDivergedCheckout"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ResolveDivergedCheckout",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11220,8 +11220,8 @@
           "via": "gitApi.resolveRev"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ResolveRev",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11786,8 +11786,8 @@
           "via": "gitApi.setRerere"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetRerere",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11812,8 +11812,8 @@
           "via": "gitApi.setSigningConfig"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetSigningConfig",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11925,8 +11925,8 @@
           "via": "gitApi.signingConfig"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SigningConfig",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12028,8 +12028,8 @@
           "via": "gitApi.squashCommits"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SquashCommits",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12058,8 +12058,8 @@
           "via": "gitApi.stackClearParent"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackClearParent",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12112,8 +12112,8 @@
           "via": "gitApi.stackInfo"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackInfo",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12143,8 +12143,8 @@
           "via": "gitApi.stackInsert"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackInsert",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12168,8 +12168,8 @@
           "via": "gitApi.stackLeaves"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackLeaves",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12195,8 +12195,8 @@
           "via": "gitApi.stackPruneMerged"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackPruneMerged",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12217,8 +12217,8 @@
         "src/main/git.ts:2624"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackReorder",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12247,8 +12247,8 @@
           "via": "gitApi.stackRestack"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackRestack",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12278,8 +12278,8 @@
           "via": "gitApi.stackSetParent"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackSetParent",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12313,8 +12313,8 @@
           "via": "gitApi.stackSetRoute"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StackSetRoute",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13312,8 +13312,8 @@
           "via": "gitApi.treeStatus"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.TreeStatus",
+      "status": "ported",
       "test": "—"
     },
     {

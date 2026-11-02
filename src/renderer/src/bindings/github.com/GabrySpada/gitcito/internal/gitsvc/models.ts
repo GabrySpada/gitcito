@@ -65,6 +65,21 @@ export interface AuthorStat {
 }
 
 /**
+ * BisectStatus is BisectStatus in src/shared/types.ts.
+ */
+export interface BisectStatus {
+    "inProgress": boolean;
+    "needGood": boolean;
+    "needBad": boolean;
+    "currentSha": string;
+    "currentSubject": string;
+    "remainingSteps": number;
+    "finished": boolean;
+    "firstBadSha": string;
+    "firstBadSubject": string;
+}
+
+/**
  * BlameLine is BlameLine in src/shared/types.ts.
  */
 export interface BlameLine {
@@ -145,6 +160,17 @@ export interface ChangelogResult {
      * Count is the number of commits included.
      */
     "count": number;
+}
+
+/**
+ * CheckoutRemoteResult is CheckoutRemoteResult in src/shared/types.ts: what
+ * checkoutRemote found when a local branch of the same name already exists.
+ */
+export interface CheckoutRemoteResult {
+    "diverged": boolean;
+    "aheadOnly": boolean;
+    "ahead": number;
+    "behind": number;
 }
 
 /**
@@ -251,6 +277,36 @@ export interface CommitMenuProbe {
 }
 
 /**
+ * CommitSummary is commitSummary's `{ hash, author, date, subject, body }`.
+ */
+export interface CommitSummary {
+    "hash": string;
+    "author": string;
+    "date": string;
+    "subject": string;
+    "body": string;
+}
+
+/**
+ * ConflictCommit is ConflictCommit in src/shared/types.ts.
+ */
+export interface ConflictCommit {
+    "sha": string;
+    "subject": string;
+    "author": string;
+
+    /**
+     * ISO
+     */
+    "date": string;
+
+    /**
+     * 'ours' | 'theirs'
+     */
+    "side": string;
+}
+
+/**
  * ConflictContext is ConflictContext in src/shared/types.ts.
  */
 export interface ConflictContext {
@@ -332,6 +388,14 @@ export interface CreateTagOptions {
 }
 
 /**
+ * DivergedCheckoutResult is resolveDivergedCheckout's `{ backupRef?, previousRef }`.
+ */
+export interface DivergedCheckoutResult {
+    "backupRef"?: string;
+    "previousRef": string;
+}
+
+/**
  * FileEntry is FileEntry in src/shared/types.ts.
  */
 export interface FileEntry {
@@ -362,6 +426,14 @@ export interface FileHotspot {
     "commits": number;
     "added": number;
     "removed": number;
+}
+
+/**
+ * FileSizeInfo is one value of fileSizes' `Record<string, { size, binary }>`.
+ */
+export interface FileSizeInfo {
+    "size": number;
+    "binary": boolean;
 }
 
 /**
@@ -415,6 +487,69 @@ export interface GitObjectTag {
     "name": string;
     "tagger": string;
     "message": string;
+}
+
+/**
+ * GitflowConfig is GitflowConfig in src/shared/types.ts.
+ */
+export interface GitflowConfig {
+    "main": string;
+    "develop": string;
+    "featurePrefix": string;
+    "releasePrefix": string;
+    "hotfixPrefix": string;
+    "versionTagPrefix": string;
+}
+
+/**
+ * GitflowFinishOptions is gitflowFinish's `{ tag?, deleteBranch?, message? }`.
+ * Tag and DeleteBranch default to true (TS tested `!== false`).
+ */
+export interface GitflowFinishOptions {
+    "tag"?: boolean | null;
+    "deleteBranch"?: boolean | null;
+    "message"?: string;
+}
+
+/**
+ * GitflowFlow is GitflowStatus.currentFlow: a flow branch's kind and bare name.
+ */
+export interface GitflowFlow {
+    /**
+     * GitflowKind: 'feature' | 'release' | 'hotfix'
+     */
+    "kind": string;
+    "name": string;
+}
+
+/**
+ * GitflowRef is one `{ name, sha }` of a GitflowSnapshot.
+ */
+export interface GitflowRef {
+    "name": string;
+    "sha": string;
+}
+
+/**
+ * GitflowSnapshot is GitflowSnapshot in src/shared/types.ts: refs as they
+ * stood before a finish, so the whole thing can be undone.
+ */
+export interface GitflowSnapshot {
+    "refs": GitflowRef[] | null;
+    "tag": string | null;
+    "branch": GitflowRef;
+}
+
+/**
+ * GitflowStatus is GitflowStatus in src/shared/types.ts.
+ */
+export interface GitflowStatus {
+    "config": GitflowConfig;
+    "initialized": boolean;
+    "hasMain": boolean;
+    "hasDevelop": boolean;
+    "current": string;
+    "currentFlow": GitflowFlow | null;
 }
 
 /**
@@ -579,6 +714,49 @@ export interface InteractiveRebaseStep {
 }
 
 /**
+ * MergeOptionsArg is the `options: MergeOptions | boolean` argument of
+ * `merge` and `mergeInto`. A bare boolean is the pre-options signature,
+ * meaning `noFf` — the renderer's mergeInto adapter still sends one — so it
+ * decodes from either shape (null/absent → no options).
+ */
+export interface MergeOptionsArg {
+    /**
+     * NoFf: `--no-ff` — always record a merge commit, even when a fast-forward would do.
+     */
+    "noFf"?: boolean;
+
+    /**
+     * FfOnly: `--ff-only` — refuse anything that is not a fast-forward.
+     */
+    "ffOnly"?: boolean;
+
+    /**
+     * Squash: `--squash` — take the changes, leave the history and the commit to you.
+     */
+    "squash"?: boolean;
+
+    /**
+     * NoCommit: `--no-commit` — merge and stage, but stop before committing.
+     */
+    "noCommit"?: boolean;
+
+    /**
+     * Strategy: `-s <strategy>` ('ort' | 'resolve' | 'subtree' | 'octopus').
+     */
+    "strategy"?: string;
+
+    /**
+     * Favour: `-X ours` / `-X theirs` — resolve conflicting hunks one way automatically.
+     */
+    "favour"?: string;
+
+    /**
+     * IgnoreSpace: `-X ignore-space-change` and friends ('change' | 'all' | 'eol').
+     */
+    "ignoreSpace"?: string;
+}
+
+/**
  * MergePreviewEntry is MergePreviewEntry in src/shared/types.ts: one
  * branch's forecast in the Conflict Radar.
  */
@@ -642,6 +820,42 @@ export interface PrRefProbe {
     "flavor": string;
     "ref": string;
     "sha": string;
+}
+
+/**
+ * PreparedRepoChatFileAction is PreparedRepoChatFileAction in
+ * src/shared/types.ts: a repository-chat file mutation (edit_file /
+ * write_file / delete_file) after the main process verified it and built its
+ * diff. The union is flattened; Type says which fields apply.
+ */
+export interface PreparedRepoChatFileAction {
+    "type": string;
+    "path": string;
+    "description": string;
+
+    /**
+     * edit_file
+     */
+    "oldText"?: string;
+    "newText"?: string;
+    "replaceAll"?: boolean;
+
+    /**
+     * write_file
+     */
+    "content"?: string;
+
+    /**
+     * 'create' | 'replace'
+     */
+    "mode"?: string;
+
+    /**
+     * prepared
+     */
+    "expectedHash": string | null;
+    "expectedOccurrences"?: number | null;
+    "preview": string;
 }
 
 /**
@@ -754,6 +968,28 @@ export interface RepoDetailFile {
 }
 
 /**
+ * RepoFileBatchError is the `error` of a failed RepoFileBatchResult.
+ */
+export interface RepoFileBatchError {
+    /**
+     * RepoChatActionErrorCode
+     */
+    "code": string;
+    "detail": string;
+    "paths": string[] | null;
+}
+
+/**
+ * RepoFileBatchResult is RepoFileBatchResult in src/shared/types.ts:
+ * `{ ok: true, applied }` or `{ ok: false, error }`.
+ */
+export interface RepoFileBatchResult {
+    "ok": boolean;
+    "applied"?: number | null;
+    "error"?: RepoFileBatchError | null;
+}
+
+/**
  * RepoInsights is RepoInsights in src/shared/types.ts.
  */
 export interface RepoInsights {
@@ -845,6 +1081,25 @@ export interface RepoSummary {
 }
 
 /**
+ * RerereSettings is setRerere's `{ enabled?, autoUpdate? }`.
+ */
+export interface RerereSettings {
+    "enabled"?: boolean | null;
+    "autoUpdate"?: boolean | null;
+}
+
+/**
+ * RerereStatus is RerereStatus in src/shared/types.ts.
+ */
+export interface RerereStatus {
+    "enabled": boolean;
+    "autoUpdate": boolean;
+    "perRepo": boolean;
+    "recorded": number;
+    "replayed": string[] | null;
+}
+
+/**
  * SearchOptions is the `opts` object the search methods take. Every field is
  * optional in TS; Max and MaxPerFile are pointers so an absent value takes the
  * method's default while an explicit 0 stays 0.
@@ -870,6 +1125,36 @@ export interface SearchOptions {
 export interface SemanticDiffSides {
     "oldText": string;
     "newText": string;
+}
+
+/**
+ * SigningConfig is SigningConfig in src/shared/types.ts.
+ */
+export interface SigningConfig {
+    /**
+     * commit.gpgsign
+     */
+    "sign": boolean;
+
+    /**
+     * gpg.format: openpgp | ssh | x509
+     */
+    "format": string;
+
+    /**
+     * user.signingkey ('' if unset)
+     */
+    "key": string;
+}
+
+/**
+ * SigningConfigUpdate is setSigningConfig's `{ sign?, format?, key? }`: only
+ * the fields present are written.
+ */
+export interface SigningConfigUpdate {
+    "sign"?: boolean | null;
+    "format"?: string | null;
+    "key"?: string | null;
 }
 
 /**
@@ -910,6 +1195,37 @@ export interface SparseCheckoutInfo {
      * TopLevelDirs are all top-level directories in HEAD (toggle candidates).
      */
     "topLevelDirs": string[] | null;
+}
+
+/**
+ * SquashResult is squashCommits' `{ before, after }`: HEAD before and after the fold.
+ */
+export interface SquashResult {
+    "before": string;
+    "after": string;
+}
+
+/**
+ * StackBranch is StackBranch in src/shared/types.ts.
+ */
+export interface StackBranch {
+    "name": string;
+
+    /**
+     * null for the trunk base
+     */
+    "parent": string | null;
+    "isCurrent": boolean;
+    "ahead": number;
+    "needsRestack": boolean;
+}
+
+/**
+ * StackInfo is StackInfo in src/shared/types.ts, ordered bottom → top.
+ */
+export interface StackInfo {
+    "trunk": string;
+    "branches": StackBranch[] | null;
 }
 
 /**
