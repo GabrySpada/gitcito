@@ -532,15 +532,15 @@ Open rows: **1148** of 1686.
 | test/newFeatures.test.ts | mergePreview — conflict radar (conflict-radar playground) separates a clean merge from one that is already in the base | Go: gitsvc.TestSliceAFeaturesMergePreviewCleanVsMerged |  |
 | test/newFeatures.test.ts | mergePreview — conflict radar (conflict-radar playground) keeps scanning after git refuses a merge outright | Go: gitsvc.TestSliceAFeaturesMergePreviewKeepsScanning |  |
 | test/newFeatures.test.ts | mergePreview — conflict radar (conflict-radar playground) never touches the working tree, the index or HEAD | Go: gitsvc.TestSliceAFeaturesMergePreviewTouchesNothing |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) reads a rename as a rename, not a delete plus an add | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) separates a signature change from a body change | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) reports new declarations and drops the container they live in | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) parses the other shipped languages, not just TypeScript | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) stays out of the way for languages with no grammar | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) matches a rename whose body also changed, and counts its call sites | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) calls a symbol that only shifted position a move | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) ignores the small drift of a symbol whose neighbour grew | todo → Go (git, localCi, semantic) |  |
-| test/newFeatures.test.ts | semantic diff (tree-sitter) refuses to pair two unrelated one-liners as a rename | todo → Go (git, localCi, semantic) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) reads a rename as a rename, not a delete plus an add | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) separates a signature change from a body change | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) reports new declarations and drops the container they live in | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) parses the other shipped languages, not just TypeScript | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) stays out of the way for languages with no grammar | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) matches a rename whose body also changed, and counts its call sites | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) calls a symbol that only shifted position a move | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) ignores the small drift of a symbol whose neighbour grew | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
+| test/newFeatures.test.ts | semantic diff (tree-sitter) refuses to pair two unrelated one-liners as a rename | still in vitest (moved to test/semantic.test.ts, renderer lib/semantic.ts) |  |
 | test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) summarises a commit against its parent | Go: gitsvc.TestBSemanticDiffSidesOverBlobs (+ renderer vitest for semanticCompare) |  |
 | test/newFeatures.test.ts | semanticDiff over git blobs (conflict-radar playground) returns nothing for a path missing on both sides | Go: gitsvc.TestBSemanticDiffSidesOverBlobs |  |
 | test/newFeatures.test.ts | rangeDiff + refTips (force-push playground) reports the force-pushed ref, with the commit it used to point at | todo → Go (git, localCi, semantic) |  |

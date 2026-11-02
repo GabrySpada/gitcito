@@ -14,7 +14,10 @@ import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+// resources/tree-sitter: the Electron build's extraResources (removed with Electron).
+// src/renderer/public/tree-sitter: served by Vite as /tree-sitter/* — the semantic diff runs in the webview.
 const OUT = join(ROOT, 'resources', 'tree-sitter')
+const PUBLIC_OUT = join(ROOT, 'src', 'renderer', 'public', 'tree-sitter')
 const GRAMMAR_DIR = join(ROOT, 'node_modules', 'tree-sitter-wasms', 'out')
 const RUNTIME = join(ROOT, 'node_modules', 'web-tree-sitter', 'tree-sitter.wasm')
 
@@ -48,10 +51,11 @@ if (!existsSync(GRAMMAR_DIR) || !existsSync(RUNTIME)) {
 }
 
 mkdirSync(OUT, { recursive: true })
+mkdirSync(PUBLIC_OUT, { recursive: true })
 
 // Drop grammars from an earlier list so the folder mirrors LANGUAGES exactly.
 const keep = new Set(['tree-sitter.wasm', ...LANGUAGES.map((l) => `tree-sitter-${l}.wasm`)])
-for (const f of readdirSync(OUT)) if (!keep.has(f)) rmSync(join(OUT, f))
+for (const dir of [OUT, PUBLIC_OUT]) for (const f of readdirSync(dir)) if (!keep.has(f)) rmSync(join(dir, f))
 
 let bytes = 0
 let copied = 0
@@ -66,9 +70,11 @@ const copy = (from, to) => {
   copied++
 }
 
-copy(RUNTIME, join(OUT, 'tree-sitter.wasm'))
-for (const lang of LANGUAGES) {
-  copy(join(GRAMMAR_DIR, `tree-sitter-${lang}.wasm`), join(OUT, `tree-sitter-${lang}.wasm`))
+for (const dir of [OUT, PUBLIC_OUT]) {
+  copy(RUNTIME, join(dir, 'tree-sitter.wasm'))
+  for (const lang of LANGUAGES) {
+    copy(join(GRAMMAR_DIR, `tree-sitter-${lang}.wasm`), join(dir, `tree-sitter-${lang}.wasm`))
+  }
 }
 
-console.log(`[grammars] ${copied} files, ${(bytes / 1024 / 1024).toFixed(1)} MB → resources/tree-sitter`)
+console.log(`[grammars] ${copied} files, ${(bytes / 1024 / 1024).toFixed(1)} MB → resources/tree-sitter + src/renderer/public/tree-sitter`)
