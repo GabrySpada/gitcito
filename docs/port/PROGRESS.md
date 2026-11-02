@@ -40,9 +40,10 @@ compaction.
   analytics as gitsvc ActivityRecorder; the snapshot guard reads settings through internal/settings.
 - Wave 2 (WAVE2-BRIEF.md): ai; repochat+grounding+wiki; processes; secure/vault/analytics/info; registry.
 - Wave 3: editor, difftool, ssh, cli + cmd/gitcito-cli, updater; semantic diff → renderer (needs slice B contract).
-- Renderer subagent: D6 (remove DevToolsPage + 'devtools' page type, DebugToolbar button → openExternal gated by
-  a shared isLoopbackUrl, i18n key `devtools.openExternal` reuse, handbook devtools.md in 16 locales, docs-map,
-  screenshot), plus anything else left from §5.3.
+- D6 code done (10a0b3e): DevToolsPage + 'devtools' page type removed, button → openExternal via
+  src/shared/loopback.ts. **Still to do (M9 docs agent):** rewrite docs/help/devtools.md in all 16 locale dirs
+  (keep the "which tools" table and the limits; it opens in the browser now) and regenerate/remove
+  docs/screenshots/devtools.webp.
 - Bound-surface test + SURFACE.md generator (scan `// channel:` / `// gitsvc:` tags; assert every exported
   method of every registered service is tagged).
 
