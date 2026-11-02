@@ -29,3 +29,9 @@ frontend-dist/
 
 # Subagent worktrees created during the Wails port
 .claude/worktrees/
+
+# Go build outputs (go build . / wails3 build)
+/gitcito
+/gitcito.exe
+/bin/
+/.wails/
