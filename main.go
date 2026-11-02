@@ -81,6 +81,8 @@ func main() {
 	a := application.New(application.Options{
 		Name:        "Gitcito",
 		Description: "A lightweight Git client",
+		// Never logs bound-call arguments or results: they carry tokens.
+		Logger: app.SystemLogger(os.Stderr),
 		Services: []application.Service{
 			application.NewService(app.NewAppService(core)),
 			application.NewService(&app.ShellService{}),
