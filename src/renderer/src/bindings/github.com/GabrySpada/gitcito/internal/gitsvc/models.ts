@@ -6,6 +6,55 @@
 import * as gitx$0 from "../gitx/models.js";
 
 /**
+ * AbsorbApplyOpts is absorbApply's optional second argument.
+ */
+export interface AbsorbApplyOpts {
+    "rebase"?: boolean;
+}
+
+/**
+ * AbsorbApplyResult is what absorbApply returns.
+ */
+export interface AbsorbApplyResult {
+    "created": number;
+    "rebased": boolean;
+}
+
+/**
+ * AbsorbHunk is AbsorbHunk in src/shared/types.ts.
+ */
+export interface AbsorbHunk {
+    "file": string;
+    "header": string;
+    "added": number;
+    "removed": number;
+}
+
+/**
+ * AbsorbPlan is AbsorbPlan in src/shared/types.ts.
+ */
+export interface AbsorbPlan {
+    "base": string;
+    "rangeLabel": string;
+    "targets": AbsorbTarget[] | null;
+    "unmatched": AbsorbHunk[] | null;
+
+    /**
+     * Reason is 'no-staged' | 'no-commits' | 'in-progress', when there is nothing to do.
+     */
+    "reason"?: string;
+}
+
+/**
+ * AbsorbTarget is AbsorbTarget in src/shared/types.ts.
+ */
+export interface AbsorbTarget {
+    "sha": string;
+    "subject": string;
+    "hunks": AbsorbHunk[] | null;
+}
+
+/**
  * AuthorStat is AuthorStat in src/shared/types.ts.
  */
 export interface AuthorStat {
@@ -27,6 +76,15 @@ export interface BlameLine {
 }
 
 /**
+ * BlobAtCommit is BlobAtCommit in src/shared/types.ts.
+ */
+export interface BlobAtCommit {
+    "content": string | null;
+    "binary": boolean;
+    "size": number;
+}
+
+/**
  * BlobSpec is BlobSpec in src/shared/types.ts: which version of a file to
  * read — `{kind:'ref', ref}`, `{kind:'index'}`, `{kind:'worktree'}` or
  * `{kind:'empty'}`.
@@ -43,6 +101,29 @@ export interface BranchCompareResult {
     "aheadCommits": GraphCommit[] | null;
     "behindCommits": GraphCommit[] | null;
     "diff": string;
+}
+
+/**
+ * BranchInfo is BranchInfo in src/shared/types.ts.
+ */
+export interface BranchInfo {
+    "name": string;
+    "sha": string;
+    "upstream": string | null;
+    "ahead": number;
+    "behind": number;
+    "isCurrent": boolean;
+    "mergedIntoCurrent": boolean;
+}
+
+/**
+ * BranchesPayload is BranchesPayload in src/shared/types.ts.
+ */
+export interface BranchesPayload {
+    "current": string;
+    "locals": BranchInfo[] | null;
+    "remotes": RemoteBranchInfo[] | null;
+    "tags": TagInfo[] | null;
 }
 
 /**
@@ -98,6 +179,52 @@ export interface CommitBranchInfo {
 }
 
 /**
+ * CommitEditInfo is CommitEditInfo in src/shared/types.ts.
+ */
+export interface CommitEditInfo {
+    "linear": boolean;
+    "ancestor": boolean;
+    "merges": number;
+    "descendants": number;
+    "pushed": boolean;
+    "message": string;
+    "authorName": string;
+    "authorDate": string;
+}
+
+/**
+ * CommitEditPreview is CommitEditPreview in src/shared/types.ts.
+ */
+export interface CommitEditPreview {
+    "newTip": string | null;
+    "steps": CommitEditStep[] | null;
+}
+
+/**
+ * CommitEditResult is CommitEditResult in src/shared/types.ts.
+ */
+export interface CommitEditResult {
+    "oldHead": string;
+    "newTip": string;
+    "rewritten": number;
+}
+
+/**
+ * CommitEditStep is CommitEditStep in src/shared/types.ts.
+ */
+export interface CommitEditStep {
+    "sha": string;
+    "subject": string;
+
+    /**
+     * Status is 'clean' | 'conflict' | 'blocked'.
+     */
+    "status": string;
+    "files": string[] | null;
+    "merge"?: boolean;
+}
+
+/**
  * CommitMenuProbe is CommitMenuProbe in src/shared/types.ts.
  */
 export interface CommitMenuProbe {
@@ -121,6 +248,41 @@ export interface CommitMenuProbe {
     "message": string;
     "headSha": string;
     "branch": string;
+}
+
+/**
+ * ConflictContext is ConflictContext in src/shared/types.ts.
+ */
+export interface ConflictContext {
+    /**
+     * Kind is a ConflictOpKind: 'merge' | 'cherry-pick' | 'rebase' | 'revert'.
+     */
+    "kind": string;
+    "source": string;
+    "target": string;
+    "ours": ConflictRefInfo | null;
+    "theirs": ConflictRefInfo | null;
+}
+
+/**
+ * ConflictRefInfo is ConflictRefInfo in src/shared/types.ts.
+ */
+export interface ConflictRefInfo {
+    "sha": string;
+    "branch": string;
+    "subject": string;
+    "author": string;
+    "date": string;
+}
+
+/**
+ * ConflictVersions is ConflictVersions in src/shared/types.ts.
+ */
+export interface ConflictVersions {
+    "content": string;
+    "ours": string | null;
+    "theirs": string | null;
+    "base": string | null;
 }
 
 /**
@@ -265,15 +427,21 @@ export interface GraphCommit {
     "email": string;
 
     /**
-     * Date is unix seconds.
+     * unix seconds
      */
     "date": number;
     "refs": string[] | null;
     "subject": string;
+
+    /**
+     * CoAuthors is optional in the TS type. log() always sets it (to [] when
+     * there are none) and so sends it; other producers (compareBranches) leave
+     * it out. omitzero mirrors both: a nil slice is omitted, an empty one is sent.
+     */
     "coAuthors"?: gitx$0.CommitAuthor[] | null;
 
     /**
-     * Signature is a CommitSignature, omitted when unsigned.
+     * Signature is omitted when unsigned ('good' | 'unverified' | 'bad' | 'expired').
      */
     "signature"?: string;
 
@@ -403,6 +571,51 @@ export interface ImageDiffSides {
 }
 
 /**
+ * InteractiveRebaseStep is one commit offered to the interactive-rebase editor.
+ */
+export interface InteractiveRebaseStep {
+    "hash": string;
+    "subject": string;
+}
+
+/**
+ * MergePreviewEntry is MergePreviewEntry in src/shared/types.ts: one
+ * branch's forecast in the Conflict Radar.
+ */
+export interface MergePreviewEntry {
+    "ref": string;
+
+    /**
+     * Status is a MergeRiskKind: 'merged' | 'clean' | 'conflict' | 'error'.
+     */
+    "status": string;
+
+    /**
+     * Files would conflict (only for `conflict`).
+     */
+    "files": string[] | null;
+
+    /**
+     * Message is git's error text, when Status is `error`.
+     */
+    "message"?: string;
+}
+
+/**
+ * MergePreviewResult is MergePreviewResult in src/shared/types.ts.
+ */
+export interface MergePreviewResult {
+    "base": string;
+    "baseSha": string;
+    "entries": MergePreviewEntry[] | null;
+
+    /**
+     * ScannedAt is unix ms of the scan, so the UI can show "scanned 2m ago".
+     */
+    "scannedAt": number;
+}
+
+/**
  * PrPreviewResult is PrPreviewResult in src/shared/types.ts.
  */
 export interface PrPreviewResult {
@@ -432,6 +645,35 @@ export interface PrRefProbe {
 }
 
 /**
+ * RangeDiffEntry is RangeDiffEntry in src/shared/types.ts.
+ */
+export interface RangeDiffEntry {
+    /**
+     * Kind is 'unchanged' | 'modified' | 'removed' | 'added'.
+     */
+    "kind": string;
+    "oldIndex": number | null;
+    "oldSha": string | null;
+    "newIndex": number | null;
+    "newSha": string | null;
+    "subject": string;
+    "body": string;
+}
+
+/**
+ * RebaseStep is RebaseStep in src/shared/types.ts.
+ */
+export interface RebaseStep {
+    /**
+     * Action is 'pick' | 'squash' | 'fixup' | 'drop' | 'reword' | 'edit'.
+     */
+    "action": string;
+    "hash": string;
+    "subject": string;
+    "newMessage"?: string;
+}
+
+/**
  * RefObject is RefObject in src/shared/types.ts.
  */
 export interface RefObject {
@@ -448,6 +690,70 @@ export interface RefObject {
 }
 
 /**
+ * RefTip is RefTip in src/shared/types.ts.
+ */
+export interface RefTip {
+    "sha": string;
+    "selector": string;
+    "reason": string;
+    "date": number;
+    "subject": string;
+}
+
+/**
+ * ReflogEntry is ReflogEntry in src/shared/types.ts.
+ */
+export interface ReflogEntry {
+    "sha": string;
+    "selector": string;
+    "action": string;
+    "date": number;
+}
+
+/**
+ * RemoteBranchInfo is RemoteBranchInfo in src/shared/types.ts.
+ */
+export interface RemoteBranchInfo {
+    "remote": string;
+    "name": string;
+    "fullName": string;
+    "sha": string;
+    "mergedIntoCurrent": boolean;
+}
+
+/**
+ * RemoteInfo is RemoteInfo in src/shared/types.ts.
+ */
+export interface RemoteInfo {
+    "name": string;
+    "url": string;
+}
+
+/**
+ * RepoDetail is RepoDetail in src/shared/types.ts.
+ */
+export interface RepoDetail {
+    "files": RepoDetailFile[] | null;
+    "commits": RepoDetailCommit[] | null;
+}
+
+/**
+ * RepoDetailCommit is one entry of RepoDetail.commits.
+ */
+export interface RepoDetailCommit {
+    "hash": string;
+    "subject": string;
+}
+
+/**
+ * RepoDetailFile is one entry of RepoDetail.files.
+ */
+export interface RepoDetailFile {
+    "path": string;
+    "status": string;
+}
+
+/**
  * RepoInsights is RepoInsights in src/shared/types.ts.
  */
 export interface RepoInsights {
@@ -458,6 +764,27 @@ export interface RepoInsights {
     "authors": AuthorStat[] | null;
     "hotspots": FileHotspot[] | null;
     "churn": ChurnPoint[] | null;
+}
+
+/**
+ * RepoPulse is RepoPulse in src/shared/types.ts.
+ */
+export interface RepoPulse {
+    "path": string;
+    "name": string;
+    "branch": string;
+    "upstream": string | null;
+    "ahead": number;
+    "behind": number;
+    "staged": number;
+    "unstaged": number;
+    "untracked": number;
+    "conflicted": number;
+    "stashes": number;
+    "lastCommitAt": number;
+    "operation": string | null;
+    "activity": number[] | null;
+    "error": string | null;
 }
 
 /**
@@ -496,6 +823,28 @@ export interface RepoStatsDay {
 }
 
 /**
+ * RepoStatus is RepoStatus in src/shared/types.ts.
+ */
+export interface RepoStatus {
+    "current": string;
+    "tracking": string | null;
+    "ahead": number;
+    "behind": number;
+    "staged": FileEntry[] | null;
+    "unstaged": FileEntry[] | null;
+    "conflicted": FileEntry[] | null;
+}
+
+/**
+ * RepoSummary is RepoSummary in src/shared/types.ts.
+ */
+export interface RepoSummary {
+    "path": string;
+    "name": string;
+    "current": string;
+}
+
+/**
  * SearchOptions is the `opts` object the search methods take. Every field is
  * optional in TS; Max and MaxPerFile are pointers so an absent value takes the
  * method's default while an explicit 0 stays 0.
@@ -524,6 +873,21 @@ export interface SemanticDiffSides {
 }
 
 /**
+ * SnapshotInfo is SnapshotInfo in src/shared/types.ts.
+ */
+export interface SnapshotInfo {
+    "ref": string;
+    "sha": string;
+    "time": number;
+    "files": number;
+
+    /**
+     * Kind is a SnapshotKind: 'auto' | 'manual' | 'guard'.
+     */
+    "kind": string;
+}
+
+/**
  * SparseCheckoutInfo is SparseCheckoutInfo in src/shared/types.ts.
  */
 export interface SparseCheckoutInfo {
@@ -546,6 +910,64 @@ export interface SparseCheckoutInfo {
      * TopLevelDirs are all top-level directories in HEAD (toggle candidates).
      */
     "topLevelDirs": string[] | null;
+}
+
+/**
+ * StashInfo is StashInfo in src/shared/types.ts.
+ */
+export interface StashInfo {
+    "index": number;
+    "sha": string;
+    "parentSha": string;
+    "untrackedSha": string | null;
+    "message": string;
+    "branch": string | null;
+    "date": number;
+}
+
+/**
+ * TagInfo is TagInfo in src/shared/types.ts.
+ */
+export interface TagInfo {
+    "name": string;
+    "sha": string;
+}
+
+/**
+ * TeammateRadarEntry is TeammateRadarEntry in src/shared/types.ts.
+ */
+export interface TeammateRadarEntry {
+    "ref": string;
+    "sha": string;
+    "author": string;
+    "time": number;
+    "ahead": number;
+    "filesTouched": number;
+    "overlap": string[] | null;
+    "risk": string;
+    "conflictFiles": string[] | null;
+}
+
+/**
+ * TeammateRadarOpts is teammateRadar's optional second argument. A nil field
+ * takes the default (`??` in TS: only an absent value does — 0 is honoured).
+ */
+export interface TeammateRadarOpts {
+    "maxBranches"?: number | null;
+    "maxDays"?: number | null;
+}
+
+/**
+ * TeammateRadarResult is TeammateRadarResult in src/shared/types.ts.
+ */
+export interface TeammateRadarResult {
+    "entries": TeammateRadarEntry[] | null;
+    "dirtyCount": number;
+
+    /**
+     * unix ms
+     */
+    "scannedAt": number;
 }
 
 /**

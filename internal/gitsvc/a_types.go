@@ -23,9 +23,10 @@ type GraphCommit struct {
 	Date    int64    `json:"date"` // unix seconds
 	Refs    []string `json:"refs"`
 	Subject string   `json:"subject"`
-	// CoAuthors is optional in the TS type, but log() always sets it (to []
-	// when there are none), so it is always sent.
-	CoAuthors []gitx.CommitAuthor `json:"coAuthors"`
+	// CoAuthors is optional in the TS type. log() always sets it (to [] when
+	// there are none) and so sends it; other producers (compareBranches) leave
+	// it out. omitzero mirrors both: a nil slice is omitted, an empty one is sent.
+	CoAuthors []gitx.CommitAuthor `json:"coAuthors,omitzero"`
 	// Signature is omitted when unsigned ('good' | 'unverified' | 'bad' | 'expired').
 	Signature string `json:"signature,omitempty"`
 	// Signer is the signing identity (%GS), when known.

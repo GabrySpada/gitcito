@@ -17,7 +17,6 @@ import (
 	"strconv"
 	"strings"
 	"sync"
-	"time"
 	"unicode"
 	"unicode/utf8"
 
@@ -527,119 +526,6 @@ func bWithRerereCapture(repoPath string, op func() error) error {
 		bRerereReplayed.Unlock()
 	}
 	return err
-}
-
-// bSnapshotMax is createSnapshot's default `max`.
-const bSnapshotMax = 50
-
-type bSnapshotRef struct {
-	ref, sha string
-}
-
-// bListSnapshotRefs is listSnapshotRefs(): snapshot refs, newest first.
-// for-each-ref does not expand %xHH, and none of these fields hold a space,
-// so a space separates them.
-func bListSnapshotRefs(ctx context.Context, repoPath string) []bSnapshotRef {
-	raw := bRawOr(ctx, repoPath, "", "for-each-ref", "--sort=-creatordate",
-		"--format=%(refname) %(objectname) %(creatordate:unix)", "refs/gitcito/wip")
-	var out []bSnapshotRef
-	for _, line := range strings.Split(raw, "\n") {
-		if gitx.TrimJS(line) == "" {
-			continue
-		}
-		parts := strings.Split(line, " ")
-		r := bSnapshotRef{ref: parts[0]}
-		if len(parts) > 1 {
-			r.sha = parts[1]
-		}
-		out = append(out, r)
-	}
-	return out
-}
-
-// bGuardSnapshot is guardSnapshot(): a best-effort snapshot taken right before
-// a destructive operation, so the state about to be destroyed stays
-// recoverable. Every failure is swallowed — the guard is a parachute, not a
-// gate.
-//
-// It is createSnapshot(repo, 'guard') inlined: the whole working tree,
-// untracked files included, committed through a throwaway index and pinned
-// under refs/gitcito/wip/<ms>-g. TS skipped it when settings.snapshotGuard was
-// false; the settings store is not ported yet, so the lead wires that check
-// when hoisting this next to slice A's createSnapshot.
-func bGuardSnapshot(ctx context.Context, repoPath string) {
-	dirty, err := gitx.IsDirty(ctx, repoPath)
-	if err != nil || !dirty {
-		return
-	}
-	out, err := bGit(ctx, repoPath, "rev-parse", "--absolute-git-dir")
-	if err != nil {
-		return
-	}
-	now := time.Now()
-	tmpIndex := filepath.Join(gitx.TrimJS(out), "gitcito-snap-"+strconv.Itoa(os.Getpid())+"-"+strconv.FormatInt(now.UnixMilli(), 10))
-	defer func() { _ = os.Remove(tmpIndex) }()
-	env := gitx.RunOpts{Env: []string{"GIT_INDEX_FILE=" + tmpIndex}}
-	run := func(opts gitx.RunOpts, args ...string) (string, error) {
-		return gitx.RunGit(ctx, repoPath, args, opts)
-	}
-	headOut, _ := run(gitx.RunOpts{}, "rev-parse", "--verify", "HEAD")
-	head := gitx.TrimJS(headOut)
-	seed := head
-	if seed == "" {
-		seed = "--empty"
-	}
-	// Seed from HEAD so unchanged entries reuse existing blobs, then stage
-	// everything — `add -A` in the throwaway index is what pulls untracked
-	// files in, the one thing `git stash create` cannot do.
-	if _, err := run(env, "read-tree", seed); err != nil {
-		return
-	}
-	if _, err := run(env, "add", "-A"); err != nil {
-		return
-	}
-	treeOut, err := run(env, "write-tree")
-	if err != nil {
-		return
-	}
-	tree := gitx.TrimJS(treeOut)
-	if head != "" {
-		headTree, err := run(gitx.RunOpts{}, "rev-parse", head+"^{tree}")
-		if err != nil {
-			return
-		}
-		// Nothing effectively changed (e.g. only ignored files were touched).
-		if tree == gitx.TrimJS(headTree) {
-			return
-		}
-	}
-	// A guard dedupes against the latest snapshot.
-	if all := bListSnapshotRefs(ctx, repoPath); len(all) > 0 {
-		latest, _ := run(gitx.RunOpts{}, "rev-parse", all[0].sha+"^{tree}")
-		if tree == gitx.TrimJS(latest) {
-			return
-		}
-	}
-	ts := now.Unix()
-	label := "gitcito-wip " + time.Unix(ts, 0).UTC().Format("2006-01-02T15:04:05.000Z") + " (guard)"
-	args := []string{"commit-tree", tree, "-m", label}
-	if head != "" {
-		args = append(args, "-p", head)
-	}
-	shaOut, err := run(gitx.RunOpts{}, args...)
-	if err != nil {
-		return
-	}
-	// Millisecond ref names keep a guard and a timer tick within the same
-	// second from colliding; displayed time comes from the commit, not the name.
-	ref := "refs/gitcito/wip/" + strconv.FormatInt(time.Now().UnixMilli(), 10) + "-g"
-	if _, err := gitx.Raw(ctx, repoPath, []string{"update-ref", ref, gitx.TrimJS(shaOut)}, gitx.RunOpts{}); err != nil {
-		return
-	}
-	all := bListSnapshotRefs(ctx, repoPath)
-	for i := bSnapshotMax; i < len(all); i++ {
-		_, _ = gitx.Raw(ctx, repoPath, []string{"update-ref", "-d", all[i].ref}, gitx.RunOpts{})
-	}
 }
 
 // bErr is a user-facing error whose text the renderer shows verbatim — the TS

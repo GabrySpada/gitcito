@@ -15,10 +15,62 @@ import { Call as $Call, CancellablePromise as $CancellablePromise } from "@wails
 import * as $models from "./models.js";
 
 /**
+ * gitsvc: absorbApply
+ * 
+ * Turn the plan into real `fixup!` commits, optionally folding them in with
+ * an autosquash rebase.
+ * 
+ * The working tree is never touched: only the index and the commits this
+ * creates. If any step fails, HEAD and the index are put back exactly as they
+ * were, so a half-absorbed state cannot survive.
+ */
+export function AbsorbApply(repoPath: string, opts: $models.AbsorbApplyOpts | null): $CancellablePromise<$models.AbsorbApplyResult> {
+    return $Call.ByID(3364785957, repoPath, opts);
+}
+
+/**
+ * gitsvc: absorbPlan
+ * 
+ * Work out which of your own recent commits each staged hunk belongs to.
+ * 
+ * This is `git absorb`: instead of one lumpy "review fixes" commit, blame
+ * tells you the commit that introduced the lines you just touched, and each
+ * hunk becomes a `fixup!` for it. Only unpublished commits are candidates —
+ * rewriting anything already pushed is not ours to offer.
+ */
+export function AbsorbPlan(repoPath: string): $CancellablePromise<$models.AbsorbPlan> {
+    return $Call.ByID(3006938508, repoPath);
+}
+
+/**
+ * gitsvc: addRemote
+ */
+export function AddRemote(repoPath: string, name: string, url: string, pushURL: string): $CancellablePromise<void> {
+    return $Call.ByID(498784791, repoPath, name, url, pushURL);
+}
+
+/**
  * gitsvc: blameFile
  */
 export function BlameFile(repoPath: string, file: string, ref: string): $CancellablePromise<$models.BlameLine[] | null> {
     return $Call.ByID(2654774743, repoPath, file, ref);
+}
+
+/**
+ * gitsvc: blobAtCommit
+ * 
+ * A file's content at a commit, gated for the editor: binary and oversized
+ * blobs come back with `content: null` rather than garbage.
+ */
+export function BlobAtCommit(repoPath: string, sha: string, file: string): $CancellablePromise<$models.BlobAtCommit> {
+    return $Call.ByID(2532165481, repoPath, sha, file);
+}
+
+/**
+ * gitsvc: branches
+ */
+export function Branches(repoPath: string): $CancellablePromise<$models.BranchesPayload> {
+    return $Call.ByID(900684130, repoPath);
 }
 
 /**
@@ -57,6 +109,36 @@ export function CommitBranches(repoPath: string, hash: string): $CancellableProm
  */
 export function CommitDiff(repoPath: string, hash: string): $CancellablePromise<string> {
     return $Call.ByID(1577643324, repoPath, hash);
+}
+
+/**
+ * gitsvc: commitEditApply
+ * 
+ * Rewrite for real: guard-snapshot the working tree, rebuild the chain, then
+ * `reset --keep` the current branch onto the new tip — index and worktree
+ * follow, local uncommitted changes are carried over (or the reset aborts
+ * and nothing has moved). Refuses detached HEAD and conflicted cascades.
+ */
+export function CommitEditApply(repoPath: string, sha: string, edits: { [_ in string]?: string } | null, message: string): $CancellablePromise<$models.CommitEditResult> {
+    return $Call.ByID(2282867261, repoPath, sha, edits, message);
+}
+
+/**
+ * gitsvc: commitEditInfo
+ * 
+ * Can this commit be edited in place, and what would a rewrite drag along?
+ */
+export function CommitEditInfo(repoPath: string, sha: string): $CancellablePromise<$models.CommitEditInfo> {
+    return $Call.ByID(1301129087, repoPath, sha);
+}
+
+/**
+ * gitsvc: commitEditPreview
+ * 
+ * Dry-run the rewrite: same engine as apply, no ref ever moves.
+ */
+export function CommitEditPreview(repoPath: string, sha: string, edits: { [_ in string]?: string } | null, message: string): $CancellablePromise<$models.CommitEditPreview> {
+    return $Call.ByID(1023920653, repoPath, sha, edits, message);
 }
 
 /**
@@ -103,6 +185,47 @@ export function CompareBranches(repoPath: string, a: string, b: string): $Cancel
 }
 
 /**
+ * gitsvc: conflictContext
+ * 
+ * Who is being merged into whom. Drives the "Merging X into Y" header and the
+ * "commit abc123 on branch" labels above each side of the conflict editor.
+ * Returns nil when no merge/rebase/cherry-pick/revert is in progress.
+ */
+export function ConflictContext(repoPath: string): $CancellablePromise<$models.ConflictContext | null> {
+    return $Call.ByID(2262442075, repoPath);
+}
+
+/**
+ * gitsvc: conflictOpAbort
+ */
+export function ConflictOpAbort(repoPath: string, kind: string): $CancellablePromise<void> {
+    return $Call.ByID(1078203619, repoPath, kind);
+}
+
+/**
+ * gitsvc: conflictOpContinue
+ */
+export function ConflictOpContinue(repoPath: string, kind: string): $CancellablePromise<void> {
+    return $Call.ByID(1232183622, repoPath, kind);
+}
+
+/**
+ * gitsvc: conflictTakeSide
+ * 
+ * side is 'ours' | 'theirs' | 'delete'.
+ */
+export function ConflictTakeSide(repoPath: string, file: string, side: string): $CancellablePromise<void> {
+    return $Call.ByID(205468624, repoPath, file, side);
+}
+
+/**
+ * gitsvc: conflictVersions
+ */
+export function ConflictVersions(repoPath: string, file: string): $CancellablePromise<$models.ConflictVersions> {
+    return $Call.ByID(2100124549, repoPath, file);
+}
+
+/**
  * gitsvc: contributors
  * 
  * Distinct commit authors (name + email), most-frequent first — for the
@@ -125,6 +248,16 @@ export function CosmosData(repoPath: string, limit: number | null): $Cancellable
 }
 
 /**
+ * gitsvc: createSnapshot
+ * 
+ * Take a snapshot of the current working tree. Returns nil when nothing
+ * changed. kind defaults to 'manual' and max to 50 when nil.
+ */
+export function CreateSnapshot(repoPath: string, kind: string | null, max: number | null): $CancellablePromise<$models.SnapshotInfo | null> {
+    return $Call.ByID(2238233714, repoPath, kind, max);
+}
+
+/**
  * gitsvc: createTag
  * 
  * hash "" (undefined) tags HEAD.
@@ -138,6 +271,13 @@ export function CreateTag(repoPath: string, name: string, hash: string, opts: $m
  */
 export function DeleteRemoteTag(repoPath: string, name: string, remote: string): $CancellablePromise<void> {
     return $Call.ByID(1315268689, repoPath, name, remote);
+}
+
+/**
+ * gitsvc: deleteSnapshot
+ */
+export function DeleteSnapshot(repoPath: string, ref: string): $CancellablePromise<void> {
+    return $Call.ByID(1213770125, repoPath, ref);
 }
 
 /**
@@ -155,6 +295,15 @@ export function DiffFile(repoPath: string, file: string, staged: boolean, untrac
 }
 
 /**
+ * gitsvc: editRemote
+ * 
+ * Rename a remote and/or update its fetch & push URLs in one shot.
+ */
+export function EditRemote(repoPath: string, oldName: string, newName: string, url: string, pushURL: string): $CancellablePromise<void> {
+    return $Call.ByID(2825946820, repoPath, oldName, newName, url, pushURL);
+}
+
+/**
  * gitsvc: fetchNotes
  * 
  * Notes live under `refs/notes/*`, which a normal fetch or push ignores
@@ -165,6 +314,13 @@ export function DiffFile(repoPath: string, file: string, staged: boolean, untrac
  */
 export function FetchNotes(repoPath: string, remote: string): $CancellablePromise<void> {
     return $Call.ByID(1803725675, repoPath, remote);
+}
+
+/**
+ * gitsvc: fetchRemote
+ */
+export function FetchRemote(repoPath: string, name: string): $CancellablePromise<void> {
+    return $Call.ByID(2404076268, repoPath, name);
 }
 
 /**
@@ -311,6 +467,13 @@ export function ImageDiff(repoPath: string, file: string, beforeRef: string | nu
 }
 
 /**
+ * gitsvc: interactiveRebaseSteps
+ */
+export function InteractiveRebaseSteps(repoPath: string, base: string): $CancellablePromise<$models.InteractiveRebaseStep[] | null> {
+    return $Call.ByID(731809201, repoPath, base);
+}
+
+/**
  * gitsvc: listDir
  * 
  * Immediate children of relDir (repo-relative POSIX path; "" = root). The
@@ -344,6 +507,61 @@ export function ListFiles(repoPath: string): $CancellablePromise<string[] | null
 }
 
 /**
+ * gitsvc: listSnapshots
+ * 
+ * All saved snapshots, newest first.
+ */
+export function ListSnapshots(repoPath: string): $CancellablePromise<$models.SnapshotInfo[] | null> {
+    return $Call.ByID(186561211, repoPath);
+}
+
+/**
+ * gitsvc: log
+ * 
+ * `skip` pages deeper into history so "load more" fetches only the next
+ * window instead of re-reading everything already loaded. Ordering is stable
+ * (--date-order over the same revs), and the store dedupes by hash, so a
+ * page boundary shifting under new commits cannot duplicate rows.
+ * maxCount defaults to 400 when nil.
+ */
+export function Log(repoPath: string, maxCount: number | null, skip: number): $CancellablePromise<$models.GraphCommit[] | null> {
+    return $Call.ByID(413294224, repoPath, maxCount, skip);
+}
+
+/**
+ * gitsvc: mergeMessage
+ * 
+ * The message git prepared for an in-progress merge/cherry-pick/revert
+ * (e.g. "Merge branch 'main' into feat/ui"). Empty if none is pending. Comment
+ * lines (starting with '#') are stripped so it can prefill the commit composer.
+ */
+export function MergeMessage(repoPath: string): $CancellablePromise<string> {
+    return $Call.ByID(113083177, repoPath);
+}
+
+/**
+ * gitsvc: mergePreview
+ * 
+ * Conflict Radar — merge every ref into `base` inside the object database and
+ * report which ones would conflict. `git merge-tree --write-tree` writes only
+ * loose objects: no index, no working tree, no refs, no checkout, so this is
+ * safe to run over every branch while the user keeps working.
+ */
+export function MergePreview(repoPath: string, base: string, refs: string[] | null): $CancellablePromise<$models.MergePreviewResult> {
+    return $Call.ByID(2199916510, repoPath, base, refs);
+}
+
+/**
+ * gitsvc: mergeState
+ * 
+ * The operation left in progress — 'rebase' | 'merge' | 'cherry-pick' |
+ * 'revert' — or nil.
+ */
+export function MergeState(repoPath: string): $CancellablePromise<string | null> {
+    return $Call.ByID(2650295303, repoPath);
+}
+
+/**
  * gitsvc: note
  * 
  * The note attached to a commit, or "" when it has none.
@@ -368,6 +586,13 @@ export function NotedCommits(repoPath: string): $CancellablePromise<string[] | n
  */
 export function ObjectRefs(repoPath: string): $CancellablePromise<$models.RefObject[] | null> {
     return $Call.ByID(296378239, repoPath);
+}
+
+/**
+ * gitsvc: open
+ */
+export function Open(repoPath: string): $CancellablePromise<$models.RepoSummary> {
+    return $Call.ByID(1725909346, repoPath);
 }
 
 /**
@@ -414,10 +639,87 @@ export function PushTag(repoPath: string, name: string, remote: string): $Cancel
 }
 
 /**
+ * gitsvc: rangeDiff
+ * 
+ * `git range-diff` — pair up the commits of two versions of a branch and show
+ * how each one was rewritten. This is the answer to "someone force-pushed,
+ * what actually changed since I reviewed it?", which a plain diff cannot give
+ * because every commit after a rebase looks brand new.
+ * 
+ * With `base`, both ranges are taken from it (`base..old` vs `base..new`);
+ * without it the two versions' merge base is used.
+ */
+export function RangeDiff(repoPath: string, oldRev: string, newRev: string, base: string): $CancellablePromise<$models.RangeDiffEntry[] | null> {
+    return $Call.ByID(2037105612, repoPath, oldRev, newRev, base);
+}
+
+/**
+ * gitsvc: refTips
+ * 
+ * Where a ref has been, newest first, from its reflog — the free record of
+ * every rebase, reset and forced fetch. Entry 0 is the current tip, so the
+ * "what changed since…" picker starts at index 1. max defaults to 20.
+ */
+export function RefTips(repoPath: string, ref: string, max: number | null): $CancellablePromise<$models.RefTip[] | null> {
+    return $Call.ByID(1539278589, repoPath, ref, max);
+}
+
+/**
+ * gitsvc: reflog
+ * 
+ * Read `git reflog` for a ref (default HEAD). Each entry is a point history
+ * passed through — checkout/reset/amend/rebase all leave a trace, so this is
+ * the net for recovering "lost" commits. Restore by checking out, resetting,
+ * or branching from an entry's sha via the existing reset/checkout/branch ops.
+ * ref defaults to "HEAD" and max to 200 when nil.
+ */
+export function Reflog(repoPath: string, ref: string | null, max: number | null): $CancellablePromise<$models.ReflogEntry[] | null> {
+    return $Call.ByID(3500815827, repoPath, ref, max);
+}
+
+/**
+ * gitsvc: remotes
+ */
+export function Remotes(repoPath: string): $CancellablePromise<$models.RemoteInfo[] | null> {
+    return $Call.ByID(2294967001, repoPath);
+}
+
+/**
  * gitsvc: removeNote
  */
 export function RemoveNote(repoPath: string, sha: string): $CancellablePromise<void> {
     return $Call.ByID(511886618, repoPath, sha);
+}
+
+/**
+ * gitsvc: removeRemote
+ */
+export function RemoveRemote(repoPath: string, name: string): $CancellablePromise<void> {
+    return $Call.ByID(471811404, repoPath, name);
+}
+
+/**
+ * gitsvc: renameStash
+ * 
+ * Rename a stash by rewriting its reflog subject in place. Git has no native
+ * rename, but `stash@{n}` is just an entry in `logs/refs/stash` — editing the
+ * message after the tab keeps the stash's commit and stack position intact.
+ * The `WIP on <branch>:` / `On <branch>:` prefix is preserved so the branch
+ * label still shows; only the user-facing message is replaced.
+ */
+export function RenameStash(repoPath: string, index: number, message: string): $CancellablePromise<void> {
+    return $Call.ByID(4082607925, repoPath, index, message);
+}
+
+/**
+ * gitsvc: repoDetail
+ * 
+ * The extra detail one row expands to show: what is dirty and what is waiting
+ * to be pushed. Only fetched for the row the user actually opens, so a
+ * dashboard of twenty repos doesn't pay for twenty of these. max defaults to 8.
+ */
+export function RepoDetail(repoPath: string, max: number | null): $CancellablePromise<$models.RepoDetail> {
+    return $Call.ByID(3452595215, repoPath, max);
 }
 
 /**
@@ -430,6 +732,21 @@ export function RemoveNote(repoPath: string, sha: string): $CancellablePromise<v
  */
 export function RepoInsights(repoPath: string, sinceDays: number): $CancellablePromise<$models.RepoInsights> {
     return $Call.ByID(2858364563, repoPath, sinceDays);
+}
+
+/**
+ * gitsvc: repoPulse
+ * 
+ * A cheap, purely local health check for one repository — the row Mission
+ * Control shows for it.
+ * 
+ * `status --porcelain=v2 --branch` answers branch, upstream, ahead/behind and
+ * every dirty path in a single process, so a dashboard over twenty repos
+ * costs twenty git calls rather than a hundred. Nothing here touches the
+ * network: no fetch, no host API.
+ */
+export function RepoPulse(repoPath: string): $CancellablePromise<$models.RepoPulse> {
+    return $Call.ByID(3626407855, repoPath);
 }
 
 /**
@@ -452,6 +769,13 @@ export function Reset(repoPath: string, ref: string, mode: string): $Cancellable
 }
 
 /**
+ * gitsvc: resolveConflict
+ */
+export function ResolveConflict(repoPath: string, file: string, content: string): $CancellablePromise<void> {
+    return $Call.ByID(2464064440, repoPath, file, content);
+}
+
+/**
  * gitsvc: resolvePrRef
  * 
  * Find which ref a pull request's head lives under on remote. null when none
@@ -464,6 +788,28 @@ export function Reset(repoPath: string, ref: string, mode: string): $Cancellable
  */
 export function ResolvePrRef(repoPath: string, remote: string, $number: number): $CancellablePromise<$models.PrRefProbe | null> {
     return $Call.ByID(3830398409, repoPath, remote, $number);
+}
+
+/**
+ * gitsvc: restoreFromCommit
+ * 
+ * Overwrite the working copies of `paths` with their content at `hash` —
+ * "take these changes" from a commit without touching HEAD or the index.
+ */
+export function RestoreFromCommit(repoPath: string, hash: string, paths: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(4290493997, repoPath, hash, paths);
+}
+
+/**
+ * gitsvc: restoreSnapshot
+ * 
+ * Copy files out of a snapshot back into the working tree (the snapshot is
+ * kept). With no `files`, the snapshot's entire tree is restored. Files
+ * created after the snapshot are left alone — restore overwrites and
+ * recreates, it never deletes.
+ */
+export function RestoreSnapshot(repoPath: string, sha: string, files: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(4127003892, repoPath, sha, files);
 }
 
 /**
@@ -480,6 +826,13 @@ export function RestoreUndoneCommit(repoPath: string, previousSha: string): $Can
  */
 export function RevertCommit(repoPath: string, hash: string): $CancellablePromise<void> {
     return $Call.ByID(2066527017, repoPath, hash);
+}
+
+/**
+ * gitsvc: runInteractiveRebase
+ */
+export function RunInteractiveRebase(repoPath: string, base: string, steps: $models.RebaseStep[] | null): $CancellablePromise<void> {
+    return $Call.ByID(1445402717, repoPath, base, steps);
 }
 
 /**
@@ -587,10 +940,87 @@ export function SparseCheckoutSet(repoPath: string, dirs: string[] | null): $Can
 }
 
 /**
+ * gitsvc: stage
+ */
+export function Stage(repoPath: string, files: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(1144668820, repoPath, files);
+}
+
+/**
+ * gitsvc: stageAll
+ */
+export function StageAll(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(784206383, repoPath);
+}
+
+/**
+ * gitsvc: stagePatch
+ * 
+ * Apply a patch to the index only. `reverse` takes it back out — how a line or
+ * hunk of the staged diff is unstaged, and how a stage is undone.
+ */
+export function StagePatch(repoPath: string, patch: string, reverse: boolean): $CancellablePromise<void> {
+    return $Call.ByID(2444576082, repoPath, patch, reverse);
+}
+
+/**
  * gitsvc: stagedDiff
  */
 export function StagedDiff(repoPath: string): $CancellablePromise<string> {
     return $Call.ByID(2435808087, repoPath);
+}
+
+/**
+ * gitsvc: stash
+ */
+export function Stash(repoPath: string, message: string): $CancellablePromise<void> {
+    return $Call.ByID(1097587367, repoPath, message);
+}
+
+/**
+ * gitsvc: stashApply
+ */
+export function StashApply(repoPath: string, index: number): $CancellablePromise<void> {
+    return $Call.ByID(3227249833, repoPath, index);
+}
+
+/**
+ * gitsvc: stashApplyFiles
+ */
+export function StashApplyFiles(repoPath: string, sha: string, tracked: string[] | null, untracked: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(4140013492, repoPath, sha, tracked, untracked);
+}
+
+/**
+ * gitsvc: stashApplyOverwrite
+ * 
+ * Force-apply (or pop) a stash whose untracked files collide with files that
+ * already exist in the working tree. Plain `git stash apply` aborts with
+ * "could not restore untracked files from stash" rather than clobber them, so
+ * we delete the colliding untracked paths — they're about to be replaced by the
+ * stash's own copies — then retry the apply/pop.
+ */
+export function StashApplyOverwrite(repoPath: string, index: number, pop: boolean): $CancellablePromise<void> {
+    return $Call.ByID(2388147854, repoPath, index, pop);
+}
+
+/**
+ * gitsvc: stashBaseShas
+ * 
+ * First-parent SHAs of every stash entry — the commits each stash was saved
+ * on top of. Used to seed `log()` so unreachable stash bases still appear in
+ * the graph and their stashes have something to connect to. Best-effort: a
+ * repo with no stashes (or a failure listing them) simply yields none.
+ */
+export function StashBaseShas(repoPath: string): $CancellablePromise<string[] | null> {
+    return $Call.ByID(1806962705, repoPath);
+}
+
+/**
+ * gitsvc: stashDrop
+ */
+export function StashDrop(repoPath: string, index: number): $CancellablePromise<void> {
+    return $Call.ByID(1661338302, repoPath, index);
 }
 
 /**
@@ -605,6 +1035,63 @@ export function StashFileDiff(repoPath: string, sha: string, file: string, untra
  */
 export function StashFiles(repoPath: string, sha: string, untrackedSha: string): $CancellablePromise<$models.FileEntry[] | null> {
     return $Call.ByID(2356249086, repoPath, sha, untrackedSha);
+}
+
+/**
+ * gitsvc: stashPop
+ */
+export function StashPop(repoPath: string, index: number): $CancellablePromise<void> {
+    return $Call.ByID(240834842, repoPath, index);
+}
+
+/**
+ * gitsvc: stashPush
+ * 
+ * Stash a chosen subset of changes (partial stash). With `paths`, only those
+ * pathspecs are stashed; empty/omitted stashes everything. `keepIndex` leaves
+ * the staged index intact in the working tree (`git stash push --keep-index`).
+ */
+export function StashPush(repoPath: string, message: string, paths: string[] | null, keepIndex: boolean): $CancellablePromise<void> {
+    return $Call.ByID(3640508307, repoPath, message, paths, keepIndex);
+}
+
+/**
+ * gitsvc: stashToBranch
+ * 
+ * Create a new branch from a stash and apply it there (`git stash branch`).
+ * Branches off the commit the stash was made on, checks it out, applies the
+ * stash, and drops it on success — handy when a stash won't apply cleanly onto
+ * the current branch.
+ */
+export function StashToBranch(repoPath: string, branch: string, index: number): $CancellablePromise<void> {
+    return $Call.ByID(3066477786, repoPath, branch, index);
+}
+
+/**
+ * gitsvc: stashes
+ */
+export function Stashes(repoPath: string): $CancellablePromise<$models.StashInfo[] | null> {
+    return $Call.ByID(1811983887, repoPath);
+}
+
+/**
+ * gitsvc: status
+ */
+export function Status(repoPath: string): $CancellablePromise<$models.RepoStatus> {
+    return $Call.ByID(3863668676, repoPath);
+}
+
+/**
+ * gitsvc: teammateRadar
+ * 
+ * Teammate radar: remote awareness computed entirely from the last fetch.
+ * For every recently-moved remote branch with commits HEAD does not have,
+ * report who moved it, which files those commits touch, which of them are
+ * dirty in the local working tree right now, and whether merging the branch
+ * into HEAD would conflict (batched in-memory merge-tree). No network.
+ */
+export function TeammateRadar(repoPath: string, opts: $models.TeammateRadarOpts | null): $CancellablePromise<$models.TeammateRadarResult> {
+    return $Call.ByID(2582828638, repoPath, opts);
 }
 
 /**
@@ -627,4 +1114,34 @@ export function TimelapseData(repoPath: string, max: number | null): $Cancellabl
  */
 export function UndoCommit(repoPath: string): $CancellablePromise<$models.UndoCommitResult> {
     return $Call.ByID(4075680805, repoPath);
+}
+
+/**
+ * gitsvc: unstage
+ */
+export function Unstage(repoPath: string, files: string[] | null): $CancellablePromise<void> {
+    return $Call.ByID(2758442673, repoPath, files);
+}
+
+/**
+ * gitsvc: unstageAll
+ */
+export function UnstageAll(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(2036522824, repoPath);
+}
+
+/**
+ * gitsvc: version
+ */
+export function Version(): $CancellablePromise<string> {
+    return $Call.ByID(2137610950);
+}
+
+/**
+ * gitsvc: writeChangelogFile
+ * 
+ * Prepend a changelog block to CHANGELOG.md (created if absent).
+ */
+export function WriteChangelogFile(repoPath: string, markdown: string): $CancellablePromise<void> {
+    return $Call.ByID(3469894495, repoPath, markdown);
 }

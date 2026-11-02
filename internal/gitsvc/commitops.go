@@ -65,7 +65,7 @@ func (s *GitService) Reset(ctx context.Context, repoPath, ref, mode string) erro
 		// Only --hard destroys working-tree content; soft/mixed move
 		// refs/index and --keep carries local changes over or aborts.
 		if mode == "hard" {
-			bGuardSnapshot(ctx, repoPath)
+			aGuardSnapshot(ctx, repoPath)
 		}
 		_, err := bRaw(ctx, repoPath, "reset", "--"+mode, ref)
 		return err
