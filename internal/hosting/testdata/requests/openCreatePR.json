@@ -1,0 +1,100 @@
+[
+  {
+    "name": "github",
+    "channel": "hosting:openCreatePR",
+    "args": [
+      "https://github.com/acme/app.git",
+      "feat/a b",
+      "main"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [
+      "https://github.com/acme/app/compare/main...feat/a b?expand=1"
+    ],
+    "result": true
+  },
+  {
+    "name": "gitlab",
+    "channel": "hosting:openCreatePR",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      "feat/a b",
+      "main&x"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [
+      "https://gitlab.com/acme/platform/app/-/merge_requests/new?merge_request%5Bsource_branch%5D=feat%2Fa%20b&merge_request%5Btarget_branch%5D=main%26x"
+    ],
+    "result": true
+  },
+  {
+    "name": "bitbucket",
+    "channel": "hosting:openCreatePR",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      "feat/ä",
+      "main"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [
+      "https://bitbucket.org/team/app/pull-requests/new?source=feat%2F%C3%A4&dest=main"
+    ],
+    "result": true
+  },
+  {
+    "name": "azure",
+    "channel": "hosting:openCreatePR",
+    "args": [
+      "https://dev.azure.com/contoso/My%20Project/_git/app",
+      "feat/x",
+      "main"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [
+      "https://dev.azure.com/contoso/My%20Project/_git/app/pullrequestcreate?sourceRef=feat%2Fx&targetRef=main"
+    ],
+    "result": true
+  },
+  {
+    "name": "unknown",
+    "channel": "hosting:openCreatePR",
+    "args": [
+      "https://example.com/x/y.git",
+      "a",
+      "b"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": false
+  }
+]

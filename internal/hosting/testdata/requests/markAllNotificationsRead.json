@@ -1,0 +1,146 @@
+[
+  {
+    "name": "mark all read",
+    "channel": "hosting:markAllNotificationsRead",
+    "args": [
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "PUT",
+        "url": "https://api.github.com/notifications",
+        "status": 202
+      }
+    ],
+    "requests": [
+      {
+        "method": "PUT",
+        "url": "https://api.github.com/notifications",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"read\":true}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "network failure is swallowed",
+    "channel": "hosting:markAllNotificationsRead",
+    "args": [
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "PUT",
+        "url": "https://api.github.com/notifications",
+        "network": true
+      }
+    ],
+    "requests": [
+      {
+        "method": "PUT",
+        "url": "https://api.github.com/notifications",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"read\":true}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "error status is ignored",
+    "channel": "hosting:markAllNotificationsRead",
+    "args": [
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "PUT",
+        "url": "https://api.github.com/notifications",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "PUT",
+        "url": "https://api.github.com/notifications",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"read\":true}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "no credential is a no-op",
+    "channel": "hosting:markAllNotificationsRead",
+    "args": [
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "result": null
+  }
+]

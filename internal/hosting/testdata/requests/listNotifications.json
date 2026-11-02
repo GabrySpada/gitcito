@@ -1,0 +1,328 @@
+[
+  {
+    "name": "unread notifications",
+    "channel": "hosting:listNotifications",
+    "args": [
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/notifications?all=false&per_page=50",
+        "json": [
+          {
+            "id": "1",
+            "reason": "review_requested",
+            "unread": true,
+            "updated_at": "2024-03-01T12:00:00Z",
+            "subject": {
+              "title": "PR",
+              "url": "https://api.github.com/repos/acme/app/pulls/5",
+              "type": "PullRequest"
+            },
+            "repository": {
+              "full_name": "acme/app",
+              "html_url": "https://github.com/acme/app"
+            }
+          },
+          {
+            "id": "2",
+            "reason": "mention",
+            "unread": false,
+            "updated_at": "2024-03-02T12:00:00.500Z",
+            "subject": {
+              "title": "Issue",
+              "url": "https://api.github.com/repos/acme/app/issues/9",
+              "type": "Issue"
+            },
+            "repository": {
+              "full_name": "acme/app",
+              "html_url": "https://github.com/acme/app"
+            }
+          },
+          {
+            "id": "3",
+            "reason": "subscribed",
+            "unread": true,
+            "updated_at": "2024-03-03T00:00:00Z",
+            "subject": {
+              "title": "v1",
+              "url": "https://api.github.com/repos/acme/app/releases/123",
+              "type": "Release"
+            },
+            "repository": {
+              "full_name": "acme/app",
+              "html_url": "https://github.com/acme/app"
+            }
+          },
+          {
+            "id": "4",
+            "reason": "subscribed",
+            "unread": true,
+            "updated_at": "2024-03-04T00:00:00Z",
+            "subject": {
+              "title": "v2",
+              "url": null,
+              "type": "Release"
+            },
+            "repository": {
+              "full_name": "acme/app",
+              "html_url": "https://github.com/acme/app"
+            }
+          },
+          {
+            "id": "5",
+            "reason": "ci_activity",
+            "unread": true,
+            "updated_at": "2024-03-05T00:00:00Z",
+            "subject": {
+              "title": "CI",
+              "url": "https://api.github.com/repos/acme/app/commits/abc",
+              "type": "CheckSuite"
+            },
+            "repository": {
+              "full_name": "acme/app",
+              "html_url": "https://github.com/acme/app"
+            }
+          },
+          {
+            "id": "6",
+            "reason": "author",
+            "unread": true,
+            "updated_at": "not a date",
+            "subject": {
+              "title": "D",
+              "url": "https://api.github.com/repos/acme/app/discussions/4",
+              "type": "Discussion"
+            },
+            "repository": {
+              "full_name": "acme/app",
+              "html_url": "https://github.com/acme/app"
+            }
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/notifications?all=false&per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "id": "1",
+        "reason": "review_requested",
+        "title": "PR",
+        "type": "PullRequest",
+        "repoFullName": "acme/app",
+        "repoUrl": "https://github.com/acme/app",
+        "number": 5,
+        "unread": true,
+        "updatedAt": 1709294400,
+        "url": "https://github.com/acme/app/pull/5"
+      },
+      {
+        "id": "2",
+        "reason": "mention",
+        "title": "Issue",
+        "type": "Issue",
+        "repoFullName": "acme/app",
+        "repoUrl": "https://github.com/acme/app",
+        "number": 9,
+        "unread": false,
+        "updatedAt": 1709380800,
+        "url": "https://github.com/acme/app/issues/9"
+      },
+      {
+        "id": "3",
+        "reason": "subscribed",
+        "title": "v1",
+        "type": "Release",
+        "repoFullName": "acme/app",
+        "repoUrl": "https://github.com/acme/app",
+        "number": 123,
+        "unread": true,
+        "updatedAt": 1709424000,
+        "url": "https://github.com/acme/app"
+      },
+      {
+        "id": "4",
+        "reason": "subscribed",
+        "title": "v2",
+        "type": "Release",
+        "repoFullName": "acme/app",
+        "repoUrl": "https://github.com/acme/app",
+        "number": null,
+        "unread": true,
+        "updatedAt": 1709510400,
+        "url": "https://github.com/acme/app/releases"
+      },
+      {
+        "id": "5",
+        "reason": "ci_activity",
+        "title": "CI",
+        "type": "CheckSuite",
+        "repoFullName": "acme/app",
+        "repoUrl": "https://github.com/acme/app",
+        "number": null,
+        "unread": true,
+        "updatedAt": 1709596800,
+        "url": "https://github.com/acme/app"
+      },
+      {
+        "id": "6",
+        "reason": "author",
+        "title": "D",
+        "type": "Discussion",
+        "repoFullName": "acme/app",
+        "repoUrl": "https://github.com/acme/app",
+        "number": 4,
+        "unread": true,
+        "updatedAt": null,
+        "url": "https://github.com/acme/app"
+      }
+    ]
+  },
+  {
+    "name": "all notifications via borrowed credential",
+    "channel": "hosting:listNotifications",
+    "args": [
+      "",
+      true
+    ],
+    "helper": {
+      "fill": {
+        "github.com/": "protocol=https\nhost=x\nusername=octo\npassword=gho_poll\n"
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/notifications?all=true&per_page=50",
+        "json": []
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/notifications?all=true&per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "7b39192c4270b37e4a72cb18b5db20d214d20c8341e8292d5d9eb13ca1177429"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "no credential is empty",
+    "channel": "hosting:listNotifications",
+    "args": [
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "failure",
+    "channel": "hosting:listNotifications",
+    "args": [
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/notifications?all=false&per_page=50",
+        "status": 401,
+        "json": {
+          "message": "Requires authentication"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/notifications?all=false&per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Requires authentication"
+  }
+]

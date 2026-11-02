@@ -1,0 +1,451 @@
+[
+  {
+    "name": "github",
+    "channel": "hosting:prChecks",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "json": {
+          "head": {
+            "sha": "ffffffffffffffffffffffffffffffffffffffff"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/ffffffffffffffffffffffffffffffffffffffff/check-runs?per_page=100",
+        "json": {
+          "check_runs": [
+            {
+              "name": "a",
+              "status": "completed",
+              "conclusion": "success",
+              "html_url": "https://h/1",
+              "details_url": "https://d/1"
+            },
+            {
+              "name": "b",
+              "status": "in_progress",
+              "conclusion": null,
+              "html_url": null,
+              "details_url": "https://d/2"
+            },
+            {
+              "name": "c",
+              "status": "queued",
+              "conclusion": null,
+              "html_url": "",
+              "details_url": null
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/ffffffffffffffffffffffffffffffffffffffff/check-runs?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "name": "a",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://h/1"
+      },
+      {
+        "name": "b",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": "https://d/2"
+      },
+      {
+        "name": "c",
+        "status": "queued",
+        "conclusion": null,
+        "url": ""
+      }
+    ]
+  },
+  {
+    "name": "github check-runs failure is empty",
+    "channel": "hosting:prChecks",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "json": {
+          "head": {
+            "sha": "ffffffffffffffffffffffffffffffffffffffff"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/ffffffffffffffffffffffffffffffffffffffff/check-runs?per_page=100",
+        "status": 403,
+        "json": {
+          "message": "no"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/ffffffffffffffffffffffffffffffffffffffff/check-runs?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "github pull failure",
+    "channel": "hosting:prChecks",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "status": 404,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub API error (404)"
+  },
+  {
+    "name": "gitlab head pipeline jobs",
+    "channel": "hosting:prChecks",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "json": [
+          {
+            "id": 99
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/pipelines/99/jobs?per_page=100",
+        "json": [
+          {
+            "name": "build",
+            "status": "success",
+            "web_url": "https://gl/j/1"
+          },
+          {
+            "name": "test",
+            "status": "running",
+            "web_url": null
+          },
+          {
+            "name": "deploy",
+            "status": "manual"
+          },
+          {
+            "name": "new",
+            "status": "weird"
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/pipelines/99/jobs?per_page=100",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "name": "build",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://gl/j/1"
+      },
+      {
+        "name": "test",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": ""
+      },
+      {
+        "name": "deploy",
+        "status": "completed",
+        "conclusion": "action_required",
+        "url": ""
+      },
+      {
+        "name": "new",
+        "status": "completed",
+        "conclusion": "neutral",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "name": "gitlab no pipelines",
+    "channel": "hosting:prChecks",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "json": []
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "gitlab pipelines failure is empty",
+    "channel": "hosting:prChecks",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "gitlab jobs failure is empty",
+    "channel": "hosting:prChecks",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "json": [
+          {
+            "id": 5
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/pipelines/5/jobs?per_page=100",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/pipelines?per_page=1",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/pipelines/5/jobs?per_page=100",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": []
+  }
+]

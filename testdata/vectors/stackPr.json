@@ -1,0 +1,39 @@
+{
+  "mergeStackSection": [
+    {
+      "body": "My description.",
+      "section": "<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->",
+      "out": "My description.\n\n<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->"
+    },
+    {
+      "body": "My description.\n\n<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->",
+      "section": "<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- #2 `b`\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->",
+      "out": "My description.\n\n<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- #2 `b`\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->"
+    },
+    {
+      "body": "",
+      "section": "<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->",
+      "out": "<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->"
+    },
+    {
+      "body": "  \n\t",
+      "section": "<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->",
+      "out": "<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->"
+    },
+    {
+      "body": "text <!-- /gitcito-stack --> then <!-- gitcito-stack --> x",
+      "section": "<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->",
+      "out": "text <!-- /gitcito-stack --> then <!-- gitcito-stack --> x\n\n<!-- gitcito-stack -->\n---\n**Stack** (top → bottom, lands on `main`):\n- **#1 ◀** `a`\n\n_Managed by [Gitcito](https://myappdesk.github.io/gitcito/) — merge bottom-up._\n<!-- /gitcito-stack -->"
+    },
+    {
+      "body": "ünïcode — body\n\n",
+      "section": "section",
+      "out": "ünïcode — body\n\nsection"
+    },
+    {
+      "body": "a<!-- gitcito-stack -->b<!-- /gitcito-stack -->c<!-- /gitcito-stack -->",
+      "section": "S",
+      "out": "aSc<!-- /gitcito-stack -->"
+    }
+  ]
+}

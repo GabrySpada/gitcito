@@ -1,0 +1,91 @@
+[
+  {
+    "name": "close",
+    "channel": "hosting:setIssueState",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      9,
+      "closed"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/issues/9",
+        "json": {
+          "state": "closed"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/issues/9",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"state\":\"closed\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "failure",
+    "channel": "hosting:setIssueState",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      9,
+      "open"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/issues/9",
+        "status": 403,
+        "json": {
+          "message": "Forbidden"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/issues/9",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"state\":\"open\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Forbidden"
+  }
+]

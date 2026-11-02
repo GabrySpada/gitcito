@@ -1,0 +1,224 @@
+[
+  {
+    "name": "non-github remote",
+    "channel": "hosting:listReleases",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "gitlab",
+      "releases": []
+    }
+  },
+  {
+    "name": "unknown remote",
+    "channel": "hosting:listReleases",
+    "args": [
+      "https://example.com/x/y.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": null,
+      "releases": []
+    }
+  },
+  {
+    "name": "github releases",
+    "channel": "hosting:listReleases",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/releases?per_page=50",
+        "json": [
+          {
+            "id": 1,
+            "tag_name": "v1.0.0",
+            "name": "One",
+            "body": "notes",
+            "draft": false,
+            "prerelease": false,
+            "published_at": "2024-01-01T00:00:00Z",
+            "html_url": "https://github.com/acme/app/releases/tag/v1.0.0"
+          },
+          {
+            "id": 2,
+            "tag_name": "",
+            "name": null,
+            "body": null,
+            "draft": true,
+            "prerelease": true,
+            "published_at": null,
+            "html_url": "https://github.com/acme/app/releases/2"
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/releases?per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "github",
+      "releases": [
+        {
+          "id": 1,
+          "tag": "v1.0.0",
+          "name": "One",
+          "body": "notes",
+          "publishedAt": "2024-01-01T00:00:00Z",
+          "url": "https://github.com/acme/app/releases/tag/v1.0.0",
+          "prerelease": false,
+          "draft": false
+        },
+        {
+          "id": 2,
+          "tag": null,
+          "name": null,
+          "body": null,
+          "publishedAt": null,
+          "url": "https://github.com/acme/app/releases/2",
+          "prerelease": true,
+          "draft": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "github releases anonymous",
+    "channel": "hosting:listReleases",
+    "args": [
+      "https://github.com/acme/app.git",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/releases?per_page=50",
+        "json": []
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/releases?per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": null,
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=acme/app\n\n"
+      }
+    ],
+    "opened": [],
+    "result": {
+      "provider": "github",
+      "releases": []
+    }
+  },
+  {
+    "name": "github releases error",
+    "channel": "hosting:listReleases",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/releases?per_page=50",
+        "status": 403,
+        "json": {
+          "message": "Forbidden"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/releases?per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub API error (403)"
+  }
+]

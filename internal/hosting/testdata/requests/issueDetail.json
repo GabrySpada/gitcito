@@ -1,0 +1,727 @@
+[
+  {
+    "name": "full issue",
+    "channel": "hosting:issueDetail",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      9
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/9",
+        "json": {
+          "number": 9,
+          "title": "Nine",
+          "body": null,
+          "user": null,
+          "state": "open",
+          "html_url": "https://github.com/acme/app/issues/9",
+          "created_at": "2024-01-01T00:00:00Z",
+          "labels": [
+            {
+              "name": "bug"
+            },
+            "plain"
+          ],
+          "assignees": null,
+          "milestone": {
+            "title": "v1"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/9/comments?per_page=100",
+        "json": [
+          {
+            "user": {
+              "login": "a"
+            },
+            "body": "hi",
+            "created_at": "2024-01-02T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/9/timeline?per_page=100",
+        "json": [
+          {
+            "event": "labeled"
+          },
+          {
+            "event": "cross-referenced",
+            "source": {
+              "issue": {
+                "number": 11,
+                "title": "Fix",
+                "html_url": "https://github.com/acme/app/pull/11",
+                "state": "open",
+                "pull_request": {}
+              }
+            }
+          },
+          {
+            "event": "cross-referenced",
+            "source": {
+              "issue": {
+                "number": 12,
+                "title": "Other issue",
+                "html_url": "https://github.com/acme/app/issues/12",
+                "state": "open"
+              }
+            }
+          },
+          {
+            "event": "cross-referenced",
+            "source": {
+              "issue": {
+                "number": 13,
+                "title": "Old",
+                "html_url": "https://github.com/acme/app/pull/13",
+                "state": "closed",
+                "pull_request": {}
+              }
+            }
+          },
+          {
+            "event": "cross-referenced",
+            "source": {
+              "issue": {
+                "number": 11,
+                "title": "Fix (renamed)",
+                "html_url": "https://github.com/acme/app/pull/11",
+                "state": "closed",
+                "pull_request": {}
+              }
+            }
+          },
+          {
+            "event": "referenced",
+            "source": {
+              "issue": {
+                "number": 14,
+                "title": "X",
+                "html_url": "u",
+                "state": "open",
+                "pull_request": {}
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "json": {
+          "data": {
+            "repository": {
+              "issue": {
+                "projectItems": {
+                  "nodes": [
+                    {
+                      "project": {
+                        "title": "Roadmap"
+                      },
+                      "fieldValues": {
+                        "nodes": [
+                          {
+                            "__typename": "ProjectV2ItemFieldTextValue",
+                            "text": "Some text",
+                            "field": {
+                              "name": "Notes"
+                            }
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldNumberValue",
+                            "number": 3.5,
+                            "field": {
+                              "name": "Effort"
+                            }
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldNumberValue",
+                            "number": 0,
+                            "field": {
+                              "name": "Zero"
+                            }
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldDateValue",
+                            "date": "2024-05-01",
+                            "field": {
+                              "name": "Start"
+                            }
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldSingleSelectValue",
+                            "name": "High",
+                            "field": {
+                              "name": "Priority"
+                            }
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldIterationValue",
+                            "title": "Sprint 3",
+                            "field": {
+                              "name": "Iteration"
+                            }
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldTextValue",
+                            "text": "",
+                            "field": {
+                              "name": "Empty"
+                            }
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldRepositoryValue"
+                          },
+                          {
+                            "__typename": "ProjectV2ItemFieldTextValue",
+                            "text": null,
+                            "name": "fallback",
+                            "field": {
+                              "name": "Fallback"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "project": null,
+                      "fieldValues": {
+                        "nodes": [
+                          {
+                            "text": "x",
+                            "field": {
+                              "name": "F"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "project": {
+                        "title": "Empty"
+                      },
+                      "fieldValues": {
+                        "nodes": []
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/9",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/9/comments?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/9/timeline?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"query\":\"query($owner:String!,$repo:String!,$number:Int!){\\n    repository(owner:$owner,name:$repo){\\n      issue(number:$number){\\n        projectItems(first:10){ nodes{\\n          project{ title }\\n          fieldValues(first:30){ nodes{\\n            __typename\\n            ... on ProjectV2ItemFieldTextValue { text field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldNumberValue { number field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldDateValue { date field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldSingleSelectValue { name field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldIterationValue { title field{ ... on ProjectV2FieldCommon { name } } }\\n          } }\\n        } }\\n      }\\n    }\\n  }\",\"variables\":{\"owner\":\"acme\",\"repo\":\"app\",\"number\":9}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "number": 9,
+      "title": "Nine",
+      "body": "",
+      "author": "unknown",
+      "state": "open",
+      "url": "https://github.com/acme/app/issues/9",
+      "labels": [
+        "bug",
+        "plain"
+      ],
+      "assignees": [],
+      "milestone": "v1",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "comments": [
+        {
+          "author": "a",
+          "body": "hi",
+          "createdAt": "2024-01-02T00:00:00Z"
+        }
+      ],
+      "linkedPrs": [
+        {
+          "number": 11,
+          "title": "Fix (renamed)",
+          "url": "https://github.com/acme/app/pull/11",
+          "state": "closed"
+        },
+        {
+          "number": 13,
+          "title": "Old",
+          "url": "https://github.com/acme/app/pull/13",
+          "state": "closed"
+        }
+      ],
+      "projectFields": [
+        {
+          "project": "Roadmap",
+          "fields": [
+            {
+              "name": "Notes",
+              "value": "Some text"
+            },
+            {
+              "name": "Effort",
+              "value": "3.5"
+            },
+            {
+              "name": "Zero",
+              "value": "0"
+            },
+            {
+              "name": "Start",
+              "value": "2024-05-01"
+            },
+            {
+              "name": "Priority",
+              "value": "High"
+            },
+            {
+              "name": "Iteration",
+              "value": "Sprint 3"
+            },
+            {
+              "name": "Fallback",
+              "value": "fallback"
+            }
+          ]
+        },
+        {
+          "project": "Project",
+          "fields": [
+            {
+              "name": "F",
+              "value": "x"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "closed issue, side calls failing",
+    "channel": "hosting:issueDetail",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      10
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/10",
+        "json": {
+          "number": 10,
+          "title": "Ten",
+          "body": "b",
+          "user": {
+            "login": "me"
+          },
+          "state": "closed",
+          "html_url": "https://github.com/acme/app/issues/10",
+          "created_at": "2024-01-01T00:00:00Z",
+          "labels": [],
+          "assignees": [
+            {
+              "login": "x"
+            },
+            {
+              "login": "y"
+            }
+          ],
+          "milestone": null
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/10/comments?per_page=100",
+        "json": []
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/10/timeline?per_page=100",
+        "status": 500,
+        "raw": ""
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "status": 401,
+        "json": {
+          "message": "Bad credentials"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/10",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/10/comments?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/10/timeline?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"query\":\"query($owner:String!,$repo:String!,$number:Int!){\\n    repository(owner:$owner,name:$repo){\\n      issue(number:$number){\\n        projectItems(first:10){ nodes{\\n          project{ title }\\n          fieldValues(first:30){ nodes{\\n            __typename\\n            ... on ProjectV2ItemFieldTextValue { text field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldNumberValue { number field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldDateValue { date field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldSingleSelectValue { name field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldIterationValue { title field{ ... on ProjectV2FieldCommon { name } } }\\n          } }\\n        } }\\n      }\\n    }\\n  }\",\"variables\":{\"owner\":\"acme\",\"repo\":\"app\",\"number\":10}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "number": 10,
+      "title": "Ten",
+      "body": "b",
+      "author": "me",
+      "state": "closed",
+      "url": "https://github.com/acme/app/issues/10",
+      "labels": [],
+      "assignees": [
+        "x",
+        "y"
+      ],
+      "milestone": null,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "comments": [],
+      "linkedPrs": [],
+      "projectFields": []
+    }
+  },
+  {
+    "name": "graphql errors are empty",
+    "channel": "hosting:issueDetail",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      11
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/11",
+        "json": {
+          "number": 11,
+          "title": "E",
+          "body": "",
+          "user": {
+            "login": "me"
+          },
+          "state": "open",
+          "html_url": "u",
+          "created_at": "c",
+          "labels": [],
+          "assignees": [],
+          "milestone": null
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/11/comments?per_page=100",
+        "json": []
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/11/timeline?per_page=100",
+        "json": []
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "json": {
+          "errors": [
+            {
+              "message": "INSUFFICIENT_SCOPES"
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/11",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/11/comments?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/11/timeline?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"query\":\"query($owner:String!,$repo:String!,$number:Int!){\\n    repository(owner:$owner,name:$repo){\\n      issue(number:$number){\\n        projectItems(first:10){ nodes{\\n          project{ title }\\n          fieldValues(first:30){ nodes{\\n            __typename\\n            ... on ProjectV2ItemFieldTextValue { text field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldNumberValue { number field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldDateValue { date field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldSingleSelectValue { name field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldIterationValue { title field{ ... on ProjectV2FieldCommon { name } } }\\n          } }\\n        } }\\n      }\\n    }\\n  }\",\"variables\":{\"owner\":\"acme\",\"repo\":\"app\",\"number\":11}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "number": 11,
+      "title": "E",
+      "body": "",
+      "author": "me",
+      "state": "open",
+      "url": "u",
+      "labels": [],
+      "assignees": [],
+      "milestone": null,
+      "createdAt": "c",
+      "comments": [],
+      "linkedPrs": [],
+      "projectFields": []
+    }
+  },
+  {
+    "name": "missing issue",
+    "channel": "hosting:issueDetail",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      12
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/12",
+        "status": 404,
+        "json": {
+          "message": "Not Found"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/12/comments?per_page=100",
+        "status": 404,
+        "json": {
+          "message": "Not Found"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/12/timeline?per_page=100",
+        "json": []
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "network": true
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/12",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/12/comments?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues/12/timeline?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/graphql",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"query\":\"query($owner:String!,$repo:String!,$number:Int!){\\n    repository(owner:$owner,name:$repo){\\n      issue(number:$number){\\n        projectItems(first:10){ nodes{\\n          project{ title }\\n          fieldValues(first:30){ nodes{\\n            __typename\\n            ... on ProjectV2ItemFieldTextValue { text field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldNumberValue { number field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldDateValue { date field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldSingleSelectValue { name field{ ... on ProjectV2FieldCommon { name } } }\\n            ... on ProjectV2ItemFieldIterationValue { title field{ ... on ProjectV2FieldCommon { name } } }\\n          } }\\n        } }\\n      }\\n    }\\n  }\",\"variables\":{\"owner\":\"acme\",\"repo\":\"app\",\"number\":12}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Not Found"
+  }
+]

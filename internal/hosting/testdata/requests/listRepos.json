@@ -1,0 +1,1371 @@
+[
+  {
+    "name": "github typed token",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      "  ghp_vectorGithubToken0001  "
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "json": [
+          {
+            "full_name": "acme/app",
+            "clone_url": "https://github.com/acme/app.git",
+            "private": true,
+            "description": "App",
+            "owner": {
+              "avatar_url": "https://a/1"
+            }
+          },
+          {
+            "full_name": "acme/lib",
+            "clone_url": "https://github.com/acme/lib.git",
+            "private": false,
+            "description": null,
+            "owner": null
+          },
+          {
+            "full_name": "acme/doc",
+            "clone_url": "https://github.com/acme/doc.git",
+            "private": false,
+            "description": "",
+            "owner": {
+              "avatar_url": "https://a/2"
+            }
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "name": "acme/app",
+        "url": "https://github.com/acme/app.git",
+        "private": true,
+        "description": "App",
+        "avatarUrl": "https://a/1"
+      },
+      {
+        "name": "acme/lib",
+        "url": "https://github.com/acme/lib.git",
+        "private": false
+      },
+      {
+        "name": "acme/doc",
+        "url": "https://github.com/acme/doc.git",
+        "private": false,
+        "description": "",
+        "avatarUrl": "https://a/2"
+      }
+    ]
+  },
+  {
+    "name": "github error status",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "status": 500,
+        "json": {
+          "message": "boom"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub API error (500)"
+  },
+  {
+    "name": "github borrowed credential from git",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      ""
+    ],
+    "helper": {
+      "fill": {
+        "github.com/": "protocol=https\nhost=x\nusername=octo\npassword=gho_helperToken\n"
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "json": []
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "1ccfe8cdb38628b2488784e60ef7b025b26eb9a6d02e82ff702c0017f35eb52d"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "github no credential, gh missing",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      },
+      {
+        "file": "gh",
+        "args": [
+          "auth",
+          "status",
+          "--hostname",
+          "github.com"
+        ],
+        "env": {},
+        "timeout": 10000,
+        "input": null
+      }
+    ],
+    "opened": [],
+    "error": "No GitHub credential for github.com. GitHub CLI (gh) is not installed. Install gh and run `gh auth login`, or add a personal access token in Settings → Integrations."
+  },
+  {
+    "name": "github no credential, gh signed out",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "signed-out"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      },
+      {
+        "file": "gh",
+        "args": [
+          "auth",
+          "status",
+          "--hostname",
+          "github.com"
+        ],
+        "env": {},
+        "timeout": 10000,
+        "input": null
+      }
+    ],
+    "opened": [],
+    "error": "No GitHub credential for github.com. GitHub CLI (gh) is installed but not authenticated. Run `gh auth login`, or add a personal access token in Settings → Integrations."
+  },
+  {
+    "name": "github no credential, gh authenticated",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      " "
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "authenticated"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      },
+      {
+        "file": "gh",
+        "args": [
+          "auth",
+          "status",
+          "--hostname",
+          "github.com"
+        ],
+        "env": {},
+        "timeout": 10000,
+        "input": null
+      }
+    ],
+    "opened": [],
+    "error": "No GitHub credential for github.com. GitHub CLI (gh) is authenticated, but Git is not configured to provide that credential to Gitcito. Run `gh auth setup-git`, then retry, or add a personal access token in Settings → Integrations."
+  },
+  {
+    "name": "github no credential, gh timed out",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "unknown"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      },
+      {
+        "file": "gh",
+        "args": [
+          "auth",
+          "status",
+          "--hostname",
+          "github.com"
+        ],
+        "env": {},
+        "timeout": 10000,
+        "input": null
+      }
+    ],
+    "opened": [],
+    "error": "No GitHub credential for github.com, and checking the GitHub CLI (gh) timed out — it may be offline. Sign in with git (any credential helper), run `gh auth login` then `gh auth setup-git`, or add a personal access token in Settings → Integrations."
+  },
+  {
+    "name": "github network failure",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "network": true
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "fetch failed"
+  },
+  {
+    "name": "github non-json 200 body",
+    "channel": "hosting:listRepos",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "raw": "<!DOCTYPE html><html><body>proxy</body></html>"
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner,collaborator,organization_member",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
+  },
+  {
+    "name": "gitlab typed token",
+    "channel": "hosting:listRepos",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects?membership=true&per_page=100&order_by=last_activity_at&simple=true",
+        "json": [
+          {
+            "path_with_namespace": "acme/app",
+            "http_url_to_repo": "https://gitlab.com/acme/app.git",
+            "visibility": "private",
+            "description": "d",
+            "avatar_url": null,
+            "namespace": {
+              "avatar_url": "https://ns/1"
+            }
+          },
+          {
+            "path_with_namespace": "acme/pub",
+            "http_url_to_repo": "https://gitlab.com/acme/pub.git",
+            "visibility": "public",
+            "description": null,
+            "avatar_url": "https://p/2"
+          },
+          {
+            "path_with_namespace": "acme/int",
+            "http_url_to_repo": "https://gitlab.com/acme/int.git",
+            "visibility": "internal",
+            "description": "",
+            "avatar_url": null
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects?membership=true&per_page=100&order_by=last_activity_at&simple=true",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "name": "acme/app",
+        "url": "https://gitlab.com/acme/app.git",
+        "private": true,
+        "description": "d",
+        "avatarUrl": "https://ns/1"
+      },
+      {
+        "name": "acme/pub",
+        "url": "https://gitlab.com/acme/pub.git",
+        "private": false,
+        "avatarUrl": "https://p/2"
+      },
+      {
+        "name": "acme/int",
+        "url": "https://gitlab.com/acme/int.git",
+        "private": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "gitlab borrowed credential is bearer",
+    "channel": "hosting:listRepos",
+    "args": [
+      "gitlab",
+      null
+    ],
+    "helper": {
+      "fill": {
+        "gitlab.com": "protocol=https\nhost=x\nusername=oauth2\npassword=gl-oauth-helper\n"
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects?membership=true&per_page=100&order_by=last_activity_at&simple=true",
+        "json": []
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects?membership=true&per_page=100&order_by=last_activity_at&simple=true",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "629178d0179347182c29e0d0892721d8b88f4c04f8602f29a5bb6d2a4319db47"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=gitlab.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "gitlab error status",
+    "channel": "hosting:listRepos",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects?membership=true&per_page=100&order_by=last_activity_at&simple=true",
+        "status": 401,
+        "json": {
+          "message": "401 Unauthorized"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects?membership=true&per_page=100&order_by=last_activity_at&simple=true",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab API error (401)"
+  },
+  {
+    "name": "gitlab no credential",
+    "channel": "hosting:listRepos",
+    "args": [
+      "gitlab",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=gitlab.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No gitlab credential for gitlab.com. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  },
+  {
+    "name": "bitbucket app password is basic",
+    "channel": "hosting:listRepos",
+    "args": [
+      "bitbucket",
+      "bbuser:vector-app-password"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories?role=member&pagelen=100&sort=-updated_on",
+        "json": {
+          "values": [
+            {
+              "full_name": "team/app",
+              "is_private": true,
+              "description": "",
+              "links": {
+                "clone": [
+                  {
+                    "name": "ssh",
+                    "href": "git@bitbucket.org:team/app.git"
+                  },
+                  {
+                    "name": "https",
+                    "href": "https://bitbucket.org/team/app.git"
+                  }
+                ],
+                "avatar": {
+                  "href": "https://bb/avatar"
+                }
+              }
+            },
+            {
+              "full_name": "team/ssh-only",
+              "is_private": false,
+              "description": "only ssh",
+              "links": {
+                "clone": [
+                  {
+                    "name": "ssh",
+                    "href": "git@bitbucket.org:team/ssh-only.git"
+                  }
+                ]
+              }
+            },
+            {
+              "full_name": "team/none",
+              "is_private": false,
+              "description": "x",
+              "links": {
+                "clone": []
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories?role=member&pagelen=100&sort=-updated_on",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "name": "team/app",
+        "url": "https://bitbucket.org/team/app.git",
+        "private": true,
+        "avatarUrl": "https://bb/avatar"
+      },
+      {
+        "name": "team/ssh-only",
+        "url": "git@bitbucket.org:team/ssh-only.git",
+        "private": false,
+        "description": "only ssh"
+      },
+      {
+        "name": "team/none",
+        "url": "",
+        "private": false,
+        "description": "x"
+      }
+    ]
+  },
+  {
+    "name": "bitbucket access token is bearer",
+    "channel": "hosting:listRepos",
+    "args": [
+      "bitbucket",
+      "vector-bitbucket-access-token"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories?role=member&pagelen=100&sort=-updated_on",
+        "status": 403,
+        "json": {
+          "error": {
+            "message": "nope"
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories?role=member&pagelen=100&sort=-updated_on",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "06dbd92f36ea972520f3fbd5e4980bf04b228ae494c048b0e0c9438192439401"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Bitbucket API error (403)"
+  },
+  {
+    "name": "bitbucket borrowed credential uses username",
+    "channel": "hosting:listRepos",
+    "args": [
+      "bitbucket",
+      ""
+    ],
+    "helper": {
+      "fill": {
+        "bitbucket.org": "protocol=https\nhost=x\nusername=bbuser\npassword=bb-helper-secret\n"
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories?role=member&pagelen=100&sort=-updated_on",
+        "json": {
+          "values": []
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories?role=member&pagelen=100&sort=-updated_on",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "766c83a511eda36319c9db798e90719ed83e97d203ad4a6c4651817a5faf794a"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=bitbucket.org\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "bitbucket no credential",
+    "channel": "hosting:listRepos",
+    "args": [
+      "bitbucket",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=bitbucket.org\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No bitbucket credential for bitbucket.org. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  },
+  {
+    "name": "azure organization repositories",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      " contoso "
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "json": {
+          "value": [
+            {
+              "name": "app",
+              "remoteUrl": "https://contoso@dev.azure.com/contoso/Proj/_git/app",
+              "project": {
+                "name": "Proj"
+              }
+            },
+            {
+              "name": "lib",
+              "remoteUrl": "https://contoso@dev.azure.com/contoso/Other/_git/lib",
+              "project": {
+                "name": "Other"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "name": "Proj/app",
+        "url": "https://contoso@dev.azure.com/contoso/Proj/_git/app"
+      },
+      {
+        "name": "Other/lib",
+        "url": "https://contoso@dev.azure.com/contoso/Other/_git/lib"
+      }
+    ]
+  },
+  {
+    "name": "azure without organization",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "  "
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "Enter your Azure DevOps organization."
+  },
+  {
+    "name": "azure no credential",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No azure credential for dev.azure.com. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  },
+  {
+    "name": "azure sign-in page with typed pat",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "status": 203,
+        "headers": {
+          "content-type": "text/html"
+        },
+        "raw": "<!DOCTYPE html><html><body>Sign In</body></html>"
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Azure DevOps rejected the credential (401). Check that it is valid, not expired, and has at least User Profile (read) or Code (read) scope — or set an organization so it can be checked against that org directly."
+  },
+  {
+    "name": "azure jwt typed token is bearer",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZG8ifQ.c2ln",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "status": 404,
+        "json": {
+          "message": "TF200016: The following project does not exist"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "27c87fb06d164d6a4bc44c8e2c6d8c2549790079061f96b21f876aa98e8bc281"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Azure DevOps: TF200016: The following project does not exist"
+  },
+  {
+    "name": "azure borrowed credential retried after 401",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {
+        "dev.azure.com/contoso": [
+          "protocol=https\nhost=x\nusername=me\npassword=stale-helper-token\n",
+          "protocol=https\nhost=x\nusername=me\npassword=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZG8ifQ.c2ln\n"
+        ]
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "status": 401,
+        "raw": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "json": {
+          "value": [
+            {
+              "name": "app",
+              "remoteUrl": "https://dev.azure.com/contoso/P/_git/app",
+              "project": {
+                "name": "P"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "6787e0e211c00b37c047783d26bf6d34d5631e04290b72063ce74256c3480162"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "27c87fb06d164d6a4bc44c8e2c6d8c2549790079061f96b21f876aa98e8bc281"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\n\n"
+      },
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "reject"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\nusername=me\npassword=<sha256:d6f54e79cab01b5d54d9227a8e43b5d70e7cb073e7034bd6587a5f2378def333>\n\n"
+      },
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\n\n"
+      }
+    ],
+    "opened": [],
+    "result": [
+      {
+        "name": "P/app",
+        "url": "https://dev.azure.com/contoso/P/_git/app"
+      }
+    ]
+  },
+  {
+    "name": "azure borrowed credential rejected twice",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {
+        "dev.azure.com/contoso": [
+          "protocol=https\nhost=x\nusername=me\npassword=stale-1\n",
+          null
+        ]
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "status": 403,
+        "raw": "denied"
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "9e93a287b0a804ef9ac62c7b0a5b836a1f4332a69cf5c9b6a48ab1f894a7b92f"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\n\n"
+      },
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "reject"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\nusername=me\npassword=<sha256:dfef60cfc4ae378396e982ac32e29ab93d05b276f7ba4672df8a9e720f69ec73>\n\n"
+      },
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "Azure DevOps rejected the credential (403). Check that it is valid, not expired, and has at least User Profile (read) or Code (read) scope — or set an organization so it can be checked against that org directly."
+  },
+  {
+    "name": "azure server error not retried",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {
+        "dev.azure.com/contoso": "protocol=https\nhost=x\nusername=me\npassword=helper-ok\n"
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "status": 500,
+        "raw": "upstream exploded"
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "77f1a250249a1de8aea3d7238e31c9aeb78634afa26fe641cf885b5d005e7453"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "Azure DevOps API error (500)"
+  },
+  {
+    "name": "azure unparseable json",
+    "channel": "hosting:listRepos",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "raw": "{\"value\": ["
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Azure DevOps API error (200)"
+  }
+]

@@ -1,0 +1,258 @@
+[
+  {
+    "name": "github",
+    "channel": "hosting:prFiles",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/files?per_page=300",
+        "json": [
+          {
+            "filename": "a.ts",
+            "status": "modified",
+            "additions": 3,
+            "deletions": 1,
+            "patch": "..."
+          },
+          {
+            "filename": "b.ts",
+            "status": "added",
+            "additions": 10,
+            "deletions": 0
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/files?per_page=300",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "filename": "a.ts",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 1
+      },
+      {
+        "filename": "b.ts",
+        "status": "added",
+        "additions": 10,
+        "deletions": 0
+      }
+    ]
+  },
+  {
+    "name": "github failure is empty",
+    "channel": "hosting:prFiles",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/files?per_page=300",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/files?per_page=300",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": []
+  },
+  {
+    "name": "gitlab",
+    "channel": "hosting:prFiles",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/diffs?per_page=100",
+        "json": [
+          {
+            "old_path": "a",
+            "new_path": "a",
+            "new_file": false,
+            "renamed_file": false,
+            "deleted_file": false,
+            "diff": "@@ -1 +1 @@\n-x\n+y\n+z\n"
+          },
+          {
+            "old_path": "b",
+            "new_path": "b",
+            "new_file": true,
+            "renamed_file": false,
+            "deleted_file": false,
+            "diff": "+n\n"
+          },
+          {
+            "old_path": "c",
+            "new_path": "",
+            "new_file": false,
+            "renamed_file": false,
+            "deleted_file": true,
+            "diff": "-gone\n--- not header? no\n"
+          },
+          {
+            "old_path": "d",
+            "new_path": "e",
+            "new_file": false,
+            "renamed_file": true,
+            "deleted_file": false,
+            "diff": ""
+          },
+          {
+            "old_path": "f",
+            "new_path": "f",
+            "new_file": false,
+            "renamed_file": false,
+            "deleted_file": false,
+            "diff": null
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/diffs?per_page=100",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "filename": "a",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 1
+      },
+      {
+        "filename": "b",
+        "status": "added",
+        "additions": 1,
+        "deletions": 0
+      },
+      {
+        "filename": "c",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 1
+      },
+      {
+        "filename": "e",
+        "status": "renamed",
+        "additions": 0,
+        "deletions": 0
+      },
+      {
+        "filename": "f",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0
+      }
+    ]
+  },
+  {
+    "name": "gitlab failure is empty",
+    "channel": "hosting:prFiles",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/diffs?per_page=100",
+        "network": true
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/diffs?per_page=100",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": []
+  }
+]

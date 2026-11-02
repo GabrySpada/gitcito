@@ -1,0 +1,191 @@
+[
+  {
+    "name": "issues without pull requests",
+    "channel": "hosting:listIssues",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues?state=open&per_page=50",
+        "json": [
+          {
+            "number": 1,
+            "title": "Bug",
+            "user": {
+              "login": "a"
+            },
+            "state": "open",
+            "html_url": "https://github.com/acme/app/issues/1",
+            "comments": 2
+          },
+          {
+            "number": 2,
+            "title": "PR",
+            "user": {
+              "login": "b"
+            },
+            "state": "open",
+            "html_url": "https://github.com/acme/app/pull/2",
+            "comments": 0,
+            "pull_request": {}
+          },
+          {
+            "number": 3,
+            "title": "Closed",
+            "user": null,
+            "state": "closed",
+            "html_url": "https://github.com/acme/app/issues/3",
+            "comments": 0
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues?state=open&per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "github",
+      "issues": [
+        {
+          "number": 1,
+          "title": "Bug",
+          "author": "a",
+          "state": "open",
+          "url": "https://github.com/acme/app/issues/1",
+          "comments": 2
+        },
+        {
+          "number": 3,
+          "title": "Closed",
+          "author": "unknown",
+          "state": "closed",
+          "url": "https://github.com/acme/app/issues/3",
+          "comments": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "non-github remote",
+    "channel": "hosting:listIssues",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "bitbucket",
+      "issues": []
+    }
+  },
+  {
+    "name": "no credential is empty",
+    "channel": "hosting:listIssues",
+    "args": [
+      "https://github.com/acme/app.git",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=acme/app\n\n"
+      }
+    ],
+    "opened": [],
+    "result": {
+      "provider": "github",
+      "issues": []
+    }
+  },
+  {
+    "name": "failure",
+    "channel": "hosting:listIssues",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues?state=open&per_page=50",
+        "status": 410,
+        "json": {
+          "message": "Issues are disabled for this repo"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues?state=open&per_page=50",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Issues are disabled for this repo"
+  }
+]

@@ -1,0 +1,1213 @@
+[
+  {
+    "name": "unknown remote",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://example.com/x/y.git",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": null,
+      "prs": []
+    }
+  },
+  {
+    "name": "gitlab without credential is empty",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=gitlab.com\npath=acme/platform/app\n\n"
+      }
+    ],
+    "opened": [],
+    "result": {
+      "provider": "gitlab",
+      "prs": []
+    }
+  },
+  {
+    "name": "gitlab merge requests",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01",
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests?state=opened&per_page=30",
+        "json": [
+          {
+            "iid": 3,
+            "title": "MR 3",
+            "author": {
+              "username": "gl"
+            },
+            "source_branch": "f",
+            "target_branch": "main",
+            "web_url": "https://gitlab.com/x/-/merge_requests/3",
+            "draft": true
+          },
+          {
+            "iid": 4,
+            "title": "MR 4",
+            "author": null,
+            "source_branch": "g",
+            "target_branch": "main",
+            "web_url": "https://gitlab.com/x/-/merge_requests/4",
+            "work_in_progress": true
+          },
+          {
+            "iid": 5,
+            "title": "MR 5",
+            "author": {
+              "username": "z"
+            },
+            "source_branch": "h",
+            "target_branch": "dev",
+            "web_url": "https://gitlab.com/x/-/merge_requests/5"
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests?state=opened&per_page=30",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "gitlab",
+      "prs": [
+        {
+          "id": 3,
+          "title": "MR 3",
+          "author": "gl",
+          "sourceBranch": "f",
+          "targetBranch": "main",
+          "url": "https://gitlab.com/x/-/merge_requests/3",
+          "isDraft": true
+        },
+        {
+          "id": 4,
+          "title": "MR 4",
+          "author": "unknown",
+          "sourceBranch": "g",
+          "targetBranch": "main",
+          "url": "https://gitlab.com/x/-/merge_requests/4",
+          "isDraft": true
+        },
+        {
+          "id": 5,
+          "title": "MR 5",
+          "author": "z",
+          "sourceBranch": "h",
+          "targetBranch": "dev",
+          "url": "https://gitlab.com/x/-/merge_requests/5",
+          "isDraft": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "gitlab error",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests?state=opened&per_page=30",
+        "status": 404,
+        "json": {
+          "message": "404 Project Not Found"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests?state=opened&per_page=30",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab API error (404)"
+  },
+  {
+    "name": "bitbucket pull requests",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      {
+        "bitbucket": "bbuser:vector-app-password"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests?state=OPEN&pagelen=30",
+        "json": {
+          "values": [
+            {
+              "id": 9,
+              "title": "BB 9",
+              "author": {
+                "display_name": "Ann"
+              },
+              "source": {
+                "branch": {
+                  "name": "f"
+                }
+              },
+              "destination": {
+                "branch": {
+                  "name": "main"
+                }
+              },
+              "links": {
+                "html": {
+                  "href": "https://bitbucket.org/team/app/pull-requests/9"
+                }
+              }
+            },
+            {
+              "id": 10,
+              "title": "BB 10",
+              "author": null,
+              "source": null,
+              "destination": {
+                "branch": null
+              },
+              "links": {
+                "html": {
+                  "href": "https://bitbucket.org/team/app/pull-requests/10"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests?state=OPEN&pagelen=30",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "bitbucket",
+      "prs": [
+        {
+          "id": 9,
+          "title": "BB 9",
+          "author": "Ann",
+          "sourceBranch": "f",
+          "targetBranch": "main",
+          "url": "https://bitbucket.org/team/app/pull-requests/9",
+          "isDraft": false
+        },
+        {
+          "id": 10,
+          "title": "BB 10",
+          "author": "unknown",
+          "sourceBranch": "",
+          "targetBranch": "",
+          "url": "https://bitbucket.org/team/app/pull-requests/10",
+          "isDraft": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "bitbucket error",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      {
+        "bitbucket": "vector-bitbucket-access-token"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests?state=OPEN&pagelen=30",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests?state=OPEN&pagelen=30",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "06dbd92f36ea972520f3fbd5e4980bf04b228ae494c048b0e0c9438192439401"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Bitbucket API error (500)"
+  },
+  {
+    "name": "bitbucket without credential is empty",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=bitbucket.org\npath=team/app\n\n"
+      }
+    ],
+    "opened": [],
+    "result": {
+      "provider": "bitbucket",
+      "prs": []
+    }
+  },
+  {
+    "name": "github anonymous skips stacks and checks",
+    "channel": "hosting:listPRs",
+    "args": [
+      "git@github.com:acme/app.git",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "json": [
+          {
+            "number": 1,
+            "title": "PR 1",
+            "draft": true,
+            "html_url": "https://github.com/acme/app/pull/1",
+            "user": {
+              "login": "dev1"
+            },
+            "head": {
+              "ref": "feat-1",
+              "sha": "1111111111111111111111111111111111111111"
+            },
+            "base": {
+              "ref": "main"
+            }
+          },
+          {
+            "number": 2,
+            "title": "PR 2",
+            "draft": false,
+            "html_url": "https://github.com/acme/app/pull/2",
+            "user": {
+              "login": "dev2"
+            },
+            "head": {
+              "ref": "feat-2",
+              "sha": "2222222222222222222222222222222222222222"
+            },
+            "base": {
+              "ref": "main"
+            },
+            "stack": {
+              "number": 7
+            }
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": null,
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "github",
+      "prs": [
+        {
+          "id": 1,
+          "title": "PR 1",
+          "author": "dev1",
+          "sourceBranch": "feat-1",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/1",
+          "isDraft": true,
+          "state": "open",
+          "headSha": "1111111111111111111111111111111111111111"
+        },
+        {
+          "id": 2,
+          "title": "PR 2",
+          "author": "dev2",
+          "sourceBranch": "feat-2",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/2",
+          "isDraft": false,
+          "stackNumber": 7,
+          "state": "open",
+          "headSha": "2222222222222222222222222222222222222222"
+        }
+      ]
+    }
+  },
+  {
+    "name": "github with stacks and checks",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "json": [
+          {
+            "number": 1,
+            "title": "PR 1",
+            "draft": false,
+            "html_url": "https://github.com/acme/app/pull/1",
+            "user": {
+              "login": "dev1"
+            },
+            "head": {
+              "ref": "feat-1",
+              "sha": "1111111111111111111111111111111111111111"
+            },
+            "base": {
+              "ref": "main"
+            }
+          },
+          {
+            "number": 2,
+            "title": "PR 2",
+            "draft": false,
+            "html_url": "https://github.com/acme/app/pull/2",
+            "user": {
+              "login": "dev2"
+            },
+            "head": {
+              "ref": "feat-2",
+              "sha": "2222222222222222222222222222222222222222"
+            },
+            "base": {
+              "ref": "main"
+            },
+            "stack": {
+              "number": 7
+            }
+          },
+          {
+            "number": 3,
+            "title": "PR 3",
+            "draft": false,
+            "html_url": "https://github.com/acme/app/pull/3",
+            "user": {
+              "login": "dev3"
+            },
+            "head": {
+              "ref": "feat-3",
+              "sha": "3333333333333333333333333333333333333333"
+            },
+            "base": {
+              "ref": "main"
+            },
+            "stack": {
+              "number": 7
+            }
+          },
+          {
+            "number": 4,
+            "title": "PR 4",
+            "draft": false,
+            "html_url": "https://github.com/acme/app/pull/4",
+            "user": {
+              "login": "dev4"
+            },
+            "head": {
+              "ref": "feat-4",
+              "sha": "4444444444444444444444444444444444444444"
+            },
+            "base": {
+              "ref": "main"
+            },
+            "stack": null
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/7",
+        "json": {
+          "pull_requests": [
+            {
+              "number": 2
+            },
+            {
+              "number": 5,
+              "title": "Bottom",
+              "html_url": "https://github.com/acme/app/pull/5",
+              "draft": false,
+              "state": "closed",
+              "merged_at": "2024-01-01T00:00:00Z",
+              "user": {
+                "login": "dev5"
+              },
+              "head": {
+                "ref": "feat-5",
+                "sha": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+              },
+              "base": {
+                "ref": "main"
+              }
+            },
+            {
+              "number": 6,
+              "state": "closed",
+              "merged_at": null
+            },
+            {
+              "number": 0
+            },
+            null,
+            {
+              "number": 8,
+              "state": "open"
+            }
+          ]
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/1111111111111111111111111111111111111111/check-runs?per_page=30",
+        "json": {
+          "check_runs": [
+            {
+              "name": "build",
+              "status": "completed",
+              "conclusion": "success",
+              "html_url": "https://ci/1"
+            },
+            {
+              "name": "lint",
+              "status": "completed",
+              "conclusion": "failure",
+              "html_url": "https://ci/2"
+            },
+            {
+              "name": "e2e",
+              "status": "in_progress",
+              "conclusion": null,
+              "html_url": "https://ci/3"
+            },
+            {
+              "name": "docs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "html_url": "https://ci/4"
+            }
+          ]
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/2222222222222222222222222222222222222222/check-runs?per_page=30",
+        "json": {
+          "check_runs": [
+            {
+              "name": "build",
+              "status": "queued",
+              "conclusion": null,
+              "html_url": "https://ci/5"
+            }
+          ]
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/3333333333333333333333333333333333333333/check-runs?per_page=30",
+        "json": {
+          "check_runs": []
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/4444444444444444444444444444444444444444/check-runs?per_page=30",
+        "status": 500,
+        "raw": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/check-runs?per_page=30",
+        "json": {
+          "check_runs": [
+            {
+              "name": "a",
+              "status": "completed",
+              "conclusion": "neutral",
+              "html_url": "https://ci/6"
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/7",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/1111111111111111111111111111111111111111/check-runs?per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/2222222222222222222222222222222222222222/check-runs?per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/3333333333333333333333333333333333333333/check-runs?per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/4444444444444444444444444444444444444444/check-runs?per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/check-runs?per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "github",
+      "prs": [
+        {
+          "id": 1,
+          "title": "PR 1",
+          "author": "dev1",
+          "sourceBranch": "feat-1",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/1",
+          "isDraft": false,
+          "state": "open",
+          "headSha": "1111111111111111111111111111111111111111",
+          "ci": "failure",
+          "ciSummary": "1 passed · 1 failing · 1 running · 1 skipped"
+        },
+        {
+          "id": 2,
+          "title": "PR 2",
+          "author": "dev2",
+          "sourceBranch": "feat-2",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/2",
+          "isDraft": false,
+          "stackNumber": 7,
+          "state": "open",
+          "headSha": "2222222222222222222222222222222222222222",
+          "ci": "pending",
+          "ciSummary": "1 running"
+        },
+        {
+          "id": 3,
+          "title": "PR 3",
+          "author": "dev3",
+          "sourceBranch": "feat-3",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/3",
+          "isDraft": false,
+          "stackNumber": 7,
+          "state": "open",
+          "headSha": "3333333333333333333333333333333333333333"
+        },
+        {
+          "id": 4,
+          "title": "PR 4",
+          "author": "dev4",
+          "sourceBranch": "feat-4",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/4",
+          "isDraft": false,
+          "state": "open",
+          "headSha": "4444444444444444444444444444444444444444"
+        },
+        {
+          "id": 5,
+          "title": "Bottom",
+          "author": "dev5",
+          "sourceBranch": "feat-5",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/5",
+          "isDraft": false,
+          "stackNumber": 7,
+          "state": "merged",
+          "headSha": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "ci": "neutral",
+          "ciSummary": "1 skipped"
+        },
+        {
+          "id": 6,
+          "title": "#6",
+          "author": "",
+          "sourceBranch": "",
+          "targetBranch": "",
+          "url": "https://github.com/acme/app/pull/6",
+          "isDraft": false,
+          "stackNumber": 7,
+          "state": "closed"
+        },
+        {
+          "id": 8,
+          "title": "#8",
+          "author": "",
+          "sourceBranch": "",
+          "targetBranch": "",
+          "url": "https://github.com/acme/app/pull/8",
+          "isDraft": false,
+          "stackNumber": 7,
+          "state": "open"
+        }
+      ]
+    }
+  },
+  {
+    "name": "github stack lookup failure is ignored",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "json": [
+          {
+            "number": 1,
+            "title": "PR 1",
+            "draft": false,
+            "html_url": "https://github.com/acme/app/pull/1",
+            "user": {
+              "login": "dev1"
+            },
+            "head": {
+              "ref": "feat-1",
+              "sha": "1111111111111111111111111111111111111111"
+            },
+            "base": {
+              "ref": "main"
+            },
+            "stack": {
+              "number": 3
+            }
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/3",
+        "status": 404,
+        "json": {
+          "message": "Not Found"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/1111111111111111111111111111111111111111/check-runs?per_page=30",
+        "network": true
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/3",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/commits/1111111111111111111111111111111111111111/check-runs?per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "github",
+      "prs": [
+        {
+          "id": 1,
+          "title": "PR 1",
+          "author": "dev1",
+          "sourceBranch": "feat-1",
+          "targetBranch": "main",
+          "url": "https://github.com/acme/app/pull/1",
+          "isDraft": false,
+          "stackNumber": 3,
+          "state": "open",
+          "headSha": "1111111111111111111111111111111111111111"
+        }
+      ]
+    }
+  },
+  {
+    "name": "github error",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "status": 404,
+        "json": {
+          "message": "Not Found"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=open&per_page=30",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub API error (404)"
+  },
+  {
+    "name": "azure pull requests",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://dev.azure.com/contoso/My%20Project/_git/app",
+      {
+        "azure": "vectorazurepat0123456789abcdefghij"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/My%20Project/_apis/git/repositories/app/pullrequests?searchCriteria.status=active&api-version=7.1",
+        "json": {
+          "value": [
+            {
+              "pullRequestId": 12,
+              "title": "ADO 12",
+              "isDraft": false,
+              "createdBy": {
+                "displayName": "Jane"
+              },
+              "sourceRefName": "refs/heads/feat/x",
+              "targetRefName": "refs/heads/main"
+            },
+            {
+              "pullRequestId": 13,
+              "title": "ADO 13",
+              "isDraft": true,
+              "createdBy": {
+                "displayName": "Joe"
+              },
+              "sourceRefName": "refs/heads/refs/heads/odd",
+              "targetRefName": "main"
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/My%20Project/_apis/git/repositories/app/pullrequests?searchCriteria.status=active&api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "azure",
+      "prs": [
+        {
+          "id": 12,
+          "title": "ADO 12",
+          "author": "Jane",
+          "sourceBranch": "feat/x",
+          "targetBranch": "main",
+          "url": "https://dev.azure.com/contoso/My%20Project/_git/app/pullrequest/12",
+          "isDraft": false
+        },
+        {
+          "id": 13,
+          "title": "ADO 13",
+          "author": "Joe",
+          "sourceBranch": "refs/heads/odd",
+          "targetBranch": "main",
+          "url": "https://dev.azure.com/contoso/My%20Project/_git/app/pullrequest/13",
+          "isDraft": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "azure ssh remote",
+    "channel": "hosting:listPRs",
+    "args": [
+      "git@ssh.dev.azure.com:v3/contoso/Proj/app",
+      {
+        "azure": "vectorazurepat0123456789abcdefghij"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/Proj/_apis/git/repositories/app/pullrequests?searchCriteria.status=active&api-version=7.1",
+        "json": {
+          "value": []
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/Proj/_apis/git/repositories/app/pullrequests?searchCriteria.status=active&api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "provider": "azure",
+      "prs": []
+    }
+  },
+  {
+    "name": "azure no credential",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://dev.azure.com/contoso/My%20Project/_git/app",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso/My%20Project/_git/app\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No Azure DevOps credential for dev.azure.com. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  },
+  {
+    "name": "azure ssh no credential",
+    "channel": "hosting:listPRs",
+    "args": [
+      "git@ssh.dev.azure.com:v3/contoso/Proj/app",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "No Azure DevOps credential. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  },
+  {
+    "name": "azure malformed project encoding",
+    "channel": "hosting:listPRs",
+    "args": [
+      "https://dev.azure.com/o/%E0%A4%A/_git/r",
+      {}
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "URI malformed"
+  }
+]
