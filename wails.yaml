@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://v3.wails.io/schemas/wails.v3.json
+# Wake build config (experimental): every wails3 command needs WAILS_EXP_USE_WAKE=1.
+# The package.json scripts set it for you.
+version: 3
+project:
+  name: gitcito
+  product_name: Gitcito
+  identifier: com.gitcito.desktop
+  version_file: internal/version/version.go
+  version_symbol: Version
+  binary_name: Gitcito
+  company: MyAppDesk
+  description: A lightweight Git client
+  copyright: © MyAppDesk
+frontend:
+  # The renderer stays at src/renderer; the npm project is the repository root.
+  directory: .
+  install: [npm, ci]
+  build: [npm, run, build:frontend]
+  dev: [npm, run, dev:frontend]
+  output: frontend-dist
+  bindings:
+    output: src/renderer/src/bindings
+    typescript: true
+    interfaces: true
+build:
+  output: bin
