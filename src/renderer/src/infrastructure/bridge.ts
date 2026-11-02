@@ -420,9 +420,10 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     // Electron's webFrame answers the getter synchronously; mirror the last value set so it still does.
     zoom: {
       get: (): number => zoom,
+      // The getter must answer synchronously (webFrame did), so the last value set is cached here.
       set: (factor: number): void => {
         zoom = factor
-        sendNoop('webFrame.setZoomFactor')()
+        void Window.SetZoom(factor).catch(logSendError('zoom:set'))
       }
     },
 

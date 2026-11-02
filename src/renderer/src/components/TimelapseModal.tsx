@@ -15,6 +15,7 @@ import {
   type TlState
 } from '../lib/timelapse'
 import { useT, interp } from '../i18n'
+import { pickRecordingType, videoFileFor } from '../lib/videoFormat'
 
 /** Commits per second, so a long history stays watchable. */
 const SPEEDS = [4, 8, 16, 32]
@@ -183,15 +184,14 @@ export function TimelapseModal({ repoPath }: { repoPath: string }): React.JSX.El
       return
     }
     const stream = canvas.captureStream(30)
-    const mime = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'].find((m) =>
-      MediaRecorder.isTypeSupported(m)
-    )
+    const mime = pickRecordingType((m) => MediaRecorder.isTypeSupported(m))
     const recorder = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 6_000_000 } : undefined)
     const chunks: BlobPart[] = []
     recorder.ondataavailable = (e) => e.data.size && chunks.push(e.data)
 
     const done = new Promise<Blob>((resolve) => {
-      recorder.onstop = () => resolve(new Blob(chunks, { type: mime ?? 'video/webm' }))
+      // recorder.mimeType is what was really recorded, even when no type was requested.
+      recorder.onstop = () => resolve(new Blob(chunks, { type: recorder.mimeType || mime || '' }))
     })
 
     setRecording(true)
@@ -206,9 +206,10 @@ export function TimelapseModal({ repoPath }: { repoPath: string }): React.JSX.El
     const blob = await done
     setRecording(false)
 
-    const name = `${repo?.name ?? 'repo'}-timelapse.webm`
+    const file = videoFileFor(blob.type)
+    const name = `${repo?.name ?? 'repo'}-timelapse.${file.extension}`
     const saved = await window.api.saveBinary(name, new Uint8Array(await blob.arrayBuffer()), [
-      { name: 'WebM video', extensions: ['webm'] }
+      { name: file.filterName, extensions: [file.extension] }
     ])
     if (saved) toast('success', interp(t('timelapse.saved'), { path: saved }))
   }
