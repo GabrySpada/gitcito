@@ -21,5 +21,4 @@ Re-read this file, PLAN.md, DECISIONS.md and BRIEF.md after every context compac
 - Wave 1 git slices A–D + hosting (goldens captured by each slice agent from TS first).
 
 ## Blockers
-- `git push` to origin fails with 403: "Claude doesn't have GitHub access to GabrySpada/gitcito". Commits stay
-  local until the owner reconnects GitHub / installs the Claude GitHub App. Work continues locally.
+- None. (Push was blocked by a 403 until the owner reconnected GitHub; resolved.)
