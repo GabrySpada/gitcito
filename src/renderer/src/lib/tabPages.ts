@@ -3,7 +3,7 @@ import type { PageContent, TabState } from '../../../shared/types'
 /**
  * Deciding whether a page rides on a repository's tab or takes one of its own.
  *
- * A page that belongs to a repository — DevTools, the wiki, insights — is shown
+ * A page that belongs to a repository — the wiki, insights — is shown
  * as an icon on that repository's tab instead of claiming a top-level one. When
  * there is no such tab (the repo is only open inside a group, or is not open at
  * all) the page falls back to a tab of its own: opening something must always
@@ -11,13 +11,12 @@ import type { PageContent, TabState } from '../../../shared/types'
  */
 
 /** Page kinds that ride on their repository's tab. Everything else stands alone. */
-export const ATTACHED_PAGES = new Set(['devtools', 'wiki', 'insights'])
+export const ATTACHED_PAGES = new Set(['wiki', 'insights'])
 
 /** Two attached pages are "the same" when they address the same thing: one wiki
- *  per repo, one DevTools per launch session. */
+ *  per repo. */
 export function samePage(a: PageContent, b: PageContent): boolean {
   if (a.type !== b.type) return false
-  if (a.type === 'devtools' && b.type === 'devtools') return a.launchId === b.launchId
   return 'repoPath' in a && 'repoPath' in b ? a.repoPath === b.repoPath : true
 }
 

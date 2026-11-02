@@ -1,0 +1,70 @@
+{
+  "method": "bundleFetch",
+  "fixture": "tags-and-releases",
+  "case": "main",
+  "repo": "clone",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    },
+    {
+      "git": [
+        "bundle",
+        "create",
+        "-q",
+        "<OUT>/all.bundle",
+        "--all"
+      ]
+    },
+    {
+      "git": [
+        "reset",
+        "-q",
+        "--hard",
+        "HEAD~2"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/all.bundle",
+    [
+      "refs/heads/main",
+      "refs/tags/v1.0.0",
+      ""
+    ]
+  ],
+  "result": [
+    "bundle/main",
+    "bundle/tags/v1.0.0"
+  ],
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tCHANGELOG.md",
+      "100644 <SHA2> 0\tapp.py"
+    ],
+    "log": [
+      "<SHA3>\u0000\u0000chore: initial scaffolding",
+      "<SHA4>\u0000<SHA5>\u0000feat!: rewrite as App class — v2.0.0 BREAKING",
+      "<SHA5>\u0000<SHA6>\u0000feat: add farewell() — v1.1.0",
+      "<SHA7>\u0000<SHA4>\u0000feat: plugin system (unreleased, post-v2.0.0 dev)",
+      "<SHA6>\u0000<SHA8>\u0000fix: handle blank name in greet() — v1.0.1",
+      "<SHA8>\u0000<SHA3>\u0000release: v1.0.0",
+      "<SHA9>\u0000<SHA6>\u0000security: sanitise name input — v1.0.2"
+    ],
+    "refs": [
+      "refs/heads/hotfix/security-patch <SHA9>",
+      "refs/heads/main <SHA5>",
+      "refs/remotes/bundle/main <SHA7>",
+      "refs/remotes/bundle/tags/v1.0.0 <SHA10>",
+      "refs/tags/v1.0.0 <SHA10>",
+      "refs/tags/v1.0.1 <SHA6>",
+      "refs/tags/v1.0.2 <SHA11>",
+      "refs/tags/v1.1.0 <SHA12>",
+      "refs/tags/v2.0.0 <SHA13>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

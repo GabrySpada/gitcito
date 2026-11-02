@@ -1,0 +1,13 @@
+{
+  "method": "checkAttributes",
+  "fixture": "attributes",
+  "case": "empty",
+  "repo": "shared",
+  "args": [
+    "<REPO>",
+    [
+      "  "
+    ]
+  ],
+  "result": []
+}

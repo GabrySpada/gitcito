@@ -30,6 +30,8 @@ import { useLaunchStore } from '../stores/launch'
 import { useUIStore } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
 import { useT, interp } from '../i18n'
+import { shellApi } from '../infrastructure/api'
+import { isLoopbackUrl } from '../../../shared/loopback'
 import {
   detectHotRuntime,
   primaryActions,
@@ -300,17 +302,13 @@ export function DebugToolbar({ repoPath }: { repoPath: string }): React.JSX.Elem
           {active.devToolsUrl && (
             <button
               className="icon-btn debug-btn hot"
-              title={interp(t('devtools.open'), { tool: active.devToolsName ?? 'DevTools' })}
-              onClick={() =>
-                useSettingsStore.getState().openPageTab({
-                  type: 'devtools',
-                  repoPath,
-                  launchId: active.launchId,
-                  url: active.devToolsUrl!,
-                  label: nameOf(active),
-                  tool: active.devToolsName ?? 'DevTools'
-                })
-              }
+              title={t('devtools.openExternal')}
+              // The tool is served by the running app on this machine. It opens in the system browser
+              // (the embedded panel needed Electron's <webview>), and only ever a loopback address.
+              onClick={() => {
+                const url = active.devToolsUrl!
+                if (isLoopbackUrl(url)) void shellApi.openExternal(url)
+              }}
             >
               <AppWindow size={14} />
             </button>

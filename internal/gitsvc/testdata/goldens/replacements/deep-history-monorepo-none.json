@@ -1,0 +1,13 @@
+{
+  "method": "replacements",
+  "fixture": "deep-history-monorepo",
+  "case": "none",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "enabled": true,
+    "refs": []
+  }
+}

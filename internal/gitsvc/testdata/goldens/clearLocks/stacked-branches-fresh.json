@@ -1,0 +1,51 @@
+{
+  "method": "clearLocks",
+  "fixture": "stacked-branches",
+  "case": "fresh",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".git/index.lock",
+      "content": ""
+    }
+  ],
+  "args": [
+    "<REPO>",
+    [
+      "index.lock"
+    ]
+  ],
+  "capture": [
+    {
+      "exists": ".git/index.lock"
+    }
+  ],
+  "extra": [
+    true
+  ],
+  "result": 0,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tapi.js",
+      "100644 <SHA2> 0\tapp.js",
+      "100644 <SHA3> 0\tui.js"
+    ],
+    "log": [
+      "<SHA4>\u0000<SHA5>\u0000api: add fetchOrg",
+      "<SHA6>\u0000<SHA4>\u0000api: add fetchTeam",
+      "<SHA5>\u0000<SHA7>\u0000api: add fetchUser",
+      "<SHA8>\u0000<SHA7>\u0000main: hotfix",
+      "<SHA7>\u0000\u0000main: initial app",
+      "<SHA9>\u0000<SHA10>\u0000ui: add OrgCard",
+      "<SHA10>\u0000<SHA4>\u0000ui: add UserCard"
+    ],
+    "refs": [
+      "refs/heads/feature/api <SHA6>",
+      "refs/heads/feature/ui <SHA9>",
+      "refs/heads/main <SHA8>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

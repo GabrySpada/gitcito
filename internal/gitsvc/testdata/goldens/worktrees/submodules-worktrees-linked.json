@@ -1,0 +1,38 @@
+{
+  "method": "worktrees",
+  "fixture": "submodules-worktrees",
+  "case": "linked",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "branch": "main",
+      "detached": false,
+      "head": "<SHA1>",
+      "isCurrent": true,
+      "isMain": true,
+      "locked": false,
+      "path": "<REPO>"
+    },
+    {
+      "branch": "hotfix/login",
+      "detached": false,
+      "head": "<SHA1>",
+      "isCurrent": false,
+      "isMain": false,
+      "locked": false,
+      "path": "<REPO>.wt-hotfix"
+    },
+    {
+      "branch": "release/1.x",
+      "detached": false,
+      "head": "<SHA1>",
+      "isCurrent": false,
+      "isMain": false,
+      "locked": false,
+      "path": "<REPO>.wt-release"
+    }
+  ]
+}

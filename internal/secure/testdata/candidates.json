@@ -1,0 +1,175 @@
+{
+  "files": [
+    {
+      "path": ".env",
+      "content": "A=1\n"
+    },
+    {
+      "path": "alpha.txt",
+      "content": "a"
+    },
+    {
+      "path": "Beta.txt",
+      "content": "bb"
+    },
+    {
+      "path": "beta2.txt",
+      "content": ""
+    },
+    {
+      "path": "_under",
+      "content": "u"
+    },
+    {
+      "path": "-dash",
+      "content": "d"
+    },
+    {
+      "path": "10.txt",
+      "content": "10"
+    },
+    {
+      "path": "9.txt",
+      "content": "9"
+    },
+    {
+      "path": "ébc.txt",
+      "content": "e"
+    },
+    {
+      "path": "z/.env.local",
+      "content": "L=1"
+    },
+    {
+      "path": "z/.env.example",
+      "content": "L="
+    },
+    {
+      "path": "z/a b.txt",
+      "content": "space"
+    },
+    {
+      "path": "node_modules/x.js",
+      "content": "x"
+    },
+    {
+      "path": "dist/out.js",
+      "content": "x"
+    },
+    {
+      "path": ".git/config",
+      "content": "x"
+    },
+    {
+      "path": "Pods/p",
+      "content": "x"
+    },
+    {
+      "path": "deep/er/id_rsa",
+      "content": "k"
+    },
+    {
+      "path": "deep/Readme.md",
+      "content": "r"
+    },
+    {
+      "path": "big.bin",
+      "size": 16777217
+    },
+    {
+      "path": "exact.bin",
+      "size": 16777216
+    }
+  ],
+  "symlinks": [
+    {
+      "path": "link.txt",
+      "target": "alpha.txt"
+    },
+    {
+      "path": "linkdir",
+      "target": "z"
+    },
+    {
+      "path": "dangling",
+      "target": "missing"
+    }
+  ],
+  "expected": [
+    {
+      "path": ".env",
+      "size": 4,
+      "secret": true
+    },
+    {
+      "path": "deep/er/id_rsa",
+      "size": 1,
+      "secret": true
+    },
+    {
+      "path": "z/.env.local",
+      "size": 3,
+      "secret": true
+    },
+    {
+      "path": "_under",
+      "size": 1,
+      "secret": false
+    },
+    {
+      "path": "-dash",
+      "size": 1,
+      "secret": false
+    },
+    {
+      "path": "10.txt",
+      "size": 2,
+      "secret": false
+    },
+    {
+      "path": "9.txt",
+      "size": 1,
+      "secret": false
+    },
+    {
+      "path": "alpha.txt",
+      "size": 1,
+      "secret": false
+    },
+    {
+      "path": "Beta.txt",
+      "size": 2,
+      "secret": false
+    },
+    {
+      "path": "beta2.txt",
+      "size": 0,
+      "secret": false
+    },
+    {
+      "path": "deep/Readme.md",
+      "size": 1,
+      "secret": false
+    },
+    {
+      "path": "ébc.txt",
+      "size": 1,
+      "secret": false
+    },
+    {
+      "path": "exact.bin",
+      "size": 16777216,
+      "secret": false
+    },
+    {
+      "path": "z/.env.example",
+      "size": 2,
+      "secret": false
+    },
+    {
+      "path": "z/a b.txt",
+      "size": 5,
+      "secret": false
+    }
+  ]
+}

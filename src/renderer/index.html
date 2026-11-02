@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <title>gitcito</title>
     <link rel="icon" type="image/png" href="./src/assets/logo.png" />
+    <!-- 'wasm-unsafe-eval': compiling the tree-sitter WASM grammars for the semantic diff, which runs in the
+         page since the Go port (nothing else here is WebAssembly). Everything else is unchanged from 4.x. -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; media-src 'self' data: blob:; frame-src 'self' data: blob:"
+      content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; media-src 'self' data: blob:; frame-src 'self' data: blob:"
     />
   </head>
   <body>

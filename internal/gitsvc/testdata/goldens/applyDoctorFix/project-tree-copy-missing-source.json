@@ -1,0 +1,43 @@
+{
+  "method": "applyDoctorFix",
+  "fixture": "project-tree",
+  "case": "copy-missing-source",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    {
+      "kind": "copyFile",
+      "from": "nope",
+      "to": "there"
+    }
+  ],
+  "error": "ENOENT: no such file or directory, copyfile '<REPO>/nope' -> '<REPO>/there'",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.gitignore",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tdocs/guide.md",
+      "100644 <SHA4> 0\tsrc/app.ts",
+      "100644 <SHA5> 0\tsrc/legacy.ts",
+      "100644 <SHA6> 0\tsrc/new-feature.ts",
+      "100644 <SHA7> 0\tsrc/util.ts"
+    ],
+    "log": [
+      "<SHA8>\u0000<SHA9>\u0000add .gitignore",
+      "<SHA9>\u0000\u0000initial project tree"
+    ],
+    "refs": [
+      "refs/heads/main <SHA8>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": [
+      "2 R. N... 100644 100644 100644 <SHA3> <SHA3> R100 docs/guide.md\tdocs/intro.md",
+      "1 .D N... 100644 100644 000000 <SHA5> <SHA5> src/legacy.ts",
+      "1 A. N... 000000 100644 100644 <SHA10> <SHA6> src/new-feature.ts",
+      "1 .M N... 100644 100644 100644 <SHA7> <SHA7> src/util.ts",
+      "? scratch.todo",
+      "? src/draft.ts"
+    ]
+  }
+}

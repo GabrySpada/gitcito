@@ -1,0 +1,40 @@
+{
+  "method": "clone",
+  "fixture": "",
+  "case": "branch",
+  "repo": "tmp",
+  "args": [
+    "<REPO>",
+    "<PLAYGROUND>/merge-conflict",
+    "onbranch",
+    {
+      "branch": " feature "
+    }
+  ],
+  "stateOf": "result",
+  "result": "<REPO>/onbranch",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tapp.js",
+      "100644 <SHA2> 0\tbig-log.txt",
+      "100644 <SHA3> 0\tfeature-notes.md",
+      "100644 <SHA4> 0\tgreeting.txt",
+      "100644 <SHA5> 0\trelease-notes.md",
+      "100644 <SHA6> 0\tunits_service.dart"
+    ],
+    "log": [
+      "<SHA7>\u0000<SHA8>\u0000feature: translate to Spanish",
+      "<SHA8>\u0000\u0000initial commit",
+      "<SHA9>\u0000<SHA8>\u0000main: shout the greetings"
+    ],
+    "refs": [
+      "refs/heads/feature <SHA7>",
+      "refs/remotes/origin/HEAD <SHA9>",
+      "refs/remotes/origin/feature <SHA7>",
+      "refs/remotes/origin/main <SHA9>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

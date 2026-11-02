@@ -1,0 +1,1237 @@
+{
+  "configs": [
+    {
+      "name": "openai",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "OpenAI",
+            "provider": "openai",
+            "endpoint": "",
+            "apiKey": "sk-test-SENTINEL-0123456789",
+            "model": "gpt-4o-mini"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "openai",
+        "endpoint": "https://api.openai.com/v1",
+        "apiKey": "sk-test-SENTINEL-0123456789",
+        "model": "gpt-4o-mini",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "anthropic",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Anthropic",
+            "provider": "anthropic",
+            "endpoint": "",
+            "apiKey": "sk-test-SENTINEL-0123456789",
+            "model": "claude-haiku-4-5-20251001"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "anthropic",
+        "endpoint": "https://api.anthropic.com",
+        "apiKey": "sk-test-SENTINEL-0123456789",
+        "model": "claude-haiku-4-5-20251001",
+        "accountId": "default",
+        "transport": "anthropic",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "anthropic",
+      "baseUrl": "https://api.anthropic.com",
+      "authHeaders": {
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+        "x-api-key": "<sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "google",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Google Gemini",
+            "provider": "google",
+            "endpoint": "",
+            "apiKey": "sk-test-SENTINEL-0123456789",
+            "model": "gemini-2.5-flash"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "google",
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/openai",
+        "apiKey": "sk-test-SENTINEL-0123456789",
+        "model": "gemini-2.5-flash",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "authHeaders": {
+        "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "openrouter",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "OpenRouter",
+            "provider": "openrouter",
+            "endpoint": "",
+            "apiKey": "sk-test-SENTINEL-0123456789",
+            "model": "openai/gpt-5-mini"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "openrouter",
+        "endpoint": "https://openrouter.ai/api/v1",
+        "apiKey": "sk-test-SENTINEL-0123456789",
+        "model": "openai/gpt-5-mini",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "authHeaders": {
+        "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "groq",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Groq",
+            "provider": "groq",
+            "endpoint": "",
+            "apiKey": "sk-test-SENTINEL-0123456789",
+            "model": "llama-3.3-70b-versatile"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "groq",
+        "endpoint": "https://api.groq.com/openai/v1",
+        "apiKey": "sk-test-SENTINEL-0123456789",
+        "model": "llama-3.3-70b-versatile",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://api.groq.com/openai/v1",
+      "authHeaders": {
+        "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "mistral",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Mistral",
+            "provider": "mistral",
+            "endpoint": "",
+            "apiKey": "sk-test-SENTINEL-0123456789",
+            "model": "mistral-small-latest"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "mistral",
+        "endpoint": "https://api.mistral.ai/v1",
+        "apiKey": "sk-test-SENTINEL-0123456789",
+        "model": "mistral-small-latest",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://api.mistral.ai/v1",
+      "authHeaders": {
+        "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "ollama",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Ollama (local)",
+            "provider": "ollama",
+            "endpoint": "",
+            "apiKey": "",
+            "model": "llama3.2"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "ollama",
+        "endpoint": "http://localhost:11434/v1",
+        "apiKey": "",
+        "model": "llama3.2",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "http://localhost:11434/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "customLocal",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Custom (OpenAI-compatible)",
+            "provider": "custom",
+            "endpoint": "http://127.0.0.1:8000/v1",
+            "apiKey": "",
+            "model": "default"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "custom",
+        "endpoint": "http://127.0.0.1:8000/v1",
+        "apiKey": "",
+        "model": "default",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "http://127.0.0.1:8000/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "customRemote",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Custom (OpenAI-compatible)",
+            "provider": "custom",
+            "endpoint": "https://gateway.example.com/v1/chat/completions/",
+            "apiKey": "sk-test-SENTINEL-0123456789",
+            "model": "o3-mini"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "custom",
+        "endpoint": "https://gateway.example.com/v1/chat/completions/",
+        "apiKey": "sk-test-SENTINEL-0123456789",
+        "model": "o3-mini",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://gateway.example.com/v1",
+      "authHeaders": {
+        "authorization": "Bearer <sha256:0fa7d365fa8b3e360b865467f25f8eae4838676420e32ae3c5648cff5caddab9>",
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "cliClaude",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Local CLI (subscription)",
+            "provider": "cli",
+            "endpoint": "",
+            "apiKey": "",
+            "model": "sonnet"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "cli",
+        "endpoint": "",
+        "apiKey": "",
+        "model": "sonnet",
+        "accountId": "default",
+        "transport": "cli",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask",
+        "cli": "claude"
+      },
+      "transportOf": "cli",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "cliClaudeNoModel",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Local CLI (subscription)",
+            "provider": "cli",
+            "endpoint": "",
+            "apiKey": "",
+            "model": ""
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "cli",
+        "endpoint": "",
+        "apiKey": "",
+        "model": "",
+        "accountId": "default",
+        "transport": "cli",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask",
+        "cli": "claude"
+      },
+      "transportOf": "cli",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "cliGemini",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Local CLI (subscription)",
+            "provider": "cli",
+            "endpoint": "",
+            "apiKey": "",
+            "model": "gemini-2.5-pro"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "cli",
+        "endpoint": "",
+        "apiKey": "",
+        "model": "gemini-2.5-pro",
+        "accountId": "default",
+        "transport": "cli",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask",
+        "cli": "gemini",
+        "cliPath": " /opt/bin/gemini "
+      },
+      "transportOf": "cli",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "cliCodex",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Local CLI (subscription)",
+            "provider": "cli",
+            "endpoint": "",
+            "apiKey": "",
+            "model": ""
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "cli",
+        "endpoint": "",
+        "apiKey": "",
+        "model": "gpt-5",
+        "accountId": "default",
+        "transport": "cli",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask",
+        "cli": "codex"
+      },
+      "transportOf": "cli",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "anthropic legacy v1",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Anthropic",
+            "provider": "anthropic",
+            "endpoint": "https://api.anthropic.com/v1",
+            "apiKey": "sk-ant",
+            "model": "claude-haiku-4-5-20251001"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "anthropic",
+        "endpoint": "https://api.anthropic.com/v1",
+        "apiKey": "sk-ant",
+        "model": "claude-haiku-4-5-20251001",
+        "accountId": "default",
+        "transport": "anthropic",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "anthropic",
+      "baseUrl": "https://api.anthropic.com",
+      "authHeaders": {
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+        "x-api-key": "<sha256:ea83182c4b01ad677d71cd6fc69e9d5969cc5df473b930530be28bd9d299dc68>"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "anthropic trailing slashes",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Anthropic",
+            "provider": "anthropic",
+            "endpoint": "https://proxy.local/v1///",
+            "apiKey": " sk ",
+            "model": "claude-haiku-4-5-20251001"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "anthropic",
+        "endpoint": "https://proxy.local/v1///",
+        "apiKey": " sk ",
+        "model": "claude-haiku-4-5-20251001",
+        "accountId": "default",
+        "transport": "anthropic",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "anthropic",
+      "baseUrl": "https://proxy.local",
+      "authHeaders": {
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+        "x-api-key": "<sha256:32b56ed53348a8587f30c90e5c6406df95d3b8ab1130b1da62bcf492a8ed8a63>"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "custom chat completions url",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Custom (OpenAI-compatible)",
+            "provider": "custom",
+            "endpoint": "https://gateway.internal/v1/chat/completions/",
+            "apiKey": "",
+            "model": ""
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "custom",
+        "endpoint": "https://gateway.internal/v1/chat/completions/",
+        "apiKey": "",
+        "model": "",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://gateway.internal/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": true
+    },
+    {
+      "name": "custom empty endpoint",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Custom (OpenAI-compatible)",
+            "provider": "custom",
+            "endpoint": "",
+            "apiKey": "",
+            "model": ""
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "custom",
+        "endpoint": "",
+        "apiKey": "",
+        "model": "",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": true
+    },
+    {
+      "name": "openai blank key",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "OpenAI",
+            "provider": "openai",
+            "endpoint": "",
+            "apiKey": "   ",
+            "model": "gpt-4o-mini"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "openai",
+        "endpoint": "https://api.openai.com/v1",
+        "apiKey": "   ",
+        "model": "gpt-4o-mini",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": true
+    },
+    {
+      "name": "ollama blank",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Ollama (local)",
+            "provider": "ollama",
+            "endpoint": "",
+            "apiKey": "",
+            "model": "llama3.2"
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "ollama",
+        "endpoint": "http://localhost:11434/v1",
+        "apiKey": "",
+        "model": "llama3.2",
+        "accountId": "default",
+        "transport": "openai",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "openai",
+      "baseUrl": "http://localhost:11434/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "cli no key",
+      "cfg": {
+        "enabled": true,
+        "accounts": [
+          {
+            "id": "default",
+            "label": "Local CLI (subscription)",
+            "provider": "cli",
+            "endpoint": "",
+            "apiKey": "",
+            "model": ""
+          }
+        ],
+        "defaultAccountId": "default",
+        "assignments": {},
+        "provider": "cli",
+        "endpoint": "",
+        "apiKey": "",
+        "model": "",
+        "accountId": "default",
+        "transport": "cli",
+        "commitStyle": "auto",
+        "explainStyle": "normal",
+        "conflictStyle": "clean",
+        "branchNamingStyle": "prefix/description",
+        "customInstructions": "",
+        "generateDescription": true,
+        "hoverExplain": true,
+        "hoverExplainKey": "shift",
+        "repoChat": true,
+        "repoChatModel": "",
+        "repoChatCommittedOnly": false,
+        "repoChatActions": true,
+        "repoChatReadOnly": true,
+        "repoChatApproval": "ask"
+      },
+      "transportOf": "cli",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "raw no provider",
+      "cfg": {
+        "endpoint": "http://0.0.0.0:9/v1",
+        "apiKey": "k"
+      },
+      "transportOf": "openai",
+      "baseUrl": "http://0.0.0.0:9/v1",
+      "authHeaders": {
+        "authorization": "Bearer <sha256:8254c329a92850f6d539dd376f4816ee2764517da5e0235514af433164480d7a>",
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "raw transport override",
+      "cfg": {
+        "provider": "openai",
+        "transport": "anthropic",
+        "endpoint": "https://x/v1",
+        "apiKey": "k"
+      },
+      "transportOf": "anthropic",
+      "baseUrl": "https://x",
+      "authHeaders": {
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+        "x-api-key": "<sha256:8254c329a92850f6d539dd376f4816ee2764517da5e0235514af433164480d7a>"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "raw nothing",
+      "cfg": {},
+      "transportOf": "openai",
+      "baseUrl": "https://api.openai.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": true
+    },
+    {
+      "name": "raw unknown provider",
+      "cfg": {
+        "provider": "acme",
+        "endpoint": "https://acme.example/v1/"
+      },
+      "transportOf": "openai",
+      "baseUrl": "https://acme.example/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": true
+    },
+    {
+      "name": "raw localhost no port",
+      "cfg": {
+        "provider": "custom",
+        "endpoint": "http://localhost"
+      },
+      "transportOf": "openai",
+      "baseUrl": "http://localhost",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": false
+    },
+    {
+      "name": "raw localhost lookalike",
+      "cfg": {
+        "provider": "custom",
+        "endpoint": "http://localhost.evil.com/v1"
+      },
+      "transportOf": "openai",
+      "baseUrl": "http://localhost.evil.com/v1",
+      "authHeaders": {
+        "content-type": "application/json"
+      },
+      "missingCredential": true
+    }
+  ],
+  "isLocal": [
+    {
+      "input": "http://localhost:11434/v1",
+      "out": true
+    },
+    {
+      "input": "https://localhost",
+      "out": true
+    },
+    {
+      "input": "http://127.0.0.1/v1",
+      "out": true
+    },
+    {
+      "input": "http://0.0.0.0:8080",
+      "out": true
+    },
+    {
+      "input": "http://localhost.evil.com",
+      "out": false
+    },
+    {
+      "input": "http://127.0.0.10:8",
+      "out": false
+    },
+    {
+      "input": "ftp://localhost",
+      "out": false
+    },
+    {
+      "input": "HTTP://localhost",
+      "out": false
+    },
+    {
+      "input": "https://api.openai.com/v1",
+      "out": false
+    },
+    {
+      "input": "",
+      "out": false
+    }
+  ],
+  "usesMaxCompletionTokens": [
+    {
+      "input": "o1",
+      "out": true
+    },
+    {
+      "input": "o1-mini",
+      "out": true
+    },
+    {
+      "input": "o3",
+      "out": true
+    },
+    {
+      "input": "o3-mini",
+      "out": true
+    },
+    {
+      "input": "o4-mini",
+      "out": true
+    },
+    {
+      "input": "o9.1",
+      "out": true
+    },
+    {
+      "input": "o10",
+      "out": false
+    },
+    {
+      "input": "gpt-5",
+      "out": true
+    },
+    {
+      "input": "gpt-5-mini",
+      "out": true
+    },
+    {
+      "input": "gpt-5.1",
+      "out": true
+    },
+    {
+      "input": "gpt-50",
+      "out": false
+    },
+    {
+      "input": "GPT-5",
+      "out": true
+    },
+    {
+      "input": " openai/o3 ",
+      "out": true
+    },
+    {
+      "input": "ft:gpt-5:org:x:1",
+      "out": true
+    },
+    {
+      "input": "ft:o1-mini:org",
+      "out": true
+    },
+    {
+      "input": "ft:gpt-4o:org",
+      "out": false
+    },
+    {
+      "input": "gpt-4o",
+      "out": false
+    },
+    {
+      "input": "omni",
+      "out": false
+    },
+    {
+      "input": "o",
+      "out": false
+    },
+    {
+      "input": "o0",
+      "out": false
+    },
+    {
+      "input": "",
+      "out": false
+    },
+    {
+      "input": "a/b/o1",
+      "out": true
+    }
+  ],
+  "parseUsage": [
+    {
+      "input": null,
+      "out": {
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "totalTokens": 0
+      }
+    },
+    {
+      "input": {},
+      "out": {
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "totalTokens": 0
+      }
+    },
+    {
+      "input": {
+        "prompt_tokens": 3,
+        "completion_tokens": 4
+      },
+      "out": {
+        "promptTokens": 3,
+        "completionTokens": 4,
+        "totalTokens": 7
+      }
+    },
+    {
+      "input": {
+        "prompt_tokens": 3,
+        "completion_tokens": 4,
+        "total_tokens": 99
+      },
+      "out": {
+        "promptTokens": 3,
+        "completionTokens": 4,
+        "totalTokens": 99
+      }
+    },
+    {
+      "input": {
+        "input_tokens": 5,
+        "output_tokens": 6
+      },
+      "out": {
+        "promptTokens": 5,
+        "completionTokens": 6,
+        "totalTokens": 11
+      }
+    },
+    {
+      "input": {
+        "prompt_tokens": 0,
+        "input_tokens": 9
+      },
+      "out": {
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "totalTokens": 0
+      }
+    },
+    {
+      "input": {
+        "prompt_tokens": null,
+        "input_tokens": 9,
+        "total_tokens": null
+      },
+      "out": {
+        "promptTokens": 9,
+        "completionTokens": 0,
+        "totalTokens": 9
+      }
+    }
+  ],
+  "fetchFailureReason": [
+    {
+      "cause": {
+        "code": "SELF_SIGNED_CERT_IN_CHAIN",
+        "message": "m"
+      },
+      "out": "A proxy or network certificate is self-signed, so Electron rejected the TLS connection."
+    },
+    {
+      "cause": {
+        "code": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+        "message": "m"
+      },
+      "out": "Electron could not verify the provider certificate chain."
+    },
+    {
+      "cause": {
+        "code": "ECONNREFUSED",
+        "message": "m"
+      },
+      "out": "The endpoint refused the connection."
+    },
+    {
+      "cause": {
+        "code": "ENOTFOUND",
+        "message": "m"
+      },
+      "out": "The endpoint host could not be resolved."
+    },
+    {
+      "cause": {
+        "code": "ETIMEDOUT",
+        "message": "connect ETIMEDOUT"
+      },
+      "out": "connect ETIMEDOUT"
+    },
+    {
+      "cause": {
+        "message": "only message"
+      },
+      "out": "only message"
+    },
+    {
+      "cause": {
+        "message": ""
+      },
+      "out": ""
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "method": "pushToRemotes",
+  "fixture": "multi-remote",
+  "case": "both",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "multi-remote-origin.git",
+      "as": "ORIGIN"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<ORIGIN>"
+      ]
+    },
+    {
+      "copy": "multi-remote-upstream.git",
+      "as": "UPSTREAM"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "upstream",
+        "<UPSTREAM>"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "feature/push-test"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "feature/push-test",
+    [
+      "origin",
+      "upstream"
+    ]
+  ],
+  "capture": [
+    {
+      "git": [
+        "rev-parse",
+        "feature/push-test"
+      ],
+      "dir": "<ORIGIN>"
+    },
+    {
+      "git": [
+        "rev-parse",
+        "feature/push-test"
+      ],
+      "dir": "<UPSTREAM>"
+    }
+  ],
+  "extra": [
+    {
+      "out": "<SHA1>"
+    },
+    {
+      "out": "<SHA1>"
+    }
+  ],
+  "result": [
+    {
+      "error": "",
+      "ok": true,
+      "remote": "origin"
+    },
+    {
+      "error": "",
+      "ok": true,
+      "remote": "upstream"
+    }
+  ],
+  "state": {
+    "index": [
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tarray.ts",
+      "100644 <SHA4> 0\tindex.ts",
+      "100644 <SHA5> 0\tmath.ts"
+    ],
+    "log": [
+      "<SHA6>\u0000<SHA7>\u0000docs: update README with string module",
+      "<SHA8>\u0000<SHA9>\u0000feat: add math.ts",
+      "<SHA1>\u0000<SHA8>\u0000feat: array.ts — unique/chunk/flatten (not pushed to origin)",
+      "<SHA7>\u0000<SHA8>\u0000feat: string.ts — capitalize/truncate/slugify",
+      "<SHA9>\u0000\u0000initial commit"
+    ],
+    "refs": [
+      "refs/heads/feature/push-test <SHA1>",
+      "refs/heads/main <SHA1>",
+      "refs/remotes/origin/HEAD <SHA8>",
+      "refs/remotes/origin/feature/push-test <SHA1>",
+      "refs/remotes/origin/main <SHA8>",
+      "refs/remotes/upstream/feature/push-test <SHA1>",
+      "refs/remotes/upstream/main <SHA6>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

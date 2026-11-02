@@ -1,0 +1,20 @@
+{
+  "method": "filterDrivers",
+  "fixture": "lfs-assets",
+  "case": "lfs",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "clean": "git-lfs clean -- %f",
+      "cleanAvailable": true,
+      "name": "lfs",
+      "required": true,
+      "scope": "repo",
+      "smudge": "git-lfs smudge -- %f",
+      "smudgeAvailable": true
+    }
+  ]
+}

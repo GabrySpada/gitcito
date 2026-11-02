@@ -54,11 +54,44 @@ export function AddRemote(repoPath: string, name: string, url: string, pushURL: 
 }
 
 /**
+ * AddToGitignore appends repo-relative patterns to the repository's root
+ * `.gitignore`, skipping any already present, and returns the ones actually
+ * added. Patterns come pre-formatted (anchored with a leading `/`, folders
+ * with a trailing `/`).
+ * 
+ * gitsvc: addToGitignore
+ */
+export function AddToGitignore(repoPath: string, patterns: string[] | null): $CancellablePromise<string[] | null> {
+    return $Call.ByID(4092697026, repoPath, patterns);
+}
+
+/**
+ * AddToGitignoreAt appends patterns to the .gitignore in dir (relative to the
+ * repo; "" = root), creating the file if absent and skipping entries already
+ * present.
+ * 
+ * gitsvc: addToGitignoreAt
+ */
+export function AddToGitignoreAt(repoPath: string, dir: string, patterns: string[] | null): $CancellablePromise<string[] | null> {
+    return $Call.ByID(3930489911, repoPath, dir, patterns);
+}
+
+/**
  * AmendCommitMessage rewrites HEAD's message only, whatever is staged.
  * gitsvc: amendCommitMessage
  */
 export function AmendCommitMessage(repoPath: string, message: string): $CancellablePromise<void> {
     return $Call.ByID(1356244087, repoPath, message);
+}
+
+/**
+ * ApplyDoctorFix performs one of the doctor's repairs. The union is closed on
+ * purpose; an unknown kind does nothing.
+ * 
+ * gitsvc: applyDoctorFix
+ */
+export function ApplyDoctorFix(repoPath: string, fix: $models.DoctorFix): $CancellablePromise<void> {
+    return $Call.ByID(2614478296, repoPath, fix);
 }
 
 /**
@@ -80,6 +113,40 @@ export function ApplyPatch(repoPath: string, content: string, am: boolean): $Can
  */
 export function ApplyRepoFileActions(repoPath: string, actions: $models.PreparedRepoChatFileAction[] | null): $CancellablePromise<$models.RepoFileBatchResult> {
     return $Call.ByID(2495783547, repoPath, actions);
+}
+
+/**
+ * ArchiveCreate exports one tree as a zip or tarball (format 'zip' | 'tar.gz'
+ * | 'tar'), optionally wrapped in prefix and limited to subdir. `git archive`
+ * honours `export-ignore` in .gitattributes, so a repository can keep its own
+ * CI config and fixtures out of the file it hands to someone else.
+ * 
+ * gitsvc: archiveCreate
+ */
+export function ArchiveCreate(repoPath: string, file: string, ref: string, format: string, prefix: string, subdir: string): $CancellablePromise<$models.ArchiveResult> {
+    return $Call.ByID(2314563524, repoPath, file, ref, format, prefix, subdir);
+}
+
+/**
+ * AttributeFiles returns every `.gitattributes` in the repository, plus the
+ * private local one (`.git/info/attributes`), with their text.
+ * 
+ * gitsvc: attributeFiles
+ */
+export function AttributeFiles(repoPath: string): $CancellablePromise<$models.AttributeFile[] | null> {
+    return $Call.ByID(4120769545, repoPath);
+}
+
+/**
+ * AttributeWrite writes one attributes file whole.
+ * 
+ * The editing is done in the renderer against the file's text, so comments and
+ * ordering survive; this only has to refuse to write anywhere else.
+ * 
+ * gitsvc: attributeWrite
+ */
+export function AttributeWrite(repoPath: string, path: string, content: string): $CancellablePromise<void> {
+    return $Call.ByID(4276633153, repoPath, path, content);
 }
 
 /**
@@ -184,6 +251,52 @@ export function Branches(repoPath: string): $CancellablePromise<$models.Branches
 }
 
 /**
+ * BundleCreate writes a bundle of scope to file, and reports what it ended up
+ * holding. Writing a bundle reads the object database and touches nothing in
+ * the repository.
+ * 
+ * gitsvc: bundleCreate
+ */
+export function BundleCreate(repoPath: string, file: string, scope: $models.BundleScope): $CancellablePromise<$models.BundleResult> {
+    return $Call.ByID(3283260806, repoPath, file, scope);
+}
+
+/**
+ * BundleFetch fetches refs out of a bundle into `refs/remotes/bundle/*` and
+ * returns their new short names.
+ * 
+ * Deliberately not onto the local branches: a bundle is someone else's work
+ * arriving, and landing it on `main` behind the user's back is how you lose
+ * commits. Under a remote-shaped namespace it shows up in the branch list and
+ * merges (or does not) on their terms.
+ * 
+ * gitsvc: bundleFetch
+ */
+export function BundleFetch(repoPath: string, file: string, refs: string[] | null): $CancellablePromise<string[] | null> {
+    return $Call.ByID(3087486582, repoPath, file, refs);
+}
+
+/**
+ * BundleInspect says what a bundle holds, and whether this repository has
+ * what it needs to use it.
+ * 
+ * gitsvc: bundleInspect
+ */
+export function BundleInspect(repoPath: string, file: string): $CancellablePromise<$models.BundleInfo> {
+    return $Call.ByID(958682918, repoPath, file);
+}
+
+/**
+ * CheckAttributes asks git what applies to these paths — the answer no
+ * hand-reading of the files gives.
+ * 
+ * gitsvc: checkAttributes
+ */
+export function CheckAttributes(repoPath: string, paths: string[] | null): $CancellablePromise<$models.AttributeCheck[] | null> {
+    return $Call.ByID(2333656351, repoPath, paths);
+}
+
+/**
  * Checkout switches to ref.
  * gitsvc: checkout
  */
@@ -215,6 +328,56 @@ export function CherryPick(repoPath: string, hash: string, noCommit: boolean): $
  */
 export function CherryPickMany(repoPath: string, hashes: string[] | null, noCommit: boolean): $CancellablePromise<void> {
     return $Call.ByID(2812484225, repoPath, hashes, noCommit);
+}
+
+/**
+ * Clean removes untracked paths, either to the OS trash or for good.
+ * 
+ * Every path is checked against git's own candidate list first: the trash
+ * route does not go through git, so without that check a tracked file could be
+ * deleted by passing its name.
+ * 
+ * gitsvc: clean
+ */
+export function Clean(repoPath: string, paths: string[] | null, trash: boolean): $CancellablePromise<$models.CleanResult> {
+    return $Call.ByID(3047584727, repoPath, paths, trash);
+}
+
+/**
+ * CleanPreview says what `git clean` would remove, sized, with ignored paths
+ * kept apart.
+ * 
+ * gitsvc: cleanPreview
+ */
+export function CleanPreview(repoPath: string): $CancellablePromise<$models.CleanPreview> {
+    return $Call.ByID(947518369, repoPath);
+}
+
+/**
+ * ClearLocks deletes lock files by the relative paths StaleLocks reported and
+ * returns how many actually went.
+ * 
+ * Three guards, because this deletes files inside `.git` on a path that starts
+ * in the renderer: the name must end in `.lock`, it must resolve inside one of
+ * the repository's git directories (no `..` escape), and it must be older than
+ * dMinLockAgeSeconds — a young lock is a git process still running, and
+ * removing it from under a live write is how a repository gets a torn index.
+ * 
+ * gitsvc: clearLocks
+ */
+export function ClearLocks(repoPath: string, paths: string[] | null): $CancellablePromise<number> {
+    return $Call.ByID(1251967085, repoPath, paths);
+}
+
+/**
+ * Clone clones url into parentDir/name (name defaults to the URL's last path
+ * segment, then 'repository') and returns the new repository's path. Progress
+ * is streamed as `clone:progress` events.
+ * 
+ * gitsvc: clone
+ */
+export function Clone(parentDir: string, url: string, name: string, opts: $models.CloneOptions): $CancellablePromise<string> {
+    return $Call.ByID(3972101439, parentDir, url, name, opts);
 }
 
 /**
@@ -478,11 +641,31 @@ export function CreateTag(repoPath: string, name: string, hash: string, opts: $m
 }
 
 /**
+ * CredentialStatus says how git will answer the next password prompt, and
+ * what it would use.
+ * 
+ * gitsvc: credentialStatus
+ */
+export function CredentialStatus(repoPath: string): $CancellablePromise<$models.CredentialStatus> {
+    return $Call.ByID(25113553, repoPath);
+}
+
+/**
  * DeleteBranch deletes a local branch (`-d`, or `-D` with force).
  * gitsvc: deleteBranch
  */
 export function DeleteBranch(repoPath: string, name: string, force: boolean): $CancellablePromise<void> {
     return $Call.ByID(2672011077, repoPath, name, force);
+}
+
+/**
+ * DeleteHook deletes a hook file. The shipped `.sample` template (if any) is
+ * left intact.
+ * 
+ * gitsvc: deleteHook
+ */
+export function DeleteHook(repoPath: string, name: string): $CancellablePromise<void> {
+    return $Call.ByID(4199301610, repoPath, name);
 }
 
 /**
@@ -516,10 +699,41 @@ export function DeleteTag(repoPath: string, name: string): $CancellablePromise<v
 }
 
 /**
+ * DiffDriverSuggestions lists the converters Gitcito can wire up for the
+ * formats it already previews. It takes the repo path it never uses: every
+ * repo-scoped method does, and the dispatcher locks on it.
+ * 
+ * gitsvc: diffDriverSuggestions
+ */
+export function DiffDriverSuggestions(repoPath: string): $CancellablePromise<$models.DiffDriverSuggestion[] | null> {
+    return $Call.ByID(1221928600, repoPath);
+}
+
+/**
+ * DiffDrivers lists the diff drivers configured here (repo, then global), and
+ * whether their converter is installed.
+ * 
+ * gitsvc: diffDrivers
+ */
+export function DiffDrivers(repoPath: string): $CancellablePromise<$models.DiffDriverInfo[] | null> {
+    return $Call.ByID(345073696, repoPath);
+}
+
+/**
  * gitsvc: diffFile
  */
 export function DiffFile(repoPath: string, file: string, staged: boolean, untracked: boolean, ignoreWs: boolean): $CancellablePromise<string> {
     return $Call.ByID(562188199, repoPath, file, staged, untracked, ignoreWs);
+}
+
+/**
+ * Discard throws away working-tree changes to files (untracked: delete them
+ * with `git clean -f`). A guard snapshot is taken first.
+ * 
+ * gitsvc: discard
+ */
+export function Discard(repoPath: string, files: string[] | null, untracked: boolean): $CancellablePromise<void> {
+    return $Call.ByID(616241500, repoPath, files, untracked);
 }
 
 /**
@@ -529,6 +743,18 @@ export function DiffFile(repoPath: string, file: string, staged: boolean, untrac
  */
 export function EditRemote(repoPath: string, oldName: string, newName: string, url: string, pushURL: string): $CancellablePromise<void> {
     return $Call.ByID(2825946820, repoPath, oldName, newName, url, pushURL);
+}
+
+/**
+ * FetchAll fetches every remote, pruning, and returns the refs that were
+ * **force-updated** by this fetch — history the remote rewrote under us.
+ * `--porcelain` is what makes that knowable without diffing every ref by
+ * hand; on a git too old to support it we simply fetch and report nothing.
+ * 
+ * gitsvc: fetchAll
+ */
+export function FetchAll(repoPath: string): $CancellablePromise<$models.ForcedRefUpdate[] | null> {
+    return $Call.ByID(3109928909, repoPath);
 }
 
 /**
@@ -600,6 +826,42 @@ export function FilesToPush(repoPath: string, branch: string): $CancellablePromi
 }
 
 /**
+ * FilterDrivers lists the configured `filter.<name>.clean/smudge` drivers,
+ * repo then global.
+ * 
+ * gitsvc: filterDrivers
+ */
+export function FilterDrivers(repoPath: string): $CancellablePromise<$models.FilterDriverInfo[] | null> {
+    return $Call.ByID(1742242683, repoPath);
+}
+
+/**
+ * FilterDryRun tries a clean/smudge pair against real matching files WITHOUT
+ * configuring anything: run `clean` on a copy of each file's bytes, then
+ * `smudge` on the result, and report whether the roundtrip reproduces the
+ * original. Nothing in the repository or its config is touched.
+ * 
+ * gitsvc: filterDryRun
+ */
+export function FilterDryRun(repoPath: string, pattern: string, clean: string, smudge: string): $CancellablePromise<$models.FilterDryRunResult> {
+    return $Call.ByID(3232803250, repoPath, pattern, clean, smudge);
+}
+
+/**
+ * ForgetCredential makes git forget what it has stored for a host (protocol
+ * defaults to https).
+ * 
+ * `git credential reject` is the documented way in: it hands the request to
+ * whichever helper is configured and asks it to erase. Nothing is read back,
+ * so no secret passes through here.
+ * 
+ * gitsvc: forgetCredential
+ */
+export function ForgetCredential(repoPath: string, host: string, protocol: string | null): $CancellablePromise<void> {
+    return $Call.ByID(1164057778, repoPath, host, protocol);
+}
+
+/**
  * FormatPatch is a mailbox-style patch (format-patch) for count commits
  * ending at ref; a nil count means 1.
  * gitsvc: formatPatch
@@ -666,6 +928,15 @@ export function FsRename(repoPath: string, $from: string, to: string): $Cancella
 }
 
 /**
+ * Fsck checks the object database. Dangling is normal; missing is damage.
+ * 
+ * gitsvc: fsck
+ */
+export function Fsck(repoPath: string): $CancellablePromise<$models.FsckReport> {
+    return $Call.ByID(600049339, repoPath);
+}
+
+/**
  * gitsvc: generateChangelog
  * 
  * Build a Conventional-Commits changelog for the range `from..to` (defaults
@@ -691,6 +962,16 @@ export function GetCommitMessage(repoPath: string, hash: string): $CancellablePr
  */
 export function GetRemoteTags(repoPath: string, remote: string): $CancellablePromise<string[] | null> {
     return $Call.ByID(2442322797, repoPath, remote);
+}
+
+/**
+ * GetUser reads the identity git would commit as here (`user.name`,
+ * `user.email`, any scope).
+ * 
+ * gitsvc: getUser
+ */
+export function GetUser(repoPath: string): $CancellablePromise<$models.GitUser> {
+    return $Call.ByID(2082539753, repoPath);
 }
 
 /**
@@ -828,6 +1109,16 @@ export function HistoryPurgeRestore(repoPath: string, prefix: string): $Cancella
 }
 
 /**
+ * HooksInfo enumerates the repo's hooks and detects a custom hooksPath or the
+ * pre-commit framework.
+ * 
+ * gitsvc: hooksInfo
+ */
+export function HooksInfo(repoPath: string): $CancellablePromise<$models.HooksInfo> {
+    return $Call.ByID(795423402, repoPath);
+}
+
+/**
  * IgnoredTrackedFiles is the paths (from paths) that an ignore rule matches,
  * tracked or not. Git normally keeps tracking such files, but AI context
  * deliberately honours the rule as a privacy boundary. `--no-index` makes
@@ -849,10 +1140,86 @@ export function ImageDiff(repoPath: string, file: string, beforeRef: string | nu
 }
 
 /**
+ * Init creates parentDir/name (default 'my-repo') and runs `git init` in it.
+ * 
+ * gitsvc: init
+ */
+export function Init(parentDir: string, name: string): $CancellablePromise<string> {
+    return $Call.ByID(1769618288, parentDir, name);
+}
+
+/**
+ * InitHere runs `git init` in an existing folder the user already opened.
+ * 
+ * gitsvc: initHere
+ */
+export function InitHere(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(1238098318, repoPath);
+}
+
+/**
  * gitsvc: interactiveRebaseSteps
  */
 export function InteractiveRebaseSteps(repoPath: string, base: string): $CancellablePromise<$models.InteractiveRebaseStep[] | null> {
     return $Call.ByID(731809201, repoPath, base);
+}
+
+/**
+ * LastFetchAt is when this repository last fetched, from FETCH_HEAD's mtime
+ * (milliseconds). Reading the file rather than trusting our own bookkeeping is
+ * the point: a `git fetch` run in a terminal, or by another Gitcito window,
+ * counts the same as ours. Nil when the repository has never fetched.
+ * 
+ * gitsvc: lastFetchAt
+ */
+export function LastFetchAt(repoPath: string): $CancellablePromise<number | null> {
+    return $Call.ByID(4068623399, repoPath);
+}
+
+/**
+ * LfsInfo reports whether git-lfs is installed, the tracked patterns, and the
+ * LFS files.
+ * 
+ * gitsvc: lfsInfo
+ */
+export function LfsInfo(repoPath: string): $CancellablePromise<$models.LfsInfo> {
+    return $Call.ByID(909793053, repoPath);
+}
+
+/**
+ * LfsPrune prunes old/unreferenced LFS objects from local storage.
+ * 
+ * gitsvc: lfsPrune
+ */
+export function LfsPrune(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(3177413151, repoPath);
+}
+
+/**
+ * LfsPull downloads LFS content for pointers in the working tree.
+ * 
+ * gitsvc: lfsPull
+ */
+export function LfsPull(repoPath: string): $CancellablePromise<void> {
+    return $Call.ByID(2810953478, repoPath);
+}
+
+/**
+ * LfsTrack tracks a glob pattern with LFS (writes .gitattributes).
+ * 
+ * gitsvc: lfsTrack
+ */
+export function LfsTrack(repoPath: string, pattern: string): $CancellablePromise<void> {
+    return $Call.ByID(107187012, repoPath, pattern);
+}
+
+/**
+ * LfsUntrack stops tracking a pattern with LFS.
+ * 
+ * gitsvc: lfsUntrack
+ */
+export function LfsUntrack(repoPath: string, pattern: string): $CancellablePromise<void> {
+    return $Call.ByID(3171170081, repoPath, pattern);
 }
 
 /**
@@ -917,6 +1284,40 @@ export function ListTrackedFiles(repoPath: string): $CancellablePromise<string[]
  */
 export function Log(repoPath: string, maxCount: number | null, skip: number): $CancellablePromise<$models.GraphCommit[] | null> {
     return $Call.ByID(413294224, repoPath, maxCount, skip);
+}
+
+/**
+ * MaintenanceRun runs one maintenance job ('gc' | 'aggressive' |
+ * 'commitGraph' | 'prune'), reporting the size on either side of it.
+ * 
+ * `prune` is the only one that destroys anything: gc keeps unreachable objects
+ * for two weeks precisely so a bad reset stays recoverable, and pruning now
+ * throws that safety net away.
+ * 
+ * gitsvc: maintenanceRun
+ */
+export function MaintenanceRun(repoPath: string, task: string): $CancellablePromise<$models.MaintenanceResult> {
+    return $Call.ByID(638434114, repoPath, task);
+}
+
+/**
+ * MaintenanceSchedule registers (on) or unregisters this repository with `git
+ * maintenance`, and returns on.
+ * 
+ * gitsvc: maintenanceSchedule
+ */
+export function MaintenanceSchedule(repoPath: string, on: boolean): $CancellablePromise<boolean> {
+    return $Call.ByID(1758349732, repoPath, on);
+}
+
+/**
+ * MaintenanceStats says where the disk went, and how much of it maintenance
+ * could get back.
+ * 
+ * gitsvc: maintenanceStats
+ */
+export function MaintenanceStats(repoPath: string): $CancellablePromise<$models.MaintenanceStats> {
+    return $Call.ByID(3787135892, repoPath);
 }
 
 /**
@@ -1033,6 +1434,52 @@ export function ProtectedBranches(repoPath: string): $CancellablePromise<string[
 }
 
 /**
+ * Pull pulls the current branch from its upstream: mode is 'default' |
+ * 'ff-only' | 'rebase' (” behaves as 'default'). A dirty working tree is
+ * shelved under a named stash for the duration.
+ * 
+ * gitsvc: pull
+ */
+export function Pull(repoPath: string, mode: string): $CancellablePromise<void> {
+    return $Call.ByID(759956561, repoPath, mode);
+}
+
+/**
+ * PullBranch updates a local branch from its upstream **without checking it
+ * out**.
+ * 
+ * `git pull` only ever moves HEAD, which is why a branch you are not standing
+ * on looks unpullable. A refspec fetch moves the ref directly, and git refuses
+ * it unless the update is a fast-forward — that refusal is the point: a
+ * diverged branch needs a merge or rebase the user picked, not a silent one.
+ * 
+ * gitsvc: pullBranch
+ */
+export function PullBranch(repoPath: string, branch: string): $CancellablePromise<void> {
+    return $Call.ByID(1841549273, repoPath, branch);
+}
+
+/**
+ * Push pushes branch to opts.Remote (default origin) and sets it as the
+ * upstream; Force is `--force-with-lease`, never a bare `--force`.
+ * 
+ * gitsvc: push
+ */
+export function Push(repoPath: string, branch: string, opts: $models.PushOptions): $CancellablePromise<void> {
+    return $Call.ByID(789127562, repoPath, branch, opts);
+}
+
+/**
+ * PushAllTags publishes every local tag to a remote (default origin).
+ * Annotated and lightweight alike.
+ * 
+ * gitsvc: pushAllTags
+ */
+export function PushAllTags(repoPath: string, remote: string | null): $CancellablePromise<void> {
+    return $Call.ByID(3881956220, repoPath, remote);
+}
+
+/**
  * gitsvc: pushNotes
  */
 export function PushNotes(repoPath: string, remote: string): $CancellablePromise<void> {
@@ -1044,6 +1491,19 @@ export function PushNotes(repoPath: string, remote: string): $CancellablePromise
  */
 export function PushTag(repoPath: string, name: string, remote: string): $CancellablePromise<void> {
     return $Call.ByID(2783205394, repoPath, name, remote);
+}
+
+/**
+ * PushToRemotes pushes one branch to several remotes in turn.
+ * 
+ * A failure against one remote does not cancel the others: pushing a fork and
+ * its upstream is the whole point, and "upstream rejected it" is no reason to
+ * leave the fork behind. Each result is reported separately.
+ * 
+ * gitsvc: pushToRemotes
+ */
+export function PushToRemotes(repoPath: string, branch: string, remotes: string[] | null, opts: $models.PushToRemotesOptions): $CancellablePromise<$models.PushRemoteResult[] | null> {
+    return $Call.ByID(2276131242, repoPath, branch, remotes, opts);
 }
 
 /**
@@ -1059,6 +1519,16 @@ export function PushTag(repoPath: string, name: string, remote: string): $Cancel
  */
 export function RangeDiff(repoPath: string, oldRev: string, newRev: string, base: string): $CancellablePromise<$models.RangeDiffEntry[] | null> {
     return $Call.ByID(2037105612, repoPath, oldRev, newRev, base);
+}
+
+/**
+ * ReadHook reads a hook's contents for editing. Falls back to the shipped
+ * `.sample` template, then to a minimal shebang, so the editor is never blank.
+ * 
+ * gitsvc: readHook
+ */
+export function ReadHook(repoPath: string, name: string): $CancellablePromise<string> {
+    return $Call.ByID(3415077725, repoPath, name);
 }
 
 /**
@@ -1108,6 +1578,18 @@ export function RefTips(repoPath: string, ref: string, max: number | null): $Can
  */
 export function Reflog(repoPath: string, ref: string | null, max: number | null): $CancellablePromise<$models.ReflogEntry[] | null> {
     return $Call.ByID(3500815827, repoPath, ref, max);
+}
+
+/**
+ * RemoteBranches lists the branch names a remote advertises, sorted, for the
+ * clone dialog's branch picker. Never touches disk — `ls-remote` is a network
+ * read with no local repo. host and token authenticate an https URL for this
+ * call only.
+ * 
+ * gitsvc: remoteBranches
+ */
+export function RemoteBranches(url: string, host: string, token: string): $CancellablePromise<string[] | null> {
+    return $Call.ByID(2389884452, url, host, token);
 }
 
 /**
@@ -1177,6 +1659,60 @@ export function RenameStash(repoPath: string, index: number, message: string): $
 }
 
 /**
+ * ReplaceDelete drops a replacement. The original was never touched, so this
+ * restores it.
+ * 
+ * gitsvc: replaceDelete
+ */
+export function ReplaceDelete(repoPath: string, original: string): $CancellablePromise<void> {
+    return $Call.ByID(2532340977, repoPath, original);
+}
+
+/**
+ * ReplaceGraft grafts a commit onto different parents — or onto none at all —
+ * and returns the commit's full sha.
+ * 
+ * `git replace --graft <commit>` with no parents makes that commit look like
+ * the beginning of history: everything before it becomes unreachable through
+ * normal walks, without a single object being rewritten. Point it at a commit
+ * in an archive repository instead, and the truncated clone gets its full
+ * history back.
+ * 
+ * gitsvc: replaceGraft
+ */
+export function ReplaceGraft(repoPath: string, commit: string, parents: string[] | null): $CancellablePromise<string> {
+    return $Call.ByID(233559548, repoPath, commit, parents);
+}
+
+/**
+ * ReplaceObject replaces one object with another outright.
+ * 
+ * gitsvc: replaceObject
+ */
+export function ReplaceObject(repoPath: string, original: string, replacement: string): $CancellablePromise<void> {
+    return $Call.ByID(3744089365, repoPath, original, replacement);
+}
+
+/**
+ * Replacements lists every replacement, with enough of each side to tell them
+ * apart.
+ * 
+ * gitsvc: replacements
+ */
+export function Replacements(repoPath: string): $CancellablePromise<$models.ReplaceStatus> {
+    return $Call.ByID(4183694719, repoPath);
+}
+
+/**
+ * RepoConfig reads and validates the repository's `.gitcito.json`.
+ * 
+ * gitsvc: repoConfig
+ */
+export function RepoConfig(repoPath: string): $CancellablePromise<$models.RepoConfigResult> {
+    return $Call.ByID(2561769400, repoPath);
+}
+
+/**
  * gitsvc: repoDetail
  * 
  * The extra detail one row expands to show: what is dirty and what is waiting
@@ -1185,6 +1721,18 @@ export function RenameStash(repoPath: string, index: number, message: string): $
  */
 export function RepoDetail(repoPath: string, max: number | null): $CancellablePromise<$models.RepoDetail> {
     return $Call.ByID(3452595215, repoPath, max);
+}
+
+/**
+ * RepoDoctor runs every check the repository's config asks for. It reads the
+ * config itself rather than taking it from the caller, so a doctor run always
+ * reflects what is on disk right now — the file is a tracked file and a branch
+ * switch can change it underneath the panel.
+ * 
+ * gitsvc: repoDoctor
+ */
+export function RepoDoctor(repoPath: string): $CancellablePromise<$models.DoctorCheck[] | null> {
+    return $Call.ByID(743933025, repoPath);
 }
 
 /**
@@ -1421,6 +1969,59 @@ export function SemanticDiff(repoPath: string, file: string, oldSide: $models.Bl
 }
 
 /**
+ * SetBranchRef moves a local branch to sha without checking it out — `git
+ * branch -f`. The undo for a branch-level pull. Git refuses to move a branch
+ * that is checked out in this worktree or another one, which is the guard we
+ * want.
+ * 
+ * gitsvc: setBranchRef
+ */
+export function SetBranchRef(repoPath: string, branch: string, sha: string): $CancellablePromise<void> {
+    return $Call.ByID(3343746507, repoPath, branch, sha);
+}
+
+/**
+ * SetCredentialHelper sets or clears `credential.helper` in scope ('global' |
+ * 'repo'). An empty value removes the setting.
+ * 
+ * gitsvc: setCredentialHelper
+ */
+export function SetCredentialHelper(repoPath: string, value: string, scope: string): $CancellablePromise<void> {
+    return $Call.ByID(1980405219, repoPath, value, scope);
+}
+
+/**
+ * SetDiffDriver sets (or, with an empty textconv, clears) `diff.<name>.textconv`
+ * in the repository or, with global, the user's config.
+ * 
+ * gitsvc: setDiffDriver
+ */
+export function SetDiffDriver(repoPath: string, name: string, textconv: string, global: boolean): $CancellablePromise<void> {
+    return $Call.ByID(439909139, repoPath, name, textconv, global);
+}
+
+/**
+ * SetFilterDriver writes (or clears, when both commands are empty) a
+ * `filter.<name>` driver, and returns the values that were there before, for
+ * the undo entry.
+ * 
+ * gitsvc: setFilterDriver
+ */
+export function SetFilterDriver(repoPath: string, name: string, driver: $models.FilterDriverInput, global: boolean): $CancellablePromise<$models.FilterDriverPrevious> {
+    return $Call.ByID(1523037962, repoPath, name, driver, global);
+}
+
+/**
+ * SetHookEnabled toggles a hook's executable bit — git only runs hooks that
+ * are executable.
+ * 
+ * gitsvc: setHookEnabled
+ */
+export function SetHookEnabled(repoPath: string, name: string, enabled: boolean): $CancellablePromise<void> {
+    return $Call.ByID(1352198766, repoPath, name, enabled);
+}
+
+/**
  * gitsvc: setNote
  * 
  * Write (or overwrite) a commit's note. An empty text removes it instead.
@@ -1434,6 +2035,17 @@ export function SetNote(repoPath: string, sha: string, text: string): $Cancellab
  */
 export function SetProtectedBranches(repoPath: string, branches: string[] | null): $CancellablePromise<void> {
     return $Call.ByID(2916690820, repoPath, branches);
+}
+
+/**
+ * SetRepoConfig writes `.gitcito.json`. The config is validated again here
+ * rather than trusted from the renderer: the editor is one caller, and the
+ * next one should not be able to introduce a field the loader would reject.
+ * 
+ * gitsvc: setRepoConfig
+ */
+export function SetRepoConfig(repoPath: string, config: $models.RepoConfig): $CancellablePromise<$models.RepoConfigResult> {
+    return $Call.ByID(2344054712, repoPath, config);
 }
 
 /**
@@ -1454,6 +2066,35 @@ export function SetRerere(repoPath: string, values: $models.RerereSettings, scop
  */
 export function SetSigningConfig(repoPath: string, opts: $models.SigningConfigUpdate): $CancellablePromise<void> {
     return $Call.ByID(1228942451, repoPath, opts);
+}
+
+/**
+ * SetUpstream points branch at `<remote>/<branch>`; a nil remote unsets the
+ * tracking.
+ * 
+ * gitsvc: setUpstream
+ */
+export function SetUpstream(repoPath: string, branch: string, remote: string | null): $CancellablePromise<void> {
+    return $Call.ByID(1195522503, repoPath, branch, remote);
+}
+
+/**
+ * SetUseReplaceRefs turns replacements on or off for this repository
+ * (`core.useReplaceRefs`). On means the setting is removed, not set to true.
+ * 
+ * gitsvc: setUseReplaceRefs
+ */
+export function SetUseReplaceRefs(repoPath: string, enabled: boolean): $CancellablePromise<void> {
+    return $Call.ByID(2982628981, repoPath, enabled);
+}
+
+/**
+ * SetUser sets the repository's own identity (local config).
+ * 
+ * gitsvc: setUser
+ */
+export function SetUser(repoPath: string, name: string, email: string): $CancellablePromise<void> {
+    return $Call.ByID(1842495517, repoPath, name, email);
 }
 
 /**
@@ -1654,6 +2295,28 @@ export function StagedDiff(repoPath: string): $CancellablePromise<string> {
 }
 
 /**
+ * StaleLocks lists every `*.lock` file left inside the repository's git
+ * directory, newest first, with its age.
+ * 
+ * Git writes a lock next to whatever it is about to change and removes it when
+ * the write lands. A lock that outlives its process — a crashed editor, a `git
+ * commit` whose terminal was closed, a killed fetch mid-prune — is invisible
+ * from the UI and turns every later write into "Unable to create '...lock':
+ * File exists". The age is the whole story: a lock two seconds old belongs to a
+ * running git, one twenty minutes old does not.
+ * 
+ * Submodule git directories (`modules/`), the pack directory and `lfs/` are
+ * skipped — the first belongs to another repository, the others hold no lock a
+ * user can act on. Directory entries are visited in name order (Node's readdir
+ * order was the filesystem's).
+ * 
+ * gitsvc: staleLocks
+ */
+export function StaleLocks(repoPath: string): $CancellablePromise<$models.GitLockFile[] | null> {
+    return $Call.ByID(2549395001, repoPath);
+}
+
+/**
  * gitsvc: stash
  */
 export function Stash(repoPath: string, message: string): $CancellablePromise<void> {
@@ -1765,6 +2428,147 @@ export function Status(repoPath: string): $CancellablePromise<$models.RepoStatus
 }
 
 /**
+ * SubmoduleAdd adds a submodule at path, optionally tracking branch.
+ * 
+ * gitsvc: submoduleAdd
+ */
+export function SubmoduleAdd(repoPath: string, url: string, path: string, branch: string): $CancellablePromise<void> {
+    return $Call.ByID(3053201379, repoPath, url, path, branch);
+}
+
+/**
+ * SubmoduleDeinit unregisters a submodule and empties its working tree; force
+ * discards local changes in it.
+ * 
+ * gitsvc: submoduleDeinit
+ */
+export function SubmoduleDeinit(repoPath: string, path: string, force: boolean): $CancellablePromise<void> {
+    return $Call.ByID(1650115925, repoPath, path, force);
+}
+
+/**
+ * SubmoduleRemove fully removes a submodule: deinit, drop the working tree
+ * from the index, and strip its config section so it no longer shows up.
+ * 
+ * gitsvc: submoduleRemove
+ */
+export function SubmoduleRemove(repoPath: string, path: string): $CancellablePromise<void> {
+    return $Call.ByID(2582007080, repoPath, path);
+}
+
+/**
+ * SubmoduleSetUrl updates a submodule's remote URL in `.gitmodules` and syncs
+ * the live config.
+ * 
+ * gitsvc: submoduleSetUrl
+ */
+export function SubmoduleSetUrl(repoPath: string, name: string, url: string): $CancellablePromise<void> {
+    return $Call.ByID(1412174145, repoPath, name, url);
+}
+
+/**
+ * SubmoduleSync copies `.gitmodules` URLs into the live config, recursively.
+ * 
+ * gitsvc: submoduleSync
+ */
+export function SubmoduleSync(repoPath: string, path: string): $CancellablePromise<void> {
+    return $Call.ByID(3250660251, repoPath, path);
+}
+
+/**
+ * SubmoduleUpdate checks submodules out at their recorded commits, recursively
+ * (all of them, or the one at path). init (default true) initializes them first.
+ * 
+ * gitsvc: submoduleUpdate
+ */
+export function SubmoduleUpdate(repoPath: string, path: string, init: boolean | null): $CancellablePromise<void> {
+    return $Call.ByID(4226257537, repoPath, path, init);
+}
+
+/**
+ * Submodules lists the registered submodules with their live state, sorted
+ * by path.
+ * 
+ * gitsvc: submodules
+ */
+export function Submodules(repoPath: string): $CancellablePromise<$models.SubmoduleInfo[] | null> {
+    return $Call.ByID(4150719881, repoPath);
+}
+
+/**
+ * SubtreeAdd vendors a repository into prefix (squashed unless squash is
+ * false), and remembers where it came from.
+ * 
+ * gitsvc: subtreeAdd
+ */
+export function SubtreeAdd(repoPath: string, prefix: string, url: string, ref: string, squash: boolean | null): $CancellablePromise<void> {
+    return $Call.ByID(3075327699, repoPath, prefix, url, ref, squash);
+}
+
+/**
+ * SubtreeForget forgets the remembered url/ref. Touches no files and no history.
+ * 
+ * gitsvc: subtreeForget
+ */
+export function SubtreeForget(repoPath: string, prefix: string): $CancellablePromise<void> {
+    return $Call.ByID(752303353, repoPath, prefix);
+}
+
+/**
+ * SubtreePull pulls upstream changes into an existing subtree.
+ * 
+ * gitsvc: subtreePull
+ */
+export function SubtreePull(repoPath: string, prefix: string, url: string, ref: string, squash: boolean | null): $CancellablePromise<void> {
+    return $Call.ByID(3022468303, repoPath, prefix, url, ref, squash);
+}
+
+/**
+ * SubtreePush sends local changes under prefix back to the source repository.
+ * 
+ * gitsvc: subtreePush
+ */
+export function SubtreePush(repoPath: string, prefix: string, url: string, ref: string): $CancellablePromise<void> {
+    return $Call.ByID(3060113588, repoPath, prefix, url, ref);
+}
+
+/**
+ * SubtreeSplit extracts the subtree's own history into a local branch and
+ * returns the split commit.
+ * 
+ * gitsvc: subtreeSplit
+ */
+export function SubtreeSplit(repoPath: string, prefix: string, branch: string): $CancellablePromise<string> {
+    return $Call.ByID(323280912, repoPath, prefix, branch);
+}
+
+/**
+ * Subtrees lists the subtrees found in history plus the ones remembered in
+ * config, sorted by prefix.
+ * 
+ * gitsvc: subtrees
+ */
+export function Subtrees(repoPath: string): $CancellablePromise<$models.SubtreeInfo[] | null> {
+    return $Call.ByID(862409433, repoPath);
+}
+
+/**
+ * SuggestRepoConfig reads a repository and proposes the config it evidently
+ * wants.
+ * 
+ * The point is that nobody writes this file from a blank page. Everything here
+ * is inferred from something already in the repository — `.gitmodules`,
+ * `.nvmrc`, a husky directory, an `.env.example` sitting next to no `.env`. It
+ * deliberately proposes nothing it cannot see evidence for: ticket links need
+ * a tracker URL only a human knows, so they are left for the editor.
+ * 
+ * gitsvc: suggestRepoConfig
+ */
+export function SuggestRepoConfig(repoPath: string): $CancellablePromise<$models.RepoConfig> {
+    return $Call.ByID(1625921530, repoPath);
+}
+
+/**
  * gitsvc: teammateRadar
  * 
  * Teammate radar: remote awareness computed entirely from the last fetch.
@@ -1825,10 +2629,64 @@ export function UnstageAll(repoPath: string): $CancellablePromise<void> {
 }
 
 /**
+ * Untrack stops tracking files/folders. By default they are removed from the
+ * index only (kept on disk); with deleteFromDisk they also leave the working
+ * tree. `-r` allows folders; `--ignore-unmatch` keeps the call safe if a path
+ * was already untracked.
+ * 
+ * gitsvc: untrack
+ */
+export function Untrack(repoPath: string, files: string[] | null, deleteFromDisk: boolean): $CancellablePromise<void> {
+    return $Call.ByID(3273381248, repoPath, files, deleteFromDisk);
+}
+
+/**
+ * UpstreamSuggestion says what a "there is no tracking information" pull is
+ * actually missing. Git prints the two repairs as CLI incantations and leaves
+ * the user to pick; this answers the question the choice hinges on — whether
+ * the remote already carries the branch — so the UI can offer one button
+ * instead of a man page. Nil when there is nothing to repair (detached HEAD, an
+ * upstream already set, or no remote at all).
+ * 
+ * gitsvc: upstreamSuggestion
+ */
+export function UpstreamSuggestion(repoPath: string): $CancellablePromise<$models.UpstreamSuggestion | null> {
+    return $Call.ByID(1234728759, repoPath);
+}
+
+/**
  * gitsvc: version
  */
 export function Version(): $CancellablePromise<string> {
     return $Call.ByID(2137610950);
+}
+
+/**
+ * WorktreeAdd adds a worktree at path: on a new branch (from startPoint, when
+ * given) or on an existing one.
+ * 
+ * gitsvc: worktreeAdd
+ */
+export function WorktreeAdd(repoPath: string, path: string, branch: string, newBranch: boolean, startPoint: string): $CancellablePromise<void> {
+    return $Call.ByID(71052806, repoPath, path, branch, newBranch, startPoint);
+}
+
+/**
+ * WorktreeRemove removes a linked worktree; force discards its local changes.
+ * 
+ * gitsvc: worktreeRemove
+ */
+export function WorktreeRemove(repoPath: string, path: string, force: boolean): $CancellablePromise<void> {
+    return $Call.ByID(2388775215, repoPath, path, force);
+}
+
+/**
+ * Worktrees lists the repository's worktrees, the main one first.
+ * 
+ * gitsvc: worktrees
+ */
+export function Worktrees(repoPath: string): $CancellablePromise<$models.WorktreeInfo[] | null> {
+    return $Call.ByID(390253104, repoPath);
 }
 
 /**
@@ -1838,4 +2696,13 @@ export function Version(): $CancellablePromise<string> {
  */
 export function WriteChangelogFile(repoPath: string, markdown: string): $CancellablePromise<void> {
     return $Call.ByID(3469894495, repoPath, markdown);
+}
+
+/**
+ * WriteHook writes a hook and makes it executable (so git will run it).
+ * 
+ * gitsvc: writeHook
+ */
+export function WriteHook(repoPath: string, name: string, content: string): $CancellablePromise<void> {
+    return $Call.ByID(1210865098, repoPath, name, content);
 }

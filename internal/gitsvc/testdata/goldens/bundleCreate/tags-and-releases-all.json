@@ -1,0 +1,40 @@
+{
+  "method": "bundleCreate",
+  "fixture": "tags-and-releases",
+  "case": "all",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/all.bundle",
+    {
+      "kind": "all"
+    }
+  ],
+  "capture": [
+    {
+      "git": [
+        "bundle",
+        "list-heads",
+        "<OUT>/all.bundle"
+      ]
+    }
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "extra": [
+    {
+      "out": "<SHA1> refs/heads/hotfix/security-patch\n<SHA2> refs/heads/main\n<SHA3> refs/tags/v1.0.0\n<SHA4> refs/tags/v1.0.1\n<SHA5> refs/tags/v1.0.2\n<SHA6> refs/tags/v1.1.0\n<SHA7> refs/tags/v2.0.0\n<SHA2> HEAD"
+    }
+  ],
+  "result": {
+    "bytes": "<POS>",
+    "path": "<OUT>/all.bundle",
+    "refs": 8
+  }
+}

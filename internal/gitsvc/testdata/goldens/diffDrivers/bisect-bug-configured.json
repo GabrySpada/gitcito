@@ -1,0 +1,69 @@
+{
+  "method": "diffDrivers",
+  "fixture": "bisect-bug",
+  "case": "configured",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "--local",
+        "diff.nonesuch.textconv",
+        "definitely-not-installed --to-text"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "diff.cat.textconv",
+        "cat"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--local",
+        "diff.quoted.textconv",
+        "\"/bin/cat\" -"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "--global",
+        "diff.glob.textconv",
+        "cat"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "available": false,
+      "name": "nonesuch",
+      "scope": "repo",
+      "textconv": "definitely-not-installed --to-text"
+    },
+    {
+      "available": true,
+      "name": "cat",
+      "scope": "repo",
+      "textconv": "cat"
+    },
+    {
+      "available": true,
+      "name": "quoted",
+      "scope": "repo",
+      "textconv": "\"/bin/cat\" -"
+    },
+    {
+      "available": true,
+      "name": "glob",
+      "scope": "global",
+      "textconv": "cat"
+    }
+  ]
+}

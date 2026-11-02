@@ -1,0 +1,38 @@
+{
+  "method": "clone",
+  "fixture": "",
+  "case": "shallow-all-branches",
+  "repo": "tmp",
+  "args": [
+    "<REPO>",
+    "<PLAYGROUND>/merge-conflict",
+    "",
+    {
+      "depth": 1.7,
+      "singleBranch": false
+    }
+  ],
+  "stateOf": "result",
+  "result": "<REPO>/merge-conflict",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tapp.js",
+      "100644 <SHA2> 0\tbig-log.txt",
+      "100644 <SHA3> 0\tgreeting.txt",
+      "100644 <SHA4> 0\trelease-notes.md"
+    ],
+    "log": [
+      "<SHA5>\u0000\u0000feature: translate to Spanish",
+      "<SHA6>\u0000\u0000main: shout the greetings"
+    ],
+    "refs": [
+      "refs/heads/main <SHA6>",
+      "refs/remotes/origin/HEAD <SHA6>",
+      "refs/remotes/origin/feature <SHA5>",
+      "refs/remotes/origin/main <SHA6>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

@@ -1,0 +1,760 @@
+{
+  "ops": [
+    {
+      "op": "list",
+      "args": [
+        "/r1"
+      ],
+      "now": 1767268800000,
+      "result": {
+        "available": true,
+        "repo": [],
+        "global": []
+      }
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "repo",
+        "/r1",
+        {
+          "id": "",
+          "key": "DB_URL",
+          "value": "DB_URL-secret",
+          "updatedAt": 0,
+          "note": "prod db"
+        }
+      ],
+      "now": 1767268801000,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "key": "DB_URL",
+            "value": "DB_URL-secret",
+            "updatedAt": 1767268801000,
+            "note": "prod db"
+          }
+        ],
+        "global": []
+      }
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "global",
+        "/r1",
+        {
+          "id": "",
+          "key": "STRIPE",
+          "value": "STRIPE-secret",
+          "updatedAt": 0
+        }
+      ],
+      "now": 1767268802000,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "key": "DB_URL",
+            "value": "DB_URL-secret",
+            "updatedAt": 1767268801000,
+            "note": "prod db"
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "key": "STRIPE",
+            "value": "STRIPE-secret",
+            "updatedAt": 1767268802000
+          }
+        ]
+      }
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "global",
+        "/r1",
+        {
+          "id": "",
+          "key": "SENTRY",
+          "value": "SENTRY-secret",
+          "updatedAt": 0,
+          "note": ""
+        }
+      ],
+      "now": 1767268803000,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "key": "DB_URL",
+            "value": "DB_URL-secret",
+            "updatedAt": 1767268801000,
+            "note": "prod db"
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "key": "STRIPE",
+            "value": "STRIPE-secret",
+            "updatedAt": 1767268802000
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "repo",
+        "/r1",
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "key": "DB_URL",
+          "value": "changed",
+          "updatedAt": 0
+        }
+      ],
+      "now": 1767268804000,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "key": "DB_URL",
+            "value": "changed",
+            "updatedAt": 1767268804000
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "key": "STRIPE",
+            "value": "STRIPE-secret",
+            "updatedAt": 1767268802000
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "repo",
+        "/r2",
+        {
+          "id": "fixed-id",
+          "key": "FIXED",
+          "value": "FIXED-secret",
+          "updatedAt": 0
+        }
+      ],
+      "now": 1767268805000,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "fixed-id",
+            "key": "FIXED",
+            "value": "FIXED-secret",
+            "updatedAt": 1767268805000
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "key": "STRIPE",
+            "value": "STRIPE-secret",
+            "updatedAt": 1767268802000
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "anything",
+        "/r2",
+        {
+          "id": "",
+          "key": "SCOPE_FALLS_BACK_TO_REPO",
+          "value": "SCOPE_FALLS_BACK_TO_REPO-secret",
+          "updatedAt": 0
+        }
+      ],
+      "now": 1767268806000,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "fixed-id",
+            "key": "FIXED",
+            "value": "FIXED-secret",
+            "updatedAt": 1767268805000
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000004",
+            "key": "SCOPE_FALLS_BACK_TO_REPO",
+            "value": "SCOPE_FALLS_BACK_TO_REPO-secret",
+            "updatedAt": 1767268806000
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "key": "STRIPE",
+            "value": "STRIPE-secret",
+            "updatedAt": 1767268802000
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "list",
+      "args": [
+        "/r2"
+      ],
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "fixed-id",
+            "key": "FIXED",
+            "value": "FIXED-secret",
+            "updatedAt": 1767268805000
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000004",
+            "key": "SCOPE_FALLS_BACK_TO_REPO",
+            "value": "SCOPE_FALLS_BACK_TO_REPO-secret",
+            "updatedAt": 1767268806000
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000002",
+            "key": "STRIPE",
+            "value": "STRIPE-secret",
+            "updatedAt": 1767268802000
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "remove",
+      "args": [
+        "global",
+        "/r1",
+        "00000000-0000-4000-8000-000000000002"
+      ],
+      "now": 1767268807000,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "key": "DB_URL",
+            "value": "changed",
+            "updatedAt": 1767268804000
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "remove",
+      "args": [
+        "repo",
+        "/r9",
+        "missing"
+      ],
+      "now": 1767268808000,
+      "result": {
+        "available": true,
+        "repo": [],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "list",
+      "args": [
+        "/r9"
+      ],
+      "result": {
+        "available": true,
+        "repo": [],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "exportAll",
+      "args": [],
+      "result": {
+        "repos": {
+          "/r1": [
+            {
+              "id": "00000000-0000-4000-8000-000000000001",
+              "key": "DB_URL",
+              "value": "changed",
+              "updatedAt": 1767268804000
+            }
+          ],
+          "/r2": [
+            {
+              "id": "fixed-id",
+              "key": "FIXED",
+              "value": "FIXED-secret",
+              "updatedAt": 1767268805000
+            },
+            {
+              "id": "00000000-0000-4000-8000-000000000004",
+              "key": "SCOPE_FALLS_BACK_TO_REPO",
+              "value": "SCOPE_FALLS_BACK_TO_REPO-secret",
+              "updatedAt": 1767268806000
+            }
+          ],
+          "/r9": []
+        },
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "SENTRY-secret",
+            "updatedAt": 1767268803000,
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "op": "exportGlobalEntries",
+      "args": [],
+      "result": [
+        {
+          "key": "SENTRY",
+          "value": "SENTRY-secret"
+        }
+      ]
+    },
+    {
+      "op": "importGlobalEntries",
+      "args": [
+        [
+          {
+            "key": "SENTRY",
+            "value": "new-dsn",
+            "note": "from bundle"
+          },
+          {
+            "key": "NEW_KEY",
+            "value": "v"
+          },
+          {
+            "key": "SENTRY",
+            "value": "again"
+          }
+        ]
+      ],
+      "now": 1767268809000,
+      "result": 3
+    },
+    {
+      "op": "importGlobalEntries",
+      "args": [
+        []
+      ],
+      "now": 1767268809500,
+      "result": 0
+    },
+    {
+      "op": "list",
+      "args": [
+        "/r1"
+      ],
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "key": "DB_URL",
+            "value": "changed",
+            "updatedAt": 1767268804000
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "again",
+            "updatedAt": 1767268809000,
+            "note": "from bundle"
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000005",
+            "key": "NEW_KEY",
+            "value": "v",
+            "updatedAt": 1767268809000
+          }
+        ]
+      }
+    },
+    {
+      "op": "importAll",
+      "args": [
+        {
+          "global": [
+            {
+              "id": "imp-1",
+              "key": "IMPORTED",
+              "value": "IMPORTED-secret",
+              "updatedAt": 3
+            },
+            {
+              "id": "",
+              "key": "NO_ID",
+              "value": "NO_ID-secret",
+              "updatedAt": 0
+            }
+          ],
+          "repos": {
+            "/r1": [
+              {
+                "id": "00000000-0000-4000-8000-000000000001",
+                "key": "DB_URL",
+                "value": "from import",
+                "updatedAt": 4
+              }
+            ],
+            "/r3": [
+              {
+                "id": "r3",
+                "key": "R3",
+                "value": "R3-secret",
+                "updatedAt": 0
+              }
+            ]
+          }
+        }
+      ],
+      "result": null
+    },
+    {
+      "op": "importAll",
+      "args": [
+        {}
+      ],
+      "result": null
+    },
+    {
+      "op": "importAll",
+      "args": [
+        null
+      ],
+      "result": null
+    },
+    {
+      "op": "exportAll",
+      "args": [],
+      "result": {
+        "repos": {
+          "/r1": [
+            {
+              "id": "00000000-0000-4000-8000-000000000001",
+              "key": "DB_URL",
+              "value": "from import",
+              "updatedAt": 4
+            }
+          ],
+          "/r2": [
+            {
+              "id": "fixed-id",
+              "key": "FIXED",
+              "value": "FIXED-secret",
+              "updatedAt": 1767268805000
+            },
+            {
+              "id": "00000000-0000-4000-8000-000000000004",
+              "key": "SCOPE_FALLS_BACK_TO_REPO",
+              "value": "SCOPE_FALLS_BACK_TO_REPO-secret",
+              "updatedAt": 1767268806000
+            }
+          ],
+          "/r9": [],
+          "/r3": [
+            {
+              "id": "r3",
+              "key": "R3",
+              "value": "R3-secret",
+              "updatedAt": 0
+            }
+          ]
+        },
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "again",
+            "updatedAt": 1767268809000,
+            "note": "from bundle"
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000005",
+            "key": "NEW_KEY",
+            "value": "v",
+            "updatedAt": 1767268809000
+          },
+          {
+            "id": "imp-1",
+            "key": "IMPORTED",
+            "value": "IMPORTED-secret",
+            "updatedAt": 3
+          }
+        ]
+      }
+    },
+    {
+      "op": "list",
+      "args": [
+        "/r1"
+      ],
+      "available": false,
+      "result": {
+        "available": false,
+        "repo": [],
+        "global": []
+      }
+    },
+    {
+      "op": "upsert",
+      "args": [
+        "global",
+        "/r1",
+        {
+          "id": "",
+          "key": "IGNORED",
+          "value": "IGNORED-secret",
+          "updatedAt": 0
+        }
+      ],
+      "result": {
+        "available": false,
+        "repo": [],
+        "global": []
+      }
+    },
+    {
+      "op": "remove",
+      "args": [
+        "global",
+        "/r1",
+        "imp-1"
+      ],
+      "result": {
+        "available": false,
+        "repo": [],
+        "global": []
+      }
+    },
+    {
+      "op": "exportAll",
+      "args": [],
+      "result": {
+        "repos": {},
+        "global": []
+      }
+    },
+    {
+      "op": "importAll",
+      "args": [
+        {
+          "global": [
+            {
+              "id": "x",
+              "key": "IGNORED",
+              "value": "IGNORED-secret",
+              "updatedAt": 0
+            }
+          ],
+          "repos": {}
+        }
+      ],
+      "result": null
+    },
+    {
+      "op": "exportGlobalEntries",
+      "args": [],
+      "result": []
+    },
+    {
+      "op": "importGlobalEntries",
+      "args": [
+        [
+          {
+            "key": "IGNORED",
+            "value": "x"
+          }
+        ]
+      ],
+      "result": 0
+    },
+    {
+      "op": "list",
+      "args": [
+        "/r1"
+      ],
+      "available": true,
+      "result": {
+        "available": true,
+        "repo": [
+          {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "key": "DB_URL",
+            "value": "from import",
+            "updatedAt": 4
+          }
+        ],
+        "global": [
+          {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "key": "SENTRY",
+            "value": "again",
+            "updatedAt": 1767268809000,
+            "note": "from bundle"
+          },
+          {
+            "id": "00000000-0000-4000-8000-000000000005",
+            "key": "NEW_KEY",
+            "value": "v",
+            "updatedAt": 1767268809000
+          },
+          {
+            "id": "imp-1",
+            "key": "IMPORTED",
+            "value": "IMPORTED-secret",
+            "updatedAt": 3
+          }
+        ]
+      }
+    }
+  ],
+  "plain": {
+    "repos": {
+      "/r1": [
+        {
+          "id": "00000000-0000-4000-8000-000000000001",
+          "key": "DB_URL",
+          "value": "from import",
+          "updatedAt": 4
+        }
+      ],
+      "/r2": [
+        {
+          "id": "fixed-id",
+          "key": "FIXED",
+          "value": "FIXED-secret",
+          "updatedAt": 1767268805000
+        },
+        {
+          "id": "00000000-0000-4000-8000-000000000004",
+          "key": "SCOPE_FALLS_BACK_TO_REPO",
+          "value": "SCOPE_FALLS_BACK_TO_REPO-secret",
+          "updatedAt": 1767268806000
+        }
+      ],
+      "/r9": [],
+      "/r3": [
+        {
+          "id": "r3",
+          "key": "R3",
+          "value": "R3-secret",
+          "updatedAt": 0
+        }
+      ]
+    },
+    "global": [
+      {
+        "id": "00000000-0000-4000-8000-000000000003",
+        "key": "SENTRY",
+        "value": "again",
+        "updatedAt": 1767268809000,
+        "note": "from bundle"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000005",
+        "key": "NEW_KEY",
+        "value": "v",
+        "updatedAt": 1767268809000
+      },
+      {
+        "id": "imp-1",
+        "key": "IMPORTED",
+        "value": "IMPORTED-secret",
+        "updatedAt": 3
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "method": "upstreamSuggestion",
+  "fixture": "multi-remote",
+  "case": "first-remote",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "remote",
+        "remove",
+        "origin"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "topic"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "branch": "topic",
+    "remote": "upstream",
+    "remoteRefExists": false
+  }
+}

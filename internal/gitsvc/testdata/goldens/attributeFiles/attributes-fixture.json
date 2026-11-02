@@ -1,0 +1,26 @@
+{
+  "method": "attributeFiles",
+  "fixture": "attributes",
+  "case": "fixture",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "content": "# Line endings decided once, for everyone, whatever their OS does.\n* text=auto eol=lf\n\n# Binaries git should never try to diff or three-way merge.\n*.psd binary\n*.docx binary\n\n# Everyone appends to the changelog; union keeps both sides instead of\n# conflicting on every single merge.\nCHANGELOG.md merge=union\n\n# Fixtures and CI config are for the repository, not for a release tarball.\ntest/ export-ignore\n.github/ export-ignore\n",
+      "local": false,
+      "path": ".gitattributes"
+    },
+    {
+      "content": "# Deeper files win: design assets are also kept out of language statistics.\n* linguist-vendored\n",
+      "local": false,
+      "path": "design/.gitattributes"
+    },
+    {
+      "content": "# Local only — my scratch files, invisible to everyone else.\n*.scratch -diff\n",
+      "local": true,
+      "path": ".git/info/attributes"
+    }
+  ]
+}

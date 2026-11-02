@@ -1,0 +1,41 @@
+{
+  "method": "setUpstream",
+  "fixture": "force-push",
+  "case": "missing-remote-branch",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "branch",
+        "nope"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "nope",
+    "origin"
+  ],
+  "error": "fatal: the requested upstream branch 'origin/nope' does not exist\nhint: \nhint: If you are planning on basing your work on an upstream\nhint: branch that already exists at the remote, you may need to\nhint: run \"git fetch\" to retrieve it.\nhint: \nhint: If you are planning to push out a new local branch that\nhint: will track its remote counterpart, you may want to use\nhint: \"git push -u\" to set the upstream config as you push.\nhint: Disable this message with \"git config advice.setUpstreamFailure false\"",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md"
+    ],
+    "log": [
+      "<SHA2>\u0000<SHA3>\u0000add debug logging",
+      "<SHA4>\u0000<SHA5>\u0000add login form",
+      "<SHA5>\u0000\u0000init: auth service",
+      "<SHA3>\u0000<SHA4>\u0000validate password"
+    ],
+    "refs": [
+      "refs/heads/feature/login <SHA2>",
+      "refs/heads/main <SHA5>",
+      "refs/heads/nope <SHA5>",
+      "refs/remotes/origin/feature/login <SHA2>",
+      "refs/remotes/origin/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

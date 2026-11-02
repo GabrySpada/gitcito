@@ -1,0 +1,38 @@
+{
+  "method": "bundleInspect",
+  "fixture": "bisect-bug",
+  "case": "stranger",
+  "repo": "shared",
+  "setup": [
+    {
+      "tmpdir": "OUT"
+    },
+    {
+      "git": [
+        "bundle",
+        "create",
+        "-q",
+        "<OUT>/range.bundle",
+        "HEAD~2..main"
+      ],
+      "dir": "<PLAYGROUND>/tags-and-releases"
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "<OUT>/range.bundle"
+  ],
+  "result": {
+    "message": "error: Repository lacks these prerequisite commits:\nerror: <SHA1>",
+    "prerequisites": [
+      "<SHA1>"
+    ],
+    "refs": [
+      {
+        "name": "refs/heads/main",
+        "sha": "<SHA2>"
+      }
+    ],
+    "usable": false
+  }
+}

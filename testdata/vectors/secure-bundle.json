@@ -1,0 +1,2404 @@
+{
+  "scrypt": {
+    "N": 32768,
+    "r": 8,
+    "p": 1,
+    "keyLen": 32
+  },
+  "pack": [
+    {
+      "name": "v2-single-repo",
+      "project": "myproject",
+      "password": "correct horse battery",
+      "salt": "CxIZICcuNTxDSlFYX2ZtdA==",
+      "iv": "TVRbYmlwd36FjJOa",
+      "createdAt": 1767225600000,
+      "key": "306fbb75c7b0e377c0038a290aa106aaa2b52061298321f1d7f703ef915f2eda",
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "myproject",
+          "folder": "myproject",
+          "files": [
+            {
+              "path": ".env",
+              "content": "QVBJX0tFWT1zay1saXZlLWFiYzEyMwpEQj1wb3N0Z3JlczovL3U6cEBoL2RiCg=="
+            },
+            {
+              "path": "app/.env.prod",
+              "content": "Tk9ERV9FTlY9cHJvZHVjdGlvbgo="
+            },
+            {
+              "path": "certs/dev.pem",
+              "content": "AAEC+vv8"
+            },
+            {
+              "path": "scripts/run.sh",
+              "content": "IyEvYmluL3NoCmVjaG8gaGkK",
+              "executable": true
+            }
+          ]
+        }
+      ],
+      "bundle": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"myproject\",\n  \"createdAt\": 1767225600000,\n  \"fileCount\": 4,\n  \"sections\": [\n    {\n      \"kind\": \"repo\",\n      \"project\": \"myproject\",\n      \"folder\": \"myproject\",\n      \"fileCount\": 4\n    }\n  ],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"CxIZICcuNTxDSlFYX2ZtdA==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"TVRbYmlwd36FjJOa\",\n    \"tag\": \"nW9nNnSpVd4caBfB7/D3OA==\"\n  },\n  \"payload\": \"dB4XZ/MMEO0djChVHZbr+Dl4zd9EqPDPD/hGxIBpQhlo4f/gYN/5W3PDiBKJP3z+dA23Ht9CUC8j/0l9YTBZmPop5ZTuxKlmeBzuXhpjW3VL9yY4rHZB9fWo3SRagniqS3eOxrIWaxHI0cxz3sChHzXwBQft/exNzjVxNMm+e7FOfsU85j3UJ4r+002JtmNaiJqR+VJLDOzf7dVNMZuvAK98xpJDiaTLUDExuSA8n48TFhdOLwLE34ZZcpEoEcze8qVWLtCbWeMFvWvjQ4qC/oy8EM+UN+Sv1XKnJxg5IAl6tBAVh82flAchl3F+BXTVJEtuc6FcsCaErEO4gYuODAcF098ifcDf2PQucKPcO0yGDojsQHetCFLOB6y6vRiMhlIAbCjo8ZsF62tf/MjHrSnybLg1Y2D09It7LdxuTBWpOks66wJcqur1lnIfGbADpRtgkthXXSAAhOML9832aUEQHA5m6O7f3MJsVC5Qt7Qy\"\n}"
+    },
+    {
+      "name": "v2-multi-section",
+      "project": "Workspace",
+      "password": "a good long password",
+      "salt": "DBMaISgvNj1ES1JZYGdudQ==",
+      "iv": "TlVcY2pxeH+GjZSb",
+      "createdAt": 1767225600001,
+      "key": "5371546067a66690845990e020cb0da1d0e6745ca1af3ab01e006aa58f13d54e",
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "api",
+          "folder": "api",
+          "remote": "git@github.com:acme/api.git",
+          "files": [
+            {
+              "path": ".env",
+              "content": "QVBJX0tFWT1zay0xCg=="
+            }
+          ]
+        },
+        {
+          "kind": "repo",
+          "project": "web",
+          "folder": "web-frontend",
+          "files": [
+            {
+              "path": ".env.local",
+              "content": "TkVYVF9QVUJMSUM9MQo="
+            }
+          ]
+        },
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "STRIPE",
+              "value": "sk_live_x",
+              "note": "prod"
+            },
+            {
+              "key": "SENTRY",
+              "value": "https://dsn"
+            }
+          ]
+        }
+      ],
+      "bundle": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"Workspace\",\n  \"createdAt\": 1767225600001,\n  \"fileCount\": 2,\n  \"sections\": [\n    {\n      \"kind\": \"repo\",\n      \"project\": \"api\",\n      \"folder\": \"api\",\n      \"remote\": \"git@github.com:acme/api.git\",\n      \"fileCount\": 1\n    },\n    {\n      \"kind\": \"repo\",\n      \"project\": \"web\",\n      \"folder\": \"web-frontend\",\n      \"fileCount\": 1\n    },\n    {\n      \"kind\": \"vault\",\n      \"entryCount\": 2\n    }\n  ],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"DBMaISgvNj1ES1JZYGdudQ==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"TlVcY2pxeH+GjZSb\",\n    \"tag\": \"tmcXeVNGW4H0M7wjhIOSWg==\"\n  },\n  \"payload\": \"zLiy1MeNzE+GdLC50a4hqekiyHjm0+4zSUZlqwyYrgV10tt8M0bNEimUWyghFuEnvAJbQL+9dqC2Cvd4o0lR2s+z2DOYBeejp6ObnTmQmtWhAhq5OyDU5rGYLXWmMb5EqghpqMQW/8O/lzQd2sacY/ChPlPxte/oIJP4Ak2Q5vNI7OUJRMNBJ0u+o3jGfE5LiYUo2J34/363L2F44Ed9EoofxoVhZRYUzTkxPBfcLXDwcxx+fxrl5RMNVilYQMvfgVG9k+cFpl9K1kbgYO519RqXwz91kUfvQVQef4Vk/WgqkZO0uL3Q9QAoFfTCqMEPljk4RyR0ZEiiiJgaedqXwsqhE07SaWz7YiVFrmiE9PJJGJhW8vfLBJu+Vvj9NZ/VKKr8KKCctnBDNEyGiDPj4LWmvtoXBUxlJP0es3y4tKdYJn+sP/NoQXG2IEQ3vdOy9yyA32fjyxY2YKDkiATu/tvtCynRclTlowsWAzzcMu4adMxIYG4P4ZwMXMJW8hQZJiFRkMzHwf3El5iCdTmf\"\n}"
+    },
+    {
+      "name": "v3-workspace-notes",
+      "project": "Team",
+      "password": "correct horse battery",
+      "salt": "DRQbIikwNz5FTFNaYWhvdg==",
+      "iv": "T1ZdZGtyeYCHjpWc",
+      "createdAt": 1767225600002,
+      "key": "fe8898da6f5af7e3c5f62dfe517575d747e35b1e144846488d3f51d4680ac7c8",
+      "sections": [
+        {
+          "kind": "workspace",
+          "name": "Team",
+          "tabs": [
+            {
+              "kind": "repo",
+              "repo": {
+                "name": "api",
+                "folder": "api",
+                "remote": "git@x.test:acme/api.git"
+              }
+            },
+            {
+              "kind": "group",
+              "name": "Front",
+              "color": "#f00",
+              "repos": [
+                {
+                  "name": "web",
+                  "folder": "web"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "notes",
+          "folder": "api",
+          "remote": "https://x.test/acme/api.git",
+          "ref": "refs/notes/commits",
+          "notes": [
+            {
+              "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "body": "ship it"
+            },
+            {
+              "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "body": "line one\n\nline three"
+            }
+          ]
+        }
+      ],
+      "bundle": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 3,\n  \"project\": \"Team\",\n  \"createdAt\": 1767225600002,\n  \"fileCount\": 0,\n  \"sections\": [\n    {\n      \"kind\": \"workspace\",\n      \"name\": \"Team\",\n      \"tabCount\": 2,\n      \"repoCount\": 2\n    },\n    {\n      \"kind\": \"notes\",\n      \"folder\": \"api\",\n      \"remote\": \"https://x.test/acme/api.git\",\n      \"ref\": \"refs/notes/commits\",\n      \"noteCount\": 2\n    }\n  ],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"DRQbIikwNz5FTFNaYWhvdg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"T1ZdZGtyeYCHjpWc\",\n    \"tag\": \"IpPgVG4cw6mcXIrze9z/bg==\"\n  },\n  \"payload\": \"2aADGXSCxc2w+mxI0o66DJCPu4JHhcG10XmcSzeeaqDPvnrR7KsO7sutG/BjMRnVUVt3VLdVO7lf8le2tg5zl4dAFwzEseBo7PDp49yVIfwThQ/+H19PdCwozDf9VEFrZdfy6KRoqy4XvptOhRPkdaxp90DhQHk/3nRmemJ4wsUFTl9b8XPfQjuPJ/wldOxGQLEGn6LsXRpCQgfWKaLUIAWRVuyMdszYduOnZL7eCCjVynB8+MRWK/N0eAeLQmyE/IwVfxoWK6e3aBEE2JpAc/ey4KvrPgAg7PjwduSnhecZDytLZhbO53MNyRWrQa+qLNsImf8l1Z4y4bojtXDRNOWT3K0rxJOXQiFtlD9N/IbslmGn219jXOskO3Zv9qvPCs7TPk3UwViuiq+EheQpIdDywBj6gU3KivJ7EB/eaFTYLMX/fMWfd/V5ZadVgU7j1kkdiJv1DanuNamrfpK6w7kdQdIYKTj9ts6bwEAqJHNjKF31SOWeD9O4AryvWwaAkgKIs/R+flcwoqCNRODVZ4AoK8nPBIEGirpS6SU0CAH+kZIAvPxRxCDHAjoNlzYjS4rk6ZsCTXzFHtgw+AZ8YqEOlGuIDzl3QL0+jhELF4/h9GSA3EFeGZ2SrhIKsu9nLE5EopkJgNWsOfsY\"\n}"
+    },
+    {
+      "name": "v2-vault-only",
+      "project": "p",
+      "password": "correct horse battery",
+      "salt": "DhUcIyoxOD9GTVRbYmlwdw==",
+      "iv": "UFdeZWxzeoGIj5ad",
+      "createdAt": 1767225600003,
+      "key": "bbad0674753a061f1704a94c9067ad8dd22cae1a7373b6e4eda2ad21ba49bad1",
+      "sections": [
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "K",
+              "value": "v"
+            }
+          ]
+        }
+      ],
+      "bundle": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"p\",\n  \"createdAt\": 1767225600003,\n  \"fileCount\": 0,\n  \"sections\": [\n    {\n      \"kind\": \"vault\",\n      \"entryCount\": 1\n    }\n  ],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"DhUcIyoxOD9GTVRbYmlwdw==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"UFdeZWxzeoGIj5ad\",\n    \"tag\": \"RM2UU9TIMfCz0Twh9ltK9w==\"\n  },\n  \"payload\": \"lA3tvIBjzWOlLrJa7PQL6EztO1wG9g4CX9OUD6lax5DKl2BWAX3lFZtFKR7sZ9SmIzSgRxbqCMrllJgvN4qbX9L3Jw==\"\n}"
+    },
+    {
+      "name": "empty-sections-empty-password",
+      "project": "",
+      "password": "",
+      "salt": "DxYdJCsyOUBHTlVcY2pxeA==",
+      "iv": "UVhfZm10e4KJkJee",
+      "createdAt": 0,
+      "key": "642cf65d4b6e459bf23834c87696a99b1bc45cfc2976b3a3351103e40d47ad6c",
+      "sections": [],
+      "bundle": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"\",\n  \"createdAt\": 0,\n  \"fileCount\": 0,\n  \"sections\": [],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"DxYdJCsyOUBHTlVcY2pxeA==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"UVhfZm10e4KJkJee\",\n    \"tag\": \"yR4FG5xC8RM//ox7ni9aFQ==\"\n  },\n  \"payload\": \"aKxF4th3DkZhewY2uezp\"\n}"
+    },
+    {
+      "name": "escapes-and-unicode",
+      "project": "Proj <x> & \"y\"    \u0007\u001f é 😀 \\ / \t\n\r\b\f",
+      "password": "pässwörd 🔑  ",
+      "salt": "EBceJSwzOkFIT1ZdZGtyeQ==",
+      "iv": "UllgZ251fIOKkZif",
+      "createdAt": 1767225600123,
+      "key": "d99cefb3832c48f7385935a3a0e9282ecf02b3f886fb2759daf1751844fb1607",
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "ñandú <&>",
+          "folder": "dir with spaces",
+          "remote": "https://h.test/a?b=<c>&d",
+          "files": [
+            {
+              "path": "dir/ñ.env",
+              "content": "S0VZPSJ2w6RsdWUiICMg8J+YgAo=",
+              "executable": true
+            },
+            {
+              "path": "empty",
+              "content": ""
+            },
+            {
+              "path": "bin.dat",
+              "content": "AwoRGB8mLTQ7QklQV15lbHN6gYiPlp2kq7K5wMfO1dzj6vH4/wYNFBsiKTA3PkVMU1phaG92fYSLkpmgp661vMPK0djf5u30+wIJEBceJSwzOkFIT1ZdZGtyeYCHjpWco6qxuL/GzdTb4unw9/4FDBMaISgvNj1ES1JZYGdudXyDipGYn6attLvCydDX3uXs8/oBCA8WHSQrMjlAR05VXGNqcXh/ho2Um6KpsLe+xczT2uHo7/b9BAsSGSAnLjU8Q0pRWF9mbXR7gomQl56lrLO6wcjP1t3k6/L5AAcOFRwjKjE4P0ZNVFtiaXB3foWMk5qhqK+2vcTL0tng5+71/AMKERgfJi00O0JJUFdeZWxzeoGIj5adpKuyucDHztXc4+rx+P8GDRQbIikw"
+            }
+          ]
+        },
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "TAB\tKEY",
+              "value": "line1\nline2 ",
+              "note": "n<o>te & \"q\""
+            },
+            {
+              "key": "EMPTY_NOTE",
+              "value": "",
+              "note": ""
+            }
+          ]
+        },
+        {
+          "kind": "workspace",
+          "name": "W & <W> 🧪",
+          "tabs": [
+            {
+              "kind": "repo",
+              "repo": {
+                "name": "r",
+                "folder": "f",
+                "remote": "u"
+              },
+              "extra": {
+                "big": 1e+21,
+                "small": 1.5e-7,
+                "tiny": 5e-7,
+                "frac": 0.1,
+                "negZero": 0,
+                "huge": 123456789012345680000,
+                "neg": -42.5,
+                "int": 9007199254740992,
+                "nested": {
+                  "z": null,
+                  "a": true,
+                  "m": false,
+                  "empty": {},
+                  "list": []
+                }
+              }
+            },
+            {
+              "kind": "group",
+              "name": "G",
+              "repos": []
+            }
+          ]
+        },
+        {
+          "kind": "notes",
+          "folder": "notes-folder",
+          "ref": "refs/notes/commits",
+          "notes": [
+            {
+              "sha": "cccccccccccccccccccccccccccccccccccccccc",
+              "body": "émoji 😀\ttab \"quoted\" <html> "
+            }
+          ]
+        }
+      ],
+      "bundle": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 3,\n  \"project\": \"Proj <x> & \\\"y\\\"    \\u0007\\u001f é 😀 \\\\ / \\t\\n\\r\\b\\f\",\n  \"createdAt\": 1767225600123,\n  \"fileCount\": 3,\n  \"sections\": [\n    {\n      \"kind\": \"repo\",\n      \"project\": \"ñandú <&>\",\n      \"folder\": \"dir with spaces\",\n      \"remote\": \"https://h.test/a?b=<c>&d\",\n      \"fileCount\": 3\n    },\n    {\n      \"kind\": \"vault\",\n      \"entryCount\": 2\n    },\n    {\n      \"kind\": \"workspace\",\n      \"name\": \"W & <W> 🧪\",\n      \"tabCount\": 2,\n      \"repoCount\": 1\n    },\n    {\n      \"kind\": \"notes\",\n      \"folder\": \"notes-folder\",\n      \"ref\": \"refs/notes/commits\",\n      \"noteCount\": 1\n    }\n  ],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"EBceJSwzOkFIT1ZdZGtyeQ==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"UllgZ251fIOKkZif\",\n    \"tag\": \"obRPO8/74Nu6pCXWXDmM9w==\"\n  },\n  \"payload\": \"cH66XSIQ6EXzUWAF0Lz6y3qvxmXhJRw0/PFuQyEUtNwakvFSCkZE48jnX2JSv3qy60Tq5db15UXWC0+8uB3KzmrRx4RhdAm4uRS1x8moD2Wu5W1ebCDQkDZvDxOih2OMPjzUIQ77E6f0a9K84caCuxRCO55XK7aMzEE0N18n93NZDM78w2cLjUTxwu4YQLugcYpx28HOmaFzLah9lq9JZV54U9HJ9pNCj+/F6nkqm+WctlHjdyEj2gslJ54gjszrB6HongVhoDDP24e++fvFC5ti+dHEwlS/pX+k5peLMCdc1NtRH+/7NMA36AcAGDScFEXQDPVSPZ4rFlmJGDX1uPtHWoHqtkEMmFhPk6JFr8tbTHIYWVzyEcwqEJUep1Atf3CFcP1O8tpj+fGSYb7DQWar/cESYbGYletFlt3Br8TTKfIb2SwL31WpijSPvi+rEUdwVaGEK2DHZgoERgrVnxGIJoLvou/d2xx1JDnlo+KW9YnWWlVkiGO/lhQOqqbe4mOybhIDUwaw4l/GyOcWlUpk9b9zOPrOBLlJkSx55Ir/YQgP7urlKySkBT1hFdXK6EXVZp9foxZhiZpRpZFQz3si3ckzjK/Tyg0dltfiTkuhVTBsDXctOQwvtfkelc4pVxqfNmtbvTv/r1Ye9cDgbBHbDKo7QpL5/U980PLVZN0eDmg9POUQrvCtG2h96IrBcb5PX+6MuE0OxIPaBlCNriPG/6rh1ZGca69rJYngl3DCn6UeLns3+DHUNaoYzqJlD26kHTL7Psx4XIvnaFLiwg/mS/TaClkYhZhbjdu6msqEKoqY/Ol3nw3rGLhmac+Ndm3nQQcqS0PJOx+Zg+TK/GglWj9WNIYKd9llgfjymRm9MUbf6S3SbjdCWuVEZ+lLOY+zE1C8jInZK0bYbOQODSr1aaGhOJIL9frGLiWKUs4HnmACkHpOxYkSlxGpDsApCzIaxh730aInqX+2s4iRlW6jkn8gGweRbxbH4O+VL2gcr+sOsrRLTIv28SlyFloCPvEWclLzxljgMQWf/nXdO2xqlWIsgBspqVG/kr2gPcdqc5T4N1LuWbKQ0j/Bv/nV6FedHPYS/yyrn+HvsGIIgvDeOes6sRjOnUvpBGsG676PTTVPdqrF7VvzlvIjopN6Frr1+zrqqDEuW6BxBaz5veoXQx5tuqg0+23Mb2msGNyU0h0rtzb9bwIWsbDwYK4MwZUTi65lFL84hUehmY6kez1u0WOzPBfhkzL3KS8dqKV8XFdcCb83RBeVNS+Vy88HUGOOXmb+I0r6qq2dh7gMW9+lUkNMkT6X1Axdtd7I+b1qzJNmO56Eu0/VELrr9/M2ECylw6UWh7t+MLO/e0dQYhXYzHzgdVRvTu4xJpASvQgGvoMwcYXsE1NOgj4vTWHSoxOF0wBnyL/XiHQpkfjGYHvdqWFU51i7PbXs5Mua8Gx+uzhyTavbDlXzv31vfZZHHT4TUoS92EpQy+/2BvaSAaCXN6GM1ExOHpRB3dlzOmIGnh5R17FGfiDt0nm6/v5KVdbvqqBDFrBjLQ7q6l37lJU4QgWaeWXojPlW4frRmZ/SMjF2RU7r46Noa+5WWAhv4rslN8t8mbiqwBMAztkObnM5rVFwWtLOE1246uiW3+TsP00y98n9fsp9BFUr07SwcysRH43LjNVIIrzzpI018hMGlLtZ84E6SzO6GTgh2FJIvrmKV1nkG0eSV10ReYvdzHmR8OkWO5Z+b4echTfputvbBEycvGbVh9Ibr6k=\"\n}"
+    }
+  ],
+  "decoded": [
+    {
+      "name": "v2-single-repo",
+      "header": {
+        "project": "myproject",
+        "createdAt": 1767225600000,
+        "fileCount": 4,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "myproject",
+            "folder": "myproject",
+            "fileCount": 4
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "myproject",
+          "folder": "myproject",
+          "files": [
+            {
+              "path": ".env",
+              "content": "QVBJX0tFWT1zay1saXZlLWFiYzEyMwpEQj1wb3N0Z3JlczovL3U6cEBoL2RiCg=="
+            },
+            {
+              "path": "app/.env.prod",
+              "content": "Tk9ERV9FTlY9cHJvZHVjdGlvbgo="
+            },
+            {
+              "path": "certs/dev.pem",
+              "content": "AAEC+vv8"
+            },
+            {
+              "path": "scripts/run.sh",
+              "content": "IyEvYmluL3NoCmVjaG8gaGkK",
+              "executable": true
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": ".env",
+          "content": "QVBJX0tFWT1zay1saXZlLWFiYzEyMwpEQj1wb3N0Z3JlczovL3U6cEBoL2RiCg=="
+        },
+        {
+          "path": "app/.env.prod",
+          "content": "Tk9ERV9FTlY9cHJvZHVjdGlvbgo="
+        },
+        {
+          "path": "certs/dev.pem",
+          "content": "AAEC+vv8"
+        },
+        {
+          "path": "scripts/run.sh",
+          "content": "IyEvYmluL3NoCmVjaG8gaGkK",
+          "executable": true
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "myproject",
+            "folder": "myproject",
+            "files": [
+              {
+                "path": ".env",
+                "size": 46
+              },
+              {
+                "path": "app/.env.prod",
+                "size": 20
+              },
+              {
+                "path": "certs/dev.pem",
+                "size": 6
+              },
+              {
+                "path": "scripts/run.sh",
+                "size": 18,
+                "executable": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "v2-multi-section",
+      "header": {
+        "project": "Workspace",
+        "createdAt": 1767225600001,
+        "fileCount": 2,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "api",
+            "folder": "api",
+            "remote": "git@github.com:acme/api.git",
+            "fileCount": 1
+          },
+          {
+            "kind": "repo",
+            "project": "web",
+            "folder": "web-frontend",
+            "fileCount": 1
+          },
+          {
+            "kind": "vault",
+            "entryCount": 2
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "api",
+          "folder": "api",
+          "remote": "git@github.com:acme/api.git",
+          "files": [
+            {
+              "path": ".env",
+              "content": "QVBJX0tFWT1zay0xCg=="
+            }
+          ]
+        },
+        {
+          "kind": "repo",
+          "project": "web",
+          "folder": "web-frontend",
+          "files": [
+            {
+              "path": ".env.local",
+              "content": "TkVYVF9QVUJMSUM9MQo="
+            }
+          ]
+        },
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "STRIPE",
+              "value": "sk_live_x",
+              "note": "prod"
+            },
+            {
+              "key": "SENTRY",
+              "value": "https://dsn"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": ".env",
+          "content": "QVBJX0tFWT1zay0xCg=="
+        },
+        {
+          "path": ".env.local",
+          "content": "TkVYVF9QVUJMSUM9MQo="
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "api",
+            "folder": "api",
+            "remote": "git@github.com:acme/api.git",
+            "files": [
+              {
+                "path": ".env",
+                "size": 13
+              }
+            ]
+          },
+          {
+            "kind": "repo",
+            "project": "web",
+            "folder": "web-frontend",
+            "files": [
+              {
+                "path": ".env.local",
+                "size": 14
+              }
+            ]
+          },
+          {
+            "kind": "vault",
+            "entries": [
+              {
+                "key": "STRIPE",
+                "note": "prod"
+              },
+              {
+                "key": "SENTRY"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "v3-workspace-notes",
+      "header": {
+        "project": "Team",
+        "createdAt": 1767225600002,
+        "fileCount": 0,
+        "version": 3,
+        "sections": [
+          {
+            "kind": "workspace",
+            "name": "Team",
+            "tabCount": 2,
+            "repoCount": 2
+          },
+          {
+            "kind": "notes",
+            "folder": "api",
+            "remote": "https://x.test/acme/api.git",
+            "ref": "refs/notes/commits",
+            "noteCount": 2
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "workspace",
+          "name": "Team",
+          "tabs": [
+            {
+              "kind": "repo",
+              "repo": {
+                "name": "api",
+                "folder": "api",
+                "remote": "git@x.test:acme/api.git"
+              }
+            },
+            {
+              "kind": "group",
+              "name": "Front",
+              "color": "#f00",
+              "repos": [
+                {
+                  "name": "web",
+                  "folder": "web"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "notes",
+          "folder": "api",
+          "remote": "https://x.test/acme/api.git",
+          "ref": "refs/notes/commits",
+          "notes": [
+            {
+              "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "body": "ship it"
+            },
+            {
+              "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "body": "line one\n\nline three"
+            }
+          ]
+        }
+      ],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "workspace",
+            "name": "Team",
+            "tabs": [
+              {
+                "kind": "repo",
+                "repo": {
+                  "name": "api",
+                  "folder": "api",
+                  "remote": "git@x.test:acme/api.git"
+                }
+              },
+              {
+                "kind": "group",
+                "name": "Front",
+                "color": "#f00",
+                "repos": [
+                  {
+                    "name": "web",
+                    "folder": "web"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "notes",
+            "folder": "api",
+            "remote": "https://x.test/acme/api.git",
+            "ref": "refs/notes/commits",
+            "noteCount": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "v2-vault-only",
+      "header": {
+        "project": "p",
+        "createdAt": 1767225600003,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "vault",
+            "entryCount": 1
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "K",
+              "value": "v"
+            }
+          ]
+        }
+      ],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "vault",
+            "entries": [
+              {
+                "key": "K"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "empty-sections-empty-password",
+      "header": {
+        "project": "",
+        "createdAt": 0,
+        "fileCount": 0,
+        "version": 2,
+        "sections": []
+      },
+      "sections": [],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": []
+      }
+    },
+    {
+      "name": "escapes-and-unicode",
+      "header": {
+        "project": "Proj <x> & \"y\"    \u0007\u001f é 😀 \\ / \t\n\r\b\f",
+        "createdAt": 1767225600123,
+        "fileCount": 3,
+        "version": 3,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "ñandú <&>",
+            "folder": "dir with spaces",
+            "remote": "https://h.test/a?b=<c>&d",
+            "fileCount": 3
+          },
+          {
+            "kind": "vault",
+            "entryCount": 2
+          },
+          {
+            "kind": "workspace",
+            "name": "W & <W> 🧪",
+            "tabCount": 2,
+            "repoCount": 1
+          },
+          {
+            "kind": "notes",
+            "folder": "notes-folder",
+            "ref": "refs/notes/commits",
+            "noteCount": 1
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "ñandú <&>",
+          "folder": "dir with spaces",
+          "remote": "https://h.test/a?b=<c>&d",
+          "files": [
+            {
+              "path": "dir/ñ.env",
+              "content": "S0VZPSJ2w6RsdWUiICMg8J+YgAo=",
+              "executable": true
+            },
+            {
+              "path": "empty",
+              "content": ""
+            },
+            {
+              "path": "bin.dat",
+              "content": "AwoRGB8mLTQ7QklQV15lbHN6gYiPlp2kq7K5wMfO1dzj6vH4/wYNFBsiKTA3PkVMU1phaG92fYSLkpmgp661vMPK0djf5u30+wIJEBceJSwzOkFIT1ZdZGtyeYCHjpWco6qxuL/GzdTb4unw9/4FDBMaISgvNj1ES1JZYGdudXyDipGYn6attLvCydDX3uXs8/oBCA8WHSQrMjlAR05VXGNqcXh/ho2Um6KpsLe+xczT2uHo7/b9BAsSGSAnLjU8Q0pRWF9mbXR7gomQl56lrLO6wcjP1t3k6/L5AAcOFRwjKjE4P0ZNVFtiaXB3foWMk5qhqK+2vcTL0tng5+71/AMKERgfJi00O0JJUFdeZWxzeoGIj5adpKuyucDHztXc4+rx+P8GDRQbIikw"
+            }
+          ]
+        },
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "TAB\tKEY",
+              "value": "line1\nline2 ",
+              "note": "n<o>te & \"q\""
+            },
+            {
+              "key": "EMPTY_NOTE",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "kind": "workspace",
+          "name": "W & <W> 🧪",
+          "tabs": [
+            {
+              "kind": "repo",
+              "repo": {
+                "name": "r",
+                "folder": "f",
+                "remote": "u"
+              },
+              "extra": {
+                "big": 1e+21,
+                "small": 1.5e-7,
+                "tiny": 5e-7,
+                "frac": 0.1,
+                "negZero": 0,
+                "huge": 123456789012345680000,
+                "neg": -42.5,
+                "int": 9007199254740992,
+                "nested": {
+                  "z": null,
+                  "a": true,
+                  "m": false,
+                  "empty": {},
+                  "list": []
+                }
+              }
+            },
+            {
+              "kind": "group",
+              "name": "G",
+              "repos": []
+            }
+          ]
+        },
+        {
+          "kind": "notes",
+          "folder": "notes-folder",
+          "ref": "refs/notes/commits",
+          "notes": [
+            {
+              "sha": "cccccccccccccccccccccccccccccccccccccccc",
+              "body": "émoji 😀\ttab \"quoted\" <html> "
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "dir/ñ.env",
+          "content": "S0VZPSJ2w6RsdWUiICMg8J+YgAo=",
+          "executable": true
+        },
+        {
+          "path": "empty",
+          "content": ""
+        },
+        {
+          "path": "bin.dat",
+          "content": "AwoRGB8mLTQ7QklQV15lbHN6gYiPlp2kq7K5wMfO1dzj6vH4/wYNFBsiKTA3PkVMU1phaG92fYSLkpmgp661vMPK0djf5u30+wIJEBceJSwzOkFIT1ZdZGtyeYCHjpWco6qxuL/GzdTb4unw9/4FDBMaISgvNj1ES1JZYGdudXyDipGYn6attLvCydDX3uXs8/oBCA8WHSQrMjlAR05VXGNqcXh/ho2Um6KpsLe+xczT2uHo7/b9BAsSGSAnLjU8Q0pRWF9mbXR7gomQl56lrLO6wcjP1t3k6/L5AAcOFRwjKjE4P0ZNVFtiaXB3foWMk5qhqK+2vcTL0tng5+71/AMKERgfJi00O0JJUFdeZWxzeoGIj5adpKuyucDHztXc4+rx+P8GDRQbIikw"
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "ñandú <&>",
+            "folder": "dir with spaces",
+            "remote": "https://h.test/a?b=<c>&d",
+            "files": [
+              {
+                "path": "dir/ñ.env",
+                "size": 20,
+                "executable": true
+              },
+              {
+                "path": "empty",
+                "size": 0
+              },
+              {
+                "path": "bin.dat",
+                "size": 300
+              }
+            ]
+          },
+          {
+            "kind": "vault",
+            "entries": [
+              {
+                "key": "TAB\tKEY",
+                "note": "n<o>te & \"q\""
+              },
+              {
+                "key": "EMPTY_NOTE"
+              }
+            ]
+          },
+          {
+            "kind": "workspace",
+            "name": "W & <W> 🧪",
+            "tabs": [
+              {
+                "kind": "repo",
+                "repo": {
+                  "name": "r",
+                  "folder": "f",
+                  "remote": "u"
+                },
+                "extra": {
+                  "big": 1e+21,
+                  "small": 1.5e-7,
+                  "tiny": 5e-7,
+                  "frac": 0.1,
+                  "negZero": 0,
+                  "huge": 123456789012345680000,
+                  "neg": -42.5,
+                  "int": 9007199254740992,
+                  "nested": {
+                    "z": null,
+                    "a": true,
+                    "m": false,
+                    "empty": {},
+                    "list": []
+                  }
+                }
+              },
+              {
+                "kind": "group",
+                "name": "G",
+                "repos": []
+              }
+            ]
+          },
+          {
+            "kind": "notes",
+            "folder": "notes-folder",
+            "ref": "refs/notes/commits",
+            "noteCount": 1
+          }
+        ]
+      }
+    }
+  ],
+  "crafted": [
+    {
+      "name": "wrong-password",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"myproject\",\n  \"createdAt\": 1767225600000,\n  \"fileCount\": 4,\n  \"sections\": [\n    {\n      \"kind\": \"repo\",\n      \"project\": \"myproject\",\n      \"folder\": \"myproject\",\n      \"fileCount\": 4\n    }\n  ],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"CxIZICcuNTxDSlFYX2ZtdA==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"TVRbYmlwd36FjJOa\",\n    \"tag\": \"nW9nNnSpVd4caBfB7/D3OA==\"\n  },\n  \"payload\": \"dB4XZ/MMEO0djChVHZbr+Dl4zd9EqPDPD/hGxIBpQhlo4f/gYN/5W3PDiBKJP3z+dA23Ht9CUC8j/0l9YTBZmPop5ZTuxKlmeBzuXhpjW3VL9yY4rHZB9fWo3SRagniqS3eOxrIWaxHI0cxz3sChHzXwBQft/exNzjVxNMm+e7FOfsU85j3UJ4r+002JtmNaiJqR+VJLDOzf7dVNMZuvAK98xpJDiaTLUDExuSA8n48TFhdOLwLE34ZZcpEoEcze8qVWLtCbWeMFvWvjQ4qC/oy8EM+UN+Sv1XKnJxg5IAl6tBAVh82flAchl3F+BXTVJEtuc6FcsCaErEO4gYuODAcF098ifcDf2PQucKPcO0yGDojsQHetCFLOB6y6vRiMhlIAbCjo8ZsF62tf/MjHrSnybLg1Y2D09It7LdxuTBWpOks66wJcqur1lnIfGbADpRtgkthXXSAAhOML9832aUEQHA5m6O7f3MJsVC5Qt7Qy\"\n}",
+      "password": "wrong password",
+      "header": {
+        "project": "myproject",
+        "createdAt": 1767225600000,
+        "fileCount": 4,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "myproject",
+            "folder": "myproject",
+            "fileCount": 4
+          }
+        ]
+      },
+      "error": "bad-password",
+      "opened": {
+        "error": "bad-password"
+      }
+    },
+    {
+      "name": "tampered-payload",
+      "text": "{\"format\":\"gitcito-secure-bundle\",\"version\":2,\"project\":\"myproject\",\"createdAt\":1767225600000,\"fileCount\":4,\"sections\":[{\"kind\":\"repo\",\"project\":\"myproject\",\"folder\":\"myproject\",\"fileCount\":4}],\"kdf\":{\"algo\":\"scrypt\",\"N\":32768,\"r\":8,\"p\":1,\"salt\":\"CxIZICcuNTxDSlFYX2ZtdA==\"},\"cipher\":{\"algo\":\"aes-256-gcm\",\"iv\":\"TVRbYmlwd36FjJOa\",\"tag\":\"nW9nNnSpVd4caBfB7/D3OA==\"},\"payload\":\"ix4XZ/MMEO0djChVHZbr+Dl4zd9EqPDPD/hGxIBpQhlo4f/gYN/5W3PDiBKJP3z+dA23Ht9CUC8j/0l9YTBZmPop5ZTuxKlmeBzuXhpjW3VL9yY4rHZB9fWo3SRagniqS3eOxrIWaxHI0cxz3sChHzXwBQft/exNzjVxNMm+e7FOfsU85j3UJ4r+002JtmNaiJqR+VJLDOzf7dVNMZuvAK98xpJDiaTLUDExuSA8n48TFhdOLwLE34ZZcpEoEcze8qVWLtCbWeMFvWvjQ4qC/oy8EM+UN+Sv1XKnJxg5IAl6tBAVh82flAchl3F+BXTVJEtuc6FcsCaErEO4gYuODAcF098ifcDf2PQucKPcO0yGDojsQHetCFLOB6y6vRiMhlIAbCjo8ZsF62tf/MjHrSnybLg1Y2D09It7LdxuTBWpOks66wJcqur1lnIfGbADpRtgkthXXSAAhOML9832aUEQHA5m6O7f3MJsVC5Qt7Qy\"}",
+      "password": "correct horse battery",
+      "header": {
+        "project": "myproject",
+        "createdAt": 1767225600000,
+        "fileCount": 4,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "myproject",
+            "folder": "myproject",
+            "fileCount": 4
+          }
+        ]
+      },
+      "error": "bad-password",
+      "opened": {
+        "error": "bad-password"
+      }
+    },
+    {
+      "name": "tampered-tag",
+      "text": "{\"format\":\"gitcito-secure-bundle\",\"version\":2,\"project\":\"myproject\",\"createdAt\":1767225600000,\"fileCount\":4,\"sections\":[{\"kind\":\"repo\",\"project\":\"myproject\",\"folder\":\"myproject\",\"fileCount\":4}],\"kdf\":{\"algo\":\"scrypt\",\"N\":32768,\"r\":8,\"p\":1,\"salt\":\"CxIZICcuNTxDSlFYX2ZtdA==\"},\"cipher\":{\"algo\":\"aes-256-gcm\",\"iv\":\"TVRbYmlwd36FjJOa\",\"tag\":\"nW9nNnSpVd4caBfB7/D3OQ==\"},\"payload\":\"dB4XZ/MMEO0djChVHZbr+Dl4zd9EqPDPD/hGxIBpQhlo4f/gYN/5W3PDiBKJP3z+dA23Ht9CUC8j/0l9YTBZmPop5ZTuxKlmeBzuXhpjW3VL9yY4rHZB9fWo3SRagniqS3eOxrIWaxHI0cxz3sChHzXwBQft/exNzjVxNMm+e7FOfsU85j3UJ4r+002JtmNaiJqR+VJLDOzf7dVNMZuvAK98xpJDiaTLUDExuSA8n48TFhdOLwLE34ZZcpEoEcze8qVWLtCbWeMFvWvjQ4qC/oy8EM+UN+Sv1XKnJxg5IAl6tBAVh82flAchl3F+BXTVJEtuc6FcsCaErEO4gYuODAcF098ifcDf2PQucKPcO0yGDojsQHetCFLOB6y6vRiMhlIAbCjo8ZsF62tf/MjHrSnybLg1Y2D09It7LdxuTBWpOks66wJcqur1lnIfGbADpRtgkthXXSAAhOML9832aUEQHA5m6O7f3MJsVC5Qt7Qy\"}",
+      "password": "correct horse battery",
+      "header": {
+        "project": "myproject",
+        "createdAt": 1767225600000,
+        "fileCount": 4,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "myproject",
+            "folder": "myproject",
+            "fileCount": 4
+          }
+        ]
+      },
+      "error": "bad-password",
+      "opened": {
+        "error": "bad-password"
+      }
+    },
+    {
+      "name": "not-json",
+      "text": "not json at all",
+      "password": "pw pw pw pw",
+      "header": null,
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "json-null",
+      "text": "null",
+      "password": "pw pw pw pw",
+      "header": null,
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "json-number",
+      "text": "5",
+      "password": "pw pw pw pw",
+      "header": null,
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "json-array",
+      "text": "[]",
+      "password": "pw pw pw pw",
+      "header": null,
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "empty-object",
+      "text": "{}",
+      "password": "pw pw pw pw",
+      "header": null,
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "other-format",
+      "text": "{\"format\":\"something-else\"}",
+      "password": "pw pw pw pw",
+      "header": null,
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "future-version",
+      "text": "{\"format\":\"gitcito-secure-bundle\",\"version\":99}",
+      "password": "pw pw pw pw",
+      "header": null,
+      "headerError": "unsupported-version",
+      "error": "unsupported-version",
+      "opened": {
+        "error": "unsupported-version"
+      }
+    },
+    {
+      "name": "version-missing",
+      "text": "{\"format\":\"gitcito-secure-bundle\"}",
+      "password": "pw pw pw pw",
+      "header": null,
+      "headerError": "unsupported-version",
+      "error": "unsupported-version",
+      "opened": {
+        "error": "unsupported-version"
+      }
+    },
+    {
+      "name": "version-string",
+      "text": "{\"format\":\"gitcito-secure-bundle\",\"version\":\"2\"}",
+      "password": "pw pw pw pw",
+      "header": null,
+      "headerError": "unsupported-version",
+      "error": "unsupported-version",
+      "opened": {
+        "error": "unsupported-version"
+      }
+    },
+    {
+      "name": "no-kdf",
+      "text": "{\"format\":\"gitcito-secure-bundle\",\"version\":2,\"project\":\"x\"}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "x",
+        "createdAt": 0,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "x",
+            "folder": "x",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "v1-legacy",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 1,\n  \"project\": \"legacy\",\n  \"createdAt\": 1,\n  \"fileCount\": 2,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"oRz6d6nwAGJG8lXC9rPouA==\"\n  },\n  \"payload\": \"RJL9v1qlERgPL7mKRmFtoSIggl4W33qzynpwKHIv9nmj5qIU4tDpaZOGShMIZKFLOInr0HwJyqb8Uqk8a5H1Zs7vsWZzJwmtcaPnP9125OWivpQFEfKLLielcyynJZ6sj6+uytbGEdO8I4JgYO8=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "legacy",
+        "createdAt": 1,
+        "fileCount": 2,
+        "version": 1,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "legacy",
+            "folder": "legacy",
+            "fileCount": 2
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "legacy",
+          "folder": "legacy",
+          "files": [
+            {
+              "path": ".env",
+              "content": "WD0xCg=="
+            },
+            {
+              "path": "run.sh",
+              "content": "IyEvYmluL3NoCg==",
+              "executable": true
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": ".env",
+          "content": "WD0xCg=="
+        },
+        {
+          "path": "run.sh",
+          "content": "IyEvYmluL3NoCg==",
+          "executable": true
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "legacy",
+            "folder": "legacy",
+            "files": [
+              {
+                "path": ".env",
+                "size": 4
+              },
+              {
+                "path": "run.sh",
+                "size": 10,
+                "executable": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "v1-legacy-no-sections-header-fields",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 1,\n  \"project\": 42,\n  \"createdAt\": \"x\",\n  \"fileCount\": null,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"oRz6d6nwAGJG8lXC9rPouA==\"\n  },\n  \"payload\": \"RJL9v1qlERgPL7mKRmFtoSIggl4W33qzynpwKHIv9nmj5qIU4tDpaZOGShMIZKFLOInr0HwJyqb8Uqk8a5H1Zs7vsWZzJwmtcaPnP9125OWivpQFEfKLLielcyynJZ6sj6+uytbGEdO8I4JgYO8=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "unknown",
+        "createdAt": 0,
+        "fileCount": 0,
+        "version": 1,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "unknown",
+            "folder": "unknown",
+            "fileCount": 0
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "unknown",
+          "folder": "unknown",
+          "files": [
+            {
+              "path": ".env",
+              "content": "WD0xCg=="
+            },
+            {
+              "path": "run.sh",
+              "content": "IyEvYmluL3NoCg==",
+              "executable": true
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": ".env",
+          "content": "WD0xCg=="
+        },
+        {
+          "path": "run.sh",
+          "content": "IyEvYmluL3NoCg==",
+          "executable": true
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "unknown",
+            "folder": "unknown",
+            "files": [
+              {
+                "path": ".env",
+                "size": 4
+              },
+              {
+                "path": "run.sh",
+                "size": 10,
+                "executable": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "version-zero-is-v1",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 0,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"oRz6d6nwAGJG8lXC9rPouA==\"\n  },\n  \"payload\": \"RJL9v1qlERgPL7mKRmFtoSIggl4W33qzynpwKHIv9nmj5qIU4tDpaZOGShMIZKFLOInr0HwJyqb8Uqk8a5H1Zs7vsWZzJwmtcaPnP9125OWivpQFEfKLLielcyynJZ6sj6+uytbGEdO8I4JgYO8=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 0,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "crafted",
+          "folder": "crafted",
+          "files": [
+            {
+              "path": ".env",
+              "content": "WD0xCg=="
+            },
+            {
+              "path": "run.sh",
+              "content": "IyEvYmluL3NoCg==",
+              "executable": true
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": ".env",
+          "content": "WD0xCg=="
+        },
+        {
+          "path": "run.sh",
+          "content": "IyEvYmluL3NoCg==",
+          "executable": true
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "files": [
+              {
+                "path": ".env",
+                "size": 4
+              },
+              {
+                "path": "run.sh",
+                "size": 10,
+                "executable": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "version-fraction",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 1.5,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"oRz6d6nwAGJG8lXC9rPouA==\"\n  },\n  \"payload\": \"RJL9v1qlERgPL7mKRmFtoSIggl4W33qzynpwKHIv9nmj5qIU4tDpaZOGShMIZKFLOInr0HwJyqb8Uqk8a5H1Zs7vsWZzJwmtcaPnP9125OWivpQFEfKLLielcyynJZ6sj6+uytbGEdO8I4JgYO8=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 1.5,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "crafted",
+          "folder": "crafted",
+          "files": [
+            {
+              "path": ".env",
+              "content": "WD0xCg=="
+            },
+            {
+              "path": "run.sh",
+              "content": "IyEvYmluL3NoCg==",
+              "executable": true
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": ".env",
+          "content": "WD0xCg=="
+        },
+        {
+          "path": "run.sh",
+          "content": "IyEvYmluL3NoCg==",
+          "executable": true
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "files": [
+              {
+                "path": ".env",
+                "size": 4
+              },
+              {
+                "path": "run.sh",
+                "size": 10,
+                "executable": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "v1-files-not-array",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 1,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"93ZUCh4kFXJXvx9BkFGQpQ==\"\n  },\n  \"payload\": \"RJL9v1qlERgPVqzHRmU7tA==\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 1,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "v1-plaintext-null",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 1,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"VwT03hjiAFlNjz91B6bzjg==\"\n  },\n  \"payload\": \"UcX3ug==\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 1,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "read-failed",
+      "opened": {
+        "error": "read-failed"
+      }
+    },
+    {
+      "name": "plaintext-not-json",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"dCRRqMR1CjKo4Xd4RUFAQA==\"\n  },\n  \"payload\": \"W9X9v1ipFl9ZDeLTFm52vSBw0x8d\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "v2-sections-not-array",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"R4FBEV9xFYrJa4wy94k6Ng==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSA30=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "v2-plaintext-null",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"VwT03hjiAFlNjz91B6bzjg==\"\n  },\n  \"payload\": \"UcX3ug==\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "read-failed",
+      "opened": {
+        "error": "read-failed"
+      }
+    },
+    {
+      "name": "v2-plaintext-string",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"u3cjY7iWYQgHRP9SM3iUAA==\"\n  },\n  \"payload\": \"HdH5tRQ=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "v2-null-section",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"VCGxnIpFophWsAV0pXQX3w==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbW5spWxH3Q==\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "read-failed",
+      "opened": {
+        "error": "read-failed"
+      }
+    },
+    {
+      "name": "v2-lenient-sections",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 3,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"sections\": [\n    {\n      \"kind\": \"repo\",\n      \"zeta\": 1,\n      \"project\": \"p\",\n      \"alpha\": [\n        true,\n        null\n      ]\n    },\n    \"odd\",\n    7\n  ],\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"L8acUfcuoZDnQZ3sDPYbkg==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbTc163Nu0lJfyi76jzZ3ZSZ5/m6ksP1EzLb1M7SAA08II7xNNoKoz31FlKa0BbV3aJb1Zs7qt2RiMUXjCMS4Wt8R+dWhtsNzAM6BHS+6Yiz7dZS+j6+vnI2GDcTxc5ExH+CYKJX+BKyZf2P3EQO58rzz6zllr8thDn/uA/0wlNsT+Fuk40aps+D0qB1IJube79ihFywtBlYtvydKrucyT8tPP+7j/s/zoNzhelDpEgPYhNHgfGr5t0YGYfl8sh4urWbG8ZfOA4vPhaFssM1K4JOFJI4+FM+ovHN9573s8S9g6fLBv6UJtDZdRAaEn1ftNyEdIrVyYQDbolPJgx1ZQGUfingB1EBac2sqgbdNYLjU/gPwugJVRQmMSn65w31+/TFAg4H+sO5w8ZTWrsuqoiSKNYVmbJplcUiwh/oecA8Qdajl76fJ7vndddlyBjuXYRNj5g6aQOVluGDmCgonc+rZPYbSTpmv4gnRoAGIZzhES+mavNEStngR8LXBM/DpHnApXT4j+wSUD7ewl8zTXzQgdfjQZlj2AwfYZ+i4mrsSxn8nXnrbvFr8jAFMniZvQDjCo7b3IWhp9ZUh7EI6g7KSLdvfOATJSnJM1Ysqaq+l57xl3HNkJpsqVG67omi2eYNGYvR0zMxCXYsw7t/tW3kU3pGPuR0XkNtUhNUYzbmso/6ndHVGZi7N5u/cRpkIv6yZRGzXBv//akv2ofcCVrpx+9GtDzBDc91zVNhK+dieJ8OSlbyIlVO2wAFQoE1S/46Kpu0FR9nAcuAcAEaAaZX7YV95aF0xasEW8kuqy8Hb0rJoDkoPwaWOA62L4kyJlO7SLKFmGsl6Z/N3dfN1PEW1Dn72kd31CHB5fu0l9mVkuIze+Yhsezx2raF+FLMF/CRG1GDIOLaStzc6GdqjTBin4239hZWPWNKMdoonKNB3gfLu7cx5LfRBCa2tTKKE8AchzT+36JpuDbcVwM0TA++koVN5y3mCN+RPASK8y0/mZG96y4/2/QUW4Uph6bDkDqYHRhP9w2D4aNnbEEFO0vJBcPJQXp0IYHHxLHbLW3XT5XBybSUQNTpEdmmiPskmBww2UjBld9ABxorsqnxjp0BeTrZydoJSLYTYGa+dL0Dk8Rn4OjqACqd6DMzrfZY76s2LhIARLzhccKvjdnsNGjH5ZU6DkMJ5lSMZPH9oJCo8mdxEwZRTQiN0pPO8g5hYcmfbUiX2WlRDkROChNy665X/To5blC3LT7TaagZVDKRmcDBZng6wWG4RHiYvAYr/ouagSB/KZhNomPWGcFxSGBxbX9M34qqsNCJXsZ3cxwGXm5yhKgujfmYIjX2pl60LGj93hsZsKEKKlxqNEdm6pnec61NYa0q9QYAQdxAd70I3OSx4RceD3bZEGLAVzsMxx9BfZ2lfvSwtjz26HcJUib7rTe/l7urQ//AxSI5/hgBdMFKDNTgblKKN9yWJJcMEZlODNpTA2AR+c7rT5QnEOPEQSrootjxJGH8vMCnwtPjIDs+Wymfh89Z3ZofTNWZYgGKlUMm/ic9cUdS2r3PQuFg=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 3,
+        "sections": [
+          {
+            "kind": "repo",
+            "zeta": 1,
+            "project": "p",
+            "alpha": [
+              true,
+              null
+            ]
+          },
+          "odd",
+          7
+        ]
+      },
+      "sections": [
+        {
+          "kind": "repo",
+          "project": "unknown",
+          "folder": "unknown",
+          "files": []
+        },
+        {
+          "kind": "repo",
+          "project": "proj",
+          "folder": "proj",
+          "remote": "",
+          "files": [
+            {
+              "path": "a",
+              "content": "QUJDRA=="
+            },
+            {
+              "path": "b",
+              "content": "+/8=",
+              "executable": true
+            },
+            {
+              "path": "c",
+              "content": "QQ=="
+            },
+            {
+              "path": "d",
+              "content": ""
+            },
+            {
+              "path": "e",
+              "content": "QUJD",
+              "executable": true
+            }
+          ]
+        },
+        {
+          "kind": "repo",
+          "project": "unknown",
+          "folder": "unknown",
+          "files": []
+        },
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "A",
+              "value": "1",
+              "note": "n"
+            },
+            {
+              "key": "B",
+              "value": "2",
+              "note": ""
+            },
+            {
+              "key": "C",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "kind": "vault",
+          "entries": []
+        },
+        {
+          "kind": "workspace",
+          "name": "Workspace",
+          "tabs": [
+            {
+              "kind": "repo",
+              "repo": "r"
+            },
+            {
+              "kind": "repo",
+              "repo": {
+                "name": "x",
+                "folder": "x"
+              },
+              "keep": 1,
+              "order": [
+                3,
+                2,
+                1
+              ]
+            },
+            {
+              "kind": "group",
+              "name": "g",
+              "repos": []
+            }
+          ]
+        },
+        {
+          "kind": "workspace",
+          "name": "Workspace",
+          "tabs": []
+        },
+        {
+          "kind": "notes",
+          "folder": "unknown",
+          "ref": "refs/notes/commits",
+          "notes": [
+            {
+              "sha": "abc",
+              "body": "b"
+            }
+          ]
+        },
+        {
+          "kind": "notes",
+          "folder": "f",
+          "remote": "r",
+          "ref": "refs/notes/other",
+          "notes": []
+        }
+      ],
+      "files": [
+        {
+          "path": "a",
+          "content": "QUJDRA=="
+        },
+        {
+          "path": "b",
+          "content": "+/8=",
+          "executable": true
+        },
+        {
+          "path": "c",
+          "content": "QQ=="
+        },
+        {
+          "path": "d",
+          "content": ""
+        },
+        {
+          "path": "e",
+          "content": "QUJD",
+          "executable": true
+        }
+      ],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "unknown",
+            "folder": "unknown",
+            "files": []
+          },
+          {
+            "kind": "repo",
+            "project": "proj",
+            "folder": "proj",
+            "files": [
+              {
+                "path": "a",
+                "size": 4
+              },
+              {
+                "path": "b",
+                "size": 2,
+                "executable": true
+              },
+              {
+                "path": "c",
+                "size": 1
+              },
+              {
+                "path": "d",
+                "size": 0
+              },
+              {
+                "path": "e",
+                "size": 3,
+                "executable": true
+              }
+            ]
+          },
+          {
+            "kind": "repo",
+            "project": "unknown",
+            "folder": "unknown",
+            "files": []
+          },
+          {
+            "kind": "vault",
+            "entries": [
+              {
+                "key": "A",
+                "note": "n"
+              },
+              {
+                "key": "B"
+              },
+              {
+                "key": "C"
+              }
+            ]
+          },
+          {
+            "kind": "vault",
+            "entries": []
+          },
+          {
+            "kind": "workspace",
+            "name": "Workspace",
+            "tabs": [
+              {
+                "kind": "repo",
+                "repo": "r"
+              },
+              {
+                "kind": "repo",
+                "repo": {
+                  "name": "x",
+                  "folder": "x"
+                },
+                "keep": 1,
+                "order": [
+                  3,
+                  2,
+                  1
+                ]
+              },
+              {
+                "kind": "group",
+                "name": "g",
+                "repos": []
+              }
+            ]
+          },
+          {
+            "kind": "workspace",
+            "name": "Workspace",
+            "tabs": []
+          },
+          {
+            "kind": "notes",
+            "folder": "unknown",
+            "ref": "refs/notes/commits",
+            "noteCount": 1
+          },
+          {
+            "kind": "notes",
+            "folder": "f",
+            "remote": "r",
+            "ref": "refs/notes/other",
+            "noteCount": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "v2-repo-files-not-array",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"htPN2ynUsLxx4gXBzPiP5A==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbXs7oml0xFJJk370ljcxaz49+nuyt7oMzumkTK0=\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "v2-header-without-sections",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"np\",\n  \"createdAt\": 12.5,\n  \"fileCount\": 3,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbV1k\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "np",
+        "createdAt": 12.5,
+        "fileCount": 3,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "np",
+            "folder": "np",
+            "fileCount": 3
+          }
+        ]
+      },
+      "sections": [],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": []
+      }
+    },
+    {
+      "name": "missing-salt",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbV1k\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "kdf-is-string",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": \"scrypt\",\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbV1k\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "missing-payload",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  }\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "salt-not-string",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": 123\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbV1k\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "read-failed",
+      "opened": {
+        "error": "read-failed"
+      }
+    },
+    {
+      "name": "iv-decodes-empty",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"!!!!\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbV1k\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "read-failed",
+      "opened": {
+        "error": "read-failed"
+      }
+    },
+    {
+      "name": "tag-bad-length",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"AAAA\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbV1k\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "read-failed",
+      "opened": {
+        "error": "read-failed"
+      }
+    },
+    {
+      "name": "payload-not-string",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": 5\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "error": "bad-password",
+      "opened": {
+        "error": "bad-password"
+      }
+    },
+    {
+      "name": "iv-16-bytes",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"CRAXHiUsMzpBSE9WXWRrcg==\",\n    \"tag\": \"l9fJbBUS+Xo7rMQHp3tghg==\"\n  },\n  \"payload\": \"jMqztqtOguiGMIES2Dgbhbn5PZpA3k3HCaYGSZr0k7YZWVQeXtnRjn5su01JTuCCL7z4ZIGuSZctoLuu+ZOQK3Agnw==\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "K",
+              "value": "V"
+            }
+          ]
+        }
+      ],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "vault",
+            "entries": [
+              {
+                "key": "K"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "tag-12-bytes",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"9l4Y6gbGg9aQVaFI\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbXs7oml0xFJJk3rwkzRnZTB59nmjtvFTxrbjSqvDHEtTO7cSUdumhmJKnPHrBf0wTtuqF5HRow==\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "K",
+              "value": "V"
+            }
+          ]
+        }
+      ],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "vault",
+            "entries": [
+              {
+                "key": "K"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "lenient-base64-envelope",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGI\\nj5adpKuyucDHzg\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3-bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": \" RJLos1W0C1VbB+CSbV1k \"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "crafted",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "crafted",
+            "folder": "crafted",
+            "fileCount": 0
+          }
+        ]
+      },
+      "sections": [],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": []
+      }
+    },
+    {
+      "name": "bom-prefixed",
+      "text": "﻿{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"crafted\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"RXTJQeQbWIm72uKfBoq0VA==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbV1k\"\n}",
+      "password": "pw pw pw pw",
+      "header": null,
+      "error": "invalid",
+      "opened": {
+        "error": "invalid"
+      }
+    },
+    {
+      "name": "duplicate-keys",
+      "text": "{\n  \"format\": \"gitcito-secure-bundle\",\n  \"version\": 2,\n  \"project\": \"first\", \"project\": \"second\",\n  \"createdAt\": 1,\n  \"fileCount\": 0,\n  \"kdf\": {\n    \"algo\": \"scrypt\",\n    \"N\": 32768,\n    \"r\": 8,\n    \"p\": 1,\n    \"salt\": \"ZWxzeoGIj5adpKuyucDHzg==\"\n  },\n  \"cipher\": {\n    \"algo\": \"aes-256-gcm\",\n    \"iv\": \"ytHY3+bt9PsCCRAX\",\n    \"tag\": \"ehOTR5Wf7Wf+IrlOgQJ7ig==\"\n  },\n  \"payload\": \"RJLos1W0C1VbB+CSbXs7oml0xFJJk3rwkzRnZTB59nmjtvFTxrbjSo2cKgIIauhTbpDlymcJyt/1Bax7dp31cM76v31rNkX1cfyrAtZa98/t6LoyANeBFGKibGr+d9n4yLq60sLBX4y8ddJuSbCAGIfXHA==\"\n}",
+      "password": "pw pw pw pw",
+      "header": {
+        "project": "second",
+        "createdAt": 1,
+        "fileCount": 0,
+        "version": 2,
+        "sections": [
+          {
+            "kind": "repo",
+            "project": "second",
+            "folder": "second",
+            "fileCount": 0
+          }
+        ]
+      },
+      "sections": [
+        {
+          "kind": "vault",
+          "entries": [
+            {
+              "key": "dup",
+              "value": "last"
+            }
+          ]
+        }
+      ],
+      "files": [],
+      "opened": {
+        "version": 2,
+        "sections": [
+          {
+            "kind": "vault",
+            "entries": [
+              {
+                "key": "dup"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "safeRelPath": [
+    {
+      "path": ".env",
+      "safe": true
+    },
+    {
+      "path": "app/.env.prod",
+      "safe": true
+    },
+    {
+      "path": "deep/nested/dir/file.txt",
+      "safe": true
+    },
+    {
+      "path": "../outside",
+      "safe": false
+    },
+    {
+      "path": "a/../../outside",
+      "safe": false
+    },
+    {
+      "path": "/etc/passwd",
+      "safe": false
+    },
+    {
+      "path": "C:\\windows\\system32",
+      "safe": false
+    },
+    {
+      "path": "c:x",
+      "safe": false
+    },
+    {
+      "path": "a\\..\\b",
+      "safe": false
+    },
+    {
+      "path": "a\\b",
+      "safe": true
+    },
+    {
+      "path": "",
+      "safe": false
+    },
+    {
+      "path": "a//b",
+      "safe": false
+    },
+    {
+      "path": "./a",
+      "safe": false
+    },
+    {
+      "path": "a/.",
+      "safe": false
+    },
+    {
+      "path": "a/",
+      "safe": false
+    },
+    {
+      "path": "..",
+      "safe": false
+    },
+    {
+      "path": "...",
+      "safe": true
+    },
+    {
+      "path": ".a./b",
+      "safe": true
+    },
+    {
+      "path": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "safe": true
+    },
+    {
+      "path": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "safe": false
+    },
+    {
+      "path": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+      "safe": true
+    },
+    {
+      "path": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+      "safe": true
+    },
+    {
+      "path": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+      "safe": false
+    },
+    {
+      "path": "1:2",
+      "safe": true
+    },
+    {
+      "path": "a:/b",
+      "safe": false
+    }
+  ],
+  "secretFile": [
+    {
+      "path": ".env",
+      "secret": true
+    },
+    {
+      "path": "app/.env.prod",
+      "secret": true
+    },
+    {
+      "path": "certs/dev.pem",
+      "secret": true
+    },
+    {
+      "path": ".env.example",
+      "secret": false
+    },
+    {
+      "path": "src/index.ts",
+      "secret": false
+    },
+    {
+      "path": ".ENV",
+      "secret": true
+    },
+    {
+      "path": ".env.Local",
+      "secret": true
+    },
+    {
+      "path": "x.env",
+      "secret": false
+    },
+    {
+      "path": ".env.sample",
+      "secret": false
+    },
+    {
+      "path": ".env.template",
+      "secret": false
+    },
+    {
+      "path": ".env.dist",
+      "secret": false
+    },
+    {
+      "path": ".env.default",
+      "secret": false
+    },
+    {
+      "path": ".env.defaults",
+      "secret": false
+    },
+    {
+      "path": "a/.env.example.local",
+      "secret": true
+    },
+    {
+      "path": ".envrc",
+      "secret": true
+    },
+    {
+      "path": "k.KEY",
+      "secret": true
+    },
+    {
+      "path": "store.p12",
+      "secret": true
+    },
+    {
+      "path": "a.pfx",
+      "secret": true
+    },
+    {
+      "path": "release.keystore",
+      "secret": true
+    },
+    {
+      "path": "x.jks",
+      "secret": true
+    },
+    {
+      "path": "id_rsa",
+      "secret": true
+    },
+    {
+      "path": "ssh/id_ed25519",
+      "secret": true
+    },
+    {
+      "path": "id_rsa.pub",
+      "secret": false
+    },
+    {
+      "path": ".npmrc",
+      "secret": true
+    },
+    {
+      "path": ".pgpass",
+      "secret": true
+    },
+    {
+      "path": "App.mobileprovision",
+      "secret": true
+    },
+    {
+      "path": "x.provisionprofile",
+      "secret": true
+    },
+    {
+      "path": "AuthKey.p8",
+      "secret": true
+    },
+    {
+      "path": "cert.cer",
+      "secret": false
+    },
+    {
+      "path": ".netrc",
+      "secret": true
+    },
+    {
+      "path": "credentials",
+      "secret": true
+    },
+    {
+      "path": "aws/credentials.json",
+      "secret": true
+    },
+    {
+      "path": "credentials.yaml",
+      "secret": false
+    },
+    {
+      "path": "secret.yml",
+      "secret": true
+    },
+    {
+      "path": "secrets.yaml",
+      "secret": true
+    },
+    {
+      "path": "secrets.json",
+      "secret": true
+    },
+    {
+      "path": "secret.toml",
+      "secret": true
+    },
+    {
+      "path": "secrets.ini",
+      "secret": true
+    },
+    {
+      "path": "my-secrets.json",
+      "secret": false
+    },
+    {
+      "path": ".env.prod.bak",
+      "secret": true
+    },
+    {
+      "path": ".env.with space",
+      "secret": false
+    }
+  ]
+}

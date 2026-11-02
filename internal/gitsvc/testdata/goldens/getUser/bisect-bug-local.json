@@ -1,0 +1,13 @@
+{
+  "method": "getUser",
+  "fixture": "bisect-bug",
+  "case": "local",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "email": "playground@example.com",
+    "name": "Playground"
+  }
+}

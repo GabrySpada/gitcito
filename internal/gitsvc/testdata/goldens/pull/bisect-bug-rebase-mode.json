@@ -1,0 +1,144 @@
+{
+  "method": "pull",
+  "fixture": "bisect-bug",
+  "case": "rebase-mode",
+  "repo": "clone",
+  "setup": [
+    {
+      "tmpdir": "O"
+    },
+    {
+      "git": [
+        "init",
+        "-q",
+        "--bare",
+        "-b",
+        "main",
+        "<O>/origin.git"
+      ],
+      "dir": "<O>"
+    },
+    {
+      "git": [
+        "remote",
+        "add",
+        "origin",
+        "<O>/origin.git"
+      ]
+    },
+    {
+      "git": [
+        "push",
+        "-q",
+        "-u",
+        "origin",
+        "main"
+      ]
+    },
+    {
+      "tmpdir": "W"
+    },
+    {
+      "git": [
+        "clone",
+        "-q",
+        "-b",
+        "main",
+        "<O>/origin.git",
+        "<W>/theirs"
+      ],
+      "dir": "<W>"
+    },
+    {
+      "write": "<W>/theirs/NEWS.md",
+      "content": "docs: news\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ],
+      "dir": "<W>/theirs"
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "docs: news"
+      ],
+      "dir": "<W>/theirs"
+    },
+    {
+      "git": [
+        "push",
+        "-q",
+        "origin",
+        "main"
+      ],
+      "dir": "<W>/theirs"
+    },
+    {
+      "write": "LOCAL.md",
+      "content": "mine\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "docs: local"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "rebase"
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.bisect-hint",
+      "100644 <SHA2> 0\tLOCAL.md",
+      "100644 <SHA3> 0\tNEWS.md",
+      "100644 <SHA4> 0\tREADME.md",
+      "100644 <SHA5> 0\tcurrency.js",
+      "100644 <SHA6> 0\tdiscount.js",
+      "100644 <SHA7> 0\tformat.js",
+      "100644 <SHA8> 0\tindex.js",
+      "100644 <SHA9> 0\tmath.js",
+      "100644 <SHA10> 0\tstats.js",
+      "100644 <SHA11> 0\ttax.js"
+    ],
+    "log": [
+      "<SHA12>\u0000<SHA13>\u0000chore: add .bisect-hint",
+      "<SHA13>\u0000<SHA14>\u0000chore: add stats to barrel export",
+      "<SHA15>\u0000<SHA16>\u0000docs: README with bisect instructions",
+      "<SHA17>\u0000<SHA18>\u0000docs: local",
+      "<SHA18>\u0000<SHA12>\u0000docs: news",
+      "<SHA19>\u0000<SHA20>\u0000feat: abs + clamp",
+      "<SHA21>\u0000\u0000feat: add + subtract",
+      "<SHA22>\u0000<SHA19>\u0000feat: addTax",
+      "<SHA16>\u0000<SHA23>\u0000feat: barrel export index.js",
+      "<SHA24>\u0000<SHA25>\u0000feat: currency helpers",
+      "<SHA26>\u0000<SHA24>\u0000feat: discount function",
+      "<SHA20>\u0000<SHA26>\u0000feat: formatCurrency",
+      "<SHA25>\u0000<SHA21>\u0000feat: multiply + divide",
+      "<SHA14>\u0000<SHA15>\u0000feat: stats — sum / mean / median",
+      "<SHA23>\u0000<SHA22>\u0000refactor: simplify discount calculation"
+    ],
+    "refs": [
+      "refs/heads/main <SHA17>",
+      "refs/remotes/origin/main <SHA18>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

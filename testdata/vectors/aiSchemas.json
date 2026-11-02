@@ -1,0 +1,1468 @@
+{
+  "schemas": {
+    "COMMIT_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"description\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}}}",
+    "CONFIG_FILES_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"files\"],\"properties\":{\"files\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"path\",\"content\"],\"properties\":{\"path\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"}}}}}}",
+    "ASK_ACTION_SCHEMA": "{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}",
+    "ASK_ACTIONS_SCHEMA": "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}}",
+    "askActionSchema()": "{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}",
+    "askActionSchema(history)": "{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"merge\",\"rebase\",\"revert\",\"cherry_pick\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}",
+    "askActionSchema(remote)": "{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"fetch\",\"pull\",\"push\",\"open_pr\",\"stack_submit\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}",
+    "askActionSchema(history,remote)": "{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"merge\",\"rebase\",\"revert\",\"cherry_pick\",\"fetch\",\"pull\",\"push\",\"open_pr\",\"stack_submit\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}",
+    "askActionsSchema(false)": "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"merge\",\"rebase\",\"revert\",\"cherry_pick\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}}",
+    "askActionsSchema(true)": "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"merge\",\"rebase\",\"revert\",\"cherry_pick\",\"fetch\",\"pull\",\"push\",\"open_pr\",\"stack_submit\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}}}",
+    "repoChatActionsSchema(false)": "{\"type\":\"array\",\"maxItems\":64,\"items\":{\"anyOf\":[{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"merge\",\"rebase\",\"revert\",\"cherry_pick\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"oldText\",\"newText\",\"description\"],\"properties\":{\"type\":{\"const\":\"edit_file\"},\"path\":{\"type\":\"string\"},\"oldText\":{\"type\":\"string\"},\"newText\":{\"type\":\"string\"},\"replaceAll\":{\"type\":\"boolean\"},\"description\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"content\",\"mode\",\"description\"],\"properties\":{\"type\":{\"const\":\"write_file\"},\"path\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"mode\":{\"type\":\"string\",\"enum\":[\"create\",\"replace\"]},\"description\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"description\"],\"properties\":{\"type\":{\"const\":\"delete_file\"},\"path\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}}}]}}",
+    "repoChatActionsSchema(true)": "{\"type\":\"array\",\"maxItems\":64,\"items\":{\"anyOf\":[{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"merge\",\"rebase\",\"revert\",\"cherry_pick\",\"fetch\",\"pull\",\"push\",\"open_pr\",\"stack_submit\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"oldText\",\"newText\",\"description\"],\"properties\":{\"type\":{\"const\":\"edit_file\"},\"path\":{\"type\":\"string\"},\"oldText\":{\"type\":\"string\"},\"newText\":{\"type\":\"string\"},\"replaceAll\":{\"type\":\"boolean\"},\"description\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"content\",\"mode\",\"description\"],\"properties\":{\"type\":{\"const\":\"write_file\"},\"path\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"mode\":{\"type\":\"string\",\"enum\":[\"create\",\"replace\"]},\"description\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"description\"],\"properties\":{\"type\":{\"const\":\"delete_file\"},\"path\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}}}]}}",
+    "REPO_CHAT_ACTIONS_SCHEMA": "{\"type\":\"array\",\"maxItems\":64,\"items\":{\"anyOf\":[{\"type\":\"object\",\"required\":[\"type\",\"description\"],\"properties\":{\"type\":{\"type\":\"string\",\"enum\":[\"gitignore\",\"stage\",\"unstage\",\"commit\",\"stash\",\"discard\",\"branch\",\"checkout\",\"tag\",\"merge\",\"rebase\",\"revert\",\"cherry_pick\"]},\"description\":{\"type\":\"string\"},\"files\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"patterns\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"hashes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"message\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"at\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"onto\":{\"type\":\"string\"},\"checkout\":{\"type\":\"boolean\"},\"noFf\":{\"type\":\"boolean\"},\"mode\":{\"type\":\"string\",\"enum\":[\"default\",\"ff-only\",\"rebase\"]},\"remote\":{\"type\":\"string\"},\"branch\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"},\"draft\":{\"type\":\"boolean\"},\"leaf\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"oldText\",\"newText\",\"description\"],\"properties\":{\"type\":{\"const\":\"edit_file\"},\"path\":{\"type\":\"string\"},\"oldText\":{\"type\":\"string\"},\"newText\":{\"type\":\"string\"},\"replaceAll\":{\"type\":\"boolean\"},\"description\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"content\",\"mode\",\"description\"],\"properties\":{\"type\":{\"const\":\"write_file\"},\"path\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"mode\":{\"type\":\"string\",\"enum\":[\"create\",\"replace\"]},\"description\":{\"type\":\"string\"}}},{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"type\",\"path\",\"description\"],\"properties\":{\"type\":{\"const\":\"delete_file\"},\"path\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}}}]}}",
+    "SMART_STAGE_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"toStage\",\"reason\"],\"properties\":{\"toStage\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"reason\":{\"type\":\"string\"}}}",
+    "ARTIFACT_SUGGESTIONS_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"suggestions\"],\"properties\":{\"suggestions\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"path\",\"description\",\"reason\"],\"properties\":{\"path\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}}}}}}",
+    "APP_THEME_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"name\",\"light\",\"dark\"],\"properties\":{\"name\":{\"type\":\"string\"},\"light\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"bg0\",\"bg1\",\"bg2\",\"bg3\",\"bg4\",\"border\",\"borderSoft\",\"text0\",\"text1\",\"text2\",\"accent\",\"green\",\"red\",\"yellow\",\"purple\"],\"properties\":{\"bg0\":{\"type\":\"string\"},\"bg1\":{\"type\":\"string\"},\"bg2\":{\"type\":\"string\"},\"bg3\":{\"type\":\"string\"},\"bg4\":{\"type\":\"string\"},\"border\":{\"type\":\"string\"},\"borderSoft\":{\"type\":\"string\"},\"text0\":{\"type\":\"string\"},\"text1\":{\"type\":\"string\"},\"text2\":{\"type\":\"string\"},\"accent\":{\"type\":\"string\"},\"green\":{\"type\":\"string\"},\"red\":{\"type\":\"string\"},\"yellow\":{\"type\":\"string\"},\"purple\":{\"type\":\"string\"}}},\"dark\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"bg0\",\"bg1\",\"bg2\",\"bg3\",\"bg4\",\"border\",\"borderSoft\",\"text0\",\"text1\",\"text2\",\"accent\",\"green\",\"red\",\"yellow\",\"purple\"],\"properties\":{\"bg0\":{\"type\":\"string\"},\"bg1\":{\"type\":\"string\"},\"bg2\":{\"type\":\"string\"},\"bg3\":{\"type\":\"string\"},\"bg4\":{\"type\":\"string\"},\"border\":{\"type\":\"string\"},\"borderSoft\":{\"type\":\"string\"},\"text0\":{\"type\":\"string\"},\"text1\":{\"type\":\"string\"},\"text2\":{\"type\":\"string\"},\"accent\":{\"type\":\"string\"},\"green\":{\"type\":\"string\"},\"red\":{\"type\":\"string\"},\"yellow\":{\"type\":\"string\"},\"purple\":{\"type\":\"string\"}}}}}",
+    "CODE_THEME_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"name\",\"light\",\"dark\"],\"properties\":{\"name\":{\"type\":\"string\"},\"light\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"bg\",\"text\",\"comment\",\"keyword\",\"string\",\"number\",\"function\",\"title\",\"variable\",\"type\",\"builtin\",\"attr\",\"tag\",\"operator\",\"meta\"],\"properties\":{\"bg\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"},\"comment\":{\"type\":\"string\"},\"keyword\":{\"type\":\"string\"},\"string\":{\"type\":\"string\"},\"number\":{\"type\":\"string\"},\"function\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"variable\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"builtin\":{\"type\":\"string\"},\"attr\":{\"type\":\"string\"},\"tag\":{\"type\":\"string\"},\"operator\":{\"type\":\"string\"},\"meta\":{\"type\":\"string\"}}},\"dark\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"bg\",\"text\",\"comment\",\"keyword\",\"string\",\"number\",\"function\",\"title\",\"variable\",\"type\",\"builtin\",\"attr\",\"tag\",\"operator\",\"meta\"],\"properties\":{\"bg\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"},\"comment\":{\"type\":\"string\"},\"keyword\":{\"type\":\"string\"},\"string\":{\"type\":\"string\"},\"number\":{\"type\":\"string\"},\"function\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"variable\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"builtin\":{\"type\":\"string\"},\"attr\":{\"type\":\"string\"},\"tag\":{\"type\":\"string\"},\"operator\":{\"type\":\"string\"},\"meta\":{\"type\":\"string\"}}}}}",
+    "GRAPH_PALETTE_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"name\",\"colors\"],\"properties\":{\"name\":{\"type\":\"string\"},\"colors\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}",
+    "PR_DESCRIPTION_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"title\",\"body\"],\"properties\":{\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"}}}",
+    "BRANCH_NAME_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"name\"],\"properties\":{\"name\":{\"type\":\"string\"}}}"
+  },
+  "appThemeKeys": [
+    "bg0",
+    "bg1",
+    "bg2",
+    "bg3",
+    "bg4",
+    "border",
+    "borderSoft",
+    "text0",
+    "text1",
+    "text2",
+    "accent",
+    "green",
+    "red",
+    "yellow",
+    "purple"
+  ],
+  "codeThemeKeys": [
+    "bg",
+    "text",
+    "comment",
+    "keyword",
+    "string",
+    "number",
+    "function",
+    "title",
+    "variable",
+    "type",
+    "builtin",
+    "attr",
+    "tag",
+    "operator",
+    "meta"
+  ],
+  "validateCommitMessage": [
+    {
+      "input": null,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": true,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 0,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 1.5,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": "text",
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": [],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {},
+      "out": [
+        "\"summary\" must be a non-empty one-line commit subject."
+      ]
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {
+        "a": 1
+      },
+      "out": [
+        "\"summary\" must be a non-empty one-line commit subject."
+      ]
+    },
+    {
+      "input": {
+        "summary": "feat: add login",
+        "description": ""
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "summary": "fix: guard null",
+        "description": "- checks the token"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "summary": "  ",
+        "description": ""
+      },
+      "out": [
+        "\"summary\" must be a non-empty one-line commit subject."
+      ]
+    },
+    {
+      "input": {
+        "summary": "one\ntwo",
+        "description": ""
+      },
+      "out": [
+        "\"summary\" must be a single line."
+      ]
+    },
+    {
+      "input": {
+        "summary": "ok"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "summary": "ok",
+        "description": null
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "summary": "ok",
+        "description": 5
+      },
+      "out": [
+        "\"description\" must be a string (use \"\" when there is no body)."
+      ]
+    },
+    {
+      "input": {
+        "summary": 5,
+        "description": []
+      },
+      "out": [
+        "\"summary\" must be a non-empty one-line commit subject.",
+        "\"description\" must be a string (use \"\" when there is no body)."
+      ]
+    },
+    {
+      "input": {
+        "summary": " ﻿",
+        "description": "x"
+      },
+      "out": [
+        "\"summary\" must be a non-empty one-line commit subject."
+      ]
+    },
+    {
+      "input": {
+        "summary": "",
+        "description": "x"
+      },
+      "out": []
+    },
+    {
+      "input": "Sure! Here is your commit",
+      "out": [
+        "The response must be a JSON object."
+      ]
+    }
+  ],
+  "validateGeneratedFiles": [
+    {
+      "input": {
+        "files": [
+          {
+            "path": "CLAUDE.md",
+            "content": "# Project"
+          }
+        ]
+      },
+      "requested": [
+        "CLAUDE.md",
+        ".cursor/rules/project.mdc"
+      ],
+      "out": []
+    },
+    {
+      "input": {
+        "files": [
+          {
+            "path": " CLAUDE.md ",
+            "content": "x"
+          }
+        ]
+      },
+      "requested": [
+        "CLAUDE.md"
+      ],
+      "out": []
+    },
+    {
+      "input": {
+        "files": []
+      },
+      "requested": [
+        "CLAUDE.md"
+      ],
+      "out": [
+        "\"files\" is empty — generate the files that were asked for."
+      ]
+    },
+    {
+      "input": {
+        "files": "nope"
+      },
+      "requested": [],
+      "out": [
+        "\"files\" must be an array of {path, content} objects."
+      ]
+    },
+    {
+      "input": {},
+      "requested": [],
+      "out": [
+        "\"files\" must be an array of {path, content} objects."
+      ]
+    },
+    {
+      "input": null,
+      "requested": [],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {
+        "files": [
+          null,
+          3,
+          {
+            "path": "../x",
+            "content": ""
+          },
+          {
+            "content": "c"
+          },
+          {
+            "path": "a",
+            "content": "b"
+          }
+        ]
+      },
+      "requested": [],
+      "out": [
+        "files[0] must be an object with \"path\" and \"content\".",
+        "files[1] must be an object with \"path\" and \"content\".",
+        "files[2].path \"../x\" must be a relative path inside the repo — no leading \"/\" and no \"..\" segments.",
+        "files[2].content must be the complete file contents.",
+        "files[3].path null must be a relative path inside the repo — no leading \"/\" and no \"..\" segments."
+      ]
+    },
+    {
+      "input": {
+        "files": [
+          {
+            "path": "sneaky.sh",
+            "content": "x"
+          },
+          {
+            "path": "CLAUDE.md",
+            "content": "  "
+          }
+        ]
+      },
+      "requested": [
+        "CLAUDE.md",
+        "b"
+      ],
+      "out": [
+        "files[0].path \"sneaky.sh\" was not requested. Generate only: CLAUDE.md, b.",
+        "files[1].content must be the complete file contents."
+      ]
+    },
+    {
+      "input": {
+        "files": [
+          {
+            "path": "C:\\Windows\\system.ini",
+            "content": "x"
+          },
+          {
+            "path": "/etc/passwd",
+            "content": "x"
+          },
+          {
+            "path": "a/../../b",
+            "content": "x"
+          }
+        ]
+      },
+      "requested": [],
+      "out": [
+        "files[0].path \"C:\\\\Windows\\\\system.ini\" must be a relative path inside the repo — no leading \"/\" and no \"..\" segments.",
+        "files[1].path \"/etc/passwd\" must be a relative path inside the repo — no leading \"/\" and no \"..\" segments.",
+        "files[2].path \"a/../../b\" must be a relative path inside the repo — no leading \"/\" and no \"..\" segments."
+      ]
+    },
+    {
+      "input": {
+        "files": [
+          {
+            "path": 7,
+            "content": "x"
+          },
+          {
+            "path": {
+              "p": 1
+            },
+            "content": "x"
+          }
+        ]
+      },
+      "requested": [],
+      "out": [
+        "files[0].path 7 must be a relative path inside the repo — no leading \"/\" and no \"..\" segments.",
+        "files[1].path {\"p\":1} must be a relative path inside the repo — no leading \"/\" and no \"..\" segments."
+      ]
+    }
+  ],
+  "validateSmartStage": [
+    {
+      "input": null,
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": true,
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 0,
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 1.5,
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": "text",
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": [],
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {},
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "\"toStage\" must be an array of paths (use [] to stage nothing)."
+      ]
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {
+        "a": 1
+      },
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "\"toStage\" must be an array of paths (use [] to stage nothing)."
+      ]
+    },
+    {
+      "input": {
+        "toStage": [
+          "src/app.ts"
+        ],
+        "reason": "source only"
+      },
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": []
+    },
+    {
+      "input": {
+        "toStage": [],
+        "reason": "nothing"
+      },
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": []
+    },
+    {
+      "input": {
+        "toStage": [
+          "src/ghost.ts",
+          3,
+          null,
+          "docs/ünï.md"
+        ],
+        "reason": ""
+      },
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "\"toStage\" contains \"src/ghost.ts\", which is not one of the changed files you were given.",
+        "\"toStage\" contains 3, which is not one of the changed files you were given.",
+        "\"toStage\" contains null, which is not one of the changed files you were given."
+      ]
+    },
+    {
+      "input": {
+        "toStage": "src/app.ts"
+      },
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "\"toStage\" must be an array of paths (use [] to stage nothing)."
+      ]
+    },
+    {
+      "input": {
+        "toStage": [],
+        "reason": 4
+      },
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "\"reason\" must be a string."
+      ]
+    },
+    {
+      "input": {
+        "toStage": [],
+        "reason": null
+      },
+      "known": [
+        "src/app.ts",
+        "package-lock.json",
+        "docs/ünï.md"
+      ],
+      "out": [
+        "\"reason\" must be a string."
+      ]
+    }
+  ],
+  "validateArtifactSuggestions": [
+    {
+      "input": {
+        "suggestions": [
+          {
+            "path": ".editorconfig",
+            "description": "Editor defaults",
+            "reason": "Mixed"
+          }
+        ]
+      },
+      "already": [
+        "CLAUDE.md"
+      ],
+      "out": []
+    },
+    {
+      "input": {
+        "suggestions": [
+          {
+            "path": " CLAUDE.md ",
+            "description": "d",
+            "reason": "r"
+          }
+        ]
+      },
+      "already": [
+        "CLAUDE.md"
+      ],
+      "out": [
+        "suggestions[0].path \" CLAUDE.md \" is already selected — suggest something else."
+      ]
+    },
+    {
+      "input": {
+        "suggestions": [
+          {
+            "path": "../x",
+            "description": "d",
+            "reason": "r"
+          },
+          {
+            "path": "a.md",
+            "description": "",
+            "reason": " "
+          }
+        ]
+      },
+      "already": [],
+      "out": [
+        "suggestions[0].path must be a relative path inside the repo.",
+        "suggestions[1].description must say what the file is for.",
+        "suggestions[1].reason must say why this project benefits from it."
+      ]
+    },
+    {
+      "input": {
+        "suggestions": []
+      },
+      "already": [],
+      "out": []
+    },
+    {
+      "input": {
+        "suggestions": {}
+      },
+      "already": [],
+      "out": [
+        "\"suggestions\" must be an array (use [] when there is nothing to add)."
+      ]
+    },
+    {
+      "input": {
+        "suggestions": [
+          null,
+          [],
+          "x"
+        ]
+      },
+      "already": [],
+      "out": [
+        "suggestions[0] must be an object.",
+        "suggestions[1] must be an object.",
+        "suggestions[2] must be an object."
+      ]
+    },
+    {
+      "input": [],
+      "already": [],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {},
+      "already": [],
+      "out": [
+        "\"suggestions\" must be an array (use [] when there is nothing to add)."
+      ]
+    }
+  ],
+  "validateTheme": [
+    {
+      "input": {
+        "name": "Dusk",
+        "light": {
+          "bg0": "#ffffff",
+          "bg1": "#ffffff",
+          "bg2": "#ffffff",
+          "bg3": "#ffffff",
+          "bg4": "#ffffff",
+          "border": "#ffffff",
+          "borderSoft": "#ffffff",
+          "text0": "#ffffff",
+          "text1": "#ffffff",
+          "text2": "#ffffff",
+          "accent": "#ffffff",
+          "green": "#ffffff",
+          "red": "#ffffff",
+          "yellow": "#ffffff",
+          "purple": "#ffffff"
+        },
+        "dark": {
+          "bg0": "#101010",
+          "bg1": "#101010",
+          "bg2": "#101010",
+          "bg3": "#101010",
+          "bg4": "#101010",
+          "border": "#101010",
+          "borderSoft": "#101010",
+          "text0": "#101010",
+          "text1": "#101010",
+          "text2": "#101010",
+          "accent": "#101010",
+          "green": "#101010",
+          "red": "#101010",
+          "yellow": "#101010",
+          "purple": "#101010"
+        }
+      },
+      "keys": "app",
+      "out": []
+    },
+    {
+      "input": {
+        "name": "X",
+        "light": {
+          "bg0": "#ffffff",
+          "bg1": "#ffffff",
+          "bg2": "#ffffff",
+          "bg3": "#ffffff",
+          "bg4": "#ffffff",
+          "border": "#ffffff",
+          "borderSoft": "#ffffff",
+          "text0": "#ffffff",
+          "text1": "#ffffff",
+          "text2": "#ffffff",
+          "green": "#ffffff",
+          "red": "#ffffff",
+          "yellow": "#ffffff",
+          "purple": "#ffffff"
+        },
+        "dark": {
+          "bg0": "#101010",
+          "bg1": "#101010",
+          "bg2": "#101010",
+          "bg3": "#101010",
+          "bg4": "#101010",
+          "border": "#101010",
+          "borderSoft": "#101010",
+          "text0": "#101010",
+          "text1": "#101010",
+          "text2": "#101010",
+          "accent": "#101010",
+          "green": "#101010",
+          "red": "#101010",
+          "yellow": "#101010",
+          "purple": "#101010"
+        }
+      },
+      "keys": "app",
+      "out": [
+        "\"light\" is missing: accent."
+      ]
+    },
+    {
+      "input": {
+        "name": "X",
+        "light": {
+          "bg0": "#fff",
+          "red": "crimson",
+          "green": [
+            "#aabbcc"
+          ],
+          "text0": 123456,
+          "border": null
+        },
+        "dark": []
+      },
+      "keys": "app",
+      "out": [
+        "\"light\" is missing: bg1, bg2, bg3, bg4, borderSoft, text1, text2, accent, yellow, purple.",
+        "\"light\" must use 6-digit hex colours; these are not: bg0, border, text0, red.",
+        "\"dark\" must be an object with all 15 colours."
+      ]
+    },
+    {
+      "input": {
+        "name": "",
+        "light": null
+      },
+      "keys": "app",
+      "out": [
+        "\"name\" must be the theme name.",
+        "\"light\" must be an object with all 15 colours.",
+        "\"dark\" must be an object with all 15 colours."
+      ]
+    },
+    {
+      "input": {
+        "name": "Ink",
+        "light": {
+          "bg": "#ABCDEF",
+          "text": "#ABCDEF",
+          "comment": "#ABCDEF",
+          "keyword": "#ABCDEF",
+          "string": "#ABCDEF",
+          "number": "#ABCDEF",
+          "function": "#ABCDEF",
+          "title": "#ABCDEF",
+          "variable": "#ABCDEF",
+          "type": "#ABCDEF",
+          "builtin": "#ABCDEF",
+          "attr": "#ABCDEF",
+          "tag": "#ABCDEF",
+          "operator": "#ABCDEF",
+          "meta": "#ABCDEF"
+        },
+        "dark": {
+          "bg": "#abcdeg",
+          "text": "#abcdeg",
+          "comment": "#abcdeg",
+          "keyword": "#abcdeg",
+          "string": "#abcdeg",
+          "number": "#abcdeg",
+          "function": "#abcdeg",
+          "title": "#abcdeg",
+          "variable": "#abcdeg",
+          "type": "#abcdeg",
+          "builtin": "#abcdeg",
+          "attr": "#abcdeg",
+          "tag": "#abcdeg",
+          "operator": "#abcdeg",
+          "meta": "#abcdeg"
+        }
+      },
+      "keys": "code",
+      "out": [
+        "\"dark\" must use 6-digit hex colours; these are not: bg, text, comment, keyword, string, number, function, title, variable, type, builtin, attr, tag, operator, meta."
+      ]
+    },
+    {
+      "input": {
+        "light": {},
+        "dark": {}
+      },
+      "keys": "code",
+      "out": [
+        "\"name\" must be the theme name.",
+        "\"light\" is missing: bg, text, comment, keyword, string, number, function, title, variable, type, builtin, attr, tag, operator, meta.",
+        "\"dark\" is missing: bg, text, comment, keyword, string, number, function, title, variable, type, builtin, attr, tag, operator, meta."
+      ]
+    },
+    {
+      "input": "theme",
+      "keys": "code",
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": null,
+      "keys": "app",
+      "out": [
+        "The response must be a JSON object."
+      ]
+    }
+  ],
+  "validateGraphPalette": [
+    {
+      "input": null,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": true,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 0,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 1.5,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": "text",
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": [],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {},
+      "out": [
+        "\"name\" must be the palette name.",
+        "\"colors\" must be an array of 8 hex colours."
+      ]
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {
+        "a": 1
+      },
+      "out": [
+        "\"name\" must be the palette name.",
+        "\"colors\" must be an array of 8 hex colours."
+      ]
+    },
+    {
+      "input": {
+        "name": "Neon",
+        "colors": [
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456"
+        ]
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "name": "Neon",
+        "colors": [
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456"
+        ]
+      },
+      "out": [
+        "\"colors\" must have exactly 8 entries, not 6."
+      ]
+    },
+    {
+      "input": {
+        "name": "Neon",
+        "colors": [
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "#123456",
+          "red"
+        ]
+      },
+      "out": [
+        "\"colors\" must be 6-digit hex values; these are not: red."
+      ]
+    },
+    {
+      "input": {
+        "name": " ",
+        "colors": "x"
+      },
+      "out": [
+        "\"name\" must be the palette name.",
+        "\"colors\" must be an array of 8 hex colours."
+      ]
+    },
+    {
+      "input": {
+        "name": "N",
+        "colors": [
+          null,
+          1,
+          true,
+          [
+            "#123456"
+          ],
+          {
+            "a": 1
+          },
+          "#12345",
+          "#1234567",
+          "#GGGGGG",
+          "#abcdef"
+        ]
+      },
+      "out": [
+        "\"colors\" must have exactly 8 entries, not 9.",
+        "\"colors\" must be 6-digit hex values; these are not: , 1, true, [object Object], #12345, #1234567, #GGGGGG."
+      ]
+    }
+  ],
+  "validatePRDescription": [
+    {
+      "input": null,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": true,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 0,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 1.5,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": "text",
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": [],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {},
+      "out": [
+        "\"title\" must be a one-line pull request title.",
+        "\"body\" must be the Markdown description."
+      ]
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {
+        "a": 1
+      },
+      "out": [
+        "\"title\" must be a one-line pull request title.",
+        "\"body\" must be the Markdown description."
+      ]
+    },
+    {
+      "input": {
+        "title": "Add login",
+        "body": "## Changes\n- x"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "title": "a\nb",
+        "body": "x"
+      },
+      "out": [
+        "\"title\" must be a single line."
+      ]
+    },
+    {
+      "input": {
+        "title": "Add login",
+        "body": ""
+      },
+      "out": [
+        "\"body\" must be the Markdown description."
+      ]
+    },
+    {
+      "input": {
+        "title": " ",
+        "body": " "
+      },
+      "out": [
+        "\"title\" must be a one-line pull request title.",
+        "\"body\" must be the Markdown description."
+      ]
+    },
+    {
+      "input": {
+        "title": 3,
+        "body": 3
+      },
+      "out": [
+        "\"title\" must be a one-line pull request title.",
+        "\"body\" must be the Markdown description."
+      ]
+    }
+  ],
+  "validateBranchName": [
+    {
+      "input": null,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": true,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 0,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": 1.5,
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": "text",
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": [],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {},
+      "out": [
+        "\"name\" must be the branch name."
+      ]
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "input": {
+        "a": 1
+      },
+      "out": [
+        "\"name\" must be the branch name."
+      ]
+    },
+    {
+      "input": {
+        "name": "feature/CMS-12-add-login"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "name": "my branch"
+      },
+      "out": [
+        "\"name\" must not contain spaces — use hyphens.",
+        "\"name\" may only use letters, digits, \".\", \"_\", \"-\" and \"/\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "feature//x"
+      },
+      "out": [
+        "\"name\" must not start or end with \"/\" or contain \"//\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "feature/x.lock"
+      },
+      "out": [
+        "\"name\" must not contain \"..\" or end with \".lock\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "a..b"
+      },
+      "out": [
+        "\"name\" must not contain \"..\" or end with \".lock\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "feature/¡hola!"
+      },
+      "out": [
+        "\"name\" may only use letters, digits, \".\", \"_\", \"-\" and \"/\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "/lead"
+      },
+      "out": [
+        "\"name\" must not start or end with \"/\" or contain \"//\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "trail/"
+      },
+      "out": [
+        "\"name\" must not start or end with \"/\" or contain \"//\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "  padded  "
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "name": "a b"
+      },
+      "out": [
+        "\"name\" must not contain spaces — use hyphens.",
+        "\"name\" may only use letters, digits, \".\", \"_\", \"-\" and \"/\"."
+      ]
+    },
+    {
+      "input": {
+        "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "out": [
+        "\"name\" must be shorter than 100 characters."
+      ]
+    },
+    {
+      "input": {
+        "name": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "name": ""
+      },
+      "out": [
+        "\"name\" must be the branch name."
+      ]
+    },
+    {
+      "input": {
+        "name": 7
+      },
+      "out": [
+        "\"name\" must be the branch name."
+      ]
+    },
+    {
+      "input": {
+        "name": "tab\there"
+      },
+      "out": [
+        "\"name\" must not contain spaces — use hyphens.",
+        "\"name\" may only use letters, digits, \".\", \"_\", \"-\" and \"/\"."
+      ]
+    }
+  ],
+  "validateResolvedFile": [
+    {
+      "input": "const a = 1\nconst b = 2\n",
+      "out": []
+    },
+    {
+      "input": "a\n<<<<<<< HEAD\nb\n=======\nc\n>>>>>>> theirs\n",
+      "out": [
+        "The result still contains git conflict markers (<<<<<<<, =======, >>>>>>>). Return the merged file with none of them."
+      ]
+    },
+    {
+      "input": "   ",
+      "out": [
+        "The result is empty. Return the full merged file contents."
+      ]
+    },
+    {
+      "input": "",
+      "out": [
+        "The result is empty. Return the full merged file contents."
+      ]
+    },
+    {
+      "input": "=======",
+      "out": [
+        "The result still contains git conflict markers (<<<<<<<, =======, >>>>>>>). Return the merged file with none of them."
+      ]
+    },
+    {
+      "input": "x =======",
+      "out": []
+    },
+    {
+      "input": "a\r>>>>>>> b",
+      "out": [
+        "The result still contains git conflict markers (<<<<<<<, =======, >>>>>>>). Return the merged file with none of them."
+      ]
+    },
+    {
+      "input": "a ||||||| base",
+      "out": [
+        "The result still contains git conflict markers (<<<<<<<, =======, >>>>>>>). Return the merged file with none of them."
+      ]
+    },
+    {
+      "input": "a <<<<<<<",
+      "out": [
+        "The result still contains git conflict markers (<<<<<<<, =======, >>>>>>>). Return the merged file with none of them."
+      ]
+    },
+    {
+      "input": "<<<<<< six",
+      "out": []
+    },
+    {
+      "input": "ok\n\n",
+      "out": []
+    }
+  ],
+  "isSafeRepoPath": [
+    {
+      "input": ".cursor/rules/project.mdc",
+      "out": true
+    },
+    {
+      "input": ".git/hooks/pre-commit",
+      "out": true
+    },
+    {
+      "input": "a/..b/c",
+      "out": true
+    },
+    {
+      "input": "../../etc/passwd",
+      "out": false
+    },
+    {
+      "input": "/etc/passwd",
+      "out": false
+    },
+    {
+      "input": "\\\\server\\share",
+      "out": false
+    },
+    {
+      "input": "C:\\Windows\\system.ini",
+      "out": false
+    },
+    {
+      "input": "c:relative",
+      "out": false
+    },
+    {
+      "input": "a/../../b",
+      "out": false
+    },
+    {
+      "input": "a\\..\\b",
+      "out": false
+    },
+    {
+      "input": "..",
+      "out": false
+    },
+    {
+      "input": "x/..",
+      "out": false
+    },
+    {
+      "input": "a\u0000b",
+      "out": false
+    },
+    {
+      "input": "",
+      "out": false
+    },
+    {
+      "input": "   ",
+      "out": false
+    },
+    {
+      "input": " ok.md ",
+      "out": true
+    },
+    {
+      "input": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "out": true
+    },
+    {
+      "input": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "out": false
+    },
+    {
+      "input": " xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ",
+      "out": true
+    },
+    {
+      "input": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+      "out": true
+    },
+    {
+      "input": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+      "out": false
+    },
+    {
+      "input": "﻿/etc/passwd",
+      "out": false
+    },
+    {
+      "input": "../x",
+      "out": true
+    },
+    {
+      "input": " /abs",
+      "out": false
+    },
+    {
+      "input": " ..",
+      "out": false
+    },
+    {
+      "input": "a//b",
+      "out": true
+    },
+    {
+      "input": "a/./b",
+      "out": true
+    },
+    {
+      "input": "1:x",
+      "out": true
+    },
+    {
+      "input": null,
+      "out": false
+    },
+    {
+      "input": 7,
+      "out": false
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "out": false
+    },
+    {
+      "input": {
+        "p": "a"
+      },
+      "out": false
+    }
+  ]
+}

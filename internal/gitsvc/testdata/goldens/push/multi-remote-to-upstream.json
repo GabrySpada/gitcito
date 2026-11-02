@@ -1,0 +1,64 @@
+{
+  "method": "push",
+  "fixture": "multi-remote",
+  "case": "to-upstream",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "multi-remote-origin.git",
+      "as": "ORIGIN"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "origin",
+        "<ORIGIN>"
+      ]
+    },
+    {
+      "copy": "multi-remote-upstream.git",
+      "as": "UPSTREAM"
+    },
+    {
+      "git": [
+        "remote",
+        "set-url",
+        "upstream",
+        "<UPSTREAM>"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "main",
+    {
+      "remote": "upstream"
+    }
+  ],
+  "error": "To <UPSTREAM>\n ! [rejected]        main -> main (non-fast-forward)\nerror: failed to push some refs to '<UPSTREAM>'\nhint: Updates were rejected because the tip of your current branch is behind\nhint: its remote counterpart. If you want to integrate the remote changes,\nhint: use 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.",
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\tREADME.md",
+      "100644 <SHA2> 0\tarray.ts",
+      "100644 <SHA3> 0\tindex.ts",
+      "100644 <SHA4> 0\tmath.ts"
+    ],
+    "log": [
+      "<SHA5>\u0000<SHA6>\u0000docs: update README with string module",
+      "<SHA7>\u0000<SHA8>\u0000feat: add math.ts",
+      "<SHA9>\u0000<SHA7>\u0000feat: array.ts — unique/chunk/flatten (not pushed to origin)",
+      "<SHA6>\u0000<SHA7>\u0000feat: string.ts — capitalize/truncate/slugify",
+      "<SHA8>\u0000\u0000initial commit"
+    ],
+    "refs": [
+      "refs/heads/main <SHA9>",
+      "refs/remotes/origin/HEAD <SHA7>",
+      "refs/remotes/origin/main <SHA7>",
+      "refs/remotes/upstream/main <SHA5>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

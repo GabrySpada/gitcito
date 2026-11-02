@@ -1,0 +1,15 @@
+{
+  "method": "repoConfig",
+  "fixture": "project-tree",
+  "case": "absent",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "config": null,
+    "exists": false,
+    "issues": [],
+    "path": "<REPO>/.gitcito.json"
+  }
+}

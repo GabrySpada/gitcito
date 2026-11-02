@@ -1,0 +1,22 @@
+{
+  "method": "repoDoctor",
+  "fixture": "lfs-assets",
+  "case": "lfs-ok",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitcito.json",
+      "content": "{\"version\":1,\"requires\":{\"lfs\":true}}"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "id": "lfs",
+      "kind": "lfs",
+      "status": "ok"
+    }
+  ]
+}

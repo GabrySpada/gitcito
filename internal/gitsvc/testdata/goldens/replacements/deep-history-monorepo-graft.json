@@ -1,0 +1,37 @@
+{
+  "method": "replacements",
+  "fixture": "deep-history-monorepo",
+  "case": "graft",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "replace",
+        "--graft",
+        "<REV:HEAD~5>"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "core.useReplaceRefs",
+        "false"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "enabled": false,
+    "refs": [
+      {
+        "original": "<SHA1>",
+        "originalSubject": "perf: iterate on CHANGELOG.md (#215)",
+        "replacement": "<SHA2>",
+        "replacementParents": [],
+        "replacementSubject": "perf: iterate on CHANGELOG.md (#215)"
+      }
+    ]
+  }
+}

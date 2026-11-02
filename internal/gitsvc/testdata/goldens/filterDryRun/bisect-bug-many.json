@@ -1,0 +1,81 @@
+{
+  "method": "filterDryRun",
+  "fixture": "bisect-bug",
+  "case": "many",
+  "repo": "clone",
+  "args": [
+    "<REPO>",
+    "*.js",
+    "cat",
+    "cat"
+  ],
+  "result": {
+    "matched": 7,
+    "tested": [
+      {
+        "file": "currency.js",
+        "ok": true,
+        "preview": "const { multiply, divide } = require('./math')\nfunction toCents(dollars) { return Math.round(multiply(dollars, 100)) }\nfunction toDollars(cents) { return divide(cents, 100) }\nmodule.exports = { toCents, toDollars }\n",
+        "roundtrip": "ok"
+      },
+      {
+        "file": "discount.js",
+        "ok": true,
+        "preview": "const { multiply } = require('./math')\n// BUG: + instead of -  (discount(100,20) returns 120 instead of 80)\nfunction discount(price, pct) {\n  return price + multiply(price, pct / 100)\n}\nmodule.exports = { discount }\n",
+        "roundtrip": "ok"
+      },
+      {
+        "file": "format.js",
+        "ok": true,
+        "preview": "function formatCurrency(amount) {\n  return '$' + Number(amount).toFixed(2)\n}\nmodule.exports = { formatCurrency }\n",
+        "roundtrip": "ok"
+      },
+      {
+        "file": "index.js",
+        "ok": true,
+        "preview": "module.exports = {\n  ...require('./math'),\n  ...require('./currency'),\n  ...require('./discount'),\n  ...require('./tax'),\n  ...require('./format'),\n  ...require('./stats'),\n}\n",
+        "roundtrip": "ok"
+      },
+      {
+        "file": "math.js",
+        "ok": true,
+        "preview": "function add(a, b) { return a + b }\nfunction subtract(a, b) { return a - b }\nfunction multiply(a, b) { return a * b }\nfunction divide(a, b) {\n  if (b === 0) throw new Error('Division by zero')\n  return a / b\n}\nfunction abs(n) { return n < 0 ? -n : n }\nfunction clamp(n, min, max) { return Math.min(Math.max(n, min), max) }\nmodule.exports = { add, subtract, multiply, divide, abs, clamp }\n",
+        "roundtrip": "ok"
+      }
+    ]
+  },
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.bisect-hint",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tcurrency.js",
+      "100644 <SHA4> 0\tdiscount.js",
+      "100644 <SHA5> 0\tformat.js",
+      "100644 <SHA6> 0\tindex.js",
+      "100644 <SHA7> 0\tmath.js",
+      "100644 <SHA8> 0\tstats.js",
+      "100644 <SHA9> 0\ttax.js"
+    ],
+    "log": [
+      "<SHA10>\u0000<SHA11>\u0000chore: add .bisect-hint",
+      "<SHA11>\u0000<SHA12>\u0000chore: add stats to barrel export",
+      "<SHA13>\u0000<SHA14>\u0000docs: README with bisect instructions",
+      "<SHA15>\u0000<SHA16>\u0000feat: abs + clamp",
+      "<SHA17>\u0000\u0000feat: add + subtract",
+      "<SHA18>\u0000<SHA15>\u0000feat: addTax",
+      "<SHA14>\u0000<SHA19>\u0000feat: barrel export index.js",
+      "<SHA20>\u0000<SHA21>\u0000feat: currency helpers",
+      "<SHA22>\u0000<SHA20>\u0000feat: discount function",
+      "<SHA16>\u0000<SHA22>\u0000feat: formatCurrency",
+      "<SHA21>\u0000<SHA17>\u0000feat: multiply + divide",
+      "<SHA12>\u0000<SHA13>\u0000feat: stats — sum / mean / median",
+      "<SHA19>\u0000<SHA18>\u0000refactor: simplify discount calculation"
+    ],
+    "refs": [
+      "refs/heads/main <SHA10>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

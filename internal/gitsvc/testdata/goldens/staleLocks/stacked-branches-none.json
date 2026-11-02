@@ -1,0 +1,10 @@
+{
+  "method": "staleLocks",
+  "fixture": "stacked-branches",
+  "case": "none",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": []
+}

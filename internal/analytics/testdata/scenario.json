@@ -1,0 +1,1094 @@
+{
+  "tz": "Europe/Rome",
+  "scenarios": [
+    {
+      "seed": null,
+      "ops": [
+        {
+          "op": "get",
+          "args": [],
+          "now": 1774737000000,
+          "result": {
+            "since": 0,
+            "retentionDays": 0,
+            "days": [],
+            "aiTotal": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            },
+            "aiByFeature": {},
+            "aiByModel": {}
+          }
+        },
+        {
+          "op": "recordEvent",
+          "args": [
+            "commit"
+          ],
+          "now": 1774737000000,
+          "result": null
+        },
+        {
+          "op": "recordEvent",
+          "args": [
+            "commit"
+          ],
+          "now": 1774737001000,
+          "result": null
+        },
+        {
+          "op": "recordEvent",
+          "args": [
+            "push"
+          ],
+          "now": 1774737002000,
+          "result": null
+        },
+        {
+          "op": "recordAIUsage",
+          "args": [
+            "commitMessage",
+            "GPT-4o-mini-2024",
+            {
+              "promptTokens": 1200,
+              "completionTokens": 300,
+              "totalTokens": 1500
+            }
+          ],
+          "now": 1774737003000,
+          "result": null
+        },
+        {
+          "op": "recordAIUsage",
+          "args": [
+            "commitMessage",
+            "gpt-4o",
+            {
+              "promptTokens": 1000,
+              "completionTokens": 1000,
+              "totalTokens": 2000
+            }
+          ],
+          "now": 1774737004000,
+          "result": null
+        },
+        {
+          "op": "recordAIUsage",
+          "args": [
+            "reviewPR",
+            "claude-3-5-sonnet-latest",
+            {
+              "promptTokens": 333,
+              "completionTokens": 77,
+              "totalTokens": 410
+            }
+          ],
+          "result": null
+        },
+        {
+          "op": "recordAIUsage",
+          "args": [
+            "reviewPR",
+            "my-local-model",
+            {
+              "promptTokens": 10,
+              "completionTokens": 5,
+              "totalTokens": 15
+            }
+          ],
+          "result": null
+        },
+        {
+          "op": "recordAIUsage",
+          "args": [
+            "reviewPR",
+            "gpt-4.1-mini",
+            {
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0
+            }
+          ],
+          "result": null
+        },
+        {
+          "op": "recordAIUsage",
+          "args": [
+            "reviewPR",
+            "gpt-4.1-mini",
+            {
+              "promptTokens": -1,
+              "completionTokens": 0,
+              "totalTokens": 7
+            }
+          ],
+          "result": null
+        },
+        {
+          "op": "get",
+          "args": [],
+          "result": {
+            "since": 1774737000000,
+            "retentionDays": 0,
+            "days": [
+              {
+                "date": "2026-03-28",
+                "events": {
+                  "commit": 2,
+                  "push": 1
+                },
+                "ai": {
+                  "requests": 5,
+                  "promptTokens": 2542,
+                  "completionTokens": 1382,
+                  "totalTokens": 3932,
+                  "cost": 0.0150136
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 5,
+              "promptTokens": 2542,
+              "completionTokens": 1382,
+              "totalTokens": 3932,
+              "cost": 0.0150136
+            },
+            "aiByFeature": {
+              "commitMessage": {
+                "requests": 2,
+                "promptTokens": 2200,
+                "completionTokens": 1300,
+                "totalTokens": 3500,
+                "cost": 0.01286
+              },
+              "reviewPR": {
+                "requests": 3,
+                "promptTokens": 342,
+                "completionTokens": 82,
+                "totalTokens": 432,
+                "cost": 0.0021536000000000003
+              }
+            },
+            "aiByModel": {
+              "GPT-4o-mini-2024": {
+                "requests": 1,
+                "promptTokens": 1200,
+                "completionTokens": 300,
+                "totalTokens": 1500,
+                "cost": 0.00036
+              },
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1000,
+                "completionTokens": 1000,
+                "totalTokens": 2000,
+                "cost": 0.0125
+              },
+              "claude-3-5-sonnet-latest": {
+                "requests": 1,
+                "promptTokens": 333,
+                "completionTokens": 77,
+                "totalTokens": 410,
+                "cost": 0.002154
+              },
+              "my-local-model": {
+                "requests": 1,
+                "promptTokens": 10,
+                "completionTokens": 5,
+                "totalTokens": 15,
+                "cost": 0
+              },
+              "gpt-4.1-mini": {
+                "requests": 1,
+                "promptTokens": -1,
+                "completionTokens": 0,
+                "totalTokens": 7,
+                "cost": -4.0000000000000003e-7
+              }
+            }
+          }
+        },
+        {
+          "op": "recordEvent",
+          "args": [
+            "pull"
+          ],
+          "now": 1774740600000,
+          "result": null
+        },
+        {
+          "op": "recordEvent",
+          "args": [
+            "merge"
+          ],
+          "now": 1774909800000,
+          "result": null
+        },
+        {
+          "op": "recordAIUsage",
+          "args": [
+            "smartStage",
+            "codestral-2501",
+            {
+              "promptTokens": 1000000,
+              "completionTokens": 1000000,
+              "totalTokens": 2000000
+            }
+          ],
+          "result": null
+        },
+        {
+          "op": "get",
+          "args": [],
+          "result": {
+            "since": 1774737000000,
+            "retentionDays": 0,
+            "days": [
+              {
+                "date": "2026-03-28",
+                "events": {
+                  "commit": 2,
+                  "push": 1
+                },
+                "ai": {
+                  "requests": 5,
+                  "promptTokens": 2542,
+                  "completionTokens": 1382,
+                  "totalTokens": 3932,
+                  "cost": 0.0150136
+                }
+              },
+              {
+                "date": "2026-03-29",
+                "events": {
+                  "pull": 1
+                },
+                "ai": {
+                  "requests": 0,
+                  "promptTokens": 0,
+                  "completionTokens": 0,
+                  "totalTokens": 0,
+                  "cost": 0
+                }
+              },
+              {
+                "date": "2026-03-31",
+                "events": {
+                  "merge": 1
+                },
+                "ai": {
+                  "requests": 1,
+                  "promptTokens": 1000000,
+                  "completionTokens": 1000000,
+                  "totalTokens": 2000000,
+                  "cost": 1.2
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 6,
+              "promptTokens": 1002542,
+              "completionTokens": 1001382,
+              "totalTokens": 2003932,
+              "cost": 1.2150136
+            },
+            "aiByFeature": {
+              "commitMessage": {
+                "requests": 2,
+                "promptTokens": 2200,
+                "completionTokens": 1300,
+                "totalTokens": 3500,
+                "cost": 0.01286
+              },
+              "reviewPR": {
+                "requests": 3,
+                "promptTokens": 342,
+                "completionTokens": 82,
+                "totalTokens": 432,
+                "cost": 0.0021536000000000003
+              },
+              "smartStage": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            },
+            "aiByModel": {
+              "GPT-4o-mini-2024": {
+                "requests": 1,
+                "promptTokens": 1200,
+                "completionTokens": 300,
+                "totalTokens": 1500,
+                "cost": 0.00036
+              },
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1000,
+                "completionTokens": 1000,
+                "totalTokens": 2000,
+                "cost": 0.0125
+              },
+              "claude-3-5-sonnet-latest": {
+                "requests": 1,
+                "promptTokens": 333,
+                "completionTokens": 77,
+                "totalTokens": 410,
+                "cost": 0.002154
+              },
+              "my-local-model": {
+                "requests": 1,
+                "promptTokens": 10,
+                "completionTokens": 5,
+                "totalTokens": 15,
+                "cost": 0
+              },
+              "gpt-4.1-mini": {
+                "requests": 1,
+                "promptTokens": -1,
+                "completionTokens": 0,
+                "totalTokens": 7,
+                "cost": -4.0000000000000003e-7
+              },
+              "codestral-2501": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            }
+          }
+        },
+        {
+          "op": "setRetention",
+          "args": [
+            1
+          ],
+          "result": {
+            "since": 1774737000000,
+            "retentionDays": 1,
+            "days": [
+              {
+                "date": "2026-03-31",
+                "events": {
+                  "merge": 1
+                },
+                "ai": {
+                  "requests": 1,
+                  "promptTokens": 1000000,
+                  "completionTokens": 1000000,
+                  "totalTokens": 2000000,
+                  "cost": 1.2
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 6,
+              "promptTokens": 1002542,
+              "completionTokens": 1001382,
+              "totalTokens": 2003932,
+              "cost": 1.2150136
+            },
+            "aiByFeature": {
+              "commitMessage": {
+                "requests": 2,
+                "promptTokens": 2200,
+                "completionTokens": 1300,
+                "totalTokens": 3500,
+                "cost": 0.01286
+              },
+              "reviewPR": {
+                "requests": 3,
+                "promptTokens": 342,
+                "completionTokens": 82,
+                "totalTokens": 432,
+                "cost": 0.0021536000000000003
+              },
+              "smartStage": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            },
+            "aiByModel": {
+              "GPT-4o-mini-2024": {
+                "requests": 1,
+                "promptTokens": 1200,
+                "completionTokens": 300,
+                "totalTokens": 1500,
+                "cost": 0.00036
+              },
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1000,
+                "completionTokens": 1000,
+                "totalTokens": 2000,
+                "cost": 0.0125
+              },
+              "claude-3-5-sonnet-latest": {
+                "requests": 1,
+                "promptTokens": 333,
+                "completionTokens": 77,
+                "totalTokens": 410,
+                "cost": 0.002154
+              },
+              "my-local-model": {
+                "requests": 1,
+                "promptTokens": 10,
+                "completionTokens": 5,
+                "totalTokens": 15,
+                "cost": 0
+              },
+              "gpt-4.1-mini": {
+                "requests": 1,
+                "promptTokens": -1,
+                "completionTokens": 0,
+                "totalTokens": 7,
+                "cost": -4.0000000000000003e-7
+              },
+              "codestral-2501": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            }
+          }
+        },
+        {
+          "op": "setRetention",
+          "args": [
+            2.7
+          ],
+          "result": {
+            "since": 1774737000000,
+            "retentionDays": 2,
+            "days": [
+              {
+                "date": "2026-03-31",
+                "events": {
+                  "merge": 1
+                },
+                "ai": {
+                  "requests": 1,
+                  "promptTokens": 1000000,
+                  "completionTokens": 1000000,
+                  "totalTokens": 2000000,
+                  "cost": 1.2
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 6,
+              "promptTokens": 1002542,
+              "completionTokens": 1001382,
+              "totalTokens": 2003932,
+              "cost": 1.2150136
+            },
+            "aiByFeature": {
+              "commitMessage": {
+                "requests": 2,
+                "promptTokens": 2200,
+                "completionTokens": 1300,
+                "totalTokens": 3500,
+                "cost": 0.01286
+              },
+              "reviewPR": {
+                "requests": 3,
+                "promptTokens": 342,
+                "completionTokens": 82,
+                "totalTokens": 432,
+                "cost": 0.0021536000000000003
+              },
+              "smartStage": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            },
+            "aiByModel": {
+              "GPT-4o-mini-2024": {
+                "requests": 1,
+                "promptTokens": 1200,
+                "completionTokens": 300,
+                "totalTokens": 1500,
+                "cost": 0.00036
+              },
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1000,
+                "completionTokens": 1000,
+                "totalTokens": 2000,
+                "cost": 0.0125
+              },
+              "claude-3-5-sonnet-latest": {
+                "requests": 1,
+                "promptTokens": 333,
+                "completionTokens": 77,
+                "totalTokens": 410,
+                "cost": 0.002154
+              },
+              "my-local-model": {
+                "requests": 1,
+                "promptTokens": 10,
+                "completionTokens": 5,
+                "totalTokens": 15,
+                "cost": 0
+              },
+              "gpt-4.1-mini": {
+                "requests": 1,
+                "promptTokens": -1,
+                "completionTokens": 0,
+                "totalTokens": 7,
+                "cost": -4.0000000000000003e-7
+              },
+              "codestral-2501": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            }
+          }
+        },
+        {
+          "op": "setRetention",
+          "args": [
+            -5
+          ],
+          "result": {
+            "since": 1774737000000,
+            "retentionDays": 0,
+            "days": [
+              {
+                "date": "2026-03-31",
+                "events": {
+                  "merge": 1
+                },
+                "ai": {
+                  "requests": 1,
+                  "promptTokens": 1000000,
+                  "completionTokens": 1000000,
+                  "totalTokens": 2000000,
+                  "cost": 1.2
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 6,
+              "promptTokens": 1002542,
+              "completionTokens": 1001382,
+              "totalTokens": 2003932,
+              "cost": 1.2150136
+            },
+            "aiByFeature": {
+              "commitMessage": {
+                "requests": 2,
+                "promptTokens": 2200,
+                "completionTokens": 1300,
+                "totalTokens": 3500,
+                "cost": 0.01286
+              },
+              "reviewPR": {
+                "requests": 3,
+                "promptTokens": 342,
+                "completionTokens": 82,
+                "totalTokens": 432,
+                "cost": 0.0021536000000000003
+              },
+              "smartStage": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            },
+            "aiByModel": {
+              "GPT-4o-mini-2024": {
+                "requests": 1,
+                "promptTokens": 1200,
+                "completionTokens": 300,
+                "totalTokens": 1500,
+                "cost": 0.00036
+              },
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1000,
+                "completionTokens": 1000,
+                "totalTokens": 2000,
+                "cost": 0.0125
+              },
+              "claude-3-5-sonnet-latest": {
+                "requests": 1,
+                "promptTokens": 333,
+                "completionTokens": 77,
+                "totalTokens": 410,
+                "cost": 0.002154
+              },
+              "my-local-model": {
+                "requests": 1,
+                "promptTokens": 10,
+                "completionTokens": 5,
+                "totalTokens": 15,
+                "cost": 0
+              },
+              "gpt-4.1-mini": {
+                "requests": 1,
+                "promptTokens": -1,
+                "completionTokens": 0,
+                "totalTokens": 7,
+                "cost": -4.0000000000000003e-7
+              },
+              "codestral-2501": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            }
+          }
+        },
+        {
+          "op": "setRetention",
+          "args": [
+            null
+          ],
+          "result": {
+            "since": 1774737000000,
+            "retentionDays": 0,
+            "days": [
+              {
+                "date": "2026-03-31",
+                "events": {
+                  "merge": 1
+                },
+                "ai": {
+                  "requests": 1,
+                  "promptTokens": 1000000,
+                  "completionTokens": 1000000,
+                  "totalTokens": 2000000,
+                  "cost": 1.2
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 6,
+              "promptTokens": 1002542,
+              "completionTokens": 1001382,
+              "totalTokens": 2003932,
+              "cost": 1.2150136
+            },
+            "aiByFeature": {
+              "commitMessage": {
+                "requests": 2,
+                "promptTokens": 2200,
+                "completionTokens": 1300,
+                "totalTokens": 3500,
+                "cost": 0.01286
+              },
+              "reviewPR": {
+                "requests": 3,
+                "promptTokens": 342,
+                "completionTokens": 82,
+                "totalTokens": 432,
+                "cost": 0.0021536000000000003
+              },
+              "smartStage": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            },
+            "aiByModel": {
+              "GPT-4o-mini-2024": {
+                "requests": 1,
+                "promptTokens": 1200,
+                "completionTokens": 300,
+                "totalTokens": 1500,
+                "cost": 0.00036
+              },
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1000,
+                "completionTokens": 1000,
+                "totalTokens": 2000,
+                "cost": 0.0125
+              },
+              "claude-3-5-sonnet-latest": {
+                "requests": 1,
+                "promptTokens": 333,
+                "completionTokens": 77,
+                "totalTokens": 410,
+                "cost": 0.002154
+              },
+              "my-local-model": {
+                "requests": 1,
+                "promptTokens": 10,
+                "completionTokens": 5,
+                "totalTokens": 15,
+                "cost": 0
+              },
+              "gpt-4.1-mini": {
+                "requests": 1,
+                "promptTokens": -1,
+                "completionTokens": 0,
+                "totalTokens": 7,
+                "cost": -4.0000000000000003e-7
+              },
+              "codestral-2501": {
+                "requests": 1,
+                "promptTokens": 1000000,
+                "completionTokens": 1000000,
+                "totalTokens": 2000000,
+                "cost": 1.2
+              }
+            }
+          }
+        },
+        {
+          "op": "clear",
+          "args": [],
+          "result": {
+            "since": 0,
+            "retentionDays": 0,
+            "days": [],
+            "aiTotal": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            },
+            "aiByFeature": {},
+            "aiByModel": {}
+          }
+        },
+        {
+          "op": "recordEvent",
+          "args": [
+            "clone"
+          ],
+          "now": 1774996200000,
+          "result": null
+        },
+        {
+          "op": "get",
+          "args": [],
+          "result": {
+            "since": 1774996200000,
+            "retentionDays": 0,
+            "days": [
+              {
+                "date": "2026-04-01",
+                "events": {
+                  "clone": 1
+                },
+                "ai": {
+                  "requests": 0,
+                  "promptTokens": 0,
+                  "completionTokens": 0,
+                  "totalTokens": 0,
+                  "cost": 0
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            },
+            "aiByFeature": {},
+            "aiByModel": {}
+          }
+        }
+      ]
+    },
+    {
+      "seed": {
+        "since": 1000,
+        "retentionDays": 3,
+        "days": [
+          {
+            "date": "2026-01-01",
+            "events": {
+              "commit": 4
+            },
+            "ai": {
+              "requests": 1,
+              "promptTokens": 1,
+              "completionTokens": 1,
+              "totalTokens": 2,
+              "cost": 0.5
+            }
+          },
+          {
+            "date": "2026-03-25",
+            "events": {
+              "push": 1
+            },
+            "ai": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            }
+          },
+          {
+            "date": "2026-03-27",
+            "events": {},
+            "ai": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            }
+          }
+        ],
+        "aiTotal": {
+          "requests": 1,
+          "promptTokens": 1,
+          "completionTokens": 1,
+          "totalTokens": 2,
+          "cost": 0.5
+        },
+        "aiByModel": {
+          "gpt-4o": {
+            "requests": 1,
+            "promptTokens": 1,
+            "completionTokens": 1,
+            "totalTokens": 2,
+            "cost": 0.5
+          }
+        }
+      },
+      "ops": [
+        {
+          "op": "get",
+          "args": [],
+          "now": 1774737000000,
+          "result": {
+            "since": 1000,
+            "retentionDays": 3,
+            "days": [
+              {
+                "date": "2026-03-25",
+                "events": {
+                  "push": 1
+                },
+                "ai": {
+                  "requests": 0,
+                  "promptTokens": 0,
+                  "completionTokens": 0,
+                  "totalTokens": 0,
+                  "cost": 0
+                }
+              },
+              {
+                "date": "2026-03-27",
+                "events": {},
+                "ai": {
+                  "requests": 0,
+                  "promptTokens": 0,
+                  "completionTokens": 0,
+                  "totalTokens": 0,
+                  "cost": 0
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 1,
+              "promptTokens": 1,
+              "completionTokens": 1,
+              "totalTokens": 2,
+              "cost": 0.5
+            },
+            "aiByFeature": {},
+            "aiByModel": {
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1,
+                "completionTokens": 1,
+                "totalTokens": 2,
+                "cost": 0.5
+              }
+            }
+          }
+        },
+        {
+          "op": "recordEvent",
+          "args": [
+            "tagCreate"
+          ],
+          "result": null
+        },
+        {
+          "op": "setRetention",
+          "args": [
+            0
+          ],
+          "result": {
+            "since": 1000,
+            "retentionDays": 0,
+            "days": [
+              {
+                "date": "2026-03-25",
+                "events": {
+                  "push": 1
+                },
+                "ai": {
+                  "requests": 0,
+                  "promptTokens": 0,
+                  "completionTokens": 0,
+                  "totalTokens": 0,
+                  "cost": 0
+                }
+              },
+              {
+                "date": "2026-03-27",
+                "events": {},
+                "ai": {
+                  "requests": 0,
+                  "promptTokens": 0,
+                  "completionTokens": 0,
+                  "totalTokens": 0,
+                  "cost": 0
+                }
+              },
+              {
+                "date": "2026-03-28",
+                "events": {
+                  "tagCreate": 1
+                },
+                "ai": {
+                  "requests": 0,
+                  "promptTokens": 0,
+                  "completionTokens": 0,
+                  "totalTokens": 0,
+                  "cost": 0
+                }
+              }
+            ],
+            "aiTotal": {
+              "requests": 1,
+              "promptTokens": 1,
+              "completionTokens": 1,
+              "totalTokens": 2,
+              "cost": 0.5
+            },
+            "aiByFeature": {},
+            "aiByModel": {
+              "gpt-4o": {
+                "requests": 1,
+                "promptTokens": 1,
+                "completionTokens": 1,
+                "totalTokens": 2,
+                "cost": 0.5
+              }
+            }
+          }
+        },
+        {
+          "op": "clear",
+          "args": [],
+          "result": {
+            "since": 0,
+            "retentionDays": 0,
+            "days": [],
+            "aiTotal": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            },
+            "aiByFeature": {},
+            "aiByModel": {}
+          }
+        },
+        {
+          "op": "get",
+          "args": [],
+          "result": {
+            "since": 0,
+            "retentionDays": 0,
+            "days": [],
+            "aiTotal": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            },
+            "aiByFeature": {},
+            "aiByModel": {}
+          }
+        }
+      ]
+    },
+    {
+      "seed": {
+        "since": 5,
+        "retentionDays": 9,
+        "days": []
+      },
+      "ops": [
+        {
+          "op": "clear",
+          "args": [],
+          "now": 1774737000000,
+          "result": {
+            "since": 0,
+            "retentionDays": 0,
+            "days": [],
+            "aiTotal": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            },
+            "aiByFeature": {},
+            "aiByModel": {}
+          }
+        },
+        {
+          "op": "get",
+          "args": [],
+          "result": {
+            "since": 0,
+            "retentionDays": 0,
+            "days": [],
+            "aiTotal": {
+              "requests": 0,
+              "promptTokens": 0,
+              "completionTokens": 0,
+              "totalTokens": 0,
+              "cost": 0
+            },
+            "aiByFeature": {},
+            "aiByModel": {}
+          }
+        }
+      ]
+    }
+  ]
+}

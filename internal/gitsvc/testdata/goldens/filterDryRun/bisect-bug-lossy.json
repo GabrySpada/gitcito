@@ -1,0 +1,72 @@
+{
+  "method": "filterDryRun",
+  "fixture": "bisect-bug",
+  "case": "lossy",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": "creds.secret",
+      "content": "token=hunter2\n"
+    },
+    {
+      "git": [
+        "add",
+        "creds.secret"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "*.secret",
+    "tr 'a-z' 'A-Z'",
+    "cat"
+  ],
+  "result": {
+    "matched": 1,
+    "tested": [
+      {
+        "file": "creds.secret",
+        "ok": true,
+        "preview": "TOKEN=HUNTER2\n",
+        "roundtrip": "different"
+      }
+    ]
+  },
+  "state": {
+    "index": [
+      "100644 <SHA1> 0\t.bisect-hint",
+      "100644 <SHA2> 0\tREADME.md",
+      "100644 <SHA3> 0\tcreds.secret",
+      "100644 <SHA4> 0\tcurrency.js",
+      "100644 <SHA5> 0\tdiscount.js",
+      "100644 <SHA6> 0\tformat.js",
+      "100644 <SHA7> 0\tindex.js",
+      "100644 <SHA8> 0\tmath.js",
+      "100644 <SHA9> 0\tstats.js",
+      "100644 <SHA10> 0\ttax.js"
+    ],
+    "log": [
+      "<SHA11>\u0000<SHA12>\u0000chore: add .bisect-hint",
+      "<SHA12>\u0000<SHA13>\u0000chore: add stats to barrel export",
+      "<SHA14>\u0000<SHA15>\u0000docs: README with bisect instructions",
+      "<SHA16>\u0000<SHA17>\u0000feat: abs + clamp",
+      "<SHA18>\u0000\u0000feat: add + subtract",
+      "<SHA19>\u0000<SHA16>\u0000feat: addTax",
+      "<SHA15>\u0000<SHA20>\u0000feat: barrel export index.js",
+      "<SHA21>\u0000<SHA22>\u0000feat: currency helpers",
+      "<SHA23>\u0000<SHA21>\u0000feat: discount function",
+      "<SHA17>\u0000<SHA23>\u0000feat: formatCurrency",
+      "<SHA22>\u0000<SHA18>\u0000feat: multiply + divide",
+      "<SHA13>\u0000<SHA14>\u0000feat: stats — sum / mean / median",
+      "<SHA20>\u0000<SHA19>\u0000refactor: simplify discount calculation"
+    ],
+    "refs": [
+      "refs/heads/main <SHA11>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": [
+      "1 A. N... 000000 100644 100644 <SHA24> <SHA3> creds.secret"
+    ]
+  }
+}

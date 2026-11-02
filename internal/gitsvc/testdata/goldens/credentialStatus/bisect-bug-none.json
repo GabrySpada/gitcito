@@ -1,0 +1,23 @@
+{
+  "method": "credentialStatus",
+  "fixture": "bisect-bug",
+  "case": "none",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "candidates"
+  ],
+  "result": {
+    "candidates": "<MASKED>",
+    "helpers": [],
+    "httpsHosts": [],
+    "plaintextFile": {
+      "entries": 0,
+      "exists": false,
+      "path": "<HOME>/.git-credentials"
+    },
+    "urlRules": []
+  }
+}

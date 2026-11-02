@@ -611,8 +611,17 @@ export const gitApi = {
     call<CommitEditPreview>('commitEditPreview', path, sha, edits, message),
   commitEditApply: (path: string, sha: string, edits: Record<string, string>, message: string) =>
     call<CommitEditResult>('commitEditApply', path, sha, edits, message),
-  semanticDiff: (path: string, file: string, oldSide: BlobSpec, newSide: BlobSpec) =>
-    call<SemanticDiff>('semanticDiff', path, file, oldSide, newSide),
+  // Under Wails the Go side only reads the two blobs and tree-sitter runs here (lib/semantic.ts); the
+  // Electron main process still answers with the finished verdict. Either shape ends as a SemanticDiff.
+  semanticDiff: async (path: string, file: string, oldSide: BlobSpec, newSide: BlobSpec): Promise<SemanticDiff> => {
+    const got = await call<SemanticDiff | { oldText: string; newText: string }>(
+      'semanticDiff', path, file, oldSide, newSide
+    )
+    if (!('oldText' in got)) return got
+    if (!got.oldText && !got.newText) return { language: null, changes: [] }
+    const { semanticCompare } = await import('../lib/semantic')
+    return semanticCompare(file, got.oldText, got.newText)
+  },
   rangeDiff: (path: string, oldRev: string, newRev: string, base?: string) =>
     call<RangeDiffEntry[]>('rangeDiff', path, oldRev, newRev, base),
   refTips: (path: string, ref: string, max?: number) => call<RefTip[]>('refTips', path, ref, max),

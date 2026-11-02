@@ -1,0 +1,73 @@
+{
+  "method": "cleanPreview",
+  "fixture": "untracked-mess",
+  "case": "fixture",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "bytes"
+  ],
+  "result": {
+    "entries": [
+      {
+        "bytes": "<POS>",
+        "ignored": false,
+        "kind": "file",
+        "nested": false,
+        "path": "debug-output.txt"
+      },
+      {
+        "bytes": "<POS>",
+        "ignored": false,
+        "kind": "dir",
+        "nested": true,
+        "path": "experiment/"
+      },
+      {
+        "bytes": "<POS>",
+        "ignored": false,
+        "kind": "file",
+        "nested": false,
+        "path": "notes.md"
+      },
+      {
+        "bytes": "<POS>",
+        "ignored": false,
+        "kind": "dir",
+        "nested": false,
+        "path": "tmp/"
+      },
+      {
+        "bytes": "<POS>",
+        "ignored": true,
+        "kind": "file",
+        "nested": false,
+        "path": ".env"
+      },
+      {
+        "bytes": "<POS>",
+        "ignored": true,
+        "kind": "file",
+        "nested": false,
+        "path": "app.log"
+      },
+      {
+        "bytes": "<POS>",
+        "ignored": true,
+        "kind": "dir",
+        "nested": false,
+        "path": "dist/"
+      },
+      {
+        "bytes": "<POS>",
+        "ignored": true,
+        "kind": "dir",
+        "nested": false,
+        "path": "node_modules/"
+      }
+    ],
+    "truncated": false
+  }
+}

@@ -662,10 +662,7 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
           (page.type !== 'milestone' ||
             (t.page.type === 'milestone' && t.page.milestone.number === page.milestone.number)) &&
           // A wiki belongs to one repo, so each repo gets its own tab.
-          (page.type !== 'wiki' || (t.page.type === 'wiki' && t.page.repoPath === page.repoPath)) &&
-          // DevTools belongs to one launch session, not to the repo: two apps
-          // running at once are two DevTools.
-          (page.type !== 'devtools' || (t.page.type === 'devtools' && t.page.launchId === page.launchId))
+          (page.type !== 'wiki' || (t.page.type === 'wiki' && t.page.repoPath === page.repoPath))
       )
       if (existing) return { ...s, activeTabId: existing.id }
       // No name is stored: page tabs label themselves at render time, in the

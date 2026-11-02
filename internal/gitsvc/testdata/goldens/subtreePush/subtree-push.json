@@ -1,0 +1,73 @@
+{
+  "method": "subtreePush",
+  "fixture": "subtree",
+  "case": "push",
+  "repo": "clone",
+  "setup": [
+    {
+      "copy": "subtree-lib.git",
+      "as": "LIB"
+    },
+    {
+      "write": "vendor/parser/EXTRA.md",
+      "content": "local change\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-q",
+        "-m",
+        "feat: local change to the vendored lib"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>",
+    "vendor/parser",
+    "<LIB>",
+    "from-app"
+  ],
+  "capture": [
+    {
+      "git": [
+        "for-each-ref",
+        "--format=%(refname) %(objectname)"
+      ],
+      "dir": "<LIB>"
+    }
+  ],
+  "extra": [
+    {
+      "out": "refs/heads/from-app <SHA1>\nrefs/heads/main <SHA2>"
+    }
+  ],
+  "result": null,
+  "state": {
+    "index": [
+      "100644 <SHA3> 0\tREADME.md",
+      "100644 <SHA4> 0\tapp.js",
+      "100644 <SHA5> 0\tvendor/parser/EXTRA.md",
+      "100644 <SHA6> 0\tvendor/parser/README.md",
+      "100644 <SHA7> 0\tvendor/parser/parser.js"
+    ],
+    "log": [
+      "<SHA8>\u0000<SHA9> <SHA10>\u0000Merge commit '<SHA10>' as 'vendor/parser'",
+      "<SHA10>\u0000\u0000Squashed 'vendor/parser/' content from commit <SHA2>~",
+      "<SHA11>\u0000<SHA12>\u0000feat: local change to the vendored lib",
+      "<SHA12>\u0000<SHA8>\u0000feat: use safe parse",
+      "<SHA9>\u0000\u0000init: app + readme"
+    ],
+    "refs": [
+      "refs/heads/main <SHA11>"
+    ],
+    "snapshots": [],
+    "stash": [],
+    "status": []
+  }
+}

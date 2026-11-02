@@ -1,0 +1,20 @@
+{
+  "method": "fsck",
+  "fixture": "bisect-bug",
+  "case": "missing-object",
+  "repo": "clone",
+  "setup": [
+    {
+      "rm": "<OBJ:HEAD:math.js>"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "dangling": 0,
+    "missing": 1,
+    "ok": false,
+    "output": "missing blob <SHA1>\nCommand failed: git -C <REPO> fsck --no-progress --dangling"
+  }
+}

@@ -10,15 +10,19 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/GabrySpada/gitcito/internal/analytics"
 	"github.com/GabrySpada/gitcito/internal/app"
 	"github.com/GabrySpada/gitcito/internal/gitsvc"
 	"github.com/GabrySpada/gitcito/internal/gitx"
 	"github.com/GabrySpada/gitcito/internal/hosting"
+	"github.com/GabrySpada/gitcito/internal/info"
 	"github.com/GabrySpada/gitcito/internal/keychain"
 	"github.com/GabrySpada/gitcito/internal/logbook"
 	"github.com/GabrySpada/gitcito/internal/menu"
 	"github.com/GabrySpada/gitcito/internal/paths"
+	"github.com/GabrySpada/gitcito/internal/secure"
 	"github.com/GabrySpada/gitcito/internal/settings"
+	"github.com/GabrySpada/gitcito/internal/vault"
 	"github.com/wailsapp/wails/v3/pkg/application"
 	"github.com/wailsapp/wails/v3/pkg/events"
 )
@@ -52,7 +56,14 @@ func main() {
 	// the same consent and the same in-flight question.
 	keys := keychain.New(keychain.Options{Emitter: app.Emitter{}, HasWindow: app.HasWindow})
 	store := settings.New(settings.Options{Keychain: keys, Dialogs: settings.WailsDialogs{}})
-	git := gitsvc.New(app.Emitter{}, book, gitsvc.WithTokenFunc(func(ctx context.Context, host, repoPath string) string {
+	// TS skipped the pre-destruction snapshot when settings.snapshotGuard === false.
+	gitsvc.SetSnapshotGuardSetting(func() bool {
+		v, ok := store.ReadSettings(context.Background()).Bool("snapshotGuard")
+		return !ok || v
+	})
+	vaultStore := vault.New(vault.Options{Keychain: keys})
+	ledger := analytics.New(analytics.Options{})
+	git := gitsvc.New(app.Emitter{}, book, gitsvc.WithActivityRecorder(ledger), gitsvc.WithTokenFunc(func(ctx context.Context, host, repoPath string) string {
 		// A lookup failure (keychain refused, unreadable secrets) means "no token": git then runs
 		// unauthenticated and the remote's own error reaches the user, as in the Electron build.
 		tok, _ := store.ActiveProfileToken(ctx, settings.RepoHost(host), repoPath)
@@ -93,6 +104,10 @@ func main() {
 			application.NewService(keychain.NewService(keys)),
 			application.NewService(settings.NewService(store)),
 			application.NewService(git),
+			application.NewService(vault.NewService(vaultStore)),
+			application.NewService(secure.NewService(secure.New(secure.Options{Vault: vaultStore}))),
+			application.NewService(analytics.NewService(ledger)),
+			application.NewService(info.NewService(info.New(info.Options{}))),
 			application.NewService(hosting.NewService(hosting.Options{OpenURL: func(u string) error {
 				return application.Get().Browser.OpenURL(u)
 			}})),
@@ -106,6 +121,9 @@ func main() {
 
 	a.OnShutdown(core.ReleaseAllWaits)
 	a.OnShutdown(func() {
+		if err := ledger.Flush(); err != nil {
+			slog.Error("analytics flush", "err", err)
+		}
 		if err := book.Flush(); err != nil {
 			slog.Error("log flush", "err", err)
 		}

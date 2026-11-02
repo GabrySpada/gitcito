@@ -1,0 +1,12 @@
+{
+  "method": "clone",
+  "fixture": "",
+  "case": "no-source",
+  "repo": "tmp",
+  "args": [
+    "<REPO>",
+    "/nowhere/at/all.git",
+    "x"
+  ],
+  "error": "fatal: repository '/nowhere/at/all.git' does not exist\n"
+}

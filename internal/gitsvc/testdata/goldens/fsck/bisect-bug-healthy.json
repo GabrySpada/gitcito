@@ -1,0 +1,15 @@
+{
+  "method": "fsck",
+  "fixture": "bisect-bug",
+  "case": "healthy",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "dangling": 0,
+    "missing": 0,
+    "ok": true,
+    "output": ""
+  }
+}

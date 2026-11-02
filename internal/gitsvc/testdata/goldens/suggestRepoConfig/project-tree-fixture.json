@@ -1,0 +1,15 @@
+{
+  "method": "suggestRepoConfig",
+  "fixture": "project-tree",
+  "case": "fixture",
+  "repo": "shared",
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "protect": [
+      "main"
+    ],
+    "version": 1
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "method": "lfsInfo",
+  "fixture": "lfs-assets",
+  "case": "fixture",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".gitattributes",
+      "content": "# assets\n*.bin filter=lfs diff=lfs merge=lfs -text\n\n*.psd   filter=lfs diff=lfs merge=lfs -text\n*.txt text\n"
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "enabled": true,
+    "files": [
+      {
+        "downloaded": true,
+        "oid": "<ABBR1>",
+        "path": "asset.bin"
+      },
+      {
+        "downloaded": true,
+        "oid": "<ABBR2>",
+        "path": "design.psd"
+      }
+    ],
+    "installed": true,
+    "patterns": [
+      "*.bin",
+      "*.psd"
+    ]
+  }
+}

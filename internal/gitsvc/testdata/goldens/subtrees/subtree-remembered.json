@@ -1,0 +1,62 @@
+{
+  "method": "subtrees",
+  "fixture": "subtree",
+  "case": "remembered",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "config",
+        "gitcito.subtree.vendor%2Fparser.url",
+        "https://example.com/parser.git"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "gitcito.subtree.vendor%2Fparser.ref",
+        "main"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "gitcito.subtree.libs%2Fgone.url",
+        "x"
+      ]
+    },
+    {
+      "git": [
+        "config",
+        "gitcito.subtree.Alpha.ref",
+        "v1"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": [
+    {
+      "lastSplit": "",
+      "prefix": "Alpha",
+      "present": false,
+      "ref": "v1",
+      "url": ""
+    },
+    {
+      "lastSplit": "",
+      "prefix": "libs/gone",
+      "present": false,
+      "ref": "",
+      "url": "x"
+    },
+    {
+      "lastSplit": "<SHA1>",
+      "prefix": "vendor/parser",
+      "present": true,
+      "ref": "main",
+      "url": "https://example.com/parser.git"
+    }
+  ]
+}

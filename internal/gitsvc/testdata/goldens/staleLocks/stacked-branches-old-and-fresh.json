@@ -1,0 +1,79 @@
+{
+  "method": "staleLocks",
+  "fixture": "stacked-branches",
+  "case": "old-and-fresh",
+  "repo": "clone",
+  "setup": [
+    {
+      "write": ".git/index.lock",
+      "content": ""
+    },
+    {
+      "mtime": ".git/index.lock",
+      "ms": 1000000000000
+    },
+    {
+      "write": ".git/refs/heads/feature/api.lock",
+      "content": ""
+    },
+    {
+      "mtime": ".git/refs/heads/feature/api.lock",
+      "ms": 1100000000000
+    },
+    {
+      "write": ".git/config.lock",
+      "content": ""
+    },
+    {
+      "mtime": ".git/config.lock",
+      "ms": 1200000000000
+    },
+    {
+      "write": ".git/something.lock",
+      "content": ""
+    },
+    {
+      "mtime": ".git/something.lock",
+      "ms": 1300000000000
+    },
+    {
+      "mkdir": ".git/modules/x"
+    },
+    {
+      "write": ".git/modules/x/index.lock",
+      "content": ""
+    },
+    {
+      "write": ".git/objects/pack/tmp.lock",
+      "content": ""
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "mask": [
+    "ageSeconds"
+  ],
+  "result": [
+    {
+      "ageSeconds": "<POS>",
+      "kind": "other",
+      "path": "something.lock"
+    },
+    {
+      "ageSeconds": "<POS>",
+      "kind": "config",
+      "path": "config.lock"
+    },
+    {
+      "ageSeconds": "<POS>",
+      "kind": "ref",
+      "path": "refs/heads/feature/api.lock"
+    },
+    {
+      "ageSeconds": "<POS>",
+      "kind": "index",
+      "path": "index.lock"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "method": "upstreamSuggestion",
+  "fixture": "force-push",
+  "case": "remote-has-it",
+  "repo": "clone",
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "feature/login"
+      ]
+    },
+    {
+      "git": [
+        "branch",
+        "--unset-upstream",
+        "feature/login"
+      ]
+    }
+  ],
+  "args": [
+    "<REPO>"
+  ],
+  "result": {
+    "branch": "feature/login",
+    "remote": "origin",
+    "remoteRefExists": true
+  }
+}
