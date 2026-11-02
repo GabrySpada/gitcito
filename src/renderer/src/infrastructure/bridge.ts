@@ -12,7 +12,7 @@
  * name (Go emits on identical names), and fire-and-forget members log once and do nothing. Porting a
  * channel means replacing its stub with `invoke(() => SomeService.Method(...))`.
  */
-import { Events, Window } from '@wailsio/runtime'
+import { Clipboard, Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
@@ -121,6 +121,47 @@ function listen<T>(channel: string, cb: (data: T) => void): () => void {
   return Events.On(channel, (ev) => cb(ev.data))
 }
 
+/**
+ * Electron's setWindowOpenHandler sent every new-window request to the system browser, and nothing in the app
+ * ever navigates the main frame away from the bundle. Wails has no Go-side navigation policy, so this one
+ * delegated listener is the lock: an http(s) link to another origin that no component handled itself opens in
+ * the browser, and the page stays where it is. Runs in the bubble phase so components that already route their
+ * own links (HelpPage, RepoChatPanel) keep doing so.
+ */
+export function installLinkGuard(openExternal: (url: string) => Promise<void>): void {
+  document.addEventListener('click', (e) => {
+    if (e.defaultPrevented || !(e.target instanceof Element)) return
+    const a = e.target.closest('a')
+    const href = a?.getAttribute('href')
+    if (!a || !href) return
+    let url: URL
+    try {
+      url = new URL(href, window.location.href)
+    } catch {
+      return
+    }
+    if (url.origin === window.location.origin) return
+    e.preventDefault()
+    if (url.protocol === 'http:' || url.protocol === 'https:') void openExternal(url.href)
+  })
+}
+
+const NATIVE_DROP_TIMEOUT_MS = 1500
+
+function nextNativeDrop(): Promise<string[]> {
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      off()
+      resolve([])
+    }, NATIVE_DROP_TIMEOUT_MS)
+    const off = listen<{ paths: string[] }>('files:dropped', (p) => {
+      clearTimeout(timer)
+      off()
+      resolve(p.paths ?? [])
+    })
+  })
+}
+
 export function createBridge(boot: BootstrapInfo): PreloadApi {
   let zoom = boot.zoom
 
@@ -146,12 +187,9 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
       onSweepProgress: (cb) => listen('localci:sweep-progress', cb)
     },
 
-    // A DOM File carries no path in a webview. Wails delivers native drops as paths through its own
-    // file-drop event instead; until that is wired, callers get an empty path and skip the file.
-    getPathForFile: (): string => {
-      sendNoop('webUtils.getPathForFile')()
-      return ''
-    },
+    // A DOM File carries no path in a webview. Go emits `files:dropped` for the native drop, after the DOM
+    // drop handler ran; wait for it (briefly — a drop outside a marked target never produces one).
+    droppedFilePaths: (files) => (files.length ? nextNativeDrop() : Promise.resolve([])),
 
     keychain: {
       onAsk: (cb) => listen('keychain:ask', cb),
@@ -170,6 +208,9 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
       invoke(() => DialogService.ChoosePath(title, defaultName, filters ?? null)),
     openFilePath: (title, filters) => invoke(() => DialogService.OpenFilePath(title, filters ?? null)),
     openExternal: (url) => invoke(() => ShellService.OpenExternal(url)),
+    clipboard: {
+      writeText: (text) => invoke(() => Clipboard.SetText(text))
+    },
     appVersion: () => invoke(() => AppService.Version()),
     appReleases: () => invoke(() => AppService.Releases()).then((r) => r ?? []),
 

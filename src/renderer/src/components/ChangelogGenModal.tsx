@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { FileText, Loader2, Copy, Check, Save, RefreshCw } from 'lucide-react'
-import { gitApi } from '../infrastructure/api'
+import { gitApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore } from '../stores/ui'
 import { useRepoStore } from '../stores/repo'
 import { useT } from '../i18n'
@@ -42,7 +42,7 @@ export function ChangelogGenModal({ repoPath }: { repoPath: string }): React.JSX
   }, [])
 
   const copy = async (): Promise<void> => {
-    await navigator.clipboard.writeText(markdown)
+    await clipboardApi.writeText(markdown)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
   }

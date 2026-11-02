@@ -11,7 +11,7 @@ import {
   Pencil
 } from 'lucide-react'
 import type { CodeSearchHit, FsDropMode, TreeEntry, TreeStatusKind } from '../../../shared/types'
-import { editorApi, gitApi, shellApi } from '../infrastructure/api'
+import { editorApi, gitApi, shellApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore, type MenuItem } from '../stores/ui'
 import { repoActions, type RepoData } from '../stores/repo'
 import { useSettingsStore } from '../stores/settings'
@@ -330,15 +330,13 @@ export function FileTree({
     e.preventDefault()
     e.stopPropagation()
     const src = external ? null : e.dataTransfer.getData(DRAG_MIME) || dragSrc
-    const paths = external
-      ? Array.from(e.dataTransfer.files)
-          .map((f) => window.api.getPathForFile(f))
-          .filter(Boolean)
-      : src
-        ? [src]
-        : []
+    const pending = external
+      ? window.api.droppedFilePaths(Array.from(e.dataTransfer.files))
+      : Promise.resolve(src ? [src] : [])
     endDrag()
-    if (paths.length > 0) void runDrop(dir, paths, external)
+    void pending.then((paths) => {
+      if (paths.length > 0) void runDrop(dir, paths, external)
+    })
   }
 
   const dragProps = (node: TreeEntry): React.HTMLAttributes<HTMLDivElement> & { draggable: true } => ({
@@ -500,7 +498,7 @@ export function FileTree({
       editor,
       { isDir: node.dir }
     ),
-    { label: t('fileTree.copyPath'), onClick: () => void navigator.clipboard.writeText(node.path) },
+    { label: t('fileTree.copyPath'), onClick: () => void clipboardApi.writeText(node.path) },
     ...(node.dir
       ? []
       : [
@@ -755,6 +753,7 @@ export function FileTree({
   return (
     <div
       className={`file-tree${dropDir === '' ? ' drop-root' : ''}`}
+      data-file-drop-target
       // Anything not dropped on a folder row lands at the repository root.
       onDragOver={onZoneOver('')}
       onDragLeave={onZoneLeave('')}

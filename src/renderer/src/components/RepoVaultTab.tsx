@@ -13,7 +13,7 @@ import {
   Loader2,
   Lock
 } from 'lucide-react'
-import { vaultApi } from '../infrastructure/api'
+import { vaultApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
 import { parseDotenv } from '../lib/dotenv'
@@ -85,11 +85,11 @@ export function RepoVaultTab({ repoPath }: { repoPath: string }): React.JSX.Elem
     void reload()
   }, [reload])
 
-  const copy = (v: string): void => void navigator.clipboard.writeText(v)
+  const copy = (v: string): void => void clipboardApi.writeText(v)
 
   const copyAsEnv = (entries: VaultEntry[]): void => {
     if (entries.length === 0) return
-    void navigator.clipboard.writeText(entries.map((e) => `${e.key}=${e.value}`).join('\n'))
+    void clipboardApi.writeText(entries.map((e) => `${e.key}=${e.value}`).join('\n'))
     toast('success', `${entries.length} ${t('vault.copiedEnv')}`)
   }
 

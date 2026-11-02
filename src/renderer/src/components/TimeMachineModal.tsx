@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, Clock, Copy, ExternalLink, FileText, Folder, Loader2 } from 'lucide-react'
 import type { FileEntry, TreeEntry } from '../../../shared/types'
-import { gitApi } from '../infrastructure/api'
+import { gitApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore } from '../stores/ui'
 import { useRepoStore } from '../stores/repo'
 import { guessLanguage, highlightLine } from '../lib/highlight'
@@ -179,7 +179,7 @@ export function TimeMachineModal({ repoPath }: { repoPath: string }): React.JSX.
             <button
               className="btn ghost small"
               title={t('timeMachine.copySha')}
-              onClick={() => void navigator.clipboard.writeText(commit.hash)}
+              onClick={() => void clipboardApi.writeText(commit.hash)}
             >
               <Copy size={13} />
             </button>

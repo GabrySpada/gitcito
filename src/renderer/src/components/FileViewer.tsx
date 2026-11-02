@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { X, GitCommitHorizontal, Sparkles, Loader2, Search, ChevronUp, ChevronDown, Pencil, Save, Link2 } from 'lucide-react'
 import type { BlameLine, BlobSpec, FileHistoryEntry, NumberedLine } from '../../../shared/types'
-import { gitApi, aiApi, shellApi } from '../infrastructure/api'
+import { gitApi, aiApi, shellApi, clipboardApi } from '../infrastructure/api'
 import { useSettingsStore } from '../stores/settings'
 import { useUIStore, type FileViewMode, type FileViewState } from '../stores/ui'
 import { useRepoStore, repoActions } from '../stores/repo'
@@ -694,7 +694,7 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
             className="btn ghost small"
             title={t('fileViewer.permalinkTitle')}
             onClick={() => {
-              void navigator.clipboard.writeText(permalink)
+              void clipboardApi.writeText(permalink)
               toast('success', t('fileViewer.permalinkCopied'))
             }}
           >
@@ -953,7 +953,7 @@ export function FileViewer({ view }: { view: FileViewState }): React.JSX.Element
                     openContextMenu(e.clientX, e.clientY, [
                       { label: interp(t('fileViewer.openShaDiff'), { sha: b.sha.slice(0, 7) }), onClick: () => setFileView({ ...view, source: { type: 'commit', hash: b.sha }, mode: 'diff' }) },
                       { label: t('fileViewer.reblame'), onClick: () => setBlameOverrideRef(`${b.sha}^`) },
-                      { label: t('fileViewer.copySha'), onClick: () => void navigator.clipboard.writeText(b.sha) }
+                      { label: t('fileViewer.copySha'), onClick: () => void clipboardApi.writeText(b.sha) }
                     ])
                   }}
                 >

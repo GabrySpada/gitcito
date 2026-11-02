@@ -71,7 +71,7 @@ import { useUIStore } from '../stores/ui'
 import { useReposStore } from '../stores/repos'
 import { Avatar } from './Avatar'
 import { useUpdatesStore, hasPendingUpdate } from '../stores/updates'
-import { gitApi, aiApi, settingsApi, analyticsApi, logApi, infoApi, vaultApi, shellApi, hostingApi, keychainApi, editorApi, sshApi, diffToolApi, localCiApi } from '../infrastructure/api'
+import { gitApi, aiApi, settingsApi, analyticsApi, logApi, infoApi, vaultApi, shellApi, hostingApi, keychainApi, editorApi, sshApi, diffToolApi, localCiApi, clipboardApi } from '../infrastructure/api'
 import type { AnalyzerMode } from '../../../shared/types'
 import type { LocalCiStatus } from '../../../shared/localCi'
 import type { DetectedEditor, EditorSetting } from '../../../shared/editors'
@@ -3226,7 +3226,7 @@ function SshKeysCard(): React.JSX.Element {
                 <button
                   className="btn ghost small"
                   onClick={() => {
-                    void navigator.clipboard.writeText(key.publicKey)
+                    void clipboardApi.writeText(key.publicKey)
                     toast('success', t('ssh.copied'))
                   }}
                 >

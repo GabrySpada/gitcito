@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles, Loader2, Trash2, AlignLeft, FolderTree, GitMerge, ChevronDown, CheckCheck, Users, Plus, Minus } from 'lucide-react'
 import type { CodeSearchHit, CommitAuthor, FileEntry, CommitStyle } from '../../../shared/types'
-import { gitApi, aiApi, shellApi, diffToolApi } from '../infrastructure/api'
+import { gitApi, aiApi, shellApi, diffToolApi, clipboardApi } from '../infrastructure/api'
 import { repoActions, useRepoStore, type RepoData } from '../stores/repo'
 import { useUIStore, type MenuItem } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
@@ -515,8 +515,8 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
   const copyPathItems = (relPaths: string[]): MenuItem[] => {
     const payload = buildFilePathClipboardPayload(path, relPaths, window.api.platform)
     return [
-      { label: t('fileMenu.copyFilePath'), onClick: () => void navigator.clipboard.writeText(payload.absolute) },
-      { label: t('fileMenu.copyRelativeFilePath'), onClick: () => void navigator.clipboard.writeText(payload.relative) },
+      { label: t('fileMenu.copyFilePath'), onClick: () => void clipboardApi.writeText(payload.absolute) },
+      { label: t('fileMenu.copyRelativeFilePath'), onClick: () => void clipboardApi.writeText(payload.relative) },
       { separator: true }
     ]
   }
@@ -658,7 +658,7 @@ export function CommitComposer({ repo }: { repo: RepoData }): React.JSX.Element 
         : { label: interp(t('composer.stageFolderN'), { n: targets.length }), onClick: () => void repoActions.stage(path, targets) },
       { separator: true },
       { label: shellApi.revealLabel, onClick: () => void shellApi.revealInFolder(`${path}/${folderPath}`) },
-      { label: t('common.copyFolderPath'), onClick: () => void navigator.clipboard.writeText(`${path}/${folderPath}`) },
+      { label: t('common.copyFolderPath'), onClick: () => void clipboardApi.writeText(`${path}/${folderPath}`) },
       { separator: true },
       {
         label: t('composer.discardFolder'),

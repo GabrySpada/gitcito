@@ -5,6 +5,7 @@ import { useUIStore, type Toast } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
 import { repoChatAvailable } from '../lib/repoChatUI'
 import { useT, interp } from '../i18n'
+import { clipboardApi } from '../infrastructure/api'
 
 const icons = {
   success: <CheckCircle2 size={16} />,
@@ -39,7 +40,7 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: () => void }
 
   const copy = (e: React.MouseEvent): void => {
     e.stopPropagation()
-    void navigator.clipboard?.writeText(toast.message).then(() => {
+    void clipboardApi.writeText(toast.message).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     })

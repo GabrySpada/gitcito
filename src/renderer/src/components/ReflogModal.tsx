@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { History, Loader2, MoreVertical } from 'lucide-react'
 import type { ReflogEntry } from '../../../shared/types'
-import { gitApi } from '../infrastructure/api'
+import { gitApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore } from '../stores/ui'
 import { useRepoStore, repoActions } from '../stores/repo'
 import { useT, interp } from '../i18n'
@@ -102,7 +102,7 @@ export function ReflogModal({ repoPath }: { repoPath: string }): React.JSX.Eleme
       {
         label: t('reflog.copySha'),
         onClick: () => {
-          void navigator.clipboard.writeText(entry.sha)
+          void clipboardApi.writeText(entry.sha)
           toast('success', t('reflog.shaCopied'))
         }
       }

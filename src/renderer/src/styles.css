@@ -142,6 +142,7 @@ textarea:focus {
   height: 42px;
   background: var(--bg-0);
   -webkit-app-region: drag;
+  --wails-draggable: drag;
   padding-inline-end: 8px;
 }
 
@@ -186,6 +187,7 @@ textarea:focus {
 
 .tab {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   align-items: center;
   /* Never shrink: the strip scrolls instead. A tab that clips its own overflow
@@ -287,6 +289,7 @@ textarea:focus {
 
 .tab-add {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -312,12 +315,14 @@ textarea:focus {
   gap: 0;
   position: relative;
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
 }
 
 
 /* Chrome-style: chip is a colored tab-shaped element */
 .tab-group-chip {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: inline-flex;
   align-items: center;
   align-self: flex-end;
@@ -376,6 +381,7 @@ textarea:focus {
 /* Hover-reveal "fetch all" button next to a group chip */
 .tab-group-sync {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   align-self: flex-end;
   display: flex;
   align-items: center;
@@ -410,6 +416,7 @@ textarea:focus {
   align-items: flex-end;
   gap: 0;
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   --folder-tint: color-mix(in srgb, var(--folder-color, #6366f1) 14%, transparent);
   /* Ancestry rail. A folder underlines everything it contains — its chip, its
      repos AND its subfolders — so a nested folder physically sits on top of
@@ -421,6 +428,7 @@ textarea:focus {
 
 .tab-folder-chip {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -674,6 +682,7 @@ textarea:focus {
 
 .titlebar-action {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -693,6 +702,7 @@ textarea:focus {
 /* Profile selector in the title bar (left of Settings). */
 .profile-switcher {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -772,6 +782,7 @@ textarea:focus {
 /* Workspace selector — same shell as the profile switcher, reuses its menu. */
 .workspace-switcher {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -973,6 +984,7 @@ textarea:focus {
 
 .window-controls {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   gap: 2px;
 }
@@ -6575,6 +6587,7 @@ body.col-resizing .node-ava {
 /* Clicking the version opens the changelog page tab. */
 .settings-version-btn {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -10641,6 +10654,7 @@ input[type='range']:focus-visible {
 .workspace-switcher-wrap { display: flex; align-items: center; }
 .workspace-mission {
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16183,6 +16197,7 @@ mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
   border-bottom: 1px solid var(--border-soft);
   flex: 0 0 auto;
   -webkit-app-region: drag;
+  --wails-draggable: drag;
 }
 .cosmos-chrome.mac {
   padding-inline-start: 78px;
@@ -16191,10 +16206,12 @@ mark.diff-find-hit.current { background: #ff9632; color: #10121a; }
   display: flex;
   gap: 6px;
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
 }
 .cosmos-close {
   flex: 0 0 auto;
   -webkit-app-region: no-drag;
+  --wails-draggable: no-drag;
 }
 .cosmos-canvas-wrap {
   position: relative;

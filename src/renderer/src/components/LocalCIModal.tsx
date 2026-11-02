@@ -11,7 +11,7 @@ import {
   TriangleAlert
 } from 'lucide-react'
 import type { LocalCiStatus, LocalCiWorkflow } from '../../../shared/localCi'
-import { localCiApi } from '../infrastructure/api'
+import { localCiApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore } from '../stores/ui'
 import { useRepoStore } from '../stores/repo'
 import { useSettingsStore } from '../stores/settings'
@@ -161,7 +161,7 @@ export function LocalCIModal({ repoPath, rev }: { repoPath: string; rev?: string
             <button
               className="icon-btn"
               title={t('info.copy')}
-              onClick={() => void navigator.clipboard.writeText('brew install act')}
+              onClick={() => void clipboardApi.writeText('brew install act')}
             >
               <Copy size={12} />
             </button>

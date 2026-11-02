@@ -17,6 +17,7 @@ import { interp, useT } from '../i18n'
 import { repoActions, type RepoData } from '../stores/repo'
 import { useSettingsStore } from '../stores/settings'
 import { useUIStore, type MenuItem } from '../stores/ui'
+import { clipboardApi } from '../infrastructure/api'
 
 type BranchTarget =
   | { kind: 'local'; branch: BranchInfo }
@@ -119,7 +120,7 @@ export function BranchStatusPicker({ repo }: { repo: RepoData }): React.JSX.Elem
             icon: <Copy size={14} />,
             onClick: () => {
               close()
-              void navigator.clipboard.writeText(copyName)
+              void clipboardApi.writeText(copyName)
             }
           })
           break

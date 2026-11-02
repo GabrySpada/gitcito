@@ -14,7 +14,7 @@ import { useT, interp, type TranslationKey } from '../i18n'
 import { Avatar } from './Avatar'
 import { RemoteIcon } from './RemoteIcon'
 import { SignatureBadge } from './SignatureBadge'
-import { gitApi, localCiApi, shellApi } from '../infrastructure/api'
+import { gitApi, localCiApi, shellApi, clipboardApi } from '../infrastructure/api'
 import { repoIsGitHub, githubCommitUrl } from '../lib/hosting'
 import {
   commitMenuCapabilities,
@@ -1079,7 +1079,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
     }
     items.push(
       { separator: true },
-      { label: interp(t('commit.copyShas'), { n: sel.length }), onClick: () => void navigator.clipboard.writeText(sel.join('\n')) },
+      { label: interp(t('commit.copyShas'), { n: sel.length }), onClick: () => void clipboardApi.writeText(sel.join('\n')) },
       { label: t('commit.clearSelection'), onClick: () => setMulti(new Set()) }
     )
     return items
@@ -1236,7 +1236,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
       onClick: () => openModal({ kind: 'create-pr', repoPath: repo.path, source: repo.branches.current ?? undefined })
     },
     { label: t('commit.exportPatch'), onClick: () => void exportPatch(c) },
-    { label: t('commit.copySha'), onClick: () => void navigator.clipboard.writeText(c.hash) },
+    { label: t('commit.copySha'), onClick: () => void clipboardApi.writeText(c.hash) },
     {
       label: t('commitMenu.viewOnGitHub'),
       disabled: !caps.canViewOnGitHub,
@@ -1245,9 +1245,9 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
         if (caps.githubCommitUrl) void shellApi.openExternal(caps.githubCommitUrl)
       }
     },
-    { label: t('commit.copyMessage'), onClick: () => void navigator.clipboard.writeText(c.subject) },
+    { label: t('commit.copyMessage'), onClick: () => void clipboardApi.writeText(c.subject) },
     ...(copyBranch
-      ? [{ label: t('branch.copyBranchName'), onClick: () => void navigator.clipboard.writeText(copyBranch) } satisfies MenuItem]
+      ? [{ label: t('branch.copyBranchName'), onClick: () => void clipboardApi.writeText(copyBranch) } satisfies MenuItem]
       : []),
     { separator: true },
     {
@@ -1301,7 +1301,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
         })
     },
     { separator: true },
-    { label: t('stash.copyMsg'), onClick: () => void navigator.clipboard.writeText(s.message) },
+    { label: t('stash.copyMsg'), onClick: () => void clipboardApi.writeText(s.message) },
     {
       label: t('stash.drop'),
       danger: true,
@@ -1316,7 +1316,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
         })
     },
     { separator: true },
-    { label: t('stash.copySha'), onClick: () => void navigator.clipboard.writeText(s.sha) }
+    { label: t('stash.copySha'), onClick: () => void clipboardApi.writeText(s.sha) }
   ]
 
   const tagRemoteUrl = (remoteUrl: string, tagName: string): string | null => {
@@ -1396,10 +1396,10 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
             })
         },
         { separator: true },
-        { label: t('tag.copyName'), onClick: () => void navigator.clipboard.writeText(g.label) },
-        { label: t('commit.copySha'), onClick: () => void navigator.clipboard.writeText(c.hash) },
+        { label: t('tag.copyName'), onClick: () => void clipboardApi.writeText(g.label) },
+        { label: t('commit.copySha'), onClick: () => void clipboardApi.writeText(c.hash) },
         ...(webUrl
-          ? [{ label: interp(t('tag.copyLink'), { tag: g.label, remote: remoteName }), onClick: () => void navigator.clipboard.writeText(webUrl) } satisfies MenuItem]
+          ? [{ label: interp(t('tag.copyLink'), { tag: g.label, remote: remoteName }), onClick: () => void clipboardApi.writeText(webUrl) } satisfies MenuItem]
           : []),
         { separator: true },
         ...(repo.remotes.length && !isPushed
@@ -1500,8 +1500,8 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
         })
     })
     items.push({ separator: true })
-    items.push({ label: t('branch.copyBranchName'), onClick: () => void navigator.clipboard.writeText(g.label) })
-    items.push({ label: t('branch.copySha'), onClick: () => void navigator.clipboard.writeText(c.hash) })
+    items.push({ label: t('branch.copyBranchName'), onClick: () => void clipboardApi.writeText(g.label) })
+    items.push({ label: t('branch.copySha'), onClick: () => void clipboardApi.writeText(c.hash) })
     // Any local branch, not only the checked-out one — a branch you can see in
     // the graph is a branch you can publish or catch up.
     if (g.isLocal) {
@@ -2199,7 +2199,7 @@ export function GraphView({ repo }: { repo: RepoData }): React.JSX.Element {
                           fullSha
                             ? (e) => {
                                 e.stopPropagation()
-                                void navigator.clipboard.writeText(fullSha)
+                                void clipboardApi.writeText(fullSha)
                                 toast('success', t('reflog.shaCopied'))
                               }
                             : undefined

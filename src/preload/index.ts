@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer, webFrame, webUtils } from 'electron'
+import { clipboard, contextBridge, ipcRenderer, webFrame, webUtils } from 'electron'
 import type { PreloadApi } from '../shared/bridgeApi'
 import type { CliOpenPayload } from '../shared/cli'
 import type { DiffToolConfig } from '../shared/diffTools'
@@ -66,7 +66,8 @@ const api: PreloadApi = {
   },
 
   // Resolve a dropped File to its absolute path (File.path was removed in Electron 32).
-  getPathForFile: (file: File): string => webUtils.getPathForFile(file),
+  droppedFilePaths: (files: File[]): Promise<string[]> =>
+    Promise.resolve(files.map((f) => webUtils.getPathForFile(f)).filter(Boolean)),
 
   // OS keychain consent. `onAsk` fires when the main process is about to use
   // safeStorage for the first time and wants the user to see why.
@@ -99,6 +100,12 @@ const api: PreloadApi = {
     filters?: { name: string; extensions: string[] }[]
   ): Promise<string | null> => ipcRenderer.invoke('dialog:saveBinary', defaultName, data, filters),
   openExternal: (url: string): Promise<void> => ipcRenderer.invoke('shell:openExternal', url),
+  clipboard: {
+    writeText: (text: string): Promise<void> => {
+      clipboard.writeText(text)
+      return Promise.resolve()
+    }
+  },
   appVersion: (): Promise<string> => ipcRenderer.invoke('app:version'),
   appReleases: (): Promise<AppRelease[]> => ipcRenderer.invoke('app:releases'),
 

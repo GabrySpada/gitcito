@@ -92,3 +92,18 @@ Every decision the brief did not dictate. One entry each: context, options, choi
 ## 017 — Bindings are committed under src/renderer/src/bindings
 - Generated with `wails3 generate bindings -ts -i -clean -d src/renderer/src/bindings` (TypeScript interfaces).
   CI regenerates and fails on drift (M8).
+
+## 018 — Navigation lock lives in the renderer
+- **Context:** The brief asks for a Go-side mechanism that refuses navigation away from the app origin. Wails
+  v3.1.0 has none: no navigation callback in `WebviewWindowOptions` or the window API (checked in
+  `v3/pkg/application`), and `guides/security` does not mention one.
+- **Choice:** `installLinkGuard` in `bridge.ts`: a delegated bubble-phase click listener that sends any
+  cross-origin link no component handled to `ShellService.OpenExternal` (which keeps the `^https?://` check in
+  Go) and prevents the navigation. Electron had no main-frame `will-navigate` handler either; its
+  `setWindowOpenHandler` covered new windows, which the renderer never opens (`window.open`/`target=_blank`:
+  0 call sites). Listed under limitations: a script-driven `location.href = …` is not blocked.
+
+## 019 — Clipboard goes through the bridge
+- 58 `navigator.clipboard.writeText` call sites now use `clipboardApi.writeText` → `window.api.clipboard`
+  (Electron: `clipboard.writeText`; Wails: `Clipboard.SetText`). WebKit rejects clipboard writes outside a
+  user gesture, and several call sites run after an `await`.

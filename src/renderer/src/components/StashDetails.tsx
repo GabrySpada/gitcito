@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Archive, Pencil } from 'lucide-react'
 import type { FileEntry, StashInfo } from '../../../shared/types'
-import { gitApi, shellApi } from '../infrastructure/api'
+import { gitApi, shellApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore } from '../stores/ui'
 import { FileListView } from './FileListView'
 import { ViewToggle } from './CommitComposer'
@@ -216,7 +216,7 @@ export function StashDetails({ repo, sha }: { repo: RepoData; sha: string }): Re
                 },
                 editor
               ),
-              { label: t('common.copyFilePath'), onClick: () => void navigator.clipboard.writeText(`${repo.path}/${f.path}`) }
+              { label: t('common.copyFilePath'), onClick: () => void clipboardApi.writeText(`${repo.path}/${f.path}`) }
             ])
           }}
           onFolderContext={(folderPath, e) => {
@@ -234,7 +234,7 @@ export function StashDetails({ repo, sha }: { repo: RepoData; sha: string }): Re
                 editor,
                 { isDir: true }
               ),
-              { label: t('common.copyFolderPath'), onClick: () => void navigator.clipboard.writeText(`${repo.path}/${folderPath}`) }
+              { label: t('common.copyFolderPath'), onClick: () => void clipboardApi.writeText(`${repo.path}/${folderPath}`) }
             ])
           }}
         />

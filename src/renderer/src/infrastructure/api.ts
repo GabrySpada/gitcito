@@ -804,6 +804,11 @@ export const infoApi = {
   importAll: (data: InfoExport) => window.api.info.importAll(data) as Promise<void>
 }
 
+export const clipboardApi = {
+  /** Always use this instead of navigator.clipboard: it works outside a user gesture on every host. */
+  writeText: (text: string): Promise<void> => window.api.clipboard.writeText(text)
+}
+
 export const shellApi = {
   revealInFolder: (fullPath: string) => window.api.shell.showItemInFolder(fullPath),
   openPath: (fullPath: string) => window.api.shell.openPath(fullPath),

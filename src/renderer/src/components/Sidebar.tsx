@@ -51,7 +51,7 @@ import { repoWantsDevices, repoDevicePlatforms } from '../lib/launchDevices'
 import { locateBookmark, bookmarkLabel, sortBookmarks, baseName } from '../lib/bookmarks'
 import { useSettingsStore } from '../stores/settings'
 import { useLaunchStore } from '../stores/launch'
-import { gitApi, shellApi } from '../infrastructure/api'
+import { gitApi, shellApi, clipboardApi } from '../infrastructure/api'
 import { groupPrStacks, stackRowStates, type StackRowState } from '../lib/prStacks'
 import { ciIcon, CI_STATE_KEY } from './CiIcon'
 import { useT, interp, type TranslationKey } from '../i18n'
@@ -807,11 +807,11 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
           })
       },
       { separator: true },
-      { label: t('sidebar.copyTagName'), onClick: () => void navigator.clipboard.writeText(tag.name) },
+      { label: t('sidebar.copyTagName'), onClick: () => void clipboardApi.writeText(tag.name) },
       ...(webUrl
         ? [
             { label: interp(t('sidebar.openTagOnWeb'), { tag: tag.name, remote: remoteName }), onClick: () => void shellApi.openExternal(webUrl) } satisfies MenuItem,
-            { label: interp(t('sidebar.copyTagLink'), { tag: tag.name, remote: remoteName }), onClick: () => void navigator.clipboard.writeText(webUrl) } satisfies MenuItem
+            { label: interp(t('sidebar.copyTagLink'), { tag: tag.name, remote: remoteName }), onClick: () => void clipboardApi.writeText(webUrl) } satisfies MenuItem
           ]
         : []),
       { label: t('sidebar.createTagHere'), onClick: createTagAtHead },
@@ -971,7 +971,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
       label: isPinned(b.name) ? t('sidebar.unpinBranch') : t('sidebar.pinBranch'),
       onClick: () => togglePinBranch(b.name)
     },
-    { label: t('sidebar.copyBranchName'), onClick: () => void navigator.clipboard.writeText(b.name) },
+    { label: t('sidebar.copyBranchName'), onClick: () => void clipboardApi.writeText(b.name) },
     {
       label: t('sidebar.deleteBranch'),
       danger: true,
@@ -1001,7 +1001,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
       onClick: () => openModal({ kind: 'range-diff', repoPath: path, branch: b.fullName })
     },
     { separator: true },
-    { label: t('sidebar.copyBranchName'), onClick: () => void navigator.clipboard.writeText(b.fullName) },
+    { label: t('sidebar.copyBranchName'), onClick: () => void clipboardApi.writeText(b.fullName) },
     {
       label: t('sidebar.deleteRemoteBranch'),
       danger: true,
@@ -1035,7 +1035,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
     { label: t('sidebar.applyStash'), onClick: () => void repoActions.stashApply(path, s.index) },
     { separator: true },
     { label: t('sidebar.renameStash'), onClick: () => renameStash(s) },
-    { label: t('sidebar.copyStashMsg'), onClick: () => void navigator.clipboard.writeText(s.message) },
+    { label: t('sidebar.copyStashMsg'), onClick: () => void clipboardApi.writeText(s.message) },
     { separator: true },
     {
       label: t('sidebar.dropStash'),
@@ -1055,7 +1055,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
   const worktreeMenu = (w: WorktreeInfo): MenuItem[] => [
     { label: t('sidebar.openWorktree'), disabled: w.isCurrent, onClick: () => openWorktreeTab(w) },
     { label: t('sidebar.revealWorktree'), onClick: () => void shellApi.revealInFolder(w.path) },
-    { label: t('sidebar.copyPath'), onClick: () => void navigator.clipboard.writeText(w.path) },
+    { label: t('sidebar.copyPath'), onClick: () => void clipboardApi.writeText(w.path) },
     { separator: true },
     {
       label: t('sidebar.removeWorktree'),
@@ -1133,7 +1133,7 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
       },
       { separator: true },
       ...(web ? [{ label: t('sidebar.openOnWeb'), onClick: (): void => void shellApi.openExternal(web) }] : []),
-      ...(url ? [{ label: t('sidebar.copyRemoteUrl'), onClick: (): void => void navigator.clipboard.writeText(url) }] : []),
+      ...(url ? [{ label: t('sidebar.copyRemoteUrl'), onClick: (): void => void clipboardApi.writeText(url) }] : []),
       { separator: true },
       {
         label: t('sidebar.removeRemote'),
@@ -1168,8 +1168,8 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
       { label: t('sidebar.editSubmodule'), onClick: () => editSubmodule(sm) },
       { label: t('sidebar.revealWorktree'), onClick: () => void shellApi.revealInFolder(absPath) },
       { separator: true },
-      { label: t('sidebar.copyPath'), onClick: () => void navigator.clipboard.writeText(absPath) },
-      ...(sm.url ? [{ label: t('sidebar.copySubmoduleUrl'), onClick: (): void => void navigator.clipboard.writeText(sm.url) }] : []),
+      { label: t('sidebar.copyPath'), onClick: () => void clipboardApi.writeText(absPath) },
+      ...(sm.url ? [{ label: t('sidebar.copySubmoduleUrl'), onClick: (): void => void clipboardApi.writeText(sm.url) }] : []),
       ...(web ? [{ label: t('sidebar.openOnWeb'), onClick: (): void => void shellApi.openExternal(web) }] : []),
       { separator: true },
       {
@@ -1258,10 +1258,10 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         : []),
       { separator: true },
       { label: t('common.openInBrowser'), onClick: () => void shellApi.openExternal(pr.url) },
-      { label: t('sidebar.copyLink'), onClick: () => void navigator.clipboard.writeText(pr.url) },
-      { label: t('sidebar.copyTitle'), onClick: () => void navigator.clipboard.writeText(pr.title) },
+      { label: t('sidebar.copyLink'), onClick: () => void clipboardApi.writeText(pr.url) },
+      { label: t('sidebar.copyTitle'), onClick: () => void clipboardApi.writeText(pr.title) },
       ...(pr.sourceBranch
-        ? [{ label: t('sidebar.copyBranchName'), onClick: (): void => void navigator.clipboard.writeText(pr.sourceBranch) }]
+        ? [{ label: t('sidebar.copyBranchName'), onClick: (): void => void clipboardApi.writeText(pr.sourceBranch) }]
         : [])
     ]
   }
@@ -1279,8 +1279,8 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         : []),
       { separator: true },
       { label: t('common.openInBrowser'), onClick: () => void shellApi.openExternal(issue.url) },
-      { label: t('sidebar.copyLink'), onClick: () => void navigator.clipboard.writeText(issue.url) },
-      { label: t('sidebar.copyTitle'), onClick: () => void navigator.clipboard.writeText(issue.title) }
+      { label: t('sidebar.copyLink'), onClick: () => void clipboardApi.writeText(issue.url) },
+      { label: t('sidebar.copyTitle'), onClick: () => void clipboardApi.writeText(issue.title) }
     ]
   }
 
@@ -1297,8 +1297,8 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
         : []),
       { separator: true },
       { label: t('common.openInBrowser'), onClick: () => void shellApi.openExternal(m.url) },
-      { label: t('sidebar.copyLink'), onClick: () => void navigator.clipboard.writeText(m.url) },
-      { label: t('sidebar.copyTitle'), onClick: () => void navigator.clipboard.writeText(m.title) }
+      { label: t('sidebar.copyLink'), onClick: () => void clipboardApi.writeText(m.url) },
+      { label: t('sidebar.copyTitle'), onClick: () => void clipboardApi.writeText(m.title) }
     ]
   }
 
@@ -1306,9 +1306,9 @@ export function Sidebar({ repo }: { repo: RepoData }): React.JSX.Element {
     { label: t('sidebar.openDetails'), onClick: () => openPageTab({ type: 'release', release: rel, repoPath: path }) },
     { separator: true },
     { label: t('sidebar.openOnWeb'), onClick: () => void shellApi.openExternal(rel.url) },
-    { label: t('sidebar.copyLink'), onClick: () => void navigator.clipboard.writeText(rel.url) },
+    { label: t('sidebar.copyLink'), onClick: () => void clipboardApi.writeText(rel.url) },
     ...(rel.tag
-      ? [{ label: t('sidebar.copyTagName'), onClick: (): void => void navigator.clipboard.writeText(rel.tag!) }]
+      ? [{ label: t('sidebar.copyTagName'), onClick: (): void => void clipboardApi.writeText(rel.tag!) }]
       : [])
   ]
 

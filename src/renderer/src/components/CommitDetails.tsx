@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ExternalLink, Laptop, Tag, Cloud, Copy, StickyNote, Pencil, Trash2, FilePenLine } from 'lucide-react'
 import type { CodeSearchHit, CommitBranchInfo, FileEntry, GraphCommit, RemoteInfo } from '../../../shared/types'
 import { autolink, remoteWebUrl } from '../lib/autolink'
-import { gitApi, shellApi } from '../infrastructure/api'
+import { gitApi, shellApi, clipboardApi } from '../infrastructure/api'
 import { useUIStore } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
 import { repoActions } from '../stores/repo'
@@ -287,7 +287,7 @@ export function CommitDetails({ repo, hash }: { repo: RepoData; hash: string }):
                 className="icon-btn commit-edit-btn"
                 type="button"
                 onClick={() => {
-                  void navigator.clipboard.writeText(commit.hash)
+                  void clipboardApi.writeText(commit.hash)
                   toast('success', t('reflog.shaCopied'))
                 }}
                 title={t('commit.copySha')}
@@ -496,7 +496,7 @@ export function CommitDetails({ repo, hash }: { repo: RepoData; hash: string }):
                 },
                 editor
               ),
-              { label: t('common.copyFilePath'), onClick: () => void navigator.clipboard.writeText(`${repo.path}/${f.path}`) },
+              { label: t('common.copyFilePath'), onClick: () => void clipboardApi.writeText(`${repo.path}/${f.path}`) },
               // The commit that deleted a file is exactly where someone realises
               // it is still in history, so the way out belongs in this menu.
               {
@@ -522,7 +522,7 @@ export function CommitDetails({ repo, hash }: { repo: RepoData; hash: string }):
                 editor,
                 { isDir: true }
               ),
-              { label: t('common.copyFolderPath'), onClick: () => void navigator.clipboard.writeText(`${repo.path}/${folderPath}`) }
+              { label: t('common.copyFolderPath'), onClick: () => void clipboardApi.writeText(`${repo.path}/${folderPath}`) }
             ])
           }}
         />

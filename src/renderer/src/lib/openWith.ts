@@ -1,7 +1,7 @@
 import type { AppSettings } from '../../../shared/types'
 import type { EditorSetting } from '../../../shared/editors'
 import type { MenuItem } from '../stores/ui'
-import { shellApi } from '../infrastructure/api'
+import { shellApi, clipboardApi } from '../infrastructure/api'
 import { editorMenuItems } from './editorOpen'
 
 export type DefaultOpenApp = AppSettings['defaultOpenApp']
@@ -46,6 +46,6 @@ export function folderOpenMenuItems(
     { label: labels.openFolder, onClick: () => void shellApi.openPath(path) },
     ...openWithMenuItems(path, defaultApp, labels, editor, { isDir: true }),
     { separator: true },
-    { label: labels.copyPath, onClick: () => void navigator.clipboard.writeText(path) }
+    { label: labels.copyPath, onClick: () => void clipboardApi.writeText(path) }
   ]
 }

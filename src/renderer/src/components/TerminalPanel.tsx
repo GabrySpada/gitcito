@@ -51,19 +51,19 @@ export function TerminalPanel({
     if (files.length === 0) return
     e.preventDefault()
     e.stopPropagation()
-    const paths = files
-      .map((f) => window.api.getPathForFile(f))
-      .filter(Boolean)
-      .map(shellQuote)
-    if (paths.length === 0) return
-    const handle = getOrCreateTerm(panelId, cwd, launchId)
-    handle.pasteText(paths.join(' '))
-    handle.term.focus()
+    void window.api.droppedFilePaths(files).then((dropped) => {
+      const paths = dropped.map(shellQuote)
+      if (paths.length === 0) return
+      const handle = getOrCreateTerm(panelId, cwd, launchId)
+      handle.pasteText(paths.join(' '))
+      handle.term.focus()
+    })
   }
 
   return (
     <div
       className="terminal-host"
+      data-file-drop-target
       ref={hostRef}
       onClick={() => getOrCreateTerm(panelId, cwd, launchId).term.focus()}
       onDragOver={(e) => {

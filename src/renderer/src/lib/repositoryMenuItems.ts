@@ -3,7 +3,7 @@ import { useUIStore } from '../stores/ui'
 import { useSettingsStore } from '../stores/settings'
 import { useRepoStore, repoActions } from '../stores/repo'
 import { useTerminalsStore } from '../stores/terminals'
-import { shellApi } from '../infrastructure/api'
+import { shellApi, clipboardApi } from '../infrastructure/api'
 import { openInEditor } from './editorOpen'
 import { githubRepoUrl } from './hosting'
 import { canonicalRepoName, lookupRepoAlias } from './repoAlias'
@@ -116,7 +116,7 @@ function runAction(id: RepoMenuActionId, caps: RepoMenuCapabilities, onRemove: (
       return
     case 'copyName':
     case 'copyPath':
-      if (target?.copy) void navigator.clipboard.writeText(target.copy)
+      if (target?.copy) void clipboardApi.writeText(target.copy)
       return
     case 'viewOnGitHub':
       if (target?.url) void shellApi.openExternal(target.url)

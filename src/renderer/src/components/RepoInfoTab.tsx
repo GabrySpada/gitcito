@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Plus, Copy, Check, Trash2, Pencil, ExternalLink, Loader2, Info } from 'lucide-react'
-import { infoApi, shellApi } from '../infrastructure/api'
+import { infoApi, shellApi, clipboardApi } from '../infrastructure/api'
 import { FIELD_PRESETS, fieldPreset, fieldHref } from '../lib/infoFields'
 import { useUIStore } from '../stores/ui'
 import { useT } from '../i18n'
@@ -68,7 +68,7 @@ export function RepoInfoTab({ repoPath }: { repoPath: string }): React.JSX.Eleme
   const del = async (id: string): Promise<void> => setEntries(await infoApi.remove(repoPath, id))
 
   const copy = (e: InfoEntry): void => {
-    void navigator.clipboard.writeText(e.value)
+    void clipboardApi.writeText(e.value)
     setCopiedId(e.id)
     setTimeout(() => setCopiedId((c) => (c === e.id ? null : c)), 1200)
   }

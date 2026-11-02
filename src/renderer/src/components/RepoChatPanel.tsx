@@ -53,7 +53,7 @@ import { askActionDetail, askActionsAutoRun, destructiveAskFiles } from '../lib/
 import { executeRepoChatActions, planGuardSnapshot } from '../lib/askActionRun'
 import { repoChatActionMeta } from '../lib/askActionMeta'
 import { ActionResultLinks, ActionWidget } from './ActionWidgets'
-import { gitApi } from '../infrastructure/api'
+import { gitApi, clipboardApi } from '../infrastructure/api'
 import { useRepoChatStore, type RepoChatEntry } from '../stores/chat'
 import { repoActions, useRepoStore } from '../stores/repo'
 import { useSettingsStore } from '../stores/settings'
@@ -134,21 +134,21 @@ function useCopyMenu(content: string): (event: React.MouseEvent) => void {
             {
               label: t('chat.copySelection'),
               icon: <Copy size={13} />,
-              onClick: () => void navigator.clipboard.writeText(selection)
+              onClick: () => void clipboardApi.writeText(selection)
             }
           ]
         : []),
       {
         label: t('chat.copyMessage'),
         icon: <Copy size={13} />,
-        onClick: () => void navigator.clipboard.writeText(content)
+        onClick: () => void clipboardApi.writeText(content)
       },
       ...(href && /^https?:/i.test(href)
         ? [
             {
               label: t('chat.copyLink'),
               icon: <Link2 size={13} />,
-              onClick: () => void navigator.clipboard.writeText(href)
+              onClick: () => void clipboardApi.writeText(href)
             }
           ]
         : [])
@@ -646,14 +646,13 @@ export function RepoChatPanel({ repoPath, repoName }: { repoPath: string; repoNa
   const onDrop = (event: React.DragEvent): void => {
     event.preventDefault()
     setDropActive(false)
-    const items = parseChatDrop({
-      commit: event.dataTransfer.getData(CHAT_COMMIT_MIME),
-      path: event.dataTransfer.getData(CHAT_PATH_MIME),
-      files: Array.from(event.dataTransfer.files)
-        .map((file) => window.api.getPathForFile(file))
-        .filter(Boolean)
+    // Read the DataTransfer now: it is emptied once this handler returns.
+    const commit = event.dataTransfer.getData(CHAT_COMMIT_MIME)
+    const path = event.dataTransfer.getData(CHAT_PATH_MIME)
+    void window.api.droppedFilePaths(Array.from(event.dataTransfer.files)).then((files) => {
+      const items = parseChatDrop({ commit, path, files })
+      if (items.length) attach(repoPath, items)
     })
-    if (items.length) attach(repoPath, items)
   }
 
   // The "+" menu: what is on screen, plus anything on disk.
@@ -684,6 +683,7 @@ export function RepoChatPanel({ repoPath, repoName }: { repoPath: string; repoNa
   return (
     <section
       className={`repo-chat ${dropActive ? 'drop-active' : ''}`}
+      data-file-drop-target
       aria-label={t('chat.tabChat')}
       onDragOver={(event) => {
         if (pending) return

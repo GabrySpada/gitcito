@@ -14,8 +14,9 @@ import '@xterm/xterm/css/xterm.css'
 
 async function installWailsBridge(): Promise<void> {
   // Imported lazily so the Electron build never evaluates the Wails runtime.
-  const { createBridge, loadBootstrap } = await import('./infrastructure/bridge')
+  const { createBridge, installLinkGuard, loadBootstrap } = await import('./infrastructure/bridge')
   window.api = createBridge(await loadBootstrap())
+  installLinkGuard(window.api.openExternal)
 }
 
 async function start(): Promise<void> {

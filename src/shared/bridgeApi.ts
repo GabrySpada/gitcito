@@ -101,7 +101,10 @@ export interface PreloadApi {
     onData(cb: (p: { repoPath: string; chunk: string }) => void): () => void
     onSweepProgress(cb: (p: unknown) => void): () => void
   }
-  getPathForFile(file: File): string
+  /** Absolute paths of files dropped from the OS, in drop order. Call it from the DOM `drop` handler.
+   *  Electron resolves each File synchronously; Wails reports native drops through its own event, which
+   *  arrives after the DOM handler — and only for drops onto an element marked `data-file-drop-target`. */
+  droppedFilePaths(files: File[]): Promise<string[]>
   keychain: {
     onAsk(cb: (payload: { reason: string; adopted: boolean }) => void): () => void
     answer(granted: boolean): Promise<void>
@@ -129,6 +132,11 @@ export interface PreloadApi {
   /** Pick an existing file, by path only. */
   openFilePath(title: string, filters?: { name: string; extensions: string[] }[]): Promise<string | null>
   openExternal(url: string): Promise<void>
+  /** System clipboard. Under Wails it goes through the native clipboard, because WebKit refuses
+   *  navigator.clipboard writes that run outside a user gesture (for example after an await). */
+  clipboard: {
+    writeText(text: string): Promise<void>
+  }
   appVersion(): Promise<string>
   appReleases(): Promise<AppRelease[]>
   shell: {
