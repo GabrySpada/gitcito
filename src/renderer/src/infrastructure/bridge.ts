@@ -12,7 +12,7 @@
  * name (Go emits on identical names), and fire-and-forget members log once and do nothing. Porting a
  * channel means replacing its stub with `invoke(() => SomeService.Method(...))`.
  */
-import { Clipboard, Events, Window } from '@wailsio/runtime'
+import { Call, Clipboard, Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
@@ -149,6 +149,8 @@ export function installLinkGuard(openExternal: (url: string) => Promise<void>): 
   })
 }
 
+const GIT_SERVICE = 'github.com/GabrySpada/gitcito/internal/gitsvc.GitService'
+
 function toConsent(c: string): KeychainConsent {
   return c === 'granted' || c === 'declined' ? c : 'unset'
 }
@@ -176,7 +178,11 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     platform: boot.platform,
     shotMode: boot.shotMode,
 
-    git: (method: string): Promise<never> => Promise.reject(new Error(`not ported: git:${method}`)),
+    // The single Electron 'git' channel becomes one bound Go method per gitService method, named with the
+    // first letter upper-cased (GitService.Status for 'status'). By-name dispatch keeps this one line instead of
+    // a 264-entry table; the Go side holds the per-repo lock and the read/write classification.
+    git: (method: string, ...args: unknown[]): Promise<unknown> =>
+      invoke(() => Call.ByName(`${GIT_SERVICE}.${method.charAt(0).toUpperCase()}${method.slice(1)}`, ...args)),
     onCloneProgress: (cb) => listen('clone:progress', cb),
     onBisectOutput: (cb) => listen('bisect:output', cb),
 

@@ -11,6 +11,7 @@ import (
 	"os"
 
 	"github.com/GabrySpada/gitcito/internal/app"
+	"github.com/GabrySpada/gitcito/internal/gitsvc"
 	"github.com/GabrySpada/gitcito/internal/gitx"
 	"github.com/GabrySpada/gitcito/internal/keychain"
 	"github.com/GabrySpada/gitcito/internal/logbook"
@@ -50,6 +51,12 @@ func main() {
 	// the same consent and the same in-flight question.
 	keys := keychain.New(keychain.Options{Emitter: app.Emitter{}, HasWindow: app.HasWindow})
 	store := settings.New(settings.Options{Keychain: keys, Dialogs: settings.WailsDialogs{}})
+	git := gitsvc.New(app.Emitter{}, book, gitsvc.WithTokenFunc(func(ctx context.Context, host, repoPath string) string {
+		// A lookup failure (keychain refused, unreadable secrets) means "no token": git then runs
+		// unauthenticated and the remote's own error reaches the user, as in the Electron build.
+		tok, _ := store.ActiveProfileToken(ctx, settings.RepoHost(host), repoPath)
+		return tok
+	}))
 
 	var single *application.SingleInstanceOptions
 	if !app.SingleInstanceAvailable() {
@@ -82,6 +89,7 @@ func main() {
 			application.NewService(logbook.NewService(book)),
 			application.NewService(keychain.NewService(keys)),
 			application.NewService(settings.NewService(store)),
+			application.NewService(git),
 		},
 		Assets:         application.AssetOptions{Handler: application.AssetFileServerFS(assets)},
 		SingleInstance: single,
