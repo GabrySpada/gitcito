@@ -143,6 +143,7 @@ const {
   finalizeRepoChat
 } = await import('../../src/main/repoChat')
 const grounding = await import('../../src/main/grounding')
+const aiSchemas = await import('../../src/main/aiSchemas')
 const wikiSchemas = await import('../../src/main/wikiSchemas')
 const wikiPack = await import('../../src/main/wikiPack')
 const repoFacts = await import('../../src/shared/repoFacts')
@@ -887,6 +888,18 @@ const e = await import('./e')
 
 function repoChatVectors(): Case[] {
   const c: Case[] = []
+  // aiSchemas.ts is ported with internal/ai; repoChat only composes these, so
+  // the Go tests inject exactly these bytes.
+  c.push({
+    fn: 'actionSchemas',
+    args: [],
+    out: {
+      ask: JSON.stringify(aiSchemas.askActionsSchema(false)),
+      askRemote: JSON.stringify(aiSchemas.askActionsSchema(true)),
+      repoChat: JSON.stringify(aiSchemas.repoChatActionsSchema(false)),
+      repoChatRemote: JSON.stringify(aiSchemas.repoChatActionsSchema(true))
+    }
+  })
   for (const args of [
     [true],
     [false],
