@@ -55,6 +55,42 @@ export interface AbsorbTarget {
 }
 
 /**
+ * ArchiveResult is ArchiveResult in src/shared/types.ts.
+ */
+export interface ArchiveResult {
+    "path": string;
+    "bytes": number;
+}
+
+/**
+ * AttributeCheck is AttributeCheck in src/shared/types.ts.
+ */
+export interface AttributeCheck {
+    "path": string;
+
+    /**
+     * Attrs maps attribute name → value: `set`, `unset`, `unspecified`, or a string.
+     */
+    "attrs": { [_ in string]?: string } | null;
+}
+
+/**
+ * AttributeFile is AttributeFile in src/shared/types.ts.
+ */
+export interface AttributeFile {
+    /**
+     * Path is repo-relative, or `.git/info/attributes` for the private one.
+     */
+    "path": string;
+    "content": string;
+
+    /**
+     * Local is true for `.git/info/attributes`: never committed, never shared.
+     */
+    "local": boolean;
+}
+
+/**
  * AuthorStat is AuthorStat in src/shared/types.ts.
  */
 export interface AuthorStat {
@@ -142,6 +178,44 @@ export interface BranchesPayload {
 }
 
 /**
+ * BundleInfo is BundleInfo in src/shared/types.ts.
+ */
+export interface BundleInfo {
+    "refs": BundleRef[] | null;
+    "prerequisites": string[] | null;
+    "usable": boolean;
+    "message": string;
+}
+
+/**
+ * BundleRef is BundleRef in src/shared/types.ts.
+ */
+export interface BundleRef {
+    "name": string;
+    "sha": string;
+}
+
+/**
+ * BundleResult is BundleResult in src/shared/types.ts.
+ */
+export interface BundleResult {
+    "path": string;
+    "bytes": number;
+    "refs": number;
+}
+
+/**
+ * BundleScope is the BundleScope union in src/shared/types.ts:
+ * {kind:'all'} | {kind:'ref', ref} | {kind:'range', from, to}.
+ */
+export interface BundleScope {
+    "kind": string;
+    "ref"?: string;
+    "from"?: string;
+    "to"?: string;
+}
+
+/**
  * ChangelogOptions is generateChangelog's `opts`.
  */
 export interface ChangelogOptions {
@@ -184,6 +258,100 @@ export interface ChurnPoint {
     "added": number;
     "removed": number;
     "commits": number;
+}
+
+/**
+ * CleanEntry is CleanEntry in src/shared/types.ts.
+ */
+export interface CleanEntry {
+    /**
+     * Path is repo-relative; a directory keeps git's trailing slash.
+     */
+    "path": string;
+
+    /**
+     * Kind: 'file' | 'dir'.
+     */
+    "kind": string;
+
+    /**
+     * Ignored: matched by .gitignore. Never selected by default.
+     */
+    "ignored": boolean;
+    "bytes": number;
+
+    /**
+     * Nested: a directory with its own .git. `git clean` refuses these; the trash does not.
+     */
+    "nested": boolean;
+}
+
+/**
+ * CleanPreview is CleanPreview in src/shared/types.ts.
+ */
+export interface CleanPreview {
+    "entries": CleanEntry[] | null;
+
+    /**
+     * Truncated is true when the scan hit its entry cap and the list is partial.
+     */
+    "truncated": boolean;
+}
+
+/**
+ * CleanResult is CleanResult in src/shared/types.ts.
+ */
+export interface CleanResult {
+    "removed": number;
+    "bytes": number;
+
+    /**
+     * Trashed is true when the paths went to the OS trash rather than being deleted.
+     */
+    "trashed": boolean;
+}
+
+/**
+ * CloneOptions is CloneOptions in src/shared/types.ts. Every field is
+ * optional; the zero value is a plain full clone of the default branch.
+ */
+export interface CloneOptions {
+    /**
+     * Host the URL belongs to, for credential injection.
+     */
+    "host"?: string;
+
+    /**
+     * Token for that host — used for this clone only, never written to config.
+     */
+    "token"?: string;
+
+    /**
+     * Filter is a partial clone spec for `--filter`, e.g. `blob:none`.
+     */
+    "filter"?: string;
+
+    /**
+     * Depth keeps only this many commits of history (0 = full).
+     */
+    "depth"?: number;
+
+    /**
+     * SingleBranch fetches only the checked-out branch. `false` alongside Depth
+     * restores the other branches that `--depth` would otherwise drop; nil says
+     * nothing either way.
+     */
+    "singleBranch"?: boolean | null;
+
+    /**
+     * Branch or tag to check out instead of the remote's default HEAD.
+     */
+    "branch"?: string;
+
+    /**
+     * RecurseSubmodules also clones submodules, recursively.
+     */
+    "recurseSubmodules"?: boolean;
 }
 
 /**
@@ -388,11 +556,137 @@ export interface CreateTagOptions {
 }
 
 /**
+ * CredentialHelperInfo is CredentialHelperInfo in src/shared/types.ts.
+ */
+export interface CredentialHelperInfo {
+    /**
+     * Value as git stores it: `osxkeychain`, `store`, `!gh auth git-credential`…
+     */
+    "value": string;
+
+    /**
+     * Scope: 'system' | 'global' | 'repo'.
+     */
+    "scope": string;
+
+    /**
+     * Available is true when the helper program exists — a typo here is
+     * invisible until a push fails.
+     */
+    "available": boolean;
+
+    /**
+     * Plaintext marks the `store` helper: passwords in a plain file.
+     */
+    "plaintext": boolean;
+}
+
+/**
+ * CredentialStatus is CredentialStatus in src/shared/types.ts.
+ */
+export interface CredentialStatus {
+    "helpers": CredentialHelperInfo[] | null;
+    "urlRules": CredentialURLRule[] | null;
+    "candidates": gitx$0.CredentialCandidate[] | null;
+    "plaintextFile": PlaintextCredentialsFile;
+
+    /**
+     * HTTPSHosts are the hosts this repository would ask about: its https remotes.
+     */
+    "httpsHosts": string[] | null;
+}
+
+/**
+ * CredentialURLRule is CredentialUrlRule in src/shared/types.ts: a
+ * `credential.<url>.*` section, which beats the plain setting for its URLs.
+ */
+export interface CredentialURLRule {
+    "url": string;
+    "helper": string;
+    "username": string;
+    "scope": string;
+}
+
+/**
+ * DiffDriverInfo is DiffDriverInfo in src/shared/types.ts.
+ */
+export interface DiffDriverInfo {
+    "name": string;
+    "textconv": string;
+
+    /**
+     * Available is true when the converter command can actually run.
+     */
+    "available": boolean;
+
+    /**
+     * Scope: 'repo' | 'global'.
+     */
+    "scope": string;
+}
+
+/**
+ * DiffDriverSuggestion is DiffDriverSuggestion in src/shared/types.ts.
+ */
+export interface DiffDriverSuggestion {
+    "name": string;
+    "patterns": string[] | null;
+    "textconv": string;
+
+    /**
+     * Binary is what it needs ('' when Gitcito ships the converter itself).
+     */
+    "binary": string;
+
+    /**
+     * Bundled is true when the converter is the one Gitcito ships.
+     */
+    "bundled"?: boolean;
+    "available": boolean;
+}
+
+/**
  * DivergedCheckoutResult is resolveDivergedCheckout's `{ backupRef?, previousRef }`.
  */
 export interface DivergedCheckoutResult {
     "backupRef"?: string;
     "previousRef": string;
+}
+
+/**
+ * DoctorCheck is DoctorCheck in src/shared/types.ts.
+ */
+export interface DoctorCheck {
+    /**
+     * ID is the row's stable identity: `node`, `lfs`, `file:.env`…
+     */
+    "id": string;
+
+    /**
+     * Kind: 'node' | 'submodules' | 'lfs' | 'hooks' | 'file'.
+     */
+    "kind": string;
+
+    /**
+     * Status: 'ok' | 'warn' | 'fail'.
+     */
+    "status": string;
+    "expected"?: string;
+    "actual"?: string;
+    "why"?: string;
+    "fix"?: DoctorFix | null;
+}
+
+/**
+ * DoctorFix is the DoctorFix union in src/shared/types.ts:
+ * {kind:'submodules'} | {kind:'lfsPull'} | {kind:'hooksPath', value} |
+ * {kind:'copyFile', from, to}. Deliberately closed: data, never a command.
+ */
+export interface DoctorFix {
+    "kind": string;
+    "value"?: string;
+    "from"?: string;
+    "to"?: string;
 }
 
 /**
@@ -434,6 +728,124 @@ export interface FileHotspot {
 export interface FileSizeInfo {
     "size": number;
     "binary": boolean;
+}
+
+/**
+ * FilterDriverInfo is FilterDriverInfo in src/shared/types.ts.
+ */
+export interface FilterDriverInfo {
+    "name": string;
+
+    /**
+     * Clean runs on staging (working tree → repository). '' when unset.
+     */
+    "clean": string;
+
+    /**
+     * Smudge runs on checkout (repository → working tree). '' when unset.
+     */
+    "smudge": string;
+
+    /**
+     * Required makes a failing filter abort instead of passing bytes through.
+     */
+    "required": boolean;
+    "scope": string;
+    "cleanAvailable": boolean;
+    "smudgeAvailable": boolean;
+}
+
+/**
+ * FilterDriverInput is setFilterDriver's `driver` argument.
+ */
+export interface FilterDriverInput {
+    "clean": string;
+    "smudge": string;
+    "required": boolean;
+}
+
+/**
+ * FilterDriverPrevious is FilterDriverPrevious in src/shared/types.ts: what
+ * `filter.<name>` held before SetFilterDriver overwrote it — the undo payload.
+ */
+export interface FilterDriverPrevious {
+    "clean": string;
+    "smudge": string;
+    "required": boolean;
+}
+
+/**
+ * FilterDryRunFile is FilterDryRunFile in src/shared/types.ts.
+ */
+export interface FilterDryRunFile {
+    "file": string;
+
+    /**
+     * OK: the clean command ran and exited 0.
+     */
+    "ok": boolean;
+    "error"?: string;
+
+    /**
+     * Roundtrip: 'ok' | 'different' | 'skipped' — did smudge(clean(file)) give the original back.
+     */
+    "roundtrip": string;
+
+    /**
+     * Preview is the first bytes of the cleaned output: what git would store.
+     */
+    "preview": string;
+}
+
+/**
+ * FilterDryRunResult is FilterDryRunResult in src/shared/types.ts.
+ */
+export interface FilterDryRunResult {
+    "matched": number;
+    "tested": FilterDryRunFile[] | null;
+}
+
+/**
+ * ForcedRefUpdate is ForcedRefUpdate in src/shared/types.ts: a remote-tracking
+ * ref that was rewritten under us (history was force-pushed).
+ */
+export interface ForcedRefUpdate {
+    /**
+     * Ref is the short form, e.g. `origin/feature`.
+     */
+    "ref": string;
+    "oldSha": string;
+    "newSha": string;
+}
+
+/**
+ * FsckReport is FsckReport in src/shared/types.ts.
+ */
+export interface FsckReport {
+    "ok": boolean;
+    "dangling": number;
+    "missing": number;
+    "output": string;
+}
+
+/**
+ * GitLockFile is GitLockFile in src/shared/types.ts.
+ */
+export interface GitLockFile {
+    /**
+     * Path is relative to the git directory: `index.lock`, `refs/remotes/origin/x.lock`.
+     */
+    "path": string;
+
+    /**
+     * AgeSeconds since the file was last touched — a young lock is a live git process.
+     */
+    "ageSeconds": number;
+
+    /**
+     * Kind: 'index' | 'ref' | 'config' | 'other'.
+     */
+    "kind": string;
 }
 
 /**
@@ -487,6 +899,14 @@ export interface GitObjectTag {
     "name": string;
     "tagger": string;
     "message": string;
+}
+
+/**
+ * GitUser is getUser's `{ name, email }`.
+ */
+export interface GitUser {
+    "name": string;
+    "email": string;
 }
 
 /**
@@ -697,6 +1117,54 @@ export interface HistorySearchOptions {
 }
 
 /**
+ * HookInfo is HookInfo in src/shared/types.ts: one git hook file.
+ */
+export interface HookInfo {
+    "name": string;
+
+    /**
+     * Exists: a real (non-.sample) hook file is present.
+     */
+    "exists": boolean;
+
+    /**
+     * Executable: exec bit set — git only runs executable hooks.
+     */
+    "executable": boolean;
+
+    /**
+     * Sample: only the shipped `<name>.sample` template exists.
+     */
+    "sample": boolean;
+
+    /**
+     * Size of the real hook in bytes (0 when absent).
+     */
+    "size": number;
+}
+
+/**
+ * HooksInfo is HooksInfo in src/shared/types.ts.
+ */
+export interface HooksInfo {
+    /**
+     * HooksDir is the resolved hooks directory (honours core.hooksPath).
+     */
+    "hooksDir": string;
+
+    /**
+     * CustomHooksPath: core.hooksPath is set (custom/framework-managed).
+     */
+    "customHooksPath": boolean;
+
+    /**
+     * PreCommitFramework: a .pre-commit-config.yaml(.yml) is present.
+     */
+    "preCommitFramework": boolean;
+    "hooks": HookInfo[] | null;
+}
+
+/**
  * ImageDiffSides is imageDiff's result: each side as a data URL, null when the
  * file does not exist on that side.
  */
@@ -711,6 +1179,77 @@ export interface ImageDiffSides {
 export interface InteractiveRebaseStep {
     "hash": string;
     "subject": string;
+}
+
+/**
+ * LfsFile is LfsFile in src/shared/types.ts.
+ */
+export interface LfsFile {
+    "path": string;
+
+    /**
+     * Oid is the short object id.
+     */
+    "oid": string;
+
+    /**
+     * Downloaded: real content present (false = pointer only).
+     */
+    "downloaded": boolean;
+}
+
+/**
+ * LfsInfo is LfsInfo in src/shared/types.ts.
+ */
+export interface LfsInfo {
+    /**
+     * Installed: the git-lfs binary is available.
+     */
+    "installed": boolean;
+
+    /**
+     * Enabled: the repo tracks anything via LFS.
+     */
+    "enabled": boolean;
+
+    /**
+     * Patterns are the tracked glob patterns from .gitattributes.
+     */
+    "patterns": string[] | null;
+    "files": LfsFile[] | null;
+}
+
+/**
+ * MaintenanceResult is MaintenanceResult in src/shared/types.ts.
+ */
+export interface MaintenanceResult {
+    "before": number;
+    "after": number;
+    "output": string;
+}
+
+/**
+ * MaintenanceStats is MaintenanceStats in src/shared/types.ts.
+ */
+export interface MaintenanceStats {
+    "looseObjects": number;
+    "looseBytes": number;
+    "packedObjects": number;
+    "packs": number;
+    "packBytes": number;
+    "prunePackable": number;
+    "garbageFiles": number;
+    "garbageBytes": number;
+    "prunable": number;
+    "prunableBytes": number;
+    "gitBytes": number;
+
+    /**
+     * LastPack is when the newest packfile was written (ISO 8601), or null.
+     */
+    "lastPack": string | null;
+    "scheduled": boolean;
+    "gcLog": string;
 }
 
 /**
@@ -794,6 +1333,16 @@ export interface MergePreviewResult {
 }
 
 /**
+ * PlaintextCredentialsFile describes `~/.git-credentials`: counted, never read
+ * out — every line of it is a live password.
+ */
+export interface PlaintextCredentialsFile {
+    "path": string;
+    "exists": boolean;
+    "entries": number;
+}
+
+/**
  * PrPreviewResult is PrPreviewResult in src/shared/types.ts.
  */
 export interface PrPreviewResult {
@@ -856,6 +1405,39 @@ export interface PreparedRepoChatFileAction {
     "expectedHash": string | null;
     "expectedOccurrences"?: number | null;
     "preview": string;
+}
+
+/**
+ * PushOptions is push's `opts: { force?, remote? }`.
+ */
+export interface PushOptions {
+    "force"?: boolean;
+
+    /**
+     * Remote defaults to 'origin' when absent (nil), not when empty.
+     */
+    "remote"?: string | null;
+}
+
+/**
+ * PushRemoteResult is PushRemoteResult in src/shared/types.ts.
+ */
+export interface PushRemoteResult {
+    "remote": string;
+    "ok": boolean;
+
+    /**
+     * Error is git's message when OK is false.
+     */
+    "error": string;
+}
+
+/**
+ * PushToRemotesOptions is pushToRemotes' `opts: { force?, tags? }`.
+ */
+export interface PushToRemotesOptions {
+    "force"?: boolean;
+    "tags"?: boolean;
 }
 
 /**
@@ -941,6 +1523,124 @@ export interface RemoteBranchInfo {
 export interface RemoteInfo {
     "name": string;
     "url": string;
+}
+
+/**
+ * ReplaceRef is ReplaceRef in src/shared/types.ts.
+ */
+export interface ReplaceRef {
+    "original": string;
+    "originalSubject": string;
+    "replacement": string;
+    "replacementSubject": string;
+
+    /**
+     * ReplacementParents: a graft's whole point is changing these.
+     */
+    "replacementParents": string[] | null;
+}
+
+/**
+ * ReplaceStatus is ReplaceStatus in src/shared/types.ts.
+ */
+export interface ReplaceStatus {
+    "refs": ReplaceRef[] | null;
+
+    /**
+     * Enabled is `core.useReplaceRefs` — false means git ignores every replacement here.
+     */
+    "enabled": boolean;
+}
+
+/**
+ * RepoConfig is RepoConfig in src/shared/types.ts — the validated
+ * `.gitcito.json`.
+ */
+export interface RepoConfig {
+    "version": number;
+    "protect"?: string[] | null;
+    "links"?: RepoConfigLinks | null;
+    "commit"?: RepoConfigCommit | null;
+    "requires"?: RepoConfigRequires | null;
+    "checklist"?: RepoConfigChecklist | null;
+}
+
+/**
+ * RepoConfigChecklist is RepoConfig['checklist'].
+ */
+export interface RepoConfigChecklist {
+    "push"?: string[] | null;
+}
+
+/**
+ * RepoConfigCommit is RepoConfig['commit']. Field order is the order the
+ * validator writes them in, which is the order they land in the file.
+ */
+export interface RepoConfigCommit {
+    "scopes"?: string[] | null;
+    "trailers"?: string[] | null;
+    "ticketFromBranch"?: boolean | null;
+}
+
+/**
+ * RepoConfigFileReq is RepoConfigFileReq in src/shared/types.ts.
+ */
+export interface RepoConfigFileReq {
+    "path": string;
+    "from"?: string;
+    "why"?: string;
+}
+
+/**
+ * RepoConfigIssue is RepoConfigIssue in src/shared/types.ts.
+ */
+export interface RepoConfigIssue {
+    /**
+     * Field is the dotted path of the offending field, e.g. `links.tickets[0].url`.
+     */
+    "field": string;
+
+    /**
+     * Code: 'type' | 'limit' | 'unknown' | 'version' | 'unsafe' | 'regex' | 'url' | 'json'.
+     */
+    "code": string;
+}
+
+/**
+ * RepoConfigLink is RepoConfigLink in src/shared/types.ts.
+ */
+export interface RepoConfigLink {
+    "match": string;
+    "url": string;
+    "label"?: string;
+}
+
+/**
+ * RepoConfigLinks is RepoConfig['links'].
+ */
+export interface RepoConfigLinks {
+    "tickets"?: RepoConfigLink[] | null;
+}
+
+/**
+ * RepoConfigRequires is RepoConfig['requires'].
+ */
+export interface RepoConfigRequires {
+    "node"?: string;
+    "submodules"?: boolean | null;
+    "lfs"?: boolean | null;
+    "hooksPath"?: string;
+    "files"?: RepoConfigFileReq[] | null;
+}
+
+/**
+ * RepoConfigResult is RepoConfigResult in src/shared/types.ts.
+ */
+export interface RepoConfigResult {
+    "path": string;
+    "exists": boolean;
+    "config": RepoConfig | null;
+    "issues": RepoConfigIssue[] | null;
 }
 
 /**
@@ -1242,6 +1942,63 @@ export interface StashInfo {
 }
 
 /**
+ * SubmoduleInfo is SubmoduleInfo in src/shared/types.ts.
+ */
+export interface SubmoduleInfo {
+    /**
+     * Name is the logical name from `.gitmodules`.
+     */
+    "name": string;
+    "path": string;
+    "url": string;
+
+    /**
+     * Sha is the checked-out commit (or the recorded one when uninitialized).
+     */
+    "sha": string;
+
+    /**
+     * RecordedSha is the gitlink the superproject's HEAD pins.
+     */
+    "recordedSha": string;
+    "branch": string | null;
+
+    /**
+     * Describe is git's human-readable ref, e.g. `heads/main`.
+     */
+    "describe": string | null;
+
+    /**
+     * Status: 'initialized' | 'modified' | 'uninitialized' | 'conflict'.
+     */
+    "status": string;
+    "ahead": number;
+    "behind": number;
+}
+
+/**
+ * SubtreeInfo is SubtreeInfo in src/shared/types.ts.
+ */
+export interface SubtreeInfo {
+    /**
+     * Prefix is the directory inside this repo, e.g. `vendor/parser`.
+     */
+    "prefix": string;
+    "url": string;
+    "ref": string;
+
+    /**
+     * Present is true when the prefix still exists in the working tree.
+     */
+    "present": boolean;
+
+    /**
+     * LastSplit is the upstream commit last imported, from the subtree trailer.
+     */
+    "lastSplit": string;
+}
+
+/**
  * TagInfo is TagInfo in src/shared/types.ts.
  */
 export interface TagInfo {
@@ -1354,4 +2111,30 @@ export interface UndoCommitResult {
     "wasRoot": boolean;
     "message": string;
     "branch": string;
+}
+
+/**
+ * UpstreamSuggestion is UpstreamSuggestion in src/shared/types.ts.
+ */
+export interface UpstreamSuggestion {
+    "branch": string;
+    "remote": string;
+    "remoteRefExists": boolean;
+}
+
+/**
+ * WorktreeInfo is WorktreeInfo in src/shared/types.ts.
+ */
+export interface WorktreeInfo {
+    "path": string;
+
+    /**
+     * Branch is null for a detached worktree.
+     */
+    "branch": string | null;
+    "head": string;
+    "isMain": boolean;
+    "isCurrent": boolean;
+    "locked": boolean;
+    "detached": boolean;
 }

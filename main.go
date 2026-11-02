@@ -52,6 +52,11 @@ func main() {
 	// the same consent and the same in-flight question.
 	keys := keychain.New(keychain.Options{Emitter: app.Emitter{}, HasWindow: app.HasWindow})
 	store := settings.New(settings.Options{Keychain: keys, Dialogs: settings.WailsDialogs{}})
+	// TS skipped the pre-destruction snapshot when settings.snapshotGuard === false.
+	gitsvc.SetSnapshotGuardSetting(func() bool {
+		v, ok := store.ReadSettings(context.Background()).Bool("snapshotGuard")
+		return !ok || v
+	})
 	git := gitsvc.New(app.Emitter{}, book, gitsvc.WithTokenFunc(func(ctx context.Context, host, repoPath string) string {
 		// A lookup failure (keychain refused, unreadable secrets) means "no token": git then runs
 		// unauthenticated and the remote's own error reaches the user, as in the Electron build.

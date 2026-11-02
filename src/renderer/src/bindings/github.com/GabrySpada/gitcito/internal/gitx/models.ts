@@ -8,3 +8,16 @@ export interface CommitAuthor {
     "name": string;
     "email": string;
 }
+
+/**
+ * CredentialCandidate is CredentialCandidate in src/shared/types.ts.
+ */
+export interface CredentialCandidate {
+    "name": string;
+    "available": boolean;
+
+    /**
+     * Recommended is true for the one that fits this OS best.
+     */
+    "recommended": boolean;
+}

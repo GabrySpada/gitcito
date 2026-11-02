@@ -93,7 +93,10 @@ func (s *GitService) HooksInfo(ctx context.Context, repoPath string) (HooksInfo,
 func (s *GitService) ReadHook(ctx context.Context, repoPath, name string) (string, error) {
 	return locked(s, ctx, "readHook", repoPath, func(ctx context.Context) (string, error) {
 		dir, _ := gitx.ResolveHooksDir(ctx, repoPath)
-		p := filepath.Join(dir, name)
+		p, err := dHookPath(dir, name)
+		if err != nil {
+			return "", err
+		}
 		if real, err := dReadUTF8(p); err == nil {
 			return real, nil
 		}
@@ -110,8 +113,11 @@ func (s *GitService) ReadHook(ctx context.Context, repoPath, name string) (strin
 func (s *GitService) WriteHook(ctx context.Context, repoPath, name, content string) error {
 	return lockedErr(s, ctx, "writeHook", repoPath, func(ctx context.Context) error {
 		dir, _ := gitx.ResolveHooksDir(ctx, repoPath)
+		p, err := dHookPath(dir, name)
+		if err != nil {
+			return err
+		}
 		_ = os.MkdirAll(dir, 0o777)
-		p := filepath.Join(dir, name)
 		if err := os.WriteFile(p, []byte(content), 0o666); err != nil {
 			return dNodeFSError("open", p, "", err)
 		}
@@ -132,7 +138,10 @@ const dModeBits = fs.ModePerm | fs.ModeSetuid | fs.ModeSetgid | fs.ModeSticky
 func (s *GitService) SetHookEnabled(ctx context.Context, repoPath, name string, enabled bool) error {
 	return lockedErr(s, ctx, "setHookEnabled", repoPath, func(ctx context.Context) error {
 		dir, _ := gitx.ResolveHooksDir(ctx, repoPath)
-		p := filepath.Join(dir, name)
+		p, err := dHookPath(dir, name)
+		if err != nil {
+			return err
+		}
 		st, err := os.Stat(p)
 		if err != nil {
 			return dNodeFSError("stat", p, "", err)
@@ -157,9 +166,25 @@ func (s *GitService) SetHookEnabled(ctx context.Context, repoPath, name string, 
 func (s *GitService) DeleteHook(ctx context.Context, repoPath, name string) error {
 	return lockedErr(s, ctx, "deleteHook", repoPath, func(ctx context.Context) error {
 		dir, _ := gitx.ResolveHooksDir(ctx, repoPath)
-		_ = os.Remove(filepath.Join(dir, name))
+		p, err := dHookPath(dir, name)
+		if err != nil {
+			return err
+		}
+		_ = os.Remove(p)
 		return nil
 	})
+}
+
+// dHookPath joins a hook name onto the hooks directory. The name arrives from the
+// page, and every exported method is callable by any script running there, so a
+// name must be one plain path segment: "../../.bashrc" would otherwise read,
+// overwrite or chmod files anywhere the user can write. The Electron build had
+// no such check (the IPC surface was the same); this closes it.
+func dHookPath(dir, name string) (string, error) {
+	if name == "" || name == "." || name == ".." || strings.ContainsAny(name, "/\\\x00") {
+		return "", dErrf("Invalid hook name: %s", name)
+	}
+	return filepath.Join(dir, name), nil
 }
 
 var (

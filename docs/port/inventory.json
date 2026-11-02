@@ -6022,8 +6022,8 @@
           "via": "gitApi.addToGitignore"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.AddToGitignore",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6053,8 +6053,8 @@
           "via": "gitApi.addToGitignoreAt"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.AddToGitignoreAt",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6115,8 +6115,8 @@
           "via": "gitApi.applyDoctorFix"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ApplyDoctorFix",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6198,8 +6198,8 @@
           "via": "gitApi.archiveCreate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ArchiveCreate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6223,8 +6223,8 @@
           "via": "gitApi.attributeFiles"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.AttributeFiles",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6258,8 +6258,8 @@
           "via": "gitApi.attributeWrite"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.AttributeWrite",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6551,8 +6551,8 @@
           "via": "gitApi.bundleCreate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BundleCreate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6578,8 +6578,8 @@
           "via": "gitApi.bundleFetch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BundleFetch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6604,8 +6604,8 @@
           "via": "gitApi.bundleInspect"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.BundleInspect",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6630,8 +6630,8 @@
           "via": "gitApi.checkAttributes"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CheckAttributes",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6821,8 +6821,8 @@
           "via": "gitApi.clean"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Clean",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6846,8 +6846,8 @@
           "via": "gitApi.cleanPreview"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CleanPreview",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6872,8 +6872,8 @@
           "via": "gitApi.clearLocks"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ClearLocks",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -6904,8 +6904,8 @@
           "via": "gitApi.clone"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Clone",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7745,8 +7745,8 @@
           "via": "gitApi.credentialStatus"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.CredentialStatus",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7824,8 +7824,8 @@
           "via": "gitApi.deleteHook"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DeleteHook",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7970,8 +7970,8 @@
           "via": "gitApi.diffDrivers"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DiffDrivers",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -7995,8 +7995,8 @@
           "via": "gitApi.diffDriverSuggestions"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.DiffDriverSuggestions",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8071,8 +8071,8 @@
           "via": "gitApi.discard"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Discard",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8144,8 +8144,8 @@
           "via": "gitApi.fetchAll"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FetchAll",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8400,8 +8400,8 @@
           "via": "gitApi.filterDrivers"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FilterDrivers",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8428,8 +8428,8 @@
           "via": "gitApi.filterDryRun"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.FilterDryRun",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8455,8 +8455,8 @@
           "via": "gitApi.forgetCredential"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ForgetCredential",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8511,8 +8511,8 @@
           "via": "gitApi.fsck"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Fsck",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -8777,8 +8777,8 @@
           "via": "gitApi.getUser"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.GetUser",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9154,8 +9154,8 @@
           "via": "gitApi.hooksInfo"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.HooksInfo",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9231,8 +9231,8 @@
           "via": "gitApi.init"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Init",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9258,8 +9258,8 @@
           "via": "gitApi.initHere"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.InitHere",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9309,8 +9309,8 @@
           "via": "gitApi.lastFetchAt"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.LastFetchAt",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9334,8 +9334,8 @@
           "via": "gitApi.lfsInfo"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.LfsInfo",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9359,8 +9359,8 @@
           "via": "gitApi.lfsPrune"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.LfsPrune",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9384,8 +9384,8 @@
           "via": "gitApi.lfsPull"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.LfsPull",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9410,8 +9410,8 @@
           "via": "gitApi.lfsTrack"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.LfsTrack",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9436,8 +9436,8 @@
           "via": "gitApi.lfsUntrack"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.LfsUntrack",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9624,8 +9624,8 @@
           "via": "gitApi.maintenanceRun"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.MaintenanceRun",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9650,8 +9650,8 @@
           "via": "gitApi.maintenanceSchedule"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.MaintenanceSchedule",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -9679,8 +9679,8 @@
           "via": "gitApi.maintenanceStats"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.MaintenanceStats",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10031,8 +10031,8 @@
           "via": "gitApi.pull"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Pull",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10063,8 +10063,8 @@
           "via": "gitApi.pullBranch"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.PullBranch",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10109,8 +10109,8 @@
           "via": "gitApi.push"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Push",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10138,8 +10138,8 @@
           "via": "gitApi.pushAllTags"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.PushAllTags",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10224,8 +10224,8 @@
           "via": "gitApi.pushToRemotes"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.PushToRemotes",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10278,8 +10278,8 @@
           "via": "gitApi.readHook"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ReadHook",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10446,8 +10446,8 @@
           "via": "gitApi.remoteBranches"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RemoteBranches",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10677,8 +10677,8 @@
           "via": "gitApi.replaceDelete"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ReplaceDelete",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10708,8 +10708,8 @@
           "via": "gitApi.replaceGraft"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ReplaceGraft",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10733,8 +10733,8 @@
           "via": "gitApi.replacements"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Replacements",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10755,8 +10755,8 @@
         "src/main/git.ts:3439"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.ReplaceObject",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10780,8 +10780,8 @@
           "via": "gitApi.repoConfig"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RepoConfig",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -10831,8 +10831,8 @@
           "via": "gitApi.repoDoctor"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.RepoDoctor",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11546,8 +11546,8 @@
           "via": "gitApi.setBranchRef"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetBranchRef",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11581,8 +11581,8 @@
           "via": "gitApi.setCredentialHelper"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetCredentialHelper",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11609,8 +11609,8 @@
           "via": "gitApi.setDiffDriver"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetDiffDriver",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11645,8 +11645,8 @@
           "via": "gitApi.setFilterDriver"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetFilterDriver",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11672,8 +11672,8 @@
           "via": "gitApi.setHookEnabled"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetHookEnabled",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11759,8 +11759,8 @@
           "via": "gitApi.setRepoConfig"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetRepoConfig",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11847,8 +11847,8 @@
           "via": "gitApi.setUpstream"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetUpstream",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11874,8 +11874,8 @@
           "via": "gitApi.setUser"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetUser",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -11900,8 +11900,8 @@
           "via": "gitApi.setUseReplaceRefs"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SetUseReplaceRefs",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12465,8 +12465,8 @@
           "via": "gitApi.staleLocks"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.StaleLocks",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12889,8 +12889,8 @@
           "via": "gitApi.submoduleAdd"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubmoduleAdd",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12911,8 +12911,8 @@
         "src/main/git.ts:6375"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubmoduleDeinit",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12937,8 +12937,8 @@
           "via": "gitApi.submoduleRemove"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubmoduleRemove",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12962,8 +12962,8 @@
           "via": "gitApi.submodules"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Submodules",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -12989,8 +12989,8 @@
           "via": "gitApi.submoduleSetUrl"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubmoduleSetUrl",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13015,8 +13015,8 @@
           "via": "gitApi.submoduleSync"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubmoduleSync",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13042,8 +13042,8 @@
           "via": "gitApi.submoduleUpdate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubmoduleUpdate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13071,8 +13071,8 @@
           "via": "gitApi.subtreeAdd"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubtreeAdd",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13097,8 +13097,8 @@
           "via": "gitApi.subtreeForget"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubtreeForget",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13126,8 +13126,8 @@
           "via": "gitApi.subtreePull"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubtreePull",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13154,8 +13154,8 @@
           "via": "gitApi.subtreePush"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubtreePush",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13179,8 +13179,8 @@
           "via": "gitApi.subtrees"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Subtrees",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13206,8 +13206,8 @@
           "via": "gitApi.subtreeSplit"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SubtreeSplit",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13231,8 +13231,8 @@
           "via": "gitApi.suggestRepoConfig"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.SuggestRepoConfig",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13439,8 +13439,8 @@
           "via": "gitApi.untrack"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Untrack",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13464,8 +13464,8 @@
           "via": "gitApi.upstreamSuggestion"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.UpstreamSuggestion",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13511,8 +13511,8 @@
           "via": "gitApi.worktreeAdd"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.WorktreeAdd",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13538,8 +13538,8 @@
           "via": "gitApi.worktreeRemove"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.WorktreeRemove",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13563,8 +13563,8 @@
           "via": "gitApi.worktrees"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.Worktrees",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -13616,8 +13616,8 @@
           "via": "gitApi.writeHook"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "gitsvc.GitService.WriteHook",
+      "status": "ported",
       "test": "—"
     }
   ]

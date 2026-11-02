@@ -986,3 +986,31 @@ func TestDReplaceRefusesEmpty(t *testing.T) {
 		t.Fatal("empty delete accepted")
 	}
 }
+
+// Hook names come from the page; a traversal must not reach outside the hooks directory.
+func TestDHookNamesCannotEscape(t *testing.T) {
+	repo := testutil.CloneFixture(t, "merge-conflict")
+	s := New(nil, nil)
+	ctx := context.Background()
+	outside := filepath.Join(filepath.Dir(repo), "escaped")
+	for _, name := range []string{"../../escaped", "..", ".", "", "a/b", `a\b`, "pre\x00commit"} {
+		if err := s.WriteHook(ctx, repo, name, "#!/bin/sh\n"); err == nil {
+			t.Errorf("WriteHook(%q) accepted", name)
+		}
+		if _, err := s.ReadHook(ctx, repo, name); err == nil {
+			t.Errorf("ReadHook(%q) accepted", name)
+		}
+		if err := s.SetHookEnabled(ctx, repo, name, true); err == nil {
+			t.Errorf("SetHookEnabled(%q) accepted", name)
+		}
+		if err := s.DeleteHook(ctx, repo, name); err == nil {
+			t.Errorf("DeleteHook(%q) accepted", name)
+		}
+	}
+	if _, err := os.Stat(outside); err == nil {
+		t.Fatal("a hook write escaped the hooks directory")
+	}
+	if err := s.WriteHook(ctx, repo, "pre-commit", "#!/bin/sh\nexit 0\n"); err != nil {
+		t.Fatalf("a plain hook name must still work: %v", err)
+	}
+}

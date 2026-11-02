@@ -154,6 +154,15 @@ func aAbsoluteGitDir(ctx context.Context, repoPath string) (string, error) {
 // only an explicit `false` turns the guard off. It reads the file directly
 // until internal/settings exists; the lead may swap this for that package.
 func aSnapshotGuardOn() bool {
+	// The settings store, once main has wired it (SetSnapshotGuardSetting), is
+	// the one source of truth for every slice's guard; the file read below is
+	// the fallback for tests and tools that run the service without it.
+	dGuardSetting.Lock()
+	fn := dGuardSetting.enabled
+	dGuardSetting.Unlock()
+	if fn != nil {
+		return fn()
+	}
 	file, err := paths.File("gitcito-settings.json")
 	if err != nil {
 		return true
