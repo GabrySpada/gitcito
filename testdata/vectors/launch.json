@@ -1,0 +1,347 @@
+{
+  "extractDevToolsUrl": [
+    {
+      "input": "The Flutter DevTools debugger and profiler on iPhone 16 Pro is available at: http://127.0.0.1:9100?uri=http://127.0.0.1:53412/uJ8k=/",
+      "out": {
+        "url": "http://127.0.0.1:9100?uri=http://127.0.0.1:53412/uJ8k=/",
+        "name": "Flutter DevTools"
+      }
+    },
+    {
+      "input": "Serving DevTools at http://127.0.0.1:9101/",
+      "out": {
+        "url": "http://127.0.0.1:9101/",
+        "name": "Dart DevTools"
+      }
+    },
+    {
+      "input": "Vue Devtools listening on http://localhost:8098",
+      "out": {
+        "url": "http://localhost:8098",
+        "name": "Vue DevTools"
+      }
+    },
+    {
+      "input": "Vue devtools at http://localhost:8098/",
+      "out": {
+        "url": "http://localhost:8098/",
+        "name": "Vue DevTools"
+      }
+    },
+    {
+      "input": "Prisma Studio is up on http://localhost:5555",
+      "out": {
+        "url": "http://localhost:5555",
+        "name": "Prisma Studio"
+      }
+    },
+    {
+      "input": "Drizzle Studio is up and running on https://local.drizzle.studio",
+      "out": null
+    },
+    {
+      "input": "Drizzle Studio is up and running on http://127.0.0.1:4983",
+      "out": {
+        "url": "http://127.0.0.1:4983",
+        "name": "Drizzle Studio"
+      }
+    },
+    {
+      "input": "Webpack Bundle Analyzer is started at http://127.0.0.1:8888",
+      "out": {
+        "url": "http://127.0.0.1:8888",
+        "name": "Bundle Analyzer"
+      }
+    },
+    {
+      "input": "DevTools is available at: http://127.0.0.1:9100/.",
+      "out": {
+        "url": "http://127.0.0.1:9100/",
+        "name": "DevTools"
+      }
+    },
+    {
+      "input": "DevTools is available at: http://127.0.0.1:9100/),",
+      "out": {
+        "url": "http://127.0.0.1:9100/",
+        "name": "DevTools"
+      }
+    },
+    {
+      "input": "DevTools is available at: https://devtools.example.com/",
+      "out": null
+    },
+    {
+      "input": "A Dart VM Service is available at: http://127.0.0.1:53412/",
+      "out": null
+    },
+    {
+      "input": "Debugger listening on ws://127.0.0.1:9229/2f1e",
+      "out": null
+    },
+    {
+      "input": "Syncing files to device…",
+      "out": null
+    },
+    {
+      "input": "devtools listening on http://0.0.0.0:3000/x",
+      "out": {
+        "url": "http://0.0.0.0:3000/x",
+        "name": "DevTools"
+      }
+    },
+    {
+      "input": "DEVTOOLS AT HTTP://LOCALHOST:1/",
+      "out": {
+        "url": "HTTP://LOCALHOST:1/",
+        "name": "DevTools"
+      }
+    },
+    {
+      "input": "devtools at http://[::1]:9/",
+      "out": {
+        "url": "http://[::1]:9/",
+        "name": "DevTools"
+      }
+    },
+    {
+      "input": "devtools at http://localhost",
+      "out": {
+        "url": "http://localhost",
+        "name": "DevTools"
+      }
+    },
+    {
+      "input": "devtools at http://localhostile.com/",
+      "out": null
+    },
+    {
+      "input": "devtools at http://127.0.0.1.evil.com/",
+      "out": null
+    },
+    {
+      "input": "flutter devtools: available at http://example.com/ then devtools at http://127.0.0.1:2/",
+      "out": null
+    },
+    {
+      "input": "Flutter DevTools\navailable at http://127.0.0.1:3/",
+      "out": null
+    },
+    {
+      "input": "serving devtools at     http://127.0.0.1:4/path?q=1#frag",
+      "out": {
+        "url": "http://127.0.0.1:4/path?q=1#frag",
+        "name": "Dart DevTools"
+      }
+    },
+    {
+      "input": "",
+      "out": null
+    }
+  ],
+  "resolveInputTokens": [
+    {
+      "value": {
+        "name": "Run ${input:who}",
+        "args": [
+          "--from",
+          "${input:who}",
+          "${input:who}+${input:greeting}"
+        ],
+        "env": {
+          "GREETING": "${input:greeting}",
+          "KEEP": "${input:unknown}"
+        },
+        "nested": {
+          "deep": [
+            "${input:who}"
+          ]
+        },
+        "port": 3000,
+        "flag": true,
+        "nothing": null
+      },
+      "values": {
+        "who": "carlos",
+        "greeting": "hola"
+      },
+      "out": {
+        "name": "Run carlos",
+        "args": [
+          "--from",
+          "carlos",
+          "carlos+hola"
+        ],
+        "env": {
+          "GREETING": "hola",
+          "KEEP": "${input:unknown}"
+        },
+        "nested": {
+          "deep": [
+            "carlos"
+          ]
+        },
+        "port": 3000,
+        "flag": true,
+        "nothing": null
+      }
+    },
+    {
+      "value": "${input:a}${input:b}${input:a}",
+      "values": {
+        "a": "1",
+        "b": "$&"
+      },
+      "out": "1$&1"
+    },
+    {
+      "value": "${input:}${input:x y}",
+      "values": {
+        "x y": "spaced"
+      },
+      "out": "${input:}spaced"
+    },
+    {
+      "value": [
+        "${input:a}",
+        [
+          "${input:a}"
+        ]
+      ],
+      "values": {
+        "a": "deep"
+      },
+      "out": [
+        "deep",
+        [
+          "deep"
+        ]
+      ]
+    },
+    {
+      "value": 42,
+      "values": {
+        "a": "x"
+      },
+      "out": 42
+    }
+  ],
+  "isLoopbackUrl": [
+    {
+      "input": "http://localhost:3000/",
+      "out": true
+    },
+    {
+      "input": "https://127.0.0.1/",
+      "out": true
+    },
+    {
+      "input": "http://[::1]:9100/x",
+      "out": true
+    },
+    {
+      "input": "http://0.0.0.0:8080",
+      "out": true
+    },
+    {
+      "input": "http://LOCALHOST/",
+      "out": true
+    },
+    {
+      "input": "http://localhost./",
+      "out": false
+    },
+    {
+      "input": "http://127.1/",
+      "out": true
+    },
+    {
+      "input": "http://0x7f.0.0.1/",
+      "out": true
+    },
+    {
+      "input": "http://2130706433/",
+      "out": true
+    },
+    {
+      "input": "http://[0:0:0:0:0:0:0:1]/",
+      "out": true
+    },
+    {
+      "input": "http://user:pw@localhost:1/",
+      "out": true
+    },
+    {
+      "input": "http:localhost",
+      "out": true
+    },
+    {
+      "input": "http:\\\\localhost\\x",
+      "out": true
+    },
+    {
+      "input": "  http://localhost/  ",
+      "out": true
+    },
+    {
+      "input": "http://%6cocalhost/",
+      "out": true
+    },
+    {
+      "input": "http://local\thost/",
+      "out": true
+    },
+    {
+      "input": "ws://localhost/",
+      "out": false
+    },
+    {
+      "input": "file:///etc/passwd",
+      "out": false
+    },
+    {
+      "input": "devtools://devtools/bundled/inspector.html",
+      "out": false
+    },
+    {
+      "input": "http://example.com/",
+      "out": false
+    },
+    {
+      "input": "http://localhost.example.com/",
+      "out": false
+    },
+    {
+      "input": "http://127.0.0.2/",
+      "out": false
+    },
+    {
+      "input": "http://localhost:99999/",
+      "out": false
+    },
+    {
+      "input": "http://[::2]/",
+      "out": false
+    },
+    {
+      "input": "http://127.0.0.1:65535/",
+      "out": true
+    },
+    {
+      "input": "not a url",
+      "out": false
+    },
+    {
+      "input": "",
+      "out": false
+    },
+    {
+      "input": "http://",
+      "out": false
+    },
+    {
+      "input": "HTTPS://[::1]",
+      "out": true
+    }
+  ]
+}

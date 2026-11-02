@@ -1,0 +1,720 @@
+{
+  "parseDartAnalyze": [
+    {
+      "input": "INFO|LINT|unused_import|/repo/lib/main.dart|3|8|29|Unused import: \\|package:x\\|.\nWARNING|STATIC_WARNING|unused_local|/repo/lib/a.dart|10|5|4|The value of the local variable is not used.\nERROR|COMPILE_TIME_ERROR|undefined_method|/repo/lib/b.dart|42|11|6|The method is not defined.\nERROR|X||lib/rel.dart|x|0|1|  spaced \\\\ backslash  \nHINT|Y|code|/elsewhere/c.dart|7|2|1|outside the repo\nINFO|Y|code||1|1|1|no file\nINFO|Y|code|/repo/x.dart|1|1|1|   \nnot a diagnostic line\nA|B|C|D|E|F|G",
+      "repo": "/repo",
+      "out": [
+        {
+          "file": "lib/main.dart",
+          "line": 3,
+          "col": 8,
+          "severity": "info",
+          "message": "Unused import: |package:x|.",
+          "code": "unused_import",
+          "source": "dart"
+        },
+        {
+          "file": "lib/a.dart",
+          "line": 10,
+          "col": 5,
+          "severity": "warning",
+          "message": "The value of the local variable is not used.",
+          "code": "unused_local",
+          "source": "dart"
+        },
+        {
+          "file": "lib/b.dart",
+          "line": 42,
+          "col": 11,
+          "severity": "error",
+          "message": "The method is not defined.",
+          "code": "undefined_method",
+          "source": "dart"
+        },
+        {
+          "file": "lib/rel.dart",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "spaced \\ backslash",
+          "source": "dart"
+        },
+        {
+          "file": "../elsewhere/c.dart",
+          "line": 7,
+          "col": 2,
+          "severity": "info",
+          "message": "outside the repo",
+          "code": "code",
+          "source": "dart"
+        }
+      ]
+    },
+    {
+      "input": "Analyzing...\n",
+      "repo": "/repo",
+      "out": []
+    },
+    {
+      "input": "INFO|LINT|c|/repo/crlf.dart|1|2|3|message\r\nINFO|LINT|c|/repo/lib/../lib/dots.dart| 4 |0x10|3|hex col",
+      "repo": "/repo",
+      "out": [
+        {
+          "file": "crlf.dart",
+          "line": 1,
+          "col": 2,
+          "severity": "info",
+          "message": "message",
+          "code": "c",
+          "source": "dart"
+        },
+        {
+          "file": "lib/dots.dart",
+          "line": 4,
+          "col": 16,
+          "severity": "info",
+          "message": "hex col",
+          "code": "c",
+          "source": "dart"
+        }
+      ]
+    }
+  ],
+  "parseTsc": [
+    {
+      "input": "src/a.ts(12,5): error TS2304: Cannot find name 'x'.\nsrc/b.tsx(1,1): warning TS6133: Declared but never read.\n  /repo/src/c.ts(3,4): info TS9999: indented and absolute.  \nsrc (weird)/d.ts(2,2): error TS1005: paren in path (1,1).\nsrc/e.ts(2,2): error ts1005: lower-case code\nsrc/f.ts(2,2): fatal TS1005: unknown level\nFound 2 errors.",
+      "repo": "/repo",
+      "out": [
+        {
+          "file": "src/a.ts",
+          "line": 12,
+          "col": 5,
+          "severity": "error",
+          "message": "Cannot find name 'x'.",
+          "code": "TS2304",
+          "source": "tsc"
+        },
+        {
+          "file": "src/b.tsx",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "Declared but never read.",
+          "code": "TS6133",
+          "source": "tsc"
+        },
+        {
+          "file": "src/c.ts",
+          "line": 3,
+          "col": 4,
+          "severity": "info",
+          "message": "indented and absolute.",
+          "code": "TS9999",
+          "source": "tsc"
+        },
+        {
+          "file": "src (weird)/d.ts",
+          "line": 2,
+          "col": 2,
+          "severity": "error",
+          "message": "paren in path (1,1).",
+          "code": "TS1005",
+          "source": "tsc"
+        }
+      ]
+    },
+    {
+      "input": "",
+      "repo": "/repo",
+      "out": []
+    }
+  ],
+  "parseEslint": [
+    {
+      "input": "[{\"filePath\":\"/repo/src/a.ts\",\"messages\":[{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"x is defined but never used.\",\"line\":4,\"column\":7},{\"ruleId\":\"eqeqeq\",\"severity\":1,\"message\":\"Expected ===.\",\"line\":9,\"column\":3},{\"ruleId\":null,\"severity\":2,\"message\":\"Parsing error\",\"line\":\"5\",\"column\":null},{\"ruleId\":\"\",\"severity\":\"2\",\"message\":\"string severity\"},{\"message\":42},null]},{\"filePath\":\"/repo/src/clean.ts\",\"messages\":[]},{\"filePath\":5,\"messages\":[]},{\"filePath\":\"/repo/x.ts\"},\"junk\"]",
+      "repo": "/repo",
+      "out": [
+        {
+          "file": "src/a.ts",
+          "line": 4,
+          "col": 7,
+          "severity": "error",
+          "message": "x is defined but never used.",
+          "code": "no-unused-vars",
+          "source": "eslint"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 9,
+          "col": 3,
+          "severity": "warning",
+          "message": "Expected ===.",
+          "code": "eqeqeq",
+          "source": "eslint"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 5,
+          "col": 1,
+          "severity": "error",
+          "message": "Parsing error",
+          "source": "eslint"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "string severity",
+          "source": "eslint"
+        }
+      ]
+    },
+    {
+      "input": "Oops, warnings first\n[{\"filePath\":\"rel/y.js\",\"messages\":[{\"severity\":1,\"message\":\"m\",\"line\":2.5,\"column\":true}]}]\nbye",
+      "repo": "/repo",
+      "out": [
+        {
+          "file": "rel/y.js",
+          "line": 2.5,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "eslint"
+        }
+      ]
+    },
+    {
+      "input": "command not found",
+      "repo": "/repo",
+      "out": []
+    },
+    {
+      "input": "{\"not\":\"an array\"}",
+      "repo": "/repo",
+      "out": []
+    },
+    {
+      "input": "",
+      "repo": "/repo",
+      "out": []
+    }
+  ],
+  "parseLineDiagnostics": [
+    {
+      "input": "src/main.rs:10:5: warning[clippy::needless_return]: unneeded `return` statement\nsrc/lib.rs:3:1: error: cannot find value `foo` in this scope\nsrc/lib.rs:3:1: note: this is a continuation line\nsrc/lib.rs:3:1: help: and so is this\ncmd/main.go:7:2: unreachable code\nC:/win/path.go:1:2: windows drive letter\nvet: ./x.go:1:2: prefixed\n# pkg\nsrc/x.rs:1:1: error[E0425]: with code",
+      "repo": "/repo",
+      "source": "clippy",
+      "out": [
+        {
+          "file": "src/main.rs",
+          "line": 10,
+          "col": 5,
+          "severity": "warning",
+          "message": "unneeded `return` statement",
+          "code": "clippy::needless_return",
+          "source": "clippy"
+        },
+        {
+          "file": "src/lib.rs",
+          "line": 3,
+          "col": 1,
+          "severity": "error",
+          "message": "cannot find value `foo` in this scope",
+          "source": "clippy"
+        },
+        {
+          "file": "cmd/main.go",
+          "line": 7,
+          "col": 2,
+          "severity": "warning",
+          "message": "unreachable code",
+          "source": "clippy"
+        },
+        {
+          "file": "C:/win/path.go",
+          "line": 1,
+          "col": 2,
+          "severity": "warning",
+          "message": "windows drive letter",
+          "source": "clippy"
+        },
+        {
+          "file": "vet: ./x.go",
+          "line": 1,
+          "col": 2,
+          "severity": "warning",
+          "message": "prefixed",
+          "source": "clippy"
+        },
+        {
+          "file": "src/x.rs",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "with code",
+          "code": "E0425",
+          "source": "clippy"
+        }
+      ]
+    },
+    {
+      "input": "src/main.rs:10:5: warning[clippy::needless_return]: unneeded `return` statement\nsrc/lib.rs:3:1: error: cannot find value `foo` in this scope\nsrc/lib.rs:3:1: note: this is a continuation line\nsrc/lib.rs:3:1: help: and so is this\ncmd/main.go:7:2: unreachable code\nC:/win/path.go:1:2: windows drive letter\nvet: ./x.go:1:2: prefixed\n# pkg\nsrc/x.rs:1:1: error[E0425]: with code",
+      "repo": "/repo",
+      "source": "go vet",
+      "out": [
+        {
+          "file": "src/main.rs",
+          "line": 10,
+          "col": 5,
+          "severity": "warning",
+          "message": "unneeded `return` statement",
+          "code": "clippy::needless_return",
+          "source": "go vet"
+        },
+        {
+          "file": "src/lib.rs",
+          "line": 3,
+          "col": 1,
+          "severity": "error",
+          "message": "cannot find value `foo` in this scope",
+          "source": "go vet"
+        },
+        {
+          "file": "cmd/main.go",
+          "line": 7,
+          "col": 2,
+          "severity": "warning",
+          "message": "unreachable code",
+          "source": "go vet"
+        },
+        {
+          "file": "C:/win/path.go",
+          "line": 1,
+          "col": 2,
+          "severity": "warning",
+          "message": "windows drive letter",
+          "source": "go vet"
+        },
+        {
+          "file": "vet: ./x.go",
+          "line": 1,
+          "col": 2,
+          "severity": "warning",
+          "message": "prefixed",
+          "source": "go vet"
+        },
+        {
+          "file": "src/x.rs",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "with code",
+          "code": "E0425",
+          "source": "go vet"
+        }
+      ]
+    }
+  ],
+  "parseRuff": [
+    {
+      "input": "[{\"filename\":\"/repo/app.py\",\"code\":\"F401\",\"message\":\"`os` imported but unused\",\"location\":{\"row\":1,\"column\":8}},{\"filename\":\"pkg/mod.py\",\"code\":null,\"message\":\"no code\",\"location\":null},{\"filename\":\"/repo/b.py\",\"message\":\"no location\"},{\"filename\":3,\"message\":\"bad\"}]",
+      "repo": "/repo",
+      "out": [
+        {
+          "file": "app.py",
+          "line": 1,
+          "col": 8,
+          "severity": "warning",
+          "message": "`os` imported but unused",
+          "code": "F401",
+          "source": "ruff"
+        },
+        {
+          "file": "pkg/mod.py",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "no code",
+          "source": "ruff"
+        },
+        {
+          "file": "b.py",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "no location",
+          "source": "ruff"
+        }
+      ]
+    },
+    {
+      "input": "",
+      "repo": "/repo",
+      "out": []
+    }
+  ],
+  "normaliseProblems": [
+    {
+      "input": [
+        {
+          "file": "a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        }
+      ],
+      "out": [
+        {
+          "file": "a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "file": "b.ts",
+          "line": 5,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "a.ts",
+          "line": 9,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "a.ts",
+          "line": 2,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "info",
+          "message": "m",
+          "source": "s"
+        }
+      ],
+      "out": [
+        {
+          "file": "a.ts",
+          "line": 2,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "a.ts",
+          "line": 9,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "info",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "b.ts",
+          "line": 5,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "file": "src/B.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 1,
+          "col": 3,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "other",
+          "source": "x"
+        },
+        {
+          "file": "_x.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "10.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "9.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "é.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "info",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "e.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "info",
+          "message": "m",
+          "source": "s"
+        }
+      ],
+      "out": [
+        {
+          "file": "_x.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "10.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "9.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "warning",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "e.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "info",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "é.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "info",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "other",
+          "source": "x"
+        },
+        {
+          "file": "src/a.ts",
+          "line": 1,
+          "col": 3,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        },
+        {
+          "file": "src/B.ts",
+          "line": 1,
+          "col": 1,
+          "severity": "error",
+          "message": "m",
+          "source": "s"
+        }
+      ]
+    }
+  ],
+  "plan": [
+    {
+      "files": {
+        "mobile/pubspec.yaml": "name: app\n",
+        "apps/webapp/tsconfig.json": "{}"
+      },
+      "plan": [
+        {
+          "id": "dart",
+          "dir": "<ROOT>/mobile"
+        },
+        {
+          "id": "tsc",
+          "dir": "<ROOT>/apps/webapp"
+        }
+      ],
+      "detect": [
+        "dart",
+        "tsc"
+      ]
+    },
+    {
+      "files": {
+        "tsconfig.json": "{}",
+        "packages/ui/tsconfig.json": "{}"
+      },
+      "plan": [
+        {
+          "id": "tsc",
+          "dir": "<ROOT>"
+        }
+      ],
+      "detect": [
+        "tsc"
+      ]
+    },
+    {
+      "files": {
+        "pubspec.yaml": "x",
+        "tsconfig.json": "{}",
+        "eslint.config.mjs": "",
+        "Cargo.toml": "",
+        "go.mod": "",
+        "pyproject.toml": "",
+        "web/.eslintrc.json": "",
+        "web/sub/ruff.toml": "",
+        "node_modules/x/tsconfig.json": "{}",
+        ".hidden/go.mod": "",
+        "build/go.mod": "",
+        "a/b/c/go.mod": "",
+        "a/b/c/d/Cargo.toml": ""
+      },
+      "plan": [
+        {
+          "id": "dart",
+          "dir": "<ROOT>"
+        },
+        {
+          "id": "tsc",
+          "dir": "<ROOT>"
+        },
+        {
+          "id": "eslint",
+          "dir": "<ROOT>"
+        },
+        {
+          "id": "clippy",
+          "dir": "<ROOT>"
+        },
+        {
+          "id": "go vet",
+          "dir": "<ROOT>"
+        },
+        {
+          "id": "ruff",
+          "dir": "<ROOT>"
+        }
+      ],
+      "detect": [
+        "dart",
+        "tsc",
+        "eslint",
+        "clippy",
+        "go vet",
+        "ruff"
+      ]
+    },
+    {
+      "files": {
+        ".eslintrc": "",
+        "x/.eslintrc.yml": "",
+        "y/eslint.config.cts": "",
+        "z/eslintrc.js": "",
+        "w/.eslintrc.foo.bar": ""
+      },
+      "plan": [
+        {
+          "id": "eslint",
+          "dir": "<ROOT>"
+        }
+      ],
+      "detect": [
+        "eslint"
+      ]
+    },
+    {
+      "files": {},
+      "plan": [],
+      "detect": []
+    }
+  ]
+}

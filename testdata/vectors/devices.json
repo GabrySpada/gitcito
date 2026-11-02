@@ -1,0 +1,691 @@
+{
+  "parseFlutterDevices": [
+    {
+      "input": "Warning: dart is not on your PATH.\n[\n  { \"name\": \"iPhone 16 Pro\", \"id\": \"3B7F\", \"isSupported\": true, \"targetPlatform\": \"ios\", \"emulator\": true, \"sdk\": \"iOS 18.0\" },\n  { \"name\": \"Pixel 8\", \"id\": \"39121\", \"targetPlatform\": \"android-arm64\", \"emulator\": false, \"sdk\": \"Android 14 (API 34)\" },\n  { \"name\": \"sdk gphone64 arm64\", \"id\": \"emulator-5554\", \"targetPlatform\": \"android-arm64\", \"emulator\": true, \"sdk\": \"\" },\n  { \"name\": \"macOS\", \"id\": \"macos\", \"targetPlatform\": \"darwin\", \"emulator\": false },\n  { \"name\": \"Windows\", \"id\": \"windows\", \"targetPlatform\": \"windows-x64\" },\n  { \"name\": \"Linux\", \"id\": \"linux\", \"targetPlatform\": \"linux-x64\" },\n  { \"name\": \"Chrome\", \"id\": \"chrome\", \"targetPlatform\": \"web-javascript\", \"emulator\": false },\n  { \"id\": \"fuchsia\", \"targetPlatform\": \"fuchsia-arm64\", \"emulator\": \"yes\" },\n  { \"name\": \"no id\" },\n  null, 5, \"x\"\n]\ntrailing warning",
+      "out": [
+        {
+          "id": "3B7F",
+          "name": "iPhone 16 Pro",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": true,
+          "source": "flutter",
+          "detail": "iOS 18.0"
+        },
+        {
+          "id": "39121",
+          "name": "Pixel 8",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "flutter",
+          "detail": "Android 14 (API 34)"
+        },
+        {
+          "id": "emulator-5554",
+          "name": "sdk gphone64 arm64",
+          "platform": "android",
+          "kind": "simulator",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "macos",
+          "name": "macOS",
+          "platform": "macos",
+          "kind": "desktop",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "windows",
+          "name": "Windows",
+          "platform": "windows",
+          "kind": "desktop",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "linux",
+          "name": "Linux",
+          "platform": "linux",
+          "kind": "desktop",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "chrome",
+          "name": "Chrome",
+          "platform": "web",
+          "kind": "web",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "fuchsia",
+          "name": "fuchsia",
+          "platform": "other",
+          "kind": "device",
+          "running": true,
+          "source": "flutter"
+        }
+      ]
+    },
+    {
+      "input": "No devices detected.",
+      "out": []
+    },
+    {
+      "input": "[not json]",
+      "out": []
+    },
+    {
+      "input": "{\"a\": 1}",
+      "out": []
+    },
+    {
+      "input": "] then [",
+      "out": []
+    },
+    {
+      "input": "[]",
+      "out": []
+    }
+  ],
+  "parseFlutterEmulators": [
+    {
+      "input": "2 available emulators:\n\napple_ios_simulator • iOS Simulator • Apple • ios\nPixel_7_API_34      • Pixel 7 API 34 • Google • android\n • missing id • x • android\nthree • parts • only\nnameless •  • Google • Android\nnomaker • Name •  • iOS-ish\n\nTo run an emulator, run 'flutter emulators --launch <emulator id>'.\n",
+      "out": [
+        {
+          "id": "apple_ios_simulator",
+          "name": "iOS Simulator",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": false,
+          "source": "flutter-emulator",
+          "detail": "Apple"
+        },
+        {
+          "id": "Pixel_7_API_34",
+          "name": "Pixel 7 API 34",
+          "platform": "android",
+          "kind": "simulator",
+          "running": false,
+          "source": "flutter-emulator",
+          "detail": "Google"
+        },
+        {
+          "id": "nameless",
+          "name": "nameless",
+          "platform": "android",
+          "kind": "simulator",
+          "running": false,
+          "source": "flutter-emulator",
+          "detail": "Google"
+        },
+        {
+          "id": "nomaker",
+          "name": "Name",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": false,
+          "source": "flutter-emulator"
+        }
+      ]
+    }
+  ],
+  "parseSimctl": [
+    {
+      "input": "{\"devices\":{\"com.apple.CoreSimulator.SimRuntime.iOS-18-0\":[{\"udid\":\"UDID-1\",\"name\":\"iPhone 16\",\"state\":\"Booted\",\"isAvailable\":true},{\"udid\":\"UDID-2\",\"name\":\"iPad Air\",\"state\":\"Shutdown\",\"isAvailable\":true},{\"udid\":\"UDID-3\",\"name\":\"Broken\",\"state\":\"Shutdown\",\"isAvailable\":false},{\"udid\":\"UDID-5\",\"state\":\"Shutdown\"},{\"name\":\"no udid\"}],\"com.apple.CoreSimulator.SimRuntime.ios-17-5-1\":[{\"udid\":\"UDID-6\",\"name\":\"iPhone 15\",\"state\":\"Booted\"}],\"com.apple.CoreSimulator.SimRuntime.watchOS-11-0\":[{\"udid\":\"UDID-4\",\"name\":\"Apple Watch\",\"state\":\"Shutdown\",\"isAvailable\":true}],\"iOS-16-0\":\"not a list\"}}",
+      "out": [
+        {
+          "id": "UDID-1",
+          "name": "iPhone 16",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": true,
+          "source": "simctl",
+          "detail": "iOS 18.0"
+        },
+        {
+          "id": "UDID-2",
+          "name": "iPad Air",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": false,
+          "source": "simctl",
+          "detail": "iOS 18.0"
+        },
+        {
+          "id": "UDID-5",
+          "name": "UDID-5",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": false,
+          "source": "simctl",
+          "detail": "iOS 18.0"
+        },
+        {
+          "id": "UDID-6",
+          "name": "iPhone 15",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": true,
+          "source": "simctl",
+          "detail": "iOS 17.5.1"
+        }
+      ]
+    },
+    {
+      "input": "not json",
+      "out": []
+    },
+    {
+      "input": "{\"devices\": null}",
+      "out": []
+    },
+    {
+      "input": "null",
+      "out": []
+    }
+  ],
+  "parseAdbDevices": [
+    {
+      "input": "List of devices attached\nemulator-5554          device product:sdk_gphone64_arm64 model:sdk_gphone64_arm64 device:emu64a\n39121FDJG0018Z         device usb:1-2 product:shiba model:Pixel_8 device:shiba\nR5CT10ABCDE            unauthorized\n1234567890             offline\nplainserial device\nlonely\n",
+      "out": [
+        {
+          "id": "emulator-5554",
+          "name": "sdk gphone64 arm64",
+          "platform": "android",
+          "kind": "simulator",
+          "running": true,
+          "source": "adb",
+          "detail": "emulator-5554"
+        },
+        {
+          "id": "39121FDJG0018Z",
+          "name": "Pixel 8",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb",
+          "detail": "39121FDJG0018Z"
+        },
+        {
+          "id": "plainserial",
+          "name": "plainserial",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb"
+        }
+      ]
+    },
+    {
+      "input": "List of devices attached\n\n",
+      "out": []
+    }
+  ],
+  "parseAvds": [
+    {
+      "input": "INFO    | Storing crashdata\nPixel_7_API_34\nNexus_5X_API_28\n\nwith space\nhas:colon\nINFOish\n",
+      "out": [
+        {
+          "id": "Pixel_7_API_34",
+          "name": "Pixel 7 API 34",
+          "platform": "android",
+          "kind": "simulator",
+          "running": false,
+          "source": "avd"
+        },
+        {
+          "id": "Nexus_5X_API_28",
+          "name": "Nexus 5X API 28",
+          "platform": "android",
+          "kind": "simulator",
+          "running": false,
+          "source": "avd"
+        }
+      ]
+    }
+  ],
+  "mergeDevices": [
+    {
+      "lists": [
+        [
+          {
+            "id": "U1",
+            "name": "iPhone 16",
+            "platform": "ios",
+            "kind": "simulator",
+            "running": true,
+            "source": "flutter"
+          }
+        ],
+        [
+          {
+            "id": "U1",
+            "name": "iPhone 16",
+            "platform": "ios",
+            "kind": "simulator",
+            "running": true,
+            "source": "simctl"
+          },
+          {
+            "id": "U2",
+            "name": "iPad Air",
+            "platform": "ios",
+            "kind": "simulator",
+            "running": false,
+            "source": "simctl"
+          }
+        ]
+      ],
+      "out": [
+        {
+          "id": "U1",
+          "name": "iPhone 16",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "U2",
+          "name": "iPad Air",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": false,
+          "source": "simctl"
+        }
+      ]
+    },
+    {
+      "lists": [
+        [
+          {
+            "id": "chrome",
+            "name": "Chrome",
+            "platform": "web",
+            "kind": "web",
+            "running": true,
+            "source": "flutter"
+          },
+          {
+            "id": "a",
+            "name": "Pixel 8",
+            "platform": "android",
+            "kind": "device",
+            "running": true,
+            "source": "adb"
+          },
+          {
+            "id": "u",
+            "name": "iPhone 16",
+            "platform": "ios",
+            "kind": "simulator",
+            "running": true,
+            "source": "simctl"
+          },
+          {
+            "id": "m",
+            "name": "mac",
+            "platform": "macos",
+            "kind": "desktop",
+            "running": true,
+            "source": "flutter"
+          },
+          {
+            "id": "o",
+            "name": "Other",
+            "platform": "other",
+            "kind": "device",
+            "running": true,
+            "source": "flutter"
+          }
+        ]
+      ],
+      "out": [
+        {
+          "id": "u",
+          "name": "iPhone 16",
+          "platform": "ios",
+          "kind": "simulator",
+          "running": true,
+          "source": "simctl"
+        },
+        {
+          "id": "a",
+          "name": "Pixel 8",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb"
+        },
+        {
+          "id": "m",
+          "name": "mac",
+          "platform": "macos",
+          "kind": "desktop",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "chrome",
+          "name": "Chrome",
+          "platform": "web",
+          "kind": "web",
+          "running": true,
+          "source": "flutter"
+        },
+        {
+          "id": "o",
+          "name": "Other",
+          "platform": "other",
+          "kind": "device",
+          "running": true,
+          "source": "flutter"
+        }
+      ]
+    },
+    {
+      "lists": [
+        [
+          {
+            "id": "cold",
+            "name": "Pixel 9a",
+            "platform": "android",
+            "kind": "simulator",
+            "running": false,
+            "source": "avd"
+          }
+        ],
+        [
+          {
+            "id": "emu",
+            "name": "pixel 9A",
+            "platform": "android",
+            "kind": "simulator",
+            "running": true,
+            "source": "adb",
+            "detail": "emulator-5554"
+          }
+        ],
+        [
+          {
+            "id": "fl",
+            "name": "Pixel 9a",
+            "platform": "android",
+            "kind": "simulator",
+            "running": false,
+            "source": "flutter-emulator"
+          }
+        ]
+      ],
+      "out": [
+        {
+          "id": "emu",
+          "name": "pixel 9A",
+          "platform": "android",
+          "kind": "simulator",
+          "running": true,
+          "source": "adb",
+          "detail": "emulator-5554"
+        }
+      ]
+    },
+    {
+      "lists": [
+        [
+          {
+            "id": "1",
+            "name": "b",
+            "platform": "android",
+            "kind": "device",
+            "running": false,
+            "source": "avd"
+          },
+          {
+            "id": "2",
+            "name": "B",
+            "platform": "android",
+            "kind": "device",
+            "running": false,
+            "source": "avd"
+          },
+          {
+            "id": "3",
+            "name": "a",
+            "platform": "android",
+            "kind": "device",
+            "running": false,
+            "source": "avd"
+          },
+          {
+            "id": "4",
+            "name": "Á",
+            "platform": "android",
+            "kind": "device",
+            "running": false,
+            "source": "avd"
+          },
+          {
+            "id": "5",
+            "name": "10",
+            "platform": "android",
+            "kind": "device",
+            "running": false,
+            "source": "avd"
+          },
+          {
+            "id": "6",
+            "name": "9",
+            "platform": "android",
+            "kind": "device",
+            "running": false,
+            "source": "avd"
+          }
+        ]
+      ],
+      "out": [
+        {
+          "id": "5",
+          "name": "10",
+          "platform": "android",
+          "kind": "device",
+          "running": false,
+          "source": "avd"
+        },
+        {
+          "id": "6",
+          "name": "9",
+          "platform": "android",
+          "kind": "device",
+          "running": false,
+          "source": "avd"
+        },
+        {
+          "id": "3",
+          "name": "a",
+          "platform": "android",
+          "kind": "device",
+          "running": false,
+          "source": "avd"
+        },
+        {
+          "id": "4",
+          "name": "Á",
+          "platform": "android",
+          "kind": "device",
+          "running": false,
+          "source": "avd"
+        },
+        {
+          "id": "1",
+          "name": "b",
+          "platform": "android",
+          "kind": "device",
+          "running": false,
+          "source": "avd"
+        }
+      ]
+    },
+    {
+      "lists": [
+        [
+          {
+            "id": "f",
+            "name": "Same",
+            "platform": "ios",
+            "kind": "device",
+            "running": false,
+            "source": "flutter-emulator"
+          }
+        ],
+        [
+          {
+            "id": "s",
+            "name": "same",
+            "platform": "ios",
+            "kind": "device",
+            "running": false,
+            "source": "simctl"
+          }
+        ]
+      ],
+      "out": [
+        {
+          "id": "f",
+          "name": "Same",
+          "platform": "ios",
+          "kind": "device",
+          "running": false,
+          "source": "flutter-emulator"
+        }
+      ]
+    }
+  ],
+  "renameRunningEmulators": [
+    {
+      "devices": [
+        {
+          "id": "emulator-5554",
+          "name": "sdk gphone64 arm64",
+          "platform": "android",
+          "kind": "simulator",
+          "running": true,
+          "source": "adb",
+          "detail": "emulator-5554"
+        },
+        {
+          "id": "39121FDJG0018Z",
+          "name": "Pixel 8",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb",
+          "detail": "39121FDJG0018Z"
+        },
+        {
+          "id": "plainserial",
+          "name": "plainserial",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb"
+        }
+      ],
+      "names": {
+        "emulator-5554": "Pixel_9a",
+        "plainserial": "Odd_Name_X"
+      },
+      "out": [
+        {
+          "id": "emulator-5554",
+          "name": "Pixel 9a",
+          "platform": "android",
+          "kind": "simulator",
+          "running": true,
+          "source": "adb",
+          "detail": "emulator-5554"
+        },
+        {
+          "id": "39121FDJG0018Z",
+          "name": "Pixel 8",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb",
+          "detail": "39121FDJG0018Z"
+        },
+        {
+          "id": "plainserial",
+          "name": "Odd Name X",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb"
+        }
+      ]
+    },
+    {
+      "devices": [
+        {
+          "id": "emulator-5554",
+          "name": "sdk gphone64 arm64",
+          "platform": "android",
+          "kind": "simulator",
+          "running": true,
+          "source": "adb",
+          "detail": "emulator-5554"
+        },
+        {
+          "id": "39121FDJG0018Z",
+          "name": "Pixel 8",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb",
+          "detail": "39121FDJG0018Z"
+        },
+        {
+          "id": "plainserial",
+          "name": "plainserial",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb"
+        }
+      ],
+      "names": {},
+      "out": [
+        {
+          "id": "emulator-5554",
+          "name": "sdk gphone64 arm64",
+          "platform": "android",
+          "kind": "simulator",
+          "running": true,
+          "source": "adb",
+          "detail": "emulator-5554"
+        },
+        {
+          "id": "39121FDJG0018Z",
+          "name": "Pixel 8",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb",
+          "detail": "39121FDJG0018Z"
+        },
+        {
+          "id": "plainserial",
+          "name": "plainserial",
+          "platform": "android",
+          "kind": "device",
+          "running": true,
+          "source": "adb"
+        }
+      ]
+    }
+  ]
+}

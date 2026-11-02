@@ -1,0 +1,951 @@
+{
+  "tags": [
+    "FIXME",
+    "TODO",
+    "BUG",
+    "HACK",
+    "XXX",
+    "NOTE",
+    "OPTIMIZE",
+    "REVIEW",
+    "REFACTOR",
+    "DEPRECATED",
+    "QUESTION",
+    "IDEA",
+    "WIP",
+    "TEMP"
+  ],
+  "grepPattern": "(//|/\\*|\\*|#|<!--|--|;|%|\"\"\"|''')[ \t*!-]*(DEPRECATED|OPTIMIZE|REFACTOR|QUESTION|REVIEW|FIXME|TODO|HACK|NOTE|IDEA|TEMP|BUG|XXX|WIP)",
+  "parseTodoLine": [
+    {
+      "file": "f.ts",
+      "line": 1,
+      "text": "// TODO: ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 1,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "// TODO: ship it"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 2,
+      "text": "//TODO ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 2,
+        "col": 3,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "//TODO ship it"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 3,
+      "text": "// todo ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 3,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "// todo ship it"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 4,
+      "text": "# TODO: ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 4,
+        "col": 3,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "# TODO: ship it"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 5,
+      "text": "  * todo: ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 5,
+        "col": 5,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "* todo: ship it"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 6,
+      "text": "// TODO(cgm): ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 6,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "// TODO(cgm): ship it",
+        "owner": "cgm"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 7,
+      "text": "// TODO (cgm) ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 7,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "// TODO (cgm) ship it",
+        "owner": "cgm"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 8,
+      "text": "// todo[CGM] ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 8,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "// todo[CGM] ship it",
+        "owner": "cgm"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 9,
+      "text": "// TODO: @cgm ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 9,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "// TODO: @cgm ship it",
+        "owner": "cgm"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 10,
+      "text": "// TODO: @cgm: ship it",
+      "out": {
+        "file": "f.ts",
+        "line": 10,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship it",
+        "text": "// TODO: @cgm: ship it",
+        "owner": "cgm"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 11,
+      "text": "// TODO(@Cgm.X+1) ship",
+      "out": {
+        "file": "f.ts",
+        "line": 11,
+        "col": 4,
+        "tag": "TODO",
+        "message": "ship",
+        "text": "// TODO(@Cgm.X+1) ship",
+        "owner": "cgm.x+1"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 12,
+      "text": "// TODO (see the issue) revisit",
+      "out": {
+        "file": "f.ts",
+        "line": 12,
+        "col": 4,
+        "tag": "TODO",
+        "message": "(see the issue) revisit",
+        "text": "// TODO (see the issue) revisit"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 13,
+      "text": "// TODO(): empty owner",
+      "out": {
+        "file": "f.ts",
+        "line": 13,
+        "col": 4,
+        "tag": "TODO",
+        "message": "empty owner",
+        "text": "// TODO(): empty owner"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 14,
+      "text": "// TODO[] empty brackets",
+      "out": {
+        "file": "f.ts",
+        "line": 14,
+        "col": 4,
+        "tag": "TODO",
+        "message": "empty brackets",
+        "text": "// TODO[] empty brackets"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 15,
+      "text": "// TODO(this-handle-is-way-too-long-to-be-an-owner-x) msg",
+      "out": {
+        "file": "f.ts",
+        "line": 15,
+        "col": 4,
+        "tag": "TODO",
+        "message": "(this-handle-is-way-too-long-to-be-an-owner-x) msg",
+        "text": "// TODO(this-handle-is-way-too-long-to-be-an-owner-x) msg"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 16,
+      "text": "const x = 1 // FIXME later",
+      "out": {
+        "file": "f.ts",
+        "line": 16,
+        "col": 16,
+        "tag": "FIXME",
+        "message": "later",
+        "text": "const x = 1 // FIXME later"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 17,
+      "text": "const todos = ['todo']",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 18,
+      "text": "function reviewNote() {}",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 19,
+      "text": "        todo = [l for l in lines if UNCHECKED.match(l)]",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 20,
+      "text": "TODO: write the docs",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 21,
+      "text": "/* TODO: wire it up */",
+      "out": {
+        "file": "f.ts",
+        "line": 21,
+        "col": 4,
+        "tag": "TODO",
+        "message": "wire it up",
+        "text": "/* TODO: wire it up */"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 22,
+      "text": "<!-- FIXME: escape this -->",
+      "out": {
+        "file": "f.ts",
+        "line": 22,
+        "col": 6,
+        "tag": "FIXME",
+        "message": "escape this",
+        "text": "<!-- FIXME: escape this -->"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 23,
+      "text": "\"\"\"TODO: docstring\"\"\"",
+      "out": {
+        "file": "f.ts",
+        "line": 23,
+        "col": 4,
+        "tag": "TODO",
+        "message": "docstring",
+        "text": "\"\"\"TODO: docstring\"\"\""
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 24,
+      "text": "''' NOTE: triple single '''",
+      "out": {
+        "file": "f.ts",
+        "line": 24,
+        "col": 5,
+        "tag": "NOTE",
+        "message": "triple single",
+        "text": "''' NOTE: triple single '''"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 25,
+      "text": "// FIXME",
+      "out": {
+        "file": "f.ts",
+        "line": 25,
+        "col": 4,
+        "tag": "FIXME",
+        "message": "",
+        "text": "// FIXME"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 26,
+      "text": "// FIXMEX not a tag",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 27,
+      "text": "// FIX ME",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 28,
+      "text": "-- TODO: sql comment",
+      "out": {
+        "file": "f.ts",
+        "line": 28,
+        "col": 4,
+        "tag": "TODO",
+        "message": "sql comment",
+        "text": "-- TODO: sql comment"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 29,
+      "text": "; HACK: lisp",
+      "out": {
+        "file": "f.ts",
+        "line": 29,
+        "col": 3,
+        "tag": "HACK",
+        "message": "lisp",
+        "text": "; HACK: lisp"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 30,
+      "text": "% XXX: latex",
+      "out": {
+        "file": "f.ts",
+        "line": 30,
+        "col": 3,
+        "tag": "XXX",
+        "message": "latex",
+        "text": "% XXX: latex"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 31,
+      "text": "//! TODO: rust inner doc",
+      "out": {
+        "file": "f.ts",
+        "line": 31,
+        "col": 5,
+        "tag": "TODO",
+        "message": "rust inner doc",
+        "text": "//! TODO: rust inner doc"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 32,
+      "text": "# --- TODO: decorated",
+      "out": {
+        "file": "f.ts",
+        "line": 32,
+        "col": 7,
+        "tag": "TODO",
+        "message": "decorated",
+        "text": "# --- TODO: decorated"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 33,
+      "text": "// ==> TODO: arrows",
+      "out": {
+        "file": "f.ts",
+        "line": 33,
+        "col": 8,
+        "tag": "TODO",
+        "message": "arrows",
+        "text": "// ==> TODO: arrows"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 34,
+      "text": "// TODO： full-width colon",
+      "out": {
+        "file": "f.ts",
+        "line": 34,
+        "col": 4,
+        "tag": "TODO",
+        "message": "full-width colon",
+        "text": "// TODO： full-width colon"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 35,
+      "text": "// TODO – en dash",
+      "out": {
+        "file": "f.ts",
+        "line": 35,
+        "col": 4,
+        "tag": "TODO",
+        "message": "en dash",
+        "text": "// TODO – en dash"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 36,
+      "text": "// TODO — em dash",
+      "out": {
+        "file": "f.ts",
+        "line": 36,
+        "col": 4,
+        "tag": "TODO",
+        "message": "em dash",
+        "text": "// TODO — em dash"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 37,
+      "text": "// TODO - hyphen",
+      "out": {
+        "file": "f.ts",
+        "line": 37,
+        "col": 4,
+        "tag": "TODO",
+        "message": "hyphen",
+        "text": "// TODO - hyphen"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 38,
+      "text": "// TODO\tafter tab",
+      "out": {
+        "file": "f.ts",
+        "line": 38,
+        "col": 4,
+        "tag": "TODO",
+        "message": "after tab",
+        "text": "// TODO\tafter tab"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 39,
+      "text": "// TODO: crlf line\r",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 40,
+      "text": "// TODO: emoji 🚀 col",
+      "out": {
+        "file": "f.ts",
+        "line": 40,
+        "col": 4,
+        "tag": "TODO",
+        "message": "emoji 🚀 col",
+        "text": "// TODO: emoji 🚀 col"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 41,
+      "text": "🚀 // TODO: emoji before",
+      "out": {
+        "file": "f.ts",
+        "line": 41,
+        "col": 7,
+        "tag": "TODO",
+        "message": "emoji before",
+        "text": "🚀 // TODO: emoji before"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 42,
+      "text": "x = \"a\" # todo: lowercase python",
+      "out": {
+        "file": "f.ts",
+        "line": 42,
+        "col": 11,
+        "tag": "TODO",
+        "message": "lowercase python",
+        "text": "x = \"a\" # todo: lowercase python"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 43,
+      "text": "a // b TODO not a leader right before",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 44,
+      "text": "// note NOTE both",
+      "out": {
+        "file": "f.ts",
+        "line": 44,
+        "col": 4,
+        "tag": "NOTE",
+        "message": "NOTE both",
+        "text": "// note NOTE both"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 45,
+      "text": "call() // reviewNotes then // REVIEW: second",
+      "out": {
+        "file": "f.ts",
+        "line": 45,
+        "col": 31,
+        "tag": "REVIEW",
+        "message": "second",
+        "text": "call() // reviewNotes then // REVIEW: second"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 46,
+      "text": "// TODO long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long ",
+      "out": {
+        "file": "f.ts",
+        "line": 46,
+        "col": 4,
+        "tag": "TODO",
+        "message": "long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long ",
+        "text": "// TODO long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long lo"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 47,
+      "text": "   // TODO: trailing spaces   ",
+      "out": {
+        "file": "f.ts",
+        "line": 47,
+        "col": 7,
+        "tag": "TODO",
+        "message": "trailing spaces",
+        "text": "// TODO: trailing spaces"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 48,
+      "text": "// todo:@someone fix",
+      "out": {
+        "file": "f.ts",
+        "line": 48,
+        "col": 4,
+        "tag": "TODO",
+        "message": "fix",
+        "text": "// todo:@someone fix",
+        "owner": "someone"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 49,
+      "text": "// TODO: @xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx too long handle",
+      "out": {
+        "file": "f.ts",
+        "line": 49,
+        "col": 4,
+        "tag": "TODO",
+        "message": "@xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx too long handle",
+        "text": "// TODO: @xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx too long handle"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 50,
+      "text": "// IDEA: idea",
+      "out": {
+        "file": "f.ts",
+        "line": 50,
+        "col": 4,
+        "tag": "IDEA",
+        "message": "idea",
+        "text": "// IDEA: idea"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 51,
+      "text": "// WIP",
+      "out": {
+        "file": "f.ts",
+        "line": 51,
+        "col": 4,
+        "tag": "WIP",
+        "message": "",
+        "text": "// WIP"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 52,
+      "text": "// TEMP temp",
+      "out": {
+        "file": "f.ts",
+        "line": 52,
+        "col": 4,
+        "tag": "TEMP",
+        "message": "temp",
+        "text": "// TEMP temp"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 53,
+      "text": "// DEPRECATED: old",
+      "out": {
+        "file": "f.ts",
+        "line": 53,
+        "col": 4,
+        "tag": "DEPRECATED",
+        "message": "old",
+        "text": "// DEPRECATED: old"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 54,
+      "text": "// QUESTION? huh",
+      "out": {
+        "file": "f.ts",
+        "line": 54,
+        "col": 4,
+        "tag": "QUESTION",
+        "message": "? huh",
+        "text": "// QUESTION? huh"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 55,
+      "text": "// OPTIMIZE: fast",
+      "out": {
+        "file": "f.ts",
+        "line": 55,
+        "col": 4,
+        "tag": "OPTIMIZE",
+        "message": "fast",
+        "text": "// OPTIMIZE: fast"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 56,
+      "text": "// REFACTOR: tidy",
+      "out": {
+        "file": "f.ts",
+        "line": 56,
+        "col": 4,
+        "tag": "REFACTOR",
+        "message": "tidy",
+        "text": "// REFACTOR: tidy"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 57,
+      "text": "// BUG: crash",
+      "out": {
+        "file": "f.ts",
+        "line": 57,
+        "col": 4,
+        "tag": "BUG",
+        "message": "crash",
+        "text": "// BUG: crash"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 58,
+      "text": "// REVIEW(bob): look",
+      "out": {
+        "file": "f.ts",
+        "line": 58,
+        "col": 4,
+        "tag": "REVIEW",
+        "message": "look",
+        "text": "// REVIEW(bob): look",
+        "owner": "bob"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 59,
+      "text": "/** TODO: jsdoc */",
+      "out": {
+        "file": "f.ts",
+        "line": 59,
+        "col": 5,
+        "tag": "TODO",
+        "message": "jsdoc",
+        "text": "/** TODO: jsdoc */"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 60,
+      "text": " */ TODO after closer",
+      "out": null
+    },
+    {
+      "file": "f.ts",
+      "line": 61,
+      "text": "#TODO:nospace",
+      "out": {
+        "file": "f.ts",
+        "line": 61,
+        "col": 2,
+        "tag": "TODO",
+        "message": "nospace",
+        "text": "#TODO:nospace"
+      }
+    },
+    {
+      "file": "f.ts",
+      "line": 62,
+      "text": "",
+      "out": null
+    }
+  ],
+  "parseGrepOutput": [
+    {
+      "input": "src/a.ts:12:// TODO(cgm): ship\nnode_modules/x/b.js:1:// TODO: theirs\nsrc/b.ts:4:const x = 1",
+      "out": [
+        {
+          "file": "src/a.ts",
+          "line": 12,
+          "col": 4,
+          "tag": "TODO",
+          "message": "ship",
+          "text": "// TODO(cgm): ship",
+          "owner": "cgm"
+        }
+      ]
+    },
+    {
+      "input": "src/we:ird.ts:7:// FIXME: odd name",
+      "out": [
+        {
+          "file": "src/we:ird.ts",
+          "line": 7,
+          "col": 4,
+          "tag": "FIXME",
+          "message": "odd name",
+          "text": "// FIXME: odd name"
+        }
+      ]
+    },
+    {
+      "input": "win\\path\\x.ts:3:# TODO: backslashes\npkg/node_modules/y.js:1:// TODO: nested deps\n\nnot-a-grep-line\nsrc/c.ts:x:// TODO: bad line no\nsrc/crlf.ts:1:// TODO: crlf\r\nsrc/z.ts:9:// HACK: last",
+      "out": [
+        {
+          "file": "win/path/x.ts",
+          "line": 3,
+          "col": 3,
+          "tag": "TODO",
+          "message": "backslashes",
+          "text": "# TODO: backslashes"
+        },
+        {
+          "file": "src/z.ts",
+          "line": 9,
+          "col": 4,
+          "tag": "HACK",
+          "message": "last",
+          "text": "// HACK: last"
+        }
+      ]
+    }
+  ],
+  "sortTodos": [
+    {
+      "input": [
+        {
+          "file": "b.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "a.ts",
+          "line": 9,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "a.ts",
+          "line": 2,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "B.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "_.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "a.ts",
+          "line": 2,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "é.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "z.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        }
+      ],
+      "out": [
+        {
+          "file": "B.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "_.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "a.ts",
+          "line": 2,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "a.ts",
+          "line": 2,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "a.ts",
+          "line": 9,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "b.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "z.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        },
+        {
+          "file": "é.ts",
+          "line": 1,
+          "col": 1,
+          "tag": "TODO",
+          "message": "",
+          "text": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+  "cases": [
+    {
+      "name": "jsonc-root-and-nested",
+      "files": {
+        ".vscode/launch.json": "// top comment\n{\n  /* block\n     comment */\n  \"version\": \"0.2.0\",\n  \"configurations\": [\n    {\n      \"name\": \"App\", // trailing comment\n      \"type\": \"node\",\n      \"request\": \"launch\",\n      \"program\": \"${workspaceFolder}/index.js\",\n      \"args\": [\"it's // not a comment\", \"/* nor this */\", \"esc \\\" quote // still string\"],\n      \"port\": 9229,\n      \"extra\": { \"deep\": [1, 2.5, true, null], },\n    },\n    { \"type\": \"node\" },\n    null,\n    \"junk\",\n    { \"name\": 7 },\n  ],\n  \"compounds\": [\n    { \"name\": \"Both\", \"configurations\": [\"App\", \"Other\"], \"stopAll\": true, \"presentation\": { \"group\": \"g\", \"order\": 2 } },\n    { \"name\": \"Loose\", \"configurations\": [\"App\"], \"stopAll\": \"yes\" },\n    { \"name\": \"NoMembers\" },\n    { \"configurations\": [\"App\"] },\n  ],\n  \"inputs\": [\n    { \"id\": \"who\", \"type\": \"promptString\", \"default\": \"me\" },\n    { \"id\": \"pick\", \"type\": \"pickString\", \"options\": [\"a\", { \"label\": \"B\", \"value\": \"b\" }] },\n    { \"type\": \"promptString\" },\n  ],\n}\n",
+        ".vscode/tasks.json": "{\n  // tasks\n  \"version\": \"2.0.0\",\n  \"tasks\": [\n    { \"label\": \"build\", \"type\": \"shell\", \"command\": \"make\", \"dependsOn\": [\"prep\"] },\n    { \"label\": \"prep\", \"type\": \"npm\", \"script\": \"prep\" },\n    { \"type\": \"shell\", \"command\": \"nolabel\" },\n    { \"label\": 3 },\n  ],\n}",
+        "package.json": "{ \"name\": \"x\", \"scripts\": { \"dev\": \"vite\", \"n\": 1, \"build\": \"tsc -b\" } }",
+        "apps/web/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"Web\", \"type\": \"chrome\", \"url\": \"http://localhost:5173\" } ] }",
+        "apps/web/package.json": "not json",
+        "apps/api/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"Api\", \"type\": \"go\", \"program\": \".\" } ], \"inputs\": \"nope\" }",
+        "apps/api/.vscode/tasks.json": "{ \"tasks\": null }",
+        "apps/empty/.vscode/launch.json": "{ \"configurations\": [] }",
+        "apps/broken/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"x\" } ",
+        "apps/notasks/.vscode/settings.json": "{}",
+        "node_modules/pkg/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"Dep\" } ] }",
+        ".hidden/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"Hidden\" } ] }",
+        "a/b/c/d/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"Depth4\" } ] }",
+        "a/b/c/d/e/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"Depth5\" } ] }",
+        "dist/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"Dist\" } ] }",
+        "Zeta/.vscode/launch.json": "{ \"compounds\": [ { \"name\": \"Only compound\", \"configurations\": [] } ] }"
+      },
+      "groups": [
+        {
+          "id": "<ROOT>",
+          "dir": "<ROOT>",
+          "label": "Workspace",
+          "isRoot": true,
+          "configs": [
+            {
+              "name": "App",
+              "type": "node",
+              "request": "launch",
+              "program": "${workspaceFolder}/index.js",
+              "args": [
+                "it's // not a comment",
+                "/* nor this */",
+                "esc \" quote // still string"
+              ],
+              "port": 9229,
+              "extra": {
+                "deep": [
+                  1,
+                  2.5,
+                  true,
+                  null
+                ]
+              }
+            },
+            {
+              "name": "Both",
+              "type": "compound",
+              "compound": [
+                "App",
+                "Other"
+              ],
+              "compoundStopAll": true,
+              "presentation": {
+                "group": "g",
+                "order": 2
+              }
+            },
+            {
+              "name": "Loose",
+              "type": "compound",
+              "compound": [
+                "App"
+              ]
+            }
+          ],
+          "tasks": [
+            {
+              "label": "build",
+              "type": "shell",
+              "command": "make",
+              "dependsOn": [
+                "prep"
+              ]
+            },
+            {
+              "label": "prep",
+              "type": "npm",
+              "script": "prep"
+            }
+          ],
+          "inputs": [
+            {
+              "id": "who",
+              "type": "promptString",
+              "default": "me"
+            },
+            {
+              "id": "pick",
+              "type": "pickString",
+              "options": [
+                "a",
+                {
+                  "label": "B",
+                  "value": "b"
+                }
+              ]
+            }
+          ],
+          "scripts": {
+            "dev": "vite",
+            "build": "tsc -b"
+          }
+        },
+        {
+          "id": "<ROOT>/a/b/c/d",
+          "dir": "<ROOT>/a/b/c/d",
+          "label": "a/b/c/d",
+          "isRoot": false,
+          "configs": [
+            {
+              "name": "Depth4"
+            }
+          ],
+          "tasks": [],
+          "inputs": [],
+          "scripts": {}
+        },
+        {
+          "id": "<ROOT>/apps/api",
+          "dir": "<ROOT>/apps/api",
+          "label": "apps/api",
+          "isRoot": false,
+          "configs": [
+            {
+              "name": "Api",
+              "type": "go",
+              "program": "."
+            }
+          ],
+          "tasks": [],
+          "inputs": [],
+          "scripts": {}
+        },
+        {
+          "id": "<ROOT>/apps/web",
+          "dir": "<ROOT>/apps/web",
+          "label": "apps/web",
+          "isRoot": false,
+          "configs": [
+            {
+              "name": "Web",
+              "type": "chrome",
+              "url": "http://localhost:5173"
+            }
+          ],
+          "tasks": [],
+          "inputs": [],
+          "scripts": {}
+        },
+        {
+          "id": "<ROOT>/Zeta",
+          "dir": "<ROOT>/Zeta",
+          "label": "Zeta",
+          "isRoot": false,
+          "configs": [
+            {
+              "name": "Only compound",
+              "type": "compound",
+              "compound": []
+            }
+          ],
+          "tasks": [],
+          "inputs": [],
+          "scripts": {}
+        }
+      ]
+    },
+    {
+      "name": "no-root-config",
+      "files": {
+        "svc/.vscode/launch.json": "{ 'configurations': [] }",
+        "svc2/.vscode/launch.json": "{ \"configurations\": [ { \"name\": \"S2\", \"linux\": { \"program\": \"l\" } } ] }"
+      },
+      "groups": [
+        {
+          "id": "<ROOT>/svc2",
+          "dir": "<ROOT>/svc2",
+          "label": "svc2",
+          "isRoot": false,
+          "configs": [
+            {
+              "name": "S2",
+              "linux": {
+                "program": "l"
+              }
+            }
+          ],
+          "tasks": [],
+          "inputs": [],
+          "scripts": {}
+        }
+      ]
+    }
+  ],
+  "playground": [
+    {
+      "id": "<ROOT>",
+      "dir": "<ROOT>",
+      "label": "Workspace",
+      "isRoot": true,
+      "configs": [
+        {
+          "name": "Run hello",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/hello.js",
+          "args": [
+            "--from",
+            "gitcito"
+          ],
+          "env": {
+            "GREETING": "hola"
+          }
+        },
+        {
+          "name": "Flutter app (hot reload)",
+          "type": "node-terminal",
+          "request": "launch",
+          "command": "env PATH=\"${workspaceFolder}/scripts:$PATH\" flutter run -t lib/main.dart"
+        },
+        {
+          "name": "Watch (long-running)",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/watch.js"
+        },
+        {
+          "name": "Run hello (after build)",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/hello.js",
+          "preLaunchTask": "build"
+        },
+        {
+          "name": "Run hello (ask for a greeting)",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/hello.js",
+          "args": [
+            "--from",
+            "${input:who}"
+          ],
+          "env": {
+            "GREETING": "${input:greeting}"
+          }
+        },
+        {
+          "name": "Run hello (after dev server)",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/hello.js",
+          "preLaunchTask": "serve"
+        },
+        {
+          "name": "Run hello (secret token)",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/hello.js",
+          "env": {
+            "GREETING": "${input:token}"
+          }
+        },
+        {
+          "name": "Service A",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/svc-a.js",
+          "preLaunchTask": "prep"
+        },
+        {
+          "name": "Service B",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/svc-b.js",
+          "preLaunchTask": "prep"
+        },
+        {
+          "name": "Server (opens browser when ready)",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/scripts/serve-ready.js",
+          "serverReadyAction": {
+            "pattern": "Local:\\s+(https?://localhost:\\d+)",
+            "uriFormat": "%s",
+            "action": "openExternally"
+          }
+        },
+        {
+          "name": "Run both services",
+          "type": "compound",
+          "compound": [
+            "Service A",
+            "Service B"
+          ],
+          "compoundStopAll": true
+        }
+      ],
+      "tasks": [
+        {
+          "label": "build",
+          "type": "shell",
+          "command": "node",
+          "args": [
+            "${workspaceFolder}/scripts/build.js"
+          ]
+        },
+        {
+          "label": "serve",
+          "type": "shell",
+          "command": "node",
+          "args": [
+            "${workspaceFolder}/scripts/serve.js"
+          ],
+          "isBackground": true
+        },
+        {
+          "label": "prep",
+          "type": "shell",
+          "command": "node",
+          "args": [
+            "${workspaceFolder}/scripts/prep.js"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "id": "who",
+          "type": "promptString",
+          "description": "Who is saying hello?",
+          "default": "gitcito"
+        },
+        {
+          "id": "greeting",
+          "type": "pickString",
+          "description": "Pick a greeting",
+          "default": "hola",
+          "options": [
+            "hola",
+            "hello",
+            "bonjour",
+            "ciao"
+          ]
+        },
+        {
+          "id": "token",
+          "type": "promptString",
+          "description": "Paste a secret token (input is masked)",
+          "password": true
+        }
+      ],
+      "scripts": {}
+    },
+    {
+      "id": "<ROOT>/services/api",
+      "dir": "<ROOT>/services/api",
+      "label": "services/api",
+      "isRoot": false,
+      "configs": [
+        {
+          "name": "API service",
+          "type": "node",
+          "request": "launch",
+          "program": "${workspaceFolder}/src/server.js",
+          "env": {
+            "PORT": "4000"
+          }
+        }
+      ],
+      "tasks": [],
+      "inputs": [],
+      "scripts": {}
+    }
+  ]
+}
