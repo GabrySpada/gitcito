@@ -1,0 +1,27 @@
+{
+  "method": "absorbPlan",
+  "fixture": "absorb",
+  "args": [],
+  "setup": [
+    {
+      "git": [
+        "update-ref",
+        "refs/remotes/origin/main",
+        "HEAD"
+      ]
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "result": {
+    "base": "",
+    "rangeLabel": "",
+    "targets": [],
+    "unmatched": [],
+    "reason": "no-commits"
+  }
+}

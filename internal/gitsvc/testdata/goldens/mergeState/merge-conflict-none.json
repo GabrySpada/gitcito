@@ -1,0 +1,6 @@
+{
+  "method": "mergeState",
+  "fixture": "merge-conflict",
+  "args": [],
+  "result": null
+}

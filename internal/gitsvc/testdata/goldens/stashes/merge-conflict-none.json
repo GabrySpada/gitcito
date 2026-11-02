@@ -1,0 +1,6 @@
+{
+  "method": "stashes",
+  "fixture": "merge-conflict",
+  "args": [],
+  "result": []
+}

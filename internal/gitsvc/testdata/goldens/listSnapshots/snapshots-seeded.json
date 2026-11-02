@@ -1,0 +1,28 @@
+{
+  "method": "listSnapshots",
+  "fixture": "snapshots",
+  "args": [],
+  "result": [
+    {
+      "ref": "refs/gitcito/wip/<N>-g",
+      "sha": "<c889587ee75>",
+      "time": "<DATE>",
+      "files": 2,
+      "kind": "guard"
+    },
+    {
+      "ref": "refs/gitcito/wip/<N>-a",
+      "sha": "<c8ff4f90a5f>",
+      "time": "<DATE>",
+      "files": 2,
+      "kind": "auto"
+    },
+    {
+      "ref": "refs/gitcito/wip/<N>-m",
+      "sha": "<ca1b99f2a40>",
+      "time": "<DATE>",
+      "files": 1,
+      "kind": "manual"
+    }
+  ]
+}

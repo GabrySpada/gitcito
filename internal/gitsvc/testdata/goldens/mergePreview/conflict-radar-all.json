@@ -1,0 +1,61 @@
+{
+  "method": "mergePreview",
+  "fixture": "conflict-radar",
+  "args": [
+    "main",
+    [
+      "chore/merged",
+      "feature/big-refactor",
+      "feature/config-bump",
+      "feature/docs",
+      "feature/rename-api",
+      "legacy/import"
+    ]
+  ],
+  "result": {
+    "base": "main",
+    "baseSha": "<c2fd33fcd02>",
+    "entries": [
+      {
+        "ref": "chore/merged",
+        "status": "merged",
+        "files": []
+      },
+      {
+        "ref": "feature/big-refactor",
+        "status": "conflict",
+        "files": [
+          "README.md",
+          "src/app.js",
+          "src/config.js"
+        ]
+      },
+      {
+        "ref": "feature/config-bump",
+        "status": "conflict",
+        "files": [
+          "src/config.js"
+        ]
+      },
+      {
+        "ref": "feature/docs",
+        "status": "clean",
+        "files": []
+      },
+      {
+        "ref": "feature/rename-api",
+        "status": "conflict",
+        "files": [
+          "src/app.js"
+        ]
+      },
+      {
+        "ref": "legacy/import",
+        "status": "error",
+        "files": [],
+        "message": "fatal: refusing to merge unrelated histories"
+      }
+    ],
+    "scannedAt": "<DATE>"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "method": "log",
+  "fixture": "tags-and-releases",
+  "args": [
+    3,
+    0
+  ],
+  "setup": [
+    {
+      "git": [
+        "branch",
+        "-D",
+        "hotfix/security-patch"
+      ]
+    },
+    {
+      "git": [
+        "tag",
+        "-d",
+        "v1.0.2"
+      ]
+    }
+  ],
+  "result": [
+    {
+      "hash": "<c8f1a6165e4>",
+      "parents": [
+        "<c613c350077>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "HEAD -> main"
+      ],
+      "subject": "feat: plugin system (unreleased, post-v2.0.0 dev)",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c613c350077>",
+      "parents": [
+        "<c9e2739195c>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "tag: v2.0.0"
+      ],
+      "subject": "feat!: rewrite as App class — v2.0.0 BREAKING",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c9e2739195c>",
+      "parents": [
+        "<c4af9a65b91>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [
+        "tag: v1.1.0"
+      ],
+      "subject": "feat: add farewell() — v1.1.0",
+      "coAuthors": []
+    }
+  ]
+}

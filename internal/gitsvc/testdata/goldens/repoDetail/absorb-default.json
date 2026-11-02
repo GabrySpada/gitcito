@@ -1,0 +1,35 @@
+{
+  "method": "repoDetail",
+  "fixture": "absorb",
+  "args": [],
+  "result": {
+    "files": [
+      {
+        "path": "src/auth.ts",
+        "status": "M"
+      },
+      {
+        "path": "src/parser.ts",
+        "status": "M"
+      },
+      {
+        "path": "src/cache.ts",
+        "status": "?"
+      }
+    ],
+    "commits": [
+      {
+        "hash": "<c160744bf41:short>",
+        "subject": "feat: add logger"
+      },
+      {
+        "hash": "<c57544df65c:short>",
+        "subject": "feat: add parser"
+      },
+      {
+        "hash": "<c4900eec92e:short>",
+        "subject": "feat: add auth"
+      }
+    ]
+  }
+}

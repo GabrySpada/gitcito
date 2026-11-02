@@ -1,0 +1,41 @@
+{
+  "method": "conflictOpAbort",
+  "fixture": "rebase-conflict",
+  "args": [
+    "rebase"
+  ],
+  "setup": [
+    {
+      "gitTry": [
+        "rebase",
+        "main"
+      ]
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c6c57fc0db0>",
+      "# branch.head feature"
+    ],
+    "refs": [
+      "<c6c57fc0db0> refs/heads/feature",
+      "<c91940a4b89> refs/heads/main"
+    ],
+    "log": [
+      "<c327fe933b1>\u0000<ca7c2e7c957>\u0000feature: add credentials + createOrder",
+      "<c6c57fc0db0>\u0000<c327fe933b1>\u0000feature: en-GB formatting + debounce helper",
+      "<c84bfa782c6>\u0000<ca7c2e7c957>\u0000main: migrate to v2 API + add logger",
+      "<c91940a4b89>\u0000<c84bfa782c6>\u0000main: upgrade utils — date-fns + Intl",
+      "<ca7c2e7c957>\u0000\u0000initial: api + utils"
+    ],
+    "stash": [],
+    "index": [
+      "100644 55a2f2f0215642ac81e7651050be85b82de29887 0\tapi.ts",
+      "100644 e18d52cc34e082d598583b78b50bad7ad545a135 0\tutils.ts"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

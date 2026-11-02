@@ -1,0 +1,11 @@
+{
+  "method": "branches",
+  "fixture": "empty-repo",
+  "args": [],
+  "result": {
+    "current": "",
+    "locals": [],
+    "remotes": [],
+    "tags": []
+  }
+}

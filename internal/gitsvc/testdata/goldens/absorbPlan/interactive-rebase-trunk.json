@@ -1,0 +1,36 @@
+{
+  "method": "absorbPlan",
+  "fixture": "interactive-rebase",
+  "args": [],
+  "setup": [
+    {
+      "write": "auth.ts",
+      "content": "export const login = () => fetch('/auth/login')\n"
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "result": {
+    "base": "<c8eac89fbc6>",
+    "rangeLabel": "since main",
+    "targets": [
+      {
+        "sha": "<c6762edd5be>",
+        "subject": "fixup! add logout + fix login path",
+        "hunks": [
+          {
+            "file": "auth.ts",
+            "header": "@@ -1,11 +1 @@",
+            "added": 1,
+            "removed": 11
+          }
+        ]
+      }
+    ],
+    "unmatched": []
+  }
+}

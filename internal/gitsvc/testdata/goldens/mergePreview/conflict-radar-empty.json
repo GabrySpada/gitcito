@@ -1,0 +1,14 @@
+{
+  "method": "mergePreview",
+  "fixture": "conflict-radar",
+  "args": [
+    "main",
+    []
+  ],
+  "result": {
+    "base": "main",
+    "baseSha": "<c2fd33fcd02>",
+    "entries": [],
+    "scannedAt": "<DATE>"
+  }
+}

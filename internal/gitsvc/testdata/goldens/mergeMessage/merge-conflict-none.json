@@ -1,0 +1,6 @@
+{
+  "method": "mergeMessage",
+  "fixture": "merge-conflict",
+  "args": [],
+  "result": ""
+}

@@ -1,0 +1,33 @@
+{
+  "method": "stashPop",
+  "fixture": "stash-picking",
+  "args": [],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <ce609af1d51>",
+      "# branch.head main",
+      "1 .M N... 100644 100644 100644 d075eae27ad577ffbe2575a096bdffe45022317b d075eae27ad577ffbe2575a096bdffe45022317b alpha.txt",
+      "1 .M N... 100644 100644 100644 a77d4b8eacb32787386d8fabd77b7f8095352a85 a77d4b8eacb32787386d8fabd77b7f8095352a85 beta.txt",
+      "1 .M N... 100644 100644 100644 89b7fc4a92a4008d42286dc15666588523b47867 89b7fc4a92a4008d42286dc15666588523b47867 src/gamma.txt",
+      "? delta-untracked.txt"
+    ],
+    "refs": [
+      "<ce609af1d51> refs/heads/main"
+    ],
+    "log": [
+      "<ce609af1d51>\u0000\u0000initial commit"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d075eae27ad577ffbe2575a096bdffe45022317b 0\talpha.txt",
+      "100644 a77d4b8eacb32787386d8fabd77b7f8095352a85 0\tbeta.txt",
+      "100644 89b7fc4a92a4008d42286dc15666588523b47867 0\tsrc/gamma.txt"
+    ],
+    "diff": "diff --git a/alpha.txt b/alpha.txt\nindex d075eae..8bd2701 100644\n--- a/alpha.txt\n+++ b/alpha.txt\n@@ -1 +1 @@\n-alpha v1\n+alpha v2 (stashed change)\ndiff --git a/beta.txt b/beta.txt\nindex a77d4b8..51fecdd 100644\n--- a/beta.txt\n+++ b/beta.txt\n@@ -1 +1 @@\n-beta v1\n+beta v2 (stashed change)\ndiff --git a/src/gamma.txt b/src/gamma.txt\nindex 89b7fc4..f3009d9 100644\n--- a/src/gamma.txt\n+++ b/src/gamma.txt\n@@ -1 +1 @@\n-gamma v1\n+gamma v2 (stashed change)\n",
+    "untracked": [
+      "23cc7cd3c0b6bae9256aa95911146d9af30980b3 delta-untracked.txt"
+    ],
+    "ops": []
+  }
+}

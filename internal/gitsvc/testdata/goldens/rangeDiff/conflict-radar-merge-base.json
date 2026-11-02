@@ -1,0 +1,154 @@
+{
+  "method": "rangeDiff",
+  "fixture": "conflict-radar",
+  "args": [
+    "v1",
+    "v2"
+  ],
+  "setup": [
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "v1",
+        "main"
+      ]
+    },
+    {
+      "write": "notes.txt",
+      "content": "one\n"
+    },
+    {
+      "git": [
+        "add",
+        "notes.txt"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-qm",
+        "add notes"
+      ]
+    },
+    {
+      "write": "src/config.js",
+      "content": "export const config = {\n  timeout: 2000,\n  retries: 1\n}\n"
+    },
+    {
+      "git": [
+        "commit",
+        "-qam",
+        "add retries"
+      ]
+    },
+    {
+      "write": "debug.txt",
+      "content": "debug\n"
+    },
+    {
+      "git": [
+        "add",
+        "debug.txt"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-qm",
+        "add debug file"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "-b",
+        "v2",
+        "main"
+      ]
+    },
+    {
+      "write": "notes.txt",
+      "content": "one\n"
+    },
+    {
+      "git": [
+        "add",
+        "notes.txt"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-qm",
+        "add notes"
+      ]
+    },
+    {
+      "write": "src/config.js",
+      "content": "export const config = {\n  timeout: 2000,\n  retries: 2\n}\n"
+    },
+    {
+      "git": [
+        "commit",
+        "-qam",
+        "add retries"
+      ]
+    },
+    {
+      "write": "limit.txt",
+      "content": "limit\n"
+    },
+    {
+      "git": [
+        "add",
+        "limit.txt"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-qm",
+        "add rate limit"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "-q",
+        "main"
+      ]
+    }
+  ],
+  "result": [
+    {
+      "kind": "modified",
+      "oldIndex": 1,
+      "oldSha": "<c17dc26ccb4:short>",
+      "newIndex": 1,
+      "newSha": "<c5cb43aaa14:short>",
+      "subject": "add retries",
+      "body": "@@ src/config.js\n  export const config = {\n -  timeout: 2000\n +  timeout: 2000,\n-+  retries: 1\n++  retries: 2\n  }"
+    },
+    {
+      "kind": "removed",
+      "oldIndex": 2,
+      "oldSha": "<c19fcca37f2:short>",
+      "newIndex": null,
+      "newSha": null,
+      "subject": "add debug file",
+      "body": ""
+    },
+    {
+      "kind": "added",
+      "oldIndex": null,
+      "oldSha": null,
+      "newIndex": 2,
+      "newSha": "<c7ff6c6fa3a:short>",
+      "subject": "add rate limit",
+      "body": ""
+    }
+  ]
+}

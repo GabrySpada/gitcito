@@ -1,0 +1,32 @@
+{
+  "method": "refTips",
+  "fixture": "force-push",
+  "args": [
+    "origin/feature/login"
+  ],
+  "setup": [
+    {
+      "git": [
+        "fetch",
+        "-q",
+        "origin"
+      ]
+    }
+  ],
+  "result": [
+    {
+      "sha": "<c43b5278235>",
+      "selector": "origin/feature/login@{0}",
+      "reason": "fetch -q origin: forced-update",
+      "date": "<DATE>",
+      "subject": "add rate limiting"
+    },
+    {
+      "sha": "<c182802d705>",
+      "selector": "origin/feature/login@{1}",
+      "reason": "update by push",
+      "date": "<DATE>",
+      "subject": "add debug logging"
+    }
+  ]
+}

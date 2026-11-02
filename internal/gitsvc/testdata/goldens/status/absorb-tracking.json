@@ -1,0 +1,28 @@
+{
+  "method": "status",
+  "fixture": "absorb",
+  "args": [],
+  "result": {
+    "current": "main",
+    "tracking": "origin/main",
+    "ahead": 3,
+    "behind": 0,
+    "staged": [],
+    "unstaged": [
+      {
+        "path": "src/auth.ts",
+        "status": "M"
+      },
+      {
+        "path": "src/parser.ts",
+        "status": "M"
+      },
+      {
+        "path": "src/cache.ts",
+        "status": "?",
+        "untracked": true
+      }
+    ],
+    "conflicted": []
+  }
+}

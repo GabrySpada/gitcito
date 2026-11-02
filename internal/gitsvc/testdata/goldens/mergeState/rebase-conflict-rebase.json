@@ -1,0 +1,14 @@
+{
+  "method": "mergeState",
+  "fixture": "rebase-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "rebase",
+        "main"
+      ]
+    }
+  ],
+  "result": "rebase"
+}

@@ -1,0 +1,40 @@
+{
+  "method": "commitEditPreview",
+  "fixture": "interactive-rebase",
+  "args": [
+    "{rev:HEAD~3}",
+    {
+      "no/such/file.txt": "x"
+    },
+    ""
+  ],
+  "error": "Not an editable file in this commit: no/such/file.txt",
+  "state": {
+    "status": [
+      "# branch.oid <c87ca59e551>",
+      "# branch.head messy-feature"
+    ],
+    "refs": [
+      "<c8eac89fbc6> refs/heads/main",
+      "<c87ca59e551> refs/heads/messy-feature"
+    ],
+    "log": [
+      "<c3b6b583e46>\u0000<c6762edd5be>\u0000WIP session module",
+      "<c6762edd5be>\u0000<caca1d11e4a>\u0000fixup! add logout + fix login path",
+      "<c87ca59e551>\u0000<c3b6b583e46>\u0000finish session module — getSession + clearToken",
+      "<c8eac89fbc6>\u0000\u0000initial commit",
+      "<caca1d11e4a>\u0000<cf8fb4d3acd>\u0000add logout + fix login path",
+      "<cf37dcfa9d6>\u0000<c8eac89fbc6>\u0000add login function",
+      "<cf8fb4d3acd>\u0000<cf37dcfa9d6>\u0000WIP"
+    ],
+    "stash": [],
+    "index": [
+      "100644 e2f0c2bb3914c602dbff8b30347634bf8c6a0dbe 0\tauth.ts",
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tindex.ts",
+      "100644 6250972daa55c6ed76dd7a04b8f48b1314b13e5b 0\tsession.ts"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

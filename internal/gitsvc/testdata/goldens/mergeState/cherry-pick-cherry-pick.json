@@ -1,0 +1,14 @@
+{
+  "method": "mergeState",
+  "fixture": "cherry-pick",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "cherry-pick",
+        "feature"
+      ]
+    }
+  ],
+  "result": "cherry-pick"
+}

@@ -1,0 +1,17 @@
+{
+  "method": "commitEditInfo",
+  "fixture": "collaborators",
+  "args": [
+    "{rev:main~3}"
+  ],
+  "result": {
+    "linear": false,
+    "ancestor": true,
+    "merges": 1,
+    "descendants": 5,
+    "pushed": false,
+    "message": "Merge feat/api into main (Carol's API layer)",
+    "authorName": "Alice Liddell",
+    "authorDate": "<DATE>"
+  }
+}

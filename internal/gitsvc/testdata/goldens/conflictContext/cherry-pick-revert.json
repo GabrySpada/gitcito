@@ -1,0 +1,55 @@
+{
+  "method": "conflictContext",
+  "fixture": "cherry-pick",
+  "args": [],
+  "setup": [
+    {
+      "write": "log.txt",
+      "content": "line 1\nline 2\n"
+    },
+    {
+      "git": [
+        "commit",
+        "-qam",
+        "add line 2"
+      ]
+    },
+    {
+      "write": "log.txt",
+      "content": "line 1\nline 2 changed\n"
+    },
+    {
+      "git": [
+        "commit",
+        "-qam",
+        "change line 2"
+      ]
+    },
+    {
+      "gitTry": [
+        "revert",
+        "--no-edit",
+        "HEAD~1"
+      ]
+    }
+  ],
+  "result": {
+    "kind": "revert",
+    "source": "main",
+    "target": "main",
+    "ours": {
+      "sha": "<c5d714904cb:short>",
+      "subject": "change line 2",
+      "branch": "main",
+      "author": "Playground",
+      "date": "<DATE>"
+    },
+    "theirs": {
+      "sha": "<c5bdcf9b986:short>",
+      "subject": "add line 2",
+      "branch": "main",
+      "author": "Playground",
+      "date": "<DATE>"
+    }
+  }
+}

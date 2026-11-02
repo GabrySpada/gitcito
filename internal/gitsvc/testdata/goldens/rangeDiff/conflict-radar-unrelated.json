@@ -1,0 +1,46 @@
+{
+  "method": "rangeDiff",
+  "fixture": "conflict-radar",
+  "args": [
+    "main",
+    "legacy/import"
+  ],
+  "result": [
+    {
+      "kind": "removed",
+      "oldIndex": 1,
+      "oldSha": "<c875f2675c1:short>",
+      "newIndex": null,
+      "newSha": null,
+      "subject": "init: app, config and readme",
+      "body": ""
+    },
+    {
+      "kind": "removed",
+      "oldIndex": 2,
+      "oldSha": "<cf9e1a9cf65:short>",
+      "newIndex": null,
+      "newSha": null,
+      "subject": "chore: ignore node_modules",
+      "body": ""
+    },
+    {
+      "kind": "removed",
+      "oldIndex": 3,
+      "oldSha": "<c2fd33fcd02:short>",
+      "newIndex": null,
+      "newSha": null,
+      "subject": "main: launch(), 2s timeout, better readme",
+      "body": ""
+    },
+    {
+      "kind": "added",
+      "oldIndex": null,
+      "oldSha": null,
+      "newIndex": 1,
+      "newSha": "<cef233d16b2:short>",
+      "subject": "import legacy tool",
+      "body": ""
+    }
+  ]
+}

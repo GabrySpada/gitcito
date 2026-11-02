@@ -1,0 +1,22 @@
+{
+  "method": "repoPulse",
+  "fixture": "stash-picking",
+  "args": [],
+  "result": {
+    "path": "<REPO>",
+    "name": "stash-picking",
+    "branch": "main",
+    "upstream": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": 0,
+    "unstaged": 0,
+    "untracked": 0,
+    "conflicted": 0,
+    "stashes": 1,
+    "lastCommitAt": "<DATE>",
+    "operation": null,
+    "activity": "<ACTIVITY:14>",
+    "error": null
+  }
+}

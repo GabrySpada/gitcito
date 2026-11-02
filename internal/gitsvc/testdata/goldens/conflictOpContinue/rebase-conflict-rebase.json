@@ -1,0 +1,63 @@
+{
+  "method": "conflictOpContinue",
+  "fixture": "rebase-conflict",
+  "args": [
+    "rebase"
+  ],
+  "setup": [
+    {
+      "gitTry": [
+        "rebase",
+        "main"
+      ]
+    },
+    {
+      "git": [
+        "checkout",
+        "--theirs",
+        "--",
+        "."
+      ]
+    },
+    {
+      "git": [
+        "add",
+        "-A"
+      ]
+    }
+  ],
+  "error": "[detached HEAD <c33fecce621:short>] feature: add credentials + createOrder\n 1 file changed, 7 insertions(+), 8 deletions(-)\nAuto-merging utils.ts\nCONFLICT (content): Merge conflict in utils.ts\nRebasing (2/2)\rerror: could not apply <c6c57fc0db0:short>... feature: en-GB formatting + debounce helper\nhint: Resolve all conflicts manually, mark them as resolved with\nhint: \"git add/rm <conflicted_files>\", then run \"git rebase --continue\".\nhint: You can instead skip this commit: run \"git rebase --skip\".\nhint: To abort and get back to the state before \"git rebase\", run \"git rebase --abort\".\nCould not apply <c6c57fc0db0:short>... feature: en-GB formatting + debounce helper\n",
+  "state": {
+    "status": [
+      "# branch.oid <c33fecce621>",
+      "# branch.head (detached)",
+      "u UU N... 100644 100644 100644 100644 a240920126f5eb361e8708b9e7728026099e5a1b cc50812a79de37ec9c754e2d483b254b3cd6d222 e18d52cc34e082d598583b78b50bad7ad545a135 utils.ts"
+    ],
+    "refs": [
+      "<c6c57fc0db0> refs/heads/feature",
+      "<c91940a4b89> refs/heads/main"
+    ],
+    "log": [
+      "<c327fe933b1>\u0000<ca7c2e7c957>\u0000feature: add credentials + createOrder",
+      "<c33fecce621>\u0000<c91940a4b89>\u0000feature: add credentials + createOrder",
+      "<c6c57fc0db0>\u0000<c327fe933b1>\u0000feature: en-GB formatting + debounce helper",
+      "<c84bfa782c6>\u0000<ca7c2e7c957>\u0000main: migrate to v2 API + add logger",
+      "<c91940a4b89>\u0000<c84bfa782c6>\u0000main: upgrade utils — date-fns + Intl",
+      "<ca7c2e7c957>\u0000\u0000initial: api + utils"
+    ],
+    "stash": [],
+    "index": [
+      "100644 55a2f2f0215642ac81e7651050be85b82de29887 0\tapi.ts",
+      "100644 505ce1087270adcdfaeddf30f0103fe68b2d93cf 0\tlogger.ts",
+      "100644 a240920126f5eb361e8708b9e7728026099e5a1b 1\tutils.ts",
+      "100644 cc50812a79de37ec9c754e2d483b254b3cd6d222 2\tutils.ts",
+      "100644 e18d52cc34e082d598583b78b50bad7ad545a135 3\tutils.ts"
+    ],
+    "diff": "diff --cc utils.ts\nindex cc50812,e18d52c..0000000\n--- a/utils.ts\n+++ b/utils.ts\n@@@ -1,6 -1,6 +1,15 @@@\n++<<<<<<< HEAD\n +import { format } from 'date-fns'\n +\n +export const formatDate = (d: Date) => format(d, 'yyyy-MM-dd')\n +export const formatPrice = (n: number, currency = 'USD') =>\n +  new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(n)\n +export const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max)\n++=======\n+ export const formatDate = (d: Date) => d.toLocaleDateString('en-GB')\n+ export const formatPrice = (n: number) => `£${n.toFixed(2)}`\n+ export const debounce = <T extends (...a: unknown[]) => void>(fn: T, ms: number) => {\n+   let t: ReturnType<typeof setTimeout>\n+   return (...args: Parameters<T>) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms) }\n+ }\n++>>>>>>> <c6c57fc0db0:short> (feature: en-GB formatting + debounce helper)\n",
+    "untracked": [],
+    "ops": [
+      "REBASE_HEAD",
+      "rebase-merge"
+    ]
+  }
+}

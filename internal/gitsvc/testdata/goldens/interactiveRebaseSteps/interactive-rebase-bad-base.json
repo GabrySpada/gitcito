@@ -1,0 +1,8 @@
+{
+  "method": "interactiveRebaseSteps",
+  "fixture": "interactive-rebase",
+  "args": [
+    "no-such-base"
+  ],
+  "result": []
+}

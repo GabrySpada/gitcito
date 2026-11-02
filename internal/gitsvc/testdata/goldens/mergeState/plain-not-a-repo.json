@@ -1,0 +1,6 @@
+{
+  "method": "mergeState",
+  "fixture": "@plain",
+  "args": [],
+  "error": "fatal: not a git repository (or any of the parent directories): .git\n"
+}

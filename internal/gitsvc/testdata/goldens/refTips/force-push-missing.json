@@ -1,0 +1,8 @@
+{
+  "method": "refTips",
+  "fixture": "force-push",
+  "args": [
+    "refs/heads/does-not-exist"
+  ],
+  "result": []
+}

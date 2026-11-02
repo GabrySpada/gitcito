@@ -1,0 +1,22 @@
+{
+  "method": "repoPulse",
+  "fixture": "@missing",
+  "args": [],
+  "result": {
+    "path": "<REPO>",
+    "name": "repo",
+    "branch": "",
+    "upstream": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": 0,
+    "unstaged": 0,
+    "untracked": 0,
+    "conflicted": 0,
+    "stashes": 0,
+    "lastCommitAt": 0,
+    "operation": null,
+    "activity": "<ACTIVITY:0>",
+    "error": "fatal: cannot change to '<REPO>': No such file or directory"
+  }
+}

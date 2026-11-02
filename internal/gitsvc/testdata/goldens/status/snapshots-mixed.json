@@ -1,0 +1,29 @@
+{
+  "method": "status",
+  "fixture": "snapshots",
+  "args": [],
+  "result": {
+    "current": "main",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [
+      {
+        "path": "notes.md",
+        "status": "A"
+      }
+    ],
+    "unstaged": [
+      {
+        "path": "draft.md",
+        "status": "M"
+      },
+      {
+        "path": "scratch.txt",
+        "status": "?",
+        "untracked": true
+      }
+    ],
+    "conflicted": []
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "method": "repoDetail",
+  "fixture": "deep-history-monorepo",
+  "args": [
+    3
+  ],
+  "result": {
+    "files": [],
+    "commits": []
+  }
+}

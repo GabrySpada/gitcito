@@ -1,0 +1,9 @@
+{
+  "method": "blobAtCommit",
+  "fixture": "interactive-rebase",
+  "args": [
+    "{rev:HEAD}",
+    "nope.txt"
+  ],
+  "error": "fatal: path 'nope.txt' does not exist in '<c87ca59e551>'"
+}

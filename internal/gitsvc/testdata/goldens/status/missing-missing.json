@@ -1,0 +1,6 @@
+{
+  "method": "status",
+  "fixture": "@missing",
+  "args": [],
+  "error": "Cannot use simple-git on a directory that does not exist"
+}

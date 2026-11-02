@@ -1,0 +1,55 @@
+{
+  "method": "stagePatch",
+  "fixture": "line-staging",
+  "args": [
+    "diff --git a/many.txt b/many.txt\nindex bab081f..5129312 100644\n--- a/many.txt\n+++ b/many.txt\n@@ -17,7 +17,6 @@\n line 17\n line 18\n line 19\n-line 20\n line 21\n line 22\n line 23\n@@ -33,6 +32,7 @@\n line 33\n line 34\n line 35\n+last\n line 36\n line 37\n line 38\n"
+  ],
+  "setup": [
+    {
+      "write": "many.txt",
+      "content": "line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9\nline 10\nline 11\nline 12\nline 13\nline 14\nline 15\nline 16\nline 17\nline 18\nline 19\nline 20\nline 21\nline 22\nline 23\nline 24\nline 25\nline 26\nline 27\nline 28\nline 29\nline 30\nline 31\nline 32\nline 33\nline 34\nline 35\nline 36\nline 37\nline 38\nline 39\nline 40\n"
+    },
+    {
+      "git": [
+        "add",
+        "many.txt"
+      ]
+    },
+    {
+      "git": [
+        "commit",
+        "-qm",
+        "add many.txt"
+      ]
+    },
+    {
+      "write": "many.txt",
+      "content": "line 1\nline 2\nline 3\nline 4\nline 5\nfirst\nline 6\nline 7\nline 8\nline 9\nline 10\nline 11\nline 12\nline 13\nline 14\nline 15\nline 16\nline 17\nline 18\nline 19\nline 21\nline 22\nline 23\nline 24\nline 25\nline 26\nline 27\nline 28\nline 29\nline 30\nline 31\nline 32\nline 33\nline 34\nline 35\nlast\nline 36\nline 37\nline 38\nline 39\nline 40\n"
+    }
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <c00d1677f5d>",
+      "# branch.head main",
+      "1 .M N... 100644 100644 100644 2a706fca596487315a19fc284908a1898b3b8e75 2a706fca596487315a19fc284908a1898b3b8e75 config.js",
+      "1 MM N... 100644 100644 100644 bab081fdb7372d4e471fcbb12b886e1a7cddcae2 85f0f4db7a893c69e793559434adcd8703f776fc many.txt"
+    ],
+    "refs": [
+      "<c00d1677f5d> refs/heads/main"
+    ],
+    "log": [
+      "<c00d1677f5d>\u0000<c2ab409485d>\u0000add many.txt",
+      "<c2ab409485d>\u0000\u0000init: config + readme"
+    ],
+    "stash": [],
+    "index": [
+      "100644 d2c5946a55dc1c1ed452d7ade5959cb3a94a1a23 0\tREADME.md",
+      "100644 2a706fca596487315a19fc284908a1898b3b8e75 0\tconfig.js",
+      "100644 85f0f4db7a893c69e793559434adcd8703f776fc 0\tmany.txt"
+    ],
+    "diff": "diff --git a/config.js b/config.js\nindex 2a706fc..67c0569 100644\n--- a/config.js\n+++ b/config.js\n@@ -1,7 +1,9 @@\n const config = {\n-  host: 'localhost',\n+  host: 'api.example.com',\n   port: 3000,\n   retries: 3,\n   timeout: 1000,\n+  debug: true,\n+  tls: true,\n }\n module.exports = config\ndiff --git a/many.txt b/many.txt\nindex 85f0f4d..5129312 100644\n--- a/many.txt\n+++ b/many.txt\n@@ -3,6 +3,7 @@ line 2\n line 3\n line 4\n line 5\n+first\n line 6\n line 7\n line 8\n",
+    "untracked": [],
+    "ops": []
+  }
+}

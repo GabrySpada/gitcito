@@ -1,0 +1,17 @@
+{
+  "method": "commitEditInfo",
+  "fixture": "interactive-rebase",
+  "args": [
+    "{rev:HEAD}"
+  ],
+  "result": {
+    "linear": true,
+    "ancestor": true,
+    "merges": 0,
+    "descendants": 0,
+    "pushed": false,
+    "message": "finish session module — getSession + clearToken",
+    "authorName": "Playground",
+    "authorDate": "<DATE>"
+  }
+}

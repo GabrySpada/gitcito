@@ -1,0 +1,32 @@
+{
+  "method": "conflictContext",
+  "fixture": "cherry-pick",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "cherry-pick",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "kind": "cherry-pick",
+    "source": "feature",
+    "target": "main",
+    "ours": {
+      "sha": "<c4d0f8b612c:short>",
+      "subject": "main: rename package",
+      "branch": "main",
+      "author": "Playground",
+      "date": "<DATE>"
+    },
+    "theirs": {
+      "sha": "<c27c85869db:short>",
+      "subject": "bump version on feature (will CONFLICT when cherry-picked)",
+      "branch": "feature",
+      "author": "Playground",
+      "date": "<DATE>"
+    }
+  }
+}

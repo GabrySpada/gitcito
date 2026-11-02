@@ -1,0 +1,42 @@
+{
+  "method": "repoDetail",
+  "fixture": "merge-conflict",
+  "args": [],
+  "setup": [
+    {
+      "gitTry": [
+        "merge",
+        "feature"
+      ]
+    }
+  ],
+  "result": {
+    "files": [
+      {
+        "path": "app.js",
+        "status": "U"
+      },
+      {
+        "path": "big-log.txt",
+        "status": "U"
+      },
+      {
+        "path": "greeting.txt",
+        "status": "U"
+      },
+      {
+        "path": "release-notes.md",
+        "status": "U"
+      },
+      {
+        "path": "units_service.dart",
+        "status": "U"
+      },
+      {
+        "path": "feature-notes.md",
+        "status": "A"
+      }
+    ],
+    "commits": []
+  }
+}

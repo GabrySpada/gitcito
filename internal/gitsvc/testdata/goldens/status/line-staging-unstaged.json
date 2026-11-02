@@ -1,0 +1,19 @@
+{
+  "method": "status",
+  "fixture": "line-staging",
+  "args": [],
+  "result": {
+    "current": "main",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [],
+    "unstaged": [
+      {
+        "path": "config.js",
+        "status": "M"
+      }
+    ],
+    "conflicted": []
+  }
+}

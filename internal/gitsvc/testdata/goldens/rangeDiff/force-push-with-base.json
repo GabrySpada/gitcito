@@ -1,0 +1,56 @@
+{
+  "method": "rangeDiff",
+  "fixture": "force-push",
+  "args": [
+    "origin/feature/login@{1}",
+    "origin/feature/login",
+    "main"
+  ],
+  "setup": [
+    {
+      "git": [
+        "fetch",
+        "-q",
+        "origin"
+      ]
+    }
+  ],
+  "result": [
+    {
+      "kind": "unchanged",
+      "oldIndex": 1,
+      "oldSha": "<c11a0bbc26b:short>",
+      "newIndex": 1,
+      "newSha": "<c11a0bbc26b:short>",
+      "subject": "add login form",
+      "body": ""
+    },
+    {
+      "kind": "modified",
+      "oldIndex": 2,
+      "oldSha": "<cbaaa70e390:short>",
+      "newIndex": 2,
+      "newSha": "<ca553ea8d4f:short>",
+      "subject": "validate password",
+      "body": "@@ Metadata\n Author: Playground <playground@example.com>\n \n  ## Commit message ##\n-    validate password\n+    validate password (min length)\n \n  ## src/validate.ts (new) ##\n @@\n +export function validatePassword(pw: string) {\n++  if (pw.length < 12) return false\n +  return pw.length > 0\n +}"
+    },
+    {
+      "kind": "removed",
+      "oldIndex": 3,
+      "oldSha": "<c182802d705:short>",
+      "newIndex": null,
+      "newSha": null,
+      "subject": "add debug logging",
+      "body": ""
+    },
+    {
+      "kind": "added",
+      "oldIndex": null,
+      "oldSha": null,
+      "newIndex": 3,
+      "newSha": "<c43b5278235:short>",
+      "subject": "add rate limiting",
+      "body": ""
+    }
+  ]
+}

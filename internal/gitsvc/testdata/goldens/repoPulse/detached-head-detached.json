@@ -1,0 +1,22 @@
+{
+  "method": "repoPulse",
+  "fixture": "detached-head",
+  "args": [],
+  "result": {
+    "path": "<REPO>",
+    "name": "detached-head",
+    "branch": "",
+    "upstream": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": 0,
+    "unstaged": 0,
+    "untracked": 0,
+    "conflicted": 0,
+    "stashes": 0,
+    "lastCommitAt": "<DATE>",
+    "operation": null,
+    "activity": "<ACTIVITY:14>",
+    "error": null
+  }
+}

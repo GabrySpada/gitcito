@@ -1,0 +1,10 @@
+{
+  "method": "open",
+  "fixture": "merge-conflict",
+  "args": [],
+  "result": {
+    "path": "<REPO>",
+    "name": "merge-conflict",
+    "current": "main"
+  }
+}

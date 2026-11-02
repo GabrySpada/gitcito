@@ -1,0 +1,9 @@
+{
+  "method": "repoDetail",
+  "fixture": "@missing",
+  "args": [],
+  "result": {
+    "files": [],
+    "commits": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "method": "absorbPlan",
+  "fixture": "absorb",
+  "args": [],
+  "result": {
+    "base": "",
+    "rangeLabel": "",
+    "targets": [],
+    "unmatched": [],
+    "reason": "no-staged"
+  }
+}

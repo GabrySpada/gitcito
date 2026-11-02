@@ -1,0 +1,52 @@
+{
+  "method": "teammateRadar",
+  "fixture": "teammate-radar",
+  "args": [
+    {
+      "maxDays": 100000
+    }
+  ],
+  "result": {
+    "entries": [
+      {
+        "ref": "origin/feature/api-tokens",
+        "sha": "<c4208c4f6b9:short>",
+        "author": "María García",
+        "time": "<DATE>",
+        "ahead": 1,
+        "filesTouched": 2,
+        "overlap": [
+          "api.ts"
+        ],
+        "risk": "clean",
+        "conflictFiles": []
+      },
+      {
+        "ref": "origin/feature/ui-polish",
+        "sha": "<c42ea766ecc:short>",
+        "author": "Sam Lee",
+        "time": "<DATE>",
+        "ahead": 1,
+        "filesTouched": 1,
+        "overlap": [],
+        "risk": "conflict",
+        "conflictFiles": [
+          "ui.css"
+        ]
+      },
+      {
+        "ref": "origin/main",
+        "sha": "<c56e1d18b8d:short>",
+        "author": "Priya Patel",
+        "time": "<DATE>",
+        "ahead": 1,
+        "filesTouched": 1,
+        "overlap": [],
+        "risk": "clean",
+        "conflictFiles": []
+      }
+    ],
+    "dirtyCount": 2,
+    "scannedAt": "<DATE>"
+  }
+}

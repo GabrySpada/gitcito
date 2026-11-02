@@ -1,0 +1,63 @@
+{
+  "method": "runInteractiveRebase",
+  "fixture": "interactive-rebase",
+  "args": [
+    "main",
+    [
+      {
+        "action": "pick",
+        "hash": "{rev:HEAD~5}",
+        "subject": "add login function"
+      },
+      {
+        "action": "fixup",
+        "hash": "{rev:HEAD~4}",
+        "subject": "WIP"
+      },
+      {
+        "action": "fixup",
+        "hash": "{rev:HEAD~3}",
+        "subject": "add logout + fix login path"
+      },
+      {
+        "action": "fixup",
+        "hash": "{rev:HEAD~2}",
+        "subject": "fixup! add logout + fix login path"
+      },
+      {
+        "action": "fixup",
+        "hash": "{rev:HEAD~1}",
+        "subject": "WIP session module"
+      },
+      {
+        "action": "fixup",
+        "hash": "{rev:HEAD~0}",
+        "subject": "finish session module — getSession + clearToken"
+      }
+    ]
+  ],
+  "result": null,
+  "state": {
+    "status": [
+      "# branch.oid <cad21f0ae59>",
+      "# branch.head messy-feature"
+    ],
+    "refs": [
+      "<c8eac89fbc6> refs/heads/main",
+      "<cad21f0ae59> refs/heads/messy-feature"
+    ],
+    "log": [
+      "<c8eac89fbc6>\u0000\u0000initial commit",
+      "<cad21f0ae59>\u0000<c8eac89fbc6>\u0000add login function"
+    ],
+    "stash": [],
+    "index": [
+      "100644 e2f0c2bb3914c602dbff8b30347634bf8c6a0dbe 0\tauth.ts",
+      "100644 5a52d1123d99969e9b0560289646d078f871daeb 0\tindex.ts",
+      "100644 6250972daa55c6ed76dd7a04b8f48b1314b13e5b 0\tsession.ts"
+    ],
+    "diff": "",
+    "untracked": [],
+    "ops": []
+  }
+}

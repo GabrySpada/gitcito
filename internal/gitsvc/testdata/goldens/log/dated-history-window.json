@@ -1,0 +1,46 @@
+{
+  "method": "log",
+  "fixture": "dated-history",
+  "args": [
+    3,
+    2
+  ],
+  "result": [
+    {
+      "hash": "<c080d74c8ff>",
+      "parents": [
+        "<c3b84130276>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "refactor: read the clock once",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c3b84130276>",
+      "parents": [
+        "<c117e29792c>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "fix: pin the timezone",
+      "coAuthors": []
+    },
+    {
+      "hash": "<c117e29792c>",
+      "parents": [
+        "<c11550e9e0f>"
+      ],
+      "author": "Playground",
+      "email": "playground@example.com",
+      "date": "<DATE>",
+      "refs": [],
+      "subject": "feat: carry a locale",
+      "coAuthors": []
+    }
+  ]
+}

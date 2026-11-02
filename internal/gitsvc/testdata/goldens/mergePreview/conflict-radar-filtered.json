@@ -1,0 +1,39 @@
+{
+  "method": "mergePreview",
+  "fixture": "conflict-radar",
+  "args": [
+    "main",
+    [
+      "feature/docs",
+      "",
+      "bad ref",
+      "feature/docs",
+      "no/such-branch",
+      "feature/rename-api"
+    ]
+  ],
+  "result": {
+    "base": "main",
+    "baseSha": "<c2fd33fcd02>",
+    "entries": [
+      {
+        "ref": "feature/docs",
+        "status": "clean",
+        "files": []
+      },
+      {
+        "ref": "no/such-branch",
+        "status": "conflict",
+        "files": []
+      },
+      {
+        "ref": "feature/rename-api",
+        "status": "conflict",
+        "files": [
+          "src/app.js"
+        ]
+      }
+    ],
+    "scannedAt": "<DATE>"
+  }
+}

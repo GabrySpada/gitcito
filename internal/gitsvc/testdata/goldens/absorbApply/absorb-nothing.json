@@ -1,0 +1,42 @@
+{
+  "method": "absorbApply",
+  "fixture": "absorb",
+  "args": [],
+  "result": {
+    "created": 0,
+    "rebased": false
+  },
+  "state": {
+    "status": [
+      "# branch.oid <c160744bf41>",
+      "# branch.head main",
+      "# branch.upstream origin/main",
+      "# branch.ab +3 -0",
+      "1 .M N... 100644 100644 100644 e70567db2aadd926b0f9d0ace3ba9b821a0a7ba3 e70567db2aadd926b0f9d0ace3ba9b821a0a7ba3 src/auth.ts",
+      "1 .M N... 100644 100644 100644 4577344b88e68935d92ab32f08017fcfc00d9e55 4577344b88e68935d92ab32f08017fcfc00d9e55 src/parser.ts",
+      "? src/cache.ts"
+    ],
+    "refs": [
+      "<c160744bf41> refs/heads/main",
+      "<c2a7ff982af> refs/remotes/origin/main"
+    ],
+    "log": [
+      "<c160744bf41>\u0000<c57544df65c>\u0000feat: add logger",
+      "<c2a7ff982af>\u0000\u0000init: readme",
+      "<c4900eec92e>\u0000<c2a7ff982af>\u0000feat: add auth",
+      "<c57544df65c>\u0000<c4900eec92e>\u0000feat: add parser"
+    ],
+    "stash": [],
+    "index": [
+      "100644 b3f67a6e229a55c709d2bf9d6e689a2ccb17fde0 0\tREADME.md",
+      "100644 e70567db2aadd926b0f9d0ace3ba9b821a0a7ba3 0\tsrc/auth.ts",
+      "100644 70af24f2ba9d600388f86b35e42595fe3c48f477 0\tsrc/logger.ts",
+      "100644 4577344b88e68935d92ab32f08017fcfc00d9e55 0\tsrc/parser.ts"
+    ],
+    "diff": "diff --git a/src/auth.ts b/src/auth.ts\nindex e70567d..3dc06b0 100644\n--- a/src/auth.ts\n+++ b/src/auth.ts\n@@ -1,4 +1,5 @@\n export function login(user: string, password: string) {\n   if (!user) return null\n+  if (!password) return null\n   return { user, token: 'todo' }\n }\ndiff --git a/src/parser.ts b/src/parser.ts\nindex 4577344..84ad4f6 100644\n--- a/src/parser.ts\n+++ b/src/parser.ts\n@@ -1,4 +1,5 @@\n export function parse(input: string) {\n   const trimmed = input.trim()\n+  if (!trimmed) return null\n   return JSON.parse(trimmed)\n }\n",
+    "untracked": [
+      "1b040bbec53888463c9fee7666ef049543012446 src/cache.ts"
+    ],
+    "ops": []
+  }
+}

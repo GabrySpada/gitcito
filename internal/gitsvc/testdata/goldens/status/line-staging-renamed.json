@@ -1,0 +1,41 @@
+{
+  "method": "status",
+  "fixture": "line-staging",
+  "args": [],
+  "setup": [
+    {
+      "git": [
+        "mv",
+        "README.md",
+        "NOTES.md"
+      ]
+    },
+    {
+      "write": "NOTES.md",
+      "content": "rewritten after the move\n"
+    }
+  ],
+  "result": {
+    "current": "main",
+    "tracking": null,
+    "ahead": 0,
+    "behind": 0,
+    "staged": [
+      {
+        "path": "NOTES.md",
+        "status": "R"
+      }
+    ],
+    "unstaged": [
+      {
+        "path": "NOTES.md",
+        "status": "M"
+      },
+      {
+        "path": "config.js",
+        "status": "M"
+      }
+    ],
+    "conflicted": []
+  }
+}
