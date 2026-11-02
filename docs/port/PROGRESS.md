@@ -17,6 +17,8 @@ compaction.
   - keychain + settings ported and bound (docs: subagent report in git log 34b4021).
   - Go services bound: AppService (bootstrap, version, releases, ready, finishEdit), DialogService, ShellService,
     menu.Service, logbook.Service. Editor `--wait` flow ported (Core, unbound).
+  - Server build (`-tags server`, loopback-guarded) + e2e harness (`npm run test:e2e`, 8 tests: boot, settings,
+    log, origin isolation). Wails debug log scrubbed of call args/results. ci.yml written.
   - Renderer adaptations: clipboard (58 sites), `--wails-draggable`, link guard, native file drop
     (`droppedFilePaths`), zoom, timelapse format, PDF fallback button.
 
@@ -41,4 +43,6 @@ compaction.
   method of every registered service is tagged).
 
 ## Blockers
-- None.
+- CI: `.github/workflows/ci.yml` pushed (99e588a), but the repository shows **zero** workflow runs of any
+  workflow (MCP actions_list). Actions is probably disabled on GabrySpada/gitcito. Re-check after later pushes;
+  if still zero, the PR lists it and local gate output stands in as evidence.
