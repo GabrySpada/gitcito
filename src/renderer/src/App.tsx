@@ -22,7 +22,6 @@ import { StashDetails } from './components/StashDetails'
 import { CommitComposer } from './components/CommitComposer'
 import { TerminalContainer } from './components/TerminalContainer'
 import { ProblemsPanel } from './components/ProblemsPanel'
-import { DevToolsPage } from './components/DevToolsPage'
 import { useProblemsStore } from './stores/problems'
 import { countBySeverity } from './lib/problems'
 import { DebugToolbar } from './components/DebugToolbar'
@@ -234,8 +233,6 @@ function PageBody({ page }: { page: PageContent }): React.JSX.Element | null {
       return <InsightsPage repoPath={page.repoPath} />
     case 'wiki':
       return <WikiPageView repoPath={page.repoPath} />
-    case 'devtools':
-      return <DevToolsPage launchId={page.launchId} url={page.url} label={page.label} tool={page.tool} />
     default:
       return null
   }
@@ -263,15 +260,6 @@ function PageView({ tab }: { tab: PageTab }): React.JSX.Element {
       return <HelpPage initialPage={tab.page.page} />
     case 'licenses':
       return <LicensesPage />
-    case 'devtools':
-      return (
-        <DevToolsPage
-          launchId={tab.page.launchId}
-          url={tab.page.url}
-          label={tab.page.label}
-          tool={tab.page.tool}
-        />
-      )
     case 'release':
       return <ReleasePage tab={tab} />
     case 'issue':

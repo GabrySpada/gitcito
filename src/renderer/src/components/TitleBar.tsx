@@ -66,8 +66,6 @@ function pageTabIcon(type: string): React.JSX.Element {
       return <LifeBuoy size={13} />
     case 'licenses':
       return <Scale size={13} />
-    case 'devtools':
-      return <Wrench size={13} />
     // Explicit, so a new page type never inherits the release-notes sparkle by
     // falling through to the default.
     case 'changelog':

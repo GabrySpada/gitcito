@@ -1205,14 +1205,14 @@ Open rows: **1029** of 1686.
 | test/pureLogic.test.ts | launch hot actions (detectHotRuntime) lets a config override the detection, and turn it off | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
 | test/pureLogic.test.ts | launch hot actions (detectHotRuntime) shows a newline in an override as the Enter key | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
 | test/pureLogic.test.ts | launch hot actions (detectHotRuntime) splits the actions into buttons and an overflow menu | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab attaches a repo-scoped page to that repository’s tab | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab prefers the tab you are looking at when two hold the same repo | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab attaches to a group tab too, selecting the repository it belongs to | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab falls back to a tab of its own when nothing holds the repository | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab gives each repository in a group only its own icons | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab leaves pages that belong to no repository alone | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab replaces a page in place instead of multiplying icons | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
-| test/pureLogic.test.ts | pages that ride on a repository tab drops back to the repository when the open page is closed | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
+| test/pureLogic.test.ts | pages that ride on a repository tab attaches a repo-scoped page to that repository’s tab | still in vitest |  |
+| test/pureLogic.test.ts | pages that ride on a repository tab prefers the tab you are looking at when two hold the same repo | still in vitest |  |
+| test/pureLogic.test.ts | pages that ride on a repository tab attaches to a group tab too, selecting the repository it belongs to | still in vitest |  |
+| test/pureLogic.test.ts | pages that ride on a repository tab falls back to a tab of its own when nothing holds the repository | still in vitest |  |
+| test/pureLogic.test.ts | pages that ride on a repository tab gives each repository in a group only its own icons | still in vitest |  |
+| test/pureLogic.test.ts | pages that ride on a repository tab leaves pages that belong to no repository alone | still in vitest |  |
+| test/pureLogic.test.ts | pages that ride on a repository tab replaces a page in place instead of multiplying icons | still in vitest | fixture changed from DevTools (removed by D6) to wiki/insights pages
+| test/pureLogic.test.ts | pages that ride on a repository tab drops back to the repository when the open page is closed | still in vitest |  |
 | test/pureLogic.test.ts | bookmarks: finding the line again is exact when the line has not moved | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
 | test/pureLogic.test.ts | bookmarks: finding the line again follows the line when something was inserted above it | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |
 | test/pureLogic.test.ts | bookmarks: finding the line again follows it when lines were deleted above it | todo → Go (aiCli, aiSchemas, aiTransport, grounding, hosting, launch, wikiPack, wikiSchemas, windowState) |  |

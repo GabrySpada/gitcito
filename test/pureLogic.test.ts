@@ -4865,8 +4865,7 @@ describe('pages that ride on a repository tab', () => {
   const groupTab = (id: string, path: string): never =>
     ({ id, kind: 'group', name: id, repos: [{ path, name: id }], activeRepoPath: path }) as never
   const wiki = (repoPath: string): never => ({ type: 'wiki', repoPath }) as never
-  const devtools = (repoPath: string, launchId: number): never =>
-    ({ type: 'devtools', repoPath, launchId, url: `http://127.0.0.1:${launchId}/`, label: 'app', tool: 'Flutter DevTools' }) as never
+  const insights = (repoPath: string): never => ({ type: 'insights', repoPath }) as never
 
   it('attaches a repo-scoped page to that repository’s tab', () => {
     const plan = planAttach([repoTab('t1', '/r')], 't1', wiki('/r'))
@@ -4892,7 +4891,7 @@ describe('pages that ride on a repository tab', () => {
   })
 
   it('gives each repository in a group only its own icons', () => {
-    const pages = [wiki('/a'), devtools('/b', 7), wiki('/b')]
+    const pages = [wiki('/a'), insights('/b'), wiki('/b')]
     expect(pagesForRepo(pages, '/b').map((x) => x.index)).toEqual([1, 2])
     expect(pagesForRepo(pages, '/a').map((x) => x.index)).toEqual([0])
     expect(pagesForRepo(undefined, '/a')).toEqual([])
@@ -4903,20 +4902,19 @@ describe('pages that ride on a repository tab', () => {
   })
 
   it('replaces a page in place instead of multiplying icons', () => {
-    // A restarted app announces a new DevTools address; the session is the same,
-    // so the icon must be too.
-    const tabs = [repoTab('t1', '/r', [devtools('/r', 7)])]
-    const plan = planAttach(tabs, 't1', devtools('/r', 7))
+    // Opening the wiki again for the same repository reuses its icon.
+    const tabs = [repoTab('t1', '/r', [wiki('/r')])]
+    const plan = planAttach(tabs, 't1', wiki('/r'))
     expect(plan?.pages).toHaveLength(1)
     expect(plan?.index).toBe(0)
-    // A second session is a second icon.
-    expect(planAttach(tabs, 't1', devtools('/r', 8))?.pages).toHaveLength(2)
+    // A different page kind is a second icon.
+    expect(planAttach(tabs, 't1', insights('/r'))?.pages).toHaveLength(2)
   })
 
   it('drops back to the repository when the open page is closed', () => {
-    expect(planClose([wiki('/r'), devtools('/r', 7)], 0, 0)).toEqual({ pages: [devtools('/r', 7)], activePage: null })
+    expect(planClose([wiki('/r'), insights('/r')], 0, 0)).toEqual({ pages: [insights('/r')], activePage: null })
     // Closing a page to the left of the open one keeps you on the same page.
-    expect(planClose([wiki('/r'), devtools('/r', 7)], 1, 0)).toEqual({ pages: [devtools('/r', 7)], activePage: 0 })
+    expect(planClose([wiki('/r'), insights('/r')], 1, 0)).toEqual({ pages: [insights('/r')], activePage: 0 })
     expect(planClose([wiki('/r')], 0, 0)).toEqual({ pages: [], activePage: null })
   })
 })
