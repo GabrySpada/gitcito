@@ -16,6 +16,7 @@ import { Clipboard, Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
+import * as AIService from '../bindings/github.com/GabrySpada/gitcito/internal/ai/service'
 import * as AnalyticsService from '../bindings/github.com/GabrySpada/gitcito/internal/analytics/service'
 import * as InfoService from '../bindings/github.com/GabrySpada/gitcito/internal/info/service'
 import * as SecureService from '../bindings/github.com/GabrySpada/gitcito/internal/secure/service'
@@ -171,6 +172,7 @@ const vaultCall = forwarder(VaultService)
 const secureCall = forwarder(SecureService)
 const analyticsCall = forwarder(AnalyticsService)
 const infoCall = forwarder(InfoService)
+const aiCall = forwarder(AIService)
 
 // Looked up by name at call time; the generated module is the authoritative list of ported git methods.
 const gitMethods = GitService as unknown as Record<string, ((...args: unknown[]) => Promise<unknown>) | undefined>
@@ -299,22 +301,22 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     ai: {
-      commitMessage: notPorted('ai:commitMessage'),
-      listModels: notPorted('ai:listModels'),
-      detectCli: notPorted('ai:detectCli'),
-      explainCode: notPorted('ai:explainCode'),
-      hoverExplain: notPorted('ai:hoverExplain'),
-      resolveConflict: notPorted('ai:resolveConflict'),
-      generateConfig: notPorted('ai:generateConfig'),
-      suggestArtifacts: notPorted('ai:suggestArtifacts'),
-      smartStage: notPorted('ai:smartStage'),
-      generateAppTheme: notPorted('ai:generateAppTheme'),
-      generateCodeTheme: notPorted('ai:generateCodeTheme'),
-      generateGraphPalette: notPorted('ai:generateGraphPalette'),
-      generateBranchName: notPorted('ai:generateBranchName'),
-      reviewPR: notPorted('ai:reviewPR'),
-      prDescription: notPorted('ai:prDescription'),
-      planActions: notPorted('ai:planActions'),
+      commitMessage: aiCall('CommitMessage'),
+      listModels: aiCall('ListModels'),
+      detectCli: aiCall('DetectCli'),
+      explainCode: aiCall('ExplainCode'),
+      hoverExplain: aiCall('HoverExplain'),
+      resolveConflict: aiCall('ResolveConflict'),
+      generateConfig: aiCall('GenerateConfig'),
+      suggestArtifacts: aiCall('SuggestArtifacts'),
+      smartStage: aiCall('SmartStage'),
+      generateAppTheme: aiCall('GenerateAppTheme'),
+      generateCodeTheme: aiCall('GenerateCodeTheme'),
+      generateGraphPalette: aiCall('GenerateGraphPalette'),
+      generateBranchName: aiCall('GenerateBranchName'),
+      reviewPR: aiCall('ReviewPR'),
+      prDescription: aiCall('PrDescription'),
+      planActions: aiCall('PlanActions'),
       repoChat: notPorted('ai:repoChat'),
       repoChatFinalize: notPorted('ai:repoChatFinalize')
     },

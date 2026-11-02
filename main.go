@@ -10,6 +10,7 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/GabrySpada/gitcito/internal/ai"
 	"github.com/GabrySpada/gitcito/internal/analytics"
 	"github.com/GabrySpada/gitcito/internal/app"
 	"github.com/GabrySpada/gitcito/internal/gitsvc"
@@ -63,6 +64,8 @@ func main() {
 	})
 	vaultStore := vault.New(vault.Options{Keychain: keys})
 	ledger := analytics.New(analytics.Options{})
+	// One model client for every AI feature (and, later, repo chat and the wiki).
+	aiClient := ai.NewClient(ai.Options{Keys: store, Usage: app.AIUsage{Ledger: ledger}})
 	git := gitsvc.New(app.Emitter{}, book, gitsvc.WithActivityRecorder(ledger), gitsvc.WithTokenFunc(func(ctx context.Context, host, repoPath string) string {
 		// A lookup failure (keychain refused, unreadable secrets) means "no token": git then runs
 		// unauthenticated and the remote's own error reaches the user, as in the Electron build.
@@ -107,6 +110,7 @@ func main() {
 			application.NewService(vault.NewService(vaultStore)),
 			application.NewService(secure.NewService(secure.New(secure.Options{Vault: vaultStore}))),
 			application.NewService(analytics.NewService(ledger)),
+			application.NewService(ai.NewService(aiClient)),
 			application.NewService(info.NewService(info.New(info.Options{}))),
 			application.NewService(hosting.NewService(hosting.Options{OpenURL: func(u string) error {
 				return application.Get().Browser.OpenURL(u)

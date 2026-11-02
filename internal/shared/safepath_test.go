@@ -24,6 +24,8 @@ func TestIsSafeRepoPath(t *testing.T) {
 		{"..", false},
 		{"a/..b", true},
 		{"a\x00b", false},
+		{"\uFEFF/etc/passwd", false},
+		{"\u0085x", true},
 		{strings.Repeat("a", 400), true},
 		{strings.Repeat("a", 401), false},
 		// 200 two-unit code points = 400 UTF-16 units: accepted like in JS.

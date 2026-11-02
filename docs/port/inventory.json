@@ -49,8 +49,8 @@
           "via": "aiApi.commitMessage"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.CommitMessage",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -73,8 +73,8 @@
           "via": "aiApi.detectCli"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.DetectCli",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -107,8 +107,8 @@
           "via": "aiApi.explainCode"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.ExplainCode",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -136,8 +136,8 @@
           "via": "aiApi.generateAppTheme"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.GenerateAppTheme",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -166,8 +166,8 @@
           "via": "aiApi.generateBranchName"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.GenerateBranchName",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -195,8 +195,8 @@
           "via": "aiApi.generateCodeTheme"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.GenerateCodeTheme",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -226,8 +226,8 @@
           "via": "aiApi.generateConfig"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.GenerateConfig",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -255,8 +255,8 @@
           "via": "aiApi.generateGraphPalette"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.GenerateGraphPalette",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -284,8 +284,8 @@
           "via": "aiApi.hoverExplain"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.HoverExplain",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -313,8 +313,8 @@
           "via": "aiApi.listModels"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.ListModels",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -338,8 +338,8 @@
         "src/main/ai.ts:995"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.PlanActions",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -368,8 +368,8 @@
           "via": "aiApi.prDescription"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.PrDescription",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -460,8 +460,8 @@
           "via": "aiApi.resolveConflict"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.ResolveConflict",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -489,8 +489,8 @@
           "via": "aiApi.reviewPR"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.ReviewPR",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -518,8 +518,8 @@
           "via": "aiApi.smartStage"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.SmartStage",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -550,8 +550,8 @@
           "via": "aiApi.suggestArtifacts"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ai.Service.SuggestArtifacts",
+      "status": "ported",
       "test": "—"
     },
     {

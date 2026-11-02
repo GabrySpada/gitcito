@@ -16,7 +16,9 @@ var driveLetter = regexp.MustCompile(`^[a-zA-Z]:`)
 // writing, so `..` segments, absolute paths and Windows drive letters have to be
 // refused. Mirrors isSafeRepoPath in src/main/aiSchemas.ts.
 func IsSafeRepoPath(path string) bool {
-	p := strings.TrimSpace(path)
+	// JS trim(), not strings.TrimSpace: they disagree on U+FEFF and U+0085, and a
+	// path TS refused ("\uFEFF/etc/passwd") must be refused here too.
+	p := JSTrim(path)
 	// JS measures length in UTF-16 code units; count the same way so a path the
 	// TS side accepted is not refused here (or the reverse).
 	if p == "" || len(utf16.Encode([]rune(p))) > 400 {
