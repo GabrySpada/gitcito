@@ -1,0 +1,517 @@
+[
+  {
+    "name": "github user and orgs",
+    "channel": "hosting:listOwners",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "json": {
+          "login": "octo",
+          "avatar_url": "https://a/octo"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "json": [
+          {
+            "login": "acme",
+            "avatar_url": "https://a/acme"
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "id": "octo",
+        "login": "octo",
+        "avatarUrl": "https://a/octo",
+        "type": "user"
+      },
+      {
+        "id": "acme",
+        "login": "acme",
+        "avatarUrl": "https://a/acme",
+        "type": "org"
+      }
+    ]
+  },
+  {
+    "name": "github orgs failure is fatal",
+    "channel": "hosting:listOwners",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "json": {
+          "login": "octo",
+          "avatar_url": "https://a/octo"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "status": 403,
+        "json": {
+          "message": "Resource not accessible by integration"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Resource not accessible by integration"
+  },
+  {
+    "name": "github rate limited",
+    "channel": "hosting:listOwners",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "status": 403,
+        "headers": {
+          "x-ratelimit-remaining": "0",
+          "x-ratelimit-reset": "1700000000"
+        },
+        "json": {
+          "message": "API rate limit exceeded"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub rate limit exceeded — resets at 10:13:20 PM."
+  },
+  {
+    "name": "github rate limit without reset",
+    "channel": "hosting:listOwners",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "status": 429,
+        "headers": {
+          "x-ratelimit-remaining": "0"
+        },
+        "raw": "slow down"
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub API error (429)"
+  },
+  {
+    "name": "gitlab user and groups",
+    "channel": "hosting:listOwners",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "json": {
+          "id": 7,
+          "username": "gl",
+          "avatar_url": null,
+          "namespace_id": 70
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/groups?min_access_level=30&per_page=100",
+        "json": [
+          {
+            "id": 11,
+            "full_path": "acme",
+            "avatar_url": "https://g/11"
+          },
+          {
+            "id": 12,
+            "full_path": "acme/platform",
+            "avatar_url": null
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/groups?min_access_level=30&per_page=100",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "id": "7",
+        "login": "gl",
+        "type": "user"
+      },
+      {
+        "id": "11",
+        "login": "acme",
+        "avatarUrl": "https://g/11",
+        "type": "org"
+      },
+      {
+        "id": "12",
+        "login": "acme/platform",
+        "type": "org"
+      }
+    ]
+  },
+  {
+    "name": "bitbucket workspaces",
+    "channel": "hosting:listOwners",
+    "args": [
+      "bitbucket",
+      "bbuser:vector-app-password"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "json": {
+          "values": [
+            {
+              "slug": "team",
+              "name": "Team",
+              "links": {
+                "avatar": {
+                  "href": "https://bb/team"
+                }
+              }
+            },
+            {
+              "slug": "solo",
+              "name": "Solo"
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "id": "team",
+        "login": "team",
+        "avatarUrl": "https://bb/team",
+        "type": "org"
+      },
+      {
+        "id": "solo",
+        "login": "solo",
+        "type": "org"
+      }
+    ]
+  },
+  {
+    "name": "bitbucket workspaces error",
+    "channel": "hosting:listOwners",
+    "args": [
+      "bitbucket",
+      "bbuser:vector-app-password"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "status": 401,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Bitbucket API error (401)"
+  },
+  {
+    "name": "azure projects",
+    "channel": "hosting:listOwners",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/projects?api-version=7.1",
+        "json": {
+          "value": [
+            {
+              "id": "p-1",
+              "name": "Proj"
+            },
+            {
+              "id": "p-2",
+              "name": "Other"
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/projects?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "id": "p-1",
+        "login": "Proj",
+        "type": "org"
+      },
+      {
+        "id": "p-2",
+        "login": "Other",
+        "type": "org"
+      }
+    ]
+  },
+  {
+    "name": "azure without organization",
+    "channel": "hosting:listOwners",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "Enter your Azure DevOps organization."
+  },
+  {
+    "name": "gitlab no credential",
+    "channel": "hosting:listOwners",
+    "args": [
+      "gitlab",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=gitlab.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No gitlab credential for gitlab.com. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "name": "all three, reviewers failing",
+    "channel": "hosting:applyPrMeta",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      {
+        "reviewers": [
+          "r1",
+          "r2"
+        ],
+        "labels": [
+          "bug"
+        ],
+        "assignees": [
+          "me"
+        ]
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/requested_reviewers",
+        "status": 422,
+        "json": {
+          "message": "Reviews may only be requested from collaborators."
+        }
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/labels",
+        "json": []
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/assignees",
+        "status": 201,
+        "json": {}
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/requested_reviewers",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"reviewers\":[\"r1\",\"r2\"]}"
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/labels",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"labels\":[\"bug\"]}"
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/assignees",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"assignees\":[\"me\"]}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "nothing to apply",
+    "channel": "hosting:applyPrMeta",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      {
+        "reviewers": [],
+        "labels": []
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "non-github remote",
+    "channel": "hosting:applyPrMeta",
+    "args": [
+      "https://dev.azure.com/contoso/My%20Project/_git/app",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      {
+        "labels": [
+          "x"
+        ]
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "This action currently supports GitHub repositories only."
+  }
+]

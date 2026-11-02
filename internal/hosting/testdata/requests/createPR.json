@@ -1,0 +1,798 @@
+[
+  {
+    "name": "unknown remote",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://example.com/x/y.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      {
+        "title": "t",
+        "body": "b",
+        "source": "s",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "Unrecognized remote — PR creation supports GitHub, GitLab, Bitbucket and Azure DevOps."
+  },
+  {
+    "name": "gitlab draft",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      {
+        "title": "Add x",
+        "body": "Body\nline",
+        "source": "feat",
+        "target": "main",
+        "draft": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests",
+        "status": 201,
+        "json": {
+          "iid": 8,
+          "web_url": "https://gitlab.com/acme/platform/app/-/merge_requests/8"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"source_branch\":\"feat\",\"target_branch\":\"main\",\"title\":\"Draft: Add x\",\"description\":\"Body\\nline\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "url": "https://gitlab.com/acme/platform/app/-/merge_requests/8",
+      "number": 8
+    }
+  },
+  {
+    "name": "gitlab error message",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      {
+        "title": "Add x",
+        "body": "",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests",
+        "status": 409,
+        "json": {
+          "message": [
+            "Another open merge request already exists"
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"source_branch\":\"feat\",\"target_branch\":\"main\",\"title\":\"Add x\",\"description\":\"\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab: API error (409)"
+  },
+  {
+    "name": "gitlab error status",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      {
+        "title": "Add x",
+        "body": "",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"source_branch\":\"feat\",\"target_branch\":\"main\",\"title\":\"Add x\",\"description\":\"\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab: API error (500)"
+  },
+  {
+    "name": "gitlab no credential",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      {
+        "title": "t",
+        "body": "b",
+        "source": "s",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=gitlab.com\npath=acme/platform/app\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No GitLab credential for gitlab.com. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  },
+  {
+    "name": "bitbucket",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      {
+        "bitbucket": "bbuser:vector-app-password"
+      },
+      {
+        "title": "BB",
+        "body": "desc",
+        "source": "feat",
+        "target": "main",
+        "draft": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests",
+        "status": 201,
+        "json": {
+          "id": 4,
+          "links": {
+            "html": {
+              "href": "https://bitbucket.org/team/app/pull-requests/4"
+            }
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": "{\"title\":\"BB\",\"description\":\"desc\",\"source\":{\"branch\":{\"name\":\"feat\"}},\"destination\":{\"branch\":{\"name\":\"main\"}}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "url": "https://bitbucket.org/team/app/pull-requests/4",
+      "number": 4
+    }
+  },
+  {
+    "name": "bitbucket error",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      {
+        "bitbucket": "bbuser:vector-app-password"
+      },
+      {
+        "title": "BB",
+        "body": "desc",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests",
+        "status": 400,
+        "json": {
+          "error": {
+            "message": "There are no changes"
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": "{\"title\":\"BB\",\"description\":\"desc\",\"source\":{\"branch\":{\"name\":\"feat\"}},\"destination\":{\"branch\":{\"name\":\"main\"}}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Bitbucket: There are no changes"
+  },
+  {
+    "name": "bitbucket error without message",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://bitbucket.org/team/app.git",
+      {
+        "bitbucket": "bbuser:vector-app-password"
+      },
+      {
+        "title": "BB",
+        "body": "desc",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests",
+        "status": 400,
+        "json": {
+          "error": {}
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/app/pullrequests",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": "{\"title\":\"BB\",\"description\":\"desc\",\"source\":{\"branch\":{\"name\":\"feat\"}},\"destination\":{\"branch\":{\"name\":\"main\"}}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Bitbucket: API error (400)"
+  },
+  {
+    "name": "github",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      {
+        "title": "Feat \"x\" <y>",
+        "body": "Body   sep",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "status": 201,
+        "json": {
+          "html_url": "https://github.com/acme/app/pull/9",
+          "number": 9
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"title\":\"Feat \\\"x\\\" <y>\",\"head\":\"feat\",\"base\":\"main\",\"body\":\"Body   sep\",\"draft\":false}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "url": "https://github.com/acme/app/pull/9",
+      "number": 9
+    }
+  },
+  {
+    "name": "github head not pushed",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      {
+        "title": "t",
+        "body": "b",
+        "source": "feat",
+        "target": "main",
+        "draft": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "status": 422,
+        "json": {
+          "message": "Validation Failed",
+          "errors": [
+            {
+              "resource": "PullRequest",
+              "field": "head",
+              "code": "invalid"
+            },
+            {
+              "field": "base",
+              "code": "invalid"
+            },
+            {
+              "field": "x",
+              "code": "custom"
+            },
+            {
+              "code": "missing"
+            },
+            {}
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"title\":\"t\",\"head\":\"feat\",\"base\":\"main\",\"body\":\"b\",\"draft\":true}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Validation Failed — the branch \"feat\" is not on the remote — push it first; the base branch \"main\" is not on the remote; x: custom; missing"
+  },
+  {
+    "name": "github error messages listed",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      {
+        "title": "t",
+        "body": "b",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "status": 422,
+        "json": {
+          "errors": [
+            {
+              "message": "A pull request already exists for acme:feat."
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"title\":\"t\",\"head\":\"feat\",\"base\":\"main\",\"body\":\"b\",\"draft\":false}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: A pull request already exists for acme:feat."
+  },
+  {
+    "name": "github error headline only",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      {
+        "title": "t",
+        "body": "b",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "status": 404,
+        "json": {
+          "message": "Not Found"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"title\":\"t\",\"head\":\"feat\",\"base\":\"main\",\"body\":\"b\",\"draft\":false}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Not Found"
+  },
+  {
+    "name": "github error not json",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      {
+        "title": "t",
+        "body": "b",
+        "source": "feat",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "status": 502,
+        "raw": "<html>bad gateway</html>"
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"title\":\"t\",\"head\":\"feat\",\"base\":\"main\",\"body\":\"b\",\"draft\":false}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: API error (502)"
+  },
+  {
+    "name": "github no credential",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {},
+      {
+        "title": "t",
+        "body": "b",
+        "source": "s",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "authenticated"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=acme/app\n\n"
+      },
+      {
+        "file": "gh",
+        "args": [
+          "auth",
+          "status",
+          "--hostname",
+          "github.com"
+        ],
+        "env": {},
+        "timeout": 10000,
+        "input": null
+      }
+    ],
+    "opened": [],
+    "error": "No GitHub credential for github.com. GitHub CLI (gh) is authenticated, but Git is not configured to provide that credential to Gitcito. Run `gh auth setup-git`, then retry, or add a personal access token in Settings → Integrations."
+  },
+  {
+    "name": "azure",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://dev.azure.com/contoso/My%20Project/_git/app",
+      {
+        "azure": "vectorazurepat0123456789abcdefghij"
+      },
+      {
+        "title": "ADO",
+        "body": "desc",
+        "source": "feat/x",
+        "target": "main",
+        "draft": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://dev.azure.com/contoso/My%20Project/_apis/git/repositories/app/pullrequests?api-version=7.1",
+        "status": 201,
+        "json": {
+          "pullRequestId": 77
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://dev.azure.com/contoso/My%20Project/_apis/git/repositories/app/pullrequests?api-version=7.1",
+        "headers": {
+          "accept": "application/json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": "{\"sourceRefName\":\"refs/heads/feat/x\",\"targetRefName\":\"refs/heads/main\",\"title\":\"ADO\",\"description\":\"desc\",\"isDraft\":true}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "url": "https://dev.azure.com/contoso/My%20Project/_git/app/pullrequest/77",
+      "number": 77
+    }
+  },
+  {
+    "name": "azure no credential",
+    "channel": "hosting:createPR",
+    "args": [
+      "https://dev.azure.com/contoso/My%20Project/_git/app",
+      {},
+      {
+        "title": "t",
+        "body": "b",
+        "source": "s",
+        "target": "main",
+        "draft": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso/My%20Project/_git/app\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No Azure DevOps credential for dev.azure.com. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  }
+]

@@ -1,0 +1,647 @@
+[
+  {
+    "name": "empty name",
+    "channel": "hosting:createRepo",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001",
+      {
+        "owner": "octo",
+        "ownerType": "user",
+        "name": "  ",
+        "private": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "Repository name is required."
+  },
+  {
+    "name": "github user repo",
+    "channel": "hosting:createRepo",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001",
+      {
+        "owner": "octo",
+        "ownerType": "user",
+        "name": "new-app",
+        "description": "",
+        "private": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/user/repos",
+        "status": 201,
+        "json": {
+          "full_name": "octo/new-app",
+          "clone_url": "https://github.com/octo/new-app.git",
+          "private": true
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/user/repos",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"name\":\"new-app\",\"private\":true}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "name": "octo/new-app",
+      "url": "https://github.com/octo/new-app.git",
+      "private": true
+    }
+  },
+  {
+    "name": "github org repo",
+    "channel": "hosting:createRepo",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001",
+      {
+        "owner": "acme corp",
+        "ownerType": "org",
+        "name": "svc",
+        "description": "A <service> & \"more\"",
+        "private": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/orgs/acme%20corp/repos",
+        "status": 201,
+        "json": {
+          "full_name": "acme/svc",
+          "clone_url": "https://github.com/acme/svc.git",
+          "private": false
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/orgs/acme%20corp/repos",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"name\":\"svc\",\"description\":\"A <service> & \\\"more\\\"\",\"private\":false}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "name": "acme/svc",
+      "url": "https://github.com/acme/svc.git",
+      "private": false
+    }
+  },
+  {
+    "name": "github validation failure",
+    "channel": "hosting:createRepo",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001",
+      {
+        "owner": "octo",
+        "ownerType": "user",
+        "name": "dup",
+        "private": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/user/repos",
+        "status": 422,
+        "json": {
+          "message": "Repository creation failed."
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/user/repos",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"name\":\"dup\",\"private\":false}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Repository creation failed."
+  },
+  {
+    "name": "gitlab project in namespace",
+    "channel": "hosting:createRepo",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01",
+      {
+        "owner": "acme",
+        "ownerType": "org",
+        "ownerId": "42",
+        "name": "svc",
+        "description": "Svc",
+        "private": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "status": 201,
+        "json": {
+          "path_with_namespace": "acme/svc",
+          "http_url_to_repo": "https://gitlab.com/acme/svc.git",
+          "visibility": "private"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"name\":\"svc\",\"description\":\"Svc\",\"visibility\":\"private\",\"namespace_id\":42}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "name": "acme/svc",
+      "url": "https://gitlab.com/acme/svc.git",
+      "private": true
+    }
+  },
+  {
+    "name": "gitlab personal project",
+    "channel": "hosting:createRepo",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01",
+      {
+        "owner": "gl",
+        "ownerType": "user",
+        "name": "mine",
+        "private": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "status": 201,
+        "json": {
+          "path_with_namespace": "gl/mine",
+          "http_url_to_repo": "https://gitlab.com/gl/mine.git",
+          "visibility": "public"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"name\":\"mine\",\"visibility\":\"public\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "name": "gl/mine",
+      "url": "https://gitlab.com/gl/mine.git",
+      "private": false
+    }
+  },
+  {
+    "name": "gitlab structured error message",
+    "channel": "hosting:createRepo",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01",
+      {
+        "owner": "gl",
+        "ownerType": "user",
+        "ownerId": "abc",
+        "name": "mine",
+        "private": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "status": 400,
+        "json": {
+          "message": {
+            "name": [
+              "has already been taken"
+            ],
+            "path": [
+              "has already been taken",
+              "é <b>"
+            ]
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"name\":\"mine\",\"visibility\":\"public\",\"namespace_id\":null}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab: {\"name\":[\"has already been taken\"],\"path\":[\"has already been taken\",\"é <b>\"]}"
+  },
+  {
+    "name": "gitlab error without message",
+    "channel": "hosting:createRepo",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01",
+      {
+        "owner": "gl",
+        "ownerType": "user",
+        "name": "mine",
+        "private": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "status": 500,
+        "raw": "oops"
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"name\":\"mine\",\"visibility\":\"public\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab: 500"
+  },
+  {
+    "name": "bitbucket repo slug",
+    "channel": "hosting:createRepo",
+    "args": [
+      "bitbucket",
+      "bbuser:vector-app-password",
+      {
+        "owner": "team",
+        "ownerType": "org",
+        "name": " My  New\tRepo ",
+        "description": "x",
+        "private": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/my-new-repo",
+        "json": {
+          "full_name": "team/my-new-repo",
+          "is_private": true,
+          "links": {
+            "clone": [
+              {
+                "name": "https",
+                "href": "https://bbuser@bitbucket.org/team/my-new-repo.git"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/my-new-repo",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": "{\"scm\":\"git\",\"is_private\":true,\"description\":\"x\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "name": "team/my-new-repo",
+      "url": "https://bbuser@bitbucket.org/team/my-new-repo.git",
+      "private": true
+    }
+  },
+  {
+    "name": "bitbucket error",
+    "channel": "hosting:createRepo",
+    "args": [
+      "bitbucket",
+      "bbuser:vector-app-password",
+      {
+        "owner": "team",
+        "ownerType": "org",
+        "name": "x",
+        "private": false
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/x",
+        "status": 400,
+        "json": {
+          "error": {
+            "message": "exists"
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.bitbucket.org/2.0/repositories/team/x",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": "{\"scm\":\"git\",\"is_private\":false}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Bitbucket API error (400)"
+  },
+  {
+    "name": "azure repo in project",
+    "channel": "hosting:createRepo",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      {
+        "owner": "p-1",
+        "ownerType": "org",
+        "project": "My Proj",
+        "name": "svc",
+        "private": true
+      },
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://dev.azure.com/contoso/My%20Proj/_apis/git/repositories?api-version=7.1",
+        "status": 201,
+        "json": {
+          "name": "svc",
+          "remoteUrl": "https://contoso@dev.azure.com/contoso/My%20Proj/_git/svc",
+          "project": {
+            "name": "My Proj"
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://dev.azure.com/contoso/My%20Proj/_apis/git/repositories?api-version=7.1",
+        "headers": {
+          "accept": "application/json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": "{\"name\":\"svc\",\"project\":{\"id\":\"p-1\"}}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "name": "My Proj/svc",
+      "url": "https://contoso@dev.azure.com/contoso/My%20Proj/_git/svc"
+    }
+  },
+  {
+    "name": "azure missing project",
+    "channel": "hosting:createRepo",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      {
+        "owner": "p-1",
+        "ownerType": "org",
+        "name": "svc",
+        "private": true
+      },
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "Select an Azure DevOps project."
+  },
+  {
+    "name": "azure missing organization",
+    "channel": "hosting:createRepo",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      {
+        "owner": "p-1",
+        "ownerType": "org",
+        "project": "P",
+        "name": "svc",
+        "private": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "Enter your Azure DevOps organization."
+  },
+  {
+    "name": "github no credential",
+    "channel": "hosting:createRepo",
+    "args": [
+      "github",
+      "",
+      {
+        "owner": "o",
+        "ownerType": "user",
+        "name": "n",
+        "private": true
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "signed-out"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      },
+      {
+        "file": "gh",
+        "args": [
+          "auth",
+          "status",
+          "--hostname",
+          "github.com"
+        ],
+        "env": {},
+        "timeout": 10000,
+        "input": null
+      }
+    ],
+    "opened": [],
+    "error": "No GitHub credential for github.com. GitHub CLI (gh) is installed but not authenticated. Run `gh auth login`, or add a personal access token in Settings → Integrations."
+  }
+]

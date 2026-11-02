@@ -1,0 +1,1142 @@
+{
+  "parseRemoteUrl": [
+    {
+      "in": "https://github.com/o/r.git",
+      "out": {
+        "provider": "github",
+        "owner": "o",
+        "project": "",
+        "repo": "r"
+      }
+    },
+    {
+      "in": "git@github.com:o/r.git",
+      "out": {
+        "provider": "github",
+        "owner": "o",
+        "project": "",
+        "repo": "r"
+      }
+    },
+    {
+      "in": "https://github.com/o/r",
+      "out": {
+        "provider": "github",
+        "owner": "o",
+        "project": "",
+        "repo": "r"
+      }
+    },
+    {
+      "in": "https://user:tok@github.com/o/r.git",
+      "out": {
+        "provider": "github",
+        "owner": "o",
+        "project": "",
+        "repo": "r"
+      }
+    },
+    {
+      "in": "ssh://git@github.com/o/r.git",
+      "out": {
+        "provider": "github",
+        "owner": "o",
+        "project": "",
+        "repo": "r"
+      }
+    },
+    {
+      "in": "https://github.com/o/r.git/",
+      "out": null
+    },
+    {
+      "in": "https://gitlab.com/group/repo.git",
+      "out": {
+        "provider": "gitlab",
+        "owner": "group",
+        "project": "",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "git@gitlab.com:group/sub/repo.git",
+      "out": {
+        "provider": "gitlab",
+        "owner": "group/sub",
+        "project": "",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "https://gitlab.com/group/sub/repo",
+      "out": {
+        "provider": "gitlab",
+        "owner": "group/sub",
+        "project": "",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "https://gitlab.com/solo",
+      "out": null
+    },
+    {
+      "in": "https://bitbucket.org/team/repo.git",
+      "out": {
+        "provider": "bitbucket",
+        "owner": "team",
+        "project": "",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "git@bitbucket.org:team/repo.git",
+      "out": {
+        "provider": "bitbucket",
+        "owner": "team",
+        "project": "",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "https://bitbucket.org/team/a/b",
+      "out": {
+        "provider": "bitbucket",
+        "owner": "team",
+        "project": "",
+        "repo": "a/b"
+      }
+    },
+    {
+      "in": "https://dev.azure.com/org/proj/_git/repo",
+      "out": {
+        "provider": "azure",
+        "owner": "org",
+        "project": "proj",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "https://org@dev.azure.com/org/My%20Proj/_git/My%20Repo.git",
+      "out": {
+        "provider": "azure",
+        "owner": "org",
+        "project": "My Proj",
+        "repo": "My Repo"
+      }
+    },
+    {
+      "in": "git@ssh.dev.azure.com:v3/org/proj/repo",
+      "out": {
+        "provider": "azure",
+        "owner": "org",
+        "project": "proj",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "git@ssh.dev.azure.com:v3/org/My%20Proj/repo.git",
+      "out": {
+        "provider": "azure",
+        "owner": "org",
+        "project": "My%20Proj",
+        "repo": "repo"
+      }
+    },
+    {
+      "in": "https://contoso.visualstudio.com/Proj/_git/Repo",
+      "out": {
+        "provider": "azure",
+        "owner": "contoso",
+        "project": "Proj",
+        "repo": "Repo"
+      }
+    },
+    {
+      "in": "https://contoso.visualstudio.com/DefaultCollection/Proj/_git/Repo",
+      "out": null
+    },
+    {
+      "in": "https://example.com/x/y.git",
+      "out": null
+    },
+    {
+      "in": "https://dev.azure.com/o/%E0%A4%A/_git/r",
+      "error": "URI malformed"
+    },
+    {
+      "in": "https://dev.azure.com/o/p/_git/%ZZ",
+      "error": "URI malformed"
+    },
+    {
+      "in": "",
+      "out": null
+    }
+  ],
+  "azureAuth": [
+    {
+      "in": "abcdefghijklmnopqrstuvwxyz234567",
+      "out": "Basic OmFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6MjM0NTY3"
+    },
+    {
+      "in": "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZG8ifQ.c2ln",
+      "out": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZG8ifQ.c2ln"
+    },
+    {
+      "in": "",
+      "out": "Basic Og=="
+    },
+    {
+      "in": "ey.x.",
+      "out": "Basic OmV5Lngu"
+    },
+    {
+      "in": "ä-pat",
+      "out": "Basic OsOkLXBhdA=="
+    }
+  ],
+  "isJwt": [
+    {
+      "in": "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJhZG8ifQ.c2ln",
+      "out": true
+    },
+    {
+      "in": "abcdefghijklmnopqrstuvwxyz234567",
+      "out": false
+    },
+    {
+      "in": "ghp_abcdef",
+      "out": false
+    },
+    {
+      "in": "",
+      "out": false
+    },
+    {
+      "in": "eyJ.x",
+      "out": false
+    },
+    {
+      "in": "eyJ_a-b.c-d.",
+      "out": true
+    },
+    {
+      "in": " eyJa.b.c",
+      "out": false
+    },
+    {
+      "in": "ey.x.",
+      "out": false
+    }
+  ],
+  "providerOfHost": [
+    {
+      "in": "github.com",
+      "out": "github"
+    },
+    {
+      "in": "GitHub.com",
+      "out": "github"
+    },
+    {
+      "in": "api.github.com",
+      "out": "github"
+    },
+    {
+      "in": "dev.azure.com",
+      "out": "azure"
+    },
+    {
+      "in": "contoso.visualstudio.com",
+      "out": "azure"
+    },
+    {
+      "in": "gitlab.com",
+      "out": "gitlab"
+    },
+    {
+      "in": "gitlab.example.com",
+      "out": null
+    },
+    {
+      "in": "bitbucket.org",
+      "out": "bitbucket"
+    },
+    {
+      "in": "x.bitbucket.org",
+      "out": "bitbucket"
+    },
+    {
+      "in": "git.example.com",
+      "out": null
+    },
+    {
+      "in": "notgithub.com",
+      "out": null
+    }
+  ],
+  "parseCredential": [
+    {
+      "in": "protocol=https\nhost=dev.azure.com\nusername=me\npassword=secret\n",
+      "out": {
+        "username": "me",
+        "password": "secret"
+      }
+    },
+    {
+      "in": "password=a=b=c\n",
+      "out": {
+        "username": "",
+        "password": "a=b=c"
+      }
+    },
+    {
+      "in": "protocol=https\nhost=dev.azure.com\n",
+      "out": null
+    },
+    {
+      "in": "username=me\r\npassword=secret\r\n",
+      "out": {
+        "username": "me",
+        "password": "secret"
+      }
+    },
+    {
+      "in": "password=\n",
+      "out": null
+    },
+    {
+      "in": "=x\npassword=p\nusername=u\nusername=v\n",
+      "out": {
+        "username": "v",
+        "password": "p"
+      }
+    },
+    {
+      "in": "",
+      "out": null
+    }
+  ],
+  "githubCredentialMessage": [
+    {
+      "status": "missing",
+      "host": null,
+      "out": "No GitHub credential for github.com. GitHub CLI (gh) is not installed. Install gh and run `gh auth login`, or add a personal access token in Settings → Integrations."
+    },
+    {
+      "status": "signed-out",
+      "host": null,
+      "out": "No GitHub credential for github.com. GitHub CLI (gh) is installed but not authenticated. Run `gh auth login`, or add a personal access token in Settings → Integrations."
+    },
+    {
+      "status": "authenticated",
+      "host": null,
+      "out": "No GitHub credential for github.com. GitHub CLI (gh) is authenticated, but Git is not configured to provide that credential to Gitcito. Run `gh auth setup-git`, then retry, or add a personal access token in Settings → Integrations."
+    },
+    {
+      "status": "unknown",
+      "host": null,
+      "out": "No GitHub credential for github.com, and checking the GitHub CLI (gh) timed out — it may be offline. Sign in with git (any credential helper), run `gh auth login` then `gh auth setup-git`, or add a personal access token in Settings → Integrations."
+    },
+    {
+      "status": "missing",
+      "host": "ghe.example.com",
+      "out": "No GitHub credential for ghe.example.com. GitHub CLI (gh) is not installed. Install gh and run `gh auth login`, or add a personal access token in Settings → Integrations."
+    },
+    {
+      "status": "signed-out",
+      "host": "ghe.example.com",
+      "out": "No GitHub credential for ghe.example.com. GitHub CLI (gh) is installed but not authenticated. Run `gh auth login`, or add a personal access token in Settings → Integrations."
+    },
+    {
+      "status": "authenticated",
+      "host": "ghe.example.com",
+      "out": "No GitHub credential for ghe.example.com. GitHub CLI (gh) is authenticated, but Git is not configured to provide that credential to Gitcito. Run `gh auth setup-git`, then retry, or add a personal access token in Settings → Integrations."
+    },
+    {
+      "status": "unknown",
+      "host": "ghe.example.com",
+      "out": "No GitHub credential for ghe.example.com, and checking the GitHub CLI (gh) timed out — it may be offline. Sign in with git (any credential helper), run `gh auth login` then `gh auth setup-git`, or add a personal access token in Settings → Integrations."
+    }
+  ],
+  "providerBaseUrl": [
+    {
+      "provider": "github",
+      "org": null,
+      "out": "https://github.com"
+    },
+    {
+      "provider": "gitlab",
+      "org": null,
+      "out": "https://gitlab.com"
+    },
+    {
+      "provider": "bitbucket",
+      "org": null,
+      "out": "https://bitbucket.org"
+    },
+    {
+      "provider": "azure",
+      "org": "contoso",
+      "out": "https://dev.azure.com/contoso"
+    },
+    {
+      "provider": "azure",
+      "org": " My Org/x ",
+      "out": "https://dev.azure.com/My%20Org%2Fx"
+    },
+    {
+      "provider": "azure",
+      "org": null,
+      "out": "https://dev.azure.com/"
+    }
+  ],
+  "glJobToCheck": [
+    {
+      "in": {
+        "name": "job",
+        "status": "created",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "created"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "pending",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "pending"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "waiting_for_resource",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "waiting_for_resource"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "preparing",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "preparing"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "scheduled",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "scheduled"
+      },
+      "out": {
+        "name": "job",
+        "status": "queued",
+        "conclusion": null,
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "running",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "running"
+      },
+      "out": {
+        "name": "job",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "success",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "success"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "success",
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "failed",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "failed"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "canceled",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "canceled"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "canceling",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "canceling"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "skipped",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "skipped",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "skipped"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "skipped",
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "manual",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "action_required",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "manual"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "action_required",
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "somethingnew",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "neutral",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "somethingnew"
+      },
+      "out": {
+        "name": "job",
+        "status": "completed",
+        "conclusion": "neutral",
+        "url": ""
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "constructor",
+        "web_url": "https://x"
+      },
+      "out": {
+        "name": "job",
+        "url": "https://x"
+      }
+    },
+    {
+      "in": {
+        "name": "job",
+        "status": "constructor"
+      },
+      "out": {
+        "name": "job",
+        "url": ""
+      }
+    }
+  ],
+  "diffLineCounts": [
+    {
+      "in": "--- a/f.txt\n+++ b/f.txt\n@@ -1,3 +1,3 @@\n ctx\n-old\n+new\n+more",
+      "out": {
+        "additions": 2,
+        "deletions": 1
+      }
+    },
+    {
+      "in": "",
+      "out": {
+        "additions": 0,
+        "deletions": 0
+      }
+    },
+    {
+      "in": "+a\r\n-b\r\n+++x\n---y\n++z\n--w",
+      "out": {
+        "additions": 2,
+        "deletions": 2
+      }
+    },
+    {
+      "in": "\n\n+",
+      "out": {
+        "additions": 1,
+        "deletions": 0
+      }
+    }
+  ],
+  "jsonParseErrors": [
+    {
+      "in": "",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "   ",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "<html>",
+      "error": "Unexpected token '<', \"<html>\" is not valid JSON"
+    },
+    {
+      "in": "<!DOCTYPE html><html><body>proxy</body></html>",
+      "error": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
+    },
+    {
+      "in": "{",
+      "error": "Expected property name or '}' in JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "{\"a\":",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "nul",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "nulx",
+      "error": "Unexpected token 'x', \"nulx\" is not valid JSON"
+    },
+    {
+      "in": "[1,]",
+      "error": "Unexpected token ']', \"[1,]\" is not valid JSON"
+    },
+    {
+      "in": "\"abc",
+      "error": "Unterminated string in JSON at position 4 (line 1 column 5)"
+    },
+    {
+      "in": "{\"a\" 1}",
+      "error": "Expected ':' after property name in JSON at position 5 (line 1 column 6)"
+    },
+    {
+      "in": "{\"a\":1,}",
+      "error": "Expected double-quoted property name in JSON at position 7 (line 1 column 8)"
+    },
+    {
+      "in": "{a:1}",
+      "error": "Expected property name or '}' in JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "[1 2]",
+      "error": "Expected ',' or ']' after array element in JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "1 2",
+      "error": "Unexpected non-whitespace character after JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "{} x",
+      "error": "Unexpected non-whitespace character after JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "tru",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "-",
+      "error": "No number after minus sign in JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "-x",
+      "error": "No number after minus sign in JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "01",
+      "error": "Unexpected number in JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "1.",
+      "error": "Unterminated fractional number in JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "1.x",
+      "error": "Unterminated fractional number in JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "1e",
+      "error": "Exponent part is missing a number in JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "\"a\\x\"",
+      "error": "Bad escaped character in JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "\"a\u0001b\"",
+      "error": "Bad control character in string literal in JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "\"\\u12\"",
+      "error": "Bad Unicode escape in JSON at position 5 (line 1 column 6)"
+    },
+    {
+      "in": "[",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "[\"a\",",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "{\"a\":1",
+      "error": "Expected ',' or '}' after property value in JSON at position 6 (line 1 column 7)"
+    },
+    {
+      "in": "{\"a\"}",
+      "error": "Expected ':' after property name in JSON at position 4 (line 1 column 5)"
+    },
+    {
+      "in": "]",
+      "error": "Unexpected token ']', \"]\" is not valid JSON"
+    },
+    {
+      "in": "}",
+      "error": "Unexpected token '}', \"}\" is not valid JSON"
+    },
+    {
+      "in": "\"\\uZZZZ\"",
+      "error": "Bad Unicode escape in JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,]",
+      "error": "Unexpected token ']', ...\",14,15,16,]\" is not valid JSON"
+    },
+    {
+      "in": "{\"key\":\"value\",\"other\":nope}",
+      "error": "Unexpected token 'o', ...\",\"other\":nope}\" is not valid JSON"
+    },
+    {
+      "in": "\"tab\there\"",
+      "error": "Bad control character in string literal in JSON at position 4 (line 1 column 5)"
+    },
+    {
+      "in": "é",
+      "error": "Unexpected token 'é', \"é\" is not valid JSON"
+    },
+    {
+      "in": "[\"ééééééééééé\", x]",
+      "error": "Unexpected token 'x', \"[\"ééééééééééé\", x]\" is not valid JSON"
+    },
+    {
+      "in": "Infinity",
+      "error": "\"Infinity\" is not valid JSON"
+    },
+    {
+      "in": "NaN",
+      "error": "\"NaN\" is not valid JSON"
+    },
+    {
+      "in": "undefined",
+      "error": "\"undefined\" is not valid JSON"
+    },
+    {
+      "in": "[object Object]",
+      "error": "\"[object Object]\" is not valid JSON"
+    },
+    {
+      "in": " NaN",
+      "error": "Unexpected token 'N', \" NaN\" is not valid JSON"
+    },
+    {
+      "in": "+1",
+      "error": "Unexpected token '+', \"+1\" is not valid JSON"
+    },
+    {
+      "in": ".5",
+      "error": "Unexpected token '.', \".5\" is not valid JSON"
+    },
+    {
+      "in": "[-]",
+      "error": "No number after minus sign in JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "{\"a\":-}",
+      "error": "No number after minus sign in JSON at position 6 (line 1 column 7)"
+    },
+    {
+      "in": "\"\\\"",
+      "error": "Unterminated string in JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "\"x",
+      "error": "Unterminated string in JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "[1]]",
+      "error": "Unexpected non-whitespace character after JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "falsey",
+      "error": "Unexpected non-whitespace character after JSON at position 5 (line 1 column 6)"
+    },
+    {
+      "in": "{\"a\":1 \"b\":2}",
+      "error": "Expected ',' or '}' after property value in JSON at position 7 (line 1 column 8)"
+    },
+    {
+      "in": "\n\n  <x",
+      "error": "Unexpected token '<', \"\n\n  <x\" is not valid JSON"
+    },
+    {
+      "in": "[1,\n2,\n<]",
+      "error": "Unexpected token '<', \"[1,\n2,\n<]\" is not valid JSON"
+    },
+    {
+      "in": "{\"a\":\"b\"}garbage-after-the-value",
+      "error": "Unexpected non-whitespace character after JSON at position 9 (line 1 column 10)"
+    },
+    {
+      "in": "\"😀\" x",
+      "error": "Unexpected non-whitespace character after JSON at position 5 (line 1 column 6)"
+    },
+    {
+      "in": "1e5x",
+      "error": "Unexpected non-whitespace character after JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "[1e+]",
+      "error": "Exponent part is missing a number in JSON at position 4 (line 1 column 5)"
+    },
+    {
+      "in": "{\"a\":nul}",
+      "error": "Unexpected token '}', \"{\"a\":nul}\" is not valid JSON"
+    },
+    {
+      "in": "{\"a\":t}",
+      "error": "Unexpected token '}', \"{\"a\":t}\" is not valid JSON"
+    },
+    {
+      "in": "{\"\":1,\"b\"::2}",
+      "error": "Unexpected token ':', \"{\"\":1,\"b\"::2}\" is not valid JSON"
+    },
+    {
+      "in": "[,1]",
+      "error": "Unexpected token ',', \"[,1]\" is not valid JSON"
+    },
+    {
+      "in": "{,}",
+      "error": "Expected property name or '}' in JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "\"abc\ndef\"",
+      "error": "Bad control character in string literal in JSON at position 4 (line 1 column 5)"
+    },
+    {
+      "in": "[1,2",
+      "error": "Expected ',' or ']' after array element in JSON at position 4 (line 1 column 5)"
+    },
+    {
+      "in": "{\"a\":[1,{\"b\":",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "{\"a\"",
+      "error": "Expected ':' after property name in JSON at position 4 (line 1 column 5)"
+    },
+    {
+      "in": "\"\\u12",
+      "error": "Bad Unicode escape in JSON at position 5 (line 1 column 6)"
+    },
+    {
+      "in": "\"\\",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "[1,2,",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "{\"a\":1,",
+      "error": "Expected double-quoted property name in JSON at position 7 (line 1 column 8)"
+    },
+    {
+      "in": "{\"a\":1,\"b\"",
+      "error": "Expected ':' after property name in JSON at position 10 (line 1 column 11)"
+    },
+    {
+      "in": "[1",
+      "error": "Expected ',' or ']' after array element in JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "{\"a\":1}\r\n\r\nx",
+      "error": "Unexpected non-whitespace character after JSON at position 11 (line 3 column 1)"
+    },
+    {
+      "in": "{\"a\":1\n,\n\"b\":}",
+      "error": "Unexpected token '}', \"{\"a\":1\n,\n\"b\":}\" is not valid JSON"
+    },
+    {
+      "in": "\"a\"b",
+      "error": "Unexpected non-whitespace character after JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "1-",
+      "error": "Unexpected non-whitespace character after JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "-0x",
+      "error": "Unexpected non-whitespace character after JSON at position 2 (line 1 column 3)"
+    },
+    {
+      "in": "00",
+      "error": "Unexpected number in JSON at position 1 (line 1 column 2)"
+    },
+    {
+      "in": "0.5.",
+      "error": "Unexpected non-whitespace character after JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "tx",
+      "error": "Unexpected token 'x', \"tx\" is not valid JSON"
+    },
+    {
+      "in": "n",
+      "error": "Unexpected end of JSON input"
+    },
+    {
+      "in": "﻿{}",
+      "error": "Unexpected token '﻿', \"﻿{}\" is not valid JSON"
+    },
+    {
+      "in": "{\"a\":1} ",
+      "error": "Unexpected non-whitespace character after JSON at position 7 (line 1 column 8)"
+    },
+    {
+      "in": "[1,2\n,3 4]",
+      "error": "Expected ',' or ']' after array element in JSON at position 8 (line 2 column 4)"
+    },
+    {
+      "in": "\r\n\r\n{",
+      "error": "Expected property name or '}' in JSON at position 5 (line 3 column 2)"
+    },
+    {
+      "in": "\"😀",
+      "error": "Unterminated string in JSON at position 3 (line 1 column 4)"
+    },
+    {
+      "in": "xxxxxxxxxxxxxxxxxxxxxxxxx😀y",
+      "error": "Unexpected token 'x', \"xxxxxxxxxx\"... is not valid JSON"
+    },
+    {
+      "in": "upstream exploded",
+      "error": "Unexpected token 'u', \"upstream exploded\" is not valid JSON"
+    },
+    {
+      "in": "not json at all",
+      "error": "Unexpected token 'o', \"not json at all\" is not valid JSON"
+    },
+    {
+      "in": "{\"ok\":true}",
+      "error": null
+    },
+    {
+      "in": "[1, 2.5e3, -0]",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,968 @@
+[
+  {
+    "name": "github account with orgs",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "json": {
+          "login": "octo",
+          "name": null,
+          "avatar_url": "https://a/octo",
+          "html_url": "https://github.com/octo"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "json": [
+          {
+            "login": "acme",
+            "avatar_url": "https://a/acme"
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "octo",
+      "avatarUrl": "https://a/octo",
+      "profileUrl": "https://github.com/octo",
+      "orgs": [
+        {
+          "login": "acme",
+          "avatarUrl": "https://a/acme",
+          "url": "https://github.com/acme"
+        }
+      ]
+    }
+  },
+  {
+    "name": "github orgs failure is tolerated",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "json": {
+          "login": "octo",
+          "name": "Octo Cat",
+          "avatar_url": "https://a/octo",
+          "html_url": "https://github.com/octo"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "octo",
+      "name": "Octo Cat",
+      "avatarUrl": "https://a/octo",
+      "profileUrl": "https://github.com/octo",
+      "orgs": []
+    }
+  },
+  {
+    "name": "github bad token",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "github",
+      "ghp_vectorGithubToken0001"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "status": 401,
+        "json": {
+          "message": "Bad credentials"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Bad credentials"
+  },
+  {
+    "name": "github interactive sign-in asks the helper with prompts on",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "github",
+      "",
+      null,
+      true
+    ],
+    "helper": {
+      "fill": {
+        "github.com/": "protocol=https\nhost=x\nusername=octo\npassword=gho_interactive\n"
+      },
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "json": {
+          "login": "octo",
+          "name": "O",
+          "avatar_url": "https://a/o",
+          "html_url": "https://github.com/octo"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "json": []
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "6ab3e1907229f126d455f8fa44677e55b4c1621c4badfe602bd9fbebf78c3144"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/user/orgs?per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "6ab3e1907229f126d455f8fa44677e55b4c1621c4badfe602bd9fbebf78c3144"
+        },
+        "body": null
+      }
+    ],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "credential",
+          "fill"
+        ],
+        "env": {},
+        "timeout": 120000,
+        "input": "protocol=https\nhost=github.com\npath=\n\n"
+      }
+    ],
+    "opened": [],
+    "result": {
+      "login": "octo",
+      "name": "O",
+      "avatarUrl": "https://a/o",
+      "profileUrl": "https://github.com/octo",
+      "orgs": []
+    }
+  },
+  {
+    "name": "gitlab account with groups",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "json": {
+          "username": "gl",
+          "name": "G L",
+          "avatar_url": "https://g/u",
+          "web_url": "https://gitlab.com/gl"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/groups?min_access_level=10&per_page=100",
+        "json": [
+          {
+            "full_path": "acme",
+            "avatar_url": null,
+            "web_url": "https://gitlab.com/acme"
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/groups?min_access_level=10&per_page=100",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "gl",
+      "name": "G L",
+      "avatarUrl": "https://g/u",
+      "profileUrl": "https://gitlab.com/gl",
+      "orgs": [
+        {
+          "login": "acme",
+          "url": "https://gitlab.com/acme"
+        }
+      ]
+    }
+  },
+  {
+    "name": "gitlab groups failure is tolerated",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "json": {
+          "username": "gl",
+          "name": null,
+          "avatar_url": null,
+          "web_url": "https://gitlab.com/gl"
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/groups?min_access_level=10&per_page=100",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/groups?min_access_level=10&per_page=100",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "gl",
+      "profileUrl": "https://gitlab.com/gl",
+      "orgs": []
+    }
+  },
+  {
+    "name": "gitlab user failure",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "gitlab",
+      "glpat-vectorGitlabToken01"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "status": 401,
+        "json": {
+          "message": "401 Unauthorized"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://gitlab.com/api/v4/user",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab API error (401)"
+  },
+  {
+    "name": "bitbucket account with workspaces",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "bitbucket",
+      "bbuser:vector-app-password"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/user",
+        "json": {
+          "username": "bbuser",
+          "display_name": "BB User",
+          "links": {
+            "avatar": {
+              "href": "https://bb/u"
+            },
+            "html": {
+              "href": "https://bitbucket.org/bbuser"
+            }
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "json": {
+          "values": [
+            {
+              "slug": "team",
+              "name": "Team",
+              "links": {
+                "avatar": {
+                  "href": "https://bb/t"
+                },
+                "html": {
+                  "href": "https://bitbucket.org/team/"
+                }
+              }
+            },
+            {
+              "slug": "solo",
+              "name": "Solo"
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/user",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "04ec37d95424334ccacc939f35ec9fe39b1231e93dd6e1793f12f75f75c8dd00"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "bbuser",
+      "name": "BB User",
+      "avatarUrl": "https://bb/u",
+      "profileUrl": "https://bitbucket.org/bbuser",
+      "orgs": [
+        {
+          "login": "team",
+          "avatarUrl": "https://bb/t",
+          "url": "https://bitbucket.org/team/"
+        },
+        {
+          "login": "solo",
+          "url": "https://bitbucket.org/solo"
+        }
+      ]
+    }
+  },
+  {
+    "name": "bitbucket workspaces failure is tolerated",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "bitbucket",
+      "vector-bitbucket-access-token"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/user",
+        "json": {
+          "username": "bbuser",
+          "display_name": null
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/user",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "06dbd92f36ea972520f3fbd5e4980bf04b228ae494c048b0e0c9438192439401"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/workspaces?pagelen=100",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "06dbd92f36ea972520f3fbd5e4980bf04b228ae494c048b0e0c9438192439401"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "bbuser",
+      "orgs": []
+    }
+  },
+  {
+    "name": "bitbucket user failure",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "bitbucket",
+      "vector-bitbucket-access-token"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/user",
+        "status": 401,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.bitbucket.org/2.0/user",
+        "headers": {},
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "06dbd92f36ea972520f3fbd5e4980bf04b228ae494c048b0e0c9438192439401"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Bitbucket API error (401)"
+  },
+  {
+    "name": "azure with organization",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "json": {
+          "authenticatedUser": {
+            "providerDisplayName": "Jane",
+            "properties": {
+              "Account": {
+                "$value": "jane@contoso.com"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "jane@contoso.com",
+      "name": "Jane",
+      "orgs": [
+        {
+          "login": "contoso",
+          "url": "https://dev.azure.com/contoso"
+        }
+      ]
+    }
+  },
+  {
+    "name": "azure with organization, anonymous user",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "My Org"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/My%20Org/_apis/connectionData?api-version=7.1-preview",
+        "json": {}
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/My%20Org/_apis/connectionData?api-version=7.1-preview",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "My Org",
+      "orgs": [
+        {
+          "login": "My Org",
+          "url": "https://dev.azure.com/My%20Org"
+        }
+      ]
+    }
+  },
+  {
+    "name": "azure with organization rejected",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "status": 401,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Azure DevOps rejected the credential (401). Check that it is valid and not expired, that it has access to the \"contoso\" organization, and that the organization name is spelled correctly."
+  },
+  {
+    "name": "azure with organization not found",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "status": 404,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Azure DevOps organization \"contoso\" was not found (404). Double-check the organization name."
+  },
+  {
+    "name": "azure with organization api message is kept",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      "contoso"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "status": 400,
+        "json": {
+          "message": "bad request"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://dev.azure.com/contoso/_apis/connectionData?api-version=7.1-preview",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Azure DevOps API error (400)"
+  },
+  {
+    "name": "azure without organization uses the profile service",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=7.1",
+        "json": {
+          "displayName": "Jane",
+          "emailAddress": "jane@contoso.com",
+          "id": "u1"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "login": "jane@contoso.com",
+      "name": "Jane"
+    }
+  },
+  {
+    "name": "azure without organization rejected",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "vectorazurepat0123456789abcdefghij",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=7.1",
+        "status": 203,
+        "raw": "<html>"
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://app.vssps.visualstudio.com/_apis/profile/profiles/me?api-version=7.1",
+        "headers": {
+          "accept": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Basic",
+          "sha256": "317dae8f83082246d57c0d8c713a0cf811b7f646a3b46277fadbb4c88f01aa69"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "Azure DevOps rejected the credential (401). Check that it is valid, not expired, and has at least User Profile (read) or Code (read) scope — or set an organization so it can be checked against that org directly."
+  },
+  {
+    "name": "azure no credential",
+    "channel": "hosting:whoAmI",
+    "args": [
+      "azure",
+      "",
+      "contoso",
+      false
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [
+      {
+        "file": "git",
+        "args": [
+          "-c",
+          "credential.interactive=false",
+          "credential",
+          "fill"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0",
+          "GCM_INTERACTIVE": "never"
+        },
+        "timeout": 10000,
+        "input": "protocol=https\nhost=dev.azure.com\npath=contoso\n\n"
+      }
+    ],
+    "opened": [],
+    "error": "No azure credential for dev.azure.com. Either sign in with git (any credential helper — the same one `git clone` uses) or add a token in Settings → Integrations."
+  }
+]

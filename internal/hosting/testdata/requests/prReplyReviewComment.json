@@ -1,0 +1,136 @@
+[
+  {
+    "name": "github numeric root",
+    "channel": "hosting:prReplyReviewComment",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      10,
+      "reply"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/comments",
+        "status": 201,
+        "json": {
+          "id": 11
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/comments",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"body\":\"reply\",\"in_reply_to\":10}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "gitlab discussion id",
+    "channel": "hosting:prReplyReviewComment",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      "abc/def 1",
+      "reply"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/discussions/abc%2Fdef%201/notes",
+        "status": 201,
+        "json": {
+          "id": 12
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/discussions/abc%2Fdef%201/notes",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"body\":\"reply\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "gitlab numeric id is stringified",
+    "channel": "hosting:prReplyReviewComment",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      42,
+      "reply"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/discussions/42/notes",
+        "status": 201,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/discussions/42/notes",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"body\":\"reply\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  }
+]

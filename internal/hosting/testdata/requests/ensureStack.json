@@ -1,0 +1,410 @@
+[
+  {
+    "name": "one pr is not a stack",
+    "channel": "hosting:ensureStack",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        4
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "create a new stack",
+    "channel": "hosting:ensureStack",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "json": {
+          "number": 4
+        }
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks",
+        "status": 201,
+        "json": {
+          "number": 2,
+          "html_url": "https://github.com/acme/app/stacks/2"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"pull_requests\":[4,5,6]}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "number": 2,
+      "url": "https://github.com/acme/app/stacks/2",
+      "added": 3
+    }
+  },
+  {
+    "name": "create when the bottom lookup fails",
+    "channel": "hosting:ensureStack",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        4,
+        5
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "status": 500,
+        "raw": ""
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks",
+        "status": 201,
+        "json": {
+          "number": 3
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"pull_requests\":[4,5]}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "number": 3,
+      "added": 2
+    }
+  },
+  {
+    "name": "extend an existing stack",
+    "channel": "hosting:ensureStack",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        4,
+        5,
+        6
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "json": {
+          "number": 4,
+          "stack": {
+            "number": 9
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/9",
+        "json": {
+          "pull_requests": [
+            {
+              "number": 4
+            },
+            {
+              "number": 5
+            }
+          ]
+        }
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks/9/add",
+        "json": {}
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/9",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks/9/add",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"pull_requests\":[6]}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "number": 9,
+      "added": 1
+    }
+  },
+  {
+    "name": "existing stack already complete",
+    "channel": "hosting:ensureStack",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        4,
+        5
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "json": {
+          "number": 4,
+          "stack": {
+            "number": 9
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/9",
+        "json": {
+          "pull_requests": [
+            {
+              "number": 5
+            },
+            {
+              "number": 4
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/stacks/9",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": {
+      "number": 9,
+      "added": 0
+    }
+  },
+  {
+    "name": "not in the preview",
+    "channel": "hosting:ensureStack",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        4,
+        5
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "json": {
+          "number": 4,
+          "stack": null
+        }
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks",
+        "status": 404,
+        "json": {
+          "message": "Not Found"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/4",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/stacks",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"pull_requests\":[4,5]}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  }
+]

@@ -1,0 +1,95 @@
+[
+  {
+    "name": "issues in a milestone",
+    "channel": "hosting:milestoneIssues",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      1
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues?milestone=1&state=all&per_page=100",
+        "json": [
+          {
+            "number": 1,
+            "title": "Bug",
+            "user": {
+              "login": "a"
+            },
+            "state": "closed",
+            "html_url": "https://github.com/acme/app/issues/1",
+            "comments": 1
+          },
+          {
+            "number": 2,
+            "title": "PR",
+            "user": {
+              "login": "b"
+            },
+            "state": "open",
+            "html_url": "https://github.com/acme/app/pull/2",
+            "comments": 0,
+            "pull_request": {
+              "url": "x"
+            }
+          }
+        ]
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/issues?milestone=1&state=all&per_page=100",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      {
+        "number": 1,
+        "title": "Bug",
+        "author": "a",
+        "state": "closed",
+        "url": "https://github.com/acme/app/issues/1",
+        "comments": 1
+      }
+    ]
+  },
+  {
+    "name": "gitlab is github-only",
+    "channel": "hosting:milestoneIssues",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      1
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "This action currently supports GitHub repositories only."
+  }
+]

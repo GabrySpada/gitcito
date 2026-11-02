@@ -1,0 +1,188 @@
+[
+  {
+    "name": "github",
+    "channel": "hosting:prComment",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      "Looks good"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/comments",
+        "status": 201,
+        "json": {
+          "id": 1
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/comments",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"body\":\"Looks good\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "github failure",
+    "channel": "hosting:prComment",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      "x"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/comments",
+        "status": 403,
+        "json": {
+          "message": "Must have push access"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/issues/5/comments",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"body\":\"x\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Must have push access"
+  },
+  {
+    "name": "gitlab",
+    "channel": "hosting:prComment",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      "Note"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "status": 201,
+        "json": {
+          "id": 2
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"body\":\"Note\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "gitlab array error",
+    "channel": "hosting:prComment",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      "Note"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "status": 400,
+        "json": {
+          "message": [
+            "a",
+            1,
+            null,
+            [
+              "b",
+              "c"
+            ]
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"body\":\"Note\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab: a; 1; ; b,c"
+  }
+]

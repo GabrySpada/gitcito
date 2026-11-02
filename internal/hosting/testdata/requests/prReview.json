@@ -1,0 +1,283 @@
+[
+  {
+    "name": "github approve without body",
+    "channel": "hosting:prReview",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      "APPROVE",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/reviews",
+        "json": {
+          "id": 1
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/reviews",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"event\":\"APPROVE\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "github request changes",
+    "channel": "hosting:prReview",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      "REQUEST_CHANGES",
+      "Please fix"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/reviews",
+        "status": 422,
+        "json": {
+          "message": "Unprocessable Entity",
+          "errors": [
+            "Can not request changes on your own pull request"
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://api.github.com/repos/acme/app/pulls/5/reviews",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"event\":\"REQUEST_CHANGES\",\"body\":\"Please fix\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Unprocessable Entity"
+  },
+  {
+    "name": "gitlab approve with body",
+    "channel": "hosting:prReview",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      "APPROVE",
+      "LGTM"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/approve",
+        "status": 201,
+        "json": {}
+      },
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "status": 201,
+        "json": {}
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/approve",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"body\":\"LGTM\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "gitlab approve failure",
+    "channel": "hosting:prReview",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      "APPROVE",
+      "LGTM"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/approve",
+        "status": 401,
+        "json": {
+          "message": "401 Unauthorized"
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/approve",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitLab: 401 Unauthorized"
+  },
+  {
+    "name": "gitlab request changes",
+    "channel": "hosting:prReview",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      "REQUEST_CHANGES",
+      "Fix it"
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/unapprove",
+        "status": 404,
+        "json": {
+          "message": "404 Not Found"
+        }
+      },
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "status": 201,
+        "json": {}
+      }
+    ],
+    "requests": [
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/unapprove",
+        "headers": {},
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": null
+      },
+      {
+        "method": "POST",
+        "url": "https://gitlab.com/api/v4/projects/acme%2Fplatform%2Fapp/merge_requests/3/notes",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "private-token",
+          "scheme": null,
+          "sha256": "59667c272dae242220b24913e9db3aa6332cd7b667dd4ae61c89585b8ee187d4"
+        },
+        "body": "{\"body\":\"Fix it\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "gitlab comment without body is a no-op",
+    "channel": "hosting:prReview",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "gitlab": "glpat-vectorGitlabToken01"
+      },
+      3,
+      "COMMENT",
+      ""
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": null
+  }
+]

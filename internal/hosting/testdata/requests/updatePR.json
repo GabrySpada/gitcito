@@ -1,0 +1,209 @@
+[
+  {
+    "name": "retarget and retitle",
+    "channel": "hosting:updatePR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      {
+        "base": "feat/a",
+        "title": "New title"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "json": {}
+      }
+    ],
+    "requests": [
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"base\":\"feat/a\",\"title\":\"New title\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "merge stack section into the live body",
+    "channel": "hosting:updatePR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      {
+        "title": "",
+        "stackSection": "<!-- gitcito-stack -->\nnew\n<!-- /gitcito-stack -->"
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "json": {
+          "body": "Intro\n\n<!-- gitcito-stack -->\nold\n<!-- /gitcito-stack -->\nOutro"
+        }
+      },
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "json": {}
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"body\":\"Intro\\n\\n<!-- gitcito-stack -->\\nnew\\n<!-- /gitcito-stack -->\\nOutro\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": null
+  },
+  {
+    "name": "stack section on an empty body",
+    "channel": "hosting:updatePR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      {
+        "stackSection": ""
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "json": {
+          "body": null
+        }
+      },
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "status": 422,
+        "json": {
+          "message": "Validation Failed",
+          "errors": [
+            {
+              "field": "base",
+              "code": "invalid"
+            }
+          ]
+        }
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "PATCH",
+        "url": "https://api.github.com/repos/acme/app/pulls/5",
+        "headers": {
+          "accept": "application/vnd.github+json",
+          "content-type": "application/json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": "{\"body\":\"\"}"
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "error": "GitHub: Validation Failed"
+  },
+  {
+    "name": "nothing to change",
+    "channel": "hosting:updatePR",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      5,
+      {
+        "base": "",
+        "title": ""
+      }
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "result": null
+  }
+]

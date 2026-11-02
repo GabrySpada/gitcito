@@ -1,0 +1,118 @@
+[
+  {
+    "name": "one merged one not",
+    "channel": "hosting:mergedPrHeads",
+    "args": [
+      "https://github.com/acme/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        "feat/a",
+        "feat/b",
+        "feat/c"
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=closed&head=acme%3Afeat%2Fa&per_page=5",
+        "json": [
+          {
+            "merged_at": null
+          },
+          {
+            "merged_at": "2024-01-01T00:00:00Z"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=closed&head=acme%3Afeat%2Fb&per_page=5",
+        "json": [
+          {
+            "merged_at": null
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=closed&head=acme%3Afeat%2Fc&per_page=5",
+        "status": 500,
+        "raw": ""
+      }
+    ],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=closed&head=acme%3Afeat%2Fa&per_page=5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=closed&head=acme%3Afeat%2Fb&per_page=5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      },
+      {
+        "method": "GET",
+        "url": "https://api.github.com/repos/acme/app/pulls?state=closed&head=acme%3Afeat%2Fc&per_page=5",
+        "headers": {
+          "accept": "application/vnd.github+json"
+        },
+        "auth": {
+          "header": "authorization",
+          "scheme": "Bearer",
+          "sha256": "d1191abc5d39fde9e1f7aa33f82bd6d1f2ecbbbf61786328238d11eefd745e99"
+        },
+        "body": null
+      }
+    ],
+    "processes": [],
+    "opened": [],
+    "result": [
+      "feat/a"
+    ]
+  },
+  {
+    "name": "gitlab is github-only",
+    "channel": "hosting:mergedPrHeads",
+    "args": [
+      "https://gitlab.com/acme/platform/app.git",
+      {
+        "github": "ghp_vectorGithubToken0001"
+      },
+      [
+        "a"
+      ]
+    ],
+    "helper": {
+      "fill": {},
+      "gh": "missing"
+    },
+    "responses": [],
+    "requests": [],
+    "processes": [],
+    "opened": [],
+    "error": "This action currently supports GitHub repositories only."
+  }
+]
