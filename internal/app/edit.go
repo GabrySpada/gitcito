@@ -146,6 +146,7 @@ func (s *Core) HandleSecondInstance(argv []string) {
 }
 
 // FinishEdit answers cli:finishEdit.
+// channel: cli:finishEdit
 func (s *AppService) FinishEdit(sentinel string, content *string) FinishResult {
 	return s.core.edits.finish(sentinel, content)
 }

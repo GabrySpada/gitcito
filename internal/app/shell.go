@@ -30,6 +30,7 @@ var httpURL = regexp.MustCompile(`^https?://`)
 // OpenExternal opens a web link in the default browser. Anything other than
 // http(s) is ignored silently, exactly as before: a `file:` or custom-scheme URL
 // from repository content must never reach the OS opener.
+// channel: shell:openExternal
 func (s *ShellService) OpenExternal(url string) error {
 	if !httpURL.MatchString(url) {
 		return nil
@@ -42,6 +43,7 @@ func (s *ShellService) OpenExternal(url string) error {
 }
 
 // ShowItemInFolder reveals a file in the platform file manager.
+// channel: shell:showItemInFolder
 func (s *ShellService) ShowItemInFolder(fullPath string) error {
 	a := application.Get()
 	if a == nil {
@@ -55,6 +57,7 @@ func (s *ShellService) ShowItemInFolder(fullPath string) error {
 
 // OpenPath opens a file or folder with its default application. Like Electron's
 // shell.openPath it reports failure as a message string, empty on success.
+// channel: shell:openPath
 func (s *ShellService) OpenPath(fullPath string) string {
 	a := application.Get()
 	if a == nil {
@@ -70,6 +73,7 @@ func (s *ShellService) OpenPath(fullPath string) string {
 // folder. macOS and Windows have first-class support; other platforms fall back
 // to the default opener since there's no universal picker across Linux desktop
 // environments.
+// channel: shell:openWithPicker
 func (s *ShellService) OpenWithPicker(fullPath string) string {
 	switch runtime.GOOS {
 	case "darwin":
@@ -100,6 +104,7 @@ var appSuffix = regexp.MustCompile(`(?i)\.(app|exe)$`)
 // PickApplication lets the user browse to and pick a specific application (e.g.
 // VS Code), to be remembered as the default "Open with <App>" target. Returns
 // nil if cancelled.
+// channel: shell:pickApplication
 func (s *ShellService) PickApplication() (*AppChoice, error) {
 	a := application.Get()
 	if a == nil {
@@ -126,6 +131,7 @@ func (s *ShellService) PickApplication() (*AppChoice, error) {
 // OpenWithApp launches a specific application with a file/folder path, e.g. the
 // equivalent of running `code <path>` for VS Code, without relying on a
 // shell/PATH lookup. Returns an error message, empty on success.
+// channel: shell:openWithApp
 func (s *ShellService) OpenWithApp(targetPath, appPath string) string {
 	if runtime.GOOS == "darwin" {
 		if err := exec.Command("open", "-a", appPath, targetPath).Run(); err != nil {
@@ -150,6 +156,7 @@ type FileToWrite struct {
 }
 
 // WriteFiles writes generated files into a repository.
+// channel: shell:writeFiles
 func (s *ShellService) WriteFiles(ctx context.Context, repoPath string, files []FileToWrite) error {
 	return writeRepoFiles(repoPath, files)
 }

@@ -9,7 +9,9 @@ type Service struct{ l *Logbook }
 func NewService(l *Logbook) *Service { return &Service{l: l} }
 
 // Get answers log:get.
+// channel: log:get
 func (s *Service) Get() []LogEntry { return s.l.Entries() }
 
 // Clear answers log:clear.
+// channel: log:clear
 func (s *Service) Clear() []LogEntry { return s.l.Clear() }

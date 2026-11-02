@@ -100,6 +100,7 @@ func orNil(p string, err error) (*string, error) {
 }
 
 // SelectDirectory picks a folder (dialog:selectDirectory).
+// channel: dialog:selectDirectory
 func (s *DialogService) SelectDirectory(title string) (*string, error) {
 	if title == "" {
 		title = "Open repository"
@@ -109,6 +110,7 @@ func (s *DialogService) SelectDirectory(title string) (*string, error) {
 
 // SavePatch saves a generated patch to a user-chosen file. Returns the path, or
 // nil if cancelled.
+// channel: dialog:savePatch
 func (s *DialogService) SavePatch(ctx context.Context, defaultName, content string) (*string, error) {
 	p, err := orNil(save("Export patch", defaultName, []DialogFilter{{Name: "Patch", Extensions: []string{"patch", "diff"}}}))
 	if p == nil || err != nil {
@@ -124,6 +126,7 @@ func (s *DialogService) SavePatch(ctx context.Context, defaultName, content stri
 // The renderer records in-page and hands the bytes over; nothing is written
 // anywhere until the user picks a destination. []byte arrives base64-encoded
 // over the bridge and is decoded by encoding/json.
+// channel: dialog:saveBinary
 func (s *DialogService) SaveBinary(ctx context.Context, defaultName string, data []byte, filters []DialogFilter) (*string, error) {
 	p, err := orNil(save("Save file", defaultName, withDefaultFilter(filters)))
 	if p == nil || err != nil {
@@ -137,17 +140,20 @@ func (s *DialogService) SaveBinary(ctx context.Context, defaultName string, data
 
 // ChoosePath picks a destination path without writing anything: git writes the
 // file itself (bundle, archive), so the renderer only needs somewhere to point it.
+// channel: dialog:choosePath
 func (s *DialogService) ChoosePath(title, defaultName string, filters []DialogFilter) (*string, error) {
 	return orNil(save(title, defaultName, withDefaultFilter(filters)))
 }
 
 // OpenFilePath picks an existing file, by path only — for binary formats the
 // renderer never reads itself (a bundle is handed straight to git).
+// channel: dialog:openFilePath
 func (s *DialogService) OpenFilePath(title string, filters []DialogFilter) (*string, error) {
 	return orNil(open(title, withDefaultFilter(filters), false))
 }
 
 // OpenPatch opens a patch/diff file. Returns { path, content } or nil if cancelled.
+// channel: dialog:openPatch
 func (s *DialogService) OpenPatch(ctx context.Context) (*PatchFile, error) {
 	p, err := orNil(open("Apply patch", []DialogFilter{
 		{Name: "Patch", Extensions: []string{"patch", "diff"}},

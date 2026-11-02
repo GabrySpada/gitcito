@@ -137,6 +137,7 @@ type Service struct{}
 
 // Set answers menu:set. A malformed spec must never leave the app menu-less:
 // a panic while building keeps the previous menu and logs the reason.
+// channel: menu:set
 func (s *Service) Set(spec []Item) {
 	if runtime.GOOS != "darwin" {
 		return

@@ -65,17 +65,20 @@ type AppService struct{ core *Core }
 func NewAppService(c *Core) *AppService { return &AppService{core: c} }
 
 // Bootstrap returns the facts the renderer reads synchronously.
+// channel: bootstrap (Wails only)
 func (s *AppService) Bootstrap() Bootstrap {
 	return Bootstrap{Platform: nodePlatform(), ShotMode: s.core.shot, Version: version.Version, Dev: s.core.dev, Zoom: 1}
 }
 
 // Version answers app:version.
+// channel: app:version
 func (s *AppService) Version() string { return version.Version }
 
 // Ready is called by the renderer once its settings store has loaded. Anything
 // queued for it before then (a CLI-requested path, an editor hand-off) is
 // delivered now: the settings load resolves asynchronously and would otherwise
 // clobber a tab added too early. Replaces Electron's did-finish-load gating.
+// channel: app:ready (Wails only)
 func (s *AppService) Ready() { s.core.markReady() }
 
 func (s *Core) markReady() {
@@ -107,6 +110,7 @@ func (s *Core) whenReady(f func()) {
 // no token needed for public repos. Same upstream feed as the updater, so the
 // same kill switch applies: it still announces this install to a repo the fork
 // does not control.
+// channel: app:releases
 func (s *AppService) Releases(ctx context.Context) []AppRelease {
 	out := []AppRelease{}
 	if version.UpdatesDisabled {
