@@ -399,8 +399,8 @@
           "via": "aiApi.repoChat"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "repochat.Service.RepoChat",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -430,8 +430,8 @@
           "via": "aiApi.repoChatFinalize"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "repochat.Service.RepoChatFinalize",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -650,8 +650,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "analyze.Service.Cancel",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -676,8 +676,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "analyze.Service.Detect",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -702,8 +702,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "analyze.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -891,8 +891,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "devices.Service.Boot",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -917,8 +917,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "devices.Service.List",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2446,8 +2446,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Attach",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2472,8 +2472,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Discover",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2507,8 +2507,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Input",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2535,8 +2535,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Resize",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2565,8 +2565,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2594,8 +2594,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.RunTasks",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2621,8 +2621,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Signal",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2655,8 +2655,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Stop",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2681,8 +2681,8 @@
           "via": "localCiApi.cancel"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Cancel",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2709,8 +2709,8 @@
           "via": "localCiApi.record"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Record",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2737,8 +2737,8 @@
           "via": "localCiApi.resolveRange"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.ResolveRange",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2766,8 +2766,8 @@
           "via": "localCiApi.run"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2791,8 +2791,8 @@
         "src/main/localCi.ts:275"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.RunAt",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2819,8 +2819,8 @@
           "via": "localCiApi.status"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Status",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2850,8 +2850,8 @@
           "via": "localCiApi.sweep"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Sweep",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2884,8 +2884,8 @@
           "via": "localCiApi.verdicts"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Verdicts",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -2910,8 +2910,8 @@
           "via": "localCiApi.workflows"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Workflows",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4222,8 +4222,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "terminal.Service.Create",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4253,8 +4253,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "terminal.Service.Input",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4279,8 +4279,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "terminal.Service.Kill",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4305,8 +4305,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "terminal.Service.ProcName",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4333,8 +4333,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "terminal.Service.Resize",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4359,8 +4359,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "todoscan.Service.Cancel",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4385,8 +4385,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "todoscan.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4733,8 +4733,8 @@
           "via": "wikiApi.clear"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "wiki.Service.Clear",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4759,8 +4759,8 @@
           "via": "wikiApi.export"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "wiki.Service.Export",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4785,8 +4785,8 @@
           "via": "wikiApi.facts"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "wiki.Service.Facts",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4815,8 +4815,8 @@
           "via": "wikiApi.generate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "wiki.Service.Generate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4842,8 +4842,8 @@
           "via": "wikiApi.get"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "wiki.Service.Get",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4869,8 +4869,8 @@
           "via": "wikiApi.imports"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "wiki.Service.Imports",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -5154,8 +5154,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -5183,8 +5183,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -5222,8 +5222,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "launch.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -5252,8 +5252,8 @@
           "via": "localCiApi.onData"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Run",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -5281,8 +5281,8 @@
           "via": "localCiApi.onSweepProgress"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "localci.Service.Sweep",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -5367,8 +5367,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "terminal.Service.Create",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -5397,8 +5397,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "terminal.Service.Create",
+      "status": "ported",
       "test": "—"
     },
     {

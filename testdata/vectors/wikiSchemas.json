@@ -1,0 +1,2605 @@
+{
+  "cases": [
+    {
+      "fn": "schemas",
+      "args": [],
+      "out": {
+        "WIKI_PLAN_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"pages\"],\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"slug\",\"title\",\"archetype\",\"scopePaths\"],\"properties\":{\"slug\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"archetype\":{\"type\":\"string\",\"enum\":[\"overview\",\"module\",\"workflow\",\"reference\"]},\"scopePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}",
+        "WIKI_PAGE_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"sections\",\"related\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"sections\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"heading\",\"claims\"],\"properties\":{\"heading\":{\"type\":\"string\"},\"claims\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"text\",\"sourcePaths\"],\"properties\":{\"text\":{\"type\":\"string\"},\"sourcePaths\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}}}}},\"related\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}",
+        "TECH_STACK_SCHEMA": "{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"summary\",\"groups\"],\"properties\":{\"summary\":{\"type\":\"string\"},\"groups\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"name\",\"items\"],\"properties\":{\"name\":{\"type\":\"string\"},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"dep\",\"role\"],\"properties\":{\"dep\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}}}}}}}}}",
+        "WIKI_PROMPT_VERSION": "wiki.v1",
+        "MAX_PAGES": 12,
+        "MAX_SECTIONS": 6,
+        "MAX_CLAIMS": 8,
+        "MAX_STACK_GROUPS": 6,
+        "WIKI_EXPORT_DIR": "docs/wiki"
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": []
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          },
+          {
+            "slug": "data-layer",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/ghost.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "pages[1].scopePaths contains \"src/ghost.ts\", which is not a file in this repository. Use only paths from the file list."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/ghost.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts",
+                "src/ghost.ts"
+              ]
+            },
+            {
+              "slug": "ghosts",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/ghost.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "pages[1].scopePaths contains \"src/ghost.ts\", which is not a file in this repository. Use only paths from the file list.",
+        "pages[2].scopePaths contains \"src/ghost.ts\", which is not a file in this repository. Use only paths from the file list."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts",
+                "src/ghost.ts"
+              ]
+            },
+            {
+              "slug": "ghosts",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/ghost.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          },
+          {
+            "slug": "data-layer",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "Exactly one page must have archetype \"overview\"; found 0."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "data-layer",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "o2",
+              "title": "Data layer",
+              "archetype": "overview",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "Exactly one page must have archetype \"overview\"; found 2."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "o2",
+              "title": "Data layer",
+              "archetype": "overview",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          },
+          {
+            "slug": "o2",
+            "title": "Data layer",
+            "archetype": "overview",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "pages[2].slug \"data-layer\" is used twice — slugs must be unique."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          },
+          {
+            "slug": "data-layer",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "data-layer",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "Data Layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "pages[1].slug must be kebab-case, e.g. \"data-layer\"."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "Data Layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          },
+          {
+            "slug": "Data Layer",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": []
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "pages[1].scopePaths must name at least one file this page is about."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": []
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "page-0",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-1",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-2",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-3",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-4",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-5",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-6",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-7",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-8",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-9",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-10",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-11",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-12",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-13",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-14",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-15",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-16",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-17",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-18",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-19",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "\"pages\" must have at most 12 entries, not 21."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "page-0",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-1",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-2",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-3",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-4",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-5",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-6",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-7",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-8",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-9",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-10",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-11",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-12",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-13",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-14",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-15",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-16",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-17",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-18",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            },
+            {
+              "slug": "page-19",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                "src/db.ts"
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          },
+          {
+            "slug": "page-0",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-1",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-2",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-3",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-4",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-5",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-6",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-7",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-8",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-9",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-10",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-11",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-12",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-13",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-14",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-15",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-16",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-17",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-18",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          },
+          {
+            "slug": "page-19",
+            "title": "Data layer",
+            "archetype": "module",
+            "scopePaths": [
+              "src/db.ts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": []
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "\"pages\" is empty — plan at least an overview page."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": []
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": []
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": "x"
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "\"pages\" must be an array of page plans."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": "x"
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": "x"
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        null,
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        null,
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": null
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            null,
+            "x",
+            {
+              "slug": 5,
+              "title": " ",
+              "archetype": "blog",
+              "scopePaths": "a"
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                1,
+                null
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "pages[0] must be an object.",
+        "pages[1] must be an object.",
+        "pages[2].slug must be kebab-case, e.g. \"data-layer\".",
+        "pages[2].title must be the page title.",
+        "pages[2].archetype must be one of: overview, module, workflow, reference.",
+        "pages[2].scopePaths must be an array of repo paths.",
+        "pages[3].scopePaths contains 1, which is not a file in this repository. Use only paths from the file list.",
+        "pages[3].scopePaths contains null, which is not a file in this repository. Use only paths from the file list.",
+        "Exactly one page must have archetype \"overview\"; found 0."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            null,
+            "x",
+            {
+              "slug": 5,
+              "title": " ",
+              "archetype": "blog",
+              "scopePaths": "a"
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module",
+              "scopePaths": [
+                1,
+                null
+              ]
+            }
+          ]
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          null,
+          "x",
+          {
+            "slug": 5,
+            "title": " ",
+            "archetype": "blog",
+            "scopePaths": "a"
+          }
+        ]
+      }
+    },
+    {
+      "fn": "validateWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module"
+            }
+          ],
+          "extra": true
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": [
+        "pages[1].scopePaths must be an array of repo paths."
+      ]
+    },
+    {
+      "fn": "sanitizeWikiPlan",
+      "args": [
+        {
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "scopePaths": [
+                "README.md"
+              ]
+            },
+            {
+              "slug": "data-layer",
+              "title": "Data layer",
+              "archetype": "module"
+            }
+          ],
+          "extra": true
+        },
+        [
+          "README.md",
+          "src/app.ts",
+          "src/db.ts",
+          "src/ui/panel.tsx"
+        ]
+      ],
+      "out": {
+        "pages": [
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": [
+              "README.md"
+            ]
+          },
+          {
+            "slug": "data-layer",
+            "title": "Data layer",
+            "archetype": "module"
+          }
+        ],
+        "extra": true
+      }
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "How data is read.",
+          "sections": [
+            {
+              "heading": "Queries",
+              "claims": [
+                {
+                  "text": "Queries go through a pool.",
+                  "sourcePaths": [
+                    "src/db.ts"
+                  ]
+                }
+              ]
+            }
+          ],
+          "related": [
+            "overview"
+          ]
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "How data is read.",
+          "sections": [
+            {
+              "heading": "x",
+              "claims": [
+                {
+                  "text": "y",
+                  "sourcePaths": [
+                    "src/secret.ts"
+                  ]
+                }
+              ]
+            }
+          ],
+          "related": [
+            "overview"
+          ]
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "sections[0].claims[0].sourcePaths contains \"src/secret.ts\", which is not one of the files you were given."
+      ]
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "How data is read.",
+          "sections": [
+            {
+              "heading": "x",
+              "claims": [
+                {
+                  "text": "trust me",
+                  "sourcePaths": []
+                }
+              ]
+            }
+          ],
+          "related": [
+            "overview"
+          ]
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "sections[0].claims[0].sourcePaths must name at least one file you were shown. Drop the claim if no file supports it."
+      ]
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "How data is read.",
+          "sections": [
+            {
+              "heading": "Queries",
+              "claims": [
+                {
+                  "text": "Queries go through a pool.",
+                  "sourcePaths": [
+                    "src/db.ts"
+                  ]
+                }
+              ]
+            }
+          ],
+          "related": [
+            "ghost"
+          ]
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "\"related\" contains \"ghost\", which is not another page in the plan."
+      ]
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "How data is read.",
+          "sections": [
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            },
+            {
+              "heading": "h",
+              "claims": []
+            }
+          ],
+          "related": [
+            "overview"
+          ]
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "\"sections\" must have at most 6 entries, not 9."
+      ]
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "",
+          "sections": "x",
+          "related": "y"
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "\"summary\" must be one or two sentences about this page.",
+        "\"sections\" must be an array.",
+        "\"related\" must be an array of page slugs."
+      ]
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "x",
+          "sections": [
+            null,
+            {
+              "heading": "",
+              "claims": "c"
+            },
+            {
+              "heading": "h",
+              "claims": [
+                null,
+                {
+                  "text": "",
+                  "sourcePaths": [
+                    3
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                },
+                {
+                  "text": "t",
+                  "sourcePaths": [
+                    "README.md"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "sections[0] must be an object.",
+        "sections[1].heading must be a short heading.",
+        "sections[1].claims must be an array.",
+        "sections[2].claims must have at most 8 entries.",
+        "sections[2].claims[0] must be an object.",
+        "sections[2].claims[1].text must be a sentence.",
+        "sections[2].claims[1].sourcePaths contains 3, which is not one of the files you were given."
+      ]
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "no related",
+          "sections": []
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        {
+          "summary": "x",
+          "sections": [],
+          "related": [
+            1,
+            "ui"
+          ]
+        },
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "\"related\" contains 1, which is not another page in the plan."
+      ]
+    },
+    {
+      "fn": "validateWikiPage",
+      "args": [
+        null,
+        {
+          "paths": [
+            "src/db.ts",
+            "README.md"
+          ],
+          "slugs": [
+            "overview",
+            "ui"
+          ]
+        }
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        {
+          "summary": "A desktop app.",
+          "groups": [
+            {
+              "name": "UI",
+              "items": [
+                {
+                  "dep": "react",
+                  "role": "renders the interface"
+                }
+              ]
+            }
+          ]
+        },
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": []
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        {
+          "summary": "A desktop app.",
+          "groups": [
+            {
+              "name": "UI",
+              "items": [
+                {
+                  "dep": "vue",
+                  "role": "x"
+                }
+              ]
+            }
+          ]
+        },
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": [
+        "groups[0].items[0].dep \"vue\" is not a dependency this project declares. Use only names from the list."
+      ]
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        {
+          "summary": "A desktop app.",
+          "groups": [
+            {
+              "name": "UI",
+              "items": [
+                {
+                  "dep": "react",
+                  "role": "a"
+                }
+              ]
+            },
+            {
+              "name": "Other",
+              "items": [
+                {
+                  "dep": "react",
+                  "role": "b"
+                }
+              ]
+            }
+          ]
+        },
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": [
+        "groups[1].items[0].dep \"react\" appears twice — list each dependency once."
+      ]
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        {
+          "summary": "A desktop app.",
+          "groups": [
+            {
+              "name": "UI",
+              "items": [
+                {
+                  "dep": "react",
+                  "role": ""
+                }
+              ]
+            }
+          ]
+        },
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": [
+        "groups[0].items[0].role must say what it is used for, in a few words."
+      ]
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        {
+          "summary": "A desktop app.",
+          "groups": [
+            {
+              "name": "g0",
+              "items": []
+            },
+            {
+              "name": "g1",
+              "items": []
+            },
+            {
+              "name": "g2",
+              "items": []
+            },
+            {
+              "name": "g3",
+              "items": []
+            },
+            {
+              "name": "g4",
+              "items": []
+            },
+            {
+              "name": "g5",
+              "items": []
+            },
+            {
+              "name": "g6",
+              "items": []
+            },
+            {
+              "name": "g7",
+              "items": []
+            },
+            {
+              "name": "g8",
+              "items": []
+            }
+          ]
+        },
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": [
+        "\"groups\" must have at most 6 entries, not 9."
+      ]
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        {
+          "summary": " ",
+          "groups": "x"
+        },
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": [
+        "\"summary\" must be a sentence or two about the stack.",
+        "\"groups\" must be an array."
+      ]
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        {
+          "summary": "x",
+          "groups": [
+            null,
+            {
+              "name": "",
+              "items": "i"
+            },
+            {
+              "name": "n",
+              "items": [
+                null,
+                {
+                  "role": "r"
+                },
+                {
+                  "dep": 3,
+                  "role": "r"
+                }
+              ]
+            }
+          ]
+        },
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": [
+        "groups[0] must be an object.",
+        "groups[1].name must be a short category, e.g. \"UI\" or \"Build\".",
+        "groups[1].items must be an array.",
+        "groups[2].items[0] must be an object.",
+        "groups[2].items[1].dep null is not a dependency this project declares. Use only names from the list.",
+        "groups[2].items[2].dep 3 is not a dependency this project declares. Use only names from the list."
+      ]
+    },
+    {
+      "fn": "validateTechStack",
+      "args": [
+        null,
+        [
+          "react",
+          "vitest",
+          "electron"
+        ]
+      ],
+      "out": [
+        "The response must be a JSON object."
+      ]
+    },
+    {
+      "fn": "renderWikiPage",
+      "args": [
+        {
+          "slug": "data",
+          "title": "Data layer",
+          "archetype": "module",
+          "summary": "How data is read.",
+          "sections": [
+            {
+              "heading": "Queries",
+              "claims": [
+                {
+                  "text": "Queries go through a pool.",
+                  "sourcePaths": [
+                    "src/db.ts"
+                  ]
+                },
+                {
+                  "text": "Search is separate.",
+                  "sourcePaths": [
+                    "src/db.ts",
+                    "src/search.ts"
+                  ]
+                },
+                {
+                  "text": "Uncited.",
+                  "sourcePaths": []
+                }
+              ]
+            },
+            {
+              "heading": "Empty",
+              "claims": []
+            }
+          ],
+          "related": [],
+          "markdown": ""
+        }
+      ],
+      "out": "# Data layer\n\nHow data is read.\n\n## Queries\n\n- Queries go through a pool. — `src/db.ts`\n- Search is separate. — `src/db.ts`, `src/search.ts`\n- Uncited.\n\n## Empty\n"
+    },
+    {
+      "fn": "renderWikiPage",
+      "args": [
+        {
+          "slug": "data",
+          "title": "Data layer",
+          "archetype": "module",
+          "summary": "",
+          "sections": [],
+          "related": [],
+          "markdown": ""
+        }
+      ],
+      "out": "# Data layer\n"
+    },
+    {
+      "fn": "pageSources",
+      "args": [
+        {
+          "slug": "data",
+          "title": "Data layer",
+          "archetype": "module",
+          "summary": "How data is read.",
+          "sections": [
+            {
+              "heading": "Queries",
+              "claims": [
+                {
+                  "text": "Queries go through a pool.",
+                  "sourcePaths": [
+                    "src/db.ts"
+                  ]
+                },
+                {
+                  "text": "Search is separate.",
+                  "sourcePaths": [
+                    "src/db.ts",
+                    "src/search.ts"
+                  ]
+                },
+                {
+                  "text": "Uncited.",
+                  "sourcePaths": []
+                }
+              ]
+            },
+            {
+              "heading": "Empty",
+              "claims": []
+            }
+          ],
+          "related": [],
+          "markdown": ""
+        }
+      ],
+      "out": [
+        "src/db.ts",
+        "src/search.ts"
+      ]
+    },
+    {
+      "fn": "wikiFreshness",
+      "args": [
+        {
+          "headSha": "abc",
+          "promptVersion": "wiki.v1",
+          "model": "gpt-4o-mini"
+        },
+        {
+          "headSha": "abc",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "out": "current"
+    },
+    {
+      "fn": "wikiFreshness",
+      "args": [
+        {
+          "headSha": "abc",
+          "promptVersion": "wiki.v1",
+          "model": "gpt-4o-mini"
+        },
+        {
+          "headSha": "def",
+          "model": "gpt-4o-mini"
+        }
+      ],
+      "out": "behind"
+    },
+    {
+      "fn": "wikiFreshness",
+      "args": [
+        {
+          "headSha": "abc",
+          "promptVersion": "wiki.v0",
+          "model": "m"
+        },
+        {
+          "headSha": "abc",
+          "model": "m"
+        }
+      ],
+      "out": "outdated"
+    },
+    {
+      "fn": "wikiFreshness",
+      "args": [
+        {
+          "headSha": "abc",
+          "promptVersion": "wiki.v1",
+          "model": "old"
+        },
+        {
+          "headSha": "abc",
+          "model": "new"
+        }
+      ],
+      "out": "outdated"
+    },
+    {
+      "fn": "wikiFreshness",
+      "args": [
+        null,
+        {
+          "headSha": "abc",
+          "model": "m"
+        }
+      ],
+      "out": "outdated"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Database Module"
+      ],
+      "out": "Database"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Release process"
+      ],
+      "out": "Release process"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Commit graph  "
+      ],
+      "out": "Commit graph"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Overview"
+      ],
+      "out": "Overview"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Reference"
+      ],
+      "out": "Reference"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "  X page"
+      ],
+      "out": "X page"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Sync  workflow"
+      ],
+      "out": "Sync"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Section"
+      ],
+      "out": "Section"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "ab section"
+      ],
+      "out": "ab"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        "Data\tOverview"
+      ],
+      "out": "Data"
+    },
+    {
+      "fn": "cleanPageTitle",
+      "args": [
+        ""
+      ],
+      "out": ""
+    },
+    {
+      "fn": "orderPlan",
+      "args": [
+        [
+          {
+            "slug": "ui",
+            "title": "UI",
+            "archetype": "module",
+            "scopePaths": []
+          },
+          {
+            "slug": "overview",
+            "title": "Overview",
+            "archetype": "overview",
+            "scopePaths": []
+          },
+          {
+            "slug": "data",
+            "title": "Data",
+            "archetype": "module",
+            "scopePaths": []
+          }
+        ]
+      ],
+      "out": [
+        {
+          "slug": "overview",
+          "title": "Overview",
+          "archetype": "overview",
+          "scopePaths": []
+        },
+        {
+          "slug": "data",
+          "title": "Data",
+          "archetype": "module",
+          "scopePaths": []
+        },
+        {
+          "slug": "ui",
+          "title": "UI",
+          "archetype": "module",
+          "scopePaths": []
+        }
+      ]
+    },
+    {
+      "fn": "orderPlan",
+      "args": [
+        [
+          {
+            "slug": "b",
+            "title": "beta",
+            "archetype": "module",
+            "scopePaths": [
+              "x"
+            ]
+          },
+          {
+            "slug": "a",
+            "title": "Alpha",
+            "archetype": "workflow",
+            "scopePaths": []
+          },
+          {
+            "slug": "c",
+            "title": "alpha",
+            "archetype": "reference",
+            "scopePaths": []
+          },
+          {
+            "slug": "d",
+            "title": "Édition",
+            "archetype": "module",
+            "scopePaths": []
+          },
+          {
+            "slug": "e",
+            "title": "Zeta",
+            "archetype": "module",
+            "scopePaths": []
+          }
+        ]
+      ],
+      "out": [
+        {
+          "slug": "c",
+          "title": "alpha",
+          "archetype": "reference",
+          "scopePaths": []
+        },
+        {
+          "slug": "a",
+          "title": "Alpha",
+          "archetype": "workflow",
+          "scopePaths": []
+        },
+        {
+          "slug": "b",
+          "title": "beta",
+          "archetype": "module",
+          "scopePaths": [
+            "x"
+          ]
+        },
+        {
+          "slug": "d",
+          "title": "Édition",
+          "archetype": "module",
+          "scopePaths": []
+        },
+        {
+          "slug": "e",
+          "title": "Zeta",
+          "archetype": "module",
+          "scopePaths": []
+        }
+      ]
+    },
+    {
+      "fn": "wikiExportFiles",
+      "args": [
+        {
+          "headSha": "abc1234567",
+          "generatedAt": 1768435200000,
+          "model": "gpt-4o-mini",
+          "promptVersion": "wiki.v1",
+          "stack": null,
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "summary": "What this is.",
+              "sections": [],
+              "related": [
+                "data",
+                "ghost"
+              ],
+              "markdown": "# Overview\n\nWhat this is.\n"
+            },
+            {
+              "slug": "data",
+              "title": "Data layer",
+              "archetype": "module",
+              "summary": "How data is read.",
+              "sections": [],
+              "related": [],
+              "markdown": "# Data layer\n\nHow data is read.\n\n\n"
+            }
+          ]
+        },
+        "gitcito"
+      ],
+      "out": [
+        {
+          "path": "docs/wiki/README.md",
+          "content": "# gitcito wiki\n\n<!-- Generated by Gitcito from abc1234 on 2026-01-15. Regenerate rather than editing by hand. -->\n\n- [Overview](overview.md) — What this is.\n- [Data layer](data.md) — How data is read.\n"
+        },
+        {
+          "path": "docs/wiki/overview.md",
+          "content": "<!-- Generated by Gitcito from abc1234 on 2026-01-15. Regenerate rather than editing by hand. -->\n\n# Overview\n\nWhat this is.\n\n## See also\n\n- [Data layer](data.md)\n\n\n[← Index](README.md)\n"
+        },
+        {
+          "path": "docs/wiki/data.md",
+          "content": "<!-- Generated by Gitcito from abc1234 on 2026-01-15. Regenerate rather than editing by hand. -->\n\n# Data layer\n\nHow data is read.\n\n[← Index](README.md)\n"
+        }
+      ]
+    },
+    {
+      "fn": "wikiExportFiles",
+      "args": [
+        {
+          "headSha": "",
+          "generatedAt": 1767225600123,
+          "model": "gpt-4o-mini",
+          "promptVersion": "wiki.v1",
+          "stack": null,
+          "pages": [
+            {
+              "slug": "overview",
+              "title": "Overview",
+              "archetype": "overview",
+              "summary": "What this is.",
+              "sections": [],
+              "related": [
+                "data",
+                "ghost"
+              ],
+              "markdown": "# Overview\n\nWhat this is.\n"
+            },
+            {
+              "slug": "data",
+              "title": "Data layer",
+              "archetype": "module",
+              "summary": "How data is read.",
+              "sections": [],
+              "related": [],
+              "markdown": "# Data layer\n\nHow data is read.\n\n\n"
+            }
+          ]
+        },
+        "x"
+      ],
+      "out": [
+        {
+          "path": "docs/wiki/README.md",
+          "content": "# x wiki\n\n<!-- Generated by Gitcito from the working tree on 2026-01-01. Regenerate rather than editing by hand. -->\n\n- [Overview](overview.md) — What this is.\n- [Data layer](data.md) — How data is read.\n"
+        },
+        {
+          "path": "docs/wiki/overview.md",
+          "content": "<!-- Generated by Gitcito from the working tree on 2026-01-01. Regenerate rather than editing by hand. -->\n\n# Overview\n\nWhat this is.\n\n## See also\n\n- [Data layer](data.md)\n\n\n[← Index](README.md)\n"
+        },
+        {
+          "path": "docs/wiki/data.md",
+          "content": "<!-- Generated by Gitcito from the working tree on 2026-01-01. Regenerate rather than editing by hand. -->\n\n# Data layer\n\nHow data is read.\n\n[← Index](README.md)\n"
+        }
+      ]
+    }
+  ]
+}

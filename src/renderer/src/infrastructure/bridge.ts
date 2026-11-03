@@ -16,6 +16,14 @@ import { Clipboard, Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
 import * as DialogService from '../bindings/github.com/GabrySpada/gitcito/internal/app/dialogservice'
 import * as ShellService from '../bindings/github.com/GabrySpada/gitcito/internal/app/shellservice'
+import * as LocalCiService from '../bindings/github.com/GabrySpada/gitcito/internal/localci/service'
+import * as RepoChatService from '../bindings/github.com/GabrySpada/gitcito/internal/repochat/service'
+import * as WikiService from '../bindings/github.com/GabrySpada/gitcito/internal/wiki/service'
+import * as TerminalService from '../bindings/github.com/GabrySpada/gitcito/internal/terminal/service'
+import * as LaunchService from '../bindings/github.com/GabrySpada/gitcito/internal/launch/service'
+import * as AnalyzeService from '../bindings/github.com/GabrySpada/gitcito/internal/analyze/service'
+import * as TodoScanService from '../bindings/github.com/GabrySpada/gitcito/internal/todoscan/service'
+import * as DevicesService from '../bindings/github.com/GabrySpada/gitcito/internal/devices/service'
 import * as AIService from '../bindings/github.com/GabrySpada/gitcito/internal/ai/service'
 import * as AnalyticsService from '../bindings/github.com/GabrySpada/gitcito/internal/analytics/service'
 import * as InfoService from '../bindings/github.com/GabrySpada/gitcito/internal/info/service'
@@ -160,12 +168,17 @@ type AnyCall = (...args: unknown[]) => Promise<unknown>
 
 /** Most channels carry loosely typed payloads in the contract; forward them as-is to the generated Go
  *  function of the same name (which sends every parameter, missing ones as null). */
+/** What a forwarded call resolves to, as far as tsc knows: the contract's own type. The Go models mirror the
+ *  types in src/shared (field for field, checked by the TS-captured vectors each Go package replays), so the
+ *  value is what the Electron channel returned; Promise<never> lets each member keep its declared type. */
+type Forwarded = (...args: unknown[]) => Promise<never>
+
 const forwarder =
   (mod: object) =>
-  (name: string): AnyCall => {
+  (name: string): Forwarded => {
     const fn = (mod as Record<string, AnyCall | undefined>)[name]
     if (!fn) throw new Error(`bridge: no bound method ${name}`)
-    return (...args) => invoke(() => fn(...args))
+    return (...args) => invoke(() => fn(...args)) as Promise<never>
   }
 const hostingCall = forwarder(HostingService)
 const vaultCall = forwarder(VaultService)
@@ -173,6 +186,21 @@ const secureCall = forwarder(SecureService)
 const analyticsCall = forwarder(AnalyticsService)
 const infoCall = forwarder(InfoService)
 const aiCall = forwarder(AIService)
+const localCiCall = forwarder(LocalCiService)
+const repoChatCall = forwarder(RepoChatService)
+const wikiCall = forwarder(WikiService)
+const termCall = forwarder(TerminalService)
+const launchCall = forwarder(LaunchService)
+const analyzeCall = forwarder(AnalyzeService)
+const todoScanCall = forwarder(TodoScanService)
+const devicesCall = forwarder(DevicesService)
+
+/** Fire-and-forget channels (Electron's ipcRenderer.send): never awaited, failures only logged. */
+const sendTo =
+  (call: Forwarded, channel: string) =>
+  (...args: unknown[]): void => {
+    void call(...args).catch(logSendError(channel))
+  }
 
 // Looked up by name at call time; the generated module is the authoritative list of ported git methods.
 const gitMethods = GitService as unknown as Record<string, ((...args: unknown[]) => Promise<unknown>) | undefined>
@@ -217,15 +245,15 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     onBisectOutput: (cb) => listen('bisect:output', cb),
 
     localci: {
-      status: notPorted('localci:status'),
-      workflows: notPorted('localci:workflows'),
-      run: notPorted('localci:run'),
-      cancel: notPorted('localci:cancel'),
-      record: notPorted('localci:record'),
-      verdicts: notPorted('localci:verdicts'),
-      runAt: notPorted('localci:runAt'),
-      resolveRange: notPorted('localci:resolveRange'),
-      sweep: notPorted('localci:sweep'),
+      status: localCiCall('Status'),
+      workflows: localCiCall('Workflows'),
+      run: localCiCall('Run'),
+      cancel: localCiCall('Cancel'),
+      record: localCiCall('Record'),
+      verdicts: localCiCall('Verdicts'),
+      runAt: localCiCall('RunAt'),
+      resolveRange: localCiCall('ResolveRange'),
+      sweep: localCiCall('Sweep'),
       onData: (cb) => listen('localci:data', cb),
       onSweepProgress: (cb) => listen('localci:sweep-progress', cb)
     },
@@ -317,17 +345,17 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
       reviewPR: aiCall('ReviewPR'),
       prDescription: aiCall('PrDescription'),
       planActions: aiCall('PlanActions'),
-      repoChat: notPorted('ai:repoChat'),
-      repoChatFinalize: notPorted('ai:repoChatFinalize')
+      repoChat: repoChatCall('RepoChat'),
+      repoChatFinalize: repoChatCall('RepoChatFinalize')
     },
 
     wiki: {
-      facts: notPorted('wiki:facts'),
-      imports: notPorted('wiki:imports'),
-      get: notPorted('wiki:get'),
-      generate: notPorted('wiki:generate'),
-      export: notPorted('wiki:export'),
-      clear: notPorted('wiki:clear'),
+      facts: wikiCall('Facts'),
+      imports: wikiCall('Imports'),
+      get: wikiCall('Get'),
+      generate: wikiCall('Generate'),
+      export: wikiCall('Export'),
+      clear: wikiCall('Clear'),
       onProgress: (cb) => listen('wiki:progress', cb)
     },
 
@@ -416,43 +444,43 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     term: {
-      create: notPorted('term:create'),
-      input: sendNoop('term:input'),
-      resize: sendNoop('term:resize'),
-      kill: sendNoop('term:kill'),
-      procName: notPorted('term:process'),
+      create: termCall('Create'),
+      input: sendTo(termCall('Input'), 'term:input'),
+      resize: sendTo(termCall('Resize'), 'term:resize'),
+      kill: sendTo(termCall('Kill'), 'term:kill'),
+      procName: termCall('ProcName'),
       onData: (id, cb) => listen(`term:data:${id}`, cb),
       onExit: (id, cb) => listen(`term:exit:${id}`, () => cb())
     },
 
     launch: {
-      discover: notPorted('launch:discover'),
-      run: notPorted('launch:run'),
-      runTasks: notPorted('launch:runTasks'),
-      attach: sendNoop('launch:attach'),
-      input: sendNoop('launch:input'),
-      resize: sendNoop('launch:resize'),
-      signal: sendNoop('launch:signal'),
-      stop: sendNoop('launch:stop'),
+      discover: launchCall('Discover'),
+      run: launchCall('Run'),
+      runTasks: launchCall('RunTasks'),
+      attach: sendTo(launchCall('Attach'), 'launch:attach'),
+      input: sendTo(launchCall('Input'), 'launch:input'),
+      resize: sendTo(launchCall('Resize'), 'launch:resize'),
+      signal: sendTo(launchCall('Signal'), 'launch:signal'),
+      stop: sendTo(launchCall('Stop'), 'launch:stop'),
       onData: (id, cb) => listen(`launch:data:${id}`, cb),
       onDevTools: (id, cb) => listen(`launch:devtools:${id}`, cb),
       onExit: (id, cb) => listen(`launch:exit:${id}`, cb)
     },
 
     analyze: {
-      run: notPorted('analyze:run'),
-      detect: notPorted('analyze:detect'),
-      cancel: sendNoop('analyze:cancel')
+      run: analyzeCall('Run'),
+      detect: analyzeCall('Detect'),
+      cancel: sendTo(analyzeCall('Cancel'), 'analyze:cancel')
     },
 
     todoScan: {
-      run: notPorted('todoscan:run'),
-      cancel: sendNoop('todoscan:cancel')
+      run: todoScanCall('Run'),
+      cancel: sendTo(todoScanCall('Cancel'), 'todoscan:cancel')
     },
 
     devices: {
-      list: notPorted('devices:list'),
-      boot: notPorted('devices:boot')
+      list: devicesCall('List'),
+      boot: devicesCall('Boot')
     },
 
     menu: {

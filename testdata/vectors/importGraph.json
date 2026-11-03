@@ -1,0 +1,1063 @@
+{
+  "cases": [
+    {
+      "fn": "extractImports",
+      "args": [
+        "src/x.ts",
+        "\nimport { a } from './a'\nimport b from \"../b\"\nimport './side-effect'\nexport { c } from './c'\nconst d = require('./d')\nconst e = await import('./e')\n"
+      ],
+      "out": [
+        "./a",
+        "../b",
+        "./side-effect",
+        "./c",
+        "./d",
+        "./e"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "src/x.ts",
+        "// import { x } from './commented'\n/* import './block' */\nimport { y } from './real'"
+      ],
+      "out": [
+        "./real"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "app.py",
+        "from .models import User\nimport os"
+      ],
+      "out": [
+        ".models",
+        "os"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "main.go",
+        "import \"example.com/x/y\""
+      ],
+      "out": [
+        "example.com/x/y"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "main.go",
+        "package main\n\nimport (\n\t\"fmt\"\n\tlog \"github.com/x/log\" // logger\n\t\"example.com/x/y\"\n)\n"
+      ],
+      "out": [
+        "fmt",
+        "example.com/x/y"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "lib.rs",
+        "use crate::db::pool;\nmod helpers;"
+      ],
+      "out": [
+        "crate::db::pool",
+        "helpers"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "lib.rs",
+        "pub use self::{a, b};\npub mod net;\nuse std::io::*;"
+      ],
+      "out": [
+        "self::{a, b}",
+        "std::io::*",
+        "net"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "main.dart",
+        "import 'package:http/http.dart';"
+      ],
+      "out": [
+        "package:http/http.dart"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "app.rb",
+        "require_relative 'thing'"
+      ],
+      "out": [
+        "thing"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "app.rb",
+        "require 'json'\n  require_relative \"lib/x\""
+      ],
+      "out": [
+        "json",
+        "lib/x"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "README.md",
+        "import this"
+      ],
+      "out": []
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "x.c",
+        "#include <stdio.h>\n#include \"local.h\"\n"
+      ],
+      "out": [
+        "stdio.h",
+        "local.h"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "x.php",
+        "require_once('vendor/autoload.php');\ninclude 'a.php';"
+      ],
+      "out": [
+        "vendor/autoload.php",
+        "a.php"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "x.vue",
+        "<script>\nimport A from \"./A.vue\"\nimport A2 from \"./A.vue\"\n</script>"
+      ],
+      "out": [
+        "./A.vue"
+      ]
+    },
+    {
+      "fn": "extractImports",
+      "args": [
+        "u.ts",
+        "const s = \"http://x\"; import z from \"./z\""
+      ],
+      "out": []
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/app.ts",
+        "./db/pool",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "src/db/pool.ts"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/ui/panel.tsx",
+        "../db/pool",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "src/db/pool.ts"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/app.ts",
+        "./db",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "src/db/index.ts"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/ui/panel.tsx",
+        "@/db/pool",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "src/db/pool.ts"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/ui/panel.tsx",
+        "~/src/app",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "src/app.ts"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "app/main.py",
+        "app.models.user",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "app/models/user.py"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "app/models/user.py",
+        "..",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "app/__init__.py"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "app/models/user.py",
+        ".user",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "app/models/user.py"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "app/models/x.py",
+        "..models.user",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "app/models/user.py"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/app.ts",
+        "react",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": null
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "main.go",
+        "fmt",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": null
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/app.ts",
+        "./nope",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": null
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/lib.rs",
+        "crate::net",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "src/net/mod.rs"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/lib.rs",
+        "self::net::{a, b}",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "src/net/mod.rs"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "lib/y.rb",
+        "x",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "lib/x.rb"
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "a.dart",
+        "package:http/http.dart",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": null
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/app.ts",
+        "",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": null
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "src/app.ts",
+        ".",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": null
+    },
+    {
+      "fn": "resolveImport",
+      "args": [
+        "x.go",
+        "pkg/util",
+        [
+          "src/app.ts",
+          "src/db/pool.ts",
+          "src/db/index.ts",
+          "src/ui/panel.tsx",
+          "app/models/user.py",
+          "app/__init__.py",
+          "crate/mod.rs",
+          "src/net/mod.rs",
+          "lib/x.rb",
+          "pkg/util.go"
+        ]
+      ],
+      "out": "pkg/util.go"
+    },
+    {
+      "fn": "folderOf",
+      "args": [
+        "a/b/c.ts",
+        1
+      ],
+      "out": "a"
+    },
+    {
+      "fn": "folderOf",
+      "args": [
+        "a/b/c.ts",
+        2
+      ],
+      "out": "a/b"
+    },
+    {
+      "fn": "folderOf",
+      "args": [
+        "a/b/c.ts",
+        5
+      ],
+      "out": "a/b"
+    },
+    {
+      "fn": "folderOf",
+      "args": [
+        "c.ts",
+        2
+      ],
+      "out": "(root)"
+    },
+    {
+      "fn": "folderOf",
+      "args": [
+        "a/b/c.ts",
+        0
+      ],
+      "out": "a"
+    },
+    {
+      "fn": "pickDepth",
+      "args": [
+        [
+          {
+            "from": "src/renderer/src/components/A.tsx",
+            "to": "src/renderer/src/stores/ui.ts"
+          },
+          {
+            "from": "src/renderer/src/components/B.tsx",
+            "to": "src/shared/types.ts"
+          },
+          {
+            "from": "src/main/git.ts",
+            "to": "src/shared/types.ts"
+          }
+        ],
+        14
+      ],
+      "out": 4
+    },
+    {
+      "fn": "pickDepth",
+      "args": [
+        [
+          {
+            "from": "src/renderer/src/components/A.tsx",
+            "to": "src/renderer/src/stores/ui.ts"
+          },
+          {
+            "from": "src/renderer/src/components/B.tsx",
+            "to": "src/shared/types.ts"
+          },
+          {
+            "from": "src/main/git.ts",
+            "to": "src/shared/types.ts"
+          }
+        ],
+        3
+      ],
+      "out": 2
+    },
+    {
+      "fn": "pickDepth",
+      "args": [
+        [],
+        14
+      ],
+      "out": 1
+    },
+    {
+      "fn": "pickDepth",
+      "args": [
+        [
+          {
+            "from": "src/renderer/src/components/A.tsx",
+            "to": "src/renderer/src/stores/ui.ts"
+          },
+          {
+            "from": "src/renderer/src/components/B.tsx",
+            "to": "src/shared/types.ts"
+          },
+          {
+            "from": "src/main/git.ts",
+            "to": "src/shared/types.ts"
+          }
+        ],
+        null
+      ],
+      "out": 4
+    },
+    {
+      "fn": "buildImportGraph",
+      "args": [
+        [
+          {
+            "path": "src/ui/panel.tsx",
+            "content": "import { query } from '../db/pool'\nimport './styles'"
+          },
+          {
+            "path": "src/ui/styles.ts",
+            "content": ""
+          },
+          {
+            "path": "src/db/pool.ts",
+            "content": "import { log } from '../util/log'"
+          },
+          {
+            "path": "src/util/log.ts",
+            "content": ""
+          },
+          {
+            "path": "src/app.ts",
+            "content": "import { Panel } from './ui/panel'\nimport react from 'react'"
+          },
+          {
+            "path": "README.md",
+            "content": "import x from \"./src/app\""
+          }
+        ],
+        {
+          "depth": 2
+        }
+      ],
+      "out": {
+        "nodes": [
+          {
+            "id": "src/db",
+            "files": 1,
+            "out": 1,
+            "in": 1
+          },
+          {
+            "id": "src/ui",
+            "files": 2,
+            "out": 1,
+            "in": 1
+          },
+          {
+            "id": "src",
+            "files": 1,
+            "out": 1,
+            "in": 0
+          },
+          {
+            "id": "src/util",
+            "files": 1,
+            "out": 0,
+            "in": 1
+          }
+        ],
+        "edges": [
+          {
+            "from": "src",
+            "to": "src/ui",
+            "count": 1
+          },
+          {
+            "from": "src/db",
+            "to": "src/util",
+            "count": 1
+          },
+          {
+            "from": "src/ui",
+            "to": "src/db",
+            "count": 1
+          }
+        ],
+        "depth": 2,
+        "resolved": 4,
+        "external": 1,
+        "omittedEdges": 0
+      }
+    },
+    {
+      "fn": "buildImportGraph",
+      "args": [
+        [
+          {
+            "path": "src/ui/panel.tsx",
+            "content": "import { query } from '../db/pool'\nimport './styles'"
+          },
+          {
+            "path": "src/ui/styles.ts",
+            "content": ""
+          },
+          {
+            "path": "src/db/pool.ts",
+            "content": "import { log } from '../util/log'"
+          },
+          {
+            "path": "src/util/log.ts",
+            "content": ""
+          },
+          {
+            "path": "src/app.ts",
+            "content": "import { Panel } from './ui/panel'\nimport react from 'react'"
+          },
+          {
+            "path": "README.md",
+            "content": "import x from \"./src/app\""
+          }
+        ],
+        {
+          "depth": 1
+        }
+      ],
+      "out": {
+        "nodes": [],
+        "edges": [],
+        "depth": 1,
+        "resolved": 4,
+        "external": 1,
+        "omittedEdges": 0
+      }
+    },
+    {
+      "fn": "buildImportGraph",
+      "args": [
+        [
+          {
+            "path": "src/ui/panel.tsx",
+            "content": "import { query } from '../db/pool'\nimport './styles'"
+          },
+          {
+            "path": "src/ui/styles.ts",
+            "content": ""
+          },
+          {
+            "path": "src/db/pool.ts",
+            "content": "import { log } from '../util/log'"
+          },
+          {
+            "path": "src/util/log.ts",
+            "content": ""
+          },
+          {
+            "path": "src/app.ts",
+            "content": "import { Panel } from './ui/panel'\nimport react from 'react'"
+          },
+          {
+            "path": "README.md",
+            "content": "import x from \"./src/app\""
+          }
+        ],
+        {
+          "depth": 2,
+          "maxEdges": 1
+        }
+      ],
+      "out": {
+        "nodes": [
+          {
+            "id": "src",
+            "files": 1,
+            "out": 1,
+            "in": 0
+          },
+          {
+            "id": "src/ui",
+            "files": 2,
+            "out": 0,
+            "in": 1
+          }
+        ],
+        "edges": [
+          {
+            "from": "src",
+            "to": "src/ui",
+            "count": 1
+          }
+        ],
+        "depth": 2,
+        "resolved": 4,
+        "external": 1,
+        "omittedEdges": 2
+      }
+    },
+    {
+      "fn": "buildImportGraph",
+      "args": [
+        [
+          {
+            "path": "src/ui/panel.tsx",
+            "content": "import { query } from '../db/pool'\nimport './styles'"
+          },
+          {
+            "path": "src/ui/styles.ts",
+            "content": ""
+          },
+          {
+            "path": "src/db/pool.ts",
+            "content": "import { log } from '../util/log'"
+          },
+          {
+            "path": "src/util/log.ts",
+            "content": ""
+          },
+          {
+            "path": "src/app.ts",
+            "content": "import { Panel } from './ui/panel'\nimport react from 'react'"
+          },
+          {
+            "path": "README.md",
+            "content": "import x from \"./src/app\""
+          }
+        ],
+        {}
+      ],
+      "out": {
+        "nodes": [
+          {
+            "id": "src/db",
+            "files": 1,
+            "out": 1,
+            "in": 1
+          },
+          {
+            "id": "src/ui",
+            "files": 2,
+            "out": 1,
+            "in": 1
+          },
+          {
+            "id": "src",
+            "files": 1,
+            "out": 1,
+            "in": 0
+          },
+          {
+            "id": "src/util",
+            "files": 1,
+            "out": 0,
+            "in": 1
+          }
+        ],
+        "edges": [
+          {
+            "from": "src",
+            "to": "src/ui",
+            "count": 1
+          },
+          {
+            "from": "src/db",
+            "to": "src/util",
+            "count": 1
+          },
+          {
+            "from": "src/ui",
+            "to": "src/db",
+            "count": 1
+          }
+        ],
+        "depth": 2,
+        "resolved": 4,
+        "external": 1,
+        "omittedEdges": 0
+      }
+    },
+    {
+      "fn": "buildImportGraph",
+      "args": [
+        [
+          {
+            "path": "src/ui/panel.tsx",
+            "content": "import { query } from '../db/pool'\nimport './styles'"
+          },
+          {
+            "path": "src/ui/styles.ts",
+            "content": ""
+          },
+          {
+            "path": "src/db/pool.ts",
+            "content": "import { log } from '../util/log'"
+          },
+          {
+            "path": "src/util/log.ts",
+            "content": ""
+          },
+          {
+            "path": "src/app.ts",
+            "content": "import { Panel } from './ui/panel'\nimport react from 'react'"
+          },
+          {
+            "path": "README.md",
+            "content": "import x from \"./src/app\""
+          }
+        ],
+        {
+          "depth": 0
+        }
+      ],
+      "out": {
+        "nodes": [
+          {
+            "id": "src/db",
+            "files": 1,
+            "out": 1,
+            "in": 1
+          },
+          {
+            "id": "src/ui",
+            "files": 2,
+            "out": 1,
+            "in": 1
+          },
+          {
+            "id": "src",
+            "files": 1,
+            "out": 1,
+            "in": 0
+          },
+          {
+            "id": "src/util",
+            "files": 1,
+            "out": 0,
+            "in": 1
+          }
+        ],
+        "edges": [
+          {
+            "from": "src",
+            "to": "src/ui",
+            "count": 1
+          },
+          {
+            "from": "src/db",
+            "to": "src/util",
+            "count": 1
+          },
+          {
+            "from": "src/ui",
+            "to": "src/db",
+            "count": 1
+          }
+        ],
+        "depth": 2,
+        "resolved": 4,
+        "external": 1,
+        "omittedEdges": 0
+      }
+    },
+    {
+      "fn": "buildImportGraph",
+      "args": [
+        [
+          {
+            "path": "src/ui/panel.tsx",
+            "content": "import { query } from '../db/pool'\nimport './styles'"
+          },
+          {
+            "path": "src/ui/styles.ts",
+            "content": ""
+          },
+          {
+            "path": "src/db/pool.ts",
+            "content": "import { log } from '../util/log'"
+          },
+          {
+            "path": "src/util/log.ts",
+            "content": ""
+          },
+          {
+            "path": "src/app.ts",
+            "content": "import { Panel } from './ui/panel'\nimport react from 'react'"
+          },
+          {
+            "path": "README.md",
+            "content": "import x from \"./src/app\""
+          }
+        ],
+        {
+          "depth": -1,
+          "maxEdges": 0
+        }
+      ],
+      "out": {
+        "nodes": [],
+        "edges": [],
+        "depth": 2,
+        "resolved": 4,
+        "external": 1,
+        "omittedEdges": 3
+      }
+    },
+    {
+      "fn": "buildImportGraph",
+      "args": [
+        [],
+        {}
+      ],
+      "out": {
+        "nodes": [],
+        "edges": [],
+        "depth": 1,
+        "resolved": 0,
+        "external": 0,
+        "omittedEdges": 0
+      }
+    }
+  ]
+}

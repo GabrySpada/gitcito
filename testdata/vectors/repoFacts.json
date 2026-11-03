@@ -1,0 +1,1673 @@
+{
+  "cases": [
+    {
+      "fn": "languageOf",
+      "args": [
+        "src/app.tsx"
+      ],
+      "out": "TypeScript"
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "lib/thing.rb"
+      ],
+      "out": "Ruby"
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "Dockerfile"
+      ],
+      "out": "Docker"
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "deploy/Makefile"
+      ],
+      "out": "Make"
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "LICENSE"
+      ],
+      "out": null
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        ".bashrc"
+      ],
+      "out": null
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "a.CPP"
+      ],
+      "out": "C++"
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "CMakeLists.txt"
+      ],
+      "out": "CMake"
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "x.unknown"
+      ],
+      "out": null
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "dir.ts/file"
+      ],
+      "out": null
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "Gemfile"
+      ],
+      "out": "Ruby"
+    },
+    {
+      "fn": "languageOf",
+      "args": [
+        "a.Rakefile"
+      ],
+      "out": null
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "size": 700
+          },
+          {
+            "path": "b.ts",
+            "size": 300
+          },
+          {
+            "path": "c.py",
+            "size": 250
+          }
+        ],
+        {}
+      ],
+      "out": [
+        {
+          "language": "TypeScript",
+          "bytes": 1000,
+          "files": 2,
+          "share": 0.8
+        },
+        {
+          "language": "Python",
+          "bytes": 250,
+          "files": 1,
+          "share": 0.2
+        }
+      ]
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "size": 700
+          },
+          {
+            "path": "b.ts",
+            "size": 300
+          },
+          {
+            "path": "c.py",
+            "size": 250
+          }
+        ],
+        {
+          "includeSupporting": true
+        }
+      ],
+      "out": [
+        {
+          "language": "TypeScript",
+          "bytes": 1000,
+          "files": 2,
+          "share": 0.8
+        },
+        {
+          "language": "Python",
+          "bytes": 250,
+          "files": 1,
+          "share": 0.2
+        }
+      ]
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "size": 100
+          },
+          {
+            "path": "data.json",
+            "size": 9000
+          },
+          {
+            "path": "README.md",
+            "size": 500
+          }
+        ],
+        {}
+      ],
+      "out": [
+        {
+          "language": "TypeScript",
+          "bytes": 100,
+          "files": 1,
+          "share": 1
+        }
+      ]
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "size": 100
+          },
+          {
+            "path": "data.json",
+            "size": 9000
+          },
+          {
+            "path": "README.md",
+            "size": 500
+          }
+        ],
+        {
+          "includeSupporting": true
+        }
+      ],
+      "out": [
+        {
+          "language": "JSON",
+          "bytes": 9000,
+          "files": 1,
+          "share": 0.9375
+        },
+        {
+          "language": "Markdown",
+          "bytes": 500,
+          "files": 1,
+          "share": 0.052083333333333336
+        },
+        {
+          "language": "TypeScript",
+          "bytes": 100,
+          "files": 1,
+          "share": 0.010416666666666666
+        }
+      ]
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "f.ts",
+            "size": 100
+          },
+          {
+            "path": "f.py",
+            "size": 99
+          },
+          {
+            "path": "f.rb",
+            "size": 98
+          },
+          {
+            "path": "f.go",
+            "size": 97
+          },
+          {
+            "path": "f.rs",
+            "size": 96
+          },
+          {
+            "path": "f.java",
+            "size": 95
+          },
+          {
+            "path": "f.php",
+            "size": 94
+          },
+          {
+            "path": "f.lua",
+            "size": 93
+          },
+          {
+            "path": "f.zig",
+            "size": 92
+          },
+          {
+            "path": "f.dart",
+            "size": 91
+          }
+        ],
+        {}
+      ],
+      "out": [
+        {
+          "language": "TypeScript",
+          "bytes": 100,
+          "files": 1,
+          "share": 0.10471204188481675
+        },
+        {
+          "language": "Python",
+          "bytes": 99,
+          "files": 1,
+          "share": 0.10366492146596859
+        },
+        {
+          "language": "Ruby",
+          "bytes": 98,
+          "files": 1,
+          "share": 0.10261780104712041
+        },
+        {
+          "language": "Go",
+          "bytes": 97,
+          "files": 1,
+          "share": 0.10157068062827225
+        },
+        {
+          "language": "Rust",
+          "bytes": 96,
+          "files": 1,
+          "share": 0.10052356020942409
+        },
+        {
+          "language": "Java",
+          "bytes": 95,
+          "files": 1,
+          "share": 0.09947643979057591
+        },
+        {
+          "language": "PHP",
+          "bytes": 94,
+          "files": 1,
+          "share": 0.09842931937172775
+        },
+        {
+          "language": "Lua",
+          "bytes": 93,
+          "files": 1,
+          "share": 0.09738219895287958
+        },
+        {
+          "language": "Zig",
+          "bytes": 92,
+          "files": 1,
+          "share": 0.09633507853403141
+        },
+        {
+          "language": "Dart",
+          "bytes": 91,
+          "files": 1,
+          "share": 0.09528795811518324
+        }
+      ]
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "f.ts",
+            "size": 100
+          },
+          {
+            "path": "f.py",
+            "size": 99
+          },
+          {
+            "path": "f.rb",
+            "size": 98
+          },
+          {
+            "path": "f.go",
+            "size": 97
+          },
+          {
+            "path": "f.rs",
+            "size": 96
+          },
+          {
+            "path": "f.java",
+            "size": 95
+          },
+          {
+            "path": "f.php",
+            "size": 94
+          },
+          {
+            "path": "f.lua",
+            "size": 93
+          },
+          {
+            "path": "f.zig",
+            "size": 92
+          },
+          {
+            "path": "f.dart",
+            "size": 91
+          }
+        ],
+        {
+          "includeSupporting": true
+        }
+      ],
+      "out": [
+        {
+          "language": "TypeScript",
+          "bytes": 100,
+          "files": 1,
+          "share": 0.10471204188481675
+        },
+        {
+          "language": "Python",
+          "bytes": 99,
+          "files": 1,
+          "share": 0.10366492146596859
+        },
+        {
+          "language": "Ruby",
+          "bytes": 98,
+          "files": 1,
+          "share": 0.10261780104712041
+        },
+        {
+          "language": "Go",
+          "bytes": 97,
+          "files": 1,
+          "share": 0.10157068062827225
+        },
+        {
+          "language": "Rust",
+          "bytes": 96,
+          "files": 1,
+          "share": 0.10052356020942409
+        },
+        {
+          "language": "Java",
+          "bytes": 95,
+          "files": 1,
+          "share": 0.09947643979057591
+        },
+        {
+          "language": "PHP",
+          "bytes": 94,
+          "files": 1,
+          "share": 0.09842931937172775
+        },
+        {
+          "language": "Lua",
+          "bytes": 93,
+          "files": 1,
+          "share": 0.09738219895287958
+        },
+        {
+          "language": "Zig",
+          "bytes": 92,
+          "files": 1,
+          "share": 0.09633507853403141
+        },
+        {
+          "language": "Dart",
+          "bytes": 91,
+          "files": 1,
+          "share": 0.09528795811518324
+        }
+      ]
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [],
+        {}
+      ],
+      "out": []
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [],
+        {
+          "includeSupporting": true
+        }
+      ],
+      "out": []
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "size": 0
+          },
+          {
+            "path": "b.go",
+            "size": -5
+          },
+          {
+            "path": "c.go",
+            "size": 0
+          },
+          {
+            "path": "Z.c",
+            "size": 10
+          },
+          {
+            "path": "y.h",
+            "size": 10
+          },
+          {
+            "path": "a.cc",
+            "size": 10
+          }
+        ],
+        {}
+      ],
+      "out": [
+        {
+          "language": "C",
+          "bytes": 20,
+          "files": 2,
+          "share": 0.6666666666666666
+        },
+        {
+          "language": "C++",
+          "bytes": 10,
+          "files": 1,
+          "share": 0.3333333333333333
+        },
+        {
+          "language": "Go",
+          "bytes": 0,
+          "files": 2,
+          "share": 0
+        },
+        {
+          "language": "TypeScript",
+          "bytes": 0,
+          "files": 1,
+          "share": 0
+        }
+      ]
+    },
+    {
+      "fn": "languageBreakdown",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "size": 0
+          },
+          {
+            "path": "b.go",
+            "size": -5
+          },
+          {
+            "path": "c.go",
+            "size": 0
+          },
+          {
+            "path": "Z.c",
+            "size": 10
+          },
+          {
+            "path": "y.h",
+            "size": 10
+          },
+          {
+            "path": "a.cc",
+            "size": 10
+          }
+        ],
+        {
+          "includeSupporting": true
+        }
+      ],
+      "out": [
+        {
+          "language": "C",
+          "bytes": 20,
+          "files": 2,
+          "share": 0.6666666666666666
+        },
+        {
+          "language": "C++",
+          "bytes": 10,
+          "files": 1,
+          "share": 0.3333333333333333
+        },
+        {
+          "language": "Go",
+          "bytes": 0,
+          "files": 2,
+          "share": 0
+        },
+        {
+          "language": "TypeScript",
+          "bytes": 0,
+          "files": 1,
+          "share": 0
+        }
+      ]
+    },
+    {
+      "fn": "findManifests",
+      "args": [
+        [
+          "src/app.ts",
+          "web/package.json",
+          "package.json",
+          "Cargo.toml"
+        ],
+        null
+      ],
+      "out": [
+        "Cargo.toml",
+        "package.json",
+        "web/package.json"
+      ]
+    },
+    {
+      "fn": "findManifests",
+      "args": [
+        [
+          "a/b/go.mod",
+          "z/package.json",
+          "requirements.txt",
+          "Gemfile",
+          "x/pubspec.yaml",
+          "b/composer.json",
+          "pyproject.toml",
+          "a/package.json"
+        ],
+        null
+      ],
+      "out": [
+        "Gemfile",
+        "pyproject.toml",
+        "requirements.txt",
+        "a/package.json",
+        "b/composer.json",
+        "x/pubspec.yaml"
+      ]
+    },
+    {
+      "fn": "findManifests",
+      "args": [
+        [
+          "a/b/go.mod",
+          "z/package.json",
+          "requirements.txt",
+          "Gemfile",
+          "x/pubspec.yaml",
+          "b/composer.json",
+          "pyproject.toml",
+          "a/package.json"
+        ],
+        2
+      ],
+      "out": [
+        "Gemfile",
+        "pyproject.toml"
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "package.json",
+        "{\"dependencies\":{\"react\":\"^18.0.0\"},\"devDependencies\":{\"vitest\":\"^2.0.0\"}}"
+      ],
+      "out": [
+        {
+          "name": "react",
+          "version": "^18.0.0",
+          "dev": false
+        },
+        {
+          "name": "vitest",
+          "version": "^2.0.0",
+          "dev": true
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "package.json",
+        "{ not json"
+      ],
+      "out": []
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "package.json",
+        "{\"peerDependencies\":{\"a\":1,\"b\":null},\"dependencies\":null}"
+      ],
+      "out": [
+        {
+          "name": "a",
+          "version": "1",
+          "dev": false
+        },
+        {
+          "name": "b",
+          "version": "null",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "web/composer.json",
+        "{\"dependencies\":{\"laravel/framework\":\"^10\"}}"
+      ],
+      "out": [
+        {
+          "name": "laravel/framework",
+          "version": "^10",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "Cargo.toml",
+        "[dependencies]\nserde = \"1.0\"\ntokio = { version = \"1.35\" }\n"
+      ],
+      "out": [
+        {
+          "name": "serde",
+          "version": "1.0",
+          "dev": false
+        },
+        {
+          "name": "tokio",
+          "version": "1.35",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "Cargo.toml",
+        "[package]\nname = \"x\"\n\n[dev-dependencies]\n# c\nproptest = \"1\"\n[dependencies.foo]\nversion = \"2\"\n[target.x.build-dependencies]\ncc = \"1.0\"\nbare\n"
+      ],
+      "out": [
+        {
+          "name": "proptest",
+          "version": "1",
+          "dev": true
+        },
+        {
+          "name": "foo",
+          "version": "",
+          "dev": false
+        },
+        {
+          "name": "cc",
+          "version": "1.0",
+          "dev": true
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "go.mod",
+        "module x\n\nrequire (\n\tgithub.com/foo/bar v1.2.3\n\tgithub.com/b/c v0.1.0 // indirect\n\t// comment\n)\nrequire github.com/x/y v2.0.0\n"
+      ],
+      "out": [
+        {
+          "name": "github.com/foo/bar",
+          "version": "v1.2.3",
+          "dev": false
+        },
+        {
+          "name": "github.com/b/c",
+          "version": "v0.1.0",
+          "dev": true
+        },
+        {
+          "name": "github.com/x/y",
+          "version": "v2.0.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "pyproject.toml",
+        "dependencies = [\"requests>=2.0\", \"flask\"]"
+      ],
+      "out": [
+        {
+          "name": "requests",
+          "version": ">=2.0",
+          "dev": false
+        },
+        {
+          "name": "flask",
+          "version": "",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "pyproject.toml",
+        "[project]\ndependencies = [\n  'numpy >= 1.0',\n  \"pandas\",\n]\n[tool.poetry.dependencies]\npython = \"^3.10\"\ndjango = \"^4\"\n[tool.poetry.group.test.dependencies]\npytest = \"*\"\n[tool.poetry.dev-dependencies]\nblack = { version = \"23\" }\n"
+      ],
+      "out": [
+        {
+          "name": "numpy",
+          "version": ">= 1.0",
+          "dev": false
+        },
+        {
+          "name": "pandas",
+          "version": "",
+          "dev": false
+        },
+        {
+          "name": "django",
+          "version": "^4",
+          "dev": false
+        },
+        {
+          "name": "pytest",
+          "version": "*",
+          "dev": false
+        },
+        {
+          "name": "black",
+          "version": "23",
+          "dev": true
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "requirements.txt",
+        "# comment\nrequests==2.0\n-e .\n"
+      ],
+      "out": [
+        {
+          "name": "requests",
+          "version": "==2.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "pubspec.yaml",
+        "dependencies:\n  http: ^1.0.0\n  sdk: flutter\n"
+      ],
+      "out": [
+        {
+          "name": "http",
+          "version": "^1.0.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "pubspec.yaml",
+        "name: x\ndependencies:\n  flutter:\n    sdk: flutter\n  \"q\": '2'\ndev_dependencies:\n  test: any\nflutter:\n  uses: true\n"
+      ],
+      "out": [
+        {
+          "name": "flutter",
+          "version": "",
+          "dev": false
+        },
+        {
+          "name": "test",
+          "version": "any",
+          "dev": true
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "Gemfile",
+        "source 'x'\ngem 'rails', '7.0'\n"
+      ],
+      "out": [
+        {
+          "name": "rails",
+          "version": "7.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "sub/Gemfile",
+        "gem \"pg\"\n  gem 'puma' , \"~> 6\"\n# gem \"no\"\n"
+      ],
+      "out": [
+        {
+          "name": "pg",
+          "version": "",
+          "dev": false
+        },
+        {
+          "name": "puma",
+          "version": "~> 6",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "README.md",
+        "anything"
+      ],
+      "out": []
+    },
+    {
+      "fn": "parseManifest",
+      "args": [
+        "Requirements.TXT",
+        "flask\r\nnumpy>=1\r\n"
+      ],
+      "out": [
+        {
+          "name": "flask",
+          "version": "",
+          "dev": false
+        },
+        {
+          "name": "numpy",
+          "version": ">=1",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "@types/node"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "ts-loader"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "eslint-plugin-react"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "prettier"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "@babel/core"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "tslib"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "react"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "electron"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "tailwindcss"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "go-sqlite3"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "eslint"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "eslintx"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "babel-jest"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "vite-plugin-x"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "webpack-cli"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "tsx"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isNoiseDependency",
+      "args": [
+        "rollup-plugin-a"
+      ],
+      "out": true
+    },
+    {
+      "fn": "meaningfulDependencies",
+      "args": [
+        [
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react-dom",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "vue-router",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "name": "react",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "vue-router",
+          "version": "1.0.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "detectFrameworks",
+      "args": [
+        [
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react-dom",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "vue-router",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "label": "React",
+          "badge": "⚛",
+          "kind": "ui",
+          "dep": "react"
+        }
+      ]
+    },
+    {
+      "fn": "meaningfulDependencies",
+      "args": [
+        [
+          {
+            "name": "vue",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "vue-router",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "@types/node",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "next",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "next-auth",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "name": "vue",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "next",
+          "version": "1.0.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "detectFrameworks",
+      "args": [
+        [
+          {
+            "name": "vue",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "vue-router",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "@types/node",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "next",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "next-auth",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "label": "Vue",
+          "badge": "🟩",
+          "kind": "ui",
+          "dep": "vue"
+        },
+        {
+          "label": "Next.js",
+          "badge": "▲",
+          "kind": "framework",
+          "dep": "next"
+        }
+      ]
+    },
+    {
+      "fn": "meaningfulDependencies",
+      "args": [
+        [
+          {
+            "name": "next",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "tailwindcss",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "left-pad",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "name": "next",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "react",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "tailwindcss",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "left-pad",
+          "version": "1.0.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "detectFrameworks",
+      "args": [
+        [
+          {
+            "name": "next",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "tailwindcss",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "left-pad",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "label": "Next.js",
+          "badge": "▲",
+          "kind": "framework",
+          "dep": "next"
+        },
+        {
+          "label": "React",
+          "badge": "⚛",
+          "kind": "ui",
+          "dep": "react"
+        },
+        {
+          "label": "Tailwind",
+          "badge": "🌊",
+          "kind": "styling",
+          "dep": "tailwindcss"
+        }
+      ]
+    },
+    {
+      "fn": "meaningfulDependencies",
+      "args": [
+        [
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "name": "react",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "react",
+          "version": "1.0.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "detectFrameworks",
+      "args": [
+        [
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "label": "React",
+          "badge": "⚛",
+          "kind": "ui",
+          "dep": "react"
+        }
+      ]
+    },
+    {
+      "fn": "meaningfulDependencies",
+      "args": [
+        [
+          {
+            "name": "Django",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "github.com/labstack/echo/v4",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "tauri-build",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react-native",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "mattn/go-sqlite3",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "@angular/core",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "@angular/common",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "jest",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "vitest",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "name": "Django",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "github.com/labstack/echo/v4",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "tauri-build",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "react-native",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "mattn/go-sqlite3",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "@angular/core",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "jest",
+          "version": "1.0.0",
+          "dev": false
+        },
+        {
+          "name": "vitest",
+          "version": "1.0.0",
+          "dev": false
+        }
+      ]
+    },
+    {
+      "fn": "detectFrameworks",
+      "args": [
+        [
+          {
+            "name": "Django",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "github.com/labstack/echo/v4",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "tauri-build",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "react-native",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "mattn/go-sqlite3",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "@angular/core",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "@angular/common",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "jest",
+            "version": "1.0.0",
+            "dev": false
+          },
+          {
+            "name": "vitest",
+            "version": "1.0.0",
+            "dev": false
+          }
+        ]
+      ],
+      "out": [
+        {
+          "label": "Django",
+          "badge": "🎸",
+          "kind": "framework",
+          "dep": "Django"
+        },
+        {
+          "label": "Echo",
+          "badge": "📣",
+          "kind": "server",
+          "dep": "github.com/labstack/echo/v4"
+        },
+        {
+          "label": "Tauri",
+          "badge": "🦀",
+          "kind": "runtime",
+          "dep": "tauri-build"
+        },
+        {
+          "label": "React Native",
+          "badge": "📱",
+          "kind": "runtime",
+          "dep": "react-native"
+        },
+        {
+          "label": "SQLite",
+          "badge": "🗄",
+          "kind": "data",
+          "dep": "mattn/go-sqlite3"
+        },
+        {
+          "label": "Angular",
+          "badge": "🅰",
+          "kind": "framework",
+          "dep": "@angular/core"
+        },
+        {
+          "label": "Vitest/Jest",
+          "badge": "✅",
+          "kind": "testing",
+          "dep": "jest"
+        }
+      ]
+    },
+    {
+      "fn": "meaningfulDependencies",
+      "args": [
+        []
+      ],
+      "out": []
+    },
+    {
+      "fn": "detectFrameworks",
+      "args": [
+        []
+      ],
+      "out": []
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        ".env"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "a/.env.local"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        ".env.example"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "x/.ENV.sample"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "key.pem"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "id_rsa"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "a/id_ed25519.pub"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        ".npmrc"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "credentials"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "creds/credentials.json"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "config/secrets.json"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "secret.yml"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "app.p8"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "README.md"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        ".envrc"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isSecretFile",
+      "args": [
+        "x.mobileprovision"
+      ],
+      "out": true
+    }
+  ]
+}

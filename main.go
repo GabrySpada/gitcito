@@ -9,21 +9,31 @@ import (
 	"log"
 	"log/slog"
 	"os"
+	"path/filepath"
 
 	"github.com/GabrySpada/gitcito/internal/ai"
 	"github.com/GabrySpada/gitcito/internal/analytics"
+	"github.com/GabrySpada/gitcito/internal/analyze"
 	"github.com/GabrySpada/gitcito/internal/app"
+	"github.com/GabrySpada/gitcito/internal/devices"
 	"github.com/GabrySpada/gitcito/internal/gitsvc"
 	"github.com/GabrySpada/gitcito/internal/gitx"
+	"github.com/GabrySpada/gitcito/internal/grounding/aicompleter"
 	"github.com/GabrySpada/gitcito/internal/hosting"
 	"github.com/GabrySpada/gitcito/internal/info"
 	"github.com/GabrySpada/gitcito/internal/keychain"
+	"github.com/GabrySpada/gitcito/internal/launch"
+	"github.com/GabrySpada/gitcito/internal/localci"
 	"github.com/GabrySpada/gitcito/internal/logbook"
 	"github.com/GabrySpada/gitcito/internal/menu"
 	"github.com/GabrySpada/gitcito/internal/paths"
+	"github.com/GabrySpada/gitcito/internal/repochat"
 	"github.com/GabrySpada/gitcito/internal/secure"
 	"github.com/GabrySpada/gitcito/internal/settings"
+	"github.com/GabrySpada/gitcito/internal/terminal"
+	"github.com/GabrySpada/gitcito/internal/todoscan"
 	"github.com/GabrySpada/gitcito/internal/vault"
+	"github.com/GabrySpada/gitcito/internal/wiki"
 	"github.com/wailsapp/wails/v3/pkg/application"
 	"github.com/wailsapp/wails/v3/pkg/events"
 )
@@ -93,6 +103,16 @@ func main() {
 		slog.Warn("single instance disabled", "err", err)
 	}
 
+	// Repo chat and the wiki talk to the model through the same client as every other AI feature.
+	model := aicompleter.New(aiClient)
+	wikiStore := filepath.Join(dataDir, wiki.FileName)
+	openURL := func(u string) error {
+		if a := application.Get(); a != nil {
+			return a.Browser.OpenURL(u)
+		}
+		return nil
+	}
+
 	a := application.New(application.Options{
 		Name:        "Gitcito",
 		Description: "A lightweight Git client",
@@ -111,6 +131,14 @@ func main() {
 			application.NewService(secure.NewService(secure.New(secure.Options{Vault: vaultStore}))),
 			application.NewService(analytics.NewService(ledger)),
 			application.NewService(ai.NewService(aiClient)),
+			application.NewService(repochat.NewService(git, model, aicompleter.Schemas{})),
+			application.NewService(wiki.NewService(git, model, app.Emitter{}, wikiStore)),
+			application.NewService(terminal.NewService(app.Emitter{})),
+			application.NewService(launch.NewService(app.Emitter{}, openURL)),
+			application.NewService(devices.NewService(*shot)),
+			application.NewService(localci.NewService(app.Emitter{})),
+			application.NewService(analyze.NewService()),
+			application.NewService(todoscan.NewService()),
 			application.NewService(info.NewService(info.New(info.Options{}))),
 			application.NewService(hosting.NewService(hosting.Options{OpenURL: func(u string) error {
 				return application.Get().Browser.OpenURL(u)

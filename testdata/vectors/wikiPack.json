@@ -1,0 +1,697 @@
+{
+  "cases": [
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "node_modules/react/index.js"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "dist/bundle.js"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "src/assets/logo.png"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "package-lock.json"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "target/debug/app"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "a/vendor/lib.rb"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "app.min.js"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "src/app.ts"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "README.md"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "lib/db/pool.rb"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "Dockerfile"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        ""
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "Src/Node_Modules/x.js"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "pkg/.Git/config"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "Pods/x.h"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "a/pods/y.h"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "file.LOCK"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        ".hidden"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "noext"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "a.b.MIN.JS"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "thumbs.db"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "docs/Thumbs.DB"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "archive.tar.gz"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isReadableSource",
+      "args": [
+        "x.tsx"
+      ],
+      "out": true
+    },
+    {
+      "fn": "rankPlanFiles",
+      "args": [
+        [
+          "src/z.ts",
+          "package.json",
+          "src/hot.ts",
+          "README.md",
+          "src/a/b/c/deep.ts"
+        ],
+        [
+          "src/hot.ts"
+        ],
+        null
+      ],
+      "out": [
+        "README.md",
+        "package.json",
+        "src/hot.ts",
+        "src/z.ts",
+        "src/a/b/c/deep.ts"
+      ]
+    },
+    {
+      "fn": "rankPlanFiles",
+      "args": [
+        [
+          "README.md",
+          "dist/x.js",
+          "src/a.ts",
+          "src/b.ts"
+        ],
+        [],
+        2
+      ],
+      "out": [
+        "README.md",
+        "src/a.ts"
+      ]
+    },
+    {
+      "fn": "rankPlanFiles",
+      "args": [
+        [
+          "docs/CONTRIBUTING.md",
+          "Makefile",
+          "go.mod",
+          "b/README.md",
+          "z.ts",
+          "Z.ts",
+          "a/Beta.ts",
+          "a/alpha.ts",
+          "a/b/c/d/e/f/g/h.ts",
+          "a/b/c/d/e/f.ts",
+          "src/hot2.ts",
+          "src/hot1.ts",
+          "changelog.md",
+          "ARCHITECTURE.md",
+          "a_b.ts",
+          "a-b.ts",
+          "a.b.ts",
+          "a10.ts",
+          "a9.ts",
+          "Cargo.toml",
+          "é.ts",
+          "e.ts",
+          "f.ts"
+        ],
+        [
+          "src/hot1.ts",
+          "src/hot2.ts",
+          "ghost.ts"
+        ],
+        null
+      ],
+      "out": [
+        "ARCHITECTURE.md",
+        "changelog.md",
+        "Cargo.toml",
+        "go.mod",
+        "Makefile",
+        "b/README.md",
+        "docs/CONTRIBUTING.md",
+        "src/hot1.ts",
+        "src/hot2.ts",
+        "a_b.ts",
+        "a-b.ts",
+        "a.b.ts",
+        "a10.ts",
+        "a9.ts",
+        "e.ts",
+        "é.ts",
+        "f.ts",
+        "z.ts",
+        "Z.ts",
+        "a/alpha.ts",
+        "a/Beta.ts",
+        "a/b/c/d/e/f.ts",
+        "a/b/c/d/e/f/g/h.ts"
+      ]
+    },
+    {
+      "fn": "buildPagePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        {
+          "maxFileBytes": 100
+        }
+      ],
+      "out": {
+        "files": [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n…(truncated)"
+          }
+        ],
+        "dropped": 0
+      }
+    },
+    {
+      "fn": "serializePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        {
+          "maxFileBytes": 100
+        }
+      ],
+      "out": "--- FILE: a.ts ---\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n…(truncated)"
+    },
+    {
+      "fn": "buildPagePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          },
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          },
+          {
+            "path": "c.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        {
+          "maxBytes": 170
+        }
+      ],
+      "out": {
+        "files": [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          },
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "dropped": 1
+      }
+    },
+    {
+      "fn": "serializePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          },
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          },
+          {
+            "path": "c.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        {
+          "maxBytes": 170
+        }
+      ],
+      "out": "--- FILE: a.ts ---\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n--- FILE: b.ts ---\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n(1 further file(s) were not included — do not cite them.)"
+    },
+    {
+      "fn": "buildPagePack",
+      "args": [
+        [
+          {
+            "path": "big.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        {
+          "maxBytes": 10,
+          "maxFileBytes": 500
+        }
+      ],
+      "out": {
+        "files": [
+          {
+            "path": "big.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        "dropped": 0
+      }
+    },
+    {
+      "fn": "serializePack",
+      "args": [
+        [
+          {
+            "path": "big.ts",
+            "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ],
+        {
+          "maxBytes": 10,
+          "maxFileBytes": 500
+        }
+      ],
+      "out": "--- FILE: big.ts ---\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    {
+      "fn": "buildPagePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "   "
+          },
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxx"
+          }
+        ],
+        {}
+      ],
+      "out": {
+        "files": [
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxx"
+          }
+        ],
+        "dropped": 1
+      }
+    },
+    {
+      "fn": "serializePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "   "
+          },
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxx"
+          }
+        ],
+        {}
+      ],
+      "out": "--- FILE: b.ts ---\nxxxxxxxxxx\n\n(1 further file(s) were not included — do not cite them.)"
+    },
+    {
+      "fn": "buildPagePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxx"
+          },
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxx"
+          }
+        ],
+        {
+          "maxBytes": 15
+        }
+      ],
+      "out": {
+        "files": [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxx"
+          }
+        ],
+        "dropped": 1
+      }
+    },
+    {
+      "fn": "serializePack",
+      "args": [
+        [
+          {
+            "path": "a.ts",
+            "content": "xxxxxxxxxx"
+          },
+          {
+            "path": "b.ts",
+            "content": "xxxxxxxxxx"
+          }
+        ],
+        {
+          "maxBytes": 15
+        }
+      ],
+      "out": "--- FILE: a.ts ---\nxxxxxxxxxx\n\n(1 further file(s) were not included — do not cite them.)"
+    },
+    {
+      "fn": "buildPagePack",
+      "args": [
+        [
+          {
+            "path": "u.ts",
+            "content": "🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍"
+          },
+          {
+            "path": "v.ts",
+            "content": "é\né\né\né\né\n"
+          }
+        ],
+        {
+          "maxFileBytes": 5
+        }
+      ],
+      "out": {
+        "files": [
+          {
+            "path": "u.ts",
+            "content": "🌍🌍\ud83c\n…(truncated)"
+          },
+          {
+            "path": "v.ts",
+            "content": "é\né\né\n…(truncated)"
+          }
+        ],
+        "dropped": 0
+      }
+    },
+    {
+      "fn": "serializePack",
+      "args": [
+        [
+          {
+            "path": "u.ts",
+            "content": "🌍🌍🌍🌍🌍🌍🌍🌍🌍🌍"
+          },
+          {
+            "path": "v.ts",
+            "content": "é\né\né\né\né\n"
+          }
+        ],
+        {
+          "maxFileBytes": 5
+        }
+      ],
+      "out": "--- FILE: u.ts ---\n🌍🌍\ud83c\n…(truncated)\n\n--- FILE: v.ts ---\né\né\né\n…(truncated)"
+    },
+    {
+      "fn": "buildPagePack",
+      "args": [
+        [],
+        {}
+      ],
+      "out": {
+        "files": [],
+        "dropped": 0
+      }
+    },
+    {
+      "fn": "serializePack",
+      "args": [
+        [],
+        {}
+      ],
+      "out": ""
+    },
+    {
+      "fn": "serializeRepoFacts",
+      "args": [
+        {
+          "name": "demo",
+          "branch": "main",
+          "totalCommits": 3,
+          "authors": [],
+          "hotspots": []
+        }
+      ],
+      "out": "Repository: demo\nCurrent branch: main\nCommits analysed: 3\nMost active authors: (unknown)\n\nMost frequently changed files:\n(none)"
+    },
+    {
+      "fn": "serializeRepoFacts",
+      "args": [
+        {
+          "name": "big",
+          "branch": "",
+          "totalCommits": 1000,
+          "authors": [
+            {
+              "name": "A0",
+              "commits": 10
+            },
+            {
+              "name": "A1",
+              "commits": 9
+            },
+            {
+              "name": "A2",
+              "commits": 8
+            },
+            {
+              "name": "A3",
+              "commits": 7
+            },
+            {
+              "name": "A4",
+              "commits": 6
+            },
+            {
+              "name": "A5",
+              "commits": 5
+            },
+            {
+              "name": "A6",
+              "commits": 4
+            }
+          ],
+          "hotspots": [
+            {
+              "path": "src/f0.ts",
+              "commits": 20
+            },
+            {
+              "path": "src/f1.ts",
+              "commits": 19
+            },
+            {
+              "path": "src/f2.ts",
+              "commits": 18
+            },
+            {
+              "path": "src/f3.ts",
+              "commits": 17
+            },
+            {
+              "path": "src/f4.ts",
+              "commits": 16
+            },
+            {
+              "path": "src/f5.ts",
+              "commits": 15
+            },
+            {
+              "path": "src/f6.ts",
+              "commits": 14
+            },
+            {
+              "path": "src/f7.ts",
+              "commits": 13
+            },
+            {
+              "path": "src/f8.ts",
+              "commits": 12
+            },
+            {
+              "path": "src/f9.ts",
+              "commits": 11
+            },
+            {
+              "path": "src/f10.ts",
+              "commits": 10
+            },
+            {
+              "path": "src/f11.ts",
+              "commits": 9
+            },
+            {
+              "path": "src/f12.ts",
+              "commits": 8
+            },
+            {
+              "path": "src/f13.ts",
+              "commits": 7
+            },
+            {
+              "path": "src/f14.ts",
+              "commits": 6
+            },
+            {
+              "path": "src/f15.ts",
+              "commits": 5
+            },
+            {
+              "path": "src/f16.ts",
+              "commits": 4
+            }
+          ]
+        }
+      ],
+      "out": "Repository: big\nCurrent branch: \nCommits analysed: 1000\nMost active authors: A0 (10), A1 (9), A2 (8), A3 (7), A4 (6)\n\nMost frequently changed files:\nsrc/f0.ts (20 commits)\nsrc/f1.ts (19 commits)\nsrc/f2.ts (18 commits)\nsrc/f3.ts (17 commits)\nsrc/f4.ts (16 commits)\nsrc/f5.ts (15 commits)\nsrc/f6.ts (14 commits)\nsrc/f7.ts (13 commits)\nsrc/f8.ts (12 commits)\nsrc/f9.ts (11 commits)\nsrc/f10.ts (10 commits)\nsrc/f11.ts (9 commits)\nsrc/f12.ts (8 commits)\nsrc/f13.ts (7 commits)\nsrc/f14.ts (6 commits)"
+    }
+  ]
+}
