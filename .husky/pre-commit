@@ -13,3 +13,18 @@ else
   echo 'Node.js tooling not found. Install npm, or mise with a Node version configured.' >&2
   exit 127
 fi
+
+# The main process is Go. Unformatted files fail the commit; vet catches the
+# mistakes the compiler lets through. Both are fast enough to run every time.
+if command -v go >/dev/null 2>&1; then
+  unformatted=$(gofmt -l $(git ls-files '*.go'))
+  if [ -n "$unformatted" ]; then
+    echo "gofmt needed on:" >&2
+    echo "$unformatted" >&2
+    exit 1
+  fi
+  go vet ./...
+else
+  echo 'Go not found: install it (go.mod pins the toolchain) to commit Go changes.' >&2
+  exit 127
+fi
