@@ -33,6 +33,11 @@ compaction.
 - Worktrees start on `main`: every brief says `git reset --hard claude/wizardly-hypatia-gttsk8` first.
 
 ## Merged since the last update
+- M3 exit: e2e core git flows + terminal streaming (e2e/git.e2e.ts; suite 17/17 on the server build).
+- M8 started: wails.yaml release profile (config check OK; --plan OK for linux/amd64 + windows/amd64, darwin
+  needs a macOS host), empty macOS entitlements, `npm run wails:*` / `bindings` scripts (scripts/wails.mjs),
+  husky runs gofmt + go vet, frontend-dist/.gitkeep so a fresh clone builds, ci.yml builds before the
+  playground exists (DECISIONS 021–023). nsis installed in the container for planning.
 - Wave 2 complete: ai, repochat + grounding + wiki, processes (terminal/launch/devices/localci/analyze/todoscan),
   secure/vault/analytics/info, registry/watcher/repoconfig/fileactions/textconv. All bound in main.go and the
   bridge (408 bound methods, all tagged). Only difftool/ssh/editor/update/cli channels remain `notPorted`.
