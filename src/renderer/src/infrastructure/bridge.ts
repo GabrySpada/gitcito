@@ -24,6 +24,8 @@ import * as LaunchService from '../bindings/github.com/GabrySpada/gitcito/intern
 import * as AnalyzeService from '../bindings/github.com/GabrySpada/gitcito/internal/analyze/service'
 import * as TodoScanService from '../bindings/github.com/GabrySpada/gitcito/internal/todoscan/service'
 import * as DevicesService from '../bindings/github.com/GabrySpada/gitcito/internal/devices/service'
+import * as RegistryService from '../bindings/github.com/GabrySpada/gitcito/internal/registry/service'
+import * as WatcherService from '../bindings/github.com/GabrySpada/gitcito/internal/watcher/service'
 import * as AIService from '../bindings/github.com/GabrySpada/gitcito/internal/ai/service'
 import * as AnalyticsService from '../bindings/github.com/GabrySpada/gitcito/internal/analytics/service'
 import * as InfoService from '../bindings/github.com/GabrySpada/gitcito/internal/info/service'
@@ -194,6 +196,8 @@ const launchCall = forwarder(LaunchService)
 const analyzeCall = forwarder(AnalyzeService)
 const todoScanCall = forwarder(TodoScanService)
 const devicesCall = forwarder(DevicesService)
+const reposCall = forwarder(RegistryService)
+const watchCall = forwarder(WatcherService)
 
 /** Fire-and-forget channels (Electron's ipcRenderer.send): never awaited, failures only logged. */
 const sendTo =
@@ -374,12 +378,12 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     repos: {
-      list: notPorted('repos:list'),
-      remember: notPorted('repos:remember'),
-      forget: notPorted('repos:forget'),
-      scan: notPorted('repos:scan'),
-      locate: notPorted('repos:locate'),
-      refresh: notPorted('repos:refresh')
+      list: reposCall('List'),
+      remember: reposCall('Remember'),
+      forget: reposCall('Forget'),
+      scan: reposCall('Scan'),
+      locate: reposCall('Locate'),
+      refresh: reposCall('Refresh')
     },
 
     secureShare: {
@@ -506,8 +510,8 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     watch: {
-      repo: notPorted('watch:repo'),
-      mute: notPorted('watch:mute'),
+      repo: watchCall('Repo'),
+      mute: watchCall('Mute'),
       onChange: (cb) => listen('repo:changed', cb)
     },
 

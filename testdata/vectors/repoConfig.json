@@ -1,0 +1,1026 @@
+{
+  "parse": [
+    {
+      "raw": "",
+      "config": null,
+      "issues": [
+        {
+          "field": ".gitcito.json",
+          "code": "json"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "{nope",
+      "config": null,
+      "issues": [
+        {
+          "field": ".gitcito.json",
+          "code": "json"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "[]",
+      "config": null,
+      "issues": [
+        {
+          "field": "version",
+          "code": "type"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "null",
+      "config": null,
+      "issues": [
+        {
+          "field": "version",
+          "code": "type"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "\"x\"",
+      "config": null,
+      "issues": [
+        {
+          "field": "version",
+          "code": "type"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "{}",
+      "config": null,
+      "issues": [
+        {
+          "field": "version",
+          "code": "version"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":2}",
+      "config": null,
+      "issues": [
+        {
+          "field": "version",
+          "code": "version"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":\"1\"}",
+      "config": null,
+      "issues": [
+        {
+          "field": "version",
+          "code": "version"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1}",
+      "config": {
+        "version": 1
+      },
+      "issues": [],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"protect\":[\"main\",\" release/* \",\"\",\" \"]}",
+      "config": {
+        "version": 1,
+        "protect": [
+          "main",
+          "release/*"
+        ]
+      },
+      "issues": [],
+      "serialized": "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ]\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"unknownField\":true,\"other\":1,\"2\":0,\"10\":1}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "2",
+          "code": "unknown"
+        },
+        {
+          "field": "10",
+          "code": "unknown"
+        },
+        {
+          "field": "unknownField",
+          "code": "unknown"
+        },
+        {
+          "field": "other",
+          "code": "unknown"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"b\":1,\"version\":1,\"a\":2}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "b",
+          "code": "unknown"
+        },
+        {
+          "field": "a",
+          "code": "unknown"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"protect\":\"main\"}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "protect",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"protect\":[1,\"main\",null]}",
+      "config": {
+        "version": 1,
+        "protect": [
+          "main"
+        ]
+      },
+      "issues": [
+        {
+          "field": "protect[0]",
+          "code": "type"
+        },
+        {
+          "field": "protect[2]",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\"\n  ]\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"protect\":[\"b0\",\"b1\",\"b2\",\"b3\",\"b4\",\"b5\",\"b6\",\"b7\",\"b8\",\"b9\",\"b10\",\"b11\",\"b12\",\"b13\",\"b14\",\"b15\",\"b16\",\"b17\",\"b18\",\"b19\",\"b20\",\"b21\",\"b22\",\"b23\",\"b24\",\"b25\",\"b26\",\"b27\",\"b28\",\"b29\",\"b30\",\"b31\",\"b32\",\"b33\",\"b34\",\"b35\",\"b36\",\"b37\",\"b38\",\"b39\",\"b40\",\"b41\",\"b42\",\"b43\",\"b44\",\"b45\",\"b46\",\"b47\",\"b48\",\"b49\",\"b50\",\"b51\",\"b52\",\"b53\",\"b54\",\"b55\",\"b56\",\"b57\",\"b58\",\"b59\"]}",
+      "config": {
+        "version": 1,
+        "protect": [
+          "b0",
+          "b1",
+          "b2",
+          "b3",
+          "b4",
+          "b5",
+          "b6",
+          "b7",
+          "b8",
+          "b9",
+          "b10",
+          "b11",
+          "b12",
+          "b13",
+          "b14",
+          "b15",
+          "b16",
+          "b17",
+          "b18",
+          "b19",
+          "b20",
+          "b21",
+          "b22",
+          "b23",
+          "b24",
+          "b25",
+          "b26",
+          "b27",
+          "b28",
+          "b29",
+          "b30",
+          "b31",
+          "b32",
+          "b33",
+          "b34",
+          "b35",
+          "b36",
+          "b37",
+          "b38",
+          "b39",
+          "b40",
+          "b41",
+          "b42",
+          "b43",
+          "b44",
+          "b45",
+          "b46",
+          "b47",
+          "b48",
+          "b49"
+        ]
+      },
+      "issues": [
+        {
+          "field": "protect",
+          "code": "limit"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"protect\": [\n    \"b0\",\n    \"b1\",\n    \"b2\",\n    \"b3\",\n    \"b4\",\n    \"b5\",\n    \"b6\",\n    \"b7\",\n    \"b8\",\n    \"b9\",\n    \"b10\",\n    \"b11\",\n    \"b12\",\n    \"b13\",\n    \"b14\",\n    \"b15\",\n    \"b16\",\n    \"b17\",\n    \"b18\",\n    \"b19\",\n    \"b20\",\n    \"b21\",\n    \"b22\",\n    \"b23\",\n    \"b24\",\n    \"b25\",\n    \"b26\",\n    \"b27\",\n    \"b28\",\n    \"b29\",\n    \"b30\",\n    \"b31\",\n    \"b32\",\n    \"b33\",\n    \"b34\",\n    \"b35\",\n    \"b36\",\n    \"b37\",\n    \"b38\",\n    \"b39\",\n    \"b40\",\n    \"b41\",\n    \"b42\",\n    \"b43\",\n    \"b44\",\n    \"b45\",\n    \"b46\",\n    \"b47\",\n    \"b48\",\n    \"b49\"\n  ]\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"protect\":[\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"ok\"]}",
+      "config": {
+        "version": 1,
+        "protect": [
+          "ok"
+        ]
+      },
+      "issues": [
+        {
+          "field": "protect[0]",
+          "code": "limit"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"protect\": [\n    \"ok\"\n  ]\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"links\":{\"tickets\":[{\"match\":\"ABC-\\\\d+\",\"url\":\"https://tracker.example.com/browse/{0}\",\"label\":\"Jira\"},{\"match\":\"(?<=x)y\",\"url\":\"https://t.example.com/{0}\"},{\"match\":\"(a)\\\\1\",\"url\":\"https://t.example.com/{0}\"},{\"match\":\"(?P<x>a)\",\"url\":\"https://t.example.com/{0}\"},{\"match\":\"(?i)abc\",\"url\":\"https://t.example.com/{0}\"},{\"match\":\"[\",\"url\":\"https://t.example.com/{0}\"},{\"match\":\"ok\",\"url\":\"javascript:alert(1)\"},{\"match\":\"ok\",\"url\":\"https://has space.example.com\"},{\"match\":\"\",\"url\":\"https://t.example.com\"},\"not-an-object\",{\"match\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"url\":\"https://t.example.com\"}]}}",
+      "config": {
+        "version": 1,
+        "links": {
+          "tickets": [
+            {
+              "match": "ABC-\\d+",
+              "url": "https://tracker.example.com/browse/{0}",
+              "label": "Jira"
+            },
+            {
+              "match": "(?<=x)y",
+              "url": "https://t.example.com/{0}"
+            },
+            {
+              "match": "(a)\\1",
+              "url": "https://t.example.com/{0}"
+            }
+          ]
+        }
+      },
+      "issues": [
+        {
+          "field": "links.tickets",
+          "code": "limit"
+        },
+        {
+          "field": "links.tickets[3].match",
+          "code": "regex"
+        },
+        {
+          "field": "links.tickets[4].match",
+          "code": "regex"
+        },
+        {
+          "field": "links.tickets[5].match",
+          "code": "regex"
+        },
+        {
+          "field": "links.tickets[6].url",
+          "code": "url"
+        },
+        {
+          "field": "links.tickets[7].url",
+          "code": "url"
+        },
+        {
+          "field": "links.tickets[9]",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"links\": {\n    \"tickets\": [\n      {\n        \"match\": \"ABC-\\\\d+\",\n        \"url\": \"https://tracker.example.com/browse/{0}\",\n        \"label\": \"Jira\"\n      },\n      {\n        \"match\": \"(?<=x)y\",\n        \"url\": \"https://t.example.com/{0}\"\n      },\n      {\n        \"match\": \"(a)\\\\1\",\n        \"url\": \"https://t.example.com/{0}\"\n      }\n    ]\n  }\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"links\":{\"tickets\":[{\"match\":\"T0-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T1-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T2-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T3-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T4-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T5-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T6-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T7-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T8-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T9-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T10-\\\\d+\",\"url\":\"https://t.example.com\"},{\"match\":\"T11-\\\\d+\",\"url\":\"https://t.example.com\"}]}}",
+      "config": {
+        "version": 1,
+        "links": {
+          "tickets": [
+            {
+              "match": "T0-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T1-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T2-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T3-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T4-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T5-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T6-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T7-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T8-\\d+",
+              "url": "https://t.example.com"
+            },
+            {
+              "match": "T9-\\d+",
+              "url": "https://t.example.com"
+            }
+          ]
+        }
+      },
+      "issues": [
+        {
+          "field": "links.tickets",
+          "code": "limit"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"links\": {\n    \"tickets\": [\n      {\n        \"match\": \"T0-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T1-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T2-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T3-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T4-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T5-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T6-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T7-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T8-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      },\n      {\n        \"match\": \"T9-\\\\d+\",\n        \"url\": \"https://t.example.com\"\n      }\n    ]\n  }\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"links\":[]}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "links",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"links\":{\"tickets\":{}}}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "links.tickets",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"commit\":{\"scopes\":[\"ui\",\"api\",\"\"],\"trailers\":[\"Signed-off-by\"],\"ticketFromBranch\":true}}",
+      "config": {
+        "version": 1,
+        "commit": {
+          "scopes": [
+            "ui",
+            "api"
+          ],
+          "trailers": [
+            "Signed-off-by"
+          ],
+          "ticketFromBranch": true
+        }
+      },
+      "issues": [],
+      "serialized": "{\n  \"version\": 1,\n  \"commit\": {\n    \"scopes\": [\n      \"ui\",\n      \"api\"\n    ],\n    \"trailers\": [\n      \"Signed-off-by\"\n    ],\n    \"ticketFromBranch\": true\n  }\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"commit\":{\"ticketFromBranch\":\"yes\"}}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "commit.ticketFromBranch",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"commit\":{\"ticketFromBranch\":false}}",
+      "config": {
+        "version": 1,
+        "commit": {
+          "ticketFromBranch": false
+        }
+      },
+      "issues": [],
+      "serialized": "{\n  \"version\": 1,\n  \"commit\": {\n    \"ticketFromBranch\": false\n  }\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"commit\":\"x\"}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "commit",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"requires\":{\"node\":\" >=20 \",\"submodules\":true,\"lfs\":false,\"hooksPath\":\".husky/_\",\"files\":[\".env\",{\"path\":\".env.local\",\"from\":\".env.example\",\"why\":\"dev server\"},{\"path\":\"../x\"},{\"path\":\"a\",\"from\":\"/etc/passwd\"},3,{\"path\":\"\"}]}}",
+      "config": {
+        "version": 1,
+        "requires": {
+          "node": ">=20",
+          "submodules": true,
+          "lfs": false,
+          "hooksPath": ".husky/_",
+          "files": [
+            {
+              "path": ".env"
+            },
+            {
+              "path": ".env.local",
+              "from": ".env.example",
+              "why": "dev server"
+            }
+          ]
+        }
+      },
+      "issues": [
+        {
+          "field": "requires.files[2].path",
+          "code": "unsafe"
+        },
+        {
+          "field": "requires.files[3].from",
+          "code": "unsafe"
+        },
+        {
+          "field": "requires.files[4]",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"requires\": {\n    \"node\": \">=20\",\n    \"submodules\": true,\n    \"lfs\": false,\n    \"hooksPath\": \".husky/_\",\n    \"files\": [\n      {\n        \"path\": \".env\"\n      },\n      {\n        \"path\": \".env.local\",\n        \"from\": \".env.example\",\n        \"why\": \"dev server\"\n      }\n    ]\n  }\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"requires\":{\"hooksPath\":\"../elsewhere\"}}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "requires.hooksPath",
+          "code": "unsafe"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"requires\":{\"hooksPath\":\".git/hooks\"}}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "requires.hooksPath",
+          "code": "unsafe"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"requires\":{\"node\":7,\"submodules\":\"y\"}}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "requires.node",
+          "code": "type"
+        },
+        {
+          "field": "requires.submodules",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"requires\":[]}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "requires",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"requires\":{\"files\":[\"f0\",\"f1\",\"f2\",\"f3\",\"f4\",\"f5\",\"f6\",\"f7\",\"f8\",\"f9\",\"f10\",\"f11\",\"f12\",\"f13\",\"f14\",\"f15\",\"f16\",\"f17\",\"f18\",\"f19\",\"f20\",\"f21\",\"f22\",\"f23\",\"f24\"]}}",
+      "config": {
+        "version": 1,
+        "requires": {
+          "files": [
+            {
+              "path": "f0"
+            },
+            {
+              "path": "f1"
+            },
+            {
+              "path": "f2"
+            },
+            {
+              "path": "f3"
+            },
+            {
+              "path": "f4"
+            },
+            {
+              "path": "f5"
+            },
+            {
+              "path": "f6"
+            },
+            {
+              "path": "f7"
+            },
+            {
+              "path": "f8"
+            },
+            {
+              "path": "f9"
+            },
+            {
+              "path": "f10"
+            },
+            {
+              "path": "f11"
+            },
+            {
+              "path": "f12"
+            },
+            {
+              "path": "f13"
+            },
+            {
+              "path": "f14"
+            },
+            {
+              "path": "f15"
+            },
+            {
+              "path": "f16"
+            },
+            {
+              "path": "f17"
+            },
+            {
+              "path": "f18"
+            },
+            {
+              "path": "f19"
+            }
+          ]
+        }
+      },
+      "issues": [
+        {
+          "field": "requires.files",
+          "code": "limit"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"requires\": {\n    \"files\": [\n      {\n        \"path\": \"f0\"\n      },\n      {\n        \"path\": \"f1\"\n      },\n      {\n        \"path\": \"f2\"\n      },\n      {\n        \"path\": \"f3\"\n      },\n      {\n        \"path\": \"f4\"\n      },\n      {\n        \"path\": \"f5\"\n      },\n      {\n        \"path\": \"f6\"\n      },\n      {\n        \"path\": \"f7\"\n      },\n      {\n        \"path\": \"f8\"\n      },\n      {\n        \"path\": \"f9\"\n      },\n      {\n        \"path\": \"f10\"\n      },\n      {\n        \"path\": \"f11\"\n      },\n      {\n        \"path\": \"f12\"\n      },\n      {\n        \"path\": \"f13\"\n      },\n      {\n        \"path\": \"f14\"\n      },\n      {\n        \"path\": \"f15\"\n      },\n      {\n        \"path\": \"f16\"\n      },\n      {\n        \"path\": \"f17\"\n      },\n      {\n        \"path\": \"f18\"\n      },\n      {\n        \"path\": \"f19\"\n      }\n    ]\n  }\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"checklist\":{\"push\":[\"Run the tests\",\"\",\"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\",5]}}",
+      "config": {
+        "version": 1,
+        "checklist": {
+          "push": [
+            "Run the tests"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "field": "checklist.push[2]",
+          "code": "limit"
+        },
+        {
+          "field": "checklist.push[3]",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1,\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\"\n    ]\n  }\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1,\"checklist\":{\"push\":\"x\"}}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "checklist.push",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"checklist\":null}",
+      "config": {
+        "version": 1
+      },
+      "issues": [
+        {
+          "field": "checklist",
+          "code": "type"
+        }
+      ],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "{\"version\":1,\"protect\":[\"a\"],\"protect\":[\"b\"]}",
+      "config": {
+        "version": 1,
+        "protect": [
+          "b"
+        ]
+      },
+      "issues": [],
+      "serialized": "{\n  \"version\": 1,\n  \"protect\": [\n    \"b\"\n  ]\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "{\"version\":1.0,\"protect\":[\"\\u2028x\"]}",
+      "config": {
+        "version": 1,
+        "protect": [
+          "x"
+        ]
+      },
+      "issues": [],
+      "serialized": "{\n  \"version\": 1,\n  \"protect\": [\n    \"x\"\n  ]\n}\n",
+      "empty": false
+    },
+    {
+      "raw": "  {\"version\":1}  ",
+      "config": {
+        "version": 1
+      },
+      "issues": [],
+      "serialized": "{\n  \"version\": 1\n}\n",
+      "empty": true
+    },
+    {
+      "raw": "﻿{\"version\":1}",
+      "config": null,
+      "issues": [
+        {
+          "field": ".gitcito.json",
+          "code": "json"
+        }
+      ],
+      "serialized": null,
+      "empty": true
+    }
+  ],
+  "relPaths": [
+    {
+      "in": ".env",
+      "out": true
+    },
+    {
+      "in": "a/b/c",
+      "out": true
+    },
+    {
+      "in": "",
+      "out": false
+    },
+    {
+      "in": "/abs",
+      "out": false
+    },
+    {
+      "in": "\\abs",
+      "out": false
+    },
+    {
+      "in": "~/x",
+      "out": false
+    },
+    {
+      "in": "C:/x",
+      "out": false
+    },
+    {
+      "in": "c:x",
+      "out": false
+    },
+    {
+      "in": "..",
+      "out": false
+    },
+    {
+      "in": "a/../b",
+      "out": false
+    },
+    {
+      "in": "a\\..\\b",
+      "out": false
+    },
+    {
+      "in": ".git",
+      "out": false
+    },
+    {
+      "in": "a/.git/hooks",
+      "out": false
+    },
+    {
+      "in": ".gitignore",
+      "out": true
+    },
+    {
+      "in": "a\u0000b",
+      "out": false
+    },
+    {
+      "in": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "out": true
+    },
+    {
+      "in": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "out": false
+    },
+    {
+      "in": ".husky/_",
+      "out": true
+    },
+    {
+      "in": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé",
+      "out": true
+    }
+  ],
+  "nodeRanges": [
+    {
+      "actual": "20.11.1",
+      "spec": "20",
+      "out": true
+    },
+    {
+      "actual": "20.11.1",
+      "spec": "20.x",
+      "out": true
+    },
+    {
+      "actual": "20.11.1",
+      "spec": "v20.11.1",
+      "out": true
+    },
+    {
+      "actual": "20.11.1",
+      "spec": ">=20",
+      "out": true
+    },
+    {
+      "actual": "22.1.0",
+      "spec": ">=20",
+      "out": true
+    },
+    {
+      "actual": "18.0.0",
+      "spec": ">=20",
+      "out": false
+    },
+    {
+      "actual": "20.1.0",
+      "spec": "^20.1",
+      "out": true
+    },
+    {
+      "actual": "21.0.0",
+      "spec": "~20.1",
+      "out": true
+    },
+    {
+      "actual": "18.0.0",
+      "spec": "^20",
+      "out": false
+    },
+    {
+      "actual": "20.0.0",
+      "spec": ">20",
+      "out": false
+    },
+    {
+      "actual": "21.0.0",
+      "spec": ">20",
+      "out": true
+    },
+    {
+      "actual": "20.0.0",
+      "spec": "<=20",
+      "out": true
+    },
+    {
+      "actual": "21.0.0",
+      "spec": "<20",
+      "out": false
+    },
+    {
+      "actual": "19.0.0",
+      "spec": "<20",
+      "out": true
+    },
+    {
+      "actual": "x",
+      "spec": "20",
+      "out": false
+    },
+    {
+      "actual": "20.0.0",
+      "spec": "lts/*",
+      "out": true
+    },
+    {
+      "actual": "20.0.0",
+      "spec": " 20 ",
+      "out": true
+    },
+    {
+      "actual": "v20.0.0",
+      "spec": "20",
+      "out": true
+    }
+  ],
+  "patterns": [
+    {
+      "in": "ABC-\\d+",
+      "out": true
+    },
+    {
+      "in": "(?<=x)y",
+      "out": true
+    },
+    {
+      "in": "(?<!x)y",
+      "out": true
+    },
+    {
+      "in": "(?=a)b",
+      "out": true
+    },
+    {
+      "in": "(?!a)b",
+      "out": true
+    },
+    {
+      "in": "(a)\\1",
+      "out": true
+    },
+    {
+      "in": "(?P<x>a)",
+      "out": false
+    },
+    {
+      "in": "(?i)a",
+      "out": false
+    },
+    {
+      "in": "[",
+      "out": false
+    },
+    {
+      "in": "(",
+      "out": false
+    },
+    {
+      "in": "a{2,3}",
+      "out": true
+    },
+    {
+      "in": "\\bword\\b",
+      "out": true
+    },
+    {
+      "in": "",
+      "out": false
+    },
+    {
+      "in": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "out": false
+    },
+    {
+      "in": "[[:alpha:]]",
+      "out": true
+    },
+    {
+      "in": "\\p{L}+",
+      "out": true
+    }
+  ],
+  "linkUrls": [
+    {
+      "in": "https://a.example.com",
+      "out": true
+    },
+    {
+      "in": "HTTP://A",
+      "out": true
+    },
+    {
+      "in": "ftp://x",
+      "out": false
+    },
+    {
+      "in": "https://",
+      "out": false
+    },
+    {
+      "in": "https://a b",
+      "out": false
+    },
+    {
+      "in": "javascript:x",
+      "out": false
+    },
+    {
+      "in": "",
+      "out": false
+    },
+    {
+      "in": "https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "out": false
+    }
+  ]
+}

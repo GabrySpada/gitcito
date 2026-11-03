@@ -1,0 +1,78 @@
+[
+  {
+    "file": "checkbox-sdt.docx",
+    "out": " done\n\n"
+  },
+  {
+    "file": "custom-main-part.docx",
+    "out": "from the relationship\n\n"
+  },
+  {
+    "file": "dates.xlsx",
+    "out": "## Dates\n2/29/24\n"
+  },
+  {
+    "file": "empty-body.docx",
+    "out": "\n"
+  },
+  {
+    "file": "entities-whitespace.docx",
+    "out": "  a & b <c> é  \n\n\n\n\n  spaced  \n\n"
+  },
+  {
+    "file": "formats.xlsx",
+    "out": "## Formats\n1234.50,26%,\"1,234,567.89\",3/15/23,2023-03-15 18:00:00,15-Mar-23,12:00 PM,\"1,235\"\n"
+  },
+  {
+    "file": "gaps.xlsx",
+    "out": "## Gaps\na,,\n,,\nc,,e\n,,\n,7,\n,,\n## Empty\n\n## Sheet \"3\", odd\n#N/A?\n"
+  },
+  {
+    "file": "hyperlinks-fields.docx",
+    "out": "link text anchor\n\nfield link\n\nx\n\n"
+  },
+  {
+    "file": "no-body.docx",
+    "throws": true
+  },
+  {
+    "file": "no-document.docx",
+    "throws": true
+  },
+  {
+    "file": "not-a-zip.docx",
+    "throws": true
+  },
+  {
+    "file": "paragraphs.docx",
+    "out": "Hello\n\nWorld  again\n\n"
+  },
+  {
+    "file": "revisions.docx",
+    "out": "kept inserted end\n\nmerged-into next\n\n"
+  },
+  {
+    "file": "strict-namespace.docx",
+    "out": "strict text\n\n"
+  },
+  {
+    "file": "table-merges.docx",
+    "out": "A1\n\nB1\n\nA2\n\nwide\n\nafter\n\n"
+  },
+  {
+    "file": "tabs-breaks-hyphens.docx",
+    "out": "a\tbc‑­d\n\n"
+  },
+  {
+    "file": "textbox-alternate.docx",
+    "out": "before after\n\nin a box\n\nfallback\n\nin sdt\n\nsmart tag\n\nnoted\n\n"
+  },
+  {
+    "file": "two-sheets.xlsx",
+    "out": "## First\nname,qty\nok,2\n## Second\nx\n1\n"
+  },
+  {
+    "file": "values.xlsx",
+    "out": "## Values\ntext,\"a,b\",\"say \"\"hi\"\"\",\"line\nbreak\",\"ID\", padded ,\n1,-2,0.3,0.333333333,10000000000,1.23457E+11,-0.000012345\n1E+21,2147483648,-2147483649,0.5,100,1E-10,9.87654E+15\nTRUE,FALSE,,,é ü 😀,=SUM(A1),42\n"
+  }
+]

@@ -3021,8 +3021,8 @@
           "via": "reposApi.forget"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "registry.Service.Forget",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3049,8 +3049,8 @@
           "via": "reposApi.list"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "registry.Service.List",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3076,8 +3076,8 @@
           "via": "reposApi.locate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "registry.Service.Locate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3097,8 +3097,8 @@
         "src/main/repoRegistry.ts:214"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "registry.Service.Refresh",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3131,8 +3131,8 @@
           "via": "reposApi.remember"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "registry.Service.Remember",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -3157,8 +3157,8 @@
           "via": "reposApi.scan"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "registry.Service.Scan",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4675,8 +4675,8 @@
         "src/main/watcher.ts:122"
       ],
       "sites": [],
-      "owner": "—",
-      "status": "todo",
+      "owner": "watcher.Service.Mute",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4707,8 +4707,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "watcher.Service.Repo",
+      "status": "ported",
       "test": "—"
     },
     {

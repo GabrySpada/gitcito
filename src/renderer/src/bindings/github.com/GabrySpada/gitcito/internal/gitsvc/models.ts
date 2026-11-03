@@ -3,7 +3,13 @@
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: Unused imports
+import * as fileactions$0 from "../fileactions/models.js";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore: Unused imports
 import * as gitx$0 from "../gitx/models.js";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore: Unused imports
+import * as repoconfig$0 from "../repoconfig/models.js";
 
 /**
  * AbsorbApplyOpts is absorbApply's optional second argument.
@@ -654,40 +660,14 @@ export interface DivergedCheckoutResult {
 }
 
 /**
- * DoctorCheck is DoctorCheck in src/shared/types.ts.
+ * The `.gitcito.json` shapes, from src/shared/types.ts.
  */
-export interface DoctorCheck {
-    /**
-     * ID is the row's stable identity: `node`, `lfs`, `file:.env`…
-     */
-    "id": string;
-
-    /**
-     * Kind: 'node' | 'submodules' | 'lfs' | 'hooks' | 'file'.
-     */
-    "kind": string;
-
-    /**
-     * Status: 'ok' | 'warn' | 'fail'.
-     */
-    "status": string;
-    "expected"?: string;
-    "actual"?: string;
-    "why"?: string;
-    "fix"?: DoctorFix | null;
-}
+export type DoctorCheck = repoconfig$0.DoctorCheck;
 
 /**
- * DoctorFix is the DoctorFix union in src/shared/types.ts:
- * {kind:'submodules'} | {kind:'lfsPull'} | {kind:'hooksPath', value} |
- * {kind:'copyFile', from, to}. Deliberately closed: data, never a command.
+ * The `.gitcito.json` shapes, from src/shared/types.ts.
  */
-export interface DoctorFix {
-    "kind": string;
-    "value"?: string;
-    "from"?: string;
-    "to"?: string;
-}
+export type DoctorFix = repoconfig$0.DoctorFix;
 
 /**
  * FileEntry is FileEntry in src/shared/types.ts.
@@ -1375,37 +1355,9 @@ export interface PrRefProbe {
  * PreparedRepoChatFileAction is PreparedRepoChatFileAction in
  * src/shared/types.ts: a repository-chat file mutation (edit_file /
  * write_file / delete_file) after the main process verified it and built its
- * diff. The union is flattened; Type says which fields apply.
+ * diff. It lives in internal/fileactions, which prepares and applies it.
  */
-export interface PreparedRepoChatFileAction {
-    "type": string;
-    "path": string;
-    "description": string;
-
-    /**
-     * edit_file
-     */
-    "oldText"?: string;
-    "newText"?: string;
-    "replaceAll"?: boolean;
-
-    /**
-     * write_file
-     */
-    "content"?: string;
-
-    /**
-     * 'create' | 'replace'
-     */
-    "mode"?: string;
-
-    /**
-     * prepared
-     */
-    "expectedHash": string | null;
-    "expectedOccurrences"?: number | null;
-    "preview": string;
-}
+export type PreparedRepoChatFileAction = fileactions$0.PreparedRepoChatFileAction;
 
 /**
  * PushOptions is push's `opts: { force?, remote? }`.
@@ -1553,95 +1505,14 @@ export interface ReplaceStatus {
 }
 
 /**
- * RepoConfig is RepoConfig in src/shared/types.ts — the validated
- * `.gitcito.json`.
+ * The `.gitcito.json` shapes, from src/shared/types.ts.
  */
-export interface RepoConfig {
-    "version": number;
-    "protect"?: string[] | null;
-    "links"?: RepoConfigLinks | null;
-    "commit"?: RepoConfigCommit | null;
-    "requires"?: RepoConfigRequires | null;
-    "checklist"?: RepoConfigChecklist | null;
-}
+export type RepoConfig = repoconfig$0.RepoConfig;
 
 /**
- * RepoConfigChecklist is RepoConfig['checklist'].
+ * The `.gitcito.json` shapes, from src/shared/types.ts.
  */
-export interface RepoConfigChecklist {
-    "push"?: string[] | null;
-}
-
-/**
- * RepoConfigCommit is RepoConfig['commit']. Field order is the order the
- * validator writes them in, which is the order they land in the file.
- */
-export interface RepoConfigCommit {
-    "scopes"?: string[] | null;
-    "trailers"?: string[] | null;
-    "ticketFromBranch"?: boolean | null;
-}
-
-/**
- * RepoConfigFileReq is RepoConfigFileReq in src/shared/types.ts.
- */
-export interface RepoConfigFileReq {
-    "path": string;
-    "from"?: string;
-    "why"?: string;
-}
-
-/**
- * RepoConfigIssue is RepoConfigIssue in src/shared/types.ts.
- */
-export interface RepoConfigIssue {
-    /**
-     * Field is the dotted path of the offending field, e.g. `links.tickets[0].url`.
-     */
-    "field": string;
-
-    /**
-     * Code: 'type' | 'limit' | 'unknown' | 'version' | 'unsafe' | 'regex' | 'url' | 'json'.
-     */
-    "code": string;
-}
-
-/**
- * RepoConfigLink is RepoConfigLink in src/shared/types.ts.
- */
-export interface RepoConfigLink {
-    "match": string;
-    "url": string;
-    "label"?: string;
-}
-
-/**
- * RepoConfigLinks is RepoConfig['links'].
- */
-export interface RepoConfigLinks {
-    "tickets"?: RepoConfigLink[] | null;
-}
-
-/**
- * RepoConfigRequires is RepoConfig['requires'].
- */
-export interface RepoConfigRequires {
-    "node"?: string;
-    "submodules"?: boolean | null;
-    "lfs"?: boolean | null;
-    "hooksPath"?: string;
-    "files"?: RepoConfigFileReq[] | null;
-}
-
-/**
- * RepoConfigResult is RepoConfigResult in src/shared/types.ts.
- */
-export interface RepoConfigResult {
-    "path": string;
-    "exists": boolean;
-    "config": RepoConfig | null;
-    "issues": RepoConfigIssue[] | null;
-}
+export type RepoConfigResult = repoconfig$0.RepoConfigResult;
 
 /**
  * RepoDetail is RepoDetail in src/shared/types.ts.

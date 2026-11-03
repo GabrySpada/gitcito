@@ -27,12 +27,14 @@ import (
 	"github.com/GabrySpada/gitcito/internal/logbook"
 	"github.com/GabrySpada/gitcito/internal/menu"
 	"github.com/GabrySpada/gitcito/internal/paths"
+	"github.com/GabrySpada/gitcito/internal/registry"
 	"github.com/GabrySpada/gitcito/internal/repochat"
 	"github.com/GabrySpada/gitcito/internal/secure"
 	"github.com/GabrySpada/gitcito/internal/settings"
 	"github.com/GabrySpada/gitcito/internal/terminal"
 	"github.com/GabrySpada/gitcito/internal/todoscan"
 	"github.com/GabrySpada/gitcito/internal/vault"
+	"github.com/GabrySpada/gitcito/internal/watcher"
 	"github.com/GabrySpada/gitcito/internal/wiki"
 	"github.com/wailsapp/wails/v3/pkg/application"
 	"github.com/wailsapp/wails/v3/pkg/events"
@@ -139,6 +141,8 @@ func main() {
 			application.NewService(localci.NewService(app.Emitter{})),
 			application.NewService(analyze.NewService()),
 			application.NewService(todoscan.NewService()),
+			application.NewService(registry.NewService(registry.New(filepath.Join(dataDir, registry.FileName), nil))),
+			application.NewService(watcher.NewService(watcher.New(app.Emitter{}, nil))),
 			application.NewService(info.NewService(info.New(info.Options{}))),
 			application.NewService(hosting.NewService(hosting.Options{OpenURL: func(u string) error {
 				return application.Get().Browser.OpenURL(u)

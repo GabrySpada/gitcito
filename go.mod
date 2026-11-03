@@ -6,6 +6,7 @@ toolchain go1.26.10
 
 require (
 	github.com/aymanbagabas/go-pty v0.2.3
+	github.com/fsnotify/fsnotify v1.10.1
 	github.com/kaptinlin/jsonrepair v0.4.10
 	github.com/wailsapp/wails/v3 v3.1.0
 	github.com/zalando/go-keyring v0.2.8

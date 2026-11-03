@@ -1,4 +1,4 @@
-package gitsvc
+package repoconfig
 
 // Validation for `.gitcito.json` — src/shared/repoConfig.ts.
 //
@@ -34,54 +34,54 @@ import (
 )
 
 const (
-	dRepoConfigFile    = ".gitcito.json"
-	dRepoConfigVersion = 1
+	File    = ".gitcito.json"
+	Version = 1
 )
 
 // Caps. Generous for any honest repository, small enough that the worst a
 // hostile one achieves is a slightly crowded panel.
 const (
-	dLimitProtect   = 50
-	dLimitScopes    = 100
-	dLimitTickets   = 10
-	dLimitTrailers  = 10
-	dLimitFiles     = 20
-	dLimitChecklist = 20
-	dLimitLine      = 200 // free text shown in a dialog
-	dLimitShort     = 200 // anything that becomes a chip, a path or a value
-	dLimitPattern   = 120 // a regular expression source
+	limitProtect   = 50
+	limitScopes    = 100
+	limitTickets   = 10
+	limitTrailers  = 10
+	limitFiles     = 20
+	limitChecklist = 20
+	limitLine      = 200 // free text shown in a dialog
+	limitShort     = 200 // anything that becomes a chip, a path or a value
+	limitPattern   = 120 // a regular expression source
 )
 
-type dIssues []RepoConfigIssue
+type issueList []RepoConfigIssue
 
-func (is *dIssues) push(field, code string) {
+func (is *issueList) push(field, code string) {
 	*is = append(*is, RepoConfigIssue{Field: field, Code: code})
 }
 
-func dIsRecord(v any) (map[string]any, bool) {
+func isRecord(v any) (map[string]any, bool) {
 	m, ok := v.(map[string]any)
 	return m, ok
 }
 
-var dDriveRe = regexp.MustCompile(`^[a-zA-Z]:`)
-var dPathSegRe = regexp.MustCompile(`[/\\]`)
+var driveRe = regexp.MustCompile(`^[a-zA-Z]:`)
+var pathSegRe = regexp.MustCompile(`[/\\]`)
 
-// dIsSafeRepoRelPath accepts a repo-relative path that cannot leave the
+// IsSafeRepoRelPath accepts a repo-relative path that cannot leave the
 // repository: no absolute paths, `..` or `.git` segments, `~`, drive letters,
 // UNC roots or NUL bytes. Everything the config can name is joined onto the
 // repo root, so this is the only thing standing between a config field and
 // the rest of the filesystem.
-func dIsSafeRepoRelPath(value string) bool {
-	if value == "" || gitx.UTF16Len(value) > dLimitShort || strings.Contains(value, "\x00") {
+func IsSafeRepoRelPath(value string) bool {
+	if value == "" || gitx.UTF16Len(value) > limitShort || strings.Contains(value, "\x00") {
 		return false
 	}
 	if strings.HasPrefix(value, "/") || strings.HasPrefix(value, `\`) || strings.HasPrefix(value, "~") {
 		return false
 	}
-	if dDriveRe.MatchString(value) {
+	if driveRe.MatchString(value) {
 		return false
 	}
-	for _, seg := range dPathSegRe.Split(value, -1) {
+	for _, seg := range pathSegRe.Split(value, -1) {
 		if seg == ".." || seg == ".git" {
 			return false
 		}
@@ -89,41 +89,41 @@ func dIsSafeRepoRelPath(value string) bool {
 	return true
 }
 
-var dLinkURLRe = regexp.MustCompile(`(?i)^https?://[^` + dJSSpace + `]+$`)
+var linkURLRe = regexp.MustCompile(`(?i)^https?://[^` + jsSpace + `]+$`)
 
-// dIsSafeLinkURL: only http(s) links are ever handed to the shell's opener.
-func dIsSafeLinkURL(value string) bool {
-	return value != "" && gitx.UTF16Len(value) <= dLimitShort && dLinkURLRe.MatchString(value)
+// IsSafeLinkURL: only http(s) links are ever handed to the shell's opener.
+func IsSafeLinkURL(value string) bool {
+	return value != "" && gitx.UTF16Len(value) <= limitShort && linkURLRe.MatchString(value)
 }
 
 var (
-	dLookaroundRe = regexp.MustCompile(`\(\?(?:<=|<!|=|!)`)
-	dBackrefRe    = regexp.MustCompile(`\\[1-9][0-9]*`)
-	dGoOnlyRe     = regexp.MustCompile(`\(\?(?:P<|[imsU-]+[:)])`)
+	lookaroundRe = regexp.MustCompile(`\(\?(?:<=|<!|=|!)`)
+	backrefRe    = regexp.MustCompile(`\\[1-9][0-9]*`)
+	goOnlyRe     = regexp.MustCompile(`\(\?(?:P<|[imsU-]+[:)])`)
 )
 
-// dIsSafePattern is whether a pattern is a regular expression this build will
+// IsSafePattern is whether a pattern is a regular expression this build will
 // run — `new RegExp(source)` not throwing. Go's RE2 is the judge, adjusted for
 // the two dialects' main differences: JS lookarounds and back-references are
 // valid (RE2 refuses them), Go's inline flag groups and `(?P<` are not (JS
 // refuses them). Corner cases beyond that (RE2's 1000-repeat cap, Annex B
 // escapes) can disagree; the renderer re-validates with the real engine.
-func dIsSafePattern(source string) bool {
-	if source == "" || gitx.UTF16Len(source) > dLimitPattern {
+func IsSafePattern(source string) bool {
+	if source == "" || gitx.UTF16Len(source) > limitPattern {
 		return false
 	}
-	if dGoOnlyRe.MatchString(source) {
+	if goOnlyRe.MatchString(source) {
 		return false
 	}
 	if _, err := syntax.Parse(source, syntax.Perl); err == nil {
 		return true
 	}
-	relaxed := dBackrefRe.ReplaceAllString(dLookaroundRe.ReplaceAllString(source, "(?:"), "x")
+	relaxed := backrefRe.ReplaceAllString(lookaroundRe.ReplaceAllString(source, "(?:"), "x")
 	_, err := syntax.Parse(relaxed, syntax.Perl)
 	return err == nil
 }
 
-func dStrings(value any, present bool, field string, limit int, is *dIssues, maxLen int) []string {
+func readStrings(value any, present bool, field string, limit int, is *issueList, maxLen int) []string {
 	if !present {
 		return nil
 	}
@@ -156,7 +156,7 @@ func dStrings(value any, present bool, field string, limit int, is *dIssues, max
 	return out
 }
 
-func dBool(value any, present bool, field string, is *dIssues) *bool {
+func readBool(value any, present bool, field string, is *issueList) *bool {
 	if !present {
 		return nil
 	}
@@ -168,7 +168,7 @@ func dBool(value any, present bool, field string, is *dIssues) *bool {
 	return &b
 }
 
-func dShortString(value any, present bool, field string, is *dIssues) string {
+func readShortString(value any, present bool, field string, is *issueList) string {
 	if !present {
 		return ""
 	}
@@ -181,19 +181,19 @@ func dShortString(value any, present bool, field string, is *dIssues) string {
 	if s == "" {
 		return ""
 	}
-	if gitx.UTF16Len(s) > dLimitShort {
+	if gitx.UTF16Len(s) > limitShort {
 		is.push(field, "limit")
 		return ""
 	}
 	return s
 }
 
-func dGet(m map[string]any, key string) (any, bool) {
+func get(m map[string]any, key string) (any, bool) {
 	v, ok := m[key]
 	return v, ok
 }
 
-func dLinks(value any, present bool, is *dIssues) []RepoConfigLink {
+func readLinks(value any, present bool, is *issueList) []RepoConfigLink {
 	if !present {
 		return nil
 	}
@@ -202,32 +202,32 @@ func dLinks(value any, present bool, is *dIssues) []RepoConfigLink {
 		is.push("links.tickets", "type")
 		return nil
 	}
-	if len(arr) > dLimitTickets {
+	if len(arr) > limitTickets {
 		is.push("links.tickets", "limit")
-		arr = arr[:dLimitTickets]
+		arr = arr[:limitTickets]
 	}
 	var out []RepoConfigLink
 	for i, raw := range arr {
 		at := fmt.Sprintf("links.tickets[%d]", i)
-		rec, ok := dIsRecord(raw)
+		rec, ok := isRecord(raw)
 		if !ok {
 			is.push(at, "type")
 			continue
 		}
-		mv, mp := dGet(rec, "match")
-		uv, up := dGet(rec, "url")
-		lv, lp := dGet(rec, "label")
-		match := dShortString(mv, mp, at+".match", is)
-		url := dShortString(uv, up, at+".url", is)
-		label := dShortString(lv, lp, at+".label", is)
+		mv, mp := get(rec, "match")
+		uv, up := get(rec, "url")
+		lv, lp := get(rec, "label")
+		match := readShortString(mv, mp, at+".match", is)
+		url := readShortString(uv, up, at+".url", is)
+		label := readShortString(lv, lp, at+".label", is)
 		if match == "" || url == "" {
 			continue
 		}
-		if !dIsSafePattern(match) {
+		if !IsSafePattern(match) {
 			is.push(at+".match", "regex")
 			continue
 		}
-		if !dIsSafeLinkURL(url) {
+		if !IsSafeLinkURL(url) {
 			is.push(at+".url", "url")
 			continue
 		}
@@ -236,7 +236,7 @@ func dLinks(value any, present bool, is *dIssues) []RepoConfigLink {
 	return out
 }
 
-func dFileReqs(value any, present bool, is *dIssues) []RepoConfigFileReq {
+func readFileReqs(value any, present bool, is *issueList) []RepoConfigFileReq {
 	if !present {
 		return nil
 	}
@@ -245,9 +245,9 @@ func dFileReqs(value any, present bool, is *dIssues) []RepoConfigFileReq {
 		is.push("requires.files", "type")
 		return nil
 	}
-	if len(arr) > dLimitFiles {
+	if len(arr) > limitFiles {
 		is.push("requires.files", "limit")
-		arr = arr[:dLimitFiles]
+		arr = arr[:limitFiles]
 	}
 	var out []RepoConfigFileReq
 	for i, raw := range arr {
@@ -263,20 +263,20 @@ func dFileReqs(value any, present bool, is *dIssues) []RepoConfigFileReq {
 			is.push(at, "type")
 			continue
 		}
-		pv, pp := dGet(rec, "path")
-		fv, fp := dGet(rec, "from")
-		wv, wp := dGet(rec, "why")
-		path := dShortString(pv, pp, at+".path", is)
-		from := dShortString(fv, fp, at+".from", is)
-		why := dShortString(wv, wp, at+".why", is)
+		pv, pp := get(rec, "path")
+		fv, fp := get(rec, "from")
+		wv, wp := get(rec, "why")
+		path := readShortString(pv, pp, at+".path", is)
+		from := readShortString(fv, fp, at+".from", is)
+		why := readShortString(wv, wp, at+".why", is)
 		if path == "" {
 			continue
 		}
-		if !dIsSafeRepoRelPath(path) {
+		if !IsSafeRepoRelPath(path) {
 			is.push(at+".path", "unsafe")
 			continue
 		}
-		if from != "" && !dIsSafeRepoRelPath(from) {
+		if from != "" && !IsSafeRepoRelPath(from) {
 			is.push(at+".from", "unsafe")
 			continue
 		}
@@ -285,97 +285,97 @@ func dFileReqs(value any, present bool, is *dIssues) []RepoConfigFileReq {
 	return out
 }
 
-var dTopLevel = map[string]bool{"version": true, "protect": true, "links": true, "commit": true, "requires": true, "checklist": true}
+var topLevel = map[string]bool{"version": true, "protect": true, "links": true, "commit": true, "requires": true, "checklist": true}
 
-// dValidateRepoConfig validates a parsed JSON value against the v1 schema.
+// Validate validates a parsed JSON value against the v1 schema.
 // keys are the top-level keys in JavaScript's Object.keys order. It returns
 // the config with every rejected field dropped, plus what was rejected; the
 // config is nil only when the document is not an object or carries a version
 // this build does not understand — a version bump must not make an old Gitcito
 // guess at fields it has never seen.
-func dValidateRepoConfig(value any, keys []string) (*RepoConfig, []RepoConfigIssue) {
-	is := dIssues{}
-	rec, ok := dIsRecord(value)
+func Validate(value any, keys []string) (*RepoConfig, []RepoConfigIssue) {
+	is := issueList{}
+	rec, ok := isRecord(value)
 	if !ok {
 		is.push("version", "type")
 		return nil, is
 	}
-	if v, ok := rec["version"].(float64); !ok || v != dRepoConfigVersion {
+	if v, ok := rec["version"].(float64); !ok || v != Version {
 		is.push("version", "version")
 		return nil, is
 	}
 	for _, k := range keys {
-		if !dTopLevel[k] {
+		if !topLevel[k] {
 			is.push(k, "unknown")
 		}
 	}
-	config := &RepoConfig{Version: dRepoConfigVersion}
+	config := &RepoConfig{Version: Version}
 
-	pv, pp := dGet(rec, "protect")
-	config.Protect = dStrings(pv, pp, "protect", dLimitProtect, &is, dLimitShort)
+	pv, pp := get(rec, "protect")
+	config.Protect = readStrings(pv, pp, "protect", limitProtect, &is, limitShort)
 
-	if lv, ok := dGet(rec, "links"); ok {
-		if links, ok := dIsRecord(lv); !ok {
+	if lv, ok := get(rec, "links"); ok {
+		if links, ok := isRecord(lv); !ok {
 			is.push("links", "type")
 		} else {
-			tv, tp := dGet(links, "tickets")
-			if tickets := dLinks(tv, tp, &is); len(tickets) > 0 {
+			tv, tp := get(links, "tickets")
+			if tickets := readLinks(tv, tp, &is); len(tickets) > 0 {
 				config.Links = &RepoConfigLinks{Tickets: tickets}
 			}
 		}
 	}
 
-	if cv, ok := dGet(rec, "commit"); ok {
-		if c, ok := dIsRecord(cv); !ok {
+	if cv, ok := get(rec, "commit"); ok {
+		if c, ok := isRecord(cv); !ok {
 			is.push("commit", "type")
 		} else {
-			sv, sp := dGet(c, "scopes")
-			tv, tp := dGet(c, "trailers")
-			bv, bp := dGet(c, "ticketFromBranch")
+			sv, sp := get(c, "scopes")
+			tv, tp := get(c, "trailers")
+			bv, bp := get(c, "ticketFromBranch")
 			commit := RepoConfigCommit{
-				Scopes:   dStrings(sv, sp, "commit.scopes", dLimitScopes, &is, dLimitShort),
-				Trailers: dStrings(tv, tp, "commit.trailers", dLimitTrailers, &is, dLimitShort),
+				Scopes:   readStrings(sv, sp, "commit.scopes", limitScopes, &is, limitShort),
+				Trailers: readStrings(tv, tp, "commit.trailers", limitTrailers, &is, limitShort),
 			}
-			commit.TicketFromBranch = dBool(bv, bp, "commit.ticketFromBranch", &is)
+			commit.TicketFromBranch = readBool(bv, bp, "commit.ticketFromBranch", &is)
 			if len(commit.Scopes) > 0 || len(commit.Trailers) > 0 || commit.TicketFromBranch != nil {
 				config.Commit = &commit
 			}
 		}
 	}
 
-	if rv, ok := dGet(rec, "requires"); ok {
-		if r, ok := dIsRecord(rv); !ok {
+	if rv, ok := get(rec, "requires"); ok {
+		if r, ok := isRecord(rv); !ok {
 			is.push("requires", "type")
 		} else {
 			req := RepoConfigRequires{}
-			nv, np := dGet(r, "node")
-			req.Node = dShortString(nv, np, "requires.node", &is)
-			sv, sp := dGet(r, "submodules")
-			req.Submodules = dBool(sv, sp, "requires.submodules", &is)
-			lv, lp := dGet(r, "lfs")
-			req.Lfs = dBool(lv, lp, "requires.lfs", &is)
-			hv, hp := dGet(r, "hooksPath")
-			if hooks := dShortString(hv, hp, "requires.hooksPath", &is); hooks != "" {
-				if dIsSafeRepoRelPath(hooks) {
+			nv, np := get(r, "node")
+			req.Node = readShortString(nv, np, "requires.node", &is)
+			sv, sp := get(r, "submodules")
+			req.Submodules = readBool(sv, sp, "requires.submodules", &is)
+			lv, lp := get(r, "lfs")
+			req.Lfs = readBool(lv, lp, "requires.lfs", &is)
+			hv, hp := get(r, "hooksPath")
+			if hooks := readShortString(hv, hp, "requires.hooksPath", &is); hooks != "" {
+				if IsSafeRepoRelPath(hooks) {
 					req.HooksPath = hooks
 				} else {
 					is.push("requires.hooksPath", "unsafe")
 				}
 			}
-			fv, fp := dGet(r, "files")
-			req.Files = dFileReqs(fv, fp, &is)
+			fv, fp := get(r, "files")
+			req.Files = readFileReqs(fv, fp, &is)
 			if req.Node != "" || req.Submodules != nil || req.Lfs != nil || req.HooksPath != "" || len(req.Files) > 0 {
 				config.Requires = &req
 			}
 		}
 	}
 
-	if cv, ok := dGet(rec, "checklist"); ok {
-		if c, ok := dIsRecord(cv); !ok {
+	if cv, ok := get(rec, "checklist"); ok {
+		if c, ok := isRecord(cv); !ok {
 			is.push("checklist", "type")
 		} else {
-			pv, pp := dGet(c, "push")
-			if push := dStrings(pv, pp, "checklist.push", dLimitChecklist, &is, dLimitLine); len(push) > 0 {
+			pv, pp := get(c, "push")
+			if push := readStrings(pv, pp, "checklist.push", limitChecklist, &is, limitLine); len(push) > 0 {
 				config.Checklist = &RepoConfigChecklist{Push: push}
 			}
 		}
@@ -383,21 +383,21 @@ func dValidateRepoConfig(value any, keys []string) (*RepoConfig, []RepoConfigIss
 	return config, is
 }
 
-// dParseRepoConfig parses and validates raw file contents. Invalid JSON yields
+// Parse parses and validates raw file contents. Invalid JSON yields
 // a single issue.
-func dParseRepoConfig(raw string) (*RepoConfig, []RepoConfigIssue) {
-	value, keys, err := dParseJSONOrdered([]byte(raw))
+func Parse(raw string) (*RepoConfig, []RepoConfigIssue) {
+	value, keys, err := ParseJSONOrdered([]byte(raw))
 	if err != nil {
-		return nil, []RepoConfigIssue{{Field: dRepoConfigFile, Code: "json"}}
+		return nil, []RepoConfigIssue{{Field: File, Code: "json"}}
 	}
-	return dValidateRepoConfig(value, keys)
+	return Validate(value, keys)
 }
 
-// dParseJSONOrdered is JSON.parse plus the top-level object's keys in
+// ParseJSONOrdered is JSON.parse plus the top-level object's keys in
 // Object.keys order: array-index keys first in ascending numeric order, then
 // the rest in first-insertion order (a repeated key keeps its first place and
 // its last value, as JSON.parse does).
-func dParseJSONOrdered(raw []byte) (any, []string, error) {
+func ParseJSONOrdered(raw []byte) (any, []string, error) {
 	var value any
 	if err := json.Unmarshal(raw, &value); err != nil {
 		return nil, nil, err
@@ -428,7 +428,7 @@ func dParseJSONOrdered(raw []byte) (any, []string, error) {
 	}
 	var index, named []string
 	for _, k := range keys {
-		if dIsArrayIndex(k) {
+		if isArrayIndex(k) {
 			index = append(index, k)
 		} else {
 			named = append(named, k)
@@ -442,8 +442,8 @@ func dParseJSONOrdered(raw []byte) (any, []string, error) {
 	return value, append(index, named...), nil
 }
 
-// dIsArrayIndex: a canonical decimal integer below 2^32-1.
-func dIsArrayIndex(k string) bool {
+// isArrayIndex: a canonical decimal integer below 2^32-1.
+func isArrayIndex(k string) bool {
 	if k == "" || (len(k) > 1 && k[0] == '0') {
 		return false
 	}
@@ -451,20 +451,20 @@ func dIsArrayIndex(k string) bool {
 	return err == nil && n < 1<<32-1
 }
 
-var dMajorRe = regexp.MustCompile(`(\d+)`)
+var majorRe = regexp.MustCompile(`(\d+)`)
 
-// dSatisfiesNodeRange says whether an installed Node version satisfies a
+// SatisfiesNodeRange says whether an installed Node version satisfies a
 // `requires.node` spec. Deliberately a fraction of semver: the specs that
 // appear in a `.nvmrc` or `engines.node` in practice — `20`, `20.x`,
 // `v20.11.1`, `>=20`, `^20.1`, `~20.1`. An unrecognised spec passes rather
 // than inventing a failure the reader cannot act on.
-func dSatisfiesNodeRange(actual, spec string) bool {
-	have, ok := dMajor(actual)
+func SatisfiesNodeRange(actual, spec string) bool {
+	have, ok := major(actual)
 	if !ok {
 		return false
 	}
 	s := gitx.TrimJS(spec)
-	wanted, ok := dMajor(s)
+	wanted, ok := major(s)
 	if !ok {
 		return true // unparseable spec — say nothing rather than lie
 	}
@@ -481,11 +481,26 @@ func dSatisfiesNodeRange(actual, spec string) bool {
 	return have == wanted
 }
 
-func dMajor(v string) (float64, bool) {
-	m := dMajorRe.FindStringSubmatch(v)
+func major(v string) (float64, bool) {
+	m := majorRe.FindStringSubmatch(v)
 	if m == nil {
 		return 0, false
 	}
 	n, err := strconv.ParseFloat(m[1], 64)
 	return n, err == nil
+}
+
+// Empty is an empty, valid config — what the editor starts from on a
+// repository without one.
+func Empty() RepoConfig {
+	return RepoConfig{Version: Version}
+}
+
+// IsEmpty is isRepoConfigEmpty: no config at all, or one that sets nothing
+// but its version.
+func IsEmpty(c *RepoConfig) bool {
+	if c == nil {
+		return true
+	}
+	return len(c.Protect) == 0 && c.Links == nil && c.Commit == nil && c.Requires == nil && c.Checklist == nil
 }

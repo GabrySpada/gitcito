@@ -1724,10 +1724,8 @@ export function RepoDetail(repoPath: string, max: number | null): $CancellablePr
 }
 
 /**
- * RepoDoctor runs every check the repository's config asks for. It reads the
- * config itself rather than taking it from the caller, so a doctor run always
- * reflects what is on disk right now — the file is a tracked file and a branch
- * switch can change it underneath the panel.
+ * RepoDoctor runs every check the repository's config asks for, reading the
+ * config from disk each time.
  * 
  * gitsvc: repoDoctor
  */
@@ -2038,9 +2036,8 @@ export function SetProtectedBranches(repoPath: string, branches: string[] | null
 }
 
 /**
- * SetRepoConfig writes `.gitcito.json`. The config is validated again here
- * rather than trusted from the renderer: the editor is one caller, and the
- * next one should not be able to introduce a field the loader would reject.
+ * SetRepoConfig writes `.gitcito.json`, validated again rather than trusted
+ * from the renderer.
  * 
  * gitsvc: setRepoConfig
  */
@@ -2555,12 +2552,6 @@ export function Subtrees(repoPath: string): $CancellablePromise<$models.SubtreeI
 /**
  * SuggestRepoConfig reads a repository and proposes the config it evidently
  * wants.
- * 
- * The point is that nobody writes this file from a blank page. Everything here
- * is inferred from something already in the repository — `.gitmodules`,
- * `.nvmrc`, a husky directory, an `.env.example` sitting next to no `.env`. It
- * deliberately proposes nothing it cannot see evidence for: ticket links need
- * a tracker URL only a human knows, so they are left for the editor.
  * 
  * gitsvc: suggestRepoConfig
  */

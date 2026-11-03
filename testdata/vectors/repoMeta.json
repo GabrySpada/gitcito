@@ -1,0 +1,107 @@
+[
+  {
+    "url": "https://github.com/acme/widget.git",
+    "out": "acme"
+  },
+  {
+    "url": "git@github.com:acme/widget.git",
+    "out": "acme"
+  },
+  {
+    "url": "https://gitlab.com/top-solution/sub/widget.git",
+    "out": "top-solution"
+  },
+  {
+    "url": "git@gitlab.com:group/sub/repo.git",
+    "out": "group"
+  },
+  {
+    "url": "https://git.example.com/top-solution/widget.git",
+    "out": "top-solution"
+  },
+  {
+    "url": "git@git.example.com:top-solution/widget.git",
+    "out": "top-solution"
+  },
+  {
+    "url": "https://git.example.com/widget.git",
+    "out": null
+  },
+  {
+    "url": "not a url",
+    "out": null
+  },
+  {
+    "url": "",
+    "out": null
+  },
+  {
+    "url": "ssh://git@host.example.com:2222/group/repo.git",
+    "out": "group"
+  },
+  {
+    "url": "https://user@git.example.com:8443/top-solution/widget.git",
+    "out": "top-solution"
+  },
+  {
+    "url": "https://dev.azure.com/contoso/Payments/_git/host-remotes",
+    "out": "contoso"
+  },
+  {
+    "url": "git@ssh.dev.azure.com:v3/contoso/Payments/repo",
+    "out": "contoso"
+  },
+  {
+    "url": "https://contoso.visualstudio.com/Payments/_git/repo",
+    "out": "contoso"
+  },
+  {
+    "url": "https://bitbucket.org/team/repo.git",
+    "out": "team"
+  },
+  {
+    "url": "file:///srv/git/repo.git",
+    "out": null
+  },
+  {
+    "url": "/srv/git/repo.git",
+    "out": null
+  },
+  {
+    "url": "ssh://host/a/b/c.git",
+    "out": "a"
+  },
+  {
+    "url": "  git@host:ns/r.git  ",
+    "out": "ns"
+  },
+  {
+    "url": "https://github.com/acme",
+    "out": null
+  },
+  {
+    "url": "git@host:",
+    "out": null
+  },
+  {
+    "url": "https://host//a//b.git",
+    "out": "a"
+  },
+  {
+    "url": "HTTPS://Host.Example.com/Org/Repo",
+    "out": "Org"
+  },
+  {
+    "url": "git+ssh://git@host/org/repo",
+    "out": "org"
+  },
+  {
+    "url": "https://dev.azure.com/org/proj%ZZ/_git/repo",
+    "out": null,
+    "throws": true
+  },
+  {
+    "url": "user@host:2222/ns/repo.git",
+    "out": "2222"
+  }
+]
