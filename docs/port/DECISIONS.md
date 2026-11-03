@@ -138,7 +138,7 @@ Every decision the brief did not dictate. One entry each: context, options, choi
   .gitignore for production builds. Several generated playground repos (`examples/playground/*`) contain `.go`
   files with deliberate merge-conflict markers, so `wails3 build` fails while the playground exists.
 - **Choice:** CI runs `wails3 build` before any step that generates the playground; the release workflow never
-  generates it. Locally, `npm run build` (M8) moves nothing — a developer with a playground runs
+  generates it. Locally, a developer with a playground runs
   `npm run playground:clean` or builds in a fresh checkout. `wails3 build --plan` resolves for linux/amd64
   (appimage, deb) and windows/amd64 (nsis) here; darwin/universal needs a macOS host with CGO (D8), so its plan
   and build run on the macOS release runner (cross-compiling from Linux would need Wails' Docker image).

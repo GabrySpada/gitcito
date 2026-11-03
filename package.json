@@ -39,7 +39,8 @@
     "port:inventory": "node scripts/port/inventory.mjs",
     "build:server": "npm run build:frontend && go build -tags server -o bin/gitcito-server .",
     "test:go": "go test ./...",
-    "test:e2e": "vitest run -c e2e/vitest.config.ts"
+    "test:e2e": "vitest run -c e2e/vitest.config.ts",
+    "playground:clean": "node -e \"require('fs').rmSync('examples/playground',{recursive:true,force:true})\""
   },
   "build": {
     "appId": "com.gitcito.desktop",
