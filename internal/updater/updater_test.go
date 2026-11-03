@@ -449,3 +449,52 @@ func TestServiceAndWireShape(t *testing.T) {
 		t.Fatalf("state %+v", st)
 	}
 }
+
+// The release workflow signs with `wails3 updater manifest -key …`. testdata/
+// cli-signed is that command's real output (made with a throwaway key, whose
+// public half is throwaway.pub): the updater must accept it as published, and
+// refuse it once a single byte of the artifact changes.
+func TestAcceptsWhatTheWails3CLIPublishes(t *testing.T) {
+	dir := filepath.Join("testdata", "cli-signed")
+	manifest, err := os.ReadFile(filepath.Join(dir, ManifestAsset))
+	if err != nil {
+		t.Fatal(err)
+	}
+	name := "Gitcito-" + runtime.GOOS + "-" + runtime.GOARCH
+	artifact, err := os.ReadFile(filepath.Join(dir, name))
+	if err != nil {
+		t.Skipf("no fixture artifact for %s", name)
+	}
+	pubPEM, err := os.ReadFile(filepath.Join(dir, "throwaway.pub"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	pub := parsePublicKey(pubPEM)
+
+	for _, tamper := range []bool{false, true} {
+		f := newFeed(t)
+		served := append([]byte{}, artifact...)
+		if tamper {
+			served[0] ^= 1
+		}
+		f.manifest.Store([]byte(strings.ReplaceAll(string(manifest),
+			"https://github.com/"+version.ReleaseRepo+"/releases/download/v99.0.0/", f.srv.URL+"/dl/")))
+		f.artifact.Store(served)
+		u, _, _ := enabled(t, f, pub, true)
+		u.Check(context.Background(), false)
+		if st := u.State(); st.Status != "available" || st.Info == nil || *st.Info.Notes != "Signed by the wails3 CLI.\n" {
+			t.Fatalf("check: %+v", st)
+		}
+		u.Download(context.Background())
+		st := u.State()
+		if tamper {
+			if st.Status != "error" || st.Staged != nil || !strings.Contains(*st.Error, "digest mismatch") {
+				t.Fatalf("tampered: %+v", st)
+			}
+			continue
+		}
+		if st.Status != "downloaded" || st.Staged == nil || *st.Staged != "99.0.0" {
+			t.Fatalf("genuine: %+v", st)
+		}
+	}
+}
