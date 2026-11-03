@@ -27,10 +27,20 @@ compaction.
   - Renderer adaptations: clipboard (58 sites), `--wails-draggable`, link guard, native file drop
     (`droppedFilePaths`), zoom, timelapse format, PDF fallback button.
 
-## In flight (subagents, worktrees)
-- Wave 3 tools: editor + difftool + ssh.
-- Wave 3 cli + updater: cmd/gitcito-cli, internal/cli, internal/updater (ed25519, fails closed).
-- Worktrees start on `main`: every brief says `git reset --hard claude/wizardly-hypatia-gttsk8` first.
+## In flight
+- Nothing. **All 163 IPC channels / 184 preload members reach Go; the bridge has no stubs left.**
+  425 bound methods, all tagged (SURFACE.md). Native smoke OK (scripts/port/smoke.sh), e2e 17/17,
+  vitest 2708 passed / 2 skipped, Go tests green.
+
+## Next
+- M6 review round (§9.4): code review, silent failures, parity auditor (INVENTORY row by row), security
+  (SURFACE.md + §8), then fixes. Known items to fold in: grounding↔ai duplicates (+ jsonrepair dep),
+  LocaleCompare/isSecretFile copies, a*/b*/c*/d* helper hoisting, two order-sensitive goldens.
+- M7 Electron removal (round-trip crypto test already exists: TS opens Go bundles).
+- M8 rest: CI cannot run (Actions off); screenshots harness on the server build; gen-licenses for Go modules.
+- M9 docs: CLAUDE.md, skills, README, CONTRIBUTING, handbook in 16 locales (devtools.md!), site, ROADMAP,
+  CHANGELOG 5.0.0, screenshots.
+- M10 final reviews + draft PR. Owner action for the updater key (DECISIONS 024).
 
 ## Merged since the last update
 - M3 exit: e2e core git flows + terminal streaming (e2e/git.e2e.ts; suite 17/17 on the server build).
