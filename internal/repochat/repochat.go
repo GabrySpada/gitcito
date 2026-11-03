@@ -5,6 +5,8 @@
 // and match the TypeScript byte for byte (see testdata/payloads.json).
 package repochat
 
+//lint:file-ignore ST1005 error strings are shown to the user verbatim and match the TypeScript byte for byte
+
 import (
 	"encoding/json"
 	"errors"

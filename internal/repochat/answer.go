@@ -1,3 +1,5 @@
+//lint:file-ignore ST1005 error strings are shown to the user verbatim and match the TypeScript byte for byte
+
 package repochat
 
 import (
