@@ -14,6 +14,16 @@
 
 DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
+# Gitcito 5: the converter is the gitcito-cli binary's `textconv` verb. This
+# path stays what git is configured with (diff.<driver>.textconv), so the file
+# remains and execs the binary from wherever a build puts it: beside the app
+# (`cli/` next to the executable), a macOS bundle's Contents/MacOS, or a
+# checkout's bin/.
+for cli in "$DIR/../gitcito-cli" "$DIR/../../MacOS/gitcito-cli" "$DIR/../../bin/gitcito-cli"; do
+  [ -x "$cli" ] && exec "$cli" textconv "$@"
+done
+# Electron build (removed with Electron): everything below.
+
 APP_BIN="$DIR/../../MacOS/Gitcito"
 ASAR_MAIN="$DIR/../app.asar/out/main/textconvCli.js"
 

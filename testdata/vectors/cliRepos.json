@@ -1,0 +1,357 @@
+[
+  {
+    "settings": null,
+    "repos": [],
+    "matches": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "resolved": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "settings": "nope",
+    "repos": [],
+    "matches": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "resolved": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "settings": 7,
+    "repos": [],
+    "matches": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "resolved": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "settings": {
+      "tabs": "nope",
+      "recentRepos": 7
+    },
+    "repos": [],
+    "matches": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "resolved": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "settings": {
+      "tabs": [
+        {
+          "repos": [
+            {
+              "path": "/x"
+            }
+          ]
+        }
+      ]
+    },
+    "repos": [
+      {
+        "path": "/x",
+        "name": "x"
+      }
+    ],
+    "matches": [
+      [
+        false
+      ],
+      [
+        false
+      ],
+      [
+        false
+      ],
+      [
+        false
+      ],
+      [
+        false
+      ],
+      [
+        false
+      ],
+      [
+        true
+      ],
+      [
+        false
+      ]
+    ],
+    "resolved": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "path": "/x",
+        "name": "x"
+      },
+      null
+    ]
+  },
+  {
+    "settings": {
+      "tabs": [
+        {
+          "kind": "repo",
+          "repos": [
+            {
+              "path": "/a/api",
+              "name": "API"
+            }
+          ]
+        },
+        {
+          "kind": "group",
+          "name": "Work",
+          "repos": [
+            {
+              "path": "/a/web",
+              "name": "Web"
+            },
+            {
+              "path": "/a/api",
+              "name": "API"
+            }
+          ]
+        },
+        {
+          "kind": "page"
+        },
+        null,
+        {
+          "kind": "group",
+          "name": "",
+          "repos": [
+            {
+              "path": "/a/nameless-group",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "kind": "group",
+          "repos": [
+            {
+              "path": "C:\\code\\win\\",
+              "name": null
+            },
+            {
+              "path": ""
+            },
+            {
+              "path": 5
+            },
+            null
+          ]
+        }
+      ],
+      "recentRepos": [
+        {
+          "path": "/a/old",
+          "name": "Old"
+        },
+        {
+          "path": "/a/api"
+        },
+        {
+          "path": "/trailing/slash/"
+        },
+        "x",
+        null
+      ]
+    },
+    "repos": [
+      {
+        "path": "/a/api",
+        "name": "API"
+      },
+      {
+        "path": "/a/web",
+        "name": "Web",
+        "group": "Work"
+      },
+      {
+        "path": "/a/nameless-group",
+        "name": "nameless-group"
+      },
+      {
+        "path": "C:\\code\\win\\",
+        "name": "win"
+      },
+      {
+        "path": "/a/old",
+        "name": "Old"
+      },
+      {
+        "path": "/trailing/slash/",
+        "name": "slash"
+      }
+    ],
+    "matches": [
+      [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        true,
+        true,
+        true,
+        false,
+        true,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ]
+    ],
+    "resolved": [
+      {
+        "path": "/a/api",
+        "name": "API"
+      },
+      {
+        "path": "/a/api",
+        "name": "API"
+      },
+      {
+        "path": "/a/web",
+        "name": "Web",
+        "group": "Work"
+      },
+      null,
+      {
+        "path": "/a/api",
+        "name": "API"
+      },
+      {
+        "path": "/a/old",
+        "name": "Old"
+      },
+      {
+        "path": "/a/api",
+        "name": "API"
+      },
+      {
+        "path": "/trailing/slash/",
+        "name": "slash"
+      }
+    ]
+  }
+]

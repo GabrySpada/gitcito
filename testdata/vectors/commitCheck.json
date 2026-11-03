@@ -1,0 +1,471 @@
+{
+  "check": [
+    {
+      "input": {
+        "raw": ""
+      },
+      "out": [
+        {
+          "level": "error",
+          "code": "empty",
+          "message": "The commit message is empty."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "# only comments\n"
+      },
+      "out": [
+        {
+          "level": "error",
+          "code": "empty",
+          "message": "The commit message is empty."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat: add range-diff\n\nA body that is comfortably short."
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "feat: x\nbody right away"
+      },
+      "out": [
+        {
+          "level": "error",
+          "code": "no-blank-line",
+          "message": "A blank line must separate the subject from the body."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx."
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "subject-long",
+          "message": "Subject is 67 characters; 50 or fewer reads better in a log."
+        },
+        {
+          "level": "warn",
+          "code": "trailing-period",
+          "message": "Subject ends with a period."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "out": [
+        {
+          "level": "error",
+          "code": "subject-too-long",
+          "message": "Subject is 86 characters; keep it under 72."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat: x\n\nhttps://example.com/yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "feat: x\n\n  word word word word word word word word word word word word word word word word word word word word "
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "body-wrap",
+          "message": "Wrap the body at 72 columns."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "subject\n# ------------------------ >8 ------------------------\ndiff"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "subject\n# --- >8 ---\ndiff"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "feat: crlf subject\r\n\r\nbody\r\n"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "  feat: padded  \n\n"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "feat: ééééééééééééééééééééééééééééééééééééééééééééé"
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "subject-long",
+          "message": "Subject is 51 characters; 50 or fewer reads better in a log."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat: 😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "subject-long",
+          "message": "Subject is 66 characters; 50 or fewer reads better in a log."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "just some text",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "error",
+          "code": "not-conventional",
+          "message": "Subject must be `type(scope): summary` — this repository declares commit scopes."
+        },
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Refs:\"."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat(db): x",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "error",
+          "code": "unknown-scope",
+          "message": "Unknown scope \"db\". Allowed: api, ui."
+        },
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Refs:\"."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat(api): x",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Refs:\"."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat( ui ): x",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Refs:\"."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat(api)!: breaking",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Refs:\"."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "feat(api): x\n\nRefs: ABC-1",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "feat(api): x\n\n  refs: lower",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "feat: x",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "a"
+            ],
+            "trailers": [
+              ":nothing",
+              "Signed-off-by"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Signed-off-by:\"."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "fix: thing",
+        "config": {
+          "version": 1,
+          "commit": {
+            "ticketFromBranch": true
+          }
+        },
+        "branch": "feature/ABC-12-thing"
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "missing-ticket",
+          "message": "Branch mentions ABC-12; the message does not."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "fix: ABC-12 thing",
+        "config": {
+          "version": 1,
+          "commit": {
+            "ticketFromBranch": true
+          }
+        },
+        "branch": "feature/ABC-12-thing"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "fix: thing",
+        "config": {
+          "version": 1,
+          "commit": {
+            "ticketFromBranch": true
+          }
+        },
+        "branch": "feature/no-ticket"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "fix: thing",
+        "config": {
+          "version": 1,
+          "commit": {
+            "ticketFromBranch": true
+          }
+        }
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "fix: thing",
+        "config": null,
+        "branch": "feature/ABC-12"
+      },
+      "out": []
+    },
+    {
+      "input": {
+        "raw": "feat:no space",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Refs:\"."
+        }
+      ]
+    },
+    {
+      "input": {
+        "raw": "Feat(API): x",
+        "config": {
+          "version": 1,
+          "commit": {
+            "scopes": [
+              "api",
+              "ui"
+            ],
+            "trailers": [
+              "Refs: {ticket}"
+            ]
+          }
+        }
+      },
+      "out": [
+        {
+          "level": "error",
+          "code": "unknown-scope",
+          "message": "Unknown scope \"API\". Allowed: api, ui."
+        },
+        {
+          "level": "warn",
+          "code": "missing-trailer",
+          "message": "Missing trailer \"Refs:\"."
+        }
+      ]
+    }
+  ],
+  "strip": [
+    {
+      "input": "feat: x\n# a comment\n\nbody",
+      "out": "feat: x\n\nbody"
+    },
+    {
+      "input": "subject\n# ------------------------ >8 ------------------------\ndiff",
+      "out": "subject"
+    },
+    {
+      "input": "#-->8--\nall gone",
+      "out": ""
+    },
+    {
+      "input": "# ->8 not scissors\nkept",
+      "out": "kept"
+    },
+    {
+      "input": "\n\n  spaced  \n\n",
+      "out": "spaced"
+    }
+  ]
+}

@@ -1,0 +1,2562 @@
+{
+  "fakeApp": "#!/bin/sh\nfor a in \"$@\"; do printf '%s\\n' \"$a\" >> \"$FAKE_APP_LOG.part\"; done\nedit=; wait=\nfor a in \"$@\"; do\n  case \"$a\" in\n    --edit=*) edit=${a#--edit=} ;;\n    --wait=*) wait=${a#--wait=} ;;\n  esac\ndone\nif [ -n \"$wait\" ]; then printf 'edited by the app\\n' > \"$edit\"; rm -f \"$wait\"; fi\nmv \"$FAKE_APP_LOG.part\" \"$FAKE_APP_LOG\"\n",
+  "cases": [
+    {
+      "name": "help",
+      "args": [
+        "help"
+      ],
+      "expect": {
+        "stdout": "gitcito — Gitcito from the command line\n\nOPEN\n  gitcito [path]                 Open a repository (default: the current directory)\n  gitcito open <name|path>       Open by tab name — `gitcito open api` finds it\n  gitcito [path] -n <name>       …with a display name\n  gitcito [path] -g <group>      …inside a group tab\n\nJUMP STRAIGHT TO A SURFACE\n  gitcito diff [path]            Working changes\n  gitcito graph [path]           The commit graph\n  gitcito show <ref>             One commit, in detail\n  gitcito blame <file> [-l N]    Blame, scrolled to a line\n  gitcito search <query>         Search the repository's code\n  gitcito conflicts | stack | stash | reflog | todos | chat | settings\n  gitcito ci | clean | bisect | absorb | snapshots | insights | terminal\n                                 …and the rest — `gitcito help verbs` lists them\n\nANSWER IN THE TERMINAL\n  gitcito status [path]          Branch, tracking, working tree, push checklist\n  gitcito doctor [path] [--fix]  Check what .gitcito.json requires. Exit 1 on failure\n  gitcito commit-check [file]    Lint a commit message. Exit 1 on an error\n  gitcito config init|show|check Propose, print or validate .gitcito.json\n  gitcito repos [filter]         Repositories Gitcito knows about (--paths for scripts)\n\nSET UP\n  gitcito editor install         Use Gitcito for commit messages and rebase todos\n  gitcito completions <shell>    bash · zsh · fish\n\nOPTIONS\n  -w, --wait                     Block until the opened file is closed (for git)\n  -n, --name <name>              Display name for the tab\n  -g, --group <group>            Group tab to open in\n  -l, --line <n>                 Line to scroll to\n  -h, --help                     This text\n  -V, --version                  Version\n\nDocs: https://myappdesk.github.io/gitcito/help/cli.html\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "help-long",
+      "args": [
+        "--help"
+      ],
+      "expect": {
+        "stdout": "gitcito — Gitcito from the command line\n\nOPEN\n  gitcito [path]                 Open a repository (default: the current directory)\n  gitcito open <name|path>       Open by tab name — `gitcito open api` finds it\n  gitcito [path] -n <name>       …with a display name\n  gitcito [path] -g <group>      …inside a group tab\n\nJUMP STRAIGHT TO A SURFACE\n  gitcito diff [path]            Working changes\n  gitcito graph [path]           The commit graph\n  gitcito show <ref>             One commit, in detail\n  gitcito blame <file> [-l N]    Blame, scrolled to a line\n  gitcito search <query>         Search the repository's code\n  gitcito conflicts | stack | stash | reflog | todos | chat | settings\n  gitcito ci | clean | bisect | absorb | snapshots | insights | terminal\n                                 …and the rest — `gitcito help verbs` lists them\n\nANSWER IN THE TERMINAL\n  gitcito status [path]          Branch, tracking, working tree, push checklist\n  gitcito doctor [path] [--fix]  Check what .gitcito.json requires. Exit 1 on failure\n  gitcito commit-check [file]    Lint a commit message. Exit 1 on an error\n  gitcito config init|show|check Propose, print or validate .gitcito.json\n  gitcito repos [filter]         Repositories Gitcito knows about (--paths for scripts)\n\nSET UP\n  gitcito editor install         Use Gitcito for commit messages and rebase todos\n  gitcito completions <shell>    bash · zsh · fish\n\nOPTIONS\n  -w, --wait                     Block until the opened file is closed (for git)\n  -n, --name <name>              Display name for the tab\n  -g, --group <group>            Group tab to open in\n  -l, --line <n>                 Line to scroll to\n  -h, --help                     This text\n  -V, --version                  Version\n\nDocs: https://myappdesk.github.io/gitcito/help/cli.html\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "help-short",
+      "args": [
+        "-h"
+      ],
+      "expect": {
+        "stdout": "gitcito — Gitcito from the command line\n\nOPEN\n  gitcito [path]                 Open a repository (default: the current directory)\n  gitcito open <name|path>       Open by tab name — `gitcito open api` finds it\n  gitcito [path] -n <name>       …with a display name\n  gitcito [path] -g <group>      …inside a group tab\n\nJUMP STRAIGHT TO A SURFACE\n  gitcito diff [path]            Working changes\n  gitcito graph [path]           The commit graph\n  gitcito show <ref>             One commit, in detail\n  gitcito blame <file> [-l N]    Blame, scrolled to a line\n  gitcito search <query>         Search the repository's code\n  gitcito conflicts | stack | stash | reflog | todos | chat | settings\n  gitcito ci | clean | bisect | absorb | snapshots | insights | terminal\n                                 …and the rest — `gitcito help verbs` lists them\n\nANSWER IN THE TERMINAL\n  gitcito status [path]          Branch, tracking, working tree, push checklist\n  gitcito doctor [path] [--fix]  Check what .gitcito.json requires. Exit 1 on failure\n  gitcito commit-check [file]    Lint a commit message. Exit 1 on an error\n  gitcito config init|show|check Propose, print or validate .gitcito.json\n  gitcito repos [filter]         Repositories Gitcito knows about (--paths for scripts)\n\nSET UP\n  gitcito editor install         Use Gitcito for commit messages and rebase todos\n  gitcito completions <shell>    bash · zsh · fish\n\nOPTIONS\n  -w, --wait                     Block until the opened file is closed (for git)\n  -n, --name <name>              Display name for the tab\n  -g, --group <group>            Group tab to open in\n  -l, --line <n>                 Line to scroll to\n  -h, --help                     This text\n  -V, --version                  Version\n\nDocs: https://myappdesk.github.io/gitcito/help/cli.html\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "help-verbs",
+      "args": [
+        "help",
+        "verbs"
+      ],
+      "expect": {
+        "stdout": "In the terminal\n  doctor, status, repos, commit-check, config, editor, completions, help\n\nIn the window\n  open, diff, graph, blame, show, search, conflicts, stack, stash, reflog, todos, chat, settings, terminal, insights, history, ci, clean, bisect, absorb, snapshots, timelapse, time-machine, maintenance, export, objects, hooks, lfs, sparse, subtree, gitflow, purge, changelog\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "version",
+      "args": [
+        "--version"
+      ],
+      "normalize": [
+        "version"
+      ],
+      "expect": {
+        "stdout": "<VERSION>\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "version-short",
+      "args": [
+        "-V"
+      ],
+      "normalize": [
+        "version"
+      ],
+      "expect": {
+        "stdout": "<VERSION>\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "completions-bash",
+      "args": [
+        "completions",
+        "bash"
+      ],
+      "expect": {
+        "stdout": "# gitcito bash completion — add to ~/.bashrc:\n#   eval \"$(gitcito completions bash)\"\n_gitcito() {\n  local cur=\"${COMP_WORDS[COMP_CWORD]}\"\n  if [ \"$COMP_CWORD\" -eq 1 ]; then\n    COMPREPLY=( $(compgen -W \"absorb bisect blame changelog chat ci clean commit-check completions config conflicts diff doctor editor export gitflow graph help history hooks insights lfs maintenance objects open purge reflog repos search settings show snapshots sparse stack stash status subtree terminal time-machine timelapse todos\" -- \"$cur\") )\n  else\n    COMPREPLY=( $(compgen -d -- \"$cur\") )\n  fi\n}\ncomplete -F _gitcito gitcito\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "completions-zsh",
+      "args": [
+        "completions",
+        "zsh"
+      ],
+      "expect": {
+        "stdout": "# gitcito zsh completion — add to ~/.zshrc:\n#   eval \"$(gitcito completions zsh)\"\n_gitcito() {\n  if (( CURRENT == 2 )); then\n    compadd absorb bisect blame changelog chat ci clean commit-check completions config conflicts diff doctor editor export gitflow graph help history hooks insights lfs maintenance objects open purge reflog repos search settings show snapshots sparse stack stash status subtree terminal time-machine timelapse todos\n  else\n    _files -/\n  fi\n}\ncompdef _gitcito gitcito\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "completions-fish",
+      "args": [
+        "completions",
+        "fish"
+      ],
+      "expect": {
+        "stdout": "# gitcito fish completion — write to ~/.config/fish/completions/gitcito.fish:\n#   gitcito completions fish > ~/.config/fish/completions/gitcito.fish\ncomplete -c gitcito -f\ncomplete -c gitcito -n \"__fish_use_subcommand\" -a \"absorb bisect blame changelog chat ci clean commit-check completions config conflicts diff doctor editor export gitflow graph help history hooks insights lfs maintenance objects open purge reflog repos search settings show snapshots sparse stack stash status subtree terminal time-machine timelapse todos\"\ncomplete -c gitcito -n \"not __fish_use_subcommand\" -a \"(__fish_complete_directories)\"\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "completions-missing",
+      "args": [
+        "completions"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito completions: expected bash, zsh or fish\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "completions-unknown",
+      "args": [
+        "completions",
+        "powershell"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito completions: expected bash, zsh or fish\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-clean",
+      "repo": "init",
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main no upstream\n  <SHA> chore: initial commit <AGO>\n  clean\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-subdir",
+      "repo": "init",
+      "ops": [
+        {
+          "mkdir": "src/deep"
+        }
+      ],
+      "cwd": "<REPO>/src/deep",
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main no upstream\n  <SHA> chore: initial commit <AGO>\n  clean\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-path-arg",
+      "repo": "init",
+      "cwd": "<TMP>",
+      "args": [
+        "status",
+        "repo"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main no upstream\n  <SHA> chore: initial commit <AGO>\n  clean\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-not-a-repo",
+      "ops": [
+        {
+          "mkdir": "<TMP>/plain"
+        }
+      ],
+      "cwd": "<TMP>/plain",
+      "args": [
+        "status"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: not a git repository: <TMP>/plain\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-missing-dir",
+      "cwd": "<TMP>",
+      "args": [
+        "status",
+        "nope"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: no such directory: <TMP>/nope\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-dirty",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            "a.txt",
+            "one\n"
+          ]
+        },
+        {
+          "write": [
+            "b.txt",
+            "two\n"
+          ]
+        },
+        {
+          "git": [
+            "add",
+            "a.txt",
+            "b.txt"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-m",
+            "feat: add files"
+          ]
+        },
+        {
+          "write": [
+            "a.txt",
+            "one changed\n"
+          ]
+        },
+        {
+          "write": [
+            "b.txt",
+            "two changed\n"
+          ]
+        },
+        {
+          "git": [
+            "add",
+            "b.txt"
+          ]
+        },
+        {
+          "write": [
+            "new.txt",
+            "untracked\n"
+          ]
+        },
+        {
+          "write": [
+            "c.txt",
+            "stash me\n"
+          ]
+        },
+        {
+          "git": [
+            "stash",
+            "push",
+            "-q",
+            "--include-untracked",
+            "--",
+            "c.txt"
+          ]
+        }
+      ],
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main no upstream\n  <SHA> feat: add files <AGO>\n  2 staged · 1 untracked · 1 stashed\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-upstream",
+      "repo": "init",
+      "ops": [
+        {
+          "git": [
+            "branch",
+            "base"
+          ]
+        },
+        {
+          "write": [
+            "x.txt",
+            "x\n"
+          ]
+        },
+        {
+          "git": [
+            "add",
+            "x.txt"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-m",
+            "feat: ahead one"
+          ]
+        },
+        {
+          "write": [
+            "y.txt",
+            "y\n"
+          ]
+        },
+        {
+          "git": [
+            "add",
+            "y.txt"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-m",
+            "feat: ahead two"
+          ]
+        },
+        {
+          "git": [
+            "checkout",
+            "-q",
+            "base"
+          ]
+        },
+        {
+          "write": [
+            "z.txt",
+            "z\n"
+          ]
+        },
+        {
+          "git": [
+            "add",
+            "z.txt"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-m",
+            "fix: behind one"
+          ]
+        },
+        {
+          "git": [
+            "checkout",
+            "-q",
+            "main"
+          ]
+        },
+        {
+          "git": [
+            "branch",
+            "--set-upstream-to=base"
+          ]
+        }
+      ],
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main → base ↑2 ↓1\n  <SHA> feat: ahead two <AGO>\n  clean\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-conflicted-fixture",
+      "repo": {
+        "fixture": "merge-conflict"
+      },
+      "ops": [
+        {
+          "git": [
+            "merge",
+            "--no-edit",
+            "feature"
+          ],
+          "mayFail": true
+        }
+      ],
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main no upstream\n  <SHA> main: shout the greetings <AGO>\n  5 conflicted · 1 staged\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-stash-fixture",
+      "repo": {
+        "fixture": "stash-picking"
+      },
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main no upstream\n  <SHA> initial commit <AGO>\n  1 stashed\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-protected-checklist",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}"
+          ]
+        }
+      ],
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  main no upstream\n  <SHA> chore: initial commit <AGO>\n  1 untracked\n  ! main is protected by .gitcito.json\n\nBefore you push\n  • Run the tests\n  • Update CHANGELOG.md\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-protected-glob",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}"
+          ]
+        },
+        {
+          "git": [
+            "checkout",
+            "-q",
+            "-b",
+            "release/1.2"
+          ]
+        }
+      ],
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  release/1.2 no upstream\n  <SHA> chore: initial commit <AGO>\n  1 untracked\n  ! release/1.2 is protected by .gitcito.json\n\nBefore you push\n  • Run the tests\n  • Update CHANGELOG.md\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-detached",
+      "repo": "init",
+      "ops": [
+        {
+          "git": [
+            "checkout",
+            "-q",
+            "--detach"
+          ]
+        }
+      ],
+      "args": [
+        "status"
+      ],
+      "normalize": [
+        "ago",
+        "sha"
+      ],
+      "expect": {
+        "stdout": "repo  <TMP>/repo\n  HEAD no upstream\n  <SHA> chore: initial commit <AGO>\n  clean\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "status-empty-repo",
+      "ops": [
+        {
+          "git": [
+            "init",
+            "-q",
+            "-b",
+            "main",
+            "<TMP>/empty"
+          ]
+        }
+      ],
+      "cwd": "<TMP>/empty",
+      "args": [
+        "status"
+      ],
+      "expect": {
+        "stdout": "empty  <TMP>/empty\n  HEAD no upstream\n  clean\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "doctor-no-config",
+      "repo": "init",
+      "args": [
+        "doctor"
+      ],
+      "expect": {
+        "stdout": "No requirements declared in .gitcito.json.\nRun `gitcito config init` to propose one from what this repository already contains.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "doctor-no-requires",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}"
+          ]
+        }
+      ],
+      "args": [
+        "doctor"
+      ],
+      "expect": {
+        "stdout": "No requirements declared in .gitcito.json.\nRun `gitcito config init` to propose one from what this repository already contains.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "doctor-failing",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"requires\": {\n    \"hooksPath\": \".husky\",\n    \"files\": [\n      {\n        \"path\": \".env\",\n        \"from\": \".env.example\",\n        \"why\": \"Local settings the app reads at startup\"\n      }\n    ]\n  }\n}"
+          ]
+        },
+        {
+          "write": [
+            ".env.example",
+            "TOKEN=\n"
+          ]
+        }
+      ],
+      "args": [
+        "doctor"
+      ],
+      "expect": {
+        "stdout": "Doctor · <TMP>/repo\n  ✗ hooks wants .husky · missing\n  ✗ file:.env wants .env · missing\n      Local settings the app reads at startup\n\n2 failing, 0 warning, 2 total.\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "doctor-fix",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"requires\": {\n    \"hooksPath\": \".husky\",\n    \"files\": [\n      {\n        \"path\": \".env\",\n        \"from\": \".env.example\",\n        \"why\": \"Local settings the app reads at startup\"\n      }\n    ]\n  }\n}"
+          ]
+        },
+        {
+          "write": [
+            ".env.example",
+            "TOKEN=\n"
+          ]
+        },
+        {
+          "mkdir": ".husky"
+        }
+      ],
+      "args": [
+        "doctor",
+        "--fix"
+      ],
+      "check": {
+        "files": [
+          ".env"
+        ],
+        "config": [
+          "local:core.hooksPath"
+        ]
+      },
+      "expect": {
+        "stdout": "  ✓ fixed hooks\n  ✓ fixed file:.env\nDoctor · <TMP>/repo\n  ✓ hooks wants .husky · found .husky\n  ✓ file:.env wants .env\n      Local settings the app reads at startup\n\n✓ 2 checks passed.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "files": {
+          ".env": "TOKEN=\n"
+        },
+        "config": {
+          "local:core.hooksPath": ".husky"
+        }
+      }
+    },
+    {
+      "name": "doctor-fix-cannot",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"requires\": {\n    \"hooksPath\": \".husky\",\n    \"files\": [\n      {\n        \"path\": \".env\",\n        \"from\": \".env.example\",\n        \"why\": \"Local settings the app reads at startup\"\n      }\n    ]\n  }\n}"
+          ]
+        }
+      ],
+      "args": [
+        "doctor",
+        "--fix"
+      ],
+      "check": {
+        "files": [
+          ".env"
+        ]
+      },
+      "expect": {
+        "stdout": "  ✓ fixed hooks\nDoctor · <TMP>/repo\n  ✓ hooks wants .husky · found .husky\n  ✗ file:.env wants .env · missing\n      Local settings the app reads at startup\n\n1 failing, 0 warning, 2 total.\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null,
+        "files": {
+          ".env": null
+        }
+      }
+    },
+    {
+      "name": "doctor-path-arg",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"requires\": {\n    \"hooksPath\": \".husky\",\n    \"files\": [\n      {\n        \"path\": \".env\",\n        \"from\": \".env.example\",\n        \"why\": \"Local settings the app reads at startup\"\n      }\n    ]\n  }\n}"
+          ]
+        },
+        {
+          "write": [
+            ".env",
+            "TOKEN=1\n"
+          ]
+        }
+      ],
+      "cwd": "<TMP>",
+      "args": [
+        "doctor",
+        "repo"
+      ],
+      "expect": {
+        "stdout": "Doctor · <TMP>/repo\n  ✗ hooks wants .husky · missing\n  ✓ file:.env wants .env\n      Local settings the app reads at startup\n\n1 failing, 0 warning, 2 total.\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "doctor-not-a-repo",
+      "ops": [
+        {
+          "mkdir": "<TMP>/plain"
+        }
+      ],
+      "cwd": "<TMP>/plain",
+      "args": [
+        "doctor"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: not a git repository: <TMP>/plain\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-good",
+      "repo": "init",
+      "args": [
+        "commit-check",
+        "-m",
+        "feat: add range-diff"
+      ],
+      "expect": {
+        "stdout": "✓ Commit message looks good.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-long",
+      "repo": "init",
+      "args": [
+        "commit-check",
+        "-m",
+        "feat: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      ],
+      "expect": {
+        "stdout": "  ✗ Subject is 86 characters; keep it under 72. (subject-too-long)\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-warn",
+      "repo": "init",
+      "args": [
+        "commit-check",
+        "--message=feat: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx."
+      ],
+      "expect": {
+        "stdout": "  ! Subject is 67 characters; 50 or fewer reads better in a log. (subject-long)\n  ! Subject ends with a period. (trailing-period)\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-file",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            "msg.txt",
+            "fix: thing\n# comment\nbody right away\n"
+          ]
+        }
+      ],
+      "args": [
+        "commit-check",
+        "msg.txt"
+      ],
+      "expect": {
+        "stdout": "  ✗ A blank line must separate the subject from the body. (no-blank-line)\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-default-file",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".git/COMMIT_EDITMSG",
+            "feat: from the editor\n\nBody.\n"
+          ]
+        }
+      ],
+      "args": [
+        "commit-check"
+      ],
+      "expect": {
+        "stdout": "✓ Commit message looks good.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-nothing",
+      "repo": "init",
+      "args": [
+        "commit-check"
+      ],
+      "expect": {
+        "stdout": "✓ Commit message looks good.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-dangling-m",
+      "repo": "init",
+      "args": [
+        "commit-check",
+        "-m"
+      ],
+      "expect": {
+        "stdout": "✓ Commit message looks good.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-empty-inline",
+      "repo": "init",
+      "args": [
+        "commit-check",
+        "-m",
+        ""
+      ],
+      "expect": {
+        "stdout": "  ✗ The commit message is empty. (empty)\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-scopes",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}"
+          ]
+        }
+      ],
+      "args": [
+        "commit-check",
+        "-m",
+        "feat(db): add index"
+      ],
+      "expect": {
+        "stdout": "  ✗ Unknown scope \"db\". Allowed: api, ui. (unknown-scope)\n  ! Missing trailer \"Refs:\". (missing-trailer)\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-not-conventional",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}"
+          ]
+        }
+      ],
+      "args": [
+        "commit-check",
+        "-m",
+        "just some text"
+      ],
+      "expect": {
+        "stdout": "  ✗ Subject must be `type(scope): summary` — this repository declares commit scopes. (not-conventional)\n  ! Missing trailer \"Refs:\". (missing-trailer)\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-ticket",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\"version\":1,\"commit\":{\"ticketFromBranch\":true}}"
+          ]
+        },
+        {
+          "git": [
+            "checkout",
+            "-q",
+            "-b",
+            "feature/ABC-12-thing"
+          ]
+        }
+      ],
+      "args": [
+        "commit-check",
+        "-m",
+        "fix: thing"
+      ],
+      "expect": {
+        "stdout": "  ! Branch mentions ABC-12; the message does not. (missing-ticket)\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-repo-flag",
+      "repo": "init",
+      "cwd": "<TMP>",
+      "args": [
+        "commit-check",
+        "--repo=repo",
+        "-m",
+        "docs: explain"
+      ],
+      "expect": {
+        "stdout": "✓ Commit message looks good.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "commit-check-not-a-repo",
+      "cwd": "<TMP>",
+      "args": [
+        "commit-check",
+        "-m",
+        "feat: x"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: not a git repository: <TMP>\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-show-none",
+      "repo": "init",
+      "args": [
+        "config"
+      ],
+      "expect": {
+        "stdout": "No .gitcito.json in <TMP>/repo.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-show",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}\n\n"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "show"
+      ],
+      "expect": {
+        "stdout": "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-check-valid",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "check"
+      ],
+      "expect": {
+        "stdout": "✓ .gitcito.json is valid.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-check-dropped",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\"version\":1,\"protect\":\"main\",\"bogus\":true}"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "check"
+      ],
+      "expect": {
+        "stdout": "  ! bogus: unknown (dropped)\n  ! protect: type (dropped)\n! 2 field(s) dropped; the rest applies.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-check-invalid",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{ not json"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "check"
+      ],
+      "expect": {
+        "stdout": "✗ .gitcito.json could not be read as a v1 config.\n  ✗ .gitcito.json: json\n",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-check-missing",
+      "repo": "init",
+      "args": [
+        "config",
+        "check"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: no .gitcito.json in <TMP>/repo\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-check-path",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\",\n    \"release/*\"\n  ],\n  \"commit\": {\n    \"scopes\": [\n      \"api\",\n      \"ui\"\n    ],\n    \"trailers\": [\n      \"Refs: {ticket}\"\n    ]\n  },\n  \"checklist\": {\n    \"push\": [\n      \"Run the tests\",\n      \"Update CHANGELOG.md\"\n    ]\n  }\n}"
+          ]
+        }
+      ],
+      "cwd": "<TMP>",
+      "args": [
+        "config",
+        "check",
+        "repo"
+      ],
+      "expect": {
+        "stdout": "✓ .gitcito.json is valid.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-init-nothing",
+      "repo": "init",
+      "args": [
+        "config",
+        "init"
+      ],
+      "check": {
+        "files": [
+          ".gitcito.json"
+        ]
+      },
+      "expect": {
+        "stdout": "✓ Wrote .gitcito.json\nReview it before committing — it becomes every teammate’s rules.\n  protect main\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "files": {
+          ".gitcito.json": "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\"\n  ]\n}\n"
+        }
+      }
+    },
+    {
+      "name": "config-init-dry-run",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".nvmrc",
+            "20\n"
+          ]
+        },
+        {
+          "write": [
+            ".env.example",
+            "A=1\n"
+          ]
+        },
+        {
+          "git": [
+            "add",
+            "-A"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-m",
+            "chore: tooling"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "init",
+        "--dry-run"
+      ],
+      "check": {
+        "files": [
+          ".gitcito.json"
+        ]
+      },
+      "expect": {
+        "stdout": "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\"\n  ],\n  \"requires\": {\n    \"node\": \"20\",\n    \"files\": [\n      {\n        \"path\": \".env\",\n        \"from\": \".env.example\"\n      }\n    ]\n  }\n}\n\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "files": {
+          ".gitcito.json": null
+        }
+      }
+    },
+    {
+      "name": "config-init-write",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".nvmrc",
+            "v18.17.0\n"
+          ]
+        },
+        {
+          "write": [
+            "a.txt",
+            "1\n"
+          ]
+        },
+        {
+          "git": [
+            "add",
+            "-A"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-m",
+            "feat(api): one"
+          ]
+        },
+        {
+          "write": [
+            "a.txt",
+            "2\n"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-am",
+            "fix(api): two"
+          ]
+        },
+        {
+          "write": [
+            "a.txt",
+            "3\n"
+          ]
+        },
+        {
+          "git": [
+            "commit",
+            "-q",
+            "-am",
+            "feat(ui): three"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "init"
+      ],
+      "check": {
+        "files": [
+          ".gitcito.json"
+        ]
+      },
+      "expect": {
+        "stdout": "✓ Wrote .gitcito.json\nReview it before committing — it becomes every teammate’s rules.\n  protect main\n  node 18.17.0\n  scopes api\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "files": {
+          ".gitcito.json": "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\"\n  ],\n  \"requires\": {\n    \"node\": \"18.17.0\"\n  },\n  \"commit\": {\n    \"scopes\": [\n      \"api\"\n    ]\n  }\n}\n"
+        }
+      }
+    },
+    {
+      "name": "config-init-exists",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\"version\":1}"
+          ]
+        },
+        {
+          "write": [
+            ".nvmrc",
+            "20\n"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "init"
+      ],
+      "check": {
+        "files": [
+          ".gitcito.json"
+        ]
+      },
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: .gitcito.json already exists — pass --force to overwrite\n",
+        "code": 2,
+        "appArgs": null,
+        "files": {
+          ".gitcito.json": "{\"version\":1}"
+        }
+      }
+    },
+    {
+      "name": "config-init-force",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".gitcito.json",
+            "{\"version\":1}"
+          ]
+        },
+        {
+          "write": [
+            ".nvmrc",
+            "20\n"
+          ]
+        }
+      ],
+      "args": [
+        "config",
+        "init",
+        "--force"
+      ],
+      "check": {
+        "files": [
+          ".gitcito.json"
+        ]
+      },
+      "expect": {
+        "stdout": "✓ Wrote .gitcito.json\nReview it before committing — it becomes every teammate’s rules.\n  protect main\n  node 20\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "files": {
+          ".gitcito.json": "{\n  \"version\": 1,\n  \"protect\": [\n    \"main\"\n  ],\n  \"requires\": {\n    \"node\": \"20\"\n  }\n}\n"
+        }
+      }
+    },
+    {
+      "name": "config-unknown",
+      "repo": "init",
+      "args": [
+        "config",
+        "frob"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito config: unknown subcommand \"frob\" (expected init, show or check)\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "config-not-a-repo",
+      "cwd": "<TMP>",
+      "args": [
+        "config",
+        "check"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: not a git repository: <TMP>\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "repos-none",
+      "cwd": "<TMP>",
+      "args": [
+        "repos"
+      ],
+      "expect": {
+        "stdout": "No repositories yet — open one in Gitcito, or run `gitcito .` in a checkout.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "repos-list",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "repos"
+      ],
+      "expect": {
+        "stdout": "  API                   <TMP>/repo\n  Web           [Work]  <TMP>/web\n  Old                   <TMP>/old-thing\n  unnamed-repo          <TMP>/unnamed-repo\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "repos-filter",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "repos",
+        "WE"
+      ],
+      "expect": {
+        "stdout": "  Web  [Work]  <TMP>/web\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "repos-filter-none",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "repos",
+        "zzz"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "repos-paths",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "repos",
+        "--paths"
+      ],
+      "expect": {
+        "stdout": "<TMP>/repo\n<TMP>/web\n<TMP>/old-thing\n<TMP>/unnamed-repo\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "repos-paths-filter",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "repos",
+        "--paths",
+        "api"
+      ],
+      "expect": {
+        "stdout": "<TMP>/repo\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "repos-garbage-settings",
+      "settings": "not an object",
+      "cwd": "<TMP>",
+      "args": [
+        "repos"
+      ],
+      "expect": {
+        "stdout": "No repositories yet — open one in Gitcito, or run `gitcito .` in a checkout.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "resolve-exact",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "--resolve",
+        "api"
+      ],
+      "expect": {
+        "stdout": "<TMP>/repo\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "resolve-substring",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "--resolve",
+        "unnamed"
+      ],
+      "expect": {
+        "stdout": "<TMP>/unnamed-repo\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "resolve-none",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "--resolve",
+        "zzz"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "resolve-empty",
+      "cwd": "<TMP>",
+      "args": [
+        "--resolve"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "editor-install-global",
+      "cwd": "<TMP>",
+      "args": [
+        "editor"
+      ],
+      "check": {
+        "config": [
+          "global:core.editor",
+          "global:sequence.editor"
+        ]
+      },
+      "expect": {
+        "stdout": "✓ git will now open commit messages and rebase todos in Gitcito (global).\nUndo with `gitcito editor uninstall`.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "config": {
+          "global:core.editor": "gitcito --wait",
+          "global:sequence.editor": "gitcito --wait"
+        }
+      }
+    },
+    {
+      "name": "editor-uninstall-global",
+      "ops": [
+        {
+          "git": [
+            "config",
+            "--global",
+            "core.editor",
+            "gitcito --wait"
+          ]
+        },
+        {
+          "git": [
+            "config",
+            "--global",
+            "sequence.editor",
+            "gitcito --wait"
+          ]
+        }
+      ],
+      "cwd": "<TMP>",
+      "args": [
+        "editor",
+        "uninstall"
+      ],
+      "check": {
+        "config": [
+          "global:core.editor",
+          "global:sequence.editor"
+        ]
+      },
+      "expect": {
+        "stdout": "✓ Gitcito is no longer git’s editor (global).\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "config": {
+          "global:core.editor": null,
+          "global:sequence.editor": null
+        }
+      }
+    },
+    {
+      "name": "editor-install-local",
+      "repo": "init",
+      "args": [
+        "editor",
+        "install",
+        "--local"
+      ],
+      "check": {
+        "config": [
+          "local:core.editor",
+          "local:sequence.editor",
+          "global:core.editor"
+        ]
+      },
+      "expect": {
+        "stdout": "✓ git will now open commit messages and rebase todos in Gitcito (local).\nUndo with `gitcito editor uninstall`.\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null,
+        "config": {
+          "local:core.editor": "gitcito --wait",
+          "local:sequence.editor": "gitcito --wait",
+          "global:core.editor": null
+        }
+      }
+    },
+    {
+      "name": "editor-local-not-a-repo",
+      "cwd": "<TMP>",
+      "args": [
+        "editor",
+        "--local"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: not a git repository: <TMP>\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "editor-unknown",
+      "cwd": "<TMP>",
+      "args": [
+        "editor",
+        "frob"
+      ],
+      "check": {
+        "config": [
+          "global:core.editor"
+        ]
+      },
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito editor: unknown subcommand \"frob\" (expected install or uninstall)\n",
+        "code": 2,
+        "appArgs": null,
+        "config": {
+          "global:core.editor": null
+        }
+      }
+    },
+    {
+      "name": "open-cwd",
+      "repo": "init",
+      "args": [],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo"
+        ]
+      }
+    },
+    {
+      "name": "open-dot",
+      "repo": "init",
+      "args": [
+        "."
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo"
+        ]
+      }
+    },
+    {
+      "name": "open-path-name-group",
+      "repo": "init",
+      "cwd": "<TMP>",
+      "args": [
+        "repo",
+        "-n",
+        "My API",
+        "--group",
+        "Work"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo",
+          "--name=My API",
+          "--group=Work"
+        ]
+      }
+    },
+    {
+      "name": "open-blame-line",
+      "repo": "init",
+      "args": [
+        "blame",
+        "src/a.ts",
+        "-l",
+        "40"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo",
+          "--view=blame",
+          "--arg=src/a.ts",
+          "--line=40"
+        ]
+      }
+    },
+    {
+      "name": "open-show-ref-path",
+      "repo": "init",
+      "cwd": "<TMP>",
+      "args": [
+        "show",
+        "HEAD~1",
+        "repo"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo",
+          "--view=show",
+          "--arg=HEAD~1"
+        ]
+      }
+    },
+    {
+      "name": "open-graph",
+      "repo": "init",
+      "args": [
+        "graph"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo",
+          "--view=graph"
+        ]
+      }
+    },
+    {
+      "name": "open-search",
+      "repo": "init",
+      "args": [
+        "search",
+        "TODO later"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo",
+          "--view=search",
+          "--arg=TODO later"
+        ]
+      }
+    },
+    {
+      "name": "open-double-dash",
+      "repo": "init",
+      "args": [
+        "--",
+        "."
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo"
+        ]
+      }
+    },
+    {
+      "name": "open-by-name",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "open",
+        "api"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo"
+        ]
+      }
+    },
+    {
+      "name": "open-by-name-dir",
+      "repo": "init",
+      "cwd": "<TMP>",
+      "args": [
+        "open",
+        "repo"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo"
+        ]
+      }
+    },
+    {
+      "name": "open-by-name-none",
+      "repo": "init",
+      "settings": {
+        "tabs": [
+          {
+            "kind": "repo",
+            "id": "t1",
+            "repos": [
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "group",
+            "id": "t2",
+            "name": "Work",
+            "repos": [
+              {
+                "path": "<TMP>/web",
+                "name": "Web"
+              },
+              {
+                "path": "<REPO>",
+                "name": "API"
+              }
+            ]
+          },
+          {
+            "kind": "page",
+            "id": "t3"
+          }
+        ],
+        "recentRepos": [
+          {
+            "path": "<TMP>/old-thing",
+            "name": "Old"
+          },
+          {
+            "path": "<TMP>/unnamed-repo"
+          }
+        ]
+      },
+      "cwd": "<TMP>",
+      "args": [
+        "open",
+        "zzz"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: no repository matching \"zzz\" — try 'gitcito repos'\n",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "open-mistyped-verb",
+      "cwd": "<TMP>",
+      "args": [
+        "stauts"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: no such directory: stauts\nIf you meant a command, 'gitcito help verbs' lists them.\n",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "open-missing-path",
+      "cwd": "<TMP>",
+      "args": [
+        "no/such"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: no such directory: no/such\n",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "open-unknown-option",
+      "cwd": "<TMP>",
+      "args": [
+        "--frob"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: unknown option: --frob\nTry 'gitcito --help'.\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "open-unknown-option-eq",
+      "cwd": "<TMP>",
+      "args": [
+        "--name=x"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: unknown option: --name=x\nTry 'gitcito --help'.\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "open-no-app",
+      "repo": "init",
+      "app": false,
+      "args": [],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: could not find the Gitcito application binary\n",
+        "code": 1,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "wait-no-file",
+      "repo": "init",
+      "args": [
+        "--wait"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: --wait needs a file to edit\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "wait-missing-file",
+      "repo": "init",
+      "args": [
+        "--wait",
+        "nope.txt"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: no such file: <TMP>/repo/nope.txt\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "wait-relative",
+      "repo": "init",
+      "ops": [
+        {
+          "write": [
+            ".git/COMMIT_EDITMSG",
+            "feat: draft\n"
+          ]
+        }
+      ],
+      "args": [
+        "--wait",
+        ".git/COMMIT_EDITMSG"
+      ],
+      "check": {
+        "files": [
+          ".git/COMMIT_EDITMSG"
+        ],
+        "sentinels": true
+      },
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/repo/.git",
+          "--edit=<TMP>/repo/.git/COMMIT_EDITMSG",
+          "--wait=<TMP>/tmp/gitcito-wait.<ID>"
+        ],
+        "files": {
+          ".git/COMMIT_EDITMSG": "edited by the app\n"
+        },
+        "sentinels": 0
+      }
+    },
+    {
+      "name": "wait-outside-repo",
+      "ops": [
+        {
+          "write": [
+            "<TMP>/notes/todo.txt",
+            "pick 1\n"
+          ]
+        }
+      ],
+      "cwd": "<TMP>",
+      "args": [
+        "-w",
+        "<TMP>/notes/todo.txt"
+      ],
+      "check": {
+        "files": [
+          "<TMP>/notes/todo.txt"
+        ],
+        "sentinels": true
+      },
+      "expect": {
+        "stdout": "",
+        "stderr": "",
+        "code": 0,
+        "appArgs": [
+          "--open=<TMP>/notes",
+          "--edit=<TMP>/notes/todo.txt",
+          "--wait=<TMP>/tmp/gitcito-wait.<ID>"
+        ],
+        "files": {
+          "<TMP>/notes/todo.txt": "edited by the app\n"
+        },
+        "sentinels": 0
+      }
+    },
+    {
+      "name": "wait-no-app",
+      "repo": "init",
+      "app": false,
+      "ops": [
+        {
+          "write": [
+            ".git/COMMIT_EDITMSG",
+            "feat: draft\n"
+          ]
+        }
+      ],
+      "args": [
+        "--wait",
+        ".git/COMMIT_EDITMSG"
+      ],
+      "check": {
+        "files": [
+          ".git/COMMIT_EDITMSG"
+        ],
+        "sentinels": true
+      },
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito: could not find the Gitcito application binary\n",
+        "code": 1,
+        "appArgs": null,
+        "files": {
+          ".git/COMMIT_EDITMSG": "feat: draft\n"
+        },
+        "sentinels": 0
+      }
+    },
+    {
+      "name": "textconv-usage",
+      "bin": "textconv",
+      "cwd": "<TMP>",
+      "args": [],
+      "expect": {
+        "stdout": "",
+        "stderr": "usage: gitcito-textconv <file>\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "textconv-dash",
+      "bin": "textconv",
+      "cwd": "<TMP>",
+      "args": [
+        "-x"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "usage: gitcito-textconv <file>\n",
+        "code": 2,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "textconv-json",
+      "bin": "textconv",
+      "ops": [
+        {
+          "write": [
+            "<TMP>/c.json",
+            "{\"b\":1,\"a\":[2,{\"d\":3,\"c\":4}]}"
+          ]
+        }
+      ],
+      "cwd": "<TMP>",
+      "args": [
+        "<TMP>/c.json"
+      ],
+      "expect": {
+        "stdout": "{\n  \"a\": [\n    2,\n    {\n      \"c\": 4,\n      \"d\": 3\n    }\n  ],\n  \"b\": 1\n}\n",
+        "stderr": "",
+        "code": 0,
+        "appArgs": null
+      }
+    },
+    {
+      "name": "textconv-unsupported",
+      "bin": "textconv",
+      "ops": [
+        {
+          "write": [
+            "<TMP>/x.bin",
+            "zz"
+          ]
+        }
+      ],
+      "cwd": "<TMP>",
+      "args": [
+        "<TMP>/x.bin"
+      ],
+      "expect": {
+        "stdout": "",
+        "stderr": "gitcito-textconv: unsupported file type '.bin' (supported: .docx, .xlsx, .xls, .json, .xcstrings, .strings)\n",
+        "code": 1,
+        "appArgs": null
+      }
+    }
+  ]
+}

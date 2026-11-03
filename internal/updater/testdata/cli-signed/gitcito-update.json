@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "version": "99.0.0",
+  "notes": "Signed by the wails3 CLI.\n",
+  "publishedAt": "2026-11-03T14:00:29Z",
+  "artifacts": [
+    {
+      "url": "https://github.com/MyAppDesk/gitcito/releases/download/v99.0.0/Gitcito-darwin-amd64",
+      "platform": "darwin",
+      "arch": "amd64",
+      "size": 23,
+      "digestAlgo": "sha512",
+      "digest": "fLltFo/rZTQsidGVfY2RDPtHdYLEQm1psgNKpkMnI8yN5Ed80JH0cs1TxljrJfvfLteOWTKlhHUcPHambnvc9Q==",
+      "signatureAlgo": "ed25519ph",
+      "signature": "MNhViZWnv/m1SnfIKPkbQJyMIgUBZE1Eov7xiwt+oN3g6GOlvBTCsReJJBu42D2RYfatpk+NeTBSRF9Oc51HAQ=="
+    },
+    {
+      "url": "https://github.com/MyAppDesk/gitcito/releases/download/v99.0.0/Gitcito-darwin-arm64",
+      "platform": "darwin",
+      "arch": "arm64",
+      "size": 23,
+      "digestAlgo": "sha512",
+      "digest": "7nRpQdXLiTpiUUPCa6X7k6CqCtsfq67RJAG9Svf9GDmGMgHG9yH51jOQybiwmrggo0WTVABL8qGEaTbHWG/fXA==",
+      "signatureAlgo": "ed25519ph",
+      "signature": "zYCXPlVEakR4cviMXVMXCPUCRydE8Vkl1/aeQ8ERPbacvo5Nj/S/wIiP+EGRzXBrgyxs9EzWVNrxyTD3CC3eBg=="
+    },
+    {
+      "url": "https://github.com/MyAppDesk/gitcito/releases/download/v99.0.0/Gitcito-linux-amd64",
+      "platform": "linux",
+      "arch": "amd64",
+      "size": 22,
+      "digestAlgo": "sha512",
+      "digest": "biSUh0xmJSQaMliXaUS46DmFBpWrhizHQgv/tXh95kTm59GTcgm5vnj2hflQ8HdhY34ylfsfNjMo/WY0fNYf4A==",
+      "signatureAlgo": "ed25519ph",
+      "signature": "9h08QYkxyFxJDdY+ty+9Y5ju+2y8/9taW3dkksSdcE3HonIn4C0uCvE9LIYxlvB+aHpn4fiSwq/lY35nwtlZDQ=="
+    },
+    {
+      "url": "https://github.com/MyAppDesk/gitcito/releases/download/v99.0.0/Gitcito-linux-arm64",
+      "platform": "linux",
+      "arch": "arm64",
+      "size": 22,
+      "digestAlgo": "sha512",
+      "digest": "vdivvPOmwKbrcyjY1iN4MqtTHQpk2ASmww0tvCBJ2qAOdAtnIhL0jtLJDpdwhhPs4kPJ02kM5eHpMAtkjCiViw==",
+      "signatureAlgo": "ed25519ph",
+      "signature": "7/r3OE4qkMQ+ZOUqH+euTNkknjuYsO20/2BFe56bhiMto9sc6bnMSJKTfvZrBDuDN5iBqDoE/0V4ghLhCdrJAA=="
+    },
+    {
+      "url": "https://github.com/MyAppDesk/gitcito/releases/download/v99.0.0/Gitcito-windows-amd64",
+      "platform": "windows",
+      "arch": "amd64",
+      "size": 24,
+      "digestAlgo": "sha512",
+      "digest": "TewdYd0poZiX8HkILYIJnuZ8ws71kBqJXI1Lo3kYlLvs6kQwvkAlMdx4EflXrq1KvBrLKfTnL1PR/gxwTQW1gA==",
+      "signatureAlgo": "ed25519ph",
+      "signature": "+BhooTzirwLJcLPRNmQIZGaLY5U6/Z2sv94Jb2BKHuX0aBtuoJIzMasDis3RcbIE2Ouri0NHrUk0staYlKLrAQ=="
+    }
+  ]
+}
