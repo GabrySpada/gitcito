@@ -163,4 +163,3 @@ func TestWikiSchemaVectors(t *testing.T) {
 		assertCase(t, i, c, got)
 	}
 }
-

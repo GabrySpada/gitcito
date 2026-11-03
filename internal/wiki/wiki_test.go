@@ -177,7 +177,9 @@ func TestWikiChoosingWhatToRead(t *testing.T) {
 }
 
 func TestWikiPackingAPage(t *testing.T) {
-	file := func(path string, size int) PackedFile { return PackedFile{Path: path, Content: strings.Repeat("x", size)} }
+	file := func(path string, size int) PackedFile {
+		return PackedFile{Path: path, Content: strings.Repeat("x", size)}
+	}
 	n := func(v int) *int { return &v }
 	t.Run("clips a long file rather than dropping it", func(t *testing.T) {
 		pack := BuildPagePack([]PackedFile{file("a.ts", 500)}, PackOpts{MaxFileBytes: n(100)})
