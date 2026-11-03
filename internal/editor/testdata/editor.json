@@ -1,0 +1,479 @@
+{
+  "detect": [
+    {
+      "name": "linux: first executable on PATH, CLI names in preference order",
+      "platform": "linux",
+      "env": {
+        "PATH": "<ROOT>/bin1::<ROOT>/bin2:<ROOT>/missing",
+        "HOME": "<ROOT>/home"
+      },
+      "files": {
+        "bin1/code": "#!/bin/sh\n",
+        "bin1/cursor": "#!/bin/sh\n",
+        "bin1/zed": "#!/bin/sh\n",
+        "bin2/code-insiders": "#!/bin/sh\n",
+        "bin2/code": "#!/bin/sh\n",
+        "bin2/subl": null,
+        "bin2/webstorm": "#!/bin/sh\n",
+        "bin1/pycharm": "#!/bin/sh\n",
+        "bin2/xed": "#!/bin/sh\n",
+        "home/Applications/Windsurf.app": null
+      },
+      "modes": {
+        "bin1/code": 420,
+        "bin1/cursor": 493,
+        "bin1/zed": 448,
+        "bin2/code-insiders": 493,
+        "bin2/code": 493,
+        "bin2/webstorm": 493,
+        "bin1/pycharm": 493,
+        "bin2/xed": 493
+      },
+      "result": [
+        {
+          "id": "vscode",
+          "name": "Visual Studio Code",
+          "command": "<ROOT>/bin2/code",
+          "source": "cli"
+        },
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "command": "<ROOT>/bin1/cursor",
+          "source": "cli"
+        },
+        {
+          "id": "zed",
+          "name": "Zed",
+          "command": "<ROOT>/bin1/zed",
+          "source": "cli"
+        },
+        {
+          "id": "sublime",
+          "name": "Sublime Text",
+          "command": "<ROOT>/bin2/subl",
+          "source": "cli"
+        },
+        {
+          "id": "jetbrains",
+          "name": "JetBrains IDE",
+          "command": "<ROOT>/bin2/webstorm",
+          "source": "cli"
+        },
+        {
+          "id": "xcode",
+          "name": "Xcode",
+          "command": "<ROOT>/bin2/xed",
+          "source": "cli"
+        }
+      ]
+    },
+    {
+      "name": "linux: nothing found",
+      "platform": "linux",
+      "env": {
+        "PATH": "",
+        "HOME": "<ROOT>/home"
+      },
+      "files": {
+        "home/.keep": ""
+      },
+      "modes": {},
+      "result": []
+    },
+    {
+      "name": "macOS: CLI first, then bundles under ~/Applications",
+      "platform": "darwin",
+      "env": {
+        "PATH": "<ROOT>/bin",
+        "HOME": "<ROOT>/home"
+      },
+      "files": {
+        "bin/code": "#!/bin/sh\n",
+        "home/Applications/Visual Studio Code.app": null,
+        "home/Applications/Cursor.app": null,
+        "home/Applications/Zed.app": "",
+        "home/Applications/PyCharm.app": null,
+        "home/Applications/GoLand.app": null
+      },
+      "modes": {
+        "bin/code": 493
+      },
+      "result": [
+        {
+          "id": "vscode",
+          "name": "Visual Studio Code",
+          "command": "<ROOT>/bin/code",
+          "source": "cli"
+        },
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "command": "<ROOT>/home/Applications/Cursor.app",
+          "source": "app"
+        },
+        {
+          "id": "zed",
+          "name": "Zed",
+          "command": "<ROOT>/home/Applications/Zed.app",
+          "source": "app"
+        },
+        {
+          "id": "jetbrains",
+          "name": "JetBrains IDE",
+          "command": "<ROOT>/home/Applications/PyCharm.app",
+          "source": "app"
+        }
+      ]
+    },
+    {
+      "name": "Windows: .cmd/.exe/.bat on PATH, then Program Files roots",
+      "platform": "win32",
+      "env": {
+        "PATH": "<ROOT>/bin",
+        "HOME": "<ROOT>/home",
+        "ProgramFiles": "<ROOT>/pf",
+        "LOCALAPPDATA": "<ROOT>/la"
+      },
+      "files": {
+        "bin/code.cmd": "",
+        "bin/zed.exe": "",
+        "bin/subl.bat": "",
+        "bin/cursor": "",
+        "pf/Zed\\zed.exe": "",
+        "la/Programs/Sublime Text\\subl.exe": "",
+        "la/Programs/Windsurf\\Windsurf.exe": "",
+        "pf/cursor\\Cursor.exe": ""
+      },
+      "modes": {
+        "bin/code.cmd": 493,
+        "bin/zed.exe": 420,
+        "bin/subl.bat": 493,
+        "bin/cursor": 493
+      },
+      "result": [
+        {
+          "id": "vscode",
+          "name": "Visual Studio Code",
+          "command": "<ROOT>/bin/code.cmd",
+          "source": "cli"
+        },
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "command": "<ROOT>/pf/cursor\\Cursor.exe",
+          "source": "cli"
+        },
+        {
+          "id": "windsurf",
+          "name": "Windsurf",
+          "command": "<ROOT>/la/Programs/Windsurf\\Windsurf.exe",
+          "source": "cli"
+        },
+        {
+          "id": "zed",
+          "name": "Zed",
+          "command": "<ROOT>/pf/Zed\\zed.exe",
+          "source": "cli"
+        },
+        {
+          "id": "sublime",
+          "name": "Sublime Text",
+          "command": "<ROOT>/bin/subl.bat",
+          "source": "cli"
+        }
+      ]
+    },
+    {
+      "name": "Windows: the x86 root",
+      "platform": "win32",
+      "env": {
+        "PATH": "",
+        "HOME": "<ROOT>/home",
+        "ProgramFiles(x86)": "<ROOT>/pf86"
+      },
+      "files": {
+        "pf86/Microsoft VS Code\\Code.exe": ""
+      },
+      "modes": {},
+      "result": [
+        {
+          "id": "vscode",
+          "name": "Visual Studio Code",
+          "command": "<ROOT>/pf86/Microsoft VS Code\\Code.exe",
+          "source": "cli"
+        }
+      ]
+    }
+  ],
+  "open": [
+    {
+      "name": "VS Code at a line, detached",
+      "bins": [
+        "code"
+      ],
+      "replies": [
+        {}
+      ],
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "<ROOT>/fakebin/code",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a b.ts",
+        "line": 7
+      },
+      "waitFor": 1,
+      "result": "",
+      "calls": [
+        {
+          "argv": [
+            "code",
+            "-g",
+            "/r/a b.ts:7:1"
+          ],
+          "env": {},
+          "leader": "yes"
+        }
+      ]
+    },
+    {
+      "name": "a bare command is looked up on PATH",
+      "bins": [
+        "subl"
+      ],
+      "replies": [
+        {}
+      ],
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "subl",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 3,
+        "col": 9
+      },
+      "waitFor": 1,
+      "result": "",
+      "calls": [
+        {
+          "argv": [
+            "subl",
+            "/r/a.ts:3:9"
+          ],
+          "env": {},
+          "leader": "yes"
+        }
+      ]
+    },
+    {
+      "name": "a custom template with the workspace",
+      "bins": [
+        "myed"
+      ],
+      "replies": [
+        {}
+      ],
+      "setting": {
+        "id": "custom",
+        "name": "Mine",
+        "command": "<ROOT>/fakebin/myed",
+        "source": "cli",
+        "fileArgs": "--ws \"{repo}\" +{line} \"{path}\"",
+        "folderArgs": "--ws {repo}"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 2,
+        "repo": "/r"
+      },
+      "waitFor": 1,
+      "result": "",
+      "calls": [
+        {
+          "argv": [
+            "myed",
+            "--ws",
+            "/r",
+            "+2",
+            "/r/my file.ts"
+          ],
+          "env": {},
+          "leader": "yes"
+        }
+      ]
+    },
+    {
+      "name": "a folder",
+      "bins": [
+        "idea"
+      ],
+      "replies": [
+        {}
+      ],
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "<ROOT>/fakebin/idea",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "waitFor": 1,
+      "result": "",
+      "calls": [
+        {
+          "argv": [
+            "idea",
+            "/r"
+          ],
+          "env": {},
+          "leader": "yes"
+        }
+      ]
+    },
+    {
+      "name": "a macOS bundle goes through open -a",
+      "bins": [
+        "open"
+      ],
+      "replies": [
+        {
+          "argv": [
+            "open",
+            "-a",
+            "/Applications/Visual Studio Code.app",
+            "/r/a.ts"
+          ]
+        }
+      ],
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "result": "",
+      "calls": [
+        {
+          "argv": [
+            "open",
+            "-a",
+            "/Applications/Visual Studio Code.app",
+            "/r/a.ts"
+          ],
+          "env": {},
+          "leader": "no"
+        }
+      ]
+    },
+    {
+      "name": "open -a failing reports the error",
+      "bins": [
+        "open"
+      ],
+      "replies": [
+        {
+          "argv": [
+            "open",
+            "-a",
+            "Nope",
+            "/r/a.ts"
+          ],
+          "code": 1,
+          "stderr": "Unable to find application named 'Nope'\n"
+        }
+      ],
+      "setting": {
+        "id": "custom",
+        "name": "Nope",
+        "command": "Nope",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "result": "Command failed: open -a Nope /r/a.ts\nUnable to find application named 'Nope'\n",
+      "calls": [
+        {
+          "argv": [
+            "open",
+            "-a",
+            "Nope",
+            "/r/a.ts"
+          ],
+          "env": {},
+          "leader": "no"
+        }
+      ]
+    },
+    {
+      "name": "open missing reports the spawn error",
+      "bins": [],
+      "replies": [],
+      "setting": {
+        "id": "custom",
+        "name": "Nope",
+        "command": "Nope",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "result": "spawn open ENOENT",
+      "calls": []
+    },
+    {
+      "name": "no setting",
+      "bins": [],
+      "replies": [],
+      "setting": null,
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "result": "No editor is configured.",
+      "calls": []
+    },
+    {
+      "name": "no command",
+      "bins": [],
+      "replies": [],
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "result": "No editor is configured.",
+      "calls": []
+    },
+    {
+      "name": "no target",
+      "bins": [],
+      "replies": [],
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/bin/code",
+        "source": "cli"
+      },
+      "target": null,
+      "result": "No editor is configured.",
+      "calls": []
+    }
+  ]
+}

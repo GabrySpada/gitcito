@@ -1,0 +1,440 @@
+{
+  "parse": [
+    {
+      "stdout": "'git difftool --tool=<tool>' may be set to one of the following:\n\t\taraxis           Use Araxis Merge (requires a graphical session)\n\t\topendiff         Use FileMerge (requires a graphical session)\n\t\tvimdiff          Use Vim\n\nThe following tools are valid, but not currently available:\n\t\tbc               Use Beyond Compare (requires a graphical session)\n\t\tmeld             Use Meld (requires a graphical session)\n\nSome of the tools listed above only work in a windowed\nenvironment. If run in a terminal-only session, they will fail.",
+      "out": [
+        {
+          "id": "araxis",
+          "description": "Use Araxis Merge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "opendiff",
+          "description": "Use FileMerge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "vimdiff",
+          "description": "Use Vim",
+          "available": true
+        },
+        {
+          "id": "bc",
+          "description": "Use Beyond Compare (requires a graphical session)",
+          "available": false
+        },
+        {
+          "id": "meld",
+          "description": "Use Meld (requires a graphical session)",
+          "available": false
+        }
+      ]
+    },
+    {
+      "stdout": "'git difftool --tool=<tool>' may be set to one of the following:\r\n\t\taraxis           Use Araxis Merge (requires a graphical session)\r\n\t\topendiff         Use FileMerge (requires a graphical session)\r\n\t\tvimdiff          Use Vim\r\n\r\nThe following tools are valid, but not currently available:\r\n\t\tbc               Use Beyond Compare (requires a graphical session)\r\n\t\tmeld             Use Meld (requires a graphical session)\r\n\r\nSome of the tools listed above only work in a windowed\r\nenvironment. If run in a terminal-only session, they will fail.",
+      "out": [
+        {
+          "id": "araxis",
+          "description": "Use Araxis Merge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "opendiff",
+          "description": "Use FileMerge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "vimdiff",
+          "description": "Use Vim",
+          "available": true
+        },
+        {
+          "id": "bc",
+          "description": "Use Beyond Compare (requires a graphical session)",
+          "available": false
+        },
+        {
+          "id": "meld",
+          "description": "Use Meld (requires a graphical session)",
+          "available": false
+        }
+      ]
+    },
+    {
+      "stdout": "",
+      "out": []
+    },
+    {
+      "stdout": "fatal: not a git repository",
+      "out": []
+    },
+    {
+      "stdout": "'git mergetool --tool=<tool>' may be set to one of the following:\n\t\tvimdiff\t\tUse Vim with a custom layout (see `git help mergetool`'s `BACKEND SPECIFIC HINTS` section)\n\t\tnvimdiff1        Use Neovim with a custom layout\n\t\tmy.tool+x        Custom\n\t\tmy_tool-2\n\t\tbad/id           Slash is not an id\n   weird          Non-breaking space indent\n\t\tcafé             Accented id\n\nThe following tools are valid, but NOT CURRENTLY AVAILABLE:\n\t\tkdiff3           Use KDiff3 (requires a graphical session)   \n\t\tsmerge\r\n\tSome of the tools listed above only work in a windowed\n\tenvironment.\n\t\tTortoiseMerge    Windows only\n\t\ttool\rwith       carriage return inside",
+      "out": [
+        {
+          "id": "vimdiff",
+          "description": "Use Vim with a custom layout (see `git help mergetool`'s `BACKEND SPECIFIC HINTS` section)",
+          "available": true
+        },
+        {
+          "id": "nvimdiff1",
+          "description": "Use Neovim with a custom layout",
+          "available": true
+        },
+        {
+          "id": "my.tool+x",
+          "description": "Custom",
+          "available": true
+        },
+        {
+          "id": "my_tool-2",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "weird",
+          "description": "Non-breaking space indent",
+          "available": true
+        },
+        {
+          "id": "kdiff3",
+          "description": "Use KDiff3 (requires a graphical session)",
+          "available": false
+        },
+        {
+          "id": "smerge",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "Some",
+          "description": "of the tools listed above only work in a windowed",
+          "available": false
+        },
+        {
+          "id": "environment.",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "TortoiseMerge",
+          "description": "Windows only",
+          "available": false
+        },
+        {
+          "id": "tool",
+          "description": "with       carriage return inside",
+          "available": false
+        }
+      ]
+    },
+    {
+      "stdout": "user-defined:\n\t\tmine.cmd   echo\n\t\t\n\t\t\t\n",
+      "out": [
+        {
+          "id": "mine.cmd",
+          "description": "echo",
+          "available": true
+        }
+      ]
+    }
+  ],
+  "sort": [
+    {
+      "tools": [
+        {
+          "id": "araxis",
+          "description": "Use Araxis Merge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "opendiff",
+          "description": "Use FileMerge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "vimdiff",
+          "description": "Use Vim",
+          "available": true
+        },
+        {
+          "id": "bc",
+          "description": "Use Beyond Compare (requires a graphical session)",
+          "available": false
+        },
+        {
+          "id": "meld",
+          "description": "Use Meld (requires a graphical session)",
+          "available": false
+        }
+      ],
+      "out": [
+        {
+          "id": "araxis",
+          "description": "Use Araxis Merge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "opendiff",
+          "description": "Use FileMerge (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "vimdiff",
+          "description": "Use Vim",
+          "available": true
+        },
+        {
+          "id": "bc",
+          "description": "Use Beyond Compare (requires a graphical session)",
+          "available": false
+        },
+        {
+          "id": "meld",
+          "description": "Use Meld (requires a graphical session)",
+          "available": false
+        }
+      ]
+    },
+    {
+      "tools": [
+        {
+          "id": "Meld",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "araxis",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "bc",
+          "description": "a",
+          "available": false
+        },
+        {
+          "id": "bc",
+          "description": "b",
+          "available": false
+        },
+        {
+          "id": "vimdiff",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "nvimdiff10",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "nvimdiff2",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "nvimdiff1",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my.tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my-tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my_tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my+tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "mytool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "MyTool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "bc3",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "bc4",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "BC",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "tortoisemerge",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "TortoiseMerge",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "xxdiff",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "emerge",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "p4merge",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "p4",
+          "description": "",
+          "available": true
+        }
+      ],
+      "out": [
+        {
+          "id": "araxis",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "emerge",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my_tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my-tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my.tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "my+tool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "mytool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "MyTool",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "nvimdiff1",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "nvimdiff10",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "nvimdiff2",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "p4",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "p4merge",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "vimdiff",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "xxdiff",
+          "description": "",
+          "available": true
+        },
+        {
+          "id": "bc",
+          "description": "a",
+          "available": false
+        },
+        {
+          "id": "bc",
+          "description": "b",
+          "available": false
+        },
+        {
+          "id": "BC",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "bc3",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "bc4",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "Meld",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "tortoisemerge",
+          "description": "",
+          "available": false
+        },
+        {
+          "id": "TortoiseMerge",
+          "description": "",
+          "available": false
+        }
+      ]
+    },
+    {
+      "tools": [],
+      "out": []
+    }
+  ]
+}
