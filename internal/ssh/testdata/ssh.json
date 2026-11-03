@@ -1,0 +1,1997 @@
+[
+  {
+    "name": "status with keys, one of them in the agent",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "stdout": "256 SHA256:aaa me@example.com (ED25519)\n"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_ed25519.pub"
+        ],
+        "stdout": "256 SHA256:aaa me@example.com (ED25519)\n",
+        "code": 0
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_rsa.pub"
+        ],
+        "stdout": "3072 SHA256:bbb no comment (RSA)\n",
+        "code": 0
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/broken.pub"
+        ],
+        "stdout": "",
+        "code": 255,
+        "stderr": "<ROOT>/ssh/broken.pub is not a public key file.\n"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/folder.pub"
+        ],
+        "stdout": "256 SHA256:ddd folder (ED25519)\n",
+        "code": 0
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/Work Key.pub"
+        ],
+        "stdout": "256 SHA256:ccc laptop key (ECDSA)\n",
+        "code": 0
+      }
+    ],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/ssh",
+      "keys": [
+        {
+          "file": "folder.pub",
+          "path": "<ROOT>/ssh/folder.pub",
+          "type": "ed25519",
+          "bits": 256,
+          "fingerprint": "SHA256:ddd",
+          "comment": "folder",
+          "publicKey": "",
+          "inAgent": false,
+          "hasPrivate": false
+        },
+        {
+          "file": "id_ed25519.pub",
+          "path": "<ROOT>/ssh/id_ed25519.pub",
+          "type": "ed25519",
+          "bits": 256,
+          "fingerprint": "SHA256:aaa",
+          "comment": "me@example.com",
+          "publicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com",
+          "inAgent": true,
+          "hasPrivate": true
+        },
+        {
+          "file": "id_rsa.pub",
+          "path": "<ROOT>/ssh/id_rsa.pub",
+          "type": "rsa",
+          "bits": 3072,
+          "fingerprint": "SHA256:bbb",
+          "comment": "",
+          "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample",
+          "inAgent": false,
+          "hasPrivate": false
+        },
+        {
+          "file": "Work Key.pub",
+          "path": "<ROOT>/ssh/Work Key.pub",
+          "type": "ecdsa",
+          "bits": 256,
+          "fingerprint": "SHA256:ccc",
+          "comment": "laptop key",
+          "publicKey": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key",
+          "inAgent": false,
+          "hasPrivate": true
+        }
+      ],
+      "agentRunning": true
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/broken.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/folder.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_ed25519.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_rsa.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/Work Key.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "status with no agent to talk to",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "code": 2,
+        "stderr": "Could not open a connection to your authentication agent.\n"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_ed25519.pub"
+        ],
+        "stdout": "256 SHA256:aaa me@example.com (ED25519)\n",
+        "code": 0
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_rsa.pub"
+        ],
+        "stdout": "3072 SHA256:bbb no comment (RSA)\n",
+        "code": 0
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/broken.pub"
+        ],
+        "stdout": "",
+        "code": 255,
+        "stderr": "<ROOT>/ssh/broken.pub is not a public key file.\n"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/folder.pub"
+        ],
+        "stdout": "256 SHA256:ddd folder (ED25519)\n",
+        "code": 0
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/Work Key.pub"
+        ],
+        "stdout": "256 SHA256:ccc laptop key (ECDSA)\n",
+        "code": 0
+      }
+    ],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/ssh",
+      "keys": [
+        {
+          "file": "folder.pub",
+          "path": "<ROOT>/ssh/folder.pub",
+          "type": "ed25519",
+          "bits": 256,
+          "fingerprint": "SHA256:ddd",
+          "comment": "folder",
+          "publicKey": "",
+          "inAgent": false,
+          "hasPrivate": false
+        },
+        {
+          "file": "id_ed25519.pub",
+          "path": "<ROOT>/ssh/id_ed25519.pub",
+          "type": "ed25519",
+          "bits": 256,
+          "fingerprint": "SHA256:aaa",
+          "comment": "me@example.com",
+          "publicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com",
+          "inAgent": false,
+          "hasPrivate": true
+        },
+        {
+          "file": "id_rsa.pub",
+          "path": "<ROOT>/ssh/id_rsa.pub",
+          "type": "rsa",
+          "bits": 3072,
+          "fingerprint": "SHA256:bbb",
+          "comment": "",
+          "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample",
+          "inAgent": false,
+          "hasPrivate": false
+        },
+        {
+          "file": "Work Key.pub",
+          "path": "<ROOT>/ssh/Work Key.pub",
+          "type": "ecdsa",
+          "bits": 256,
+          "fingerprint": "SHA256:ccc",
+          "comment": "laptop key",
+          "publicKey": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key",
+          "inAgent": false,
+          "hasPrivate": true
+        }
+      ],
+      "agentRunning": false
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/broken.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/folder.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_ed25519.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_rsa.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/Work Key.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "status with an empty agent",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAA me\n"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "code": 1,
+        "stdout": "The agent has no identities.\n"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_ed25519.pub"
+        ],
+        "stdout": "256 SHA256:aaa me@example.com (ED25519)\n",
+        "code": 0
+      }
+    ],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/ssh",
+      "keys": [
+        {
+          "file": "id_ed25519.pub",
+          "path": "<ROOT>/ssh/id_ed25519.pub",
+          "type": "ed25519",
+          "bits": 256,
+          "fingerprint": "SHA256:aaa",
+          "comment": "me@example.com",
+          "publicKey": "ssh-ed25519 AAAA me",
+          "inAgent": false,
+          "hasPrivate": false
+        }
+      ],
+      "agentRunning": true
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_ed25519.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "status when the agent socket is dead",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAA me\n"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "code": 2,
+        "stderr": "Error connecting to agent: No such file or directory\n"
+      }
+    ],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/ssh",
+      "keys": [],
+      "agentRunning": false
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/ssh/id_ed25519.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "status without any ssh binaries",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [],
+    "replies": [],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/ssh",
+      "keys": [],
+      "agentRunning": true
+    },
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "status when the directory does not exist",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/absent",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/absent",
+      "keys": [],
+      "agentRunning": false
+    },
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "status ignores GITCITO_SSH_DIR outside shot mode",
+    "shot": false,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/home/.ssh",
+      "keys": [],
+      "agentRunning": false
+    },
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "status reads ~/.ssh outside shot mode",
+    "shot": false,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "home/.ssh/id_ed25519.pub": "ssh-ed25519 AAAA home\n",
+      "ssh/id_rsa.pub": "ssh-rsa AAAA other\n"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "stdout": ""
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/home/.ssh/id_ed25519.pub"
+        ],
+        "stdout": "256 SHA256:hhh home (ED25519)\n"
+      }
+    ],
+    "call": {
+      "method": "status",
+      "args": []
+    },
+    "result": {
+      "dir": "<ROOT>/home/.ssh",
+      "keys": [
+        {
+          "file": "id_ed25519.pub",
+          "path": "<ROOT>/home/.ssh/id_ed25519.pub",
+          "type": "ed25519",
+          "bits": 256,
+          "fingerprint": "SHA256:hhh",
+          "comment": "home",
+          "publicKey": "ssh-ed25519 AAAA home",
+          "inAgent": false,
+          "hasPrivate": false
+        }
+      ],
+      "agentRunning": true
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "-l"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "ssh-keygen",
+          "-lf",
+          "<ROOT>/home/.ssh/id_ed25519.pub"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate creates the directory and sanitises the name",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/new/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/new/ssh/mykey@host",
+          "-C",
+          "me@example.com",
+          "-N",
+          ""
+        ],
+        "stdout": "Generating public/private ed25519 key pair.\n",
+        "create": [
+          "<ROOT>/new/ssh/mykey@host",
+          "<ROOT>/new/ssh/mykey@host.pub"
+        ]
+      }
+    ],
+    "call": {
+      "method": "generate",
+      "args": [
+        "  my key!@host  ",
+        "  me@example.com  ",
+        ""
+      ]
+    },
+    "modeOf": "<ROOT>/new/ssh",
+    "result": "<ROOT>/new/ssh/mykey@host.pub",
+    "calls": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/new/ssh/mykey@host",
+          "-C",
+          "me@example.com",
+          "-N",
+          ""
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true,
+    "mode": 448
+  },
+  {
+    "name": "generate keeps dots, dashes and underscores and drops a slash",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/a.b-c_dx",
+          "-C",
+          "",
+          "-N",
+          ""
+        ],
+        "create": [
+          "<ROOT>/ssh/a.b-c_dx.pub"
+        ]
+      }
+    ],
+    "call": {
+      "method": "generate",
+      "args": [
+        "a.b-c_d/x",
+        "",
+        ""
+      ]
+    },
+    "modeOf": "<ROOT>/ssh",
+    "result": "<ROOT>/ssh/a.b-c_dx.pub",
+    "calls": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/a.b-c_dx",
+          "-C",
+          "",
+          "-N",
+          ""
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true,
+    "mode": 448
+  },
+  {
+    "name": "generate surfaces ssh-keygen stderr when no key appeared",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/x",
+          "-C",
+          "c",
+          "-N",
+          ""
+        ],
+        "code": 1,
+        "stderr": "  Saving key \"x\" failed: Permission denied\n"
+      }
+    ],
+    "call": {
+      "method": "generate",
+      "args": [
+        "x",
+        "c",
+        ""
+      ]
+    },
+    "error": "Saving key \"x\" failed: Permission denied",
+    "calls": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/x",
+          "-C",
+          "c",
+          "-N",
+          ""
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate falls back to a generic message",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/x",
+          "-C",
+          "c",
+          "-N",
+          ""
+        ],
+        "code": 1
+      }
+    ],
+    "call": {
+      "method": "generate",
+      "args": [
+        "x",
+        "c",
+        ""
+      ]
+    },
+    "error": "ssh-keygen failed.",
+    "calls": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/x",
+          "-C",
+          "c",
+          "-N",
+          ""
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate without ssh-keygen",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/.keep": ""
+    },
+    "bins": [],
+    "replies": [],
+    "call": {
+      "method": "generate",
+      "args": [
+        "x",
+        "c",
+        ""
+      ]
+    },
+    "error": "ssh-keygen failed.",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate trusts the .pub, not the exit code",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/x",
+          "-C",
+          "c",
+          "-N",
+          ""
+        ],
+        "code": 1,
+        "stderr": "warning\n",
+        "create": [
+          "<ROOT>/ssh/x.pub"
+        ]
+      }
+    ],
+    "call": {
+      "method": "generate",
+      "args": [
+        "x",
+        "c",
+        ""
+      ]
+    },
+    "result": "<ROOT>/ssh/x.pub",
+    "calls": [
+      {
+        "argv": [
+          "ssh-keygen",
+          "-t",
+          "ed25519",
+          "-f",
+          "<ROOT>/ssh/x",
+          "-C",
+          "c",
+          "-N",
+          ""
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate refuses an empty name",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "generate",
+      "args": [
+        "  !!! //  ",
+        "c",
+        ""
+      ]
+    },
+    "error": "A file name is required.",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate refuses to overwrite a private key",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "generate",
+      "args": [
+        "id_ed25519",
+        "c",
+        ""
+      ]
+    },
+    "error": "A key called \"id_ed25519\" already exists. Choose another name.",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate refuses when only the public half exists",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "generate",
+      "args": [
+        "id_rsa",
+        "c",
+        ""
+      ]
+    },
+    "error": "A key called \"id_rsa\" already exists. Choose another name.",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "generate refuses a name that resolves to a directory",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "generate",
+      "args": [
+        "..",
+        "c",
+        ""
+      ]
+    },
+    "error": "A key called \"..\" already exists. Choose another name.",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add refuses a key whose private half is missing",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_rsa.pub",
+        "secret"
+      ]
+    },
+    "result": "The private key for this entry is not on this machine.",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add without a passphrase",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "stderr": "Identity added: <ROOT>/ssh/id_ed25519 (me@example.com)\n"
+      }
+    ],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        ""
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add that prints nothing is a success",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/Work Key"
+        ]
+      }
+    ],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/Work Key.pub",
+        ""
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/Work Key"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add failure without a passphrase",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "code": 2,
+        "stdout": "partial\n",
+        "stderr": "  Could not open a connection to your authentication agent.\n"
+      }
+    ],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        ""
+      ]
+    },
+    "result": "partial\n  Could not open a connection to your authentication agent.",
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add with a passphrase goes through an askpass helper",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "stderr": "Identity added: <ROOT>/ssh/id_ed25519 (me@example.com)\n"
+      }
+    ],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        "hunter2 \"$HOME\" `id` \\ 'q' é"
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "env": {
+          "DISPLAY": ":0",
+          "SSH_ASKPASS": "<ASKPASS>",
+          "SSH_ASKPASS_REQUIRE": "force",
+          "GITCITO_SSH_PASSPHRASE": "hunter2 \"$HOME\" `id` \\ 'q' é"
+        },
+        "askpass": "hunter2 \"$HOME\" `id` \\ 'q' é",
+        "askpassScript": "#!/bin/sh\nprintf %s \"$GITCITO_SSH_PASSPHRASE\"\n",
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add with a wrong passphrase",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "code": 1,
+        "stderr": "Bad passphrase, try again for <ROOT>/ssh/id_ed25519: \n"
+      }
+    ],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        "wrong"
+      ]
+    },
+    "result": "Bad passphrase, try again for <ROOT>/ssh/id_ed25519:",
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "env": {
+          "DISPLAY": ":0",
+          "SSH_ASKPASS": "<ASKPASS>",
+          "SSH_ASKPASS_REQUIRE": "force",
+          "GITCITO_SSH_PASSPHRASE": "wrong"
+        },
+        "askpass": "wrong",
+        "askpassScript": "#!/bin/sh\nprintf %s \"$GITCITO_SSH_PASSPHRASE\"\n",
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add on macOS keeps the passphrase in the keychain",
+    "platform": "darwin",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "--apple-use-keychain",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "stderr": "Identity added: x\n"
+      }
+    ],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        ""
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "--apple-use-keychain",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add on macOS with a passphrase",
+    "platform": "darwin",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh-add",
+          "--apple-use-keychain",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "stderr": "Identity added: x\n"
+      }
+    ],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        "pw"
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "ssh-add",
+          "--apple-use-keychain",
+          "<ROOT>/ssh/id_ed25519"
+        ],
+        "env": {
+          "DISPLAY": ":0",
+          "SSH_ASKPASS": "<ASKPASS>",
+          "SSH_ASKPASS_REQUIRE": "force",
+          "GITCITO_SSH_PASSPHRASE": "pw"
+        },
+        "askpass": "pw",
+        "askpassScript": "#!/bin/sh\nprintf %s \"$GITCITO_SSH_PASSPHRASE\"\n",
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add without ssh-add",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [],
+    "replies": [],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        ""
+      ]
+    },
+    "result": "",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "add with a passphrase without ssh-add",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "files": {
+      "ssh/id_ed25519": "PRIVATE — never read\n",
+      "ssh/id_ed25519.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExample me@example.com\n",
+      "ssh/id_rsa.pub": "﻿  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQExample  \n\n",
+      "ssh/broken.pub": "not a key\n",
+      "ssh/folder.pub": null,
+      "ssh/Work Key.pub": "ecdsa-sha2-nistp256 AAAAE2VjZHNhExample laptop key\n",
+      "ssh/Work Key": "PRIVATE\n",
+      "ssh/config": "Host *\n",
+      "ssh/known_hosts": "github.com ssh-ed25519 AAAA\n",
+      "home/.keep": ""
+    },
+    "bins": [],
+    "replies": [],
+    "call": {
+      "method": "addToAgent",
+      "args": [
+        "<ROOT>/ssh/id_ed25519.pub",
+        "pw"
+      ]
+    },
+    "result": "",
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "test reads GitHub success out of a failing exit code",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "StrictHostKeyChecking=accept-new",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "ConnectTimeout=10",
+          "git@github.com"
+        ],
+        "code": 1,
+        "stderr": "Hi octocat! You've successfully authenticated, but GitHub does not provide shell access.\n"
+      }
+    ],
+    "call": {
+      "method": "test",
+      "args": [
+        "github"
+      ]
+    },
+    "result": {
+      "result": "ok",
+      "output": "Hi octocat! You've successfully authenticated, but GitHub does not provide shell access."
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "StrictHostKeyChecking=accept-new",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "ConnectTimeout=10",
+          "git@github.com"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "test denied on GitLab",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "StrictHostKeyChecking=accept-new",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "ConnectTimeout=10",
+          "git@gitlab.com"
+        ],
+        "code": 255,
+        "stdout": "\n",
+        "stderr": "git@gitlab.com: Permission denied (publickey).\n"
+      }
+    ],
+    "call": {
+      "method": "test",
+      "args": [
+        "gitlab"
+      ]
+    },
+    "result": {
+      "result": "denied",
+      "output": "git@gitlab.com: Permission denied (publickey)."
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "StrictHostKeyChecking=accept-new",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "ConnectTimeout=10",
+          "git@gitlab.com"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "test unreachable on Bitbucket",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "StrictHostKeyChecking=accept-new",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "ConnectTimeout=10",
+          "git@bitbucket.org"
+        ],
+        "code": 255,
+        "stderr": "ssh: Could not resolve hostname bitbucket.org: Temporary failure in name resolution\n"
+      }
+    ],
+    "call": {
+      "method": "test",
+      "args": [
+        "bitbucket"
+      ]
+    },
+    "result": {
+      "result": "unreachable",
+      "output": "ssh: Could not resolve hostname bitbucket.org: Temporary failure in name resolution"
+    },
+    "calls": [
+      {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "StrictHostKeyChecking=accept-new",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "ConnectTimeout=10",
+          "git@bitbucket.org"
+        ],
+        "env": {
+          "DISPLAY": "",
+          "SSH_ASKPASS": "",
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ],
+    "askpassRemoved": true
+  },
+  {
+    "name": "test without ssh",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "bins": [],
+    "replies": [],
+    "call": {
+      "method": "test",
+      "args": [
+        "azure"
+      ]
+    },
+    "result": {
+      "result": "unknown",
+      "output": ""
+    },
+    "calls": [],
+    "askpassRemoved": true
+  },
+  {
+    "name": "test refuses a host it has no endpoint for",
+    "shot": true,
+    "env": {
+      "GITCITO_SSH_DIR": "<ROOT>/ssh",
+      "HOME": "<ROOT>/home"
+    },
+    "bins": [
+      "ssh",
+      "ssh-add",
+      "ssh-keygen"
+    ],
+    "replies": [],
+    "call": {
+      "method": "test",
+      "args": [
+        "example.com"
+      ]
+    },
+    "result": {
+      "result": "unknown",
+      "output": "Unknown host: example.com"
+    },
+    "calls": [],
+    "askpassRemoved": true
+  }
+]

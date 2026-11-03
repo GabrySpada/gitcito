@@ -1,0 +1,1099 @@
+[
+  {
+    "name": "config reads both lists and the three keys",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--tool-help"
+        ],
+        "stdout": "'git difftool --tool=<tool>' may be set to one of the following:\n\t\tvimdiff          Use Vim\n\t\tmeld             Use Meld (requires a graphical session)\n\nThe following tools are valid, but not currently available:\n\t\tbc               Use Beyond Compare (requires a graphical session)\n\t\taraxis           Use Araxis Merge (requires a graphical session)\n\nSome of the tools listed above only work in a windowed\nenvironment. If run in a terminal-only session, they will fail.\n"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--tool-help"
+        ],
+        "stdout": "'git mergetool --tool=<tool>' may be set to one of the following:\n\t\tvimdiff          Use Vim\n\t\tmeld             Use Meld (requires a graphical session)\n\nThe following tools are valid, but not currently available:\n\t\tbc               Use Beyond Compare (requires a graphical session)\n\t\taraxis           Use Araxis Merge (requires a graphical session)\n\nSome of the tools listed above only work in a windowed\nenvironment. If run in a terminal-only session, they will fail.\n",
+        "code": 1
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "diff.tool"
+        ],
+        "stdout": "  vimdiff \n"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "merge.tool"
+        ],
+        "code": 1
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "mergetool.keepBackup"
+        ],
+        "stdout": "false\n"
+      }
+    ],
+    "call": {
+      "method": "config",
+      "args": [
+        "<ROOT>/repo"
+      ]
+    },
+    "result": {
+      "diffTool": "vimdiff",
+      "mergeTool": "",
+      "diffTools": [
+        {
+          "id": "meld",
+          "description": "Use Meld (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "vimdiff",
+          "description": "Use Vim",
+          "available": true
+        },
+        {
+          "id": "araxis",
+          "description": "Use Araxis Merge (requires a graphical session)",
+          "available": false
+        },
+        {
+          "id": "bc",
+          "description": "Use Beyond Compare (requires a graphical session)",
+          "available": false
+        }
+      ],
+      "mergeTools": [
+        {
+          "id": "meld",
+          "description": "Use Meld (requires a graphical session)",
+          "available": true
+        },
+        {
+          "id": "vimdiff",
+          "description": "Use Vim",
+          "available": true
+        },
+        {
+          "id": "araxis",
+          "description": "Use Araxis Merge (requires a graphical session)",
+          "available": false
+        },
+        {
+          "id": "bc",
+          "description": "Use Beyond Compare (requires a graphical session)",
+          "available": false
+        }
+      ],
+      "keepBackup": false
+    },
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "diff.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "merge.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "mergetool.keepBackup"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--tool-help"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--tool-help"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "config when every call fails",
+    "bins": [
+      "git"
+    ],
+    "replies": [],
+    "call": {
+      "method": "config",
+      "args": [
+        "<ROOT>/repo"
+      ]
+    },
+    "result": {
+      "diffTool": "",
+      "mergeTool": "",
+      "diffTools": [],
+      "mergeTools": [],
+      "keepBackup": true
+    },
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "diff.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "merge.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "mergetool.keepBackup"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--tool-help"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--tool-help"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "config keeps the backup unless told otherwise",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--tool-help"
+        ],
+        "stdout": ""
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--tool-help"
+        ],
+        "stdout": "",
+        "stderr": "fatal: boom\n",
+        "code": 128
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "mergetool.keepBackup"
+        ],
+        "stdout": "False\n"
+      }
+    ],
+    "call": {
+      "method": "config",
+      "args": [
+        "<ROOT>/repo"
+      ]
+    },
+    "result": {
+      "diffTool": "",
+      "mergeTool": "",
+      "diffTools": [],
+      "mergeTools": [],
+      "keepBackup": true
+    },
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "diff.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "merge.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--get",
+          "mergetool.keepBackup"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--tool-help"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--tool-help"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "config without git",
+    "bins": [],
+    "replies": [],
+    "call": {
+      "method": "config",
+      "args": [
+        "<ROOT>/repo"
+      ]
+    },
+    "result": {
+      "diffTool": "",
+      "mergeTool": "",
+      "diffTools": [],
+      "mergeTools": [],
+      "keepBackup": true
+    },
+    "calls": []
+  },
+  {
+    "name": "set writes globally by default and unsets an empty choice",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "diff.tool",
+          "meld"
+        ]
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "--unset",
+          "merge.tool"
+        ],
+        "code": 5
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "mergetool.keepBackup",
+          "false"
+        ]
+      }
+    ],
+    "call": {
+      "method": "set",
+      "args": [
+        "<ROOT>/repo",
+        {
+          "diffTool": "meld",
+          "mergeTool": "",
+          "keepBackup": false
+        }
+      ]
+    },
+    "result": null,
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "diff.tool",
+          "meld"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "--unset",
+          "merge.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "mergetool.keepBackup",
+          "false"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "set to the repository",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "merge.tool",
+          "kdiff3"
+        ]
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "mergetool.keepBackup",
+          "true"
+        ]
+      }
+    ],
+    "call": {
+      "method": "set",
+      "args": [
+        "<ROOT>/repo",
+        {
+          "mergeTool": "kdiff3",
+          "keepBackup": true
+        },
+        "repo"
+      ]
+    },
+    "result": null,
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "merge.tool",
+          "kdiff3"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      },
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "mergetool.keepBackup",
+          "true"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "set with an explicit global scope",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "--unset",
+          "diff.tool"
+        ]
+      }
+    ],
+    "call": {
+      "method": "set",
+      "args": [
+        "<ROOT>/repo",
+        {
+          "diffTool": ""
+        },
+        "global"
+      ]
+    },
+    "result": null,
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "--unset",
+          "diff.tool"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "set with nothing to change",
+    "bins": [
+      "git"
+    ],
+    "replies": [],
+    "call": {
+      "method": "set",
+      "args": [
+        "<ROOT>/repo",
+        {},
+        "global"
+      ]
+    },
+    "result": null,
+    "calls": []
+  },
+  {
+    "name": "set stops at the first failed write",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "diff.tool",
+          "x"
+        ],
+        "code": 255,
+        "stderr": "error: could not lock config file /h/.gitconfig: Permission denied\n"
+      }
+    ],
+    "call": {
+      "method": "set",
+      "args": [
+        "<ROOT>/repo",
+        {
+          "diffTool": "x",
+          "mergeTool": "y"
+        }
+      ]
+    },
+    "error": "Command failed: git -C <ROOT>/repo config --global diff.tool x\nerror: could not lock config file /h/.gitconfig: Permission denied\n",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "config",
+          "--global",
+          "diff.tool",
+          "x"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "diff against a revision with a chosen tool",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--tool=meld",
+          "HEAD~1",
+          "--",
+          "src/a b.ts"
+        ]
+      }
+    ],
+    "call": {
+      "method": "diff",
+      "args": [
+        "<ROOT>/repo",
+        "src/a b.ts",
+        "HEAD~1",
+        "meld"
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--tool=meld",
+          "HEAD~1",
+          "--",
+          "src/a b.ts"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "diff with git defaults",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--",
+          "-dash.ts"
+        ],
+        "stdout": "ignored\n"
+      }
+    ],
+    "call": {
+      "method": "diff",
+      "args": [
+        "<ROOT>/repo",
+        "-dash.ts"
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--",
+          "-dash.ts"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "diff failure reports stderr",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--tool=nope",
+          "--",
+          "a.ts"
+        ],
+        "code": 1,
+        "stdout": "out\n",
+        "stderr": "\nUnknown tool nope\n"
+      }
+    ],
+    "call": {
+      "method": "diff",
+      "args": [
+        "<ROOT>/repo",
+        "a.ts",
+        "",
+        "nope"
+      ]
+    },
+    "result": "Unknown tool nope",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--tool=nope",
+          "--",
+          "a.ts"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "diff failure without stderr reports the command",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--",
+          "a.ts"
+        ],
+        "code": 3,
+        "stdout": "only stdout\n"
+      }
+    ],
+    "call": {
+      "method": "diff",
+      "args": [
+        "<ROOT>/repo",
+        "a.ts"
+      ]
+    },
+    "result": "Command failed: git -C <ROOT>/repo difftool --no-prompt -- a.ts",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "difftool",
+          "--no-prompt",
+          "--",
+          "a.ts"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "diff without git",
+    "bins": [],
+    "replies": [],
+    "call": {
+      "method": "diff",
+      "args": [
+        "<ROOT>/repo",
+        "a.ts"
+      ]
+    },
+    "result": "spawn git ENOENT",
+    "calls": []
+  },
+  {
+    "name": "merge success",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--tool=meld",
+          "--",
+          "conflict.txt"
+        ],
+        "stdout": "Merging:\nconflict.txt\n"
+      }
+    ],
+    "call": {
+      "method": "merge",
+      "args": [
+        "<ROOT>/repo",
+        "conflict.txt",
+        "meld"
+      ]
+    },
+    "result": "",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--tool=meld",
+          "--",
+          "conflict.txt"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "merge closed without saving reports stdout",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--",
+          "c.txt"
+        ],
+        "code": 1,
+        "stdout": "c.txt seems unchanged.\nWas the merge successful [y/n]? \n"
+      }
+    ],
+    "call": {
+      "method": "merge",
+      "args": [
+        "<ROOT>/repo",
+        "c.txt"
+      ]
+    },
+    "result": "c.txt seems unchanged.\nWas the merge successful [y/n]?",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--",
+          "c.txt"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "merge failure prefers stderr",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--",
+          "c.txt"
+        ],
+        "code": 1,
+        "stdout": "x",
+        "stderr": "merge of c.txt failed\n"
+      }
+    ],
+    "call": {
+      "method": "merge",
+      "args": [
+        "<ROOT>/repo",
+        "c.txt",
+        ""
+      ]
+    },
+    "result": "merge of c.txt failed",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--",
+          "c.txt"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  },
+  {
+    "name": "merge failure with no output reports the command",
+    "bins": [
+      "git"
+    ],
+    "replies": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--",
+          "c.txt"
+        ],
+        "code": 2
+      }
+    ],
+    "call": {
+      "method": "merge",
+      "args": [
+        "<ROOT>/repo",
+        "c.txt"
+      ]
+    },
+    "result": "Command failed: git -C <ROOT>/repo mergetool --no-prompt -- c.txt",
+    "calls": [
+      {
+        "argv": [
+          "git",
+          "-C",
+          "<ROOT>/repo",
+          "mergetool",
+          "--no-prompt",
+          "--",
+          "c.txt"
+        ],
+        "env": {
+          "GIT_TERMINAL_PROMPT": "0"
+        },
+        "leader": "no"
+      }
+    ]
+  }
+]

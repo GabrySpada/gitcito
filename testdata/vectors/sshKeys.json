@@ -1,0 +1,423 @@
+{
+  "parseKeygenLine": [
+    {
+      "line": "256 SHA256:abc123 you@example.com (ED25519)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:abc123",
+        "comment": "you@example.com",
+        "type": "ed25519"
+      }
+    },
+    {
+      "line": "4096 SHA256:xyz old laptop key (RSA)",
+      "out": {
+        "bits": 4096,
+        "fingerprint": "SHA256:xyz",
+        "comment": "old laptop key",
+        "type": "rsa"
+      }
+    },
+    {
+      "line": "256 SHA256:def no comment (ED25519)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:def",
+        "comment": "",
+        "type": "ed25519"
+      }
+    },
+    {
+      "line": "256 SHA256:abc you@example.com",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:abc",
+        "comment": "you@example.com",
+        "type": "unknown"
+      }
+    },
+    {
+      "line": "521 SHA256:abc key (ECDSA-SK)",
+      "out": {
+        "bits": 521,
+        "fingerprint": "SHA256:abc",
+        "comment": "key",
+        "type": "ecdsa-sk"
+      }
+    },
+    {
+      "line": "The agent has no identities.",
+      "out": null
+    },
+    {
+      "line": "Error connecting to agent: No such file or directory",
+      "out": null
+    },
+    {
+      "line": "",
+      "out": null
+    },
+    {
+      "line": "   ",
+      "out": null
+    },
+    {
+      "line": "2048 MD5:aa:bb:cc:dd comment (RSA)",
+      "out": {
+        "bits": 2048,
+        "fingerprint": "MD5:aa:bb:cc:dd",
+        "comment": "comment",
+        "type": "rsa"
+      }
+    },
+    {
+      "line": "2048 aa:bb:cc:dd:ee comment (RSA)",
+      "out": {
+        "bits": 2048,
+        "fingerprint": "aa:bb:cc:dd:ee",
+        "comment": "comment",
+        "type": "rsa"
+      }
+    },
+    {
+      "line": "2048 AB:cd:ef comment (DSA)",
+      "out": {
+        "bits": 2048,
+        "fingerprint": "AB:cd:ef",
+        "comment": "comment",
+        "type": "dsa"
+      }
+    },
+    {
+      "line": "2048 zz:bb:cc comment (DSA)",
+      "out": null
+    },
+    {
+      "line": "  256 SHA256:x   spaced   comment   (ED25519)  ",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "spaced   comment",
+        "type": "ed25519"
+      }
+    },
+    {
+      "line": "256 SHA256:x (ED25519)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "",
+        "type": "ed25519"
+      }
+    },
+    {
+      "line": "256 SHA256:x",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "",
+        "type": "unknown"
+      }
+    },
+    {
+      "line": "256 SHA256:x comment (ED25519) trailing",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "comment (ED25519) trailing",
+        "type": "unknown"
+      }
+    },
+    {
+      "line": "256 SHA256:x c ((RSA))",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c ((RSA))",
+        "type": "unknown"
+      }
+    },
+    {
+      "line": "256 SHA256:x c (ed25519-sk)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "ed25519-sk"
+      }
+    },
+    {
+      "line": "256 SHA256:x c (ECDSA)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "ecdsa"
+      }
+    },
+    {
+      "line": "256 SHA256:x c (DSA)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "dsa"
+      }
+    },
+    {
+      "line": "256 SHA256:x c (Ed448)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "unknown"
+      }
+    },
+    {
+      "line": "256 SHA256:x c ()",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c ()",
+        "type": "unknown"
+      }
+    },
+    {
+      "line": "256\tSHA256:x\tc\t(RSA)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "rsa"
+      }
+    },
+    {
+      "line": "256 SHA256:a x (RSA)\n256 SHA256:b y (RSA)",
+      "out": null
+    },
+    {
+      "line": "256 SHA256:a x\r(RSA)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:a",
+        "comment": "x",
+        "type": "rsa"
+      }
+    },
+    {
+      "line": "256 SHA256:a com ment (RSA)",
+      "out": null
+    },
+    {
+      "line": "abc SHA256:x c (RSA)",
+      "out": null
+    },
+    {
+      "line": "00256 SHA256:x c (RSA)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "rsa"
+      }
+    },
+    {
+      "line": "256 notafingerprint c (RSA)",
+      "out": null
+    },
+    {
+      "line": "﻿256 SHA256:x c (RSA)",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "rsa"
+      }
+    },
+    {
+      "line": "256 SHA256:x c (RSA) ",
+      "out": {
+        "bits": 256,
+        "fingerprint": "SHA256:x",
+        "comment": "c",
+        "type": "rsa"
+      }
+    }
+  ],
+  "agentFingerprints": [
+    {
+      "stdout": "256 SHA256:aaa a@b (ED25519)\n4096 SHA256:bbb c@d (RSA)\nThe agent has no identities.",
+      "out": [
+        "SHA256:aaa",
+        "SHA256:bbb"
+      ]
+    },
+    {
+      "stdout": "Could not open a connection to your authentication agent.",
+      "out": []
+    },
+    {
+      "stdout": "256 SHA256:aaa a@b (ED25519)\r\n256 SHA256:aaa dup (ED25519)\r\n3072 SHA256:ccc (RSA)\r\n",
+      "out": [
+        "SHA256:aaa",
+        "SHA256:ccc"
+      ]
+    },
+    {
+      "stdout": "",
+      "out": []
+    }
+  ],
+  "publicKeyFiles": [
+    {
+      "entries": [
+        "config",
+        "known_hosts",
+        "id_rsa",
+        "id_rsa.pub",
+        "id_ed25519",
+        "id_ed25519.pub",
+        "authorized_keys"
+      ],
+      "out": [
+        "id_ed25519.pub",
+        "id_rsa.pub"
+      ]
+    },
+    {
+      "entries": [
+        "Work.pub",
+        "work.pub",
+        "id_ed25519_sk.pub",
+        "id-rsa.pub",
+        "a.pub",
+        "B.pub",
+        ".pub",
+        "github_ed25519.pub",
+        "10.pub",
+        "9.pub",
+        "known_hosts.pub",
+        "config.pub",
+        "z key.pub",
+        "environment",
+        "rc",
+        "x.PUB",
+        "é.pub",
+        "e.pub"
+      ],
+      "out": [
+        ".pub",
+        "10.pub",
+        "9.pub",
+        "a.pub",
+        "B.pub",
+        "config.pub",
+        "e.pub",
+        "é.pub",
+        "github_ed25519.pub",
+        "id_ed25519_sk.pub",
+        "id-rsa.pub",
+        "known_hosts.pub",
+        "work.pub",
+        "Work.pub",
+        "z key.pub"
+      ]
+    },
+    {
+      "entries": [],
+      "out": []
+    }
+  ],
+  "privateKeyName": [
+    {
+      "name": "id_ed25519.pub",
+      "out": "id_ed25519"
+    },
+    {
+      "name": "/home/me/.ssh/id_rsa.pub",
+      "out": "/home/me/.ssh/id_rsa"
+    },
+    {
+      "name": "x.pub.pub",
+      "out": "x.pub"
+    },
+    {
+      "name": "x",
+      "out": "x"
+    },
+    {
+      "name": ".pub",
+      "out": ""
+    },
+    {
+      "name": "x.PUB",
+      "out": "x.PUB"
+    },
+    {
+      "name": "x.pubx",
+      "out": "x.pubx"
+    },
+    {
+      "name": "",
+      "out": ""
+    }
+  ],
+  "readSshTest": [
+    {
+      "output": "Hi octocat! You've successfully authenticated, but GitHub does not provide shell access.",
+      "out": "ok"
+    },
+    {
+      "output": "Welcome to GitLab, @octocat!",
+      "out": "ok"
+    },
+    {
+      "output": "git@github.com: Permission denied (publickey).",
+      "out": "denied"
+    },
+    {
+      "output": "ssh: Could not resolve hostname github.com",
+      "out": "unreachable"
+    },
+    {
+      "output": "something else entirely",
+      "out": "unknown"
+    },
+    {
+      "output": "logged in as octocat.\n\nYou can use git to connect to Bitbucket. Shell access is disabled.",
+      "out": "ok"
+    },
+    {
+      "output": "remote: Shell access is not supported.\nAuthentication failed.",
+      "out": "denied"
+    },
+    {
+      "output": "ssh: connect to host ssh.dev.azure.com port 22: Connection timed out",
+      "out": "unreachable"
+    },
+    {
+      "output": "ssh: connect to host github.com port 22: Connection refused",
+      "out": "unreachable"
+    },
+    {
+      "output": "ssh: connect to host x port 22: Network is unreachable",
+      "out": "unreachable"
+    },
+    {
+      "output": "ssh: connect to host x port 22: No route to host",
+      "out": "unreachable"
+    },
+    {
+      "output": "Access denied",
+      "out": "denied"
+    },
+    {
+      "output": "Permission denied but successfully authenticated",
+      "out": "ok"
+    },
+    {
+      "output": "",
+      "out": "unknown"
+    }
+  ]
+}

@@ -1,0 +1,2000 @@
+{
+  "presets": [
+    {
+      "id": "vscode",
+      "name": "Visual Studio Code",
+      "bins": [
+        "code",
+        "code-insiders"
+      ],
+      "macApps": [
+        "Visual Studio Code.app"
+      ],
+      "winPaths": [
+        "Microsoft VS Code\\Code.exe"
+      ],
+      "fileArgs": "-g {path}:{line}:{col}",
+      "folderArgs": "{path}"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "bins": [
+        "cursor"
+      ],
+      "macApps": [
+        "Cursor.app"
+      ],
+      "winPaths": [
+        "cursor\\Cursor.exe"
+      ],
+      "fileArgs": "-g {path}:{line}:{col}",
+      "folderArgs": "{path}"
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "bins": [
+        "windsurf"
+      ],
+      "macApps": [
+        "Windsurf.app"
+      ],
+      "winPaths": [
+        "Windsurf\\Windsurf.exe"
+      ],
+      "fileArgs": "-g {path}:{line}:{col}",
+      "folderArgs": "{path}"
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "bins": [
+        "zed"
+      ],
+      "macApps": [
+        "Zed.app"
+      ],
+      "winPaths": [
+        "Zed\\zed.exe"
+      ],
+      "fileArgs": "{path}:{line}:{col}",
+      "folderArgs": "{path}"
+    },
+    {
+      "id": "sublime",
+      "name": "Sublime Text",
+      "bins": [
+        "subl"
+      ],
+      "macApps": [
+        "Sublime Text.app"
+      ],
+      "winPaths": [
+        "Sublime Text\\subl.exe"
+      ],
+      "fileArgs": "{path}:{line}:{col}",
+      "folderArgs": "{path}"
+    },
+    {
+      "id": "jetbrains",
+      "name": "JetBrains IDE",
+      "bins": [
+        "idea",
+        "webstorm",
+        "pycharm",
+        "rustrover",
+        "goland",
+        "clion",
+        "rider",
+        "phpstorm"
+      ],
+      "macApps": [
+        "IntelliJ IDEA.app",
+        "WebStorm.app",
+        "PyCharm.app",
+        "RustRover.app",
+        "GoLand.app",
+        "CLion.app"
+      ],
+      "winPaths": [],
+      "fileArgs": "--line {line} --column {col} {path}",
+      "folderArgs": "{path}"
+    },
+    {
+      "id": "xcode",
+      "name": "Xcode",
+      "bins": [
+        "xed"
+      ],
+      "macApps": [
+        "Xcode.app"
+      ],
+      "winPaths": [],
+      "fileArgs": "--line {line} {path}",
+      "folderArgs": "{path}"
+    }
+  ],
+  "args": [
+    {
+      "template": "-g {path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 12,
+        "col": 3
+      },
+      "out": [
+        "-g",
+        "/r/a.ts:12:3"
+      ]
+    },
+    {
+      "template": "{path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 9
+      },
+      "out": [
+        "/r/a.ts:9:1"
+      ]
+    },
+    {
+      "template": "{path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "--line {line} --column {col} {path}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "--line {line} --column {col} {path}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 4
+      },
+      "out": [
+        "--line",
+        "4",
+        "--column",
+        "1",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "\"{path}\"",
+      "vars": {
+        "path": "/r/my dir/a.ts"
+      },
+      "out": [
+        "/r/my dir/a.ts"
+      ]
+    },
+    {
+      "template": "{path}",
+      "vars": {
+        "path": "/r/my dir/a.ts"
+      },
+      "out": [
+        "/r/my dir/a.ts"
+      ]
+    },
+    {
+      "template": "'{path}' --x",
+      "vars": {
+        "path": "/r/q's/a.ts"
+      },
+      "out": [
+        "/r/q's/a.ts",
+        "--x"
+      ]
+    },
+    {
+      "template": "-g {path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 0,
+        "col": 5
+      },
+      "out": [
+        "-g",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "-g {path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": -3,
+        "col": 5
+      },
+      "out": [
+        "-g",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "-g {path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 0
+      },
+      "out": [
+        "-g",
+        "/r/a.ts:7:1"
+      ]
+    },
+    {
+      "template": "-g {path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": -2
+      },
+      "out": [
+        "-g",
+        "/r/a.ts:7:1"
+      ]
+    },
+    {
+      "template": "-g {path}:{line}:{col}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 1.5,
+        "col": 2.25
+      },
+      "out": [
+        "-g",
+        "/r/a.ts:1.5:2.25"
+      ]
+    },
+    {
+      "template": "--folder-uri {repo} {path}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "--folder-uri {repo} {path}",
+      "vars": {
+        "path": "/r/a.ts",
+        "repo": "/r"
+      },
+      "out": [
+        "--folder-uri",
+        "/r",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "{repo}",
+      "vars": {
+        "path": "/r/a.ts",
+        "repo": ""
+      },
+      "out": []
+    },
+    {
+      "template": "x{line} {path}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "x",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "--goto={path}:{line}",
+      "vars": {
+        "path": "/r/a.ts",
+        "line": 2
+      },
+      "out": [
+        "--goto=/r/a.ts:2"
+      ]
+    },
+    {
+      "template": "--goto={path}:{line}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "--goto=/r/a.ts"
+      ]
+    },
+    {
+      "template": "{path}:{line}",
+      "vars": {
+        "path": "/r/odd:",
+        "line": 0
+      },
+      "out": [
+        "/r/odd"
+      ]
+    },
+    {
+      "template": "   -a\t\t{path}   ",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "-a",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "-a {path} --b",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "-a",
+        "/r/a.ts",
+        "--b"
+      ]
+    },
+    {
+      "template": "\"\"",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        ""
+      ]
+    },
+    {
+      "template": "\"\" {path}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "\"unterminated {path}",
+      "vars": {
+        "path": "/r/a b.ts"
+      },
+      "out": [
+        "unterminated /r/a b.ts"
+      ]
+    },
+    {
+      "template": "a\"b c\"d {path}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "ab cd",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": []
+    },
+    {
+      "template": "{path}",
+      "vars": {
+        "path": ""
+      },
+      "out": []
+    },
+    {
+      "template": "--file {path}",
+      "vars": {
+        "path": ""
+      },
+      "out": []
+    },
+    {
+      "template": "plain {path}",
+      "vars": {
+        "path": ""
+      },
+      "out": [
+        "plain"
+      ]
+    },
+    {
+      "template": "{path}",
+      "vars": {
+        "path": "/r/$&-$$-$'-$`-$1.ts"
+      },
+      "out": [
+        "/r/{path}-$---$1.ts"
+      ]
+    },
+    {
+      "template": "{path}:{line}",
+      "vars": {
+        "path": "/r/{line}.ts",
+        "line": 3
+      },
+      "out": [
+        "/r/3.ts:3"
+      ]
+    },
+    {
+      "template": "{PATH} {path}",
+      "vars": {
+        "path": "/r/a.ts"
+      },
+      "out": [
+        "{PATH}",
+        "/r/a.ts"
+      ]
+    },
+    {
+      "template": "-g {path}:{line}:{col}",
+      "vars": {
+        "path": "/r/é ü/日本.ts",
+        "line": 1,
+        "col": 1
+      },
+      "out": [
+        "-g",
+        "/r/é ü/日本.ts:1:1"
+      ]
+    }
+  ],
+  "supportsLine": [
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/usr/local/bin/code",
+        "source": "cli"
+      },
+      "out": true
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "out": false
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "nano",
+        "command": "/usr/bin/nano",
+        "source": "cli"
+      },
+      "out": false
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "vim",
+        "command": "vim",
+        "source": "cli",
+        "fileArgs": "+{line} {path}",
+        "folderArgs": "{path}"
+      },
+      "out": true
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "emacs",
+        "command": "emacs",
+        "source": "app",
+        "fileArgs": "+{line} {path}"
+      },
+      "out": false
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "ws",
+        "command": "code",
+        "source": "cli",
+        "fileArgs": "-g {path}:{line}:{col}",
+        "folderArgs": "--folder-uri {repo}"
+      },
+      "out": true
+    },
+    {
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "/usr/local/bin/idea",
+        "source": "cli"
+      },
+      "out": true
+    },
+    {
+      "setting": {
+        "id": "xcode",
+        "name": "Xcode",
+        "command": "/usr/bin/xed",
+        "source": "cli"
+      },
+      "out": true
+    },
+    {
+      "setting": {
+        "id": "zed",
+        "name": "Zed",
+        "command": "/usr/bin/zed",
+        "source": "cli"
+      },
+      "out": true
+    },
+    {
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "/Applications/Sublime Text.app",
+        "source": "app"
+      },
+      "out": false
+    },
+    {
+      "setting": {
+        "id": "bogus",
+        "name": "x",
+        "command": "/bin/x",
+        "source": "cli"
+      },
+      "out": false
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "",
+        "command": "",
+        "source": "cli"
+      },
+      "out": false
+    }
+  ],
+  "launch": [
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/usr/local/bin/code",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/usr/local/bin/code",
+        "args": [
+          "-g",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/usr/local/bin/code",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/usr/local/bin/code",
+        "args": [
+          "-g",
+          "/r/a.ts:7:1"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/usr/local/bin/code",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/usr/local/bin/code",
+        "args": [
+          "-g",
+          "/r/a.ts:7:4"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/usr/local/bin/code",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/usr/local/bin/code",
+        "args": [
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/usr/local/bin/code",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/local/bin/code",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/usr/local/bin/code",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/local/bin/code",
+        "args": [
+          "-g",
+          "/r/my file.ts:3:1"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/Applications/Visual Studio Code.app",
+        "args": [
+          "-g",
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/Applications/Visual Studio Code.app",
+        "args": [
+          "-g",
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/Applications/Visual Studio Code.app",
+        "args": [
+          "-g",
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/Applications/Visual Studio Code.app",
+        "args": [
+          "/r"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/Applications/Visual Studio Code.app",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "vscode",
+        "name": "Visual Studio Code",
+        "command": "/Applications/Visual Studio Code.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/Applications/Visual Studio Code.app",
+        "args": [
+          "-g",
+          "/r/my file.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "nano",
+        "command": "/usr/bin/nano",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/usr/bin/nano",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "nano",
+        "command": "/usr/bin/nano",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/usr/bin/nano",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "nano",
+        "command": "/usr/bin/nano",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/usr/bin/nano",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "nano",
+        "command": "/usr/bin/nano",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/usr/bin/nano",
+        "args": [
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "nano",
+        "command": "/usr/bin/nano",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/bin/nano",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "nano",
+        "command": "/usr/bin/nano",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/bin/nano",
+        "args": [
+          "/r/my file.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "vim",
+        "command": "vim",
+        "source": "cli",
+        "fileArgs": "+{line} {path}",
+        "folderArgs": "{path}"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "vim",
+        "args": [
+          "+",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "vim",
+        "command": "vim",
+        "source": "cli",
+        "fileArgs": "+{line} {path}",
+        "folderArgs": "{path}"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "vim",
+        "args": [
+          "+7",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "vim",
+        "command": "vim",
+        "source": "cli",
+        "fileArgs": "+{line} {path}",
+        "folderArgs": "{path}"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "vim",
+        "args": [
+          "+7",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "vim",
+        "command": "vim",
+        "source": "cli",
+        "fileArgs": "+{line} {path}",
+        "folderArgs": "{path}"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "vim",
+        "args": [
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "vim",
+        "command": "vim",
+        "source": "cli",
+        "fileArgs": "+{line} {path}",
+        "folderArgs": "{path}"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "vim",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "vim",
+        "command": "vim",
+        "source": "cli",
+        "fileArgs": "+{line} {path}",
+        "folderArgs": "{path}"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "vim",
+        "args": [
+          "+3",
+          "/r/my file.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "emacs",
+        "command": "emacs",
+        "source": "app",
+        "fileArgs": "+{line} {path}"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "emacs",
+        "args": [
+          "+",
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "emacs",
+        "command": "emacs",
+        "source": "app",
+        "fileArgs": "+{line} {path}"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "emacs",
+        "args": [
+          "+",
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "emacs",
+        "command": "emacs",
+        "source": "app",
+        "fileArgs": "+{line} {path}"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "emacs",
+        "args": [
+          "+",
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "emacs",
+        "command": "emacs",
+        "source": "app",
+        "fileArgs": "+{line} {path}"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "emacs",
+        "args": [
+          "/r"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "emacs",
+        "command": "emacs",
+        "source": "app",
+        "fileArgs": "+{line} {path}"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "emacs",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "emacs",
+        "command": "emacs",
+        "source": "app",
+        "fileArgs": "+{line} {path}"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "emacs",
+        "args": [
+          "+",
+          "/r/my file.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "ws",
+        "command": "code",
+        "source": "cli",
+        "fileArgs": "-g {path}:{line}:{col}",
+        "folderArgs": "--folder-uri {repo}"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "code",
+        "args": [
+          "-g",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "ws",
+        "command": "code",
+        "source": "cli",
+        "fileArgs": "-g {path}:{line}:{col}",
+        "folderArgs": "--folder-uri {repo}"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "code",
+        "args": [
+          "-g",
+          "/r/a.ts:7:1"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "ws",
+        "command": "code",
+        "source": "cli",
+        "fileArgs": "-g {path}:{line}:{col}",
+        "folderArgs": "--folder-uri {repo}"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "code",
+        "args": [
+          "-g",
+          "/r/a.ts:7:4"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "ws",
+        "command": "code",
+        "source": "cli",
+        "fileArgs": "-g {path}:{line}:{col}",
+        "folderArgs": "--folder-uri {repo}"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "code",
+        "args": [],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "ws",
+        "command": "code",
+        "source": "cli",
+        "fileArgs": "-g {path}:{line}:{col}",
+        "folderArgs": "--folder-uri {repo}"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "code",
+        "args": [
+          "--folder-uri",
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "ws",
+        "command": "code",
+        "source": "cli",
+        "fileArgs": "-g {path}:{line}:{col}",
+        "folderArgs": "--folder-uri {repo}"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "code",
+        "args": [
+          "-g",
+          "/r/my file.ts:3:1"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "/usr/local/bin/idea",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/usr/local/bin/idea",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "/usr/local/bin/idea",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/usr/local/bin/idea",
+        "args": [
+          "--line",
+          "7",
+          "--column",
+          "1",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "/usr/local/bin/idea",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/usr/local/bin/idea",
+        "args": [
+          "--line",
+          "7",
+          "--column",
+          "4",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "/usr/local/bin/idea",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/usr/local/bin/idea",
+        "args": [
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "/usr/local/bin/idea",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/local/bin/idea",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "jetbrains",
+        "name": "JetBrains IDE",
+        "command": "/usr/local/bin/idea",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/local/bin/idea",
+        "args": [
+          "--line",
+          "3",
+          "--column",
+          "1",
+          "/r/my file.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "xcode",
+        "name": "Xcode",
+        "command": "/usr/bin/xed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/usr/bin/xed",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "xcode",
+        "name": "Xcode",
+        "command": "/usr/bin/xed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/usr/bin/xed",
+        "args": [
+          "--line",
+          "7",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "xcode",
+        "name": "Xcode",
+        "command": "/usr/bin/xed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/usr/bin/xed",
+        "args": [
+          "--line",
+          "7",
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "xcode",
+        "name": "Xcode",
+        "command": "/usr/bin/xed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/usr/bin/xed",
+        "args": [
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "xcode",
+        "name": "Xcode",
+        "command": "/usr/bin/xed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/bin/xed",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "xcode",
+        "name": "Xcode",
+        "command": "/usr/bin/xed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/bin/xed",
+        "args": [
+          "--line",
+          "3",
+          "/r/my file.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "zed",
+        "name": "Zed",
+        "command": "/usr/bin/zed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/usr/bin/zed",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "zed",
+        "name": "Zed",
+        "command": "/usr/bin/zed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/usr/bin/zed",
+        "args": [
+          "/r/a.ts:7:1"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "zed",
+        "name": "Zed",
+        "command": "/usr/bin/zed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/usr/bin/zed",
+        "args": [
+          "/r/a.ts:7:4"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "zed",
+        "name": "Zed",
+        "command": "/usr/bin/zed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/usr/bin/zed",
+        "args": [
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "zed",
+        "name": "Zed",
+        "command": "/usr/bin/zed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/bin/zed",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "zed",
+        "name": "Zed",
+        "command": "/usr/bin/zed",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/usr/bin/zed",
+        "args": [
+          "/r/my file.ts:3:1"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "/Applications/Sublime Text.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/Applications/Sublime Text.app",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "/Applications/Sublime Text.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/Applications/Sublime Text.app",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "/Applications/Sublime Text.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/Applications/Sublime Text.app",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "/Applications/Sublime Text.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/Applications/Sublime Text.app",
+        "args": [
+          "/r"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "/Applications/Sublime Text.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/Applications/Sublime Text.app",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "sublime",
+        "name": "Sublime Text",
+        "command": "/Applications/Sublime Text.app",
+        "source": "app"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/Applications/Sublime Text.app",
+        "args": [
+          "/r/my file.ts"
+        ],
+        "source": "app"
+      }
+    },
+    {
+      "setting": {
+        "id": "bogus",
+        "name": "x",
+        "command": "/bin/x",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": {
+        "command": "/bin/x",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "bogus",
+        "name": "x",
+        "command": "/bin/x",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": {
+        "command": "/bin/x",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "bogus",
+        "name": "x",
+        "command": "/bin/x",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": {
+        "command": "/bin/x",
+        "args": [
+          "/r/a.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "bogus",
+        "name": "x",
+        "command": "/bin/x",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": {
+        "command": "/bin/x",
+        "args": [
+          "/r"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "bogus",
+        "name": "x",
+        "command": "/bin/x",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/bin/x",
+        "args": [
+          "/r/sub"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "bogus",
+        "name": "x",
+        "command": "/bin/x",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": {
+        "command": "/bin/x",
+        "args": [
+          "/r/my file.ts"
+        ],
+        "source": "cli"
+      }
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "",
+        "command": "",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts"
+      },
+      "out": null
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "",
+        "command": "",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7
+      },
+      "out": null
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "",
+        "command": "",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/a.ts",
+        "line": 7,
+        "col": 4
+      },
+      "out": null
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "",
+        "command": "",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r",
+        "isDir": true
+      },
+      "out": null
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "",
+        "command": "",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/sub",
+        "isDir": true,
+        "repo": "/r"
+      },
+      "out": null
+    },
+    {
+      "setting": {
+        "id": "custom",
+        "name": "",
+        "command": "",
+        "source": "cli"
+      },
+      "target": {
+        "path": "/r/my file.ts",
+        "line": 3,
+        "repo": "/r"
+      },
+      "out": null
+    }
+  ]
+}
