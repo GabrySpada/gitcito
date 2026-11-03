@@ -40,7 +40,12 @@
     "build:server": "npm run build:frontend && go build -tags server -o bin/gitcito-server .",
     "test:go": "go test ./...",
     "test:e2e": "vitest run -c e2e/vitest.config.ts",
-    "playground:clean": "node -e \"require('fs').rmSync('examples/playground',{recursive:true,force:true})\""
+    "playground:clean": "node -e \"require('fs').rmSync('examples/playground',{recursive:true,force:true})\"",
+    "wails:dev": "node scripts/wails.mjs dev",
+    "wails:build": "node scripts/wails.mjs build",
+    "wails:release": "node scripts/wails.mjs build release",
+    "bindings": "node scripts/wails.mjs generate bindings -ts -i -clean -d src/renderer/src/bindings",
+    "wails:check": "node scripts/wails.mjs config check release"
   },
   "build": {
     "appId": "com.gitcito.desktop",
