@@ -7,10 +7,9 @@
  * Electron build never pulls in the Wails runtime (main.tsx imports this module dynamically, only when no
  * preload installed `window.api`).
  *
- * Milestone M1 state: the shape is complete, the behaviour is not. Every request member rejects with
- * `not ported: <channel>`, every listener is already a real `Events.On` subscription on the Electron channel
- * name (Go emits on identical names), and fire-and-forget members log once and do nothing. Porting a
- * channel means replacing its stub with `invoke(() => SomeService.Method(...))`.
+ * Every member is wired: requests call a bound Go method (through the generated bindings), listeners are
+ * `Events.On` subscriptions on the Electron channel names (Go emits on identical names), fire-and-forget members
+ * call Go without awaiting, and window/clipboard/zoom use the Wails runtime directly.
  */
 import { Clipboard, Events, Window } from '@wailsio/runtime'
 import * as AppService from '../bindings/github.com/GabrySpada/gitcito/internal/app/appservice'
@@ -29,6 +28,8 @@ import * as WatcherService from '../bindings/github.com/GabrySpada/gitcito/inter
 import * as EditorService from '../bindings/github.com/GabrySpada/gitcito/internal/editor/service'
 import * as DiffToolService from '../bindings/github.com/GabrySpada/gitcito/internal/difftool/service'
 import * as SshService from '../bindings/github.com/GabrySpada/gitcito/internal/ssh/service'
+import * as CliService from '../bindings/github.com/GabrySpada/gitcito/internal/cli/service'
+import * as UpdaterService from '../bindings/github.com/GabrySpada/gitcito/internal/updater/service'
 import * as AIService from '../bindings/github.com/GabrySpada/gitcito/internal/ai/service'
 import * as AnalyticsService from '../bindings/github.com/GabrySpada/gitcito/internal/analytics/service'
 import * as InfoService from '../bindings/github.com/GabrySpada/gitcito/internal/info/service'
@@ -107,21 +108,6 @@ export async function loadBootstrap(): Promise<BootstrapInfo> {
     return base
   }
 }
-
-const notPorted =
-  (channel: string) =>
-  (): Promise<never> =>
-    Promise.reject(new Error(`not ported: ${channel}`))
-
-// Fire-and-forget members can fire per keystroke (term:input); warn once per channel, not per call.
-const warned = new Set<string>()
-const sendNoop =
-  (channel: string) =>
-  (..._args: unknown[]): void => {
-    if (warned.has(channel)) return
-    warned.add(channel)
-    console.warn(`[bridge] not ported: ${channel}`)
-  }
 
 /** Fire-and-forget calls never reject into the caller; a failure is logged, as Electron's send would drop it. */
 const logSendError =
@@ -204,6 +190,8 @@ const watchCall = forwarder(WatcherService)
 const editorCall = forwarder(EditorService)
 const diffToolCall = forwarder(DiffToolService)
 const sshCall = forwarder(SshService)
+const cliCall = forwarder(CliService)
+const updateCall = forwarder(UpdaterService)
 
 /** Fire-and-forget channels (Electron's ipcRenderer.send): never awaited, failures only logged. */
 const sendTo =
@@ -522,17 +510,17 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     updates: {
-      getState: notPorted('update:getState'),
-      check: notPorted('update:check'),
-      download: notPorted('update:download'),
-      install: sendNoop('update:install'),
+      getState: updateCall('GetState'),
+      check: updateCall('Check'),
+      download: updateCall('Download'),
+      install: sendTo(updateCall('Install'), 'update:install'),
       onEvent: (cb) => listen('update:event', cb)
     },
 
     cli: {
-      isInstalled: notPorted('cli:isInstalled'),
-      install: notPorted('cli:install'),
-      uninstall: notPorted('cli:uninstall'),
+      isInstalled: cliCall('IsInstalled'),
+      install: cliCall('Install'),
+      uninstall: cliCall('Uninstall'),
       // Go holds CLI deliveries until the page can receive them (Electron's did-finish-load gate). The
       // listener existing is the moment it can: subscribe first, then release the queue.
       onOpenPath: (cb) => {

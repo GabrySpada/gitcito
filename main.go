@@ -15,6 +15,7 @@ import (
 	"github.com/GabrySpada/gitcito/internal/analytics"
 	"github.com/GabrySpada/gitcito/internal/analyze"
 	"github.com/GabrySpada/gitcito/internal/app"
+	"github.com/GabrySpada/gitcito/internal/cli"
 	"github.com/GabrySpada/gitcito/internal/devices"
 	"github.com/GabrySpada/gitcito/internal/difftool"
 	"github.com/GabrySpada/gitcito/internal/editor"
@@ -36,6 +37,7 @@ import (
 	"github.com/GabrySpada/gitcito/internal/ssh"
 	"github.com/GabrySpada/gitcito/internal/terminal"
 	"github.com/GabrySpada/gitcito/internal/todoscan"
+	"github.com/GabrySpada/gitcito/internal/updater"
 	"github.com/GabrySpada/gitcito/internal/vault"
 	"github.com/GabrySpada/gitcito/internal/watcher"
 	"github.com/GabrySpada/gitcito/internal/wiki"
@@ -45,6 +47,12 @@ import (
 
 //go:embed all:frontend-dist
 var assets embed.FS
+
+// updaterPub is the only trust anchor for updates: a release is installed only when its manifest carries a
+// valid Ed25519 signature from the matching private key (held as a CI secret, never in the repository).
+//
+//go:embed build/updater.pub
+var updaterPub []byte
 
 func main() {
 	// --shot: screenshot automation. Gates the renderer's store bridge and the
@@ -118,6 +126,18 @@ func main() {
 		return nil
 	}
 
+	upd := updater.New(updater.Options{
+		Emitter:   app.Emitter{},
+		PublicKey: updaterPub,
+		Packaged:  !paths.IsDev(),
+		OpenURL:   openURL,
+		Quit: func() {
+			if a := application.Get(); a != nil {
+				a.Quit()
+			}
+		},
+	})
+
 	a := application.New(application.Options{
 		Name:        "Gitcito",
 		Description: "A lightweight Git client",
@@ -146,6 +166,8 @@ func main() {
 			application.NewService(todoscan.NewService()),
 			application.NewService(editor.NewService(editor.New())),
 			application.NewService(difftool.NewService()),
+			application.NewService(cli.NewService(cli.NewInstaller())),
+			application.NewService(updater.NewService(upd)),
 			// GITCITO_SSH_DIR is honoured only under --shot, for the screenshot harness's fake keys.
 			application.NewService(ssh.NewService(ssh.New(*shot))),
 			application.NewService(registry.NewService(registry.New(filepath.Join(dataDir, registry.FileName), nil))),
@@ -175,6 +197,8 @@ func main() {
 	// The window going away mid-question must not leave keychain callers hanging.
 	win.OnWindowEvent(events.Common.WindowClosing, func(*application.WindowEvent) { keys.Cancel() })
 	core.HandleColdLaunch(os.Args)
+	a.OnShutdown(upd.Close)
+	upd.CheckOnLaunch()
 
 	if err := a.Run(); err != nil {
 		log.Fatal(err)

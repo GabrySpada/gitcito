@@ -817,8 +817,8 @@
           "via": "cliApi.install"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "cli.Service.Install",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -841,8 +841,8 @@
           "via": "cliApi.isInstalled"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "cli.Service.IsInstalled",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -865,8 +865,8 @@
           "via": "cliApi.uninstall"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "cli.Service.Uninstall",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4413,8 +4413,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "updater.Service.Check",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4439,8 +4439,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "updater.Service.Download",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4463,8 +4463,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "updater.Service.GetState",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4487,8 +4487,8 @@
           "via": null
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "updater.Service.Install",
+      "status": "ported",
       "test": "—"
     },
     {

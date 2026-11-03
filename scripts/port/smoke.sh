@@ -22,6 +22,9 @@ if [ $status -eq 0 ]; then
   kill -0 "$pid" 2>/dev/null || { echo "smoke: app exited during the hold" >&2; status=1; }
 fi
 kill -TERM -- "-$pgid" 2>/dev/null; sleep 1; kill -KILL -- "-$pgid" 2>/dev/null
+# WebKit's helper processes take a moment to go; return only once the whole group is gone.
+for _ in $(seq 1 20); do pgrep -g "$pgid" >/dev/null || break; sleep 0.5; done
+if pgrep -g "$pgid" >/dev/null; then echo "smoke: processes left running in group $pgid" >&2; status=1; fi
 if grep -E "panic|FATAL| ERR " "$log" >&2; then status=1; fi
 [ $status -eq 0 ] && echo "smoke: ok (window ready, alive for ${hold}s, no errors)" || { echo "smoke: FAILED" >&2; tail -20 "$log" >&2; }
 rm -rf "$data" "$log"

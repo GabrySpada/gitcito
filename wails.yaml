@@ -23,6 +23,15 @@ frontend:
     output: src/renderer/src/bindings
     typescript: true
     interfaces: true
+# The `gitcito` command line (doctor, status, repos, commit-check, …, and the launcher for `gitcito <dir>`).
+# Named gitcito-cli inside the bundle: macOS file systems are case-insensitive, so `gitcito` would collide
+# with the Gitcito executable. cli:install links it onto PATH as `gitcito`.
+binaries:
+  gitcito-cli:
+    package: cmd/gitcito-cli
+    kind: cli
+    environment:
+      CGO_ENABLED: "0"
 build:
   output: bin
 # The dev loop gets its own data dir, keychain entry and single-instance id.

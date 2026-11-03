@@ -59,7 +59,7 @@ func (s *LocalCIService) Run(repoPath, workflowFile string) (*int, error) {
 | … git-read / git-write / git-app | 111 / 150 / 3 |
 | gitService methods with no renderer call site | 13 |
 | Non-git rows with no renderer call site | 6 |
-| Rows by status | ported: 423, todo: 26 |
+| Rows by status | ported: 430, todo: 19 |
 
 gitService methods no renderer code reaches (internal helpers or dead code — port them only if another method needs them): `commitSummary`, `ignoredTrackedFiles`, `listTrackedFiles`, `mergeState`, `open`, `rebaseAbort`, `removeNote`, `replaceObject`, `searchFileContents`, `stackReorder`, `stashBaseShas`, `submoduleDeinit`, `version`.
 
@@ -100,9 +100,9 @@ Non-git rows with no renderer call site: `ai:planActions`, `info:reorder`, `loca
 | `app:releases` | `appReleases` | invoke | — | `Promise<AppRelease[]>` | — | src/preload/index.ts:110, src/main/index.ts:281 | 1: components/ChangelogPage.tsx:60 | app.AppService.Releases | ported | — |
 | `app:version` | `appVersion` | invoke | — | `string (inferred)` | — | src/preload/index.ts:109, src/main/index.ts:277 | 4: App.tsx:507, App.tsx:662, components/ChangelogPage.tsx:51, components/SettingsPanel.tsx:3865 | app.AppService.Version | ported | — |
 | `cli:finishEdit` | `cli.finishEdit` | invoke | `sentinel: string, content: string \| null` | `Promise<{ ok: boolean; error?: string }>` | — | src/preload/index.ts:477, src/main/cli.ts:156 | 2: components/CliEditModal.tsx:55, components/CliEditModal.tsx:63 (via cliApi.finishEdit) | app.AppService.FinishEdit | ported | — |
-| `cli:install` | `cli.install` | invoke | — | `Promise<{ ok: boolean; error?: string; }> (inferred)` | — | src/preload/index.ts:460, src/main/cli.ts:150 | 1: components/CommandPalette.tsx:185 (via cliApi.install) | — | todo | — |
-| `cli:isInstalled` | `cli.isInstalled` | invoke | — | `Promise<boolean> (inferred)` | — | src/preload/index.ts:459, src/main/cli.ts:149 | 1: components/CommandPalette.tsx:146 (via cliApi.isInstalled) | — | todo | — |
-| `cli:uninstall` | `cli.uninstall` | invoke | — | `Promise<{ ok: boolean; error?: string; }> (inferred)` | — | src/preload/index.ts:461, src/main/cli.ts:151 | 1: components/CommandPalette.tsx:170 (via cliApi.uninstall) | — | todo | — |
+| `cli:install` | `cli.install` | invoke | — | `Promise<{ ok: boolean; error?: string; }> (inferred)` | — | src/preload/index.ts:460, src/main/cli.ts:150 | 1: components/CommandPalette.tsx:185 (via cliApi.install) | cli.Service.Install | ported | — |
+| `cli:isInstalled` | `cli.isInstalled` | invoke | — | `Promise<boolean> (inferred)` | — | src/preload/index.ts:459, src/main/cli.ts:149 | 1: components/CommandPalette.tsx:146 (via cliApi.isInstalled) | cli.Service.IsInstalled | ported | — |
+| `cli:uninstall` | `cli.uninstall` | invoke | — | `Promise<{ ok: boolean; error?: string; }> (inferred)` | — | src/preload/index.ts:461, src/main/cli.ts:151 | 1: components/CommandPalette.tsx:170 (via cliApi.uninstall) | cli.Service.Uninstall | ported | — |
 | `devices:boot` | `devices.boot` | invoke | `device: RunDevice` | `Promise<{ ok: true; } \| { error: string; }> (inferred)` | — | src/preload/index.ts:410, src/main/devices.ts:371 | 1: stores/launch.ts:486 | devices.Service.Boot | ported | — |
 | `devices:list` | `devices.list` | invoke | `repoPath: string` | `Promise<RunDeviceSnapshot> (inferred)` | — | src/preload/index.ts:409, src/main/devices.ts:370 | 1: stores/launch.ts:460 | devices.Service.List | ported | — |
 | `dialog:choosePath` | `choosePath` | invoke | `title: string, defaultName: string, filters?: { name: string; extensions: string[] }[]` | `Promise<string \| null> (inferred)` | — | src/preload/index.ts:90, src/main/index.ts:240 | 2: components/ExportModal.tsx:76, components/ExportModal.tsx:133 | app.DialogService.ChoosePath | ported | — |
@@ -216,10 +216,10 @@ Non-git rows with no renderer call site: `ai:planActions`, `info:reorder`, `loca
 | `term:resize` | `term.resize` | send | `id: number, cols: number, rows: number` | `void \| undefined (inferred)` | — | src/preload/index.ts:347, src/main/terminal.ts:156 | 1: components/terminalRegistry.ts:130 | terminal.Service.Resize | ported | — |
 | `todoscan:cancel` | `todoScan.cancel` | send | `repoPath: string` | `void (inferred)` | — | src/preload/index.ts:404, src/main/todoScan.ts:207 | 1: stores/problems.ts:140 | todoscan.Service.Cancel | ported | — |
 | `todoscan:run` | `todoScan.run` | invoke | `repoPath: string` | `Promise<TodoScanResult> (inferred)` | — | src/preload/index.ts:403, src/main/todoScan.ts:206 | 1: stores/problems.ts:130 | todoscan.Service.Run | ported | — |
-| `update:check` | `updates.check` | invoke | `silent?: boolean` | `Promise<void> (inferred)` | `update:event` | src/preload/index.ts:448, src/main/updater.ts:182 | 1: stores/updates.ts:47 | — | todo | — |
-| `update:download` | `updates.download` | invoke | — | `Promise<void> (inferred)` | `update:event` | src/preload/index.ts:449, src/main/updater.ts:200 | 1: stores/updates.ts:52 | — | todo | — |
-| `update:getState` | `updates.getState` | invoke | — | `UpdateState` | — | src/preload/index.ts:447, src/main/updater.ts:178 | 1: stores/updates.ts:43 | — | todo | — |
-| `update:install` | `updates.install` | send | — | `void (inferred)` | — | src/preload/index.ts:450, src/main/updater.ts:223 | 1: stores/updates.ts:58 | — | todo | — |
+| `update:check` | `updates.check` | invoke | `silent?: boolean` | `Promise<void> (inferred)` | `update:event` | src/preload/index.ts:448, src/main/updater.ts:182 | 1: stores/updates.ts:47 | updater.Service.Check | ported | — |
+| `update:download` | `updates.download` | invoke | — | `Promise<void> (inferred)` | `update:event` | src/preload/index.ts:449, src/main/updater.ts:200 | 1: stores/updates.ts:52 | updater.Service.Download | ported | — |
+| `update:getState` | `updates.getState` | invoke | — | `UpdateState` | — | src/preload/index.ts:447, src/main/updater.ts:178 | 1: stores/updates.ts:43 | updater.Service.GetState | ported | — |
+| `update:install` | `updates.install` | send | — | `void (inferred)` | — | src/preload/index.ts:450, src/main/updater.ts:223 | 1: stores/updates.ts:58 | updater.Service.Install | ported | — |
 | `vault:exportAll` | `vault.exportAll` | invoke | — | `Promise<VaultExport> (inferred)` | `keychain:ask` | src/preload/index.ts:221, src/main/vault.ts:155 | 1: components/SettingsPanel.tsx:2021 (via vaultApi.exportAll) | vault.Service.ExportAll | ported | — |
 | `vault:importAll` | `vault.importAll` | invoke | `data: VaultExport` | `Promise<void> (inferred)` | `keychain:ask` | src/preload/index.ts:222, src/main/vault.ts:156 | 1: components/SettingsPanel.tsx:2046 (via vaultApi.importAll) | vault.Service.ImportAll | ported | — |
 | `vault:list` | `vault.list` | invoke | `repoPath: string` | `Promise<VaultListResult> (inferred)` | `keychain:ask` | src/preload/index.ts:216, src/main/vault.ts:150 | 3: components/RepoVaultTab.tsx:81, components/SecureWorkspaceModal.tsx:170, components/VaultPage.tsx:84 (via vaultApi.list) | vault.Service.List | ported | — |
