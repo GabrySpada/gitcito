@@ -33,6 +33,16 @@ while [ -L "$self" ]; do
 done
 DIR=$(CDPATH= cd -- "$(dirname -- "$self")" && pwd)
 
+# Gitcito 5 ships this whole command as the gitcito-cli binary (cmd/gitcito-cli)
+# and the app links that binary into PATH directly, so this script is only
+# reached from a source checkout or an Electron build. Hand over to the binary
+# when it sits where a build puts it: beside the app (`cli/` next to the
+# executable), in a macOS bundle's Contents/MacOS, or in a checkout's bin/.
+for cli in "$DIR/../gitcito-cli" "$DIR/../../MacOS/gitcito-cli" "$DIR/../../bin/gitcito-cli"; do
+  [ -x "$cli" ] && exec "$cli" "$@"
+done
+# Electron build (removed with Electron): everything below.
+
 APP_BIN="$DIR/../../MacOS/Gitcito"
 ASAR_MAIN="$DIR/../app.asar/out/main/cliEntry.js"
 
