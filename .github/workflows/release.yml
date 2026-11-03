@@ -1,5 +1,8 @@
 name: Release
 
+# Builds the Wails app on each OS with Wake, uploads installers plus updater artifacts to a draft release,
+# writes one signed update manifest for all platforms, and only then publishes the release. Same trigger and
+# the same secret-conditional macOS signing as the Electron workflow it replaces.
 on:
   push:
     tags:
@@ -8,80 +11,184 @@ on:
 permissions:
   contents: write
 
+env:
+  WAILS_VERSION: v3.1.0
+  WAILS_EXP_USE_WAKE: '1'
+
 jobs:
-  release:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create the draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view "${{ github.ref_name }}" --repo "${{ github.repository }}" >/dev/null 2>&1 \
+            || gh release create "${{ github.ref_name }}" --repo "${{ github.repository }}" --draft \
+                 --title "${{ github.ref_name }}" --notes "Release in progress."
+
+  build:
+    needs: draft
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-
+        include:
+          - os: macos-latest
+            target: darwin/universal
+            formats: dmg
+          - os: windows-latest
+            target: windows/amd64
+            formats: nsis
+          - os: ubuntu-24.04
+            target: linux/amd64
+            formats: appimage,deb
     runs-on: ${{ matrix.os }}
-
-    # 'true' when the macOS signing cert secret is configured. Drives whether the
-    # mac build is signed + notarized or shipped unsigned. See docs/code-signing-macos.md.
+    defaults:
+      run:
+        shell: bash
     env:
       HAS_APPLE_CERT: ${{ secrets.CSC_LINK != '' }}
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-go@v5
         with:
-          node-version: 20
+          go-version-file: go.mod
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Linux GUI libraries (GTK4 + WebKitGTK 6.0)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libgtk-4-dev libwebkitgtk-6.0-dev pkg-config
+
+      - name: NSIS
+        if: runner.os == 'Windows'
+        run: choco install nsis -y --no-progress
+
+      - name: Install the Wails CLI
+        run: go install github.com/wailsapp/wails/v3/cmd/wails3@${WAILS_VERSION}
+
+      - name: Install npm dependencies
         run: npm ci
 
-      # macOS WITH signing secrets -> signed + notarized.
-      - name: Build and publish (signed macOS)
-        if: matrix.os == 'macos-latest' && env.HAS_APPLE_CERT == 'true'
+      # macOS signing is configured only for this run, never committed: the identity comes from secrets.
+      - name: macOS signing identity
+        if: runner.os == 'macOS'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_LINK: ${{ secrets.CSC_LINK }}
+        run: |
+          if [ "$HAS_APPLE_CERT" = "true" ]; then
+            mkdir -p build/signing
+            echo "$CSC_LINK" | base64 --decode > build/signing/developer-id.p12
+            node scripts/release-signing.mjs developer-id build/signing/developer-id.p12
+          else
+            # No certificate: ad-hoc signature, as the Electron workflow shipped unsigned. Said so in the notes.
+            node scripts/release-signing.mjs adhoc
+          fi
+          wails3 config check release
+
+      - name: Build and package
+        env:
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+        run: wails3 build --targets ${{ matrix.target }} --formats ${{ matrix.formats }}
+
+      # Apple ID + app-specific password is what the repository's secrets hold, which Wake's API-key notarization
+      # does not accept; notarytool takes them directly on the macOS runner.
+      - name: Notarize and staple (signed macOS only)
+        if: runner.os == 'macOS' && env.HAS_APPLE_CERT == 'true'
+        env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-        run: npm run release -- --config.mac.notarize.teamId="$APPLE_TEAM_ID"
+        run: |
+          for dmg in bin/*.dmg; do
+            xcrun notarytool submit "$dmg" --apple-id "$APPLE_ID" --password "$APPLE_APP_SPECIFIC_PASSWORD" \
+              --team-id "$APPLE_TEAM_ID" --wait
+            xcrun stapler staple "$dmg"
+          done
 
-      # Everything else: unsigned macOS (no secrets), or Windows/Linux.
-      # CSC_IDENTITY_AUTO_DISCOVERY=false stops electron-builder from failing
-      # when no signing identity is present (harmless on Windows/Linux).
-      - name: Build and publish (unsigned)
-        if: matrix.os != 'macos-latest' || env.HAS_APPLE_CERT != 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CSC_IDENTITY_AUTO_DISCOVERY: false
-        run: npm run release
+      # Updater artifacts (Wails updater formats): the macOS .app zipped, the Windows exe, the Linux binary.
+      # Names carry platform + arch so the manifest lists one artifact per platform.
+      - name: Collect release files
+        run: |
+          mkdir -p out/installers out/updates
+          case "${{ runner.os }}" in
+            macOS)
+              cp bin/*.dmg out/installers/
+              app=$(ls -d bin/*.app .wails/build/default/darwin-universal/artifacts/*.app 2>/dev/null | head -1)
+              ditto -c -k --keepParent "$app" out/updates/Gitcito-darwin-universal.zip ;;
+            Windows)
+              cp bin/*installer*.exe out/installers/
+              cp .wails/build/default/windows-amd64/artifacts/Gitcito.exe out/updates/Gitcito-windows-amd64.exe ;;
+            Linux)
+              cp bin/*.AppImage bin/*.deb out/installers/
+              cp .wails/build/default/linux-amd64/artifacts/Gitcito out/updates/Gitcito-linux-amd64 ;;
+          esac
+          ls -la out/installers out/updates
 
-  # Flip the draft release to published, but ONLY after all three build jobs
-  # succeed. If any OS build fails, this job is skipped and the release stays a
-  # hidden draft (no half-uploaded release ever goes public).
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ runner.os }}
+          path: out/
+
   publish:
-    needs: release
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Install the Wails CLI
+        run: go install github.com/wailsapp/wails/v3/cmd/wails3@${WAILS_VERSION}
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist-release
+          pattern: release-*
+          merge-multiple: true
+
+      # Never publish an update the app cannot verify: no key, no release.
+      - name: Sign the update manifest
+        env:
+          WAILS_UPDATER_PRIVATE_KEY: ${{ secrets.WAILS_UPDATER_PRIVATE_KEY }}
+        run: |
+          if [ -z "$WAILS_UPDATER_PRIVATE_KEY" ]; then
+            echo "::error::WAILS_UPDATER_PRIVATE_KEY is not set; refusing to publish unverifiable updates." >&2
+            exit 1
+          fi
+          VERSION="${GITHUB_REF_NAME#v}"
+          umask 077
+          printf '%s\n' "$WAILS_UPDATER_PRIVATE_KEY" > "$RUNNER_TEMP/updater.key"
+          wails3 updater manifest -version "$VERSION" -channel stable -key "$RUNNER_TEMP/updater.key" \
+            -url-prefix "https://github.com/${{ github.repository }}/releases/download/${GITHUB_REF_NAME}" \
+            dist-release/updates/
+          mv manifest.json dist-release/gitcito-update.json
+          wails3 updater verify -manifest dist-release/gitcito-update.json -publickey build/updater.pub
+          rm -f "$RUNNER_TEMP/updater.key"
 
       - name: Extract changelog for this version
         run: |
-          VERSION="${{ github.ref_name }}"
-          VERSION="${VERSION#v}"
-          # Write to a file (not a shell arg) so notes containing quotes,
-          # backticks or $() never get re-interpreted by the shell.
+          VERSION="${GITHUB_REF_NAME#v}"
+          # Written to a file (not a shell arg) so notes containing quotes, backticks or $() are never
+          # re-interpreted by the shell.
           awk "/^## \[${VERSION}\]/{flag=1; next} /^## /{flag=0} flag" CHANGELOG.md \
             | sed '/^$/d' | head -100 > release-notes.md
+          if [ "${{ secrets.CSC_LINK != '' }}" != "true" ]; then
+            printf '\n_The macOS build carries an ad-hoc signature (no Developer ID configured)._\n' >> release-notes.md
+          fi
 
-      - name: Publish the release
+      # No electron-updater latest*.yml is published: 4.x installs must not auto-update to 5.0.
+      - name: Upload and publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release edit "${{ github.ref_name }}" \
-            --repo "${{ github.repository }}" \
-            --draft=false \
-            --latest \
-            --notes-file release-notes.md
+          gh release upload "$GITHUB_REF_NAME" --repo "${{ github.repository }}" --clobber \
+            dist-release/installers/* dist-release/updates/* dist-release/gitcito-update.json
+          gh release edit "$GITHUB_REF_NAME" --repo "${{ github.repository }}" \
+            --draft=false --latest --notes-file release-notes.md

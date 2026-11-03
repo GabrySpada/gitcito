@@ -39,3 +39,6 @@ frontend-dist/*
 /gitcito.exe
 /bin/
 /.wails/
+
+# Release-time signing material, written from secrets in CI. Never committed.
+build/signing/
