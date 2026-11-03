@@ -142,3 +142,24 @@ Every decision the brief did not dictate. One entry each: context, options, choi
   `npm run playground:clean` or builds in a fresh checkout. `wails3 build --plan` resolves for linux/amd64
   (appimage, deb) and windows/amd64 (nsis) here; darwin/universal needs a macOS host with CGO (D8), so its plan
   and build run on the macOS release runner (cross-compiling from Linux would need Wails' Docker image).
+
+## 024 — Updater: signed Wails update manifest, not the GitHub provider
+- **Context:** Wails' `providers/github` verifies only a SHA256SUMS digest; the brief requires that no update
+  installs without a valid ed25519 signature.
+- **Choice:** `providers/endpoint` on `https://github.com/MyAppDesk/gitcito/releases/latest/download/
+  gitcito-update.json`, written by `wails3 updater manifest -key …` and gated by `wails3 updater verify` in the
+  release workflow. `build/updater.pub` (embedded) is the only trust anchor; tampered, wrongly signed,
+  digest-only or unsigned releases are refused (internal/updater tests, plus a real CLI-signed fixture).
+  Asset names carry GOOS/GOARCH; the universal macOS bundle ships as both darwin-arm64 and darwin-amd64 zips.
+- `version.UpdatesDisabled` stays true (fork, as UPDATES_DISABLED was): no network path runs until the owner
+  repoints `version.ReleaseRepo` and flips it.
+- **Owner action (the one allowed by the brief, §11.3):** this session has no authenticated `gh`, so the private
+  key was written to `~/.config/gitcito-release/updater.key` (0600) in the port container and NOT uploaded.
+  Because that container is ephemeral, the PR states the steps: generate a fresh pair with
+  `wails3 updater genkey`, replace `build/updater.pub`, and run
+  `gh secret set WAILS_UPDATER_PRIVATE_KEY < updater.key` on the release repository.
+
+## 025 — `gitcito` CLI is a Go companion binary
+- `cmd/gitcito-cli` (CGO off, no Wails import) runs every headless verb and launches/hands off to the app for
+  `gitcito <dir>` / `--wait`. `cli:install` symlinks it onto PATH as `gitcito`. `resources/cli/gitcito-textconv`
+  stays a one-line exec shim because existing `diff.<driver>.textconv` configs name that path.

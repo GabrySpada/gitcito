@@ -119,7 +119,10 @@ jobs:
             macOS)
               cp bin/*.dmg out/installers/
               app=$(ls -d bin/*.app .wails/build/default/darwin-universal/artifacts/*.app 2>/dev/null | head -1)
-              ditto -c -k --keepParent "$app" out/updates/Gitcito-darwin-universal.zip ;;
+              # One universal bundle, listed under both architectures: the manifest infers the platform
+              # from GOOS/GOARCH in the file name, and "universal" is not an architecture.
+              ditto -c -k --keepParent "$app" out/updates/Gitcito-darwin-arm64.zip
+              cp out/updates/Gitcito-darwin-arm64.zip out/updates/Gitcito-darwin-amd64.zip ;;
             Windows)
               cp bin/*installer*.exe out/installers/
               cp .wails/build/default/windows-amd64/artifacts/Gitcito.exe out/updates/Gitcito-windows-amd64.exe ;;
@@ -153,6 +156,17 @@ jobs:
           pattern: release-*
           merge-multiple: true
 
+      - name: Extract changelog for this version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          # Written to a file (not a shell arg) so notes containing quotes, backticks or $() are never
+          # re-interpreted by the shell.
+          awk "/^## \[${VERSION}\]/{flag=1; next} /^## /{flag=0} flag" CHANGELOG.md \
+            | sed '/^$/d' | head -100 > release-notes.md
+          if [ "${{ secrets.CSC_LINK != '' }}" != "true" ]; then
+            printf '\n_The macOS build carries an ad-hoc signature (no Developer ID configured)._\n' >> release-notes.md
+          fi
+
       # Never publish an update the app cannot verify: no key, no release.
       - name: Sign the update manifest
         env:
@@ -166,22 +180,12 @@ jobs:
           umask 077
           printf '%s\n' "$WAILS_UPDATER_PRIVATE_KEY" > "$RUNNER_TEMP/updater.key"
           wails3 updater manifest -version "$VERSION" -channel stable -key "$RUNNER_TEMP/updater.key" \
-            -url-prefix "https://github.com/${{ github.repository }}/releases/download/${GITHUB_REF_NAME}" \
-            dist-release/updates/
-          mv manifest.json dist-release/gitcito-update.json
-          wails3 updater verify -manifest dist-release/gitcito-update.json -publickey build/updater.pub
+            -notes-file release-notes.md \
+            -url-prefix "https://github.com/${{ github.repository }}/releases/download/${GITHUB_REF_NAME}/" \
+            -output dist-release/gitcito-update.json dist-release/updates
+          wails3 updater verify -manifest dist-release/gitcito-update.json -dir dist-release/updates \
+            -publickey build/updater.pub
           rm -f "$RUNNER_TEMP/updater.key"
-
-      - name: Extract changelog for this version
-        run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          # Written to a file (not a shell arg) so notes containing quotes, backticks or $() are never
-          # re-interpreted by the shell.
-          awk "/^## \[${VERSION}\]/{flag=1; next} /^## /{flag=0} flag" CHANGELOG.md \
-            | sed '/^$/d' | head -100 > release-notes.md
-          if [ "${{ secrets.CSC_LINK != '' }}" != "true" ]; then
-            printf '\n_The macOS build carries an ad-hoc signature (no Developer ID configured)._\n' >> release-notes.md
-          fi
 
       # No electron-updater latest*.yml is published: 4.x installs must not auto-update to 5.0.
       - name: Upload and publish
