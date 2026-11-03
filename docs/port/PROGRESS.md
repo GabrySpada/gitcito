@@ -28,11 +28,19 @@ compaction.
     (`droppedFilePaths`), zoom, timelapse format, PDF fallback button.
 
 ## In flight (subagents, worktrees)
-- Registry group (repoRegistry, repoScan, repoMeta, repoConfig, repoFileActions, watcher, textconv).
-- Wave 2 (WAVE2-BRIEF.md): ai; repochat+grounding+wiki; processes; secure/vault/analytics/info.
-  (All stopped on the API usage limit at ~13:10 and again ~17:00 UTC; resumed with SendMessage after each
-  reset, told to commit in small steps. Their worktrees keep partial work between interruptions.)
-- Worktrees start on `main`: every brief now says `git reset --hard claude/wizardly-hypatia-gttsk8` first.
+- Wave 3 tools: editor + difftool + ssh.
+- Wave 3 cli + updater: cmd/gitcito-cli, internal/cli, internal/updater (ed25519, fails closed).
+- Worktrees start on `main`: every brief says `git reset --hard claude/wizardly-hypatia-gttsk8` first.
+
+## Merged since the last update
+- Wave 2 complete: ai, repochat + grounding + wiki, processes (terminal/launch/devices/localci/analyze/todoscan),
+  secure/vault/analytics/info, registry/watcher/repoconfig/fileactions/textconv. All bound in main.go and the
+  bridge (408 bound methods, all tagged). Only difftool/ssh/editor/update/cli channels remain `notPorted`.
+- Hardening during merges: secure-bundle writes refuse symlink escapes; `shared.IsSafeRepoPath` uses JS trim.
+- Cleanup owed in M6: internal/grounding duplicates of internal/ai (ParseLooseJSON + jsonrepair dep, review/
+  hover/ask-plan validators — see merge 528eb7b report); several `*LocaleCompare`/`isSecretFile` copies in
+  gitsvc/secure; a*/b*/c*/d* helper hoisting; two gitsvc goldens (teammateRadar one-branch, notedCommits
+  cherry-pick-two) may be order-flaky on a freshly generated playground.
 
 ## Next
 - Merge each slice branch: `git merge <branch>`, `go build ./... && go test ./internal/gitsvc/`, regenerate
