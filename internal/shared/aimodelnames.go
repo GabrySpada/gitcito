@@ -127,7 +127,7 @@ func newerThan(a, b ModelEntry) bool {
 	case b.Created != nil:
 		return false
 	}
-	return localeCompare(a.ID, b.ID) > 0
+	return LocaleCompare(a.ID, b.ID) > 0
 }
 
 // OrderModels is newest first, with undated models after the dated ones in
@@ -150,7 +150,7 @@ func OrderModels(entries []ModelEntry) []ModelEntry {
 		if a.Created == nil && b.Created != nil {
 			return false
 		}
-		return localeCompare(a.ID, b.ID) < 0
+		return LocaleCompare(a.ID, b.ID) < 0
 	})
 	return out
 }

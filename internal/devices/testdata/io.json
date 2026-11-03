@@ -1,0 +1,482 @@
+{
+  "list": [
+    {
+      "name": "linux flutter project with an android sdk",
+      "platform": "linux",
+      "dart": true,
+      "sdk": true,
+      "replies": {
+        "flutter devices --machine": "Warning: noise\n[{\"name\":\"sdk gphone64 arm64\",\"id\":\"emulator-5554\",\"targetPlatform\":\"android-arm64\",\"emulator\":true,\"sdk\":\"Android 15\"},{\"name\":\"Linux\",\"id\":\"linux\",\"targetPlatform\":\"linux-x64\",\"emulator\":false}]",
+        "flutter emulators": "Pixel_9a • Pixel 9a • Google • android\napple_ios_simulator • iOS Simulator • Apple • ios\n",
+        "<SDK>/platform-tools/adb devices -l": "List of devices attached\nemulator-5554          device product:sdk_gphone64_arm64 model:sdk_gphone64_arm64 device:emu64a\nemulator-5556          device product:x model:x device:y\n39121FDJG0018Z         device usb:1-2 product:shiba model:Pixel_8 device:shiba\nR5CT10ABCDE            unauthorized\n",
+        "<SDK>/platform-tools/adb -s emulator-5554 emu avd name": "Pixel_9a\nOK\n",
+        "<SDK>/platform-tools/adb -s emulator-5556 emu avd name": "\n",
+        "<SDK>/emulator/emulator -list-avds": "Pixel_9a\nNexus_5X\n"
+      },
+      "snapshot": {
+        "devices": [
+          {
+            "id": "39121FDJG0018Z",
+            "name": "Pixel 8",
+            "platform": "android",
+            "kind": "device",
+            "running": true,
+            "source": "adb",
+            "detail": "39121FDJG0018Z"
+          },
+          {
+            "id": "emulator-5554",
+            "name": "Pixel 9a",
+            "platform": "android",
+            "kind": "simulator",
+            "running": true,
+            "source": "flutter",
+            "detail": "Android 15"
+          },
+          {
+            "id": "emulator-5556",
+            "name": "x",
+            "platform": "android",
+            "kind": "simulator",
+            "running": true,
+            "source": "adb",
+            "detail": "emulator-5556"
+          },
+          {
+            "id": "linux",
+            "name": "Linux",
+            "platform": "linux",
+            "kind": "desktop",
+            "running": true,
+            "source": "flutter"
+          },
+          {
+            "id": "apple_ios_simulator",
+            "name": "iOS Simulator",
+            "platform": "ios",
+            "kind": "simulator",
+            "running": false,
+            "source": "flutter-emulator",
+            "detail": "Apple"
+          },
+          {
+            "id": "Nexus_5X",
+            "name": "Nexus 5X",
+            "platform": "android",
+            "kind": "simulator",
+            "running": false,
+            "source": "avd"
+          }
+        ],
+        "missing": []
+      },
+      "calls": [
+        {
+          "cmd": "<SDK>/emulator/emulator",
+          "args": [
+            "-list-avds"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "<SDK>/platform-tools/adb",
+          "args": [
+            "-s",
+            "emulator-5554",
+            "emu",
+            "avd",
+            "name"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "<SDK>/platform-tools/adb",
+          "args": [
+            "-s",
+            "emulator-5556",
+            "emu",
+            "avd",
+            "name"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "<SDK>/platform-tools/adb",
+          "args": [
+            "devices",
+            "-l"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "flutter",
+          "args": [
+            "devices",
+            "--machine"
+          ],
+          "timeout": 25000
+        },
+        {
+          "cmd": "flutter",
+          "args": [
+            "emulators"
+          ],
+          "timeout": 25000
+        }
+      ]
+    },
+    {
+      "name": "linux, nothing installed",
+      "platform": "linux",
+      "dart": false,
+      "sdk": false,
+      "replies": {},
+      "snapshot": {
+        "devices": [],
+        "missing": [
+          "adb",
+          "emulator"
+        ]
+      },
+      "calls": [
+        {
+          "cmd": "adb",
+          "args": [
+            "devices",
+            "-l"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "emulator",
+          "args": [
+            "-list-avds"
+          ],
+          "timeout": 10000
+        }
+      ]
+    },
+    {
+      "name": "macos simulators, no android",
+      "platform": "darwin",
+      "dart": false,
+      "sdk": false,
+      "replies": {
+        "xcrun simctl list devices available --json": "{\"devices\":{\"com.apple.CoreSimulator.SimRuntime.iOS-18-0\":[{\"udid\":\"U\",\"name\":\"iPhone 16\",\"state\":\"Shutdown\"}]}}"
+      },
+      "snapshot": {
+        "devices": [
+          {
+            "id": "U",
+            "name": "iPhone 16",
+            "platform": "ios",
+            "kind": "simulator",
+            "running": false,
+            "source": "simctl",
+            "detail": "iOS 18.0"
+          }
+        ],
+        "missing": [
+          "adb",
+          "emulator"
+        ]
+      },
+      "calls": [
+        {
+          "cmd": "adb",
+          "args": [
+            "devices",
+            "-l"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "emulator",
+          "args": [
+            "-list-avds"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "xcrun",
+          "args": [
+            "simctl",
+            "list",
+            "devices",
+            "available",
+            "--json"
+          ],
+          "timeout": 10000
+        }
+      ]
+    },
+    {
+      "name": "macos, simctl missing, flutter project failing",
+      "platform": "darwin",
+      "dart": true,
+      "sdk": false,
+      "replies": {},
+      "snapshot": {
+        "devices": [],
+        "missing": [
+          "flutter",
+          "xcrun simctl",
+          "adb",
+          "emulator"
+        ]
+      },
+      "calls": [
+        {
+          "cmd": "adb",
+          "args": [
+            "devices",
+            "-l"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "emulator",
+          "args": [
+            "-list-avds"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "flutter",
+          "args": [
+            "devices",
+            "--machine"
+          ],
+          "timeout": 25000
+        },
+        {
+          "cmd": "flutter",
+          "args": [
+            "emulators"
+          ],
+          "timeout": 25000
+        },
+        {
+          "cmd": "xcrun",
+          "args": [
+            "simctl",
+            "list",
+            "devices",
+            "available",
+            "--json"
+          ],
+          "timeout": 10000
+        }
+      ]
+    },
+    {
+      "name": "screenshot mode redirects found tools",
+      "platform": "linux",
+      "dart": false,
+      "sdk": false,
+      "shot": [
+        "adb"
+      ],
+      "replies": {
+        "<BIN>/adb devices -l": "List of devices attached\nSHOT1 device model:Shot_Phone\n"
+      },
+      "snapshot": {
+        "devices": [
+          {
+            "id": "SHOT1",
+            "name": "Shot Phone",
+            "platform": "android",
+            "kind": "device",
+            "running": true,
+            "source": "adb",
+            "detail": "SHOT1"
+          }
+        ],
+        "missing": [
+          "emulator"
+        ]
+      },
+      "calls": [
+        {
+          "cmd": "<BIN>/adb",
+          "args": [
+            "devices",
+            "-l"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "emulator",
+          "args": [
+            "-list-avds"
+          ],
+          "timeout": 10000
+        }
+      ]
+    }
+  ],
+  "boot": [
+    {
+      "device": {
+        "id": "Pixel_7",
+        "name": "Pixel 7",
+        "platform": "android",
+        "kind": "simulator",
+        "running": false,
+        "source": "flutter-emulator"
+      },
+      "replies": {
+        "flutter emulators --launch Pixel_7": ""
+      },
+      "result": {
+        "ok": true
+      },
+      "execCalls": [
+        {
+          "cmd": "flutter",
+          "args": [
+            "emulators",
+            "--launch",
+            "Pixel_7"
+          ],
+          "timeout": 25000
+        }
+      ],
+      "spawnCalls": []
+    },
+    {
+      "device": {
+        "id": "Pixel_7",
+        "name": "Pixel 7",
+        "platform": "android",
+        "kind": "simulator",
+        "running": false,
+        "source": "flutter-emulator"
+      },
+      "replies": {
+        "flutter emulators --launch Pixel_7": {
+          "error": "Command failed: flutter emulators --launch Pixel_7\nboom"
+        }
+      },
+      "result": {
+        "error": "Command failed: flutter emulators --launch Pixel_7\nboom"
+      },
+      "execCalls": [
+        {
+          "cmd": "flutter",
+          "args": [
+            "emulators",
+            "--launch",
+            "Pixel_7"
+          ],
+          "timeout": 25000
+        }
+      ],
+      "spawnCalls": []
+    },
+    {
+      "device": {
+        "id": "UDID-2",
+        "name": "iPad",
+        "platform": "ios",
+        "kind": "simulator",
+        "running": false,
+        "source": "simctl"
+      },
+      "replies": {
+        "xcrun simctl boot UDID-2": "",
+        "open -a Simulator": null
+      },
+      "result": {
+        "ok": true
+      },
+      "execCalls": [
+        {
+          "cmd": "xcrun",
+          "args": [
+            "simctl",
+            "boot",
+            "UDID-2"
+          ],
+          "timeout": 10000
+        },
+        {
+          "cmd": "open",
+          "args": [
+            "-a",
+            "Simulator"
+          ],
+          "timeout": 10000
+        }
+      ],
+      "spawnCalls": []
+    },
+    {
+      "device": {
+        "id": "UDID-2",
+        "name": "iPad",
+        "platform": "ios",
+        "kind": "simulator",
+        "running": false,
+        "source": "simctl"
+      },
+      "replies": {},
+      "result": {
+        "error": "spawn xcrun ENOENT"
+      },
+      "execCalls": [
+        {
+          "cmd": "xcrun",
+          "args": [
+            "simctl",
+            "boot",
+            "UDID-2"
+          ],
+          "timeout": 10000
+        }
+      ],
+      "spawnCalls": []
+    },
+    {
+      "device": {
+        "id": "Pixel_9a",
+        "name": "Pixel 9a",
+        "platform": "android",
+        "kind": "simulator",
+        "running": false,
+        "source": "avd"
+      },
+      "replies": {},
+      "result": {
+        "ok": true
+      },
+      "execCalls": [],
+      "spawnCalls": [
+        {
+          "cmd": "emulator",
+          "args": [
+            "-avd",
+            "Pixel_9a"
+          ],
+          "detached": true
+        }
+      ]
+    },
+    {
+      "device": {
+        "id": "emulator-5554",
+        "name": "x",
+        "platform": "android",
+        "kind": "simulator",
+        "running": true,
+        "source": "adb"
+      },
+      "replies": {},
+      "result": {
+        "ok": true
+      },
+      "execCalls": [],
+      "spawnCalls": []
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "parseWorkflowName": [
+    {
+      "input": "name: CI\non: [push]\n",
+      "out": "CI"
+    },
+    {
+      "input": "name: \"Build & Test\"\njobs:\n",
+      "out": "Build & Test"
+    },
+    {
+      "input": "on: [push]\njobs:\n  x: {}\n",
+      "out": null
+    },
+    {
+      "input": "on: [push]\njobs:\n  build:\n    name: inner\n",
+      "out": null
+    },
+    {
+      "input": "name: 'single'\n",
+      "out": "single"
+    },
+    {
+      "input": "name:   spaced out   \n",
+      "out": "spaced out"
+    },
+    {
+      "input": "name: CRLF\r\non: push\r\n",
+      "out": "CRLF"
+    },
+    {
+      "input": "name:\nname: second\n",
+      "out": "second"
+    },
+    {
+      "input": "# comment\nname: after comment\n",
+      "out": "after comment"
+    },
+    {
+      "input": "jobs:\nname: too late\n",
+      "out": null
+    },
+    {
+      "input": "on:\nname: also too late\n",
+      "out": null
+    },
+    {
+      "input": "onward: x\nname: not on\n",
+      "out": "not on"
+    },
+    {
+      "input": "name: \"unbalanced\n",
+      "out": "unbalanced"
+    },
+    {
+      "input": "name: 'a'b'\n",
+      "out": "a'b"
+    },
+    {
+      "input": "name: \"\n",
+      "out": ""
+    },
+    {
+      "input": "name: x # trailing comment\n",
+      "out": "x # trailing comment"
+    },
+    {
+      "input": "  name: indented\nname: top\n",
+      "out": "top"
+    },
+    {
+      "input": "",
+      "out": null
+    }
+  ]
+}
