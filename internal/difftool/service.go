@@ -48,14 +48,14 @@ func (s *Service) Set(ctx context.Context, repoPath string, values Values, scope
 	return Set(ctx, repoPath, values, scope)
 }
 
-// Diff opens one file in the diff tool and waits for it; ” on success, else the reason.
+// Diff opens one file in the diff tool and waits for it; an empty string on success, else the reason.
 // channel: difftool:diff
 func (s *Service) Diff(ctx context.Context, repoPath, file, rev, tool string) (msg string) {
 	defer recoverMsg(&msg)
 	return Diff(ctx, repoPath, file, rev, tool)
 }
 
-// Merge opens one conflicted file in the merge tool and waits for it; ” on success.
+// Merge opens one conflicted file in the merge tool and waits for it; an empty string on success.
 // channel: difftool:merge
 func (s *Service) Merge(ctx context.Context, repoPath, file, tool string) (msg string) {
 	defer recoverMsg(&msg)

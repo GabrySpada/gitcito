@@ -131,7 +131,7 @@ func TestOpenGolden(t *testing.T) {
 	}
 }
 
-// TS registered an error listener on the spawned child but resolved ” first,
+// TS registered an error listener on the spawned child but resolved the empty string first,
 // so a missing editor binary was reported as success. The Go start is
 // synchronous and says what went wrong, as the doc comment always promised.
 func TestOpenReportsAMissingEditor(t *testing.T) {

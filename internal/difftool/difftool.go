@@ -143,7 +143,7 @@ func firstNonEmpty(values ...string) string {
 // that commit; without it, against the index/HEAD as git normally would.
 //
 // It returns when the tool exits. That can be minutes — the renderer keeps its
-// button disabled meanwhile rather than the app blocking. ” means success.
+// button disabled meanwhile rather than the app blocking. An empty string means success.
 func Diff(ctx context.Context, repoPath, file, rev, tool string) string {
 	args := []string{"difftool", "--no-prompt"}
 	if tool != "" {
@@ -162,7 +162,7 @@ func Diff(ctx context.Context, repoPath, file, rev, tool string) string {
 
 // Merge runs `git mergetool` on one conflicted file. On a clean exit git
 // stages the result itself, so the conflict is resolved by the time this
-// returns. ” means success.
+// returns. An empty string means success.
 func Merge(ctx context.Context, repoPath, file, tool string) string {
 	args := []string{"mergetool", "--no-prompt"}
 	if tool != "" {

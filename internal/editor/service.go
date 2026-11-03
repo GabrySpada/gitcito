@@ -34,7 +34,7 @@ func (s *Service) Detect(ctx context.Context) (out []shared.DetectedEditor, err 
 	return s.e.Detect(), nil
 }
 
-// Open launches the configured editor on a file or folder. It returns ” on
+// Open launches the configured editor on a file or folder. It returns an empty string on
 // success, else the message to toast.
 // channel: editor:open
 func (s *Service) Open(ctx context.Context, setting *shared.EditorSetting, target *shared.EditorTarget) (msg string) {
