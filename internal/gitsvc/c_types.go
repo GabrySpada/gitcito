@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 
+	"github.com/GabrySpada/gitcito/internal/fileactions"
 	"github.com/GabrySpada/gitcito/internal/gitx"
 )
 
@@ -192,23 +193,8 @@ type BisectStatus struct {
 // PreparedRepoChatFileAction is PreparedRepoChatFileAction in
 // src/shared/types.ts: a repository-chat file mutation (edit_file /
 // write_file / delete_file) after the main process verified it and built its
-// diff. The union is flattened; Type says which fields apply.
-type PreparedRepoChatFileAction struct {
-	Type        string `json:"type"`
-	Path        string `json:"path"`
-	Description string `json:"description"`
-	// edit_file
-	OldText    string `json:"oldText,omitempty"`
-	NewText    string `json:"newText,omitempty"`
-	ReplaceAll bool   `json:"replaceAll,omitempty"`
-	// write_file
-	Content string `json:"content,omitempty"`
-	Mode    string `json:"mode,omitempty"` // 'create' | 'replace'
-	// prepared
-	ExpectedHash        *string `json:"expectedHash"`
-	ExpectedOccurrences *int    `json:"expectedOccurrences,omitempty"`
-	Preview             string  `json:"preview"`
-}
+// diff. It lives in internal/fileactions, which prepares and applies it.
+type PreparedRepoChatFileAction = fileactions.PreparedRepoChatFileAction
 
 // RepoFileBatchError is the `error` of a failed RepoFileBatchResult.
 type RepoFileBatchError struct {

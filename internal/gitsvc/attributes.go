@@ -18,10 +18,10 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"runtime"
 	"strings"
 
 	"github.com/GabrySpada/gitcito/internal/gitx"
+	"github.com/GabrySpada/gitcito/internal/textconv"
 )
 
 // AttributeFile is AttributeFile in src/shared/types.ts.
@@ -274,26 +274,6 @@ func (s *GitService) DiffDrivers(ctx context.Context, repoPath string) ([]DiffDr
 	})
 }
 
-// dBundledTextconvPath is the textconv shim Gitcito ships
-// (resources/cli/gitcito-textconv): next to the executable when packaged
-// (`cli/` beside it, or `Resources/cli` in a macOS bundle), else in the source
-// checkout this file was built from — which is where tests find it.
-func dBundledTextconvPath() string {
-	if exe, err := os.Executable(); err == nil {
-		dir := filepath.Dir(exe)
-		for _, p := range []string{
-			filepath.Join(dir, "cli", "gitcito-textconv"),
-			filepath.Join(dir, "..", "Resources", "cli", "gitcito-textconv"),
-		} {
-			if dExists(p) {
-				return filepath.Clean(p)
-			}
-		}
-	}
-	_, file, _, _ := runtime.Caller(0)
-	return filepath.Join(filepath.Dir(file), "..", "..", "resources", "cli", "gitcito-textconv")
-}
-
 // DiffDriverSuggestions lists the converters Gitcito can wire up for the
 // formats it already previews. It takes the repo path it never uses: every
 // repo-scoped method does, and the dispatcher locks on it.
@@ -305,7 +285,7 @@ func (s *GitService) DiffDriverSuggestions(ctx context.Context, repoPath string)
 		// with nothing installed. The rest still need a real tool on PATH, and
 		// the UI says plainly which are missing rather than writing a driver
 		// that fails at the first diff.
-		shim := dBundledTextconvPath()
+		shim := textconv.BundledPath()
 		shimConv := `"` + shim + `"`
 		shimOK := gitx.CanExecute(shim)
 		return []DiffDriverSuggestion{
