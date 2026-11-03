@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"strconv"
 	"testing"
 
 	g "github.com/GabrySpada/gitcito/internal/grounding"
@@ -165,5 +164,3 @@ func TestWikiSchemaVectors(t *testing.T) {
 	}
 }
 
-// Keeps strconv imported for table labels in the ported vitest cases.
-var _ = strconv.Itoa
