@@ -119,3 +119,26 @@ Every decision the brief did not dictate. One entry each: context, options, choi
   cross-origin frame cannot be inspected for a failed render, so the working-tree preview always shows an
   "Open in default app" button (existing key `fileTree.openDefaultApp`, translated in every locale). The
   server-build e2e (M8) asserts an opaque-origin frame cannot call `/wails/runtime`.
+
+## 021 — macOS entitlements emptied
+- **Context:** `build/entitlements.mac.plist` granted allow-jit, allow-unsigned-executable-memory,
+  disable-library-validation and allow-dyld-environment-variables — all Electron/V8 requirements.
+- **Choice:** An empty entitlements dict. WKWebView's JIT (JavaScript and the tree-sitter WebAssembly) runs in
+  Apple's WebContent process; the Go binary loads no third-party dylibs. Removing them shrinks the hardened
+  runtime's exceptions to none. Listed in MANUAL-CHECKS (a signed macOS build must still render and run git).
+
+## 022 — Release profile targets
+- `wails.yaml` `profiles.release`: darwin/universal → dmg, windows/amd64 → nsis (per-user scope, as
+  electron-builder's oneClick: false), linux/amd64 → appimage + deb. `wails3 config check release` passes.
+  Updater artifacts and signing hooks are added with the updater port (M8).
+
+## 023 — Wake builds run before the playground exists
+- **Context:** Wake's binding-input fingerprint walks every `.go` file under the project root with a fixed
+  exclude list (.git, .wails, bin, build, dist, node_modules) and does not stop at nested modules or honour
+  .gitignore for production builds. Several generated playground repos (`examples/playground/*`) contain `.go`
+  files with deliberate merge-conflict markers, so `wails3 build` fails while the playground exists.
+- **Choice:** CI runs `wails3 build` before any step that generates the playground; the release workflow never
+  generates it. Locally, `npm run build` (M8) moves nothing — a developer with a playground runs
+  `npm run playground:clean` or builds in a fresh checkout. `wails3 build --plan` resolves for linux/amd64
+  (appimage, deb) and windows/amd64 (nsis) here; darwin/universal needs a macOS host with CGO (D8), so its plan
+  and build run on the macOS release runner (cross-compiling from Linux would need Wails' Docker image).

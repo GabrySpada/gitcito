@@ -28,3 +28,29 @@ build:
 # The dev loop gets its own data dir, keychain entry and single-instance id.
 dev:
   tags: [dev]
+darwin:
+  icon: build/icon.icns
+  signing:
+    # Hardened-runtime entitlements. WKWebView needs none of Electron's JIT/V8 ones (DECISIONS 021).
+    entitlements: build/entitlements.mac.plist
+windows:
+  icon: build/icon.png
+linux:
+  icon: build/icon.png
+packages:
+  # Per-user install that lets the user pick a directory, as electron-builder's oneClick: false did.
+  nsis:
+    install_scope: user
+  appimage:
+    categories: [Development]
+  deb:
+    section: devel
+profiles:
+  release:
+    targets:
+      darwin/universal:
+        formats: [dmg]
+      windows/amd64:
+        formats: [nsis]
+      linux/amd64:
+        formats: [appimage, deb]

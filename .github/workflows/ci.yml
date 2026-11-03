@@ -66,6 +66,11 @@ jobs:
           git config --global user.email "ci@example.invalid"
           git config --global init.defaultBranch main
 
+      # Before anything generates examples/playground: Wake fingerprints every .go file under the project
+      # root, and some playground fixtures are deliberately not valid Go (DECISIONS 023).
+      - name: Host build
+        run: wails3 build
+
       - name: Generated bindings are up to date
         run: |
           wails3 generate bindings -ts -i -clean -d src/renderer/src/bindings
@@ -102,9 +107,6 @@ jobs:
       - name: go test (race)
         if: runner.os == 'Linux'
         run: go test -race ./...
-
-      - name: Host build
-        run: wails3 build
 
       - name: End-to-end (server build)
         if: runner.os == 'Linux'
