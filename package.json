@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "electron-vite dev",
     "build": "node scripts/sync-grammars.mjs && node scripts/gen-licenses.mjs && electron-vite build",
-    "build:frontend": "node scripts/sync-grammars.mjs && node scripts/gen-licenses.mjs && vite build",
+    "build:frontend": "node scripts/sync-grammars.mjs && node scripts/gen-licenses.mjs && vite build && node -e \"require('fs').writeFileSync('frontend-dist/.gitkeep','')\"",
     "dev:frontend": "vite",
     "dist:mac": "electron-builder --mac",
     "dist:win": "electron-builder --win",

@@ -26,7 +26,10 @@ examples/monster/
 reference/
 
 # Wails frontend build (npm run build:frontend), embedded by the Go binary
-frontend-dist/
+# Built renderer (embedded by main.go). The placeholder keeps `go build ./...` and `go vet ./...` working in a
+# fresh clone, before any frontend build: //go:embed refuses a missing directory.
+frontend-dist/*
+!frontend-dist/.gitkeep
 
 # Subagent worktrees created during the Wails port
 .claude/worktrees/
