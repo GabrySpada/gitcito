@@ -3,9 +3,21 @@
 
 export type {
     DependencyRef,
+    DetectedEditor,
+    DiffToolConfig,
+    DiffToolInfo,
+    EditorID,
+    EditorSetting,
+    EditorSource,
+    EditorTarget,
     ImportEdge,
     ImportGraph,
     ImportNode,
     LanguageStat,
-    $Object
+    $Object,
+    SshKey,
+    SshKeyType,
+    SshStatus,
+    SshTest,
+    SshTestResult
 } from "./models.js";

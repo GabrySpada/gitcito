@@ -195,3 +195,17 @@ func runGitAllowFail(repo string, args ...string) (string, error) {
 	out, err := git(context.Background(), repo, args)
 	return out, err
 }
+
+// A revision with a leading dash would become a git option (`--extcmd=…`).
+func TestDiffRefusesOptionShapedRevision(t *testing.T) {
+	if got := Diff(context.Background(), t.TempDir(), "a.txt", "--extcmd=touch /tmp/pwned", ""); got != "Invalid revision: --extcmd=touch /tmp/pwned" {
+		t.Fatalf("got %q", got)
+	}
+}
+
+func TestSetRefusesOptionShapedTool(t *testing.T) {
+	bad := "--global"
+	if err := Set(context.Background(), t.TempDir(), Values{DiffTool: &bad}, "local"); err == nil {
+		t.Fatal("accepted a tool name starting with a dash")
+	}
+}

@@ -1,3 +1,5 @@
+//lint:file-ignore ST1005 user-facing messages are kept byte-identical to src/main/ssh.ts
+
 // Package ssh makes the system's SSH machinery inspectable — the port of
 // src/main/ssh.ts.
 //
@@ -23,6 +25,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"runtime"
+	"strings"
 	"syscall"
 
 	"github.com/GabrySpada/gitcito/internal/gitx"
@@ -246,6 +249,12 @@ func unwrapPath(err error) error {
 // on success, else the reason.
 func (k *Keys) AddToAgent(ctx context.Context, publicKeyPath, passphrase string) (string, error) {
 	privatePath := shared.PrivateKeyName(publicKeyPath)
+	// The path reaches ssh-add as a bare argument; a leading dash would make it
+	// an option. Key paths from ssh:status are absolute, so this never refuses
+	// a real one.
+	if strings.HasPrefix(privatePath, "-") {
+		return "The private key for this entry is not on this machine.", nil
+	}
 	if !exists(privatePath) {
 		return "The private key for this entry is not on this machine.", nil
 	}

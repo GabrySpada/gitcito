@@ -12,6 +12,129 @@ export interface DependencyRef {
 }
 
 /**
+ * DetectedEditor is an editor found on this machine.
+ */
+export interface DetectedEditor {
+    "id": EditorID;
+    "name": string;
+
+    /**
+     * Command is the absolute path to the executable, or to the `.app` bundle
+     * when Source is "app".
+     */
+    "command": string;
+    "source": EditorSource;
+}
+
+/**
+ * DiffToolConfig is what the settings UI and the per-file actions need to know.
+ */
+export interface DiffToolConfig {
+    /**
+     * DiffTool is `diff.tool`, empty when unset.
+     */
+    "diffTool": string;
+
+    /**
+     * MergeTool is `merge.tool`, empty when unset.
+     */
+    "mergeTool": string;
+
+    /**
+     * DiffTools are the tools offered for diffing.
+     */
+    "diffTools": DiffToolInfo[] | null;
+
+    /**
+     * MergeTools are the tools offered for merging — git's two lists differ.
+     */
+    "mergeTools": DiffToolInfo[] | null;
+
+    /**
+     * KeepBackup is `mergetool.keepBackup`; when true a `.orig` file is left behind.
+     */
+    "keepBackup": boolean;
+}
+
+/**
+ * DiffToolInfo is one tool git offers.
+ */
+export interface DiffToolInfo {
+    /**
+     * ID is the `--tool=` value, e.g. `kdiff3`.
+     */
+    "id": string;
+
+    /**
+     * Description is git's own one-line description.
+     */
+    "description": string;
+
+    /**
+     * Available is true when git found the tool on this machine.
+     */
+    "available": boolean;
+}
+
+/**
+ * EditorID is the TS EditorId union: a preset id or "custom".
+ */
+export type EditorID = string;
+
+/**
+ * EditorSetting is the user's choice, persisted in settings.
+ */
+export interface EditorSetting {
+    "id": EditorID;
+
+    /**
+     * Command is the executable or `.app` bundle. Resolved by detection for
+     * presets, typed by the user for `custom`.
+     */
+    "command": string;
+
+    /**
+     * Name is the display name — the preset's product name, or whatever the
+     * user called their custom command.
+     */
+    "name": string;
+    "source": EditorSource;
+
+    /**
+     * FileArgs (custom only) is the argv template for a file. Falls back to `{path}`.
+     */
+    "fileArgs"?: string;
+
+    /**
+     * FolderArgs (custom only) is the argv template for a directory. Falls back to `{path}`.
+     */
+    "folderArgs"?: string;
+}
+
+/**
+ * EditorSource says how an editor was located, which decides whether line
+ * jumping is possible: "cli" or "app".
+ */
+export type EditorSource = string;
+
+/**
+ * EditorTarget is what to open. Path is absolute; Line/Col are 1-based and
+ * ignored when the editor cannot accept them (zero means unset, as in TS where
+ * 0 and undefined are both falsy).
+ */
+export interface EditorTarget {
+    "path": string;
+    "line"?: number;
+    "col"?: number;
+    "isDir"?: boolean;
+
+    /**
+     * Repo is the repository root, for a custom template that wants the workspace too.
+     */
+    "repo"?: string;
+}
+
+/**
  * ImportEdge is ImportEdge in src/shared/types.ts.
  */
 export interface ImportEdge {
@@ -77,3 +200,87 @@ export interface LanguageStat {
  * Object is a decoded JSON object.
  */
 export type $Object = { [_ in string]?: any } | null;
+
+/**
+ * SshKey is one public key found in the ssh directory.
+ */
+export interface SshKey {
+    /**
+     * File is the file name of the public key, e.g. `id_ed25519.pub`.
+     */
+    "file": string;
+
+    /**
+     * Path is the absolute path of the public key.
+     */
+    "path": string;
+    "type": SshKeyType;
+    "bits": number;
+
+    /**
+     * Fingerprint is `SHA256:…`, the form `ssh-add -l` prints too.
+     */
+    "fingerprint": string;
+
+    /**
+     * Comment is the trailing comment, usually an email or machine name. Often empty.
+     */
+    "comment": string;
+
+    /**
+     * PublicKey is the whole public key line, which is what a host wants pasted.
+     */
+    "publicKey": string;
+
+    /**
+     * InAgent is true when the agent is holding the matching private key.
+     */
+    "inAgent": boolean;
+
+    /**
+     * HasPrivate is true when the matching private key file sits next to it.
+     */
+    "hasPrivate": boolean;
+}
+
+/**
+ * SshKeyType is the TS SshKeyType union: ed25519, rsa, ecdsa, dsa, ed25519-sk,
+ * ecdsa-sk or unknown.
+ */
+export type SshKeyType = string;
+
+/**
+ * SshStatus is what the SSH section of Settings renders.
+ */
+export interface SshStatus {
+    /**
+     * Dir is the absolute path of ~/.ssh, shown so the user knows where these live.
+     */
+    "dir": string;
+    "keys": SshKey[] | null;
+
+    /**
+     * AgentRunning is false when no agent is reachable at all (SSH_AUTH_SOCK unset, or dead).
+     */
+    "agentRunning": boolean;
+}
+
+/**
+ * SshTest is a connection test's verdict.
+ */
+export interface SshTest {
+    "result": SshTestResult;
+
+    /**
+     * Output is the raw ssh output, shown verbatim under the verdict — it is often specific.
+     */
+    "output": string;
+}
+
+/**
+ * SshTestResult is what `ssh -T git@<host>` meant: ok, denied, unreachable or
+ * unknown. OpenSSH says "successfully authenticated" and then exits 1 for
+ * GitHub, which looks like a failure and is not — so the exit code alone
+ * cannot be trusted.
+ */
+export type SshTestResult = string;

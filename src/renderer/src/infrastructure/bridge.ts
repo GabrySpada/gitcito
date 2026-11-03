@@ -26,6 +26,9 @@ import * as TodoScanService from '../bindings/github.com/GabrySpada/gitcito/inte
 import * as DevicesService from '../bindings/github.com/GabrySpada/gitcito/internal/devices/service'
 import * as RegistryService from '../bindings/github.com/GabrySpada/gitcito/internal/registry/service'
 import * as WatcherService from '../bindings/github.com/GabrySpada/gitcito/internal/watcher/service'
+import * as EditorService from '../bindings/github.com/GabrySpada/gitcito/internal/editor/service'
+import * as DiffToolService from '../bindings/github.com/GabrySpada/gitcito/internal/difftool/service'
+import * as SshService from '../bindings/github.com/GabrySpada/gitcito/internal/ssh/service'
 import * as AIService from '../bindings/github.com/GabrySpada/gitcito/internal/ai/service'
 import * as AnalyticsService from '../bindings/github.com/GabrySpada/gitcito/internal/analytics/service'
 import * as InfoService from '../bindings/github.com/GabrySpada/gitcito/internal/info/service'
@@ -198,6 +201,9 @@ const todoScanCall = forwarder(TodoScanService)
 const devicesCall = forwarder(DevicesService)
 const reposCall = forwarder(RegistryService)
 const watchCall = forwarder(WatcherService)
+const editorCall = forwarder(EditorService)
+const diffToolCall = forwarder(DiffToolService)
+const sshCall = forwarder(SshService)
 
 /** Fire-and-forget channels (Electron's ipcRenderer.send): never awaited, failures only logged. */
 const sendTo =
@@ -306,22 +312,22 @@ export function createBridge(boot: BootstrapInfo): PreloadApi {
     },
 
     difftool: {
-      config: notPorted('difftool:config'),
-      set: notPorted('difftool:set'),
-      diff: notPorted('difftool:diff'),
-      merge: notPorted('difftool:merge')
+      config: diffToolCall('Config'),
+      set: diffToolCall('Set'),
+      diff: diffToolCall('Diff'),
+      merge: diffToolCall('Merge')
     },
 
     ssh: {
-      status: notPorted('ssh:status'),
-      generate: notPorted('ssh:generate'),
-      addToAgent: notPorted('ssh:addToAgent'),
-      test: notPorted('ssh:test')
+      status: sshCall('Status'),
+      generate: sshCall('Generate'),
+      addToAgent: sshCall('AddToAgent'),
+      test: sshCall('Test')
     },
 
     editor: {
-      detect: notPorted('editor:detect'),
-      open: notPorted('editor:open')
+      detect: editorCall('Detect'),
+      open: editorCall('Open')
     },
 
     settings: {

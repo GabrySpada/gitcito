@@ -16,6 +16,8 @@ import (
 	"github.com/GabrySpada/gitcito/internal/analyze"
 	"github.com/GabrySpada/gitcito/internal/app"
 	"github.com/GabrySpada/gitcito/internal/devices"
+	"github.com/GabrySpada/gitcito/internal/difftool"
+	"github.com/GabrySpada/gitcito/internal/editor"
 	"github.com/GabrySpada/gitcito/internal/gitsvc"
 	"github.com/GabrySpada/gitcito/internal/gitx"
 	"github.com/GabrySpada/gitcito/internal/grounding/aicompleter"
@@ -31,6 +33,7 @@ import (
 	"github.com/GabrySpada/gitcito/internal/repochat"
 	"github.com/GabrySpada/gitcito/internal/secure"
 	"github.com/GabrySpada/gitcito/internal/settings"
+	"github.com/GabrySpada/gitcito/internal/ssh"
 	"github.com/GabrySpada/gitcito/internal/terminal"
 	"github.com/GabrySpada/gitcito/internal/todoscan"
 	"github.com/GabrySpada/gitcito/internal/vault"
@@ -141,6 +144,10 @@ func main() {
 			application.NewService(localci.NewService(app.Emitter{})),
 			application.NewService(analyze.NewService()),
 			application.NewService(todoscan.NewService()),
+			application.NewService(editor.NewService(editor.New())),
+			application.NewService(difftool.NewService()),
+			// GITCITO_SSH_DIR is honoured only under --shot, for the screenshot harness's fake keys.
+			application.NewService(ssh.NewService(ssh.New(*shot))),
 			application.NewService(registry.NewService(registry.New(filepath.Join(dataDir, registry.FileName), nil))),
 			application.NewService(watcher.NewService(watcher.New(app.Emitter{}, nil))),
 			application.NewService(info.NewService(info.New(info.Options{}))),

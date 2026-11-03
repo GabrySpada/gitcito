@@ -1155,8 +1155,8 @@
           "via": "diffToolApi.config"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "difftool.Service.Config",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1184,8 +1184,8 @@
           "via": "diffToolApi.diff"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "difftool.Service.Diff",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1212,8 +1212,8 @@
           "via": "diffToolApi.merge"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "difftool.Service.Merge",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1240,8 +1240,8 @@
           "via": "diffToolApi.set"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "difftool.Service.Set",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1264,8 +1264,8 @@
           "via": "editorApi.detect"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "editor.Service.Detect",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -1295,8 +1295,8 @@
           "via": "editorApi.open"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "editor.Service.Open",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4113,8 +4113,8 @@
           "via": "sshApi.addToAgent"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ssh.Service.AddToAgent",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4141,8 +4141,8 @@
           "via": "sshApi.generate"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ssh.Service.Generate",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4165,8 +4165,8 @@
           "via": "sshApi.status"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ssh.Service.Status",
+      "status": "ported",
       "test": "—"
     },
     {
@@ -4191,8 +4191,8 @@
           "via": "sshApi.test"
         }
       ],
-      "owner": "—",
-      "status": "todo",
+      "owner": "ssh.Service.Test",
+      "status": "ported",
       "test": "—"
     },
     {

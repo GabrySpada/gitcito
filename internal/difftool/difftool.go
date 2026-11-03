@@ -10,7 +10,9 @@ package difftool
 import (
 	"context"
 	"errors"
+	"fmt"
 	"strconv"
+	"strings"
 	"sync"
 
 	"github.com/GabrySpada/gitcito/internal/gitx"
@@ -103,6 +105,11 @@ func Set(ctx context.Context, repoPath string, values Values, scope string) erro
 		where = []string{"--global"}
 	}
 	write := func(key, value string) error {
+		// A value with a leading dash would reach `git config` as an option.
+		// Tool ids come from git's own --tool-help list and never start with one.
+		if strings.HasPrefix(value, "-") {
+			return fmt.Errorf("invalid tool name: %s", value)
+		}
 		if value != "" {
 			_, err := git(ctx, repoPath, append(append([]string{"config"}, where...), key, value))
 			return err
@@ -145,6 +152,12 @@ func firstNonEmpty(values ...string) string {
 // It returns when the tool exits. That can be minutes — the renderer keeps its
 // button disabled meanwhile rather than the app blocking. An empty string means success.
 func Diff(ctx context.Context, repoPath, file, rev, tool string) string {
+	// rev sits before `--`, where git would read a leading dash as an option
+	// (`--extcmd=…` runs an arbitrary command). Revisions never start with one.
+	// The Electron build had no such check; this closes it.
+	if strings.HasPrefix(rev, "-") {
+		return "Invalid revision: " + rev
+	}
 	args := []string{"difftool", "--no-prompt"}
 	if tool != "" {
 		args = append(args, "--tool="+tool)
