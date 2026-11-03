@@ -44,7 +44,6 @@ func jv(t *testing.T, s string) any {
 	return v
 }
 
-
 func TestDiffEvidence(t *testing.T) {
 	t.Run("splits a diff into one evidence item per hunk with sequential ids", func(t *testing.T) {
 		set := BuildDiffEvidence(testDiff, DiffEvidenceOpts{})
@@ -344,4 +343,3 @@ func TestHoverSparseDiffWindows(t *testing.T) {
 		}
 	})
 }
-
